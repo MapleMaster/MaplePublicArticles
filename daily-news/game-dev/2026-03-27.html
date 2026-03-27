@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" style="scroll-behavior:smooth;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,8 @@
     --border: #e8e8e8;
     --tag-bg: #edf2f4;
     --red: #e63946;
+    --orange: #e76f51;
+    --blue: #457b9d;
     --shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
@@ -105,6 +107,9 @@
     font-weight: 700;
     font-size: 14px;
   }
+  .card-num.hot { background: var(--red); }
+  .card-num.orange { background: var(--orange); }
+  .card-num.blue { background: var(--blue); }
   .card-title {
     font-size: 16px;
     font-weight: 700;
@@ -140,6 +145,45 @@
     background: #fff0f0;
     color: var(--red);
   }
+  .tag.claude {
+    background: #f0e6ff;
+    color: #7c3aed;
+  }
+  .tag.gpt {
+    background: #e6f4ea;
+    color: #1e7e34;
+  }
+  .tag.gemini {
+    background: #e8f0fe;
+    color: #1a73e8;
+  }
+
+  /* Data table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 8px 0 12px;
+  }
+  .data-table th {
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  .data-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text2);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .winner {
+    color: var(--accent);
+    font-weight: 700;
+  }
 
   /* Insight box */
   .insight {
@@ -163,27 +207,6 @@
     line-height: 1.6;
   }
 
-  /* Takeaway */
-  .takeaway {
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    color: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 8px;
-    text-align: center;
-  }
-  .takeaway .emoji { font-size: 24px; margin-bottom: 8px; }
-  .takeaway h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
-  .takeaway p { font-size: 13px; opacity: 0.85; line-height: 1.7; }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 24px 16px 0;
-    font-size: 11px;
-    color: #bbb;
-  }
-
   /* Details */
   .detail-list {
     list-style: none;
@@ -205,6 +228,138 @@
     font-weight: 700;
   }
 
+  /* Source links */
+  .sources {
+    padding: 0 18px 16px;
+  }
+  .sources-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 16px;
+    background: var(--accent-light);
+    margin: 0 6px 6px 0;
+    transition: all 0.2s;
+  }
+  .source-link:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* TOC */
+  .toc {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px 16px 0;
+  }
+  .toc-box {
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+  }
+  .toc-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .toc-list li {
+    margin-bottom: 6px;
+  }
+  .toc-list li:last-child {
+    margin-bottom: 0;
+  }
+  .toc-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .toc-link:hover {
+    background: var(--accent-light);
+  }
+  .toc-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .toc-num.hot { background: var(--red); }
+  .toc-num.orange { background: var(--orange); }
+  .toc-num.blue { background: var(--blue); }
+  .toc-text {
+    flex: 1;
+    font-size: 13.5px;
+  }
+  .toc-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .toc-tag.claude { background: #f0e6ff; color: #7c3aed; }
+  .toc-tag.gpt { background: #e6f4ea; color: #1e7e34; }
+  .toc-tag.gemini { background: #e8f0fe; color: #1a73e8; }
+  .toc-tag.tool { background: var(--tag-bg); color: var(--text2); }
+  .toc-tag.game { background: #fff0f0; color: var(--red); }
+
+  /* Takeaway */
+  .takeaway {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 8px;
+    text-align: center;
+  }
+  .takeaway .emoji { font-size: 24px; margin-bottom: 8px; }
+  .takeaway h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .takeaway p { font-size: 13px; opacity: 0.85; line-height: 1.7; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px 16px 0;
+    font-size: 11px;
+    color: #bbb;
+  }
+
   /* Responsive */
   @media (min-width: 600px) {
     .header h1 { font-size: 26px; }
@@ -217,119 +372,266 @@
 <div class="header">
   <div class="date">2026 年 3 月 27 日 · 星期五</div>
   <h1>🎮 AI 日报 · 游戏研发视角</h1>
-  <div class="subtitle">AI Coding × 游戏后台 × 客户端 × PM × 测试</div>
+  <div class="subtitle">编程大模型 × AI Coding 工具 × 游戏研发 × 行业动态</div>
 </div>
 
 <div class="summary-bar">
-  <div class="stat"><span class="num">4</span> 条精选</div>
-  <div class="stat"><span class="num">3</span> 个领域</div>
-  <div class="stat">覆盖 游戏研发全链路</div>
+  <div class="stat"><span class="num">6</span> 条精选</div>
+  <div class="stat"><span class="num">4</span> 个领域</div>
+  <div class="stat">聚焦 编程大模型</div>
+</div>
+
+<div class="toc">
+  <div class="toc-box">
+    <div class="toc-title">📑 今日目录</div>
+    <ol class="toc-list">
+      <li><a class="toc-link" href="#card-1"><span class="toc-num hot">1</span><span class="toc-text">三大旗舰模型编程横评：Opus 登顶，GPT-5.4 性价比称王</span><span class="toc-tag claude">Claude</span><span class="toc-tag gpt">GPT</span><span class="toc-tag gemini">Gemini</span></a></li>
+      <li><a class="toc-link" href="#card-2"><span class="toc-num hot">2</span><span class="toc-text">Claude Sonnet 4.6 编程暴涨：1M 上下文，免费可用</span><span class="toc-tag claude">Claude</span></a></li>
+      <li><a class="toc-link" href="#card-3"><span class="toc-num orange">3</span><span class="toc-text">GPT-5.4 mini + nano 突袭：1/3 价格逼近满血版</span><span class="toc-tag gpt">GPT</span></a></li>
+      <li><a class="toc-link" href="#card-4"><span class="toc-num blue">4</span><span class="toc-text">Gemini 3 编程生态：2M 上下文 + 代码沙盒 + Cline</span><span class="toc-tag gemini">Gemini</span></a></li>
+      <li><a class="toc-link" href="#card-5"><span class="toc-num">5</span><span class="toc-text">AI 编程工具格局：Claude Code 领跑，OpenClaw 入局</span><span class="toc-tag tool">工具</span></a></li>
+      <li><a class="toc-link" href="#card-6"><span class="toc-num">6</span><span class="toc-text">GDC 2026：AI 成游戏开发核心战略，Agent 爆发</span><span class="toc-tag game">游戏</span></a></li>
+    </ol>
+  </div>
 </div>
 
 <div class="content">
 
-  <!-- Card 1 -->
-  <div class="card">
+  <!-- Card 1: 三大旗舰横评 -->
+  <div class="card" id="card-1">
     <div class="card-header">
-      <div class="card-num">1</div>
-      <div class="card-title">GDC 2026 回顾：天美 Ignis Agent 实现 98% AI 自动化编程</div>
+      <div class="card-num hot">1</div>
+      <div class="card-title">三大旗舰模型编程能力横评：Claude Opus 4.6 登顶，GPT-5.4 性价比称王</div>
     </div>
     <div class="tags">
-      <span class="tag hot">🔥 重磅</span>
-      <span class="tag">AI Agent</span>
-      <span class="tag">游戏后台</span>
-      <span class="tag">自动化测试</span>
+      <span class="tag hot">🔥 核心</span>
+      <span class="tag claude">Claude</span>
+      <span class="tag gpt">GPT</span>
+      <span class="tag gemini">Gemini</span>
     </div>
     <div class="card-body">
-      <p>GDC 2026（3月9-13日，旧金山）上，腾讯游戏贡献 40+ 场议题。天美工作室展示 <strong>"可微智能"</strong> 概念及 <strong>Ignis Agent</strong>——面向游戏引擎的 AI 编程智能体，在团结引擎项目中实现 Crash 自动治理，部分项目 AI 自动化编程率达 <strong>98%</strong>。</p>
-      <p>光子工作室展示 <strong>VISVISE 系统</strong>（自动蒙皮 → 自动动画 → 角色定制），以及已在《和平精英》大规模落地的 AI 队友——上线后 75% 玩家愿意与 AI 队友语音交流。</p>
+      <p>OfoxAI 3 月 24 日发布三大旗舰模型全方位横评，首次以 <strong>SWE-Bench Pro</strong>（真实工程修复能力）为核心指标对比编程能力：</p>
+      <table class="data-table">
+        <tr>
+          <th>模型</th>
+          <th>SWE-Bench Pro</th>
+          <th>月成本 (1K次/天)</th>
+          <th>上下文</th>
+        </tr>
+        <tr>
+          <td><strong>Claude Opus 4.6</strong></td>
+          <td class="winner">~62% 🏆</td>
+          <td>¥26,000</td>
+          <td>200K</td>
+        </tr>
+        <tr>
+          <td><strong>GPT-5.4</strong></td>
+          <td>57.7%</td>
+          <td>¥4,900</td>
+          <td>256K</td>
+        </tr>
+        <tr>
+          <td><strong>Gemini 3.1 Pro</strong></td>
+          <td>~55%</td>
+          <td>¥1,900</td>
+          <td class="winner">2M 🏆</td>
+        </tr>
+        <tr>
+          <td>GPT-5.4 mini</td>
+          <td>54.4%</td>
+          <td class="winner">¥1,470 🏆</td>
+          <td>128K</td>
+        </tr>
+      </table>
+      <p>结论：<strong>Claude Opus 编程绝对实力最强</strong>但成本是其他模型 5-6 倍；<strong>GPT-5.4 mini</strong> 是性价比之王，94% 旗舰能力但 1/3 价格；<strong>Gemini 3.1 Pro</strong> 的 2M 上下文是全仓库重构唯一选择。</p>
     </div>
     <div class="insight">
-      <div class="insight-label">💡 对研发团队的启示</div>
-      <p><strong>后台/客户端：</strong>AI Agent 从"辅助补全"走向"自主修 Bug + 跑测试"，工程师角色转向审核和架构决策<br>
-      <strong>测试：</strong>AI 自动 Crash 治理直接冲击传统分析流程，QA 需要转向 AI 审核与策略制定<br>
-      <strong>PM：</strong>AI 队友已验证商业价值，可探索更多 AI 驱动的玩法创新</p>
+      <div class="insight-label">💡 游戏团队选型建议</div>
+      <p><strong>复杂架构设计（后台）：</strong>Claude Opus 4.6，深度推理最强<br>
+      <strong>日常 Bug 修复：</strong>GPT-5.4 mini，性价比极高<br>
+      <strong>全仓库代码审查：</strong>Gemini 3.1 Pro，2M 上下文一次读入整个项目<br>
+      <strong>混合策略：</strong>成本降 85%，质量仅降 5-10%</p>
+    </div>
+    <div class="sources">
+      <div class="sources-title">📎 原始来源</div>
+      <a class="source-link" href="https://ofox.ai/zh/blog/gpt-5-4-vs-claude-opus-vs-gemini-flagship-comparison-2026/" target="_blank" rel="noopener">OfoxAI 横评</a>
+      <a class="source-link" href="https://segmentfault.com/a/1190000047676047" target="_blank" rel="noopener">SegmentFault 八大模型横评</a>
     </div>
   </div>
 
-  <!-- Card 2 -->
-  <div class="card">
+  <!-- Card 2: Claude Sonnet 4.6 -->
+  <div class="card" id="card-2">
     <div class="card-header">
-      <div class="card-num">2</div>
-      <div class="card-title">AI 编程工具进入 Agent 时代：四大阵营格局分化</div>
+      <div class="card-num hot">2</div>
+      <div class="card-title">Claude Sonnet 4.6 编程暴涨：1M 上下文 + 自适应思考，免费用户也能用</div>
+    </div>
+    <div class="tags">
+      <span class="tag hot">🔥 重磅</span>
+      <span class="tag claude">Claude</span>
+      <span class="tag">编程能力</span>
+      <span class="tag">免费可用</span>
+    </div>
+    <div class="card-body">
+      <p>Anthropic 的中端模型 <strong>Sonnet 4.6</strong> 编程能力大幅跃升，免费用户默认升级。核心变化：</p>
+      <ul class="detail-list">
+        <li><strong>1M token 上下文（Beta）：</strong>相比上代 200K 扩大 5 倍，可容纳整个中型代码库</li>
+        <li><strong>不再过度工程化：</strong>改代码更克制，只做必要修改，不再随意重构无关文件</li>
+        <li><strong>Adaptive Thinking：</strong>模型自动判断问题难度，简单问题秒答，复杂问题深度推理</li>
+        <li><strong>Computer Use 飙升：</strong>OSWorld 基准从 14.9% → 72.5%，接近人类水平</li>
+        <li><strong>价格不变：</strong>$3/$15 per million tokens，90% 日常编程场景可替代 Opus</li>
+      </ul>
+    </div>
+    <div class="insight">
+      <div class="insight-label">💡 实用场景</div>
+      <p><strong>用 Sonnet（90% 日常）：</strong>单文件开发、Bug 修复、代码解读、API 接口、测试用例<br>
+      <strong>用 Opus（10% 硬骨头）：</strong>10+ 文件重构、数学/算法推理、关键业务审查</p>
+    </div>
+    <div class="sources">
+      <div class="sources-title">📎 原始来源</div>
+      <a class="source-link" href="https://cloud.tencent.com/developer/article/2633957" target="_blank" rel="noopener">腾讯云开发者</a>
+      <a class="source-link" href="https://www.nxcode.io/zh/resources/news/claude-opus-or-sonnet-for-coding-decision-guide-2026" target="_blank" rel="noopener">NxCode 决策指南</a>
+      <a class="source-link" href="https://poloapi.com/poloapi-blog/Claude-Sonnet-4.6-Multimodal-Performance-Measurement" target="_blank" rel="noopener">PoloAPI 实测</a>
+    </div>
+  </div>
+
+  <!-- Card 3: GPT-5.4 mini/nano -->
+  <div class="card" id="card-3">
+    <div class="card-header">
+      <div class="card-num orange">3</div>
+      <div class="card-title">GPT-5.4 mini + nano 深夜突袭：1/3 价格逼近满血版编程能力</div>
+    </div>
+    <div class="tags">
+      <span class="tag hot">🔥 新发布</span>
+      <span class="tag gpt">GPT-5.4</span>
+      <span class="tag">性价比</span>
+      <span class="tag">Agent</span>
+    </div>
+    <div class="card-body">
+      <p>3 月 17 日 GTC 期间，OpenAI 深夜发布 <strong>GPT-5.4 mini</strong> 和 <strong>GPT-5.4 nano</strong> 两款轻量级模型：</p>
+      <ul class="detail-list">
+        <li><strong>mini：</strong>SWE-Bench Pro 54.4%（旗舰版的 94%），速度 2x，价格 $0.75/$3 per M tokens</li>
+        <li><strong>nano：</strong>SWE-Bench Pro 52.4%（超过上代 GPT-5 mini 的 45.7%），价格仅 $0.20/$0.80</li>
+        <li><strong>核心升级：</strong>动态稀疏激活 + Thinking 模式（显示推理过程），编程/推理/多模态/工具调用全面超上代</li>
+        <li><strong>AI Agent 理想选择：</strong>高频调用场景下成本降至 1/12，适合作为 Agent 的主力"大脑"</li>
+      </ul>
+    </div>
+    <div class="insight">
+      <div class="insight-label">💡 对游戏团队的意义</div>
+      <p><strong>降本关键：</strong>nano 的编程能力已超上代中端模型，每日批量自动化任务（CI 检查、代码审查）用 nano 即可<br>
+      <strong>Agent 架构：</strong>mini 做主力推理，nano 做工具调用/简单任务，混合编排可大幅降低 AI 管线成本</p>
+    </div>
+    <div class="sources">
+      <div class="sources-title">📎 原始来源</div>
+      <a class="source-link" href="https://news.qq.com/rain/a/20260318A01F5900" target="_blank" rel="noopener">腾讯新闻</a>
+      <a class="source-link" href="https://www.36kr.com/p/3727696735468423" target="_blank" rel="noopener">36氪</a>
+      <a class="source-link" href="https://ofox.ai/zh/blog/gpt-5-4-mini-nano-api-guide-2026/" target="_blank" rel="noopener">OfoxAI API 指南</a>
+    </div>
+  </div>
+
+  <!-- Card 4: Gemini 3 编程生态 -->
+  <div class="card" id="card-4">
+    <div class="card-header">
+      <div class="card-num blue">4</div>
+      <div class="card-title">Gemini 3 编程生态持续发力：2M 上下文 + 代码沙盒 + Cline 深度集成</div>
+    </div>
+    <div class="tags">
+      <span class="tag gemini">Gemini</span>
+      <span class="tag">长上下文</span>
+      <span class="tag">代码沙盒</span>
+      <span class="tag">Cline</span>
+    </div>
+    <div class="card-body">
+      <p>Google DeepMind 的 Gemini 3 系列在编程领域走差异化路线，主打 <strong>超长上下文 + 原生工具能力</strong>：</p>
+      <ul class="detail-list">
+        <li><strong>2M token 上下文：</strong>一次读入整个大型 monorepo，全局理解后再修改，避免"盲人摸象"</li>
+        <li><strong>内置代码执行沙盒：</strong>AI 可直接运行代码验证逻辑，不再"纸上编程"</li>
+        <li><strong>Cline 深度集成：</strong>DeepMind 官方背书 —— "Gemini 3 has been a game-changer for Cline"</li>
+        <li><strong>价格优势：</strong>3.1 Pro 输入 $1.25/M tokens，长文本场景性价比碾压竞品</li>
+      </ul>
+    </div>
+    <div class="insight">
+      <div class="insight-label">💡 适用场景</div>
+      <p><strong>全仓库重构：</strong>2M 上下文是唯一能一次读入大型游戏项目的选择<br>
+      <strong>自动化测试：</strong>代码沙盒让 AI 能自己跑测试验证修复，游戏后台 CI 直接受益<br>
+      <strong>Cline 用户：</strong>Gemini 3 + Cline 组合，零 IDE 切换成本实现 Agent 级编程</p>
+    </div>
+    <div class="sources">
+      <div class="sources-title">📎 原始来源</div>
+      <a class="source-link" href="https://deepmind.google/models/gemini/" target="_blank" rel="noopener">DeepMind 官网</a>
+      <a class="source-link" href="https://www.gemini-cn.com/blog/gemini3-cn-guide.html" target="_blank" rel="noopener">Gemini 3 中文指南</a>
+    </div>
+  </div>
+
+  <!-- Card 5: AI 编程工具格局 -->
+  <div class="card" id="card-5">
+    <div class="card-header">
+      <div class="card-num">5</div>
+      <div class="card-title">2026 AI 编程工具格局：Claude Code 领跑，Cursor 面临挑战，OpenClaw 入局</div>
     </div>
     <div class="tags">
       <span class="tag hot">🔥 实用</span>
       <span class="tag">AI Coding</span>
       <span class="tag">工具选型</span>
-      <span class="tag">效率提升</span>
+      <span class="tag">OpenClaw</span>
     </div>
     <div class="card-body">
-      <p>2026 年 AI 编程市场规模达 <strong>128 亿美元</strong>，开发者采用率 <strong>85%</strong>。Agent 模式普及率 55%，预计年底超 70%。四大阵营已明确：</p>
+      <p>多篇横评文章共识：2026 年 AI 编程工具格局发生重大变化，Agent 模式成为标配：</p>
       <ul class="detail-list">
-        <li><strong>Claude Code</strong>（终端智能体）：全库理解 + 自主拆任务，适合大型项目重构</li>
-        <li><strong>Cursor</strong>（AI IDE）：Composer 多文件编辑，快速原型开发利器</li>
-        <li><strong>GitHub Copilot</strong>（插件）：企业合规优势，新增 Agent Mode 追赶</li>
-        <li><strong>Cline</strong>（开源）：支持 DeepSeek 等本地模型，一天几毛钱</li>
+        <li><strong>Claude Code：</strong>终端 Agent，全库理解 + 自主拆任务，大型项目重构的首选</li>
+        <li><strong>Cursor：</strong>AI IDE，Composer 多文件编辑强；但大型 monorepo 索引吃内存，挑战者增多</li>
+        <li><strong>OpenClaw（新）：</strong>开源 Agent 编程工具，支持多模型切换，正在快速追赶</li>
+        <li><strong>Codex CLI（GPT-5.4）：</strong>原生计算机操作 + 长上下文 + 多工具协同</li>
+        <li><strong>Copilot：</strong>企业合规优势，新增 Agent Mode 但尚在追赶</li>
       </ul>
+      <p>市场规模 <strong>128 亿美元</strong>，开发者采用率 <strong>85%</strong>，Agent 模式普及率 55%（预计年底超 70%）。</p>
     </div>
     <div class="insight">
-      <div class="insight-label">⚠️ 警示 + 选型建议</div>
-      <p><strong>重要警告：</strong>AI 辅助代码缺陷率增长了 <strong>4 倍</strong>，Code Review 不能省<br>
-      <strong>后台开发：</strong>Claude Code 适合大规模重构和跨文件修改<br>
-      <strong>客户端：</strong>Cursor 适合快速验证和原型迭代<br>
-      <strong>注重成本/安全：</strong>Cline + 本地模型，零 API 依赖</p>
+      <div class="insight-label">⚠️ 重要警告 + 建议</div>
+      <p><strong>风险：</strong>AI 辅助代码缺陷率增长 4 倍，Code Review 绝不能省<br>
+      <strong>游戏后台：</strong>Claude Code 适合服务端大规模重构<br>
+      <strong>客户端/引擎：</strong>Cursor 适合快速验证和 UI 原型<br>
+      <strong>预算有限：</strong>OpenClaw + 开源模型，零 API 成本</p>
+    </div>
+    <div class="sources">
+      <div class="sources-title">📎 原始来源</div>
+      <a class="source-link" href="https://eastondev.com/blog/zh/posts/ai/ai-coding-tools-panorama-2026/" target="_blank" rel="noopener">比邻 · 全景盘点</a>
+      <a class="source-link" href="https://www.cnblogs.com/wind-xwj/p/19772771" target="_blank" rel="noopener">博客园 · 九款IDE横评</a>
+      <a class="source-link" href="https://www.dgtsell.com/articles/ai-coding-tools-comparison-test-2026" target="_blank" rel="noopener">实测对比</a>
     </div>
   </div>
 
-  <!-- Card 3 -->
-  <div class="card">
+  <!-- Card 6: GDC 2026 AI + 游戏 -->
+  <div class="card" id="card-6">
     <div class="card-header">
-      <div class="card-num">3</div>
-      <div class="card-title">GDPS 2026 今日上海开幕：聚焦 AI Agent 与开发者生态</div>
+      <div class="card-num">6</div>
+      <div class="card-title">GDC 2026 回顾：AI 成为游戏开发核心战略，Agent 应用爆发</div>
     </div>
     <div class="tags">
-      <span class="tag hot">📍 今日</span>
-      <span class="tag">行业大会</span>
+      <span class="tag">GDC 2026</span>
+      <span class="tag">游戏研发</span>
       <span class="tag">AI Agent</span>
-      <span class="tag">安全</span>
+      <span class="tag">天美</span>
     </div>
     <div class="card-body">
-      <p>2026 全球开发者先锋大会（GDPS 2026）<strong>今天</strong>在上海西岸国际会展中心开幕，为期三天。由世界人工智能大会组委会指导，聚焦 <strong>Agent 智能体、端侧 AI、具身智能</strong>等方向，设置 50+ 工作坊、100+ 互动体验。</p>
-      <p>亮点：斗象科技展示 <strong>"安全推理专有云"</strong>，为 AI Agent 运行时提供原生安全保障；萝博派对发布全栈开源人形机器人开发套件。</p>
-    </div>
-    <div class="insight">
-      <div class="insight-label">💡 关注要点</div>
-      <p><strong>前瞻性问题：</strong>当 CI/CD 管线里跑着 AI Agent 自动提交代码，安全审计怎么做？<br>
-      <strong>持续关注：</strong>后续两天可能有更多开发工具和框架发布</p>
-    </div>
-  </div>
-
-  <!-- Card 4 -->
-  <div class="card">
-    <div class="card-header">
-      <div class="card-num">4</div>
-      <div class="card-title">Gemini 3.1 内置代码执行沙盒 · MCP 安装量破 9700 万</div>
-    </div>
-    <div class="tags">
-      <span class="tag">模型更新</span>
-      <span class="tag">基础设施</span>
-      <span class="tag">DevOps</span>
-    </div>
-    <div class="card-body">
-      <p>3 月密集发布的新模型中，对游戏开发最有实战价值的升级：</p>
+      <p>GDC 2026（3月9-13日，旧金山）以 "AI 改造游戏" 为最大焦点：</p>
       <ul class="detail-list">
-        <li><strong>Gemini 3.1 Ultra：</strong>内置代码执行沙盒，AI 可直接运行测试代码；200万 token 上下文 + 原生多模态</li>
-        <li><strong>GPT-5.4 Thinking：</strong>显示中间推理步骤，复杂算法调试和物理模拟更可靠</li>
-        <li><strong>Mistral Small 4（开源）：</strong>220 亿参数 Apache 2.0，单卡 A100 可跑，可本地部署编程助手</li>
-        <li><strong>MCP 协议：</strong>累计 9700 万次安装，成为 AI Agent 对接外部工具的事实标准</li>
+        <li><strong>天美 Ignis Agent：</strong>面向游戏引擎的 AI 编程智能体，Crash 自动治理，部分项目 AI 编程率 98%</li>
+        <li><strong>光子 VISVISE：</strong>自动蒙皮→动画→角色定制，AI 队友上线后 75% 玩家愿意语音交流</li>
+        <li><strong>Agent 应用爆发：</strong>Claude Code 和 OpenClaw 服务程序员，倒逼推理算力和模型革新</li>
+        <li><strong>行业趋势：</strong>AI 从"辅助工具"变为"核心开发战略"，700+ 议程中 AI 相关占比创新高</li>
       </ul>
     </div>
     <div class="insight">
-      <div class="insight-label">💡 应用场景</div>
-      <p><strong>后台验证：</strong>Gemini 代码沙盒让 AI 能自己跑代码验证逻辑，游戏后台自动化测试直接受益<br>
-      <strong>DevOps 管线：</strong>MCP 让 AI Agent 无缝对接 Git、项目管理、引擎插件，是构建 AI 驱动研发管线的基础<br>
-      <strong>成本敏感团队：</strong>Mistral Small 4 开源可本地部署，零 API 成本</p>
+      <div class="insight-label">💡 对研发团队的启示</div>
+      <p><strong>工程师角色转变：</strong>从写代码转向审核代码 + 架构决策<br>
+      <strong>QA 转型：</strong>AI 自动 Crash 治理冲击传统分析流程<br>
+      <strong>PM 机会：</strong>AI 队友验证商业价值，可探索更多 AI 驱动的玩法创新</p>
+    </div>
+    <div class="sources">
+      <div class="sources-title">📎 原始来源</div>
+      <a class="source-link" href="https://www.news.cn/tech/20260312/2ddbd38e9e3d4b648ea830d2d2b6441b/c.html" target="_blank" rel="noopener">新华网</a>
+      <a class="source-link" href="https://www.36kr.com/p/3726794548198025" target="_blank" rel="noopener">36氪 · Agent 爆发</a>
+      <a class="source-link" href="https://maxlightchaser.github.io/gdc2026-ai-report/" target="_blank" rel="noopener">GDC AI 深度报告</a>
     </div>
   </div>
 
@@ -337,11 +639,12 @@
   <div class="takeaway">
     <div class="emoji">🍃</div>
     <h3>今日一句话</h3>
-    <p>AI coding 正从"辅助工具"变成"自主队友"——<br>但缺陷率 4 倍增长的警告也在提醒我们：<br><strong>人类的审核能力比以往更重要，而不是更不重要。</strong></p>
+    <p>三大模型各有所长：Claude 编程最强、GPT 性价比最优、Gemini 长上下文独步天下——<br>
+    <strong>2026 年的最优解不是选一个，而是按场景混合编排。</strong></p>
   </div>
 
   <div class="footer">
-    小荷 🍃 为 Maple 整理 · 信息截至 2026-03-27 16:00
+    小荷 🍃 为 Maple 整理 · 信息截至 2026-03-27 18:30
   </div>
 
 </div>
