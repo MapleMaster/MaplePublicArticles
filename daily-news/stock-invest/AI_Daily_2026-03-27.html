@@ -1,320 +1,616 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI日报·投资视角 | 2026-03-27</title>
-<style>
-  :root {
-    --bg-primary: #0d1117;
-    --bg-card: #161b22;
-    --bg-tag: #21262d;
-    --text-primary: #e6edf3;
-    --text-secondary: #8b949e;
-    --text-muted: #6e7681;
-    --accent-blue: #58a6ff;
-    --accent-green: #3fb950;
-    --accent-purple: #bc8cff;
-    --accent-orange: #d29922;
-    --accent-red: #f85149;
-    --accent-cyan: #39d2c0;
-    --accent-pink: #f778ba;
-    --border: #30363d;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-  .container { max-width: 780px; margin: 0 auto; padding: 20px 16px 40px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI日报·投资视角 2026-03-27</title>
+    <style>
+        :root {
+            --bg-primary: #0f1117;
+            --bg-card: #1a1d2e;
+            --bg-card-hover: #222640;
+            --bg-tag: #2d3250;
+            --text-primary: #e8eaed;
+            --text-secondary: #9aa0b0;
+            --text-muted: #6b7280;
+            --accent-red: #ef4444;
+            --accent-green: #22c55e;
+            --accent-blue: #3b82f6;
+            --accent-purple: #a78bfa;
+            --accent-amber: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --border: #2a2d3e;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-red: linear-gradient(135deg, #ef4444, #dc2626);
+            --gradient-green: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px 16px 60px; }
 
-  /* Header */
-  .header { text-align: center; padding: 28px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
-  .header h1 {
-    font-size: 1.5em; font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    margin-bottom: 6px;
-  }
-  .header .date { color: var(--text-secondary); font-size: 0.9em; }
-  .header .summary {
-    margin-top: 14px; padding: 14px 18px;
-    background: linear-gradient(135deg, rgba(88,166,255,0.06), rgba(188,140,255,0.06));
-    border: 1px solid rgba(88,166,255,0.12); border-radius: 12px;
-    color: var(--text-primary); font-size: 0.92em; line-height: 1.65; text-align: left;
-  }
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px 30px;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 200px; height: 3px;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+        .header-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--accent-blue);
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e8eaed 0%, #9aa0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .header .date {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
 
-  /* TOC */
-  .toc { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 20px; }
-  .toc h2 { font-size: 0.92em; color: var(--text-secondary); margin-bottom: 12px; font-weight: 600; }
-  .toc-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-  .toc-tag {
-    display: inline-block; padding: 4px 12px; border-radius: 16px;
-    font-size: 0.78em; font-weight: 500; text-decoration: none; transition: all 0.2s;
-  }
-  .toc-tag:hover { transform: translateY(-1px); filter: brightness(1.2); }
-  .tag-ipo { background: rgba(248,81,73,0.12); color: var(--accent-red); border: 1px solid rgba(248,81,73,0.25); }
-  .tag-embodied { background: rgba(63,185,80,0.12); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.25); }
-  .tag-platform { background: rgba(188,140,255,0.12); color: var(--accent-purple); border: 1px solid rgba(188,140,255,0.25); }
-  .tag-data { background: rgba(57,210,192,0.12); color: var(--accent-cyan); border: 1px solid rgba(57,210,192,0.25); }
-  .tag-biz { background: rgba(210,153,34,0.12); color: var(--accent-orange); border: 1px solid rgba(210,153,34,0.25); }
+        /* Summary */
+        .summary-card {
+            background: linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(167,139,250,0.1) 100%);
+            border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+            text-align: center;
+        }
+        .summary-card .icon { font-size: 24px; margin-bottom: 8px; }
+        .summary-card p {
+            font-size: 16px;
+            color: var(--text-primary);
+            font-weight: 500;
+            line-height: 1.8;
+        }
 
-  .toc-list { list-style: none; }
-  .toc-list li { padding: 7px 0; border-bottom: 1px solid rgba(48,54,61,0.4); }
-  .toc-list li:last-child { border-bottom: none; }
-  .toc-list a { color: var(--text-primary); text-decoration: none; font-size: 0.9em; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
-  .toc-list a:hover { color: var(--accent-blue); }
-  .toc-list .num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 22px; height: 22px; border-radius: 5px;
-    background: var(--bg-tag); color: var(--text-secondary); font-size: 0.75em; font-weight: 600; flex-shrink: 0;
-  }
+        /* TOC */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .toc-title {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toc-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(42,45,62,0.6);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .toc-item:last-child { border-bottom: none; }
+        .toc-item:hover { padding-left: 8px; }
+        .toc-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px; height: 24px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .toc-num.infra { background: rgba(59,130,246,0.2); color: var(--accent-blue); }
+        .toc-num.monetize { background: rgba(245,158,11,0.2); color: var(--accent-amber); }
+        .toc-num.capex { background: rgba(167,139,250,0.2); color: var(--accent-purple); }
+        .toc-num.enterprise { background: rgba(6,182,212,0.2); color: var(--accent-cyan); }
+        .toc-num.workforce { background: rgba(239,68,68,0.2); color: var(--accent-red); }
+        .toc-text { color: var(--text-primary); font-size: 15px; line-height: 1.5; }
+        .toc-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .tag-infra { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+        .tag-monetize { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+        .tag-capex { background: rgba(167,139,250,0.15); color: var(--accent-purple); }
+        .tag-enterprise { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+        .tag-workforce { background: rgba(239,68,68,0.15); color: var(--accent-red); }
 
-  /* Card */
-  .news-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; margin-bottom: 16px; transition: border-color 0.2s; }
-  .news-card:hover { border-color: rgba(88,166,255,0.25); }
-  .card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
-  .card-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    min-width: 30px; height: 30px; border-radius: 8px; font-size: 0.82em; font-weight: 700; flex-shrink: 0; color: #fff;
-  }
-  .cn-1 { background: linear-gradient(135deg, #f85149, #ff6e6e); }
-  .cn-2 { background: linear-gradient(135deg, #3fb950, #39d2c0); }
-  .cn-3 { background: linear-gradient(135deg, #bc8cff, #58a6ff); }
-  .cn-4 { background: linear-gradient(135deg, #39d2c0, #58a6ff); }
-  .cn-5 { background: linear-gradient(135deg, #d29922, #f0b955); }
-  .card-title { font-size: 1.08em; font-weight: 600; line-height: 1.5; }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
-  .card-tag { padding: 2px 9px; border-radius: 10px; font-size: 0.72em; font-weight: 500; }
-  .card-body { color: var(--text-secondary); font-size: 0.9em; line-height: 1.8; margin-bottom: 14px; }
-  .card-body p { margin-bottom: 6px; }
-  .card-body p:last-child { margin-bottom: 0; }
+        /* News Card */
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin: 20px 0;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+        }
+        .news-card.infra::before { background: var(--accent-blue); }
+        .news-card.monetize::before { background: var(--accent-amber); }
+        .news-card.capex::before { background: var(--accent-purple); }
+        .news-card.enterprise::before { background: var(--accent-cyan); }
+        .news-card.workforce::before { background: var(--accent-red); }
 
-  /* Key Data */
-  .key-data {
-    display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;
-  }
-  .kd-item {
-    padding: 6px 12px; background: rgba(88,166,255,0.06); border: 1px solid rgba(88,166,255,0.1);
-    border-radius: 8px; font-size: 0.82em;
-  }
-  .kd-label { color: var(--text-muted); }
-  .kd-value { color: var(--accent-blue); font-weight: 600; margin-left: 4px; }
-  .kd-value.red { color: var(--accent-red); }
-  .kd-value.green { color: var(--accent-green); }
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .card-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        .card-num.infra { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
+        .card-num.monetize { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+        .card-num.capex { background: rgba(167,139,250,0.15); color: var(--accent-purple); }
+        .card-num.enterprise { background: rgba(6,182,212,0.15); color: var(--accent-cyan); }
+        .card-num.workforce { background: rgba(239,68,68,0.15); color: var(--accent-red); }
 
-  /* Insight */
-  .card-insight {
-    padding: 12px 14px; border-left: 3px solid var(--accent-orange);
-    background: rgba(210,153,34,0.05); border-radius: 0 8px 8px 0;
-    font-size: 0.86em; color: var(--text-primary); line-height: 1.7;
-  }
-  .card-insight-label { color: var(--accent-orange); font-weight: 600; font-size: 0.8em; margin-bottom: 4px; }
+        .card-title {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .card-source {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
 
-  .card-source { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .card-source a {
-    color: var(--text-muted); font-size: 0.78em; text-decoration: none;
-    padding: 2px 9px; background: var(--bg-tag); border-radius: 6px; transition: color 0.2s;
-  }
-  .card-source a:hover { color: var(--accent-blue); }
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+        .metric-box {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .metric-value {
+            font-size: 22px;
+            font-weight: 800;
+        }
+        .metric-value.blue { color: var(--accent-blue); }
+        .metric-value.amber { color: var(--accent-amber); }
+        .metric-value.purple { color: var(--accent-purple); }
+        .metric-value.cyan { color: var(--accent-cyan); }
+        .metric-value.red { color: var(--accent-red); }
+        .metric-value.green { color: var(--accent-green); }
+        .metric-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
 
-  .footer { text-align: center; padding: 20px 0; border-top: 1px solid var(--border); margin-top: 12px; color: var(--text-muted); font-size: 0.8em; }
-  .footer a { color: var(--accent-blue); text-decoration: none; }
-  html { scroll-behavior: smooth; }
-  @media (max-width: 480px) {
-    .container { padding: 12px 12px 32px; }
-    .header h1 { font-size: 1.3em; }
-    .news-card { padding: 16px 14px; }
-    .card-title { font-size: 1em; }
-    .key-data { gap: 6px; }
-    .kd-item { padding: 4px 8px; font-size: 0.78em; }
-  }
-</style>
+        /* Content */
+        .card-body {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 14px 0;
+        }
+        .card-body p { margin-bottom: 10px; }
+
+        /* Analysis Box */
+        .analysis-box {
+            background: rgba(255,255,255,0.02);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: 0 10px 10px 0;
+            padding: 16px 18px;
+            margin-top: 16px;
+        }
+        .analysis-title {
+            font-size: 12px;
+            color: var(--accent-purple);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .analysis-content {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .analysis-content strong { color: var(--text-primary); font-weight: 600; }
+
+        /* Ticker Tags */
+        .ticker-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .ticker {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .ticker.up { background: rgba(34,197,94,0.12); color: var(--accent-green); border: 1px solid rgba(34,197,94,0.2); }
+        .ticker.neutral { background: rgba(59,130,246,0.12); color: var(--accent-blue); border: 1px solid rgba(59,130,246,0.2); }
+        .ticker.down { background: rgba(239,68,68,0.12); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.2); }
+        .ticker.watch { background: rgba(245,158,11,0.12); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.2); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .footer p { margin: 4px 0; }
+        .footer .disclaimer {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(239,68,68,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(239,68,68,0.1);
+            color: var(--text-muted);
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container { padding: 12px 12px 40px; }
+            .header h1 { font-size: 22px; }
+            .news-card { padding: 20px 16px; }
+            .card-title { font-size: 17px; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .metric-value { font-size: 18px; }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-badge">AI INVESTMENT DAILY</div>
+            <h1>🤖 AI日报·投资视角</h1>
+            <p class="date">2026年3月27日 星期五</p>
+        </header>
 
-  <div class="header">
-    <h1>🤖 AI日报·投资视角</h1>
-    <div class="date">2026年3月27日 · 星期五</div>
-    <div class="summary">
-      <strong>今日核心：</strong>Anthropic 筹备 $600 亿+ IPO（10 月上市），与 OpenAI 正面争夺"AI 第一股"；中国发布全球首个具身智能行业标准，6 月实施；苹果 Siri 将在 iOS 27 开放第三方 AI 接入，打破 OpenAI 独家地位；中国大模型调用量连续 5 周超美国，全球 TOP 4 均为国产。多重催化剂共振，AI 产业链全线受益。
-    </div>
-  </div>
+        <!-- Summary -->
+        <div class="summary-card">
+            <div class="icon">📡</div>
+            <p>今日核心主题：<strong>OpenAI广告变现6周破亿 + Meta豪赌AI冲9万亿市值 + 超级基建周期持续加码</strong>——AI商业化全面提速，从算力军备到流量变现，产业链投资逻辑持续强化。</p>
+        </div>
 
-  <nav class="toc">
-    <h2>📑 目录导航</h2>
-    <div class="toc-tags">
-      <a href="#news-1" class="toc-tag tag-ipo">🔥 IPO</a>
-      <a href="#news-2" class="toc-tag tag-embodied">🤖 具身智能</a>
-      <a href="#news-3" class="toc-tag tag-platform">📱 平台生态</a>
-      <a href="#news-4" class="toc-tag tag-data">📊 行业数据</a>
-      <a href="#news-5" class="toc-tag tag-biz">💰 商业化</a>
-    </div>
-    <ol class="toc-list">
-      <li><a href="#news-1"><span class="num">1</span>Anthropic 最快 10 月 IPO，估值 $3800 亿，募资超 $600 亿</a></li>
-      <li><a href="#news-2"><span class="num">2</span>中国发布全球首个具身智能行业标准，6 月 1 日起实施</a></li>
-      <li><a href="#news-3"><span class="num">3</span>苹果 iOS 27 开放 Siri 第三方 AI 接入，Gemini/Claude 均可接入</a></li>
-      <li><a href="#news-4"><span class="num">4</span>中国大模型周调用量 7.3 万亿词元，连续 5 周超美国</a></li>
-      <li><a href="#news-5"><span class="num">5</span>Anthropic 年化营收 $190 亿，Claude Code 企业编程市占 54%</a></li>
-    </ol>
-  </nav>
+        <!-- TOC -->
+        <nav class="toc">
+            <div class="toc-title">📋 今日速览</div>
+            <a href="#news-1" class="toc-item">
+                <span class="toc-num monetize">1</span>
+                <span class="toc-text">OpenAI广告试点6周年化收入破$1亿，600+广告商入驻 <span class="toc-tag tag-monetize">流量变现</span></span>
+            </a>
+            <a href="#news-2" class="toc-item">
+                <span class="toc-num capex">2</span>
+                <span class="toc-text">Meta推高管激励计划冲刺$9万亿市值，2026 AI资本开支上调至$1350亿 <span class="toc-tag tag-capex">资本开支</span></span>
+            </a>
+            <a href="#news-3" class="toc-item">
+                <span class="toc-num infra">3</span>
+                <span class="toc-text">Meta×AMD $600亿AI芯片大单落地，6GW算力扩张打破NVIDIA垄断格局 <span class="toc-tag tag-infra">算力基建</span></span>
+            </a>
+            <a href="#news-4" class="toc-item">
+                <span class="toc-num enterprise">4</span>
+                <span class="toc-text">Anthropic Claude深度集成企业工作流，AI Agent进入生产力落地阶段 <span class="toc-tag tag-enterprise">企业应用</span></span>
+            </a>
+            <a href="#news-5" class="toc-item">
+                <span class="toc-num workforce">5</span>
+                <span class="toc-text">OpenAI完成$1100亿融资，估值$7300亿——亚马逊、英伟达、软银领投 <span class="toc-tag tag-workforce">超级融资</span></span>
+            </a>
+        </nav>
 
-  <!-- News 1: Anthropic IPO -->
-  <article class="news-card" id="news-1">
-    <div class="card-header">
-      <span class="card-num cn-1">01</span>
-      <h3 class="card-title">Anthropic 最快 10 月 IPO，估值 $3800 亿，募资或超 $600 亿</h3>
-    </div>
-    <div class="card-tags">
-      <span class="card-tag tag-ipo">🔥 IPO</span>
-    </div>
-    <div class="card-body">
-      <p>据 The Information/Bloomberg 报道，Claude 开发商 Anthropic 正考虑最快于今年 10 月进行 IPO，已与高盛等华尔街头部银行就承销角色展开初步洽谈。2 月 G 轮融资已将估值推至 3800 亿美元，此次 IPO 募资规模可能超过 600 亿美元，有望成为继 SpaceX 之后全球第二大 IPO。</p>
-      <p>Anthropic 背后站着 Google、Amazon、Microsoft、NVIDIA 四大巨头，在企业级大模型市场份额已达 32%、反超 OpenAI 的 25%。此举也标志着 AI 行业"上市竞速"正式开启——OpenAI 同样在推进 IPO 进程。</p>
-    </div>
-    <div class="key-data">
-      <div class="kd-item"><span class="kd-label">估值</span><span class="kd-value red">$3,800 亿</span></div>
-      <div class="kd-item"><span class="kd-label">募资目标</span><span class="kd-value">&gt;$600 亿</span></div>
-      <div class="kd-item"><span class="kd-label">企业市占</span><span class="kd-value">32%</span></div>
-      <div class="kd-item"><span class="kd-label">财富 10 强客户</span><span class="kd-value">8/10</span></div>
-    </div>
-    <div class="card-insight">
-      <div class="card-insight-label">📊 投资视角</div>
-      2026 年最重磅的科技 IPO 之一。$3800 亿估值已超过多数美股科技巨头，反映市场对 AI "双雄格局"（Anthropic vs OpenAI）的定价。<strong>关联标的：</strong>美股 Google（GOOGL，Anthropic 大股东）、Amazon（AMZN，战略投资者）、NVIDIA（NVDA，算力供应商）；A 股关注 AI 应用及算力概念的情绪催化。
-    </div>
-    <div class="card-source">
-      <a href="https://36kr.com/p/3740899535844096" target="_blank">36氪</a>
-      <a href="https://stock.10jqka.com.cn/usstock/20260327/c675581498.shtml" target="_blank">同花顺</a>
-      <a href="https://seekingalpha.com/news/4569669-anthropic-weighs-ipo-as-soon-as-october-amid-race-with-openai-report-says" target="_blank">Seeking Alpha</a>
-    </div>
-  </article>
+        <!-- News 1 -->
+        <article class="news-card monetize" id="news-1">
+            <div class="card-header">
+                <span class="card-num monetize">1</span>
+                <div>
+                    <div class="card-title">OpenAI广告试点6周年化收入破$1亿，ChatGPT商业化加速</div>
+                    <div class="card-source">来源：CNBC / Seeking Alpha · 2026-03-27</div>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-label">年化收入 ARR</div>
+                    <div class="metric-value amber">$1亿+</div>
+                    <div class="metric-sub">仅6周达成</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">广告商数量</div>
+                    <div class="metric-value amber">600+</div>
+                    <div class="metric-sub">持续增长中</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">用户触达率</div>
+                    <div class="metric-value amber">85%</div>
+                    <div class="metric-sub">美国免费用户</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>OpenAI的ChatGPT广告试点项目在美国上线仅6周，年化经常性收入(ARR)已突破1亿美元。目前与超过600家广告商合作，广告展示在聊天回复底部，不影响模型输出内容。</p>
+                <p>广告面向约85%的美国免费用户和ChatGPT Go订阅用户，但每天实际看到广告的用户不足20%。公司正计划向加拿大、澳大利亚和新西兰扩展。18岁以下用户及政治/健康类话题不展示广告。</p>
+            </div>
+            <div class="analysis-box">
+                <div class="analysis-title">🔍 投资视角</div>
+                <div class="analysis-content">
+                    OpenAI开辟广告变现第二曲线，6周破亿的速度证明<strong>AI流量的广告价值远超传统搜索</strong>。这对Google搜索广告护城河构成直接威胁，同时验证了AI平台的商业化路径。对于上市公司而言，<strong>微软(MSFT)</strong>作为OpenAI最大股东直接受益；<strong>Alphabet(GOOGL)</strong>面临搜索广告份额被蚕食的压力。广告技术服务商 <strong>The Trade Desk(TTD)</strong>、<strong>AppLovin(APP)</strong>等也可能获得新的AI广告投放需求。
+                </div>
+            </div>
+            <div class="ticker-row">
+                <span class="ticker up">📈 MSFT 利好</span>
+                <span class="ticker down">📉 GOOGL 承压</span>
+                <span class="ticker watch">👀 TTD 关注</span>
+                <span class="ticker watch">👀 APP 关注</span>
+            </div>
+        </article>
 
-  <!-- News 2: 具身智能标准 -->
-  <article class="news-card" id="news-2">
-    <div class="card-header">
-      <span class="card-num cn-2">02</span>
-      <h3 class="card-title">中国发布全球首个具身智能行业标准，6 月 1 日起实施</h3>
-    </div>
-    <div class="card-tags">
-      <span class="card-tag tag-embodied">🤖 具身智能</span>
-    </div>
-    <div class="card-body">
-      <p>3 月 27 日，北京人形机器人创新中心在中关村论坛发布《人工智能具身智能体应用框架及接口》行业标准——全球首个具身 AI 行业标准。由中国信通院联合 40+ 机构共同制定，6 月 1 日起正式实施。</p>
-      <p>标准定义了具身 AI 核心架构、能力要求和测试方法，构建"操作系统级"标准框架。同日论坛上，具身智能机器人"天工 3.0"亮相（世界人形机器人运动会百米冠军）。此前，工信部 2 月已发布人形机器人和具身智能补充框架，政策端持续加码。</p>
-    </div>
-    <div class="key-data">
-      <div class="kd-item"><span class="kd-label">实施日期</span><span class="kd-value">2026.06.01</span></div>
-      <div class="kd-item"><span class="kd-label">参与机构</span><span class="kd-value">40+</span></div>
-      <div class="kd-item"><span class="kd-label">春节后机器人销量</span><span class="kd-value red">+13% YoY</span></div>
-    </div>
-    <div class="card-insight">
-      <div class="card-insight-label">📊 投资视角</div>
-      行业标准落地 = 具身智能从"概念炒作"进入"标准化量产"。统一接口框架降低开发门槛，加速整机和零部件产业链放量。叠加春节后人形机器人销量同比 +13%，双重催化。<strong>关联标的：</strong>A 股优必选（9880.HK）、绿的谐波（688017）、埃夫特（688165）、拓斯达（300607）、汇川技术（300124）等人形机器人/减速器/伺服电机概念。
-    </div>
-    <div class="card-source">
-      <a href="https://khabarasia.com/china/20260327-china-sets-first-embodied-ai-standard-to-shape-global-tech-landscape/" target="_blank">Khabar Asia</a>
-      <a href="https://wol.com/china-releases-first-industry-standard-for-embodied-intelligence/" target="_blank">WOL</a>
-      <a href="https://www.163.com/dy/article/KP1NROT9055622UQ.html" target="_blank">网易</a>
-    </div>
-  </article>
+        <!-- News 2 -->
+        <article class="news-card capex" id="news-2">
+            <div class="card-header">
+                <span class="card-num capex">2</span>
+                <div>
+                    <div class="card-title">Meta推高管股权激励冲刺$9万亿市值，2026年AI资本开支飙升至$1350亿</div>
+                    <div class="card-source">来源：Motley Fool · 2026-03-27</div>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-label">目标市值</div>
+                    <div class="metric-value purple">$9万亿</div>
+                    <div class="metric-sub">2031年目标</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">当前市值</div>
+                    <div class="metric-value purple">~$1.5万亿</div>
+                    <div class="metric-sub">需涨494%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">2026 CapEx</div>
+                    <div class="metric-value purple">$1150-1350亿</div>
+                    <div class="metric-sub">同比+73%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">2025营收</div>
+                    <div class="metric-value purple">$2010亿</div>
+                    <div class="metric-sub">YoY +22%</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>Meta发布了面向高管(不包括CEO扎克伯格)的股权激励计划，最高档触发条件为股价超过$3,727（较当前$547涨幅超580%），对应市值约$9万亿。</p>
+                <p>2025年Meta营收达$2,010亿(+22%)，EPS为$29.69(+24%)。2025年资本开支已达创纪录的$720亿，2026年进一步上调至$1,150-1,350亿，增幅高达73%，绝大部分投向AI基础设施。</p>
+            </div>
+            <div class="analysis-box">
+                <div class="analysis-title">🔍 投资视角</div>
+                <div class="analysis-content">
+                    Meta的激励计划释放了<strong>管理层对AI长期增长的极度乐观信号</strong>。$1,350亿的CapEx计划是全球科技公司中最激进的AI投资之一，直接拉动上游AI算力需求。<strong>英伟达(NVDA)</strong>和<strong>AMD</strong>的GPU订单将持续受益；数据中心配套的<strong>液冷(Vertiv/VRT)</strong>、<strong>电力设备</strong>板块也获得需求催化。华尔街预计META需18%年增长率才能维持当前估值，而$9万亿目标需43% CAGR——市场可能认为这更多是激励而非预测。
+                </div>
+            </div>
+            <div class="ticker-row">
+                <span class="ticker up">📈 META 强信号</span>
+                <span class="ticker up">📈 NVDA 算力受益</span>
+                <span class="ticker up">📈 AMD 订单利好</span>
+                <span class="ticker up">📈 VRT 液冷需求</span>
+            </div>
+        </article>
 
-  <!-- News 3: Apple Siri 开放 -->
-  <article class="news-card" id="news-3">
-    <div class="card-header">
-      <span class="card-num cn-3">03</span>
-      <h3 class="card-title">苹果 iOS 27 开放 Siri 第三方 AI 接入，打破 OpenAI 独家地位</h3>
-    </div>
-    <div class="card-tags">
-      <span class="card-tag tag-platform">📱 平台生态</span>
-    </div>
-    <div class="card-body">
-      <p>据 Bloomberg Mark Gurman 报道，苹果计划在 iOS 27 中开放 Siri 的第三方 AI 接入，用户可在设置中选择 Google Gemini、Anthropic Claude 等 AI 服务，打破 OpenAI ChatGPT 此前的独家合作地位。</p>
-      <p>苹果正在开发专用工具包（类似 Extensions 系统），开发者遵循技术规范即可让 AI 产品接入 Siri。这意味着 AI 模型厂商将获得超 20 亿 iOS 设备的分发入口。预计 6 月 WWDC 2026 正式公布细节。</p>
-    </div>
-    <div class="key-data">
-      <div class="kd-item"><span class="kd-label">覆盖设备</span><span class="kd-value">&gt;20 亿台</span></div>
-      <div class="kd-item"><span class="kd-label">预计公布</span><span class="kd-value">WWDC 2026（6 月）</span></div>
-    </div>
-    <div class="card-insight">
-      <div class="card-insight-label">📊 投资视角</div>
-      苹果平台开放 = AI 模型厂商获 20 亿级终端分发。直接利好 Anthropic（IPO 前再添重磅催化）和 Google（Gemini 获 iOS 级分发）；对 OpenAI 是独家优势的丧失。更大的影响在于：AI 助手进入"安卓化"分发时代，模型能力军备竞赛加速。<strong>关联标的：</strong>AAPL、GOOGL、Anthropic（待 IPO）；A 股苹果产业链（立讯精密、歌尔股份等）可能因 AI 功能升级获得新叙事。
-    </div>
-    <div class="card-source">
-      <a href="https://www.macrumors.com/2026/03/26/apple-ios-27-siri-chatbot-integration/" target="_blank">MacRumors</a>
-      <a href="https://tech.huanqiu.com/article/4QuoxQ5sWzT" target="_blank">环球网</a>
-      <a href="https://www.ithome.com/0/933/107.htm" target="_blank">IT之家</a>
-    </div>
-  </article>
+        <!-- News 3 -->
+        <article class="news-card infra" id="news-3">
+            <div class="card-header">
+                <span class="card-num infra">3</span>
+                <div>
+                    <div class="card-title">Meta×AMD $600亿AI芯片大单：6GW算力基建 + 10%股权投资，颠覆GPU垄断格局</div>
+                    <div class="card-source">来源：AP News / AMD官方 · 2026-02-24（持续发酵中）</div>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-label">交易总价值</div>
+                    <div class="metric-value blue">$600亿</div>
+                    <div class="metric-sub">五年期合同</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">算力规模</div>
+                    <div class="metric-value blue">6 GW</div>
+                    <div class="metric-sub">GPU基础设施</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">股权投资</div>
+                    <div class="metric-value blue">≤10%</div>
+                    <div class="metric-sub">Meta入股AMD</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>Meta与AMD签署历史性AI芯片合作协议，价值高达$600亿，为期五年。AMD将提供下一代Instinct MI450 GPU搭配第六代EPYC处理器(代号Venice)，支撑Meta旗下Instagram、Facebook、WhatsApp的AI功能。</p>
+                <p>更值得注意的是，Meta获得了最高10%的AMD股权投资选项。消息公布当日，AMD股价暴涨9%。这是超级云厂商(Hyperscaler)首次以如此规模推进供应商多元化战略。</p>
+            </div>
+            <div class="analysis-box">
+                <div class="analysis-title">🔍 投资视角</div>
+                <div class="analysis-content">
+                    这笔交易是<strong>打破英伟达GPU垄断的标志性事件</strong>。Meta带头推动"多供应商策略"，意味着AMD在AI芯片市场的份额将显著提升。AMD股价消息日涨9%仅是开始，后续订单交付将持续催化。<strong>英伟达(NVDA)</strong>短期虽无大碍（整体市场仍在快速扩张），但中长期面临份额稀释风险。A股/港股方面，AMD供应链上的<strong>封测(日月光/长电科技)</strong>和<strong>先进制程(台积电/TSM)</strong>同步受益。
+                </div>
+            </div>
+            <div class="ticker-row">
+                <span class="ticker up">📈 AMD 核心利好</span>
+                <span class="ticker neutral">➡️ NVDA 份额稀释</span>
+                <span class="ticker up">📈 TSM 制程受益</span>
+                <span class="ticker watch">👀 封测板块 关注</span>
+            </div>
+        </article>
 
-  <!-- News 4: 中国大模型调用量 -->
-  <article class="news-card" id="news-4">
-    <div class="card-header">
-      <span class="card-num cn-4">04</span>
-      <h3 class="card-title">中国大模型周调用量 7.3 万亿词元，连续 5 周超越美国</h3>
-    </div>
-    <div class="card-tags">
-      <span class="card-tag tag-data">📊 行业数据</span>
-    </div>
-    <div class="card-body">
-      <p>据新华社报道，OpenRouter 最新数据显示，截至 3 月 22 日当周，中国主要 AI 模型总调用量超 7.3 万亿词元（周环比 +50%），同期美国约 3.5 万亿词元——中国已实现翻倍领先。全球调用量 TOP 4 均为国产模型（MiniMax、Kimi、GLM、DeepSeek）。</p>
-      <p>全球周总调用量已从年初 6 万亿飙升至 20.4 万亿词元。中国模型的核心优势在于成本——DeepSeek V3.2 输出价格 $0.28/百万词元，GPT-5.4 为 $15，差距达 54 倍。约 80% 的美国 AI 初创企业已在使用中国开源模型。</p>
-    </div>
-    <div class="key-data">
-      <div class="kd-item"><span class="kd-label">中国周调用</span><span class="kd-value red">7.3 万亿词元</span></div>
-      <div class="kd-item"><span class="kd-label">美国周调用</span><span class="kd-value">3.5 万亿</span></div>
-      <div class="kd-item"><span class="kd-label">价格差距</span><span class="kd-value">54 倍</span></div>
-      <div class="kd-item"><span class="kd-label">全球 TOP 4</span><span class="kd-value green">均为国产</span></div>
-    </div>
-    <div class="card-insight">
-      <div class="card-insight-label">📊 投资视角</div>
-      里程碑数据。中国大模型从"叫好不叫座"到调用量翻倍超美国，标志应用层全面爆发。调用量暴涨直接拉动算力需求（光模块、AI 服务器）。54 倍价格优势意味着国产模型在全球 toB 市场有巨大替代空间。<strong>关联标的：</strong>A 股算力（中际旭创 300308、新易盛 300502、光迅科技 002281）；AI 应用（金山办公 688111、科大讯飞 002230）；港股（商汤、百度）。
-    </div>
-    <div class="card-source">
-      <a href="https://politics.gmw.cn/2026-03/27/content_38672836.htm" target="_blank">新华社/光明网</a>
-      <a href="https://www.xinhuanet.com/tech/20260324/efd6f1cc39274d8fa6c61f5c24d55bf1/c.html" target="_blank">新华网</a>
-      <a href="https://www.36kr.com/p/3700980530851712" target="_blank">36氪</a>
-    </div>
-  </article>
+        <!-- News 4 -->
+        <article class="news-card enterprise" id="news-4">
+            <div class="card-header">
+                <span class="card-num enterprise">4</span>
+                <div>
+                    <div class="card-title">Anthropic Claude深度集成企业工作流，AI Agent落地提振SaaS板块</div>
+                    <div class="card-source">来源：The AI Track / Anthropic · 2026-03</div>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-label">集成平台</div>
+                    <div class="metric-value cyan">Slack等</div>
+                    <div class="metric-sub">核心工作流</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">定价模式</div>
+                    <div class="metric-value cyan">峰/谷时段</div>
+                    <div class="metric-sub">3月26日起生效</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">非高峰限额</div>
+                    <div class="metric-value cyan">2x</div>
+                    <div class="metric-sub">翻倍使用量</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>Anthropic大幅扩展Claude的企业级AI Agent能力，新增Slack、DocuSign、FactSet、Gmail等核心企业工作流集成。AI Agent不再只是对话工具，而是深入到文档签署、金融数据分析、邮件处理等实际业务环节。</p>
+                <p>同时，Anthropic引入高峰/非高峰时段定价机制（3月26日起生效），非高峰时段使用限额翻倍。这标志着AI服务正从"无限量"走向精细化运营，也预示着算力资源的紧张程度。</p>
+            </div>
+            <div class="analysis-box">
+                <div class="analysis-title">🔍 投资视角</div>
+                <div class="analysis-content">
+                    AI Agent真正进入企业生产环节，<strong>推动了软件SaaS板块的反弹行情</strong>。直接受益的包括：<strong>Salesforce(CRM)</strong>——Slack母公司、AI Agent协同入口；<strong>DocuSign(DOCU)</strong>——电子签名×AI自动化；<strong>ServiceNow(NOW)</strong>——企业工作流自动化龙头。峰谷定价的出现也说明AI推理算力依然供不应求，利好<strong>算力基建</strong>和<strong>AI推理芯片</strong>方向。Anthropic的估值也在持续上行（此前融资估值已超$600亿）。
+                </div>
+            </div>
+            <div class="ticker-row">
+                <span class="ticker up">📈 CRM Slack受益</span>
+                <span class="ticker up">📈 DOCU AI签署</span>
+                <span class="ticker up">📈 NOW 工作流</span>
+                <span class="ticker watch">👀 Anthropic Pre-IPO</span>
+            </div>
+        </article>
 
-  <!-- News 5: Anthropic 商业化 -->
-  <article class="news-card" id="news-5">
-    <div class="card-header">
-      <span class="card-num cn-5">05</span>
-      <h3 class="card-title">Anthropic 年化营收飙至 $190 亿，Claude Code 拿下企业编程 54% 市场</h3>
-    </div>
-    <div class="card-tags">
-      <span class="card-tag tag-biz">💰 商业化</span>
-    </div>
-    <div class="card-body">
-      <p>据 36 氪援引多方数据，Anthropic 年化营收已突破 190 亿美元（一年增长 14 倍），其中核心产品 Claude Code 年化收入达 25 亿美元（年初至今翻倍），在企业编程领域市场份额高达 54%。</p>
-      <p>财富 10 强企业中 8 家已成为 Anthropic 客户，年消费超 $100 万的企业客户超 500 家。Claude 4 的推理成本比 GPT-4 低 58%，每美元算力产出是 OpenAI 的 2.1 倍，"安全 + 性价比"成为企业端核心卖点。</p>
-    </div>
-    <div class="key-data">
-      <div class="kd-item"><span class="kd-label">年化营收</span><span class="kd-value red">$190 亿</span></div>
-      <div class="kd-item"><span class="kd-label">Claude Code 营收</span><span class="kd-value">$25 亿</span></div>
-      <div class="kd-item"><span class="kd-label">营收增速</span><span class="kd-value red">14x YoY</span></div>
-      <div class="kd-item"><span class="kd-label">编程市占</span><span class="kd-value">54%</span></div>
-      <div class="kd-item"><span class="kd-label">推理成本</span><span class="kd-value green">比 GPT-4 低 58%</span></div>
-    </div>
-    <div class="card-insight">
-      <div class="card-insight-label">📊 投资视角</div>
-      AI Coding 赛道的商业化验证来了——Claude Code 单品 $25 亿年化，且在增速上翻倍，证明 AI 编程助手从"免费试用"走向企业级付费。54% 的市占率意味着 GitHub Copilot（Microsoft）已被超越。这也是 Anthropic $3800 亿估值的核心支撑。<strong>关联标的：</strong>美股 AI 工具链（MSFT/GitHub、Atlassian）；A 股软件/AI 应用（金山办公、用友网络）。
-    </div>
-    <div class="card-source">
-      <a href="https://36kr.com/p/3740899535844096" target="_blank">36氪</a>
-      <a href="https://finance.stockstar.com/IG2026032700013314.shtml" target="_blank">证券之星</a>
-    </div>
-  </article>
+        <!-- News 5 -->
+        <article class="news-card workforce" id="news-5">
+            <div class="card-header">
+                <span class="card-num workforce">5</span>
+                <div>
+                    <div class="card-title">OpenAI完成$1100亿融资，亚马逊·英伟达·软银领投，估值$7300亿</div>
+                    <div class="card-source">来源：The AI Track · 2026-03</div>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-label">融资金额</div>
+                    <div class="metric-value red">$1100亿</div>
+                    <div class="metric-sub">史上最大单轮</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">投前估值</div>
+                    <div class="metric-value red">$7300亿</div>
+                    <div class="metric-sub">超越多数上市公司</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">领投方</div>
+                    <div class="metric-value red">三巨头</div>
+                    <div class="metric-sub">AMZN/NVDA/软银</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>OpenAI完成了AI领域（也是全球科技史上）最大的单笔融资——$1,100亿，投前估值达$7,300亿。由亚马逊(Amazon)、英伟达(NVIDIA)和软银(SoftBank)联合领投。</p>
+                <p>亚马逊将扩大AWS上的OpenAI分发渠道，英伟达将增加基础设施容量。这意味着头部AI模型公司与超级云厂商和芯片巨头之间的绑定越来越深，"AI超级联盟"格局进一步固化。</p>
+            </div>
+            <div class="analysis-box">
+                <div class="analysis-title">🔍 投资视角</div>
+                <div class="analysis-content">
+                    $1,100亿的融资规模和$7,300亿估值，<strong>重新定义了AI赛道的资本天花板</strong>。对上市公司影响：<strong>亚马逊(AMZN)</strong>通过AWS绑定OpenAI生态，云业务护城河加深；<strong>英伟达(NVDA)</strong>既是投资方又是基础设施供应商，双重受益；<strong>软银集团(9984.T)</strong>重新押注AI，继Vision Fund后的新战略布局。同时，这轮天量融资可能会<strong>挤压二线AI公司的融资空间</strong>——资本向头部集中的趋势不可逆转，对中小AI概念股形成估值压力。
+                </div>
+            </div>
+            <div class="ticker-row">
+                <span class="ticker up">📈 AMZN 云+AI</span>
+                <span class="ticker up">📈 NVDA 双重受益</span>
+                <span class="ticker up">📈 9984.T 软银</span>
+                <span class="ticker down">📉 二线AI 融资承压</span>
+            </div>
+        </article>
 
-  <div class="footer">
-    <p>📰 AI日报·投资视角 | <a href="https://github.com/MapleMaster">Maple</a> × 小荷 🍃 自动生成</p>
-    <p style="margin-top:4px;">数据来源：公开报道整理 · 仅供参考，不构成投资建议</p>
-  </div>
-
-</div>
+        <!-- Footer -->
+        <footer class="footer">
+            <p>📊 AI日报·投资视角 | 每日更新</p>
+            <p>由 Maple 🍁 & 小荷 🍃 联合出品</p>
+            <div class="disclaimer">
+                ⚠️ 免责声明：本日报仅供信息参考，不构成任何投资建议。投资有风险，入市需谨慎。文中提及的个股和板块分析基于公开信息，不代表推荐买入或卖出。
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
