@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 2026年3月26日</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --card: #1a1a24;
+    --border: #2a2a3a;
+    --accent-blue: #5b8def;
+    --accent-purple: #a78bfa;
+    --accent-green: #34d399;
+    --accent-orange: #fb923c;
+    --accent-pink: #f472b6;
+    --text: #e4e4eb;
+    --text-dim: #9ca3af;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  header .date {
+    font-size: 13px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .news-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .news-item:hover { border-color: var(--accent-blue); }
+  .news-item .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .tag-coding { background: rgba(91,141,239,0.15); color: var(--accent-blue); }
+  .tag-embodied { background: rgba(167,139,250,0.15); color: var(--accent-purple); }
+  .tag-infra { background: rgba(52,211,153,0.15); color: var(--accent-green); }
+  .tag-model { background: rgba(251,146,60,0.15); color: var(--accent-orange); }
+  .tag-industry { background: rgba(244,114,182,0.15); color: var(--accent-pink); }
+
+  .news-item h2 {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .news-item .body { font-size: 14.5px; color: var(--text-dim); margin-bottom: 16px; }
+  .news-item .body p { margin-bottom: 10px; }
+  .news-item .body strong { color: var(--text); }
+  .news-item .insight {
+    background: rgba(91,141,239,0.08);
+    border-left: 3px solid var(--accent-blue);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .news-item .insight::before {
+    content: "💡 关注理由";
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-blue);
+    margin-bottom: 6px;
+  }
+
+  .number {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    font-size: 48px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="date">Thursday · March 26, 2026</div>
+    <h1>🤖 AI 日报</h1>
+    <div class="subtitle">聚焦 AI Coding · 具身智能 · 前沿动态</div>
+  </header>
+
+  <!-- 1 -->
+  <article class="news-item">
+    <span class="number">01</span>
+    <span class="tag tag-coding">AI Coding</span>
+    <h2>OpenAI 收购 Astral（uv / Ruff 母公司），全面对标 Claude Code</h2>
+    <div class="body">
+      <p>3 月 19 日，OpenAI 宣布收购 Python 工具链公司 <strong>Astral</strong>，后者是近两年 Python 生态最受瞩目的项目——超高速包管理器 <strong>uv</strong> 和 Linter <strong>Ruff</strong> 的缔造者。收购后 Astral 团队将并入 OpenAI 的 <strong>Codex</strong> 平台，直接强化其在开发者工具链上的布局。</p>
+      <p>背景：Anthropic 的 <strong>Claude Code</strong> 编码代理营收在 2 月已突破 <strong>25 亿美元</strong>（较 2025 年底翻倍），占据 AI 编程代理市场的主导地位。OpenAI 此举意在通过收购开发者高频依赖的基础设施工具，重新夺回阵地。</p>
+    </div>
+    <div class="insight">
+      这是一起极具战略意义的收购——uv/Ruff 拥有 Python 生态中罕见的"基础设施级"用户粘性。OpenAI 的意图清晰：掌控开发者工具链入口，围绕 Codex 构建从包管理→编码→部署的完整闭环，直接在 Claude Code 最强的领域展开正面竞争。AI Coding 市场的"平台化"竞争已进入白热化。
+    </div>
+  </article>
+
+  <!-- 2 -->
+  <article class="news-item">
+    <span class="number">02</span>
+    <span class="tag tag-coding">AI Coding</span>
+    <h2>AI 编程工具进入「Agentic 自主时代」：从辅助到协作伙伴</h2>
+    <div class="body">
+      <p>多家行业媒体在 3 月将本月定义为 AI 开发工具的<strong>范式转折点</strong>：工具从"代码补全助手"全面进化为"自主执行多步任务的 Agent 系统"。关键标志事件包括：</p>
+      <p>• <strong>CNCF 发布 Dapr Agents v1.0 GA</strong>——首个企业级多 Agent 编排框架正式生产就绪，支持安全协调、状态管理和故障恢复</p>
+      <p>• <strong>Windsurf IDE 超越 Cursor</strong> 成为 AI 编辑器 #1，其 Arena Mode（双模型盲评）和 Plan Mode（执行前完整规划）将编码决策流程化</p>
+      <p>• <strong>GitHub Copilot Workspace</strong> 实现"Issue → PR"自动化，实测 67% 命中率（12 个 Issue 中 8 个仅需小幅调整）</p>
+      <p>• <strong>智谱 GLM-5</strong> 以 MIT 协议开源，API 成本仅为 GPT-5.4 的 1/15，在 SWE-bench 开源榜登顶</p>
+    </div>
+    <div class="insight">
+      关键转变在于：开发者角色正从"写代码"转向"编排 AI Agent"。2026 年 3 月的基准测试显示，Claude Opus 4.6、GPT-5.4、Gemini 3.1 Pro 在不同任务维度各有胜负，"全能冠军"不存在——这意味着<strong>多 Agent 混合编排能力</strong>成为新的核心竞争力。掌握 AI 协作（Context Engineering + Agent Orchestration）的开发者将拉开显著的生产力差距。
+    </div>
+  </article>
+
+  <!-- 3 -->
+  <article class="news-item">
+    <span class="number">03</span>
+    <span class="tag tag-embodied">具身智能</span>
+    <h2>宇树科技王兴兴：人形机器人年内突破博尔特速度，具身 AI 2-3 年迎「ChatGPT 时刻」</h2>
+    <div class="body">
+      <p>在 2026 亚布力论坛年会上，宇树科技创始人 <strong>王兴兴</strong> 做出两个判断：</p>
+      <p><strong>① 速度突破：</strong>预计 2026 年中，中国制造的人形机器人将在 100 米冲刺中<strong>跑进 10 秒</strong>，超越人类极限。佐证：2026 年 2 月，国产机器人"Bolt"测试中已达到 <strong>10 m/s 峰值速度</strong>，逼近博尔特的瞬时峰速 10.44 m/s。</p>
+      <p><strong>② 智能突破：</strong>具身 AI 的"ChatGPT 时刻"将在 <strong>2-3 年内</strong>到来。当前核心瓶颈：模型泛化能力不足、机器人领域数据稀缺、强化学习规模效应待验证。</p>
+    </div>
+    <div class="insight">
+      宇树 H1 在 2025 年 8 月创下 3.3 m/s 的纪录，7 个月后"Bolt"已飙至 10 m/s——硬件侧的指数级加速正在兑现。但更值得关注的是王兴兴对"2-3 年"的审慎判断——数据和泛化能力仍是具身智能落地的真正卡点。对于投资者而言，这意味着<strong>机器人硬件公司已进入兑现期，而 AI 大脑侧仍需耐心</strong>。
+    </div>
+  </article>
+
+  <!-- 4 -->
+  <article class="news-item">
+    <span class="number">04</span>
+    <span class="tag tag-embodied">具身智能</span>
+    <h2>D-Robotics（地瓜机器人）完成 1.2 亿美元 B1 轮融资，滴滴/美团战投入局</h2>
+    <div class="body">
+      <p>3 月 16 日，从地平线拆分的机器人计算平台公司 <strong>D-Robotics</strong>（地瓜机器人）宣布完成 <strong>1.2 亿美元 B1 轮融资</strong>，A+B 轮累计融资 2.2 亿美元。投资方阵容豪华：<strong>滴滴、美团龙珠</strong>战略投资，Baillie Gifford、Joyo 等顶级机构跟投。</p>
+      <p>D-Robotics 定位于具身智能的"基础设施层"，构建覆盖<strong>芯片、操作系统、算法</strong>的完整平台，服务人形机器人、无人机、服务机器人等场景。同期在 Embedded World 2026 展会上发布了新款 <strong>RDK S100 开发套件</strong>。</p>
+    </div>
+    <div class="insight">
+      滴滴和美团的战略投资释放了明确信号：<strong>自动配送/出行巨头正在锁定下一代机器人计算芯片供应商</strong>。D-Robotics 的"芯片+OS+算法"全栈路线，类似于英伟达在自动驾驶领域的地位——如果具身智能在 2-3 年内迎来爆发（参考上条），平台型芯片公司将是最大受益者。值得持续跟踪。
+    </div>
+  </article>
+
+  <!-- 5 -->
+  <article class="news-item">
+    <span class="number">05</span>
+    <span class="tag tag-infra">基础设施</span>
+    <h2>马斯克公布 Terafab：250 亿美元芯片超级工厂，打通 xAI-Tesla 算力闭环</h2>
+    <div class="body">
+      <p>3 月 23 日，Elon Musk 公布了 <strong>Terafab</strong> 计划——一座投资 <strong>200-250 亿美元</strong>的半导体超级工厂，选址德州奥斯汀，将同时服务 Tesla、xAI 和 SpaceX。</p>
+      <p>更关键的信息是 Musk 同步披露的 <strong>xAI-Tesla "Computer Use" 系统</strong>蓝图：xAI 的 AI 软件将直接控制 Tesla 的硬件（包括 Optimus 人形机器人和自动驾驶车辆），实现从芯片制造→AI 训练→机器人控制的完全垂直整合。</p>
+      <p>融资侧：xAI 刚完成 <strong>200 亿美元 E 轮</strong>，Anthropic 累计融资达 <strong>673 亿美元</strong>，OpenAI 在 1100 亿之上再追加 100 亿——AI 军备竞赛的资本密度已达史无前例水平。</p>
+    </div>
+    <div class="insight">
+      Terafab 的意义超越了单纯的芯片工厂——它是 Musk 将 AI 软件（xAI Grok）、机器人硬件（Tesla Optimus）、算力基础设施（自研芯片）三者闭环的关键拼图。如果 "Computer Use" 系统能真正实现 AI 直接操控物理机器人，这将是具身智能领域最激进的端到端整合路线。对 NVIDIA 等独立 GPU 厂商而言，大客户自研芯片的趋势正在加速。
+    </div>
+  </article>
+
+  <footer>
+    由 WorkBuddy 自动生成 · 数据来源：综合公开报道与行业分析
+  </footer>
+</div>
+</body>
+</html>
