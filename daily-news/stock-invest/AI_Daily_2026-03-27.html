@@ -3,238 +3,417 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🍃 AI 日报 · 2026年3月27日</title>
+<title>AI日报·投资视角 | 2026-03-27</title>
 <style>
   :root {
-    --bg: #f8faf8;
-    --card: #ffffff;
-    --accent: #2d8659;
-    --accent-light: #e8f5ee;
-    --text: #1a1a1a;
-    --text-secondary: #555;
-    --border: #e0e8e0;
-    --tag-coding: #1a73e8;
-    --tag-coding-bg: #e8f0fe;
-    --tag-embodied: #e67700;
-    --tag-embodied-bg: #fff3e0;
-    --tag-industry: #7b1fa2;
-    --tag-industry-bg: #f3e5f5;
+    --bg-primary: #0d1117;
+    --bg-card: #161b22;
+    --bg-tag: #21262d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --accent-blue: #58a6ff;
+    --accent-green: #3fb950;
+    --accent-purple: #bc8cff;
+    --accent-orange: #d29922;
+    --accent-red: #f85149;
+    --accent-cyan: #39d2c0;
+    --border: #30363d;
+    --shadow: rgba(0,0,0,0.4);
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg-primary);
+    color: var(--text-primary);
     line-height: 1.7;
-    padding: 24px 16px;
+    padding: 0;
+    min-height: 100vh;
   }
 
   .container {
-    max-width: 720px;
+    max-width: 780px;
     margin: 0 auto;
+    padding: 20px 16px 40px;
   }
 
-  header {
+  /* Header */
+  .header {
     text-align: center;
-    margin-bottom: 32px;
-    padding-bottom: 24px;
-    border-bottom: 2px solid var(--accent);
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
   }
-
-  header h1 {
-    font-size: 26px;
+  .header h1 {
+    font-size: 1.6em;
     font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 6px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
   }
-
-  header .date {
-    font-size: 14px;
+  .header .date {
     color: var(--text-secondary);
+    font-size: 0.95em;
+  }
+  .header .summary {
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, rgba(88,166,255,0.08), rgba(188,140,255,0.08));
+    border: 1px solid rgba(88,166,255,0.15);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 0.95em;
+    line-height: 1.6;
   }
 
-  header .subtitle {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-top: 8px;
-    font-style: italic;
-  }
-
-  .news-card {
-    background: var(--card);
+  /* TOC Navigation */
+  .toc {
+    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 20px 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    transition: box-shadow 0.2s;
+    padding: 20px;
+    margin-bottom: 24px;
   }
-
-  .news-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  .toc h2 {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    font-weight: 600;
   }
+  .toc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .toc-tag {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.82em;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .toc-tag:hover { transform: translateY(-1px); filter: brightness(1.2); }
+  .tag-embodied { background: rgba(63,185,80,0.15); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.3); }
+  .tag-coding { background: rgba(88,166,255,0.15); color: var(--accent-blue); border: 1px solid rgba(88,166,255,0.3); }
+  .tag-platform { background: rgba(188,140,255,0.15); color: var(--accent-purple); border: 1px solid rgba(188,140,255,0.3); }
+  .tag-investment { background: rgba(210,153,34,0.15); color: var(--accent-orange); border: 1px solid rgba(210,153,34,0.3); }
+  .tag-industry { background: rgba(57,210,192,0.15); color: var(--accent-cyan); border: 1px solid rgba(57,210,192,0.3); }
 
-  .news-card .card-header {
+  .toc-list {
+    list-style: none;
+  }
+  .toc-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(48,54,61,0.5);
+  }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-list a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.92em;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 12px;
+    transition: color 0.2s;
   }
-
-  .news-card .number {
+  .toc-list a:hover { color: var(--accent-blue); }
+  .toc-list .num {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: white;
-    font-weight: 700;
-    font-size: 14px;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--bg-tag);
+    color: var(--text-secondary);
+    font-size: 0.8em;
+    font-weight: 600;
     flex-shrink: 0;
   }
 
-  .news-card h2 {
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.4;
+  /* News Card */
+  .news-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: border-color 0.2s;
   }
+  .news-card:hover { border-color: rgba(88,166,255,0.3); }
 
-  .tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin-right: 6px;
-    margin-bottom: 10px;
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
   }
-
-  .tag-coding { background: var(--tag-coding-bg); color: var(--tag-coding); }
-  .tag-embodied { background: var(--tag-embodied-bg); color: var(--tag-embodied); }
-  .tag-industry { background: var(--tag-industry-bg); color: var(--tag-industry); }
-
-  .news-card .body {
-    font-size: 14.5px;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-
-  .news-card .why {
-    font-size: 13.5px;
-    color: var(--accent);
-    background: var(--accent-light);
+  .card-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
     border-radius: 8px;
-    padding: 10px 14px;
-    border-left: 3px solid var(--accent);
+    font-size: 0.85em;
+    font-weight: 700;
+    flex-shrink: 0;
   }
-
-  .news-card .why strong {
+  .card-num-1 { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); }
+  .card-num-2 { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); }
+  .card-num-3 { background: linear-gradient(135deg, var(--accent-orange), #e8a33c); }
+  .card-num-4 { background: linear-gradient(135deg, var(--accent-purple), var(--accent-red)); }
+  .card-num-5 { background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); }
+  .card-title {
+    font-size: 1.1em;
     font-weight: 600;
+    line-height: 1.5;
   }
 
-  footer {
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .card-tag {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 500;
+  }
+
+  .card-body {
+    color: var(--text-secondary);
+    font-size: 0.92em;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .card-body p { margin-bottom: 8px; }
+  .card-body p:last-child { margin-bottom: 0; }
+
+  .card-insight {
+    padding: 12px 16px;
+    border-left: 3px solid var(--accent-blue);
+    background: rgba(88,166,255,0.05);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.88em;
+    color: var(--text-primary);
+  }
+  .card-insight-label {
+    color: var(--accent-blue);
+    font-weight: 600;
+    font-size: 0.82em;
+    margin-bottom: 4px;
+  }
+
+  .card-source {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  .card-source a {
+    color: var(--text-muted);
+    font-size: 0.8em;
+    text-decoration: none;
+    padding: 3px 10px;
+    background: var(--bg-tag);
+    border-radius: 8px;
+    transition: color 0.2s;
+  }
+  .card-source a:hover { color: var(--accent-blue); }
+
+  /* Footer */
+  .footer {
     text-align: center;
-    margin-top: 32px;
-    padding-top: 20px;
+    padding: 24px 0;
     border-top: 1px solid var(--border);
-    font-size: 12px;
-    color: #999;
+    margin-top: 16px;
+    color: var(--text-muted);
+    font-size: 0.82em;
+  }
+  .footer a { color: var(--accent-blue); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+
+  /* Mobile optimization */
+  @media (max-width: 480px) {
+    .container { padding: 12px 12px 32px; }
+    .header h1 { font-size: 1.35em; }
+    .news-card { padding: 18px 16px; }
+    .card-title { font-size: 1.02em; }
   }
 </style>
 </head>
 <body>
 <div class="container">
 
-<header>
-  <h1>🍃 AI 日报</h1>
-  <div class="date">2026年3月27日 · 星期五</div>
-  <div class="subtitle">侧重 AI Coding · 具身智能 · 每日精选</div>
-</header>
+  <!-- Header -->
+  <div class="header">
+    <h1>🤖 AI日报·投资视角</h1>
+    <div class="date">2026年3月27日 · 星期五</div>
+    <div class="summary">
+      <strong>今日核心主题：</strong>AI 行业里程碑日——Anthropic 筹备 $600 亿 IPO、中国首发具身智能行业标准、苹果 Siri 开放第三方 AI 生态。AI coding 与具身智能双赛道同日迎来催化剂。
+    </div>
+  </div>
 
-<!-- 1 -->
-<div class="news-card">
-  <div class="card-header">
-    <span class="number">1</span>
-    <h2>Claude Opus 4.6 多项实战基准登顶，OpenAI 发布 GPT-5.2-Codex 反击</h2>
-  </div>
-  <span class="tag tag-coding">AI Coding</span>
-  <div class="body">
-    Anthropic 的 Claude Opus 4.6 在 Terminal-Bench 2.0 和 OSWorld 等"真实工作"基准中全面超越 ChatGPT 和 Gemini，被 Tom's Guide 等多家媒体评为"最适合实际编程"的 AI。工程师反馈其编码/调试能力已接近初级工程师水平。作为回应，OpenAI 于 3 月 23 日推出专门面向 Agentic Coding 的 <strong>GPT-5.2-Codex</strong>，具备改进的上下文管理、Windows 支持和网络安全增强，与 Claude Code 正面对决。
-  </div>
-  <div class="why">
-    <strong>🔍 关注理由：</strong>AI 编程工具的"实战能力"已从辅助补全跃迁到自主完成复杂开发任务。两巨头短兵相接意味着开发者将很快获得更强、更便宜的工具。
-  </div>
-</div>
+  <!-- TOC -->
+  <nav class="toc">
+    <h2>📑 目录导航</h2>
+    <div class="toc-tags">
+      <a href="#news-1" class="toc-tag tag-investment">💰 投融资</a>
+      <a href="#news-2" class="toc-tag tag-embodied">🤖 具身智能</a>
+      <a href="#news-3" class="toc-tag tag-platform">📱 AI 平台</a>
+      <a href="#news-4" class="toc-tag tag-coding">💻 AI Coding</a>
+      <a href="#news-5" class="toc-tag tag-industry">🏭 产业生态</a>
+    </div>
+    <ol class="toc-list">
+      <li><a href="#news-1"><span class="num">1</span>Anthropic 考虑最早 10 月 IPO，估值超 $600 亿</a></li>
+      <li><a href="#news-2"><span class="num">2</span>中国发布全球首个具身智能行业标准，6 月 1 日实施</a></li>
+      <li><a href="#news-3"><span class="num">3</span>苹果 iOS 27 将开放 Siri 接入第三方 AI（Gemini/Claude）</a></li>
+      <li><a href="#news-4"><span class="num">4</span>字节跳动 DeerFlow 2.0 开源 — GitHub 48K Stars 的超级智能体框架</a></li>
+      <li><a href="#news-5"><span class="num">5</span>中国大模型调用量首超美国，中关村论坛密集发布开源成果</a></li>
+    </ol>
+  </nav>
 
-<!-- 2 -->
-<div class="news-card">
-  <div class="card-header">
-    <span class="number">2</span>
-    <h2>Cursor 母公司 Anysphere D 轮融资 23 亿美元，估值近 300 亿</h2>
-  </div>
-  <span class="tag tag-coding">AI Coding</span>
-  <span class="tag tag-industry">行业格局</span>
-  <div class="body">
-    AI 编程平台 Cursor 的开发商 Anysphere 完成 <strong>23 亿美元</strong> D 轮融资，估值达到 <strong>293 亿美元</strong>。同期曝出其最新 Composer 2 模型实际基于月之暗面（Moonshot AI）的开源模型 <strong>Kimi 2.5</strong> + 强化学习构建，引发行业对"开源模型做底座 → 专有产品做包装"模式的透明度讨论。
-  </div>
-  <div class="why">
-    <strong>🔍 关注理由：</strong>近 300 亿估值是 AI coding 赛道有史以来最大一笔融资，直接确认了"AI 编程"作为独立赛道的资本价值。而 Kimi 2.5 底座事件则揭示开源模型正成为行业隐形基石——对中国 AI 生态是利好信号。
-  </div>
-</div>
+  <!-- News 1 -->
+  <article class="news-card" id="news-1">
+    <div class="card-header">
+      <span class="card-num card-num-1">01</span>
+      <h3 class="card-title">Anthropic 考虑最早 10 月 IPO，估值或超 $600 亿</h3>
+    </div>
+    <div class="card-tags">
+      <span class="card-tag tag-investment">💰 投融资</span>
+    </div>
+    <div class="card-body">
+      <p>Claude 开发商 Anthropic 正在考虑最早于今年 10 月进行 IPO。据彭博社报道，公司已与华尔街多家头部银行就承销角色展开初步洽谈，上市估值可能超过 600 亿美元。</p>
+      <p>此举正值 Anthropic 与 OpenAI 在 AI 行业的激烈竞争白热化时期。Anthropic 凭借 Claude 系列模型和 Claude Code 工具在企业市场和开发者生态中快速扩张，已被视为 OpenAI 最强劲的竞争对手。</p>
+    </div>
+    <div class="card-insight">
+      <div class="card-insight-label">📊 投资视角</div>
+      Anthropic IPO 将是 2026 年最受瞩目的科技 IPO 之一。$600 亿估值对标 OpenAI，反映市场对"AI 双雄"格局的认可。关注后续对一级市场份额的虹吸效应，以及上市后对美股 AI 板块的带动作用。Claude 在 AI coding 赛道的强势表现是其核心估值支撑。
+    </div>
+    <div class="card-source">
+      <a href="https://www.livemint.com/market/ipo/anthropic-pbc-mulls-60-billion-ipo-as-early-as-october-2026-report-11774604369374.html" target="_blank">LiveMint</a>
+      <a href="https://seekingalpha.com/news/4569669-anthropic-weighs-ipo-as-soon-as-october-amid-race-with-openai-report-says" target="_blank">Seeking Alpha</a>
+      <a href="https://cio.economictimes.indiatimes.com/news/artificial-intelligence/claude-ai-maker-anthropic-considers-ipo-as-soon-as-october/129838271" target="_blank">Economic Times</a>
+    </div>
+  </article>
 
-<!-- 3 -->
-<div class="news-card">
-  <div class="card-header">
-    <span class="number">3</span>
-    <h2>Anthropic 开源 Agent Skills 框架，抢占智能体生态标准</h2>
-  </div>
-  <span class="tag tag-coding">AI Coding</span>
-  <span class="tag tag-industry">行业格局</span>
-  <div class="body">
-    Anthropic 在 GitHub 上发布极简规范的 <strong>Agent Skills 框架</strong> 作为开放标准，定义了 AI 智能体的工具调用、内存管理和消息接口规范。此举意在建立类似 MCP（Model Context Protocol）的行业标准地位，构建"围绕 Claude 的智能体生态"。OpenAI 暂未跟进支持。
-  </div>
-  <div class="why">
-    <strong>🔍 关注理由：</strong>继 MCP 之后 Anthropic 再次在"协议/标准"层发力。AI Agent 的竞争正从模型能力向生态基础设施转移。谁的标准被采纳，谁就掌握下一代开发者生态的入口。
-  </div>
-</div>
+  <!-- News 2 -->
+  <article class="news-card" id="news-2">
+    <div class="card-header">
+      <span class="card-num card-num-2">02</span>
+      <h3 class="card-title">中国发布全球首个具身智能行业标准，6 月 1 日正式实施</h3>
+    </div>
+    <div class="card-tags">
+      <span class="card-tag tag-embodied">🤖 具身智能</span>
+      <span class="card-tag tag-industry">🏭 产业生态</span>
+    </div>
+    <div class="card-body">
+      <p>3 月 27 日，北京人形机器人创新中心在中关村论坛上正式发布《人工智能具身智能体应用框架及接口》行业标准，这是全球首个具身 AI 行业标准。该标准由中国信通院联合 40+ 机构共同制定，将于 6 月 1 日起实施。</p>
+      <p>标准定义了具身 AI 的核心架构、能力要求和测试方法，涵盖从人形机器人到自主系统的广泛应用场景。同日，具身智能机器人"天工 3.0"亮相论坛（曾获世界人形机器人运动会百米冠军）。</p>
+    </div>
+    <div class="card-insight">
+      <div class="card-insight-label">📊 投资视角</div>
+      行业标准的落地意味着具身智能正从"概念炒作"进入"标准化量产"阶段。统一接口框架将大幅降低开发门槛，利好整机厂商和零部件供应链。关注 A 股/港股人形机器人概念股（优必选、埃夫特、绿的谐波等），以及春节晚会后人形机器人销量同比增长 13% 的持续催化。
+    </div>
+    <div class="card-source">
+      <a href="https://khabarasia.com/china/20260327-china-sets-first-embodied-ai-standard-to-shape-global-tech-landscape/" target="_blank">Khabar Asia</a>
+      <a href="https://wol.com/china-releases-first-industry-standard-for-embodied-intelligence/" target="_blank">WOL</a>
+      <a href="https://www.163.com/dy/article/KP1NROT9055622UQ.html" target="_blank">网易</a>
+    </div>
+  </article>
 
-<!-- 4 -->
-<div class="news-card">
-  <div class="card-header">
-    <span class="number">4</span>
-    <h2>NVIDIA GTC：Physical AI 数据工厂蓝图开源，GR00T N1.7 人形机器人模型发布</h2>
-  </div>
-  <span class="tag tag-embodied">具身智能</span>
-  <div class="body">
-    GTC 2026 上 NVIDIA 发布了多项物理 AI 重磅更新：<strong>Cosmos 3</strong>（世界模型）、<strong>Isaac GR00T N1.7</strong>（人形机器人技能模型）和 <strong>Physical AI 数据工厂蓝图</strong>（开源参考架构，将有限真实数据通过合成扩展为大规模训练集）。ABB、FANUC、KUKA 等工业机器人巨头（全球 200 万+装机量）宣布集成 NVIDIA Jetson 模块和 Isaac 仿真框架。首批云平台合作伙伴包括 Azure 和 Nebius。
-  </div>
-  <div class="why">
-    <strong>🔍 关注理由：</strong>这是具身智能从实验室走向产业的标志性节点。数据工厂蓝图解决了机器人训练最大的瓶颈——真实世界数据稀缺，而工业四大家族的全面接入意味着 Physical AI 正式进入量产管线。
-  </div>
-</div>
+  <!-- News 3 -->
+  <article class="news-card" id="news-3">
+    <div class="card-header">
+      <span class="card-num card-num-3">03</span>
+      <h3 class="card-title">苹果 iOS 27 将开放 Siri 接入第三方 AI（Gemini / Claude）</h3>
+    </div>
+    <div class="card-tags">
+      <span class="card-tag tag-platform">📱 AI 平台</span>
+    </div>
+    <div class="card-body">
+      <p>据彭博社 Mark Gurman 报道，苹果计划在 iOS 27 中开放 Siri 的第三方 AI 接入能力。用户将可以在设置中选择偏好的 AI 服务（如 Google Gemini、Anthropic Claude 等），打破 OpenAI ChatGPT 此前的独家合作地位。</p>
+      <p>这标志着苹果从"独家绑定"转向"开放生态"的平台策略转变。AI 服务提供商将能够通过 Extensions 系统直接触达超 20 亿 iOS 设备用户，分发渠道的价值不言而喻。</p>
+    </div>
+    <div class="card-insight">
+      <div class="card-insight-label">📊 投资视角</div>
+      苹果平台开放 = AI 模型厂商新增 20 亿级终端分发入口。直接利好 Anthropic（IPO 前又一重磅利好）和 Google（Gemini 获得 iOS 级分发）。对 OpenAI 而言，独家优势丧失是明确利空。更长远看，AI 助手"安卓化"趋势将加速模型能力的军备竞赛。关注 WWDC 2026（约 6 月）正式公布细节。
+    </div>
+    <div class="card-source">
+      <a href="https://www.macrumors.com/2026/03/26/apple-ios-27-siri-chatbot-integration/" target="_blank">MacRumors</a>
+      <a href="https://www.macworld.com/article/3100123/report-ios-27-to-let-siri-work-with-any-third-party-chatbot.html" target="_blank">Macworld</a>
+      <a href="https://www.ithome.com/0/933/107.htm" target="_blank">IT之家</a>
+    </div>
+  </article>
 
-<!-- 5 -->
-<div class="news-card">
-  <div class="card-header">
-    <span class="number">5</span>
-    <h2>AI 编程采用率过半：50% 开发者每日使用，代码补全市场达 23 亿美元</h2>
-  </div>
-  <span class="tag tag-coding">AI Coding</span>
-  <div class="body">
-    最新行业调研显示：<strong>50%</strong> 的开发者现在每天使用 AI 编程工具，顶级组织中采用率高达 <strong>65%</strong>。全球代码补全市场规模已增长至 <strong>23 亿美元</strong>，开发团队报告平均获得 15% 以上的交付速度提升。与此同时，Andrej Karpathy 公开表示自己"已经好几个月没写代码了"，认为 AI 自动编程能力的进步速度令人"精神错乱"。
-  </div>
-  <div class="why">
-    <strong>🔍 关注理由：</strong>"半数开发者日用"是里程碑数据——AI 编程从"新鲜事"变成了"新常态"。对投资而言，这意味着 AI coding 赛道的 TAM 验证已完成，后续将进入市场份额争夺的白热化阶段。
-  </div>
-</div>
+  <!-- News 4 -->
+  <article class="news-card" id="news-4">
+    <div class="card-header">
+      <span class="card-num card-num-4">04</span>
+      <h3 class="card-title">字节跳动 DeerFlow 2.0 开源 — 48K Stars 超级智能体框架</h3>
+    </div>
+    <div class="card-tags">
+      <span class="card-tag tag-coding">💻 AI Coding</span>
+    </div>
+    <div class="card-body">
+      <p>字节跳动开源的超级智能体框架 DeerFlow 在本周更新至 2.0 版本后持续霸榜 GitHub Trending，Stars 数突破 48K。DeerFlow 2.0 基于 LangGraph 1.0 重构，集成沙盒、记忆、工具、技能、子智能体及消息网关等核心模块。</p>
+      <p>作为 OpenAI Deep Research 的开源替代方案，DeerFlow 2.0 能处理从几分钟到数小时的多层级复杂任务，涵盖深度研究、代码编写、数据分析和内容创作等场景。开箱即用的设计和 MIT 许可证使其迅速成为开发者社区的热门选择。</p>
+    </div>
+    <div class="card-insight">
+      <div class="card-insight-label">📊 投资视角</div>
+      DeerFlow 2.0 的爆红反映了 AI Agent 框架的激烈竞争已从闭源转向开源。字节跳动在 AI 基础设施层的开源布局（豆包大模型 + DeerFlow 智能体框架）形成完整生态闭环。对于国内 AI 应用开发者是重大利好，也预示着"智能体即服务"赛道即将迎来爆发期。关注 A 股 AI 应用概念的联动反应。
+    </div>
+    <div class="card-source">
+      <a href="https://zhuanlan.zhihu.com/p/2020438657497068078" target="_blank">知乎</a>
+      <a href="https://ai-bot.cn/deerflow-2-0/" target="_blank">AI工具集</a>
+      <a href="https://www.yiboot.com/article/userguide/deerflow-01.html" target="_blank">一博</a>
+    </div>
+  </article>
 
-<footer>
-  🍃 小荷 AI 日报 · 自动生成 · 数据来源：公开媒体与行业报道
-</footer>
+  <!-- News 5 -->
+  <article class="news-card" id="news-5">
+    <div class="card-header">
+      <span class="card-num card-num-5">05</span>
+      <h3 class="card-title">中国大模型调用量首超美国，中关村论坛发布多项开源成果</h3>
+    </div>
+    <div class="card-tags">
+      <span class="card-tag tag-industry">🏭 产业生态</span>
+    </div>
+    <div class="card-body">
+      <p>据中关村论坛人工智能主题日披露，2026 年 3 月中国大模型调用量首次超越美国——全球调用量 TOP 10 中，中国模型占据 6 席，实现历史性反超。</p>
+      <p>论坛同步发布了多项重磅成果：众智 FlagOS 2.0 开源系统、全球首个通用智能人"通通 3.0"、中科院"香山"RISC-V 开源处理器与"如意"操作系统。此外，北京市人工智能协会与中关村 AI 开源联盟正式揭牌，广州发布 AI 高质量发展"施工图"，目标 2030 年形成万亿级产业生态圈。</p>
+    </div>
+    <div class="card-insight">
+      <div class="card-insight-label">📊 投资视角</div>
+      中国大模型调用量超美国是里程碑事件，标志着中国 AI 应用层的全面崛起。DeepSeek 引爆的国产大模型热潮正转化为实际调用量。中关村论坛密集发布的开源成果显示政策端的持续发力。关注 A 股 AI 算力（光模块、服务器）和 AI 应用（办公、教育、金融）双主线。广州万亿级目标进一步强化了地方政府对 AI 产业的支持信号。
+    </div>
+    <div class="card-source">
+      <a href="https://www.163.com/dy/article/KP1NROT9055622UQ.html" target="_blank">网易</a>
+      <a href="https://www.xinhuanet.com/tech/20260326/c94e0c98cb0b4580b1ff7921c5833fa5/c.html" target="_blank">新华网</a>
+      <a href="https://news.bjd.com.cn/2026/03/27/11654663.shtml" target="_blank">京报网</a>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>📰 AI日报·投资视角 | 由 <a href="https://github.com/MapleMaster">Maple</a> 的 AI 秘书小荷 🍃 自动生成</p>
+    <p style="margin-top:6px;">数据来源：公开新闻报道 · 仅供参考，不构成投资建议</p>
+  </div>
 
 </div>
 </body>
