@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 日报 · 游戏研发视角 | 2026-03-27</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text2: #555;
+    --accent: #2d6a4f;
+    --accent-light: #d8f3dc;
+    --border: #e8e8e8;
+    --tag-bg: #edf2f4;
+    --red: #e63946;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0 0 60px;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    padding: 32px 20px 28px;
+    text-align: center;
+  }
+  .header .date {
+    font-size: 13px;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .header .subtitle {
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  /* Summary bar */
+  .summary-bar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 14px 16px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .summary-bar .stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .summary-bar .stat .num {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent);
+  }
+
+  /* Content */
+  .content { max-width: 680px; margin: 0 auto; padding: 16px; }
+
+  /* Card */
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .card-header {
+    padding: 16px 18px 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .card-num {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    flex: 1;
+  }
+  .card-body {
+    padding: 0 18px 16px;
+  }
+  .card-body p {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 12px;
+  }
+
+  /* Tags */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+    padding: 0 18px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--tag-bg);
+    color: var(--text2);
+    white-space: nowrap;
+  }
+  .tag.hot {
+    background: #fff0f0;
+    color: var(--red);
+  }
+
+  /* Insight box */
+  .insight {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 12px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 0 18px 16px;
+  }
+  .insight-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .insight p {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  /* Takeaway */
+  .takeaway {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 8px;
+    text-align: center;
+  }
+  .takeaway .emoji { font-size: 24px; margin-bottom: 8px; }
+  .takeaway h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .takeaway p { font-size: 13px; opacity: 0.85; line-height: 1.7; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px 16px 0;
+    font-size: 11px;
+    color: #bbb;
+  }
+
+  /* Details */
+  .detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .detail-list li {
+    position: relative;
+    padding: 4px 0 4px 16px;
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .detail-list li::before {
+    content: "›";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Responsive */
+  @media (min-width: 600px) {
+    .header h1 { font-size: 26px; }
+    .card-title { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="date">2026 年 3 月 27 日 · 星期五</div>
+  <h1>🎮 AI 日报 · 游戏研发视角</h1>
+  <div class="subtitle">AI Coding × 游戏后台 × 客户端 × PM × 测试</div>
+</div>
+
+<div class="summary-bar">
+  <div class="stat"><span class="num">4</span> 条精选</div>
+  <div class="stat"><span class="num">3</span> 个领域</div>
+  <div class="stat">覆盖 游戏研发全链路</div>
+</div>
+
+<div class="content">
+
+  <!-- Card 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">1</div>
+      <div class="card-title">GDC 2026 回顾：天美 Ignis Agent 实现 98% AI 自动化编程</div>
+    </div>
+    <div class="tags">
+      <span class="tag hot">🔥 重磅</span>
+      <span class="tag">AI Agent</span>
+      <span class="tag">游戏后台</span>
+      <span class="tag">自动化测试</span>
+    </div>
+    <div class="card-body">
+      <p>GDC 2026（3月9-13日，旧金山）上，腾讯游戏贡献 40+ 场议题。天美工作室展示 <strong>"可微智能"</strong> 概念及 <strong>Ignis Agent</strong>——面向游戏引擎的 AI 编程智能体，在团结引擎项目中实现 Crash 自动治理，部分项目 AI 自动化编程率达 <strong>98%</strong>。</p>
+      <p>光子工作室展示 <strong>VISVISE 系统</strong>（自动蒙皮 → 自动动画 → 角色定制），以及已在《和平精英》大规模落地的 AI 队友——上线后 75% 玩家愿意与 AI 队友语音交流。</p>
+    </div>
+    <div class="insight">
+      <div class="insight-label">💡 对研发团队的启示</div>
+      <p><strong>后台/客户端：</strong>AI Agent 从"辅助补全"走向"自主修 Bug + 跑测试"，工程师角色转向审核和架构决策<br>
+      <strong>测试：</strong>AI 自动 Crash 治理直接冲击传统分析流程，QA 需要转向 AI 审核与策略制定<br>
+      <strong>PM：</strong>AI 队友已验证商业价值，可探索更多 AI 驱动的玩法创新</p>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">2</div>
+      <div class="card-title">AI 编程工具进入 Agent 时代：四大阵营格局分化</div>
+    </div>
+    <div class="tags">
+      <span class="tag hot">🔥 实用</span>
+      <span class="tag">AI Coding</span>
+      <span class="tag">工具选型</span>
+      <span class="tag">效率提升</span>
+    </div>
+    <div class="card-body">
+      <p>2026 年 AI 编程市场规模达 <strong>128 亿美元</strong>，开发者采用率 <strong>85%</strong>。Agent 模式普及率 55%，预计年底超 70%。四大阵营已明确：</p>
+      <ul class="detail-list">
+        <li><strong>Claude Code</strong>（终端智能体）：全库理解 + 自主拆任务，适合大型项目重构</li>
+        <li><strong>Cursor</strong>（AI IDE）：Composer 多文件编辑，快速原型开发利器</li>
+        <li><strong>GitHub Copilot</strong>（插件）：企业合规优势，新增 Agent Mode 追赶</li>
+        <li><strong>Cline</strong>（开源）：支持 DeepSeek 等本地模型，一天几毛钱</li>
+      </ul>
+    </div>
+    <div class="insight">
+      <div class="insight-label">⚠️ 警示 + 选型建议</div>
+      <p><strong>重要警告：</strong>AI 辅助代码缺陷率增长了 <strong>4 倍</strong>，Code Review 不能省<br>
+      <strong>后台开发：</strong>Claude Code 适合大规模重构和跨文件修改<br>
+      <strong>客户端：</strong>Cursor 适合快速验证和原型迭代<br>
+      <strong>注重成本/安全：</strong>Cline + 本地模型，零 API 依赖</p>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">3</div>
+      <div class="card-title">GDPS 2026 今日上海开幕：聚焦 AI Agent 与开发者生态</div>
+    </div>
+    <div class="tags">
+      <span class="tag hot">📍 今日</span>
+      <span class="tag">行业大会</span>
+      <span class="tag">AI Agent</span>
+      <span class="tag">安全</span>
+    </div>
+    <div class="card-body">
+      <p>2026 全球开发者先锋大会（GDPS 2026）<strong>今天</strong>在上海西岸国际会展中心开幕，为期三天。由世界人工智能大会组委会指导，聚焦 <strong>Agent 智能体、端侧 AI、具身智能</strong>等方向，设置 50+ 工作坊、100+ 互动体验。</p>
+      <p>亮点：斗象科技展示 <strong>"安全推理专有云"</strong>，为 AI Agent 运行时提供原生安全保障；萝博派对发布全栈开源人形机器人开发套件。</p>
+    </div>
+    <div class="insight">
+      <div class="insight-label">💡 关注要点</div>
+      <p><strong>前瞻性问题：</strong>当 CI/CD 管线里跑着 AI Agent 自动提交代码，安全审计怎么做？<br>
+      <strong>持续关注：</strong>后续两天可能有更多开发工具和框架发布</p>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">4</div>
+      <div class="card-title">Gemini 3.1 内置代码执行沙盒 · MCP 安装量破 9700 万</div>
+    </div>
+    <div class="tags">
+      <span class="tag">模型更新</span>
+      <span class="tag">基础设施</span>
+      <span class="tag">DevOps</span>
+    </div>
+    <div class="card-body">
+      <p>3 月密集发布的新模型中，对游戏开发最有实战价值的升级：</p>
+      <ul class="detail-list">
+        <li><strong>Gemini 3.1 Ultra：</strong>内置代码执行沙盒，AI 可直接运行测试代码；200万 token 上下文 + 原生多模态</li>
+        <li><strong>GPT-5.4 Thinking：</strong>显示中间推理步骤，复杂算法调试和物理模拟更可靠</li>
+        <li><strong>Mistral Small 4（开源）：</strong>220 亿参数 Apache 2.0，单卡 A100 可跑，可本地部署编程助手</li>
+        <li><strong>MCP 协议：</strong>累计 9700 万次安装，成为 AI Agent 对接外部工具的事实标准</li>
+      </ul>
+    </div>
+    <div class="insight">
+      <div class="insight-label">💡 应用场景</div>
+      <p><strong>后台验证：</strong>Gemini 代码沙盒让 AI 能自己跑代码验证逻辑，游戏后台自动化测试直接受益<br>
+      <strong>DevOps 管线：</strong>MCP 让 AI Agent 无缝对接 Git、项目管理、引擎插件，是构建 AI 驱动研发管线的基础<br>
+      <strong>成本敏感团队：</strong>Mistral Small 4 开源可本地部署，零 API 成本</p>
+    </div>
+  </div>
+
+  <!-- Takeaway -->
+  <div class="takeaway">
+    <div class="emoji">🍃</div>
+    <h3>今日一句话</h3>
+    <p>AI coding 正从"辅助工具"变成"自主队友"——<br>但缺陷率 4 倍增长的警告也在提醒我们：<br><strong>人类的审核能力比以往更重要，而不是更不重要。</strong></p>
+  </div>
+
+  <div class="footer">
+    小荷 🍃 为 Maple 整理 · 信息截至 2026-03-27 16:00
+  </div>
+
+</div>
+
+</body>
+</html>
