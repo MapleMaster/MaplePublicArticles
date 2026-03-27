@@ -125,6 +125,59 @@
     font-size: 12px;
     color: var(--text-dim);
   }
+
+  /* 目录 */
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+  }
+  .toc h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc-counter;
+  }
+  .toc li {
+    counter-increment: toc-counter;
+    margin-bottom: 10px;
+    padding-left: 0;
+  }
+  .toc li a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14.5px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    transition: color 0.15s;
+  }
+  .toc li a:hover { color: var(--accent-blue); }
+  .toc li a::before {
+    content: counter(toc-counter, decimal-leading-zero);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .toc li .toc-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 </style>
 </head>
 <body>
@@ -135,8 +188,20 @@
     <div class="subtitle">聚焦 AI Coding · 具身智能 · 前沿动态</div>
   </header>
 
+  <!-- 目录 -->
+  <nav class="toc">
+    <h3>📋 今日目录</h3>
+    <ol>
+      <li><a href="#news-1"><span class="toc-tag tag-coding">AI Coding</span> OpenAI 收购 Astral（uv / Ruff），全面对标 Claude Code</a></li>
+      <li><a href="#news-2"><span class="toc-tag tag-coding">AI Coding</span> AI 编程工具进入「Agentic 自主时代」：从辅助到协作伙伴</a></li>
+      <li><a href="#news-3"><span class="toc-tag tag-embodied">具身智能</span> 宇树科技：人形机器人年内突破博尔特速度，具身 AI 2-3 年迎突破</a></li>
+      <li><a href="#news-4"><span class="toc-tag tag-embodied">具身智能</span> D-Robotics 完成 1.2 亿美元 B1 轮融资，滴滴/美团战投入局</a></li>
+      <li><a href="#news-5"><span class="toc-tag tag-infra">基础设施</span> 马斯克公布 Terafab：250 亿美元芯片超级工厂</a></li>
+    </ol>
+  </nav>
+
   <!-- 1 -->
-  <article class="news-item">
+  <article class="news-item" id="news-1">
     <span class="number">01</span>
     <span class="tag tag-coding">AI Coding</span>
     <h2>OpenAI 收购 Astral（uv / Ruff 母公司），全面对标 Claude Code</h2>
@@ -150,7 +215,7 @@
   </article>
 
   <!-- 2 -->
-  <article class="news-item">
+  <article class="news-item" id="news-2">
     <span class="number">02</span>
     <span class="tag tag-coding">AI Coding</span>
     <h2>AI 编程工具进入「Agentic 自主时代」：从辅助到协作伙伴</h2>
@@ -167,7 +232,7 @@
   </article>
 
   <!-- 3 -->
-  <article class="news-item">
+  <article class="news-item" id="news-3">
     <span class="number">03</span>
     <span class="tag tag-embodied">具身智能</span>
     <h2>宇树科技王兴兴：人形机器人年内突破博尔特速度，具身 AI 2-3 年迎「ChatGPT 时刻」</h2>
@@ -182,7 +247,7 @@
   </article>
 
   <!-- 4 -->
-  <article class="news-item">
+  <article class="news-item" id="news-4">
     <span class="number">04</span>
     <span class="tag tag-embodied">具身智能</span>
     <h2>D-Robotics（地瓜机器人）完成 1.2 亿美元 B1 轮融资，滴滴/美团战投入局</h2>
@@ -196,7 +261,7 @@
   </article>
 
   <!-- 5 -->
-  <article class="news-item">
+  <article class="news-item" id="news-5">
     <span class="number">05</span>
     <span class="tag tag-infra">基础设施</span>
     <h2>马斯克公布 Terafab：250 亿美元芯片超级工厂，打通 xAI-Tesla 算力闭环</h2>
