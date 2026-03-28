@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 投研日报 · 2026-03-28</title>
+    <style>
+        :root {
+            --bg-primary: #0f1117;
+            --bg-card: #1a1d28;
+            --bg-card-hover: #222636;
+            --accent-red: #ef4444;
+            --accent-green: #22c55e;
+            --accent-blue: #3b82f6;
+            --accent-purple: #a855f7;
+            --accent-orange: #f97316;
+            --accent-cyan: #06b6d4;
+            --accent-yellow: #eab308;
+            --accent-pink: #ec4899;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #2d3348;
+            --gradient-us: linear-gradient(135deg, #3b82f6, #6366f1);
+            --gradient-hk: linear-gradient(135deg, #f97316, #ef4444);
+            --gradient-cn: linear-gradient(135deg, #ef4444, #ec4899);
+            --gradient-global: linear-gradient(135deg, #06b6d4, #3b82f6);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { max-width: 920px; margin: 0 auto; padding: 20px 16px 40px; }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 48px 20px 36px;
+            background: linear-gradient(180deg, rgba(59,130,246,0.08) 0%, transparent 100%);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header .date {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+        .toc h2 {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+        }
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: background 0.2s;
+        }
+        .toc-item:hover { background: rgba(59,130,246,0.1); }
+        .toc-item .idx {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .toc-item .idx.us { background: var(--gradient-us); }
+        .toc-item .idx.hk { background: var(--gradient-hk); }
+        .toc-item .idx.cn { background: var(--gradient-cn); }
+        .toc-item .idx.gl { background: var(--gradient-global); }
+
+        /* Market Section */
+        .market-section { margin-bottom: 36px; }
+        .market-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+        .market-label.us { background: var(--gradient-us); }
+        .market-label.hk { background: var(--gradient-hk); }
+        .market-label.cn { background: var(--gradient-cn); }
+        .market-label.gl { background: var(--gradient-global); }
+
+        /* Card */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(99,102,241,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            border-radius: 4px 0 0 4px;
+        }
+        .card.us::before { background: var(--gradient-us); }
+        .card.hk::before { background: var(--gradient-hk); }
+        .card.cn::before { background: var(--gradient-cn); }
+        .card.gl::before { background: var(--gradient-global); }
+        
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .card-emoji { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        .card-summary {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 14px;
+            padding-left: 42px;
+        }
+        
+        /* Data Metrics */
+        .metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+            padding-left: 42px;
+        }
+        .metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: rgba(59,130,246,0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(59,130,246,0.2);
+        }
+        .metric.up { background: rgba(239,68,68,0.1); color: var(--accent-red); border-color: rgba(239,68,68,0.2); }
+        .metric.down { background: rgba(34,197,94,0.1); color: var(--accent-green); border-color: rgba(34,197,94,0.2); }
+        .metric.neutral { background: rgba(148,163,184,0.1); color: var(--text-secondary); border-color: rgba(148,163,184,0.2); }
+
+        /* Investment View */
+        .invest-view {
+            background: rgba(168,85,247,0.06);
+            border: 1px solid rgba(168,85,247,0.15);
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-left: 42px;
+            margin-bottom: 10px;
+        }
+        .invest-view .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .invest-view .content {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .invest-view .ticker {
+            display: inline-block;
+            background: rgba(168,85,247,0.15);
+            color: var(--accent-purple);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Source */
+        .source {
+            padding-left: 42px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 0 16px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+        .disclaimer {
+            background: rgba(234,179,8,0.06);
+            border: 1px solid rgba(234,179,8,0.15);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 24px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.5rem; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .card { padding: 18px 16px; }
+            .card-summary, .metrics, .invest-view, .source { padding-left: 0; margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 AI 投研日报</h1>
+        <div class="date">2026 年 3 月 28 日 · 星期六</div>
+        <div class="subtitle">📡 覆盖 A股 · 港股 · 美股 三大市场 ｜ AI 产业链全景追踪</div>
+    </div>
+
+    <div class="container">
+        <!-- TOC -->
+        <div class="toc">
+            <h2>📋 今日目录</h2>
+            <div class="toc-grid">
+                <a class="toc-item" href="#n1"><span class="idx us">1</span>1.6T 光模块超级周期开启，AI 网络股集体暴涨</a>
+                <a class="toc-item" href="#n2"><span class="idx us">2</span>超大规模 CapEx 飙至 $7000 亿，同比翻倍</a>
+                <a class="toc-item" href="#n3"><span class="idx us">3</span>Ciena 单季营收 $14.3 亿创纪录，在手订单 $70 亿</a>
+                <a class="toc-item" href="#n4"><span class="idx us">4</span>NVIDIA Blackwell Ultra 出货爆量，营收能见度 $5000 亿</a>
+                <a class="toc-item" href="#n5"><span class="idx us">5</span>AI 投资下一阶段：从芯片转向电力，Bloom Energy 订单 $200 亿</a>
+                <a class="toc-item" href="#n6"><span class="idx cn">6</span>华为昇腾 950PR 发布，算力 2.87 倍于 H20</a>
+                <a class="toc-item" href="#n7"><span class="idx cn">7</span>Lumentum 获 NVIDIA $20 亿投资，入选标普 500</a>
+                <a class="toc-item" href="#n8"><span class="idx cn">8</span>康宁与 Meta 签数十亿美元光纤大单</a>
+                <a class="toc-item" href="#n9"><span class="idx hk">9</span>Tesla Optimus Gen3 亮相 AWE 2026 上海</a>
+                <a class="toc-item" href="#n10"><span class="idx hk">10</span>中国人形机器人占全球 70% 份额，宇树/智元领跑</a>
+                <a class="toc-item" href="#n11"><span class="idx hk">11</span>阿里千问 APP 全面升级，大模型竞争白热化</a>
+                <a class="toc-item" href="#n12"><span class="idx gl">12</span>OpenAI 发布 Prism 科研工作空间，GPT-5.2 驱动</a>
+                <a class="toc-item" href="#n13"><span class="idx cn">13</span>Wall Street 点名 Arista + Ciena 为 AI 骨干网赢家</a>
+            </div>
+        </div>
+
+        <!-- US Market -->
+        <div class="market-section">
+            <div class="market-label us">🇺🇸 美股市场</div>
+
+            <div class="card us" id="n1">
+                <div class="card-header">
+                    <span class="card-emoji">⚡</span>
+                    <div class="card-title">1.6T 光模块超级周期正式开启，AI 网络股掀起历史性行情</div>
+                </div>
+                <div class="card-summary">
+                    AI 基础设施投资焦点从 GPU 算力转向互联带宽。1.6T 光收发器出货量预计从 2025 年 250 万台飙升至 2026 年底超 2000 万台，NVIDIA Blackwell/Rubin 平台对带宽密度的指数级需求是核心催化。OFC 大会确认市场增速超预期，硅光子技术渗透率预计达 70%。AAOI 单日暴涨 19%，Lumentum 入选标普 500。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">1.6T 出货 2000 万+台（2026E）</span>
+                    <span class="metric up">SiPh 渗透率 70%</span>
+                    <span class="metric up">AAOI 单日 +19%</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        光模块/光通信板块迎来从 800G 到 1.6T 的代际升级红利。重点关注 <span class="ticker">AAOI</span> <span class="ticker">LITE(Lumentum)</span> <span class="ticker">GLW(康宁)</span>；A 股映射 <span class="ticker">中际旭创</span> <span class="ticker">新易盛</span> <span class="ticker">天孚通信</span>；港股 <span class="ticker">长飞光纤(06869)</span>
+                    </div>
+                </div>
+                <div class="source">📰 信源：FinancialContent / MarketMinute · 2026-03-25</div>
+            </div>
+
+            <div class="card us" id="n2">
+                <div class="card-header">
+                    <span class="card-emoji">💰</span>
+                    <div class="card-title">五大超大规模云厂商 2026 年 AI CapEx 飙至 $7000 亿，同比翻倍</div>
+                </div>
+                <div class="card-summary">
+                    Alphabet、Meta、Microsoft、Amazon 集体加码 AI 数据中心投资。据 Goldman Sachs/CNBC/Motley Fool 综合数据，2026 年超大规模厂商合计资本开支预计 $6500-7000 亿，同比增长约 70-100%。其中约 75% 与 AI 基础设施直接相关。这是自 1990 年代末电信投资潮以来最大规模的科技资本支出周期。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">CapEx $7000 亿（2026E）</span>
+                    <span class="metric up">YoY +70~100%</span>
+                    <span class="metric">75% 指向 AI</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        巨额资本开支是整个 AI 硬件产业链的基本盘。算力芯片 <span class="ticker">NVDA</span> <span class="ticker">AVGO</span>、网络 <span class="ticker">ANET</span> <span class="ticker">CIEN</span>、服务器 <span class="ticker">DELL</span> <span class="ticker">SMCI</span>、以及电力基建均为核心受益方向。A 股 <span class="ticker">工业富联</span> <span class="ticker">紫光股份</span> 等服务器/IDC 标的跟随受益。
+                    </div>
+                </div>
+                <div class="source">📰 信源：Motley Fool / CNBC / Goldman Sachs · 2026-03-16~25</div>
+            </div>
+
+            <div class="card us" id="n3">
+                <div class="card-header">
+                    <span class="card-emoji">📈</span>
+                    <div class="card-title">Ciena Q1 营收 $14.3 亿创历史新高，在手订单激增至 $70 亿</div>
+                </div>
+                <div class="card-summary">
+                    Ciena 发布 FY2026 Q1 财报，营收同比增长 33%，调整后 EPS 翻倍以上。AI 驱动的光网络需求成为核心增长引擎。公司在手订单（Backlog）飙升至 $70 亿，给出乐观的全年展望。分析师在财报后上调评级至"Buy"，股价单周涨幅超 7%。Ciena 入选标普 500 后仅 17 年，标志着光网络从利基赛道跃升为 AI 核心基础设施。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">营收 $14.3 亿（+33% YoY）</span>
+                    <span class="metric up">EPS 翻倍+</span>
+                    <span class="metric up">Backlog $70 亿</span>
+                    <span class="metric up">股价周涨 +7%</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        Ciena 是 AI 光网络超级周期的标杆。<span class="ticker">CIEN</span> 在手订单 $70 亿提供极高确定性；同赛道关注 <span class="ticker">ANET(Arista)</span>。A 股光模块概念如 <span class="ticker">中际旭创</span> <span class="ticker">光迅科技</span> 或跟随受益。
+                    </div>
+                </div>
+                <div class="source">📰 信源：Zacks / Investing.com / MarketChameleon · 2026-03-05~25</div>
+            </div>
+
+            <div class="card us" id="n4">
+                <div class="card-header">
+                    <span class="card-emoji">🔥</span>
+                    <div class="card-title">NVIDIA Blackwell Ultra 出货爆量，单季营收 $681 亿，营收能见度 $5000 亿</div>
+                </div>
+                <div class="card-summary">
+                    NVIDIA Q4 FY2026 财报显示 Blackwell Ultra (B300) 单季出货约 150 万片，贡献约 $110 亿营收，单季总营收 $681 亿。CUDA 生态锁定 500 万开发者，AI 芯片市占率维持 88%。NVIDIA 向 Lumentum 投资 $20 亿确保光学供应链，并宣布下一代 Rubin 平台路线图。当前累计营收能见度超 $5000 亿。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">Q4 营收 $681 亿</span>
+                    <span class="metric up">B300 出货 150 万片/季</span>
+                    <span class="metric">市占率 88%</span>
+                    <span class="metric up">营收能见度 $5000 亿</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        <span class="ticker">NVDA</span> 仍是 AI 算力绝对龙头。注意风险：企业 GenAI 投资 95% 零回报、反垄断审视加强、客户集中度高（50% 营收来自四大云厂商）。AMD <span class="ticker">AMD</span> MI400 系列和自研芯片是潜在竞争变量。
+                    </div>
+                </div>
+                <div class="source">📰 信源：siuleeboss / NVIDIA Developer Blog · 2026-03-13~22</div>
+            </div>
+
+            <div class="card us" id="n5">
+                <div class="card-header">
+                    <span class="card-emoji">⚡</span>
+                    <div class="card-title">AI 投资下一阶段：从芯片转向电力，Bloom Energy 积压订单 $200 亿</div>
+                </div>
+                <div class="card-summary">
+                    Motley Fool 深度分析指出，AI 主要瓶颈正从芯片转向电力供应。Bloom Energy（固态氧化物燃料电池）积压订单高达 $200 亿，过去一年股价涨超 500%。NextEra Energy 和 Brookfield Renewable 分别与微软、谷歌签署 13.5 GW 清洁能源供应合同。数据中心电力需求成为 2026 年新主线。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">Bloom Energy 积压 $200 亿</span>
+                    <span class="metric up">BE 一年涨幅 +500%</span>
+                    <span class="metric">清洁能源合同 13.5 GW</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        AI 电力需求催生新投资主线。激进型关注 <span class="ticker">BE(Bloom Energy)</span>，稳健型关注 <span class="ticker">NEE(NextEra)</span> <span class="ticker">BEP(Brookfield Renewable)</span>。A 股映射 <span class="ticker">AI 电力概念</span>、核电板块如 <span class="ticker">中国核电</span> <span class="ticker">中国广核</span>。
+                    </div>
+                </div>
+                <div class="source">📰 信源：Motley Fool · 2026-03-24</div>
+            </div>
+        </div>
+
+        <!-- A-Share Market -->
+        <div class="market-section">
+            <div class="market-label cn">🇨🇳 A 股市场</div>
+
+            <div class="card cn" id="n6">
+                <div class="card-header">
+                    <span class="card-emoji">🏭</span>
+                    <div class="card-title">华为昇腾 950PR 正式发布，算力 2.87 倍于英伟达 H20，国产替代加速</div>
+                </div>
+                <div class="card-summary">
+                    3 月 20-22 日华为中国合作伙伴大会 2026 上，华为发布昇腾 950PR 处理器及 Atlas 350 加速卡。单卡算力达 H20 的 2.87 倍，支持 FP4 精度，标志着国产 AI 芯片从"可用"到"好用"的跨越。昆仑、华鲲等 OEM 同步推出搭载新卡的服务器产品。预计 2026 年华为将大幅提升中国 AI 芯片市场份额。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">算力 2.87× H20</span>
+                    <span class="metric">支持 FP4</span>
+                    <span class="metric up">国产替代加速</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        国产算力核心催化。直接受益 <span class="ticker">华为昇腾产业链</span>：<span class="ticker">神州数码</span>（华为分销龙头）、<span class="ticker">拓维信息</span>（华为云核心伙伴）、<span class="ticker">中科曙光</span>（国产服务器）、<span class="ticker">寒武纪</span>（AI 芯片对标）。PCB/封装环节 <span class="ticker">深南电路</span> <span class="ticker">兴森科技</span> 同步受益。
+                    </div>
+                </div>
+                <div class="source">📰 信源：快科技 / 搜狐 / 雪球 / 百家号 · 2026-03-20~27</div>
+            </div>
+
+            <div class="card us" id="n7">
+                <div class="card-header">
+                    <span class="card-emoji">🤝</span>
+                    <div class="card-title">NVIDIA $20 亿投资 Lumentum，锁定光学供应链，后者入选标普 500</div>
+                </div>
+                <div class="card-summary">
+                    OFC 大会期间，NVIDIA 宣布向光收发器厂商 Lumentum 直接投资 $20 亿以确保先进光子学产能。随后 Lumentum 被纳入标普 500 指数，标志着光通信从利基赛道跃升为 AI 主流基础设施。此举也反映出 AI 产业链"供应链安全"的战略升级——从芯片延伸到互联领域。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">NVIDIA 投资 $20 亿</span>
+                    <span class="metric up">Lumentum 入选标普 500</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        <span class="ticker">LITE(Lumentum)</span> 入选标普 500 带来指数基金被动买入效应。A 股光模块龙头 <span class="ticker">中际旭创</span> <span class="ticker">新易盛</span> <span class="ticker">天孚通信</span> 直接对标受益；CPO 封装概念 <span class="ticker">光库科技</span> <span class="ticker">腾景科技</span> 值得关注。
+                    </div>
+                </div>
+                <div class="source">📰 信源：FinancialContent / MarketMinute · 2026-03-23</div>
+            </div>
+
+            <div class="card us" id="n8">
+                <div class="card-header">
+                    <span class="card-emoji">🔬</span>
+                    <div class="card-title">康宁与 Meta 签署数十亿美元多芯光纤大单</div>
+                </div>
+                <div class="card-summary">
+                    康宁（Corning）凭借多芯光纤技术拿下 Meta 数十亿美元级光纤供应合同，用于支撑 Meta 千兆级 AI 数据中心建设。康宁已从传统玻璃制造商成功转型为 AI 基础设施核心供应商，其高密度光纤技术可将数据中心功耗降低 30%。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">合同规模 数十亿美元</span>
+                    <span class="metric">功耗降低 30%</span>
+                    <span class="metric">多芯光纤技术</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        <span class="ticker">GLW(康宁)</span> 切入 AI 数据中心光纤供应链，估值逻辑从消费电子转向科技基建。A 股光纤概念 <span class="ticker">长飞光纤</span> <span class="ticker">亨通光电</span> <span class="ticker">通鼎互联</span> 有望跟随受益。
+                    </div>
+                </div>
+                <div class="source">📰 信源：FinancialContent / MarketMinute · 2026-03-中旬</div>
+            </div>
+
+            <div class="card cn" id="n13">
+                <div class="card-header">
+                    <span class="card-emoji">🌐</span>
+                    <div class="card-title">华尔街点名 Arista + Ciena 为 AI 骨干网双雄，多头格局确立</div>
+                </div>
+                <div class="card-summary">
+                    Benzinga 深度报道指出，在 NVIDIA 占据 AI 芯片头条的同时，真正构建 AI "高速公路"的 Arista Networks 和 Ciena 才是 2026 年的核心故事。两家公司分别主导 AI 数据中心以太网交换和光传输领域，直接受益于超大规模厂商的天量 CapEx 支出。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">AI 骨干网核心赛道</span>
+                    <span class="metric">超大规模厂商核心供应商</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        <span class="ticker">ANET(Arista)</span> AI 以太网龙头 + <span class="ticker">CIEN(Ciena)</span> 光传输龙头，形成 AI 网络基建"双寡头"格局。A 股网络设备标的 <span class="ticker">紫光股份(新华三)</span> <span class="ticker">锐捷网络</span> 可关注国产替代方向。
+                    </div>
+                </div>
+                <div class="source">📰 信源：Benzinga · 2026-03-10</div>
+            </div>
+        </div>
+
+        <!-- HK Market -->
+        <div class="market-section">
+            <div class="market-label hk">🇭🇰 港股市场</div>
+
+            <div class="card hk" id="n9">
+                <div class="card-header">
+                    <span class="card-emoji">🤖</span>
+                    <div class="card-title">Tesla Optimus Gen3 亮相 AWE 2026 上海，量产机器人首次公开展示</div>
+                </div>
+                <div class="card-summary">
+                    特斯拉在 3 月上海 AWE 2026（中国家电及消费电子博览会）展出第三代 Optimus 人形机器人，这是首款量产版本。1 月已在弗里蒙特工厂部署超 1000 台用于自家产线。马斯克宣布目标售价 $20,000，并透露 Tesla-xAI 联合项目"Digital Optimus"。Tesla 同时发布 100+ 个 Optimus 相关职位招聘，从演示阶段正式转向大规模制造。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">已部署 1000+ 台</span>
+                    <span class="metric">目标售价 $2 万</span>
+                    <span class="metric up">100+ 岗位招聘</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        人形机器人量产元年到来。<span class="ticker">TSLA</span> 机器人业务估值重塑。港股 <span class="ticker">优必选(09880.HK)</span>；A 股零部件 <span class="ticker">绿的谐波</span> <span class="ticker">鸣志电器</span> <span class="ticker">步科股份</span>、减速器 <span class="ticker">双环传动</span> <span class="ticker">中大力德</span> 直接受益供应链。
+                    </div>
+                </div>
+                <div class="source">📰 信源：ChinaRoboticsDaily / Teslarati · 2026-03-06~12</div>
+            </div>
+
+            <div class="card hk" id="n10">
+                <div class="card-header">
+                    <span class="card-emoji">🏆</span>
+                    <div class="card-title">中国人形机器人占全球 70% 份额，宇树/智元领跑消费级普惠赛道</div>
+                </div>
+                <div class="card-summary">
+                    2026 年全球人形机器人市场呈现"国产领跑"格局。宇树 G1、智元灵犀 X2 等中国品牌占据超 70% 全球出货份额，量产和场景落地全面领先。Figure AI（获 BMW 合作）在海外工业场景发力。人形机器人已从概念验证进入商业化量产阶段，消费级产品价格快速下探。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">中国占全球 70%+ 份额</span>
+                    <span class="metric up">量产+场景落地领先</span>
+                    <span class="metric">消费级价格下探</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        中国人形机器人产业链全球领先。港股 <span class="ticker">优必选(09880)</span>；A 股核心标的 <span class="ticker">宇树科技(即将 IPO)</span>、智元机器人（一级市场）、<span class="ticker">汇川技术</span>（伺服系统）、<span class="ticker">三花智控</span>（关节执行器）、<span class="ticker">拓普集团</span>（机器人零部件）。
+                    </div>
+                </div>
+                <div class="source">📰 信源：euobiz.cn / 东方财富 · 2026-03-25</div>
+            </div>
+
+            <div class="card hk" id="n11">
+                <div class="card-header">
+                    <span class="card-emoji">💻</span>
+                    <div class="card-title">阿里千问 APP 全面升级，国内大模型竞争白热化</div>
+                </div>
+                <div class="card-summary">
+                    阿里最强大模型官方 AI 助手"千问 APP"持续迭代，集成文生图、智能编码、文档解析、联网搜索等功能，定位体验最新最强 Qwen 大模型的第一入口。与此同时，DeepSeek 在 3 月 12 日更新通用 AI 底层模型。国内大模型赛道竞争从"拼参数"转向"拼产品体验"和"拼商业化落地"。
+                </div>
+                <div class="metrics">
+                    <span class="metric">文生图+编码+搜索一体化</span>
+                    <span class="metric">DeepSeek 持续迭代</span>
+                    <span class="metric">竞争转向商业化</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        国内大模型格局：<span class="ticker">阿里巴巴(09988.HK/BABA)</span> 千问生态、<span class="ticker">百度(09888.HK/BIDU)</span> 文心一言、<span class="ticker">腾讯(00700.HK)</span> 混元大模型，以及 DeepSeek 等新势力。大模型应用落地利好 <span class="ticker">AI 应用概念股</span>，如 <span class="ticker">金山办公</span> <span class="ticker">科大讯飞</span>。
+                    </div>
+                </div>
+                <div class="source">📰 信源：千问官网 / DeepSeek 官网 · 2026-03 月</div>
+            </div>
+        </div>
+
+        <!-- Global -->
+        <div class="market-section">
+            <div class="market-label gl">🌍 跨市场/全球</div>
+
+            <div class="card gl" id="n12">
+                <div class="card-header">
+                    <span class="card-emoji">🚀</span>
+                    <div class="card-title">OpenAI 发布 Prism 科研工作空间（GPT-5.2），AI 原生应用加速落地</div>
+                </div>
+                <div class="card-summary">
+                    OpenAI 于 1 月 27 日发布 Prism——基于 GPT-5.2 的 AI 原生科研工作空间，面向专业科研人群。2 月 2 日又推出 Codex App（macOS 版），定位"智能体指挥中心"。OpenAI 正从单一聊天产品向多场景 AI 原生工具矩阵扩展，商业化版图持续扩大。此前 OpenAI 广告试点已突破 $10 亿 ARR。
+                </div>
+                <div class="metrics">
+                    <span class="metric up">Prism 面向科研</span>
+                    <span class="metric up">Codex App 面向开发者</span>
+                    <span class="metric up">广告 ARR 破 $10 亿</span>
+                </div>
+                <div class="invest-view">
+                    <div class="label">💎 投资视角</div>
+                    <div class="content">
+                        OpenAI 多元化商业化利好其投资方 <span class="ticker">MSFT(微软)</span>。AI 应用层加速落地，关注 <span class="ticker">CRM(Salesforce)</span> <span class="ticker">ADBE(Adobe)</span> 等 AI 赋能 SaaS 龙头；A 股 <span class="ticker">金山办公</span> <span class="ticker">用友网络</span> 等 AI+办公概念。
+                    </div>
+                </div>
+                <div class="source">📰 信源：知乎 / OpenAI 官方 · 2026-01~02</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="disclaimer">
+                ⚠️ 免责声明：本日报由 AI 自动整理，仅供参考，不构成任何投资建议。投资有风险，入市需谨慎。
+            </div>
+            <p style="margin-top: 16px;">
+                🤖 AI 投研日报 · 自动生成于 2026-03-28 08:00<br>
+                Powered by AI · Published via GitHub Pages
+            </p>
+        </div>
+    </div>
+</body>
+</html>
