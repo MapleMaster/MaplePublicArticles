@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 投研日报 · 2026-03-29</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d2e;
+    --card-hover: #222640;
+    --accent: #6c8aff;
+    --accent2: #ff6b9d;
+    --text: #e2e8f0;
+    --text-muted: #8892b0;
+    --border: #2d3154;
+    --green: #4ade80;
+    --red: #f87171;
+    --orange: #fb923c;
+    --tag-bg: rgba(108, 138, 255, 0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    line-height: 1.7;
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 30px;
+  }
+  .header h1 {
+    font-size: 2em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    color: var(--text-muted);
+    font-size: 0.95em;
+  }
+  .summary-box {
+    background: linear-gradient(135deg, rgba(108,138,255,0.1), rgba(255,107,157,0.05));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+  .summary-box h2 { color: var(--accent); font-size: 1.2em; margin-bottom: 12px; }
+  .summary-box ul { list-style: none; }
+  .summary-box li { padding: 4px 0; color: var(--text-muted); }
+  .summary-box li::before { content: "▸ "; color: var(--accent); }
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 30px;
+  }
+  .toc h3 { color: var(--accent); margin-bottom: 12px; font-size: 1em; }
+  .toc ol { padding-left: 20px; }
+  .toc li { padding: 3px 0; }
+  .toc a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+  .toc a:hover { color: var(--accent); }
+  .market-tag {
+    display: inline-block;
+    font-size: 0.7em;
+    padding: 1px 8px;
+    border-radius: 4px;
+    margin-left: 6px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  .tag-us { background: rgba(108,138,255,0.2); color: var(--accent); }
+  .tag-hk { background: rgba(255,107,157,0.2); color: var(--accent2); }
+  .tag-a { background: rgba(251,146,60,0.2); color: var(--orange); }
+  .tag-global { background: rgba(74,222,128,0.2); color: var(--green); }
+  .news-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: background .2s, transform .15s;
+  }
+  .news-card:hover {
+    background: var(--card-hover);
+    transform: translateY(-2px);
+  }
+  .news-card h3 {
+    font-size: 1.15em;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .news-card .emoji { font-size: 1.3em; margin-right: 6px; }
+  .news-card .summary { color: var(--text-muted); margin-bottom: 14px; font-size: 0.95em; }
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .data-item {
+    background: rgba(108,138,255,0.06);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .data-item .label { font-size: 0.75em; color: var(--text-muted); text-transform: uppercase; }
+  .data-item .value { font-size: 1.05em; font-weight: 600; color: var(--text); margin-top: 2px; }
+  .invest-view {
+    background: rgba(255,107,157,0.06);
+    border-left: 3px solid var(--accent2);
+    padding: 10px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 10px;
+  }
+  .invest-view .title { font-size: 0.8em; color: var(--accent2); font-weight: 600; margin-bottom: 4px; }
+  .source-tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--accent);
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.8em;
+  }
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 30px;
+    color: var(--text-muted);
+    font-size: 0.85em;
+  }
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    .header h1 { font-size: 1.5em; }
+    .data-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🤖 AI 投研日报</h1>
+  <div class="subtitle">2026年3月29日 · 周日 · 覆盖 A股 / 港股 / 美股</div>
+</div>
+
+<div class="summary-box">
+  <h2>📊 今日核心主题</h2>
+  <ul>
+    <li><strong>OpenAI 战略大转向：</strong>关闭 Sora、砍购物功能，All-in 算力基建 + 新模型"Spud"</li>
+    <li><strong>人形机器人加速量产：</strong>特斯拉 Optimus V3 今夏启动生产，亚马逊收购 Fauna Robotics，华沿机器人明日港股上市</li>
+    <li><strong>AI 芯片内外共振：</strong>阿里玄铁 C950 发布 + Arm 首款自研 AGI CPU + 马斯克 2nm Terafab</li>
+    <li><strong>港股 Token 经济学：</strong>MiniMax、智谱 AI 年内涨超 400%，估值逻辑从 PE 转向 Token 消耗量</li>
+  </ul>
+</div>
+
+<div class="toc">
+  <h3>📑 目录导航</h3>
+  <ol>
+    <li><a href="#n1">OpenAI 关闭 Sora，战略转向算力基建 + 新模型"Spud"</a><span class="market-tag tag-us">美股</span></li>
+    <li><a href="#n2">OpenAI 1100 亿美元融资：亚马逊 500 亿 + 软银 300 亿 + 英伟达 300 亿</a><span class="market-tag tag-us">美股</span></li>
+    <li><a href="#n3">特斯拉 Optimus V3 今夏量产，马斯克：2027 年年产百万台</a><span class="market-tag tag-us">美股</span><span class="market-tag tag-a">A股</span></li>
+    <li><a href="#n4">Arm 发布首款自研 136 核 AGI CPU，Meta 为首发客户</a><span class="market-tag tag-us">美股</span></li>
+    <li><a href="#n5">Anthropic 推出企业 AI 代理 + 计算机控制功能</a><span class="market-tag tag-us">美股</span></li>
+    <li><a href="#n6">亚马逊收购 Fauna Robotics，进军消费级人形机器人</a><span class="market-tag tag-us">美股</span></li>
+    <li><a href="#n7">港股 AI 板块拥抱"Token 经济学"：MiniMax、智谱年内涨超 400%</a><span class="market-tag tag-hk">港股</span></li>
+    <li><a href="#n8">华沿机器人等 5 只新股明日港股挂牌，AI 机器人成主线</a><span class="market-tag tag-hk">港股</span></li>
+    <li><a href="#n9">阿里达摩院发布玄铁 C950：全球最强 RISC-V CPU，原生支持千亿参数大模型</a><span class="market-tag tag-a">A股</span><span class="market-tag tag-hk">港股</span></li>
+    <li><a href="#n10">A 股 AI 芯片板块 V 型反转，国产 GPU 三巨头集体大涨</a><span class="market-tag tag-a">A股</span></li>
+    <li><a href="#n11">苹果 iOS 27 开放第三方 AI 接入 Siri，Claude/ChatGPT 深度集成</a><span class="market-tag tag-us">美股</span><span class="market-tag tag-global">全球</span></li>
+    <li><a href="#n12">Meta 与 AMD 签署 600 亿美元 AI 基础设施协议</a><span class="market-tag tag-us">美股</span></li>
+    <li><a href="#n13">马斯克启动 Terafab 项目：史上最大芯片工厂，2nm 制程</a><span class="market-tag tag-us">美股</span></li>
+  </ol>
+</div>
+
+<!-- News 1 -->
+<div class="news-card" id="n1">
+  <h3><span class="emoji">🔥</span>OpenAI 关闭 Sora，战略转向算力基建 + 新模型"Spud" <span class="market-tag tag-us">美股</span></h3>
+  <div class="summary">
+    OpenAI 宣布关闭上线仅六个月的 AI 视频生成应用 Sora（含 App 和 API），与迪士尼价值 10 亿美元的投资及角色授权协议随之终止。CEO Sam Altman 表示将不再直接监管安全团队，转而专注于"以前所未有规模建设数据中心"。同时，OpenAI 已完成下一个主要 AI 模型初步开发，代号"Spud"；ChatGPT 购物功能因用户低迷被缩减。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">Sora 存续期</div><div class="value">仅 6 个月</div></div>
+    <div class="data-item"><div class="label">迪士尼交易</div><div class="value">10 亿美元告吹</div></div>
+    <div class="data-item"><div class="label">新一轮融资</div><div class="value">+100 亿美元</div></div>
+    <div class="data-item"><div class="label">最新估值</div><div class="value">~1200 亿美元</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    视频生成赛道利空，Runway（未上市）、Pika 等竞品压力缓解。OpenAI 聚焦算力基建利好 NVIDIA（NVDA）、AMD 等算力供应链。"Spud"模型若为突破性进展，可能重新定义 AI 推理算力需求。
+  </div>
+  <span class="source-tag">📰 The Neuron · 3/25</span>
+</div>
+
+<!-- News 2 -->
+<div class="news-card" id="n2">
+  <h3><span class="emoji">💰</span>OpenAI 1100 亿美元融资：史上最大私人融资，估值 8400 亿 <span class="market-tag tag-us">美股</span></h3>
+  <div class="summary">
+    OpenAI 完成历史上规模最大的一轮私人融资，总额 1100 亿美元。亚马逊出资 500 亿（含 150 亿现金 + 350 亿有条件分期），软银 300 亿（分三期季度支付），英伟达 300 亿（主要以专用 GPU 容量形式）。投后估值达 8400 亿美元。OpenAI 承诺向 AWS 支出 1000 亿美元，并将部署总计 5GW 算力。不过批评人士指出大部分为算力信贷和有条件付款，实际"即时现金"仅约 250 亿。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">融资总额</div><div class="value">$1100 亿</div></div>
+    <div class="data-item"><div class="label">投后估值</div><div class="value">$8400 亿</div></div>
+    <div class="data-item"><div class="label">即时现金</div><div class="value">~$250 亿</div></div>
+    <div class="data-item"><div class="label">算力部署</div><div class="value">5GW</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    亚马逊（AMZN）AWS 锁定千亿美元长期云服务合同，AI 云收入确定性极强。英伟达（NVDA）300 亿以 GPU 容量出资，体现 AI 芯片垄断议价力。软银（9984.T）All-in AI 基建，杠杆敞口再度放大。关注 IPO 时间表（预计 2026 年底至 2027 年初）。
+  </div>
+  <span class="source-tag">📰 Tech Insider · 3/23</span>
+</div>
+
+<!-- News 3 -->
+<div class="news-card" id="n3">
+  <h3><span class="emoji">🤖</span>特斯拉 Optimus V3 今夏量产，马斯克：2027 年年产百万台 <span class="market-tag tag-us">美股</span><span class="market-tag tag-a">A股</span></h3>
+  <div class="summary">
+    3 月 25 日特斯拉发布 Optimus V3 最新视频，曝光减速齿轮箱、高集成度灵巧手、专用小型化高功率逆变器等核心技术细节。马斯克确认 Optimus V3 有望在 2026 年夏季启动生产，2027 年实现大规模量产，初期年产能目标 100 万台。此前 Optimus V3 已在 AWE 2026 上海完成全球首次公开亮相（45 自由度）。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">自由度</div><div class="value">45 DOF</div></div>
+    <div class="data-item"><div class="label">量产时间</div><div class="value">2026 夏季</div></div>
+    <div class="data-item"><div class="label">年产能目标</div><div class="value">100 万台/年</div></div>
+    <div class="data-item"><div class="label">规模量产</div><div class="value">2027 年</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    特斯拉（TSLA）机器人业务估值空间打开。A 股人形机器人产业链受益：减速器（绿的谐波、双环传动）、传感器（奥比中光）、电机（鸣志电器、步科股份）、灵巧手零部件（拓普集团）。量产节奏是核心催化。
+  </div>
+  <span class="source-tag">📰 财联社 / 华尔街见闻 · 3/25</span>
+</div>
+
+<!-- News 4 -->
+<div class="news-card" id="n4">
+  <h3><span class="emoji">⚡</span>Arm 发布首款自研 136 核 AGI CPU，Meta 为首发客户 <span class="market-tag tag-us">美股</span></h3>
+  <div class="summary">
+    Arm 35 年来首次推出自家设计的芯片——AGI CPU，采用 3nm 工艺，136 核，专为 AI 推理构建的数据中心处理器。Meta 为首发客户，OpenAI、Cerebras、Cloudflare、SAP 等已签约。这标志着 Arm 从 IP 授权模式向自研芯片的战略跃迁。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">核心数</div><div class="value">136 核</div></div>
+    <div class="data-item"><div class="label">制程工艺</div><div class="value">3nm</div></div>
+    <div class="data-item"><div class="label">首发客户</div><div class="value">Meta</div></div>
+    <div class="data-item"><div class="label">定位</div><div class="value">AI 推理</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    Arm（ARM）从 IP 授权转型自研芯片，商业模式升级，但可能引发与客户（高通、联发科等）的竞合关系重塑。对英伟达 GPU 推理市场构成长期挑战。代工受益方为台积电（TSM）。
+  </div>
+  <span class="source-tag">📰 The Neuron · 3/25</span>
+</div>
+
+<!-- News 5 -->
+<div class="news-card" id="n5">
+  <h3><span class="emoji">🏢</span>Anthropic 推出企业 AI 代理 + 计算机控制功能 <span class="market-tag tag-us">美股</span></h3>
+  <div class="summary">
+    Anthropic 在 Claude Cowork 和 Claude Code 中推出"计算机使用"功能，允许 Claude 远程控制 Mac 电脑完成任务。此前 Anthropic 已推出覆盖 Slack、DocuSign、FactSet、Gmail 的企业 AI 代理。Claude Opus 4.6 还在 20 分钟内发现了 Firefox 代码库中 22 个高/中等严重性漏洞。同时 Anthropic IPO 传闻持续——G 轮融资估值已达 3800 亿美元，计划募超 600 亿冲刺全球第二大 IPO。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">G轮估值</div><div class="value">$3800 亿</div></div>
+    <div class="data-item"><div class="label">IPO 募资目标</div><div class="value">>$600 亿</div></div>
+    <div class="data-item"><div class="label">漏洞发现</div><div class="value">22 个 / 20 分钟</div></div>
+    <div class="data-item"><div class="label">企业集成</div><div class="value">Slack/DocuSign/Gmail</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    Anthropic IPO 将是 2026 年最重磅科技 IPO 之一，投资人为谷歌（GOOGL）、亚马逊（AMZN）、微软（MSFT）、英伟达（NVDA）。企业 AI 代理赛道竞争白热化，利好企业 SaaS 生态（Salesforce、ServiceNow）。
+  </div>
+  <span class="source-tag">📰 36氪 / The Neuron · 3/25-27</span>
+</div>
+
+<!-- News 6 -->
+<div class="news-card" id="n6">
+  <h3><span class="emoji">🦾</span>亚马逊收购 Fauna Robotics，进军消费级人形机器人 <span class="market-tag tag-us">美股</span></h3>
+  <div class="summary">
+    亚马逊收购纽约初创公司 Fauna Robotics，正式进入消费级人形机器人市场。此举与特斯拉 Optimus 形成直接竞争，标志着科技巨头在人形机器人赛道的布局加速。亚马逊此前已在仓储物流大量部署机器人，此次向消费端延伸是新的战略方向。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">被收购方</div><div class="value">Fauna Robotics</div></div>
+    <div class="data-item"><div class="label">定位</div><div class="value">消费级人形机器人</div></div>
+    <div class="data-item"><div class="label">竞争对手</div><div class="value">Tesla Optimus</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    亚马逊（AMZN）机器人业务版图从仓储扩展至消费端。人形机器人赛道巨头入场加速产业链成熟，利好传感器、电机、减速器等上游供应商。关注 A 股/港股人形机器人概念股联动。
+  </div>
+  <span class="source-tag">📰 The Neuron · 3/25</span>
+</div>
+
+<!-- News 7 -->
+<div class="news-card" id="n7">
+  <h3><span class="emoji">📈</span>港股 AI 板块拥抱"Token 经济学"：MiniMax、智谱年内涨超 400% <span class="market-tag tag-hk">港股</span></h3>
+  <div class="summary">
+    港股 AI 板块正经历估值逻辑重构——从传统 PE 转向"Token 消耗量"。国产大模型双子星 MiniMax（市值 3133 亿港元）和智谱 AI（市值 2795 亿港元）年内涨幅均超 400%，已比肩京东、百度。MiniMax 日均 Token 消耗量较去年 12 月激增超 6 倍；智谱 AI 的 API 价格今年 Q1 累计上调 83%，呈"量价双增"态势。中国 AI 模型 Token 定价仅为美国的 5%-10%。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">MiniMax 市值</div><div class="value">3133 亿港元</div></div>
+    <div class="data-item"><div class="label">智谱 AI 市值</div><div class="value">2795 亿港元</div></div>
+    <div class="data-item"><div class="label">年内涨幅</div><div class="value">>400%</div></div>
+    <div class="data-item"><div class="label">中美Token价差</div><div class="value">5%-10%</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    港股 AI 板块核心逻辑已切换为 Token 消耗量增速。MiniMax（未见港股代码）、智谱 AI 为新一代 AI 龙头。互联网巨头受益于场景落地：腾讯（0700.HK）WorkBuddy 上线当日涨 7.27%、阿里巴巴（9988.HK）百炼 Token 消耗创新高。恒生科技指数（HSTECH）为港股 AI 行情风向标。
+  </div>
+  <span class="source-tag">📰 21世纪经济报道 · 3/24</span>
+</div>
+
+<!-- News 8 -->
+<div class="news-card" id="n8">
+  <h3><span class="emoji">🔔</span>华沿机器人等 5 只新股明日港股挂牌，AI 机器人成主线 <span class="market-tag tag-hk">港股</span></h3>
+  <div class="summary">
+    5 只新股将于 3 月 30 日在港交所挂牌，其中华沿机器人（1021.HK）和极视角（6636.HK）为 AI/机器人概念核心标的。华沿机器人招股价 17 港元，募资净额 12.8 亿港元，55% 用于研发，引入广发基金等 9 名基石投资者。极视角募资 4.34 亿，60% 用于大模型及 AI 基础设施。另有碳化硅外延芯片公司瀚天天成（2726.HK）募资 15.6 亿，半导体属性。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">华沿机器人募资</div><div class="value">12.8 亿港元</div></div>
+    <div class="data-item"><div class="label">极视角募资</div><div class="value">4.34 亿港元</div></div>
+    <div class="data-item"><div class="label">瀚天天成募资</div><div class="value">15.6 亿港元</div></div>
+    <div class="data-item"><div class="label">挂牌日期</div><div class="value">3月30日</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    华沿机器人（1021.HK）为港股稀缺的纯人形机器人标的，叠加 Optimus V3 量产催化，首日表现值得关注。极视角（6636.HK）AI 视觉算法平台。瀚天天成（2726.HK）碳化硅外延芯片，半导体国产替代主线。注意新股首日波动风险。
+  </div>
+  <span class="source-tag">📰 香港商报 · 3/20</span>
+</div>
+
+<!-- News 9 -->
+<div class="news-card" id="n9">
+  <h3><span class="emoji">🚀</span>阿里达摩院发布玄铁 C950：全球最强 RISC-V CPU，原生支持千亿参数大模型 <span class="market-tag tag-a">A股</span><span class="market-tag tag-hk">港股</span></h3>
+  <div class="summary">
+    阿里达摩院在 2026 玄铁 RISC-V 生态大会上正式发布新一代旗舰 CPU——玄铁 C950。采用 5nm 制程、频率 3.2GHz，SPECint2006 单核突破 70 分，综合性能是上代 C920 的 3 倍以上。搭载自研 AI 加速引擎，首次原生支持 Qwen3、DeepSeek V3 等千亿参数大模型，适用于云计算、生成式 AI、高端机器人、边缘计算等领域。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">制程工艺</div><div class="value">5nm</div></div>
+    <div class="data-item"><div class="label">频率</div><div class="value">3.2 GHz</div></div>
+    <div class="data-item"><div class="label">性能提升</div><div class="value">3x（vs C920）</div></div>
+    <div class="data-item"><div class="label">大模型支持</div><div class="value">千亿参数级</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    阿里巴巴（9988.HK / BABA）自研芯片战略深化，RISC-V 开源架构打破 x86/ARM 垄断。A 股 RISC-V 概念股受益：中科蓝讯、全志科技、乐鑫科技。同步关注阿里云百炼 MaaS 平台的 Token 消耗增长。
+  </div>
+  <span class="source-tag">📰 东方财富研究中心 · 3/24</span>
+</div>
+
+<!-- News 10 -->
+<div class="news-card" id="n10">
+  <h3><span class="emoji">🔥</span>A 股 AI 芯片板块 V 型反转，国产 GPU 三巨头集体大涨 <span class="market-tag tag-a">A股</span></h3>
+  <div class="summary">
+    A 股 AI 芯片概念板块上周出现 V 型反转行情。国产 GPU 三巨头领涨：沐曦股份大涨约 17%，摩尔线程涨逾 9%，寒武纪涨 6.08%。近 40 只 AI 芯片概念股合计市值超 2.3 万亿元，其中海光信息、寒武纪市值均超 4000 亿元。融资客活跃加仓：澜起科技获 4.66 亿净买入，晶晨股份获 1.56 亿。年内涨幅榜中，国科微以 59% 领跑。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">板块市值</div><div class="value">>2.3 万亿元</div></div>
+    <div class="data-item"><div class="label">沐曦股份</div><div class="value">+17%</div></div>
+    <div class="data-item"><div class="label">澜起科技融资净买</div><div class="value">4.66 亿元</div></div>
+    <div class="data-item"><div class="label">年内龙头</div><div class="value">国科微 +59%</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    国产 AI 芯片板块在阿里玄铁 C950 + 华为昇腾 950PR 双重催化下迎来内外共振。重点关注：寒武纪（688256）、海光信息（688041）、澜起科技（688008）、沐曦股份、摩尔线程。融资客加仓方向值得跟踪。
+  </div>
+  <span class="source-tag">📰 东方财富 · 3/24</span>
+</div>
+
+<!-- News 11 -->
+<div class="news-card" id="n11">
+  <h3><span class="emoji">🍎</span>苹果 iOS 27 开放第三方 AI 接入 Siri，Claude/ChatGPT 深度集成 <span class="market-tag tag-us">美股</span><span class="market-tag tag-global">全球</span></h3>
+  <div class="summary">
+    苹果正在测试独立 Siri 应用，作为 iOS 27 更广泛 AI 重塑的一部分。据报道，iOS 27 将允许 Claude、ChatGPT 等第三方 AI 聊天机器人通过扩展系统直接与 Siri 集成，而非取代核心功能。这标志着苹果对第三方 AI 从封闭转向开放的重大战略转变。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">系统版本</div><div class="value">iOS 27</div></div>
+    <div class="data-item"><div class="label">开放方式</div><div class="value">扩展系统集成</div></div>
+    <div class="data-item"><div class="label">接入方</div><div class="value">Claude / ChatGPT 等</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    苹果（AAPL）开放 AI 生态是 iPhone 用户流量入口的重新分配，利好 OpenAI、Anthropic 获客。苹果产业链：立讯精密（002475）、歌尔股份（002241）。若 AI 功能驱动换机潮，对消费电子链形成中期利好。
+  </div>
+  <span class="source-tag">📰 humai.blog / The Neuron · 3/25-26</span>
+</div>
+
+<!-- News 12 -->
+<div class="news-card" id="n12">
+  <h3><span class="emoji">🏭</span>Meta 与 AMD 签署 600 亿美元 AI 基础设施协议 <span class="market-tag tag-us">美股</span></h3>
+  <div class="summary">
+    Meta 与 AMD 正式确立价值 600 亿美元的 AI 芯片合作伙伴关系，涉及 6GW GPU 推广及扩展的多供应商计算策略。此举体现 Meta 在 AI 基础设施上的多元化芯片采购策略，降低对英伟达的单一依赖。Meta 同时也是 Arm 自研 AGI CPU 的首发客户。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">合同金额</div><div class="value">$600 亿</div></div>
+    <div class="data-item"><div class="label">GPU 推广规模</div><div class="value">6GW</div></div>
+    <div class="data-item"><div class="label">策略</div><div class="value">多供应商</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    AMD（AMD）拿下 Meta 600 亿大单是其 AI 芯片业务的里程碑，MI 系列 GPU 市场份额有望从英伟达手中蚕食。Meta（META）AI CapEx 持续膨胀，但多元化采购有助于控制成本。关注 AMD 后续财报中 AI 收入增速。
+  </div>
+  <span class="source-tag">📰 The AI Track · 2/24</span>
+</div>
+
+<!-- News 13 -->
+<div class="news-card" id="n13">
+  <h3><span class="emoji">⚙️</span>马斯克启动 Terafab 项目：史上最大芯片工厂，2nm 制程 <span class="market-tag tag-us">美股</span></h3>
+  <div class="summary">
+    马斯克宣布启动 Terafab 项目，计划建设"有史以来规模最大的芯片制造工厂"，采用 2nm 制程。与此同时，三星电子计划 2026 年在设施投资和研发方面投入超 110 万亿韩元（约 5041 亿人民币），主要集中在芯片业务。全球半导体资本开支进入新一轮超级周期。
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="label">制程工艺</div><div class="value">2nm</div></div>
+    <div class="data-item"><div class="label">定位</div><div class="value">史上最大芯片工厂</div></div>
+    <div class="data-item"><div class="label">三星投入</div><div class="value">110 万亿韩元</div></div>
+  </div>
+  <div class="invest-view">
+    <div class="title">💡 投资视角</div>
+    马斯克旗下 xAI 自建芯片产能，对台积电（TSM）、三星构成长期竞争压力，但短期利好半导体设备供应商：ASML、应用材料（AMAT）、东京电子。三星 5041 亿投资计划利好韩国半导体设备供应链。A 股半导体设备：北方华创（002371）、中微公司（688012）。
+  </div>
+  <span class="source-tag">📰 东方财富研究中心 · 3/24</span>
+</div>
+
+<div class="footer">
+  <p>📅 生成时间：2026-03-29 20:00 · 共 13 条新闻</p>
+  <p>⚠️ 以上内容由 AI 自动整理，仅供投资参考，不构成投资建议</p>
+  <p style="margin-top: 8px;">🍃 小荷 · Maple 的 AI 秘书</p>
+</div>
+
+</body>
+</html>
