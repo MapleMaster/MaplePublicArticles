@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 投研日报 · 2026-03-31</title>
+<style>
+  :root {
+    --bg-primary: #0f1117;
+    --bg-card: #1a1d28;
+    --bg-card-hover: #222639;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --text-primary: #e8e8ef;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --border: #2d3148;
+    --red: #ef4444;
+    --green: #22c55e;
+    --tag-bg: rgba(108, 92, 231, 0.15);
+    --tag-text: #a29bfe;
+    --us-tag: rgba(59, 130, 246, 0.15);
+    --us-tag-text: #60a5fa;
+    --hk-tag: rgba(245, 158, 11, 0.15);
+    --hk-tag-text: #fbbf24;
+    --cn-tag: rgba(239, 68, 68, 0.15);
+    --cn-tag-text: #f87171;
+    --warn-bg: rgba(245, 158, 11, 0.1);
+    --warn-border: rgba(245, 158, 11, 0.3);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 24px 16px 48px; }
+  
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 0 36px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-light), #74b9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+  .header .date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+  .toc h2 {
+    font-size: 1rem;
+    color: var(--accent-light);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .toc-item:hover { color: var(--accent-light); }
+  .toc-item .idx {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .toc-tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .tag-us { background: var(--us-tag); color: var(--us-tag-text); }
+  .tag-hk { background: var(--hk-tag); color: var(--hk-tag-text); }
+  .tag-cn { background: var(--cn-tag); color: var(--cn-tag-text); }
+  .tag-global { background: var(--tag-bg); color: var(--tag-text); }
+
+  /* Section */
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 36px 0 16px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-emoji { font-size: 1.3rem; flex-shrink: 0; line-height: 1.5; }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+  .card-body { margin-left: 34px; }
+  .card-summary {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+  .card-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .metric {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(108, 92, 231, 0.08);
+    color: var(--accent-light);
+    border: 1px solid rgba(108, 92, 231, 0.2);
+  }
+  .invest-view {
+    background: rgba(34, 197, 94, 0.06);
+    border: 1px solid rgba(34, 197, 94, 0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+  }
+  .invest-view .label {
+    color: var(--green);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .invest-view .content {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  .card-source {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-align: right;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 36px 0 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 24px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+  .footer .disclaimer {
+    max-width: 600px;
+    margin: 12px auto 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 16px 12px 36px; }
+    .header h1 { font-size: 1.5rem; }
+    .card { padding: 16px; }
+    .card-body { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>🤖 AI 投研日报</h1>
+    <div class="subtitle">人工智能产业链 · 投资视角 · 三大市场</div>
+    <div class="date">2026年3月31日 · 星期二</div>
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>📑 今日目录</h2>
+    <div class="toc-grid">
+      <a class="toc-item" href="#n1"><span class="idx">1</span><span class="toc-tag tag-us">美股</span>Anthropic 拟最早10月IPO，目标募资超$600亿</a>
+      <a class="toc-item" href="#n2"><span class="idx">2</span><span class="toc-tag tag-us">美股</span>OpenAI $1100亿融资落地，估值$8400亿冲刺Q4上市</a>
+      <a class="toc-item" href="#n3"><span class="idx">3</span><span class="toc-tag tag-us">美股</span>Benchmark Gurley 警告 AI 泡沫"重置将至"，Big Tech 年投$6500亿</a>
+      <a class="toc-item" href="#n4"><span class="idx">4</span><span class="toc-tag tag-us">美股</span>Capital Economics：AI 股票泡沫已破一轮，"稀有泡沫"仍在膨胀</a>
+      <a class="toc-item" href="#n5"><span class="idx">5</span><span class="toc-tag tag-us">美股</span>英伟达 Q1 FY2027 指引 $780亿，Blackwell Ultra 拉动数据中心天量需求</a>
+      <a class="toc-item" href="#n6"><span class="idx">6</span><span class="toc-tag tag-hk">港股</span>傅里叶半导体今日挂牌，超购 3118 倍成 2026 港股"打新王"</a>
+      <a class="toc-item" href="#n7"><span class="idx">7</span><span class="toc-tag tag-hk">港股</span>月之暗面启动港股 IPO 筹备，估值剑指 $180亿</a>
+      <a class="toc-item" href="#n8"><span class="idx">8</span><span class="toc-tag tag-hk">港股</span>思谋科技递表港交所，冲刺"工业 AI 智能体第一股"</a>
+      <a class="toc-item" href="#n9"><span class="idx">9</span><span class="toc-tag tag-hk">港股</span>智谱/MiniMax 市值均超 3000 亿港元，AI 大模型板块持续火热</a>
+      <a class="toc-item" href="#n10"><span class="idx">10</span><span class="toc-tag tag-cn">A股</span>国家数据局：日均词元调用量突破 140 万亿，两年增千倍</a>
+      <a class="toc-item" href="#n11"><span class="idx">11</span><span class="toc-tag tag-cn">A股</span>中国信科 2.5Pb/s 光传输刷新世界纪录，CPO 板块集体爆发</a>
+      <a class="toc-item" href="#n12"><span class="idx">12</span><span class="toc-tag tag-cn">A股</span>光模块扩产潮来袭：3200G 迭代催生百亿设备蓝海</a>
+      <a class="toc-item" href="#n13"><span class="idx">13</span><span class="toc-tag tag-cn">A股</span>工信部发布首个人形机器人与具身智能标准体系（2026版）</a>
+      <a class="toc-item" href="#n14"><span class="idx">14</span><span class="toc-tag tag-global">全球</span>Cohere 发布开源语音模型 Transcribe，企业级 AI 语音赛道升温</a>
+    </div>
+  </div>
+
+  <!-- 美股 -->
+  <div class="section-title">🇺🇸 美股市场</div>
+
+  <div class="card" id="n1">
+    <div class="card-header">
+      <span class="card-emoji">🚀</span>
+      <div class="card-title">Anthropic 拟最早10月 IPO，目标募资超 $600 亿，高盛/摩根大通/摩根士丹利竞争承销</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        据 Bloomberg 3月27日报道，Claude 聊天机器人开发商 Anthropic 正与高盛、摩根大通、摩根士丹利就 IPO 展开初步洽谈，最早于 2026年10月挂牌。此前公司于2月以 $3800 亿估值完成 $300 亿融资。若成功上市，将成为 AI 领域继 OpenAI 之后的第二大 IPO 事件。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">目标募资 &gt;$600亿</span>
+        <span class="metric">最新估值 $3800亿</span>
+        <span class="metric">2月融资 $300亿</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">直接利好承销商（GS、JPM、MS）；对标 OpenAI 构成 AI 双寡头格局，云计算合作方 Amazon/Google 间接受益。关注 A/港股 AI 大模型映射标的（智谱、MiniMax）估值锚定效应。</div>
+      </div>
+      <div class="card-source">来源：Bloomberg / Fortune / CNBC · 2026.03.27</div>
+    </div>
+  </div>
+
+  <div class="card" id="n2">
+    <div class="card-header">
+      <span class="card-emoji">💰</span>
+      <div class="card-title">OpenAI 完成史上最大私募融资 $1100 亿，估值 $8400 亿，Q4 冲刺万亿 IPO</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        OpenAI 于2月27日宣布完成 $1100 亿融资，投资方包括 Amazon（$500亿）、NVIDIA（$300亿）、SoftBank（$300亿）。公司年化收入已达 $250 亿，计划 Q4 2026 以近 $1 万亿估值 IPO。尽管预计全年亏损 $140 亿，资本市场对 AI 基础设施的信心依然高涨。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">融资额 $1100亿</span>
+        <span class="metric">估值 $8400亿</span>
+        <span class="metric">年收入 $250亿</span>
+        <span class="metric">目标IPO估值 ~$1万亿</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">Amazon（AMZN）为最大投资方，战略意义重大；NVIDIA（NVDA）和 SoftBank（9984.T）深度绑定 AI 算力。万亿 IPO 若实现将重新定义科技股估值体系，关注 AI infra 全链条。</div>
+      </div>
+      <div class="card-source">来源：CNBC / Crunchbase / Techi · 2026.02.27-03.30</div>
+    </div>
+  </div>
+
+  <div class="card" id="n3">
+    <div class="card-header">
+      <span class="card-emoji">⚠️</span>
+      <div class="card-title">Benchmark 传奇投资人 Bill Gurley 警告：AI 泡沫即将重置，"暴富太快了"</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        3月17日，顶级 VC Benchmark 合伙人 Bill Gurley 在 CNBC 访谈中直言 AI 行业出现经典泡沫特征——"很多人暴富太快，重置即将到来"。Big Tech 2026 年 AI 基础设施资本开支预计达 $6500 亿，但行业距离收回投资仍有 $8000 亿缺口（JP Morgan 数据）。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">2026 AI capex $6500亿</span>
+        <span class="metric">投资回报缺口 $8000亿</span>
+        <span class="metric">6年累计AI投资 $1.03万亿</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">泡沫警告加剧市场分化，纯概念型 AI 股承压，有真实盈利的算力卖铲人（NVDA、AVGO）和 AI 应用龙头（CRM、PLTR）反而受益于"去伪存真"行情。</div>
+      </div>
+      <div class="card-source">来源：Fortune / CNBC · 2026.03.17</div>
+    </div>
+  </div>
+
+  <div class="card" id="n4">
+    <div class="card-header">
+      <span class="card-emoji">📊</span>
+      <div class="card-title">Capital Economics：AI 股票泡沫已破一轮，但"稀有泡沫"仍在膨胀</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        3月29日，Capital Economics 首席市场经济学家 John Higgins 发表研报指出，从科技板块相对估值来看，2025年下半年讨论的 AI 泡沫已经破裂。但他同时警告，一个更罕见的、基于绝对估值的泡沫正在形成——类似2000年互联网泡沫，预计2027年前不会彻底破裂。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">S&P 500 目标 8000点</span>
+        <span class="metric">科技板块相对泡沫已破</span>
+        <span class="metric">绝对估值泡沫仍在膨胀</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">短期利好：泡沫未到终局，2026年大盘仍有空间。但需警惕2027年后的系统性风险。当前策略：拥抱有真实现金流的 AI 龙头（NVDA/MSFT/GOOGL），回避高估值无盈利标的。</div>
+      </div>
+      <div class="card-source">来源：Fortune / Capital Economics · 2026.03.29</div>
+    </div>
+  </div>
+
+  <div class="card" id="n5">
+    <div class="card-header">
+      <span class="card-emoji">🔥</span>
+      <div class="card-title">英伟达 Q1 FY2027 指引 $780 亿，华尔街上调目标价至 $325，Blackwell 万亿收入可期</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        英伟达 Q4 FY2026 数据中心收入 $623 亿（同比+75%），Q1 FY2027 指引达 $780 亿，超市场预期。Blackwell 架构已占数据中心收入 2/3。4月1日将发放每股 $0.01 季度股息（登记日3月11日）。分析师指出 Blackwell Ultra 系列推理性能提升 50 倍、成本降低 35 倍，将进一步巩固数据中心霸主地位。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">Q4 数据中心 $623亿</span>
+        <span class="metric">Q1 指引 $780亿</span>
+        <span class="metric">Blackwell Ultra 推理性能 ↑50x</span>
+        <span class="metric">目标价 $325</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">NVDA 核心持仓逻辑不变，Blackwell Ultra 进一步拉开与竞争对手差距。上游供应链受益：台积电（TSM）先进制程、SK海力士（000660.KR）HBM、光模块（中际旭创、新易盛）出货量预期上调。</div>
+      </div>
+      <div class="card-source">来源：NVIDIA 官方 / 247WallSt / Fortune · 2026.02-03</div>
+    </div>
+  </div>
+
+  <!-- 港股 -->
+  <div class="section-title">🇭🇰 港股市场</div>
+
+  <div class="card" id="n6">
+    <div class="card-header">
+      <span class="card-emoji">🎉</span>
+      <div class="card-title">傅里叶半导体（03625.HK）今日正式挂牌，超购 3118 倍成 2026 港股"打新王"</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        傅里叶半导体今日（3月31日）在港交所正式挂牌上市。此前公开发售部分超购高达 3118 倍，超 11 万人认购，跻身 2026 年港股 IPO 超购榜前列。公司是全球第四大功放音频芯片供应商（按收益），中国第三（按出货量），招股价 40-50 港元，集资最多 6 亿港元。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">超购 3118x</span>
+        <span class="metric">认购人数 &gt;11万</span>
+        <span class="metric">集资 ≤6亿港元</span>
+        <span class="metric">招股价 40-50 HK$</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">AI 终端芯片在港股仍具稀缺性，首日表现值得关注。同赛道标的：壁仞科技（港股GPU第一股）、天数智芯。A股映射：韦尔股份、圣邦股份等模拟芯片龙头。</div>
+      </div>
+      <div class="card-source">来源：证券之星 / 金投网 / 新浪财经 · 2026.03.31</div>
+    </div>
+  </div>
+
+  <div class="card" id="n7">
+    <div class="card-header">
+      <span class="card-emoji">🌙</span>
+      <div class="card-title">月之暗面（Kimi）启动港股 IPO 筹备，中金/高盛承销，估值剑指 $180 亿</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        3月26日，据彭博社独家报道，Kimi 母公司月之暗面正评估赴港 IPO，已与中金公司、高盛展开初步承销洽谈。消息人士证实上市确在推进中。此举标志着继智谱、MiniMax 之后，第三家中国大模型"小虎"正式启动资本化进程，将与阶跃星辰展开"大模型第三股"之争。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">预估估值 ~$180亿</span>
+        <span class="metric">承销商 中金+高盛</span>
+        <span class="metric">竞争对手 阶跃星辰</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">港股 AI 大模型板块持续扩容。参考智谱市值近 3000 亿港元、MiniMax 超 3100 亿港元的表现，月之暗面上市或继续推高板块估值。A股方面利好 AI 应用+大模型概念股：科大讯飞、同花顺、金山办公等。</div>
+      </div>
+      <div class="card-source">来源：Bloomberg / 中华网财经 / 雪球 · 2026.03.26-30</div>
+    </div>
+  </div>
+
+  <div class="card" id="n8">
+    <div class="card-header">
+      <span class="card-emoji">🏭</span>
+      <div class="card-title">思谋科技递表港交所，摩根士丹利/中金/德银保荐，冲刺"工业 AI 智能体第一股"</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        3月16日，思谋科技正式向港交所递交上市申请，由摩根士丹利、中金公司和德意志银行联席保荐。公司专注工业 AI 智能体，在制造业 AI 质检、工业视觉等领域积累深厚。在智谱、MiniMax 上市引发的 AI 概念热潮中，思谋走出差异化的"工业 AI"路线。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">赛道 工业AI智能体</span>
+        <span class="metric">保荐人 MS/中金/德银</span>
+        <span class="metric">创始人 贾佳亚教授</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">工业 AI 是 2026 年 AI 落地最确定的方向之一，订单可验证。A股映射：赛为智能、奥普特、天准科技（工业视觉）、中控技术（工业自动化+AI）。</div>
+      </div>
+      <div class="card-source">来源：第一财经 / 新浪财经 / 凤凰网 · 2026.03.16-31</div>
+    </div>
+  </div>
+
+  <div class="card" id="n9">
+    <div class="card-header">
+      <span class="card-emoji">📈</span>
+      <div class="card-title">智谱/MiniMax 市值均超 3000 亿港元，港股 AI 大模型板块估值持续走高</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        截至3月下旬，港股两大 AI 大模型标的表现亮眼：智谱市值接近 3000 亿港元，MiniMax 超过 3100 亿港元，较上市初期股价上涨约 3-5 倍。港交所方面表示，2025年12月至2026年1月，AI 价值链公司在港集资 49 亿美元，人工智能新生态圈正在形成。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">智谱市值 ~3000亿HK$</span>
+        <span class="metric">MiniMax 市值 &gt;3100亿HK$</span>
+        <span class="metric">上市后涨幅 3-5x</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">港股 AI 板块流动性和关注度持续提升，对后续 IPO（月之暗面/阶跃星辰/Anthropic）形成正向示范效应。布局策略：已上市标的逢回调关注，同时留意壁仞科技、天数智芯等候上市的算力芯片标的。</div>
+      </div>
+      <div class="card-source">来源：投资界 / 港交所 / 东方财富 · 2026.03</div>
+    </div>
+  </div>
+
+  <!-- A股 -->
+  <div class="section-title">🇨🇳 A股市场</div>
+
+  <div class="card" id="n10">
+    <div class="card-header">
+      <span class="card-emoji">💡</span>
+      <div class="card-title">国家数据局：日均词元调用量突破 140 万亿，Token 正式定名"词元"</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        3月24日，国家数据局局长刘烈宏在国新办发布会及中国发展高层论坛上宣布：我国日均词元（Token）调用量已突破 140 万亿，从 2024 年初的 1000 亿增长超千倍。同时正式将 Token 的中文标准译名确定为"词元"，标志着"词元经济"崛起。第九届数字中国建设峰会将于4月29-30日在福州举办。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">日均 140 万亿词元</span>
+        <span class="metric">两年增长 &gt;1000x</span>
+        <span class="metric">较2025年底 +40%</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">词元经济爆发直接利好 AI 算力基础设施：算力租赁（鸥玛软件、首都在线）、AI 芯片（寒武纪、海光信息）、大模型 API 平台（百度/阿里云）。数字中国峰会临近有望催化板块行情。</div>
+      </div>
+      <div class="card-source">来源：中国政府网 / 人民日报 / 新华网 · 2026.03.24</div>
+    </div>
+  </div>
+
+  <div class="card" id="n11">
+    <div class="card-header">
+      <span class="card-emoji">⚡</span>
+      <div class="card-title">中国信科 2.5Pb/s 光传输刷新世界纪录，CPO 板块集体爆发</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        3月24日，中国信科集团联合鹏城实验室宣布实现 2.5Pb/s 24芯光纤超大容量实时传输，刷新世界纪录。在 10.3 公里传输距离上覆盖 S+C+L 三波段，总光谱带宽达 19.65 THz。受此利好，CPO（共封装光学）板块集体爆发：阿莱德20CM涨停，长飞光纤涨停（市值突破2124亿），长盈通涨超15%。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">传输速率 2.5Pb/s</span>
+        <span class="metric">24芯光纤 | 10.3km</span>
+        <span class="metric">光谱带宽 19.65THz</span>
+        <span class="metric">长飞光纤年内翻倍</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">技术突破加速 CPO 商用进程，直接利好：长飞光纤（601869）、中际旭创（300308）、新易盛（300502）、天孚通信（300394）、阿莱德（301419）。数据中心互联+东数西算是核心应用场景。</div>
+      </div>
+      <div class="card-source">来源：央视网 / 新浪财经 / 科创板日报 · 2026.03.24-25</div>
+    </div>
+  </div>
+
+  <div class="card" id="n12">
+    <div class="card-header">
+      <span class="card-emoji">🔬</span>
+      <div class="card-title">光模块扩产潮来袭：3200G 速率迭代加速，催生百亿设备新蓝海</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        据券商研报，AI 算力需求推动光模块速率迭代周期从4年缩短至2年。中际旭创五期项目已投产（从签约到投产仅55天），1.6T 光模块已放量出货；3200G 产品进入研发测试阶段。CPO 概念全板块3月25日迎景气共振，板块内 6 股涨停，光纤价格创七年新高。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">迭代周期 4年→2年</span>
+        <span class="metric">1.6T 已放量出货</span>
+        <span class="metric">3200G 研发推进中</span>
+        <span class="metric">光纤价格 七年新高</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">光模块是 AI 算力确定性最高的"卖铲"赛道。龙头标的：中际旭创（300308，全球第二）、新易盛（300502）；设备端：长飞光纤（601869）、通光线缆（300265）。关注 3200G 量产节奏。</div>
+      </div>
+      <div class="card-source">来源：新浪财经研选 / 金融界 / 同花顺 · 2026.03.17-25</div>
+    </div>
+  </div>
+
+  <div class="card" id="n13">
+    <div class="card-header">
+      <span class="card-emoji">🤖</span>
+      <div class="card-title">工信部发布首个人形机器人与具身智能标准体系（2026版），覆盖全产业链</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        2月28日，工信部人形机器人与具身智能标准化技术委员会发布《人形机器人与具身智能标准体系（2026版）》，由 120 余家产学研单位联合编制，覆盖六大核心模块。这是我国首个覆盖人形机器人与具身智能全产业链的国家级标准体系，标志着行业从"实验室阶段"迈向"标准化量产阶段"。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">首个国家级标准</span>
+        <span class="metric">六大核心模块</span>
+        <span class="metric">120+编制单位</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">标准体系落地是量产前置条件，利好整机（优必选 09880.HK）和核心零部件：减速器（绿的谐波 688017）、传感器（柯力传感 603662）、电机（鸣志电器 603728）、灵巧手（傅利叶智能 A股辅导中）。</div>
+      </div>
+      <div class="card-source">来源：央视新闻 / 新华网 / 工信部 · 2026.02.28-03</div>
+    </div>
+  </div>
+
+  <!-- 全球 -->
+  <div class="section-title">🌐 全球动态</div>
+
+  <div class="card" id="n14">
+    <div class="card-header">
+      <span class="card-emoji">🎙️</span>
+      <div class="card-title">Cohere 发布开源语音模型 Transcribe，20亿参数领跑 ASR 排行榜</div>
+    </div>
+    <div class="card-body">
+      <div class="card-summary">
+        3月26日，企业级 AI 公司 Cohere 发布首个语音模型 Transcribe——20 亿参数的开源自动语音识别（ASR）模型，支持 14 种语言，在 HuggingFace Open ASR 排行榜上超越 Whisper Large v3 达 27%。模型采用 Apache 2.0 开源协议，专为边缘设备优化，可在消费级硬件上运行。
+      </div>
+      <div class="card-metrics">
+        <span class="metric">参数量 20亿</span>
+        <span class="metric">支持 14 种语言</span>
+        <span class="metric">超 Whisper v3 27%</span>
+        <span class="metric">Apache 2.0 开源</span>
+      </div>
+      <div class="invest-view">
+        <div class="label">📈 投资视角</div>
+        <div class="content">语音 AI 赛道竞争加剧，利好企业级部署需求。A 股关注：科大讯飞（002230，语音 AI 龙头）、云从科技（688327）。边缘部署趋势利好端侧 AI 芯片：瑞芯微（603893）、全志科技（300458）。</div>
+      </div>
+      <div class="card-source">来源：TechCrunch / Cohere Blog / HuggingFace · 2026.03.26</div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div>🪷 AI 投研日报 · 由小荷自动生成</div>
+    <div style="margin-top: 4px;">生成时间：2026年3月31日 08:00 CST</div>
+    <div class="disclaimer">
+      ⚠️ 本报告由 AI 自动整理生成，仅供参考，不构成任何投资建议。投资有风险，入市需谨慎。
+      信息来源已在各条目中标注，请以官方披露为准。
+    </div>
+  </div>
+</div>
+</body>
+</html>
