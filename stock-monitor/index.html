@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>股票监控 · Maple</title>
+<style>
+  :root {
+    --bg: #0f0f13;
+    --bg2: #13131a;
+    --card: #1a1a24;
+    --card2: #1e1e2a;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --sub: #7878a0;
+    --mute: #444460;
+    --red: #ff4d5e;
+    --green: #2ecc8a;
+    --blue: #4d8fff;
+    --yellow: #f0b040;
+    --red-bg: rgba(255,77,94,0.1);
+    --green-bg: rgba(46,204,138,0.1);
+    --blue-bg: rgba(77,143,255,0.1);
+    --yellow-bg: rgba(240,176,64,0.1);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif; min-height:100vh; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(160deg,#16162a 0%,#1a1a2e 100%);
+    padding: 52px 20px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header h1 { font-size:22px; font-weight:700; color:#fff; }
+  .header-sub { font-size:13px; color:var(--sub); margin-top:4px; }
+  .header-row { display:flex; justify-content:space-between; align-items:flex-end; }
+  .update-badge {
+    font-size:11px; color:var(--sub);
+    display:flex; align-items:center; gap:5px;
+  }
+  .dot { width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;flex-shrink:0; }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+  /* Summary bar */
+  .summary {
+    display:flex; gap:0;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    overflow-x:auto; scrollbar-width:none;
+  }
+  .summary::-webkit-scrollbar{display:none}
+  .sum-item { flex:1; min-width:80px; padding:12px 16px; text-align:center; border-right:1px solid var(--border); }
+  .sum-item:last-child{border-right:none}
+  .sum-val { font-size:20px; font-weight:700; }
+  .sum-label { font-size:11px; color:var(--sub); margin-top:2px; }
+
+  /* Filter Tabs */
+  .filters { display:flex; gap:8px; padding:14px 16px; overflow-x:auto; scrollbar-width:none; }
+  .filters::-webkit-scrollbar{display:none}
+  .filter-btn {
+    flex-shrink:0; padding:6px 14px; border-radius:20px;
+    font-size:12px; font-weight:600; cursor:pointer;
+    border:1px solid var(--border); color:var(--sub);
+    background:transparent; transition:all .15s;
+  }
+  .filter-btn.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+  /* Stock Cards */
+  .cards { padding:0 12px 24px; display:flex; flex-direction:column; gap:10px; }
+
+  .stock-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:transform .15s, border-color .15s;
+    text-decoration:none;
+    display:block;
+    color:inherit;
+  }
+  .stock-card:active { transform:scale(0.98); }
+  .stock-card.signal-alert { border-color:rgba(46,204,138,0.4); }
+  .stock-card.signal-watch { border-color:rgba(240,176,64,0.3); }
+
+  .card-top {
+    padding:14px 16px 10px;
+    display:flex; justify-content:space-between; align-items:flex-start;
+  }
+  .card-name { font-size:17px; font-weight:700; color:#fff; }
+  .card-meta { font-size:12px; color:var(--sub); margin-top:3px; }
+  .card-price-area { text-align:right; }
+  .card-price { font-size:24px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .card-change { font-size:13px; margin-top:2px; font-variant-numeric:tabular-nums; }
+  .red  { color:var(--red); }
+  .green{ color:var(--green); }
+
+  .card-metrics {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--border);
+  }
+  .metric {
+    padding:10px 8px;
+    border-right:1px solid var(--border);
+    text-align:center;
+  }
+  .metric:last-child{border-right:none}
+  .metric-val { font-size:14px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .metric-label { font-size:10px; color:var(--sub); margin-top:2px; }
+
+  .card-footer {
+    padding:8px 16px;
+    background:var(--card2);
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:1px solid var(--border);
+  }
+  .signal-pills { display:flex; gap:5px; align-items:center; }
+  .signal-pip {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--mute);
+    transition:background .2s;
+  }
+  .signal-pip.lit-green { background:var(--green); box-shadow:0 0 6px var(--green); }
+  .signal-pip.lit-yellow { background:var(--yellow); box-shadow:0 0 6px var(--yellow); }
+  .signal-pip.lit-red { background:var(--red); }
+  .signal-text { font-size:11px; color:var(--sub); margin-left:4px; }
+  .card-time { font-size:10px; color:var(--mute); }
+
+  /* Empty state */
+  .empty { text-align:center; padding:60px 20px; color:var(--sub); }
+  .empty-icon { font-size:48px; margin-bottom:16px; }
+
+  /* Add button */
+  .fab {
+    position:fixed; bottom:24px; right:20px;
+    width:52px; height:52px; border-radius:50%;
+    background:var(--blue); border:none; color:#fff;
+    font-size:24px; cursor:pointer;
+    box-shadow:0 4px 20px rgba(77,143,255,0.4);
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .15s;
+    z-index:50;
+  }
+  .fab:active{transform:scale(0.92)}
+
+  /* Trend badge */
+  .trend-badge {
+    display:inline-block; padding:2px 7px; border-radius:4px;
+    font-size:10px; font-weight:700;
+  }
+  .trend-bull { background:var(--green-bg); color:var(--green); }
+  .trend-bear { background:var(--red-bg); color:var(--red); }
+  .trend-mix  { background:var(--blue-bg); color:var(--blue); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-row">
+    <div>
+      <h1>📈 股票监控</h1>
+      <div class="header-sub">技术指标 · 抄底信号</div>
+    </div>
+    <div class="update-badge">
+      <div class="dot"></div>
+      <span id="lastUpdate">加载中</span>
+    </div>
+  </div>
+</div>
+
+<!-- 汇总栏 -->
+<div class="summary">
+  <div class="sum-item">
+    <div class="sum-val" id="sumTotal">-</div>
+    <div class="sum-label">监控数量</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val" style="color:var(--green)" id="sumAlert">-</div>
+    <div class="sum-label">抄底信号</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val" style="color:var(--yellow)" id="sumWatch">-</div>
+    <div class="sum-label">持续关注</div>
+  </div>
+  <div class="sum-item">
+    <div class="sum-val" style="color:var(--red)" id="sumDown">-</div>
+    <div class="sum-label">今日下跌</div>
+  </div>
+</div>
+
+<!-- 筛选 -->
+<div class="filters">
+  <button class="filter-btn active" onclick="filterCards('all', this)">全部</button>
+  <button class="filter-btn" onclick="filterCards('alert', this)">🚨 抄底信号</button>
+  <button class="filter-btn" onclick="filterCards('watch', this)">👀 持续关注</button>
+  <button class="filter-btn" onclick="filterCards('down', this)">📉 今日下跌</button>
+  <button class="filter-btn" onclick="filterCards('up', this)">📈 今日上涨</button>
+</div>
+
+<!-- 卡片列表 -->
+<div class="cards" id="cardList">
+  <div class="empty">
+    <div class="empty-icon">📊</div>
+    <div>数据加载中...</div>
+  </div>
+</div>
+
+<script>
+let allStocks = [];
+let currentFilter = 'all';
+
+async function loadStocks() {
+  try {
+    const res = await fetch('stocks.json?t=' + Date.now());
+    allStocks = await res.json();
+  } catch(e) {
+    allStocks = FALLBACK;
+  }
+  renderAll();
+}
+
+function getSignalLevel(s) {
+  if (s.signal >= 3) return 'alert';
+  if (s.signal >= 2) return 'watch';
+  return 'none';
+}
+
+function renderAll() {
+  // 汇总
+  const total = allStocks.length;
+  const alerts = allStocks.filter(s => s.signal >= 3).length;
+  const watches = allStocks.filter(s => s.signal === 2).length;
+  const downs = allStocks.filter(s => s.changePct < 0).length;
+  document.getElementById('sumTotal').textContent = total;
+  document.getElementById('sumAlert').textContent = alerts;
+  document.getElementById('sumWatch').textContent = watches;
+  document.getElementById('sumDown').textContent = downs;
+
+  // 最后更新时间
+  const times = allStocks.map(s => s.time).filter(Boolean);
+  if (times.length) document.getElementById('lastUpdate').textContent = '更新 ' + times[times.length-1];
+
+  filterCards(currentFilter);
+}
+
+function filterCards(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  let list = allStocks;
+  if (type === 'alert') list = allStocks.filter(s => s.signal >= 3);
+  else if (type === 'watch') list = allStocks.filter(s => s.signal === 2);
+  else if (type === 'down') list = allStocks.filter(s => s.changePct < 0);
+  else if (type === 'up') list = allStocks.filter(s => s.changePct >= 0);
+
+  const container = document.getElementById('cardList');
+  if (!list.length) {
+    container.innerHTML = `<div class="empty"><div class="empty-icon">🔍</div><div>暂无符合条件的股票</div></div>`;
+    return;
+  }
+
+  // 排序：信号多的靠前，同信号按跌幅排
+  list = [...list].sort((a,b) => (b.signal - a.signal) || (a.changePct - b.changePct));
+
+  container.innerHTML = list.map(s => {
+    const level = getSignalLevel(s);
+    const up = s.changePct >= 0;
+    const sign = up ? '+' : '';
+    const priceColor = up ? 'green' : 'red';
+    const cardClass = level === 'alert' ? 'signal-alert' : level === 'watch' ? 'signal-watch' : '';
+    const trendClass = s.ma_trend === '多头' ? 'trend-bull' : s.ma_trend === '空头' ? 'trend-bear' : 'trend-mix';
+    const trendLabel = s.ma_trend || '-';
+
+    // 5个信号灯
+    const pips = Array.from({length: 5}, (_, i) => {
+      const lit = i < s.signal;
+      const cls = lit ? (s.signal >= 3 ? 'lit-green' : 'lit-yellow') : '';
+      return `<div class="signal-pip ${cls}"></div>`;
+    }).join('');
+
+    // 信号文字
+    const sigText = s.signal >= 3 ? `🚨 抄底信号 ${s.signal}/5` :
+                    s.signal >= 2 ? `👀 关注 ${s.signal}/5` :
+                    `⏳ 等待 ${s.signal}/5`;
+
+    return `
+    <a class="stock-card ${cardClass}" href="${s.code}.html">
+      <div class="card-top">
+        <div>
+          <div class="card-name">${s.name}</div>
+          <div class="card-meta">${s.code} · ${s.sector || ''} &nbsp;<span class="trend-badge ${trendClass}">${trendLabel}排列</span></div>
+        </div>
+        <div class="card-price-area">
+          <div class="card-price ${priceColor}">${s.price?.toFixed(2) ?? '--'}</div>
+          <div class="card-change ${priceColor}">${sign}${s.changePct?.toFixed(2) ?? '--'}%</div>
+        </div>
+      </div>
+      <div class="card-metrics">
+        <div class="metric">
+          <div class="metric-val" style="color:${s.rsi < 30 ? 'var(--green)' : s.rsi > 70 ? 'var(--red)' : 'var(--blue)'}">${s.rsi?.toFixed(1) ?? '--'}</div>
+          <div class="metric-label">RSI</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val" style="color:var(--sub)">${s.ma5?.toFixed(1) ?? '--'}</div>
+          <div class="metric-label">MA5</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val" style="color:var(--sub)">${s.ma20?.toFixed(1) ?? '--'}</div>
+          <div class="metric-label">MA20</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val" style="color:var(--sub)">${s.J?.toFixed(1) ?? '--'}</div>
+          <div class="metric-label">KDJ·J</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="signal-pills">
+          ${pips}
+          <span class="signal-text">${sigText}</span>
+        </div>
+        <div class="card-time">${s.time ?? ''}</div>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+const FALLBACK = [
+  {"code":"300274","market":"sz","name":"阳光电源","sector":"光伏/储能",
+   "price":123.08,"change":-4.17,"changePct":-3.28,
+   "signal":1,"signalMax":5,"rsi":25.03,"ma_trend":"空头",
+   "ma5":138.53,"ma20":159.92,"J":-12.4,"time":"2026-04-03 14:42"}
+];
+
+loadStocks();
+</script>
+</body>
+</html>
