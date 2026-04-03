@@ -268,7 +268,7 @@ function filterCards(type, btn) {
     const level = getSignalLevel(s);
     const up = s.changePct >= 0;
     const sign = up ? '+' : '';
-    const priceColor = up ? 'green' : 'red';
+    const priceColor = up ? 'red' : 'green';
     const cardClass = level === 'alert' ? 'signal-alert' : level === 'watch' ? 'signal-watch' : '';
     const trendClass = s.ma_trend === '多头' ? 'trend-bull' : s.ma_trend === '空头' ? 'trend-bear' : 'trend-mix';
     const trendLabel = s.ma_trend || '-';

@@ -34,10 +34,10 @@
   .stock-name { font-size:20px; font-weight:700; color:#fff; }
   .stock-code { font-size:12px; color:var(--sub); margin-top:2px; }
   .price-area { text-align:right; }
-  .price { font-size:28px; font-weight:700; color:var(--red); font-variant-numeric:tabular-nums; }
-  .price.up { color:var(--green); }
-  .change { font-size:13px; color:var(--red); margin-top:2px; }
-  .change.up { color:var(--green); }
+  .price { font-size:28px; font-weight:700; color:var(--green); font-variant-numeric:tabular-nums; }
+  .price.up { color:var(--red); }
+  .change { font-size:13px; color:var(--green); margin-top:2px; }
+  .change.up { color:var(--red); }
   .update-time { font-size:11px; color:var(--sub); margin-top:10px; display:flex; align-items:center; gap:6px; }
   .dot { width:6px; height:6px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; flex-shrink:0; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
@@ -470,7 +470,7 @@ function render(d) {
   const maxBar = Math.max(...barHistory.map(Math.abs), 0.001);
   document.getElementById('macdHistory').innerHTML = barHistory.map((v,i) => {
     const pct = Math.abs(v)/maxBar*100;
-    const col = v>=0 ? 'var(--green)' : 'var(--red)';
+    const col = v>=0 ? 'var(--red)' : 'var(--green)';
     const label = d.barDates ? d.barDates[i] : (i - barHistory.length + 1) + 'd';
     return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
       <span style="font-size:10px;color:var(--sub);width:32px;flex-shrink:0">${label}</span>
