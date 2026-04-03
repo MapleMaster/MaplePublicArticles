@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 投研日报 · 2026-04-03</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d2e;
+    --card-hover: #222640;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --red: #ef4444;
+    --green: #22c55e;
+    --orange: #f59e0b;
+    --blue: #3b82f6;
+    --border: #2d3148;
+    --tag-us: #3b82f6;
+    --tag-hk: #f59e0b;
+    --tag-cn: #ef4444;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0 0 40px;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1a1040 0%, #0f1117 50%, #0a1628 100%);
+    padding: 48px 20px 36px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(108,92,231,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(59,130,246,0.06) 0%, transparent 50%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 0.5; } 50% { opacity: 1; }
+  }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    position: relative;
+    background: linear-gradient(135deg, #a29bfe, #6c5ce7, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    position: relative;
+  }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  /* 目录导航 */
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 24px auto;
+    padding: 20px 24px;
+    max-width: 900px;
+  }
+  .toc h2 {
+    font-size: 1rem;
+    color: var(--accent-light);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .toc a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.88rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toc a:hover {
+    background: var(--card-hover);
+    color: var(--accent-light);
+  }
+  .toc .toc-tag {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .toc .tag-us { background: var(--tag-us); }
+  .toc .tag-hk { background: var(--tag-hk); color: #000; }
+  .toc .tag-cn { background: var(--tag-cn); }
+
+  /* 新闻卡片 */
+  .section-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 32px 0 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: all 0.25s;
+    position: relative;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(108,92,231,0.1);
+  }
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .card-emoji {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.5;
+  }
+  .card-body {
+    margin-left: 42px;
+  }
+  .card-summary {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+  .card-data {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .data-chip {
+    background: rgba(108,92,231,0.12);
+    border: 1px solid rgba(108,92,231,0.25);
+    color: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+  .card-invest {
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+  }
+  .card-invest .label {
+    color: var(--green);
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .card-invest .content {
+    color: var(--text);
+    font-size: 0.85rem;
+  }
+  .card-source {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    text-align: right;
+  }
+  .market-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #fff;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .market-tag.us { background: var(--tag-us); }
+  .market-tag.hk { background: var(--tag-hk); color: #000; }
+  .market-tag.cn { background: var(--tag-cn); }
+
+  .footer {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .footer .brand {
+    color: var(--accent-light);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.5rem; }
+    .card { padding: 16px; }
+    .card-body { margin-left: 0; }
+    .card-emoji { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🤖 AI 投研日报</h1>
+  <div class="subtitle">2026年4月3日 · 星期五 ｜ 覆盖 A股 · 港股 · 美股</div>
+</div>
+
+<div class="container">
+
+<!-- 目录导航 -->
+<div class="toc">
+  <h2>📑 今日目录</h2>
+  <div class="toc-grid">
+    <a href="#news1"><span class="toc-tag tag-us">美股</span>OpenAI 完成 1220 亿美元融资，估值 8520 亿，IPO 在即</a>
+    <a href="#news2"><span class="toc-tag tag-us">美股</span>Oracle 裁员 2-3 万人，全力押注 AI 数据中心</a>
+    <a href="#news3"><span class="toc-tag tag-us">美股</span>NVIDIA 20 亿美元入股 Marvell，NVLink Fusion 深度绑定</a>
+    <a href="#news4"><span class="toc-tag tag-us">美股</span>微软发布三款自研 AI 模型，挑战 OpenAI 与 Google</a>
+    <a href="#news5"><span class="toc-tag tag-us">美股</span>Q1 全球风投创纪录 2970 亿美元，AI 算力为主驱动</a>
+    <a href="#news6"><span class="toc-tag tag-hk">港股</span>商汤科技年报：收入破 50 亿，EBITDA 首次转正</a>
+    <a href="#news7"><span class="toc-tag tag-hk">港股</span>算力涨价潮持续，阿里/百度港股受益上涨</a>
+    <a href="#news8"><span class="toc-tag tag-hk">港股</span>智谱、MiniMax 港股上市后暴涨，Token 经济学重塑估值</a>
+    <a href="#news9"><span class="toc-tag tag-hk">港股</span>微软宣布 65 亿美元投资东南亚 AI 基础设施</a>
+    <a href="#news10"><span class="toc-tag tag-cn">A股</span>国产 AI 芯片市占率攀升至 41%，华为昇腾领跑</a>
+    <a href="#news11"><span class="toc-tag tag-cn">A股</span>HBM 内存芯片短缺加剧，DRAM 价格飙升 20%</a>
+    <a href="#news12"><span class="toc-tag tag-cn">A股</span>4 月 1 日美股 AI 芯片股集体暴涨，映射 A 股算力板块</a>
+    <a href="#news13"><span class="toc-tag tag-cn">A股</span>1.6T 光模块量产在即，算力基建持续受益</a>
+  </div>
+</div>
+
+<!-- ==================== 美股板块 ==================== -->
+<div class="section-label">🇺🇸 美股市场</div>
+
+<!-- 新闻1 -->
+<div class="card" id="news1">
+  <div class="card-header">
+    <div class="card-emoji">💰</div>
+    <div class="card-title">OpenAI 完成 1220 亿美元融资，估值 8520 亿美元，IPO 箭在弦上<span class="market-tag us">美股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      OpenAI 完成历史上最大规模风投融资，本轮由 Amazon、NVIDIA、SoftBank 领投，其中 30 亿美元来自零售投资者。估值达 8520 亿美元，ChatGPT 周活用户超 8 亿。不过彭博社报道，约 6 亿美元 OpenAI 二级市场股份"几乎无法"出手，投资者正将资金转向 Anthropic。IPO 预计 2026 年 Q4 进行。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">融资额 $1220亿</span>
+      <span class="data-chip">估值 $8520亿</span>
+      <span class="data-chip">年收入 $250亿</span>
+      <span class="data-chip">IPO 目标 2026 Q4</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">OpenAI IPO 是年度最大科技 IPO 事件。关注 MSFT（最大合作方/投资方）、SoftBank（9988.HK）、NVDA（芯片供应商+投资方）。二级市场抛售信号提示估值分化，Anthropic 概念升温利好 AMZN、GOOG。</div>
+    </div>
+    <div class="card-source">信源：TechCrunch · Bloomberg · Forbes | 2026-04-01</div>
+  </div>
+</div>
+
+<!-- 新闻2 -->
+<div class="card" id="news2">
+  <div class="card-header">
+    <div class="card-emoji">🏢</div>
+    <div class="card-title">Oracle 裁员 2-3 万人，年省 $80-100 亿全砸 AI 数据中心<span class="market-tag us">美股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      Oracle 于 3月31日凌晨启动大规模裁员，估计波及 2-3 万人（约占员工总数 18%），覆盖销售、工程、安全等多个部门。裁员目的是每年节省 80-100 亿美元现金流，全面用于 AI 数据中心建设。此前 Oracle 资本开支已大幅攀升至 $160 亿/年，股价因现金流承压年内已显著回调。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">裁员 2-3万人</span>
+      <span class="data-chip">占比 ~18%</span>
+      <span class="data-chip">年省 $80-100亿</span>
+      <span class="data-chip">CapEx $160亿/年</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">ORCL 短期承压但释放了 AI 全力投入信号。对标 AWS/Azure/GCP 云战争升级。受益标的：为 Oracle 供货的 NVDA、服务器厂商（DELL、SMCI）、液冷产业链。A 股映射：中际旭创（光模块）、英维克（液冷）。</div>
+    </div>
+    <div class="card-source">信源：CNBC · CRN · TechRepublic | 2026-03-31</div>
+  </div>
+</div>
+
+<!-- 新闻3 -->
+<div class="card" id="news3">
+  <div class="card-header">
+    <div class="card-emoji">🤝</div>
+    <div class="card-title">NVIDIA 20 亿美元入股 Marvell，NVLink Fusion 绑定 AI 生态<span class="market-tag us">美股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      NVIDIA 宣布向 Marvell Technology 投资 20 亿美元，深化 NVLink Fusion 技术合作。此举将 Marvell 定制 ASIC 芯片纳入 NVIDIA 互连生态，为云厂商提供更灵活的 AI 工厂方案。消息公布后 Marvell 股价飙涨 13%。此前 NVIDIA 已分别向 CoreWeave、Nebius、Coherent 投资 20 亿美元，AI 生态投资版图加速扩张。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">投资额 $20亿</span>
+      <span class="data-chip">MRVL 涨13%</span>
+      <span class="data-chip">NVLink Fusion</span>
+      <span class="data-chip">定制 ASIC 合作</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">NVIDIA 从卖芯片到建生态，锁定定制芯片赛道。利好 MRVL、NVDA。A 股映射：铜缆高速互连概念（沃尔核材、神宇股份）、光互连（新易盛、天孚通信）。港股关注中芯国际（先进封装）。</div>
+    </div>
+    <div class="card-source">信源：NVIDIA Investor · CNBC · Seeking Alpha | 2026-03-31</div>
+  </div>
+</div>
+
+<!-- 新闻4 -->
+<div class="card" id="news4">
+  <div class="card-header">
+    <div class="card-emoji">💻</div>
+    <div class="card-title">微软发布三款自研 AI 模型（MAI 系列），正面挑战 OpenAI 与 Google<span class="market-tag us">美股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      微软于 4月2日发布三款自研基础模型：MAI-Transcribe-1（语音转文字）、MAI-Voice-1（语音生成）、MAI-Image-2（文生图，Arena.ai 排行榜第3）。三款模型已部署于 Microsoft Foundry 平台，定价低于 OpenAI 和 Google 同类产品。此举标志着微软加速"去 OpenAI 依赖"，构建自主 AI 模型能力。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">3 款自研模型</span>
+      <span class="data-chip">MAI-Image-2 排名第3</span>
+      <span class="data-chip">定价低于竞品</span>
+      <span class="data-chip">已上线 Foundry</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">MSFT 自研模型发力意味着 AI 模型层竞争白热化，对 OpenAI 的估值叙事构成压力。利好 MSFT 长期竞争力。关注 AI 多模态应用层扩散：语音+图像+文本全面 AI 化。</div>
+    </div>
+    <div class="card-source">信源：VentureBeat · TechCrunch · Seeking Alpha | 2026-04-02</div>
+  </div>
+</div>
+
+<!-- 新闻5 -->
+<div class="card" id="news5">
+  <div class="card-header">
+    <div class="card-emoji">📊</div>
+    <div class="card-title">Q1 全球风投创纪录 2970 亿美元，AI 算力支出为主要驱动力<span class="market-tag us">美股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      2026 年第一季度全球风险投资总额达到创纪录的 2970 亿美元，环比增长约 150%，主要由 AI 计算基础设施和前沿实验室（OpenAI、Anthropic、xAI 等）大额融资驱动。四大科技巨头（Google、Microsoft、Meta、Amazon）2026 年 AI 资本开支合计接近 7000 亿美元，AI 军备竞赛持续升温。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">Q1 VC $2970亿</span>
+      <span class="data-chip">环比 +150%</span>
+      <span class="data-chip">四巨头 CapEx ~$7000亿</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">天量资本涌入 AI 赛道，最直接受益的是算力基础设施全链条：芯片（NVDA/AMD）、光模块（COHR/中际旭创）、数据中心（DLR/EQIX）、液冷（VRT）。风投热度也推升一级市场估值传导至二级。</div>
+    </div>
+    <div class="card-source">信源：The Neuron · CNBC | 2026-04-01</div>
+  </div>
+</div>
+
+<!-- ==================== 港股板块 ==================== -->
+<div class="section-label">🇭🇰 港股市场</div>
+
+<!-- 新闻6 -->
+<div class="card" id="news6">
+  <div class="card-header">
+    <div class="card-emoji">🔥</div>
+    <div class="card-title">商汤科技年报：收入破 50 亿，EBITDA 上市以来首次转正<span class="market-tag hk">港股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      商汤科技（0020.HK）发布 2025 年度业绩：全年收入 50.1 亿元，同比增长 33%，创历史新高；生成式 AI 业务暴增 51%；全年净亏损大幅收窄 58.6%；下半年 EBITDA 3.8 亿元，上市以来首次转正。大装置算力规模达 4.04 万 PetaFLOPS，CEO 徐立宣布"全力迎战 AI 决赛阶段"。Q2 将推出下一代多模态大模型。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">收入 ¥50.1亿</span>
+      <span class="data-chip">同比 +33%</span>
+      <span class="data-chip">生成式AI +51%</span>
+      <span class="data-chip">H2 EBITDA ¥3.8亿</span>
+      <span class="data-chip">亏损收窄 58.6%</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">商汤作为"港股 AI 第一股"终于跑通盈利模型，EBITDA 转正是重要里程碑。全栈 AI 能力（算力+模型+应用）稀缺。利好 0020.HK，同时带动港股 AI 板块估值重估。关注同板块的金山云（3896.HK）、百度（9888.HK）。</div>
+    </div>
+    <div class="card-source">信源：财经杂志 · 第一财经 · 东方财富 | 2026-03-24</div>
+  </div>
+</div>
+
+<!-- 新闻7 -->
+<div class="card" id="news7">
+  <div class="card-header">
+    <div class="card-emoji">⚡</div>
+    <div class="card-title">云厂商算力涨价潮，阿里巴巴、百度港股齐涨超 2%<span class="market-tag hk">港股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      随着国内 AI 大模型推理需求爆发，多家云厂商宣布上调算力服务价格。消息提振港股 AI 板块，阿里巴巴（9988.HK）、百度（9888.HK）股价涨超 2%，国产大模型公司 MiniMax、智谱单日涨近 20%。分析师指出，算力供不应求态势短期难缓解，涨价周期有望延续至 Q3。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">阿里/百度 涨超2%</span>
+      <span class="data-chip">MiniMax/智谱 涨近20%</span>
+      <span class="data-chip">算力供需缺口持续</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">算力涨价 = 毛利率提升逻辑，利好手握算力资源的云平台：阿里云（9988.HK）、百度智能云（9888.HK）、金山云（3896.HK）。A 股映射：紫光股份（算力集成）、浪潮信息（AI 服务器）。</div>
+    </div>
+    <div class="card-source">信源：每日经济新闻 · 21世纪经济报道 | 2026-03</div>
+  </div>
+</div>
+
+<!-- 新闻8 -->
+<div class="card" id="news8">
+  <div class="card-header">
+    <div class="card-emoji">🚀</div>
+    <div class="card-title">智谱、MiniMax 港股上市后暴涨，"Token 经济学"重塑 AI 估值逻辑<span class="market-tag hk">港股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      港股 AI 板块正经历估值逻辑重构——从传统 PE/PS 转向"Token 经济学"。智谱（2513.HK）、MiniMax 上市后承接大量 AI 投资需求，产品涨价+用户规模双增，股价表现强劲。恒生 AI 指数表现亮眼。截至 3月底，中国 AI Token 日调用量超 140 万亿。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">Token 日调用 140万亿+</span>
+      <span class="data-chip">恒生AI指数创新高</span>
+      <span class="data-chip">估值逻辑重构</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">Token 调用量 = AI 时代的 GMV，关注"Token 经济学"新估值框架下高增长标的：智谱（2513.HK）、商汤（0020.HK）。港股成为 AI 纯模型投资出口，资金配置效应持续。</div>
+    </div>
+    <div class="card-source">信源：21财经 · 10jqka · 雪球 | 2026-03</div>
+  </div>
+</div>
+
+<!-- 新闻9 -->
+<div class="card" id="news9">
+  <div class="card-header">
+    <div class="card-emoji">🌏</div>
+    <div class="card-title">微软宣布 65 亿美元投资东南亚 AI 基础设施<span class="market-tag hk">港股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      微软宣布未来 3 年向新加坡投资 55 亿美元、向泰国投资 10 亿美元，用于 AI 云和数据中心基础设施建设。这是微软全球 AI 基建扩张计划的一部分，2026 年全球 AI CapEx 目标约 800 亿美元。东南亚正成为 AI 算力新的增长极。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">新加坡 $55亿</span>
+      <span class="data-chip">泰国 $10亿</span>
+      <span class="data-chip">3年期投资</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">MSFT 在亚洲布局加速，利好港股数据中心和光通信产业链。关注万国数据（9698.HK，东南亚数据中心布局）、中际旭创（300308，海外光模块份额高）。新加坡/泰国 AI 基建也利好区域半导体供应链。</div>
+    </div>
+    <div class="card-source">信源：The Neuron · Microsoft | 2026-04-01</div>
+  </div>
+</div>
+
+<!-- ==================== A股板块 ==================== -->
+<div class="section-label">🇨🇳 A股市场</div>
+
+<!-- 新闻10 -->
+<div class="card" id="news10">
+  <div class="card-header">
+    <div class="card-emoji">🏭</div>
+    <div class="card-title">IDC 报告：国产 AI 芯片市占率攀升至 41%，华为昇腾出货 81.2 万张<span class="market-tag cn">A股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      IDC 最新报告显示，2025 年中国云端 AI 加速器市场中，本土芯片厂商市占率已达约 41%，英伟达份额被大幅挤压。华为昇腾以 81.2 万张出货量领跑，市占率约 20%；平头哥、昆仑芯、寒武纪、海光等紧随其后。全年中国 AI 芯片出货近 400 万张，同比翻倍。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">国产市占率 41%</span>
+      <span class="data-chip">华为出货 81.2万张</span>
+      <span class="data-chip">全年出货 ~400万张</span>
+      <span class="data-chip">英伟达份额腰斩</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">国产替代从口号变现实。核心受益标的：寒武纪（688256）、海光信息（688041）——AI 芯片双龙头；中科曙光（603019）——海光生态核心；景嘉微（300474）——GPU 国产化。华为产业链：神州数码、常山北明。</div>
+    </div>
+    <div class="card-source">信源：IDC · C114通信网 · 电子工程专辑 | 2026-04-02</div>
+  </div>
+</div>
+
+<!-- 新闻11 -->
+<div class="card" id="news11">
+  <div class="card-header">
+    <div class="card-emoji">💾</div>
+    <div class="card-title">HBM 内存芯片短缺加剧，DRAM 价格飙升 20%，AI 吃掉 70% 产能<span class="market-tag cn">A股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      2026 年全球内存芯片短缺持续恶化，AI 数据中心已吞噬 70% 的 DRAM 产能。HBM3e 供不应求，SK Hynix 2026 年全年产能已售罄。DRAM 价格同比飙升 20%，部分型号涨幅达 75%。三大内存厂商（美光、SK Hynix、三星）全面受益于 AI 超级周期。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">AI 占 DRAM 产能 70%</span>
+      <span class="data-chip">DRAM 涨价 20%</span>
+      <span class="data-chip">HBM 2026产能售罄</span>
+      <span class="data-chip">部分型号涨75%</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">存储芯片进入 AI 超级周期，涨价逻辑硬。美股看 MU、SK Hynix（韩股）。A 股映射：兆易创新（603986）、北京君正（300223）——存储芯片设计；长江存储供应链（长电科技 600584、通富微电 002156）——先进封装受益。</div>
+    </div>
+    <div class="card-source">信源：Tech-Insider · CNBC · IEEE Spectrum | 2026-03</div>
+  </div>
+</div>
+
+<!-- 新闻12 -->
+<div class="card" id="news12">
+  <div class="card-header">
+    <div class="card-emoji">📈</div>
+    <div class="card-title">4月1日美股 AI 芯片股集体暴涨：NVDA +4%、AMD +3.5%，映射 A 股算力板块<span class="market-tag cn">A股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      4月1日，受中东停火谈判积极信号和 AI 基本面强劲双重驱动，美股 AI 芯片板块集体暴涨。NVIDIA 涨超 4%，AMD 涨 3.5%，纳斯达克涨 1.8%，标普 500 涨 1.2%。此前该板块因地缘政治风险承压数周。NVIDIA 与 AWS 达成百万 GPU 多年期大单，进一步巩固数据中心霸主地位。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">NVDA +4%</span>
+      <span class="data-chip">AMD +3.5%</span>
+      <span class="data-chip">纳指 +1.8%</span>
+      <span class="data-chip">AWS 百万GPU大单</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">美股 AI 芯片反弹对 A 股算力板块形成直接映射。今日开盘重点关注：中际旭创（300308）、新易盛（300502）——光模块龙头；工业富联（601138）——AI 服务器；寒武纪（688256）——国产 GPU。港股同步关注中芯国际（981.HK）。</div>
+    </div>
+    <div class="card-source">信源：Xpressurway · AInvest · Motley Fool | 2026-04-01</div>
+  </div>
+</div>
+
+<!-- 新闻13 -->
+<div class="card" id="news13">
+  <div class="card-header">
+    <div class="card-emoji">🔌</div>
+    <div class="card-title">1.6T 光模块量产提速，2026 年全球光模块市场达 337 亿美元<span class="market-tag cn">A股</span></div>
+  </div>
+  <div class="card-body">
+    <div class="card-summary">
+      随着 AI 算力从万亿参数向十万亿级跨越，光模块作为数据传输"神经突触"持续受益。2025 年全球光模块市场已达 337 亿美元，中际旭创率先实现 800G/1.6T 量产，深度绑定海外云巨头。2026 年 1.6T 产品进入规模出货期，光模块产业链量价齐升。NVIDIA GTC 2026 明确 NVLink 下一代对 1.6T 的刚性需求。
+    </div>
+    <div class="card-data">
+      <span class="data-chip">市场规模 $337亿</span>
+      <span class="data-chip">1.6T 量产提速</span>
+      <span class="data-chip">GTC 明确需求</span>
+    </div>
+    <div class="card-invest">
+      <div class="label">📈 投资视角</div>
+      <div class="content">光模块是 AI 算力确定性最高的产业链环节之一。核心标的：中际旭创（300308）——800G/1.6T 全球龙头；新易盛（300502）——高速率弹性最大；天孚通信（300394）——光器件隐形冠军。港股看长飞光纤（6869.HK）。</div>
+    </div>
+    <div class="card-source">信源：雪球 · IDC · DIGITIMES | 2026-01</div>
+  </div>
+</div>
+
+<!-- 页脚 -->
+<div class="footer">
+  <p>⏱ 生成时间：2026年4月3日 08:00 CST</p>
+  <p style="margin-top:4px;">🪷 由 <span class="brand">小荷 AI 投研助手</span> 自动生成，仅供参考，不构成投资建议</p>
+  <p style="margin-top:4px;">投资有风险，入市需谨慎</p>
+</div>
+
+</div>
+</body>
+</html>
