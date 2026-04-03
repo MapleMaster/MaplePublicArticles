@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>特变电工 600089 · 技术监控</title>
+<style>
+  :root {
+    --bg: #0f0f13;
+    --card: #1a1a24;
+    --border: #2a2a3a;
+    --text: #e8e8f0;
+    --sub: #7878a0;
+    --red: #ff4d5e;
+    --green: #2ecc8a;
+    --blue: #4d8fff;
+    --yellow: #f0b040;
+    --red-bg: rgba(255,77,94,0.12);
+    --green-bg: rgba(46,204,138,0.12);
+    --blue-bg: rgba(77,143,255,0.12);
+    --yellow-bg: rgba(240,176,64,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif; min-height:100vh; padding-bottom:32px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(160deg, #1a1a2e 0%, #16213e 100%);
+    padding: 20px 16px 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .stock-name { font-size:20px; font-weight:700; color:#fff; }
+  .stock-code { font-size:12px; color:var(--sub); margin-top:2px; }
+  .price-area { text-align:right; }
+  .price { font-size:28px; font-weight:700; color:var(--red); font-variant-numeric:tabular-nums; }
+  .price.up { color:var(--green); }
+  .change { font-size:13px; color:var(--red); margin-top:2px; }
+  .change.up { color:var(--green); }
+  .update-time { font-size:11px; color:var(--sub); margin-top:10px; display:flex; align-items:center; gap:6px; }
+  .dot { width:6px; height:6px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; flex-shrink:0; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* Signal Banner */
+  .signal-banner {
+    margin: 12px 16px 0;
+    padding: 14px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .signal-banner.watch { background:var(--yellow-bg); border:1px solid rgba(240,176,64,0.3); color:var(--yellow); }
+  .signal-banner.buy   { background:var(--green-bg);  border:1px solid rgba(46,204,138,0.3); color:var(--green); }
+  .signal-banner.hold  { background:var(--red-bg);    border:1px solid rgba(255,77,94,0.3);  color:var(--red); }
+  .signal-icon { font-size:22px; }
+  .signal-text .title { font-size:15px; font-weight:700; }
+  .signal-text .desc  { font-size:12px; font-weight:400; margin-top:2px; opacity:0.85; }
+
+  /* Tabs */
+  .tabs { display:flex; padding:12px 16px 0; gap:8px; overflow-x:auto; scrollbar-width:none; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { flex-shrink:0; padding:7px 16px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; transition:all .2s; border:1px solid var(--border); color:var(--sub); background:transparent; }
+  .tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+
+  /* Section */
+  .section { padding:12px 16px 0; }
+  .section-title { font-size:13px; font-weight:600; color:var(--sub); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.5px; }
+
+  /* Indicator Cards */
+  .ind-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .ind-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px 14px 12px;
+  }
+  .ind-card.full { grid-column: 1/-1; }
+  .ind-name { font-size:11px; color:var(--sub); font-weight:600; letter-spacing:0.5px; margin-bottom:6px; }
+  .ind-value { font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .ind-value.red { color:var(--red); }
+  .ind-value.green { color:var(--green); }
+  .ind-value.blue { color:var(--blue); }
+  .ind-value.yellow { color:var(--yellow); }
+  .ind-sub { font-size:11px; color:var(--sub); margin-top:4px; line-height:1.5; }
+  .ind-tag {
+    display:inline-block; padding:2px 7px; border-radius:4px;
+    font-size:11px; font-weight:700; margin-top:6px;
+  }
+  .tag-red    { background:var(--red-bg);    color:var(--red); }
+  .tag-green  { background:var(--green-bg);  color:var(--green); }
+  .tag-blue   { background:var(--blue-bg);   color:var(--blue); }
+  .tag-yellow { background:var(--yellow-bg); color:var(--yellow); }
+
+  /* MA Row */
+  .ma-row { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid var(--border); }
+  .ma-row:last-child { border-bottom:none; }
+  .ma-label { font-size:13px; color:var(--sub); font-weight:600; }
+  .ma-val { font-size:14px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .ma-diff { font-size:11px; margin-left:8px; }
+
+  /* Progress Bar */
+  .progress-wrap { margin-top:8px; height:6px; background:#2a2a3a; border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; border-radius:3px; transition:width .5s; }
+
+  /* BOLL Visual */
+  .boll-visual { position:relative; height:48px; background:#1e1e2e; border-radius:8px; margin-top:10px; overflow:hidden; }
+  .boll-track { position:absolute; top:50%; transform:translateY(-50%); left:8px; right:8px; height:2px; background:var(--border); }
+  .boll-upper-line, .boll-lower-line { position:absolute; top:0; bottom:0; width:2px; background:var(--border); }
+  .boll-mid-line { position:absolute; top:0; bottom:0; width:1px; background:var(--sub); opacity:0.5; }
+  .boll-price-dot { position:absolute; top:50%; transform:translate(-50%,-50%); width:12px; height:12px; border-radius:50%; background:var(--red); border:2px solid #fff; box-shadow:0 0 8px var(--red); z-index:2; }
+  .boll-labels { display:flex; justify-content:space-between; margin-top:6px; }
+  .boll-label { font-size:10px; color:var(--sub); }
+
+  /* History Table */
+  .history-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .history-table th { color:var(--sub); font-weight:600; padding:6px 4px; text-align:right; border-bottom:1px solid var(--border); }
+  .history-table th:first-child { text-align:left; }
+  .history-table td { padding:7px 4px; text-align:right; border-bottom:1px solid rgba(42,42,58,0.5); font-variant-numeric:tabular-nums; }
+  .history-table td:first-child { text-align:left; color:var(--sub); }
+  .history-table tr:last-child td { border-bottom:none; }
+
+  /* Condition Checklist */
+  .cond-list { display:flex; flex-direction:column; gap:8px; }
+  .cond-item { display:flex; align-items:flex-start; gap:10px; padding:12px; background:var(--card); border-radius:10px; border:1px solid var(--border); }
+  .cond-item.met { border-color:rgba(46,204,138,0.3); background:var(--green-bg); }
+  .cond-item.partial { border-color:rgba(240,176,64,0.3); background:var(--yellow-bg); }
+  .cond-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+  .cond-content .cond-title { font-size:13px; font-weight:600; }
+  .cond-content .cond-val { font-size:12px; color:var(--sub); margin-top:3px; }
+
+  /* Tab panels */
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* Refresh btn */
+  .refresh-btn {
+    display:block; margin:20px 16px 0;
+    padding:14px; background:var(--blue);
+    border:none; border-radius:12px; color:#fff;
+    font-size:15px; font-weight:700; cursor:pointer;
+    width:calc(100% - 32px); text-align:center;
+    transition:opacity .2s;
+  }
+  .refresh-btn:active { opacity:0.8; }
+
+  /* Footer */
+  .footer { text-align:center; font-size:11px; color:var(--sub); margin-top:20px; padding:0 16px; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<!-- Back Bar -->
+<div style="background:#13131a;border-bottom:1px solid #2a2a3a;padding:10px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:200">
+  <a href="index.html" style="color:#4d8fff;text-decoration:none;font-size:14px;display:flex;align-items:center;gap:4px">
+    ‹ 返回监控列表
+  </a>
+</div>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="stock-name">特变电工</div>
+      <div class="stock-code">300274 · 深圳主板</div>
+    </div>
+    <div class="price-area">
+      <div class="price" id="price">--</div>
+      <div class="change" id="change">--</div>
+    </div>
+  </div>
+  <div class="update-time">
+    <div class="dot"></div>
+    <span id="updateTime">加载中...</span>
+  </div>
+</div>
+
+<!-- Signal Banner -->
+<div id="signalBanner" class="signal-banner watch" style="display:none">
+  <div class="signal-icon" id="signalIcon">⚠️</div>
+  <div class="signal-text">
+    <div class="title" id="signalTitle">--</div>
+    <div class="desc" id="signalDesc">--</div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('overview')">总览</div>
+  <div class="tab" onclick="switchTab('macd')">MACD</div>
+  <div class="tab" onclick="switchTab('boll')">BOLL</div>
+  <div class="tab" onclick="switchTab('kdj')">KDJ/RSI</div>
+  <div class="tab" onclick="switchTab('signal')">抄底信号</div>
+</div>
+
+<!-- 总览 -->
+<div class="tab-panel active" id="tab-overview">
+  <div class="section">
+    <div class="section-title">均线系统</div>
+    <div class="ind-card full">
+      <div id="maRows"></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-title">超卖指标</div>
+    <div class="ind-grid">
+      <div class="ind-card">
+        <div class="ind-name">RSI (14)</div>
+        <div class="ind-value" id="rsiVal">--</div>
+        <div class="progress-wrap"><div class="progress-fill" id="rsiBar" style="width:50%;background:var(--blue)"></div></div>
+        <div class="ind-sub" id="rsiZone">--</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">KDJ · J值</div>
+        <div class="ind-value" id="jVal">--</div>
+        <div class="ind-sub" id="kdjStatus">K=-- D=--</div>
+        <div id="kdjTag"></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">MACD · DIF</div>
+        <div class="ind-value" id="difVal">--</div>
+        <div class="ind-sub" id="macdStatus">DEA=-- Bar=--</div>
+        <div id="macdTag"></div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">BOLL 位置</div>
+        <div class="ind-value" id="bollPos">--</div>
+        <div class="ind-sub" id="bollDetail">上=-- 中=-- 下=--</div>
+        <div id="bollTag"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MACD -->
+<div class="tab-panel" id="tab-macd">
+  <div class="section">
+    <div class="section-title">MACD 指标</div>
+    <div class="ind-grid">
+      <div class="ind-card">
+        <div class="ind-name">DIF (快线)</div>
+        <div class="ind-value" id="m-dif">--</div>
+        <div class="ind-sub">12日EMA - 26日EMA</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">DEA (慢线)</div>
+        <div class="ind-value" id="m-dea">--</div>
+        <div class="ind-sub">DIF的9日EMA</div>
+      </div>
+      <div class="ind-card full">
+        <div class="ind-name">MACD 柱状值</div>
+        <div class="ind-value" id="m-bar">--</div>
+        <div id="m-barTag" style="margin-top:6px"></div>
+        <div class="ind-sub" style="margin-top:6px" id="m-barDesc">--</div>
+      </div>
+    </div>
+    <div class="section-title" style="margin-top:16px">近10日柱状值走势</div>
+    <div class="ind-card full">
+      <div id="macdHistory"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BOLL -->
+<div class="tab-panel" id="tab-boll">
+  <div class="section">
+    <div class="section-title">布林带</div>
+    <div class="ind-card full">
+      <div class="ind-name">价格位置可视化</div>
+      <div class="boll-visual" id="bollVisual">
+        <div class="boll-track"></div>
+        <div class="boll-upper-line" id="bollUpperLine"></div>
+        <div class="boll-lower-line" id="bollLowerLine"></div>
+        <div class="boll-mid-line" id="bollMidLine"></div>
+        <div class="boll-price-dot" id="bollDot"></div>
+      </div>
+      <div class="boll-labels">
+        <span class="boll-label" id="bl-lower">下轨</span>
+        <span class="boll-label" id="bl-mid">中轨</span>
+        <span class="boll-label" id="bl-upper">上轨</span>
+      </div>
+    </div>
+    <div class="ind-grid" style="margin-top:10px">
+      <div class="ind-card">
+        <div class="ind-name">上轨</div>
+        <div class="ind-value blue" id="b-upper">--</div>
+        <div class="ind-sub">超买参考线</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">中轨 (MA20)</div>
+        <div class="ind-value" id="b-mid">--</div>
+        <div class="ind-sub">趋势分界线</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">下轨</div>
+        <div class="ind-value red" id="b-lower">--</div>
+        <div class="ind-sub">超卖参考线</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">偏离度</div>
+        <div class="ind-value" id="b-dev">--</div>
+        <div class="ind-sub" id="b-devDesc">--</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KDJ / RSI -->
+<div class="tab-panel" id="tab-kdj">
+  <div class="section">
+    <div class="section-title">RSI 超买超卖</div>
+    <div class="ind-card full">
+      <div class="ind-name">RSI (14日)</div>
+      <div class="ind-value" id="k-rsi">--</div>
+      <div class="progress-wrap" style="height:10px;margin-top:10px">
+        <div class="progress-fill" id="k-rsiBar" style="width:50%;background:var(--blue)"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:4px">
+        <span style="font-size:10px;color:var(--green)">0 超卖</span>
+        <span style="font-size:10px;color:var(--sub)">30　　　　70</span>
+        <span style="font-size:10px;color:var(--red)">超买 100</span>
+      </div>
+      <div id="k-rsiTag" style="margin-top:10px"></div>
+      <div class="ind-sub" style="margin-top:6px" id="k-rsiDesc">--</div>
+    </div>
+    <div class="section-title" style="margin-top:16px">KDJ 指标</div>
+    <div class="ind-grid">
+      <div class="ind-card">
+        <div class="ind-name">K 值</div>
+        <div class="ind-value" id="k-K">--</div>
+        <div class="ind-sub">快速随机值</div>
+      </div>
+      <div class="ind-card">
+        <div class="ind-name">D 值</div>
+        <div class="ind-value" id="k-D">--</div>
+        <div class="ind-sub">慢速随机值</div>
+      </div>
+      <div class="ind-card full">
+        <div class="ind-name">J 值</div>
+        <div class="ind-value" id="k-J">--</div>
+        <div id="k-JTag" style="margin-top:6px"></div>
+        <div class="ind-sub" style="margin-top:4px" id="k-JDesc">J值超出0~100范围时为极度超卖/超买区域</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 抄底信号 -->
+<div class="tab-panel" id="tab-signal">
+  <div class="section">
+    <div class="section-title">抄底条件检测 (满足≥3条触发预警)</div>
+    <div class="cond-list" id="condList"></div>
+    <div class="ind-card full" style="margin-top:10px">
+      <div class="ind-name">综合评分</div>
+      <div class="ind-value" id="scoreVal">--</div>
+      <div class="progress-wrap" style="height:8px;margin-top:8px">
+        <div class="progress-fill" id="scoreBar" style="width:0%;background:var(--red)"></div>
+      </div>
+      <div class="ind-sub" style="margin-top:8px" id="scoreDesc">--</div>
+    </div>
+  </div>
+</div>
+
+<button class="refresh-btn" onclick="loadData()">🔄 刷新数据</button>
+
+<div class="footer">
+  数据来源：腾讯自选股 · 由 OpenClaw AI 自动生成<br>
+  ⚠️ 本页面仅供技术参考，不构成任何投资建议
+</div>
+
+<script>
+// ======= 数据加载 =======
+async function loadData() {
+  document.getElementById('updateTime').textContent = '数据加载中...';
+  try {
+    const res = await fetch('data/600089.json?t=' + Date.now());
+    if (!res.ok) throw new Error('no data');
+    const d = await res.json();
+    render(d);
+  } catch(e) {
+    // 使用内嵌的最新数据（fallback）
+    render(FALLBACK_DATA);
+  }
+}
+
+// ======= 渲染 =======
+function render(d) {
+  const price = d.price;
+  const change = d.change;
+  const changePct = d.changePct;
+
+  // Header
+  const priceEl = document.getElementById('price');
+  priceEl.textContent = price.toFixed(2);
+  priceEl.className = 'price ' + (change >= 0 ? 'up' : '');
+  const changeEl = document.getElementById('change');
+  const sign = change >= 0 ? '+' : '';
+  changeEl.textContent = `${sign}${change.toFixed(2)} (${sign}${changePct.toFixed(2)}%)`;
+  changeEl.className = 'change ' + (change >= 0 ? 'up' : '');
+  document.getElementById('updateTime').textContent = '更新于 ' + d.time + ' · 数据实时';
+
+  // MA
+  const mas = [{n:'MA5',v:d.ma5},{n:'MA10',v:d.ma10},{n:'MA20',v:d.ma20},{n:'MA60',v:d.ma60}];
+  document.getElementById('maRows').innerHTML = mas.map(m => {
+    const diff = price - m.v;
+    const pct = (diff/m.v*100).toFixed(1);
+    const cls = diff >= 0 ? 'green' : 'red';
+    const sym = diff >= 0 ? '▲' : '▼';
+    return `<div class="ma-row">
+      <span class="ma-label">${m.n}</span>
+      <div style="display:flex;align-items:center">
+        <span class="ma-val" style="color:var(--${cls})">${m.v.toFixed(2)}</span>
+        <span class="ma-diff" style="color:var(--${cls})">${sym}${Math.abs(pct)}%</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  // RSI
+  const rsi = d.rsi;
+  document.getElementById('rsiVal').textContent = rsi.toFixed(1);
+  document.getElementById('rsiVal').className = 'ind-value ' + (rsi < 30 ? 'green' : rsi > 70 ? 'red' : 'blue');
+  document.getElementById('rsiBar').style.width = rsi + '%';
+  document.getElementById('rsiBar').style.background = rsi < 30 ? 'var(--green)' : rsi > 70 ? 'var(--red)' : 'var(--blue)';
+  document.getElementById('rsiZone').textContent = rsi < 30 ? '⚡ 超卖区，关注反弹' : rsi > 70 ? '🔥 超买区，注意风险' : '中性区间';
+
+  // KDJ
+  document.getElementById('jVal').textContent = d.J.toFixed(1);
+  document.getElementById('jVal').className = 'ind-value ' + (d.J < 20 ? 'green' : d.J > 80 ? 'red' : 'blue');
+  document.getElementById('kdjStatus').textContent = `K=${d.K.toFixed(1)} D=${d.D.toFixed(1)}`;
+  const kdjTagEl = document.getElementById('kdjTag');
+  if (d.J < 0) kdjTagEl.innerHTML = '<span class="ind-tag tag-green">极度超卖</span>';
+  else if (d.J < 20) kdjTagEl.innerHTML = '<span class="ind-tag tag-green">超卖</span>';
+  else if (d.J > 100) kdjTagEl.innerHTML = '<span class="ind-tag tag-red">极度超买</span>';
+  else if (d.J > 80) kdjTagEl.innerHTML = '<span class="ind-tag tag-red">超买</span>';
+  else kdjTagEl.innerHTML = '<span class="ind-tag tag-blue">中性</span>';
+
+  // MACD overview
+  document.getElementById('difVal').textContent = d.dif.toFixed(3);
+  document.getElementById('difVal').className = 'ind-value ' + (d.dif >= 0 ? 'green' : 'red');
+  document.getElementById('macdStatus').textContent = `DEA=${d.dea.toFixed(3)} Bar=${d.bar.toFixed(3)}`;
+  const macdTagEl = document.getElementById('macdTag');
+  const isGolden = d.dif > d.dea;
+  macdTagEl.innerHTML = `<span class="ind-tag ${isGolden?'tag-green':'tag-red'}">${isGolden?'金叉':'死叉'}</span>`;
+  if (d.barConverging) macdTagEl.innerHTML += ' <span class="ind-tag tag-yellow">柱状收敛中</span>';
+
+  // BOLL overview
+  const bollPct = ((price - d.bollLower) / (d.bollUpper - d.bollLower) * 100).toFixed(0);
+  document.getElementById('bollPos').textContent = bollPct + '%';
+  document.getElementById('bollPos').className = 'ind-value ' + (price < d.bollLower ? 'green' : price > d.bollUpper ? 'red' : 'blue');
+  document.getElementById('bollDetail').textContent = `上=${d.bollUpper.toFixed(1)} 中=${d.bollMid.toFixed(1)} 下=${d.bollLower.toFixed(1)}`;
+  const bollTagEl = document.getElementById('bollTag');
+  if (price < d.bollLower) bollTagEl.innerHTML = '<span class="ind-tag tag-green">跌破下轨</span>';
+  else if (price > d.bollUpper) bollTagEl.innerHTML = '<span class="ind-tag tag-red">突破上轨</span>';
+  else bollTagEl.innerHTML = '<span class="ind-tag tag-blue">轨道内运行</span>';
+
+  // MACD Tab
+  document.getElementById('m-dif').textContent = d.dif.toFixed(3);
+  document.getElementById('m-dif').className = 'ind-value ' + (d.dif>=0?'green':'red');
+  document.getElementById('m-dea').textContent = d.dea.toFixed(3);
+  document.getElementById('m-dea').className = 'ind-value ' + (d.dea>=0?'green':'red');
+  document.getElementById('m-bar').textContent = d.bar.toFixed(3);
+  document.getElementById('m-bar').className = 'ind-value ' + (d.bar>=0?'green':'red');
+  document.getElementById('m-barTag').innerHTML = `<span class="ind-tag ${isGolden?'tag-green':'tag-red'}">${isGolden?'多头金叉':'空头死叉'}</span>${d.barConverging?' <span class="ind-tag tag-yellow">✨ 柱状收敛，动能减弱</span>':''}`;
+  document.getElementById('m-barDesc').textContent = d.barConverging ? '连续缩短，卖压趋于衰竭，注意底部信号' : '柱状持续扩张，下行动能仍强，暂无底部信号';
+  // MACD history bars
+  const barHistory = d.barHistory || [];
+  const maxBar = Math.max(...barHistory.map(Math.abs), 0.001);
+  document.getElementById('macdHistory').innerHTML = barHistory.map((v,i) => {
+    const pct = Math.abs(v)/maxBar*100;
+    const col = v>=0 ? 'var(--green)' : 'var(--red)';
+    const label = d.barDates ? d.barDates[i] : (i - barHistory.length + 1) + 'd';
+    return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+      <span style="font-size:10px;color:var(--sub);width:32px;flex-shrink:0">${label}</span>
+      <div style="flex:1;height:16px;background:#2a2a3a;border-radius:3px;overflow:hidden">
+        <div style="width:${pct}%;height:100%;background:${col}"></div>
+      </div>
+      <span style="font-size:11px;color:${col};width:52px;text-align:right;font-variant-numeric:tabular-nums">${v.toFixed(3)}</span>
+    </div>`;
+  }).join('');
+
+  // BOLL Tab
+  document.getElementById('b-upper').textContent = d.bollUpper.toFixed(2);
+  document.getElementById('b-mid').textContent = d.bollMid.toFixed(2);
+  document.getElementById('b-lower').textContent = d.bollLower.toFixed(2);
+  const devFromMid = ((price - d.bollMid)/d.bollMid*100);
+  document.getElementById('b-dev').textContent = (devFromMid > 0 ? '+' : '') + devFromMid.toFixed(1) + '%';
+  document.getElementById('b-dev').className = 'ind-value ' + (devFromMid >= 0 ? 'blue' : 'red');
+  document.getElementById('b-devDesc').textContent = devFromMid < -10 ? '严重偏离中轨，均值回归压力大' : '偏离程度：距中轨' + Math.abs(devFromMid).toFixed(1) + '%';
+  // BOLL visual
+  const range = d.bollUpper - d.bollLower;
+  const leftPct = v => Math.max(2, Math.min(96, (v - d.bollLower) / range * 92 + 4));
+  document.getElementById('bollUpperLine').style.left = leftPct(d.bollUpper) + '%';
+  document.getElementById('bollLowerLine').style.left = leftPct(d.bollLower) + '%';
+  document.getElementById('bollMidLine').style.left = leftPct(d.bollMid) + '%';
+  document.getElementById('bollDot').style.left = leftPct(price) + '%';
+  document.getElementById('bollDot').style.background = price < d.bollLower ? 'var(--green)' : price > d.bollUpper ? 'var(--red)' : 'var(--blue)';
+  document.getElementById('bl-lower').textContent = d.bollLower.toFixed(1);
+  document.getElementById('bl-mid').textContent = d.bollMid.toFixed(1);
+  document.getElementById('bl-upper').textContent = d.bollUpper.toFixed(1);
+
+  // KDJ/RSI Tab
+  document.getElementById('k-rsi').textContent = rsi.toFixed(1);
+  document.getElementById('k-rsi').className = 'ind-value ' + (rsi<30?'green':rsi>70?'red':'blue');
+  document.getElementById('k-rsiBar').style.width = rsi + '%';
+  document.getElementById('k-rsiBar').style.background = rsi<30?'var(--green)':rsi>70?'var(--red)':'var(--blue)';
+  const rsiTagEl = document.getElementById('k-rsiTag');
+  if (rsi < 20) rsiTagEl.innerHTML = '<span class="ind-tag tag-green">极度超卖 ⚡</span>';
+  else if (rsi < 30) rsiTagEl.innerHTML = '<span class="ind-tag tag-green">超卖区</span>';
+  else if (rsi > 80) rsiTagEl.innerHTML = '<span class="ind-tag tag-red">极度超买</span>';
+  else if (rsi > 70) rsiTagEl.innerHTML = '<span class="ind-tag tag-red">超买区</span>';
+  else rsiTagEl.innerHTML = '<span class="ind-tag tag-blue">中性区间</span>';
+  document.getElementById('k-rsiDesc').textContent = d.rsiBearDivergence ? '⚠️ 检测到底背离：价格创新低但RSI未创新低，反转信号增强' : 'RSI与价格走势无明显背离';
+  document.getElementById('k-K').textContent = d.K.toFixed(1);
+  document.getElementById('k-D').textContent = d.D.toFixed(1);
+  document.getElementById('k-J').textContent = d.J.toFixed(1);
+  document.getElementById('k-J').className = 'ind-value ' + (d.J < 20 ? 'green' : d.J > 80 ? 'red' : 'blue');
+  document.getElementById('k-JTag').innerHTML = d.J < 0 ? '<span class="ind-tag tag-green">极度超卖，J值为负</span>' : d.J < 20 ? '<span class="ind-tag tag-green">超卖区</span>' : d.J > 100 ? '<span class="ind-tag tag-red">极度超买</span>' : d.J > 80 ? '<span class="ind-tag tag-red">超买区</span>' : '<span class="ind-tag tag-blue">中性</span>';
+
+  // Signal tab
+  const conds = [
+    { label: 'RSI超卖且底背离', met: d.rsi < 30 && d.rsiBearDivergence, partial: d.rsi < 30, val: `RSI=${rsi.toFixed(1)} ${d.rsiBearDivergence?'✅ 底背离':'❌ 无背离'}`, icon: d.rsi < 30 && d.rsiBearDivergence ? '✅' : d.rsi < 30 ? '⚠️' : '❌' },
+    { label: 'KDJ极度超卖+金叉', met: d.J < 10 && d.K > d.D, partial: d.J < 20, val: `J=${d.J.toFixed(1)} K=${d.K.toFixed(1)} D=${d.D.toFixed(1)} ${d.K>d.D?'金叉':'未金叉'}`, icon: d.J < 10 && d.K > d.D ? '✅' : d.J < 20 ? '⚠️' : '❌' },
+    { label: 'MACD柱状收敛', met: d.barConverging, partial: false, val: `柱状值=${d.bar.toFixed(3)} ${d.barConverging?'✅ 连续收敛':'❌ 仍在扩张'}`, icon: d.barConverging ? '✅' : '❌' },
+    { label: '价格跌破BOLL下轨', met: price < d.bollLower, partial: price < d.bollMid, val: `当前=${price.toFixed(2)} 下轨=${d.bollLower.toFixed(2)}`, icon: price < d.bollLower ? '✅' : '❌' },
+    { label: '成交量萎缩(抛盘衰竭)', met: d.volRatio < 0.7, partial: d.volRatio < 0.85, val: `今量/5日均量=${(d.volRatio*100).toFixed(0)}% ${d.volRatio<0.7?'✅ 明显缩量':'❌ 未明显缩量'}`, icon: d.volRatio < 0.7 ? '✅' : d.volRatio < 0.85 ? '⚠️' : '❌' },
+  ];
+  const metCount = conds.filter(c => c.met).length;
+  document.getElementById('condList').innerHTML = conds.map(c =>
+    `<div class="cond-item ${c.met?'met':c.partial?'partial':''}">
+      <div class="cond-icon">${c.icon}</div>
+      <div class="cond-content">
+        <div class="cond-title">${c.label}</div>
+        <div class="cond-val">${c.val}</div>
+      </div>
+    </div>`
+  ).join('');
+  document.getElementById('scoreVal').textContent = `${metCount} / 5 条件满足`;
+  document.getElementById('scoreVal').className = 'ind-value ' + (metCount >= 3 ? 'green' : metCount >= 2 ? 'yellow' : 'red');
+  document.getElementById('scoreBar').style.width = (metCount/5*100) + '%';
+  document.getElementById('scoreBar').style.background = metCount>=3?'var(--green)':metCount>=2?'var(--yellow)':'var(--red)';
+  document.getElementById('scoreDesc').textContent = metCount >= 3 ? '🚨 已触发抄底预警，建议关注！注意仓位管理' : metCount >= 2 ? '⚠️ 接近预警阈值，持续观察' : '📊 当前未达到抄底条件，继续等待';
+
+  // Signal Banner
+  const banner = document.getElementById('signalBanner');
+  banner.style.display = 'flex';
+  if (metCount >= 3) {
+    banner.className = 'signal-banner buy';
+    document.getElementById('signalIcon').textContent = '🚨';
+    document.getElementById('signalTitle').textContent = `抄底信号触发！满足 ${metCount}/5 条件`;
+    document.getElementById('signalDesc').textContent = '多指标共振超卖，建议关注，注意仓位管理';
+  } else if (metCount >= 2) {
+    banner.className = 'signal-banner watch';
+    document.getElementById('signalIcon').textContent = '👀';
+    document.getElementById('signalTitle').textContent = `观望中 · 满足 ${metCount}/5 条件`;
+    document.getElementById('signalDesc').textContent = '接近预警阈值，继续跟踪技术指标变化';
+  } else {
+    banner.className = 'signal-banner hold';
+    document.getElementById('signalIcon').textContent = '⏳';
+    document.getElementById('signalTitle').textContent = `等待时机 · 满足 ${metCount}/5 条件`;
+    document.getElementById('signalDesc').textContent = '技术指标未触发，建议耐心等待更好入场点';
+  }
+}
+
+// ======= Tab 切换 =======
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const tabs = ['overview','macd','boll','kdj','signal'];
+    t.classList.toggle('active', tabs[i] === name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.toggle('active', p.id === 'tab-'+name);
+  });
+}
+
+// ======= Fallback 数据（最新一次计算结果）=======
+const FALLBACK_DATA = {
+  price: 25.5, change: -0.67, changePct: -2.56,
+  time: '2026-04-03 收盘',
+  ma5: 26.54, ma10: 27.5, ma20: 28.75, ma60: 28.37,
+  rsi: 33.21,
+  dif: -0.814, dea: -0.387, bar: -0.855, barConverging: false,
+  barHistory: [-1.033, -0.926, -0.744, -0.693, -0.636, -0.63, -0.756, -0.758, -0.794, -0.855],
+  barDates: ["03-23", "03-24", "03-25", "03-26", "03-27", "03-30", "03-31", "04-01", "04-02", "04-03"],
+  bollUpper: 32.42, bollMid: 28.75, bollLower: 25.08,
+  K: 8.86, D: 15.2, J: -3.83,
+  rsiBearDivergence: false,
+  volRatio: 1.0,
+};
+
+// 初始化
+loadData();
+</script>
+</body>
+</html>
