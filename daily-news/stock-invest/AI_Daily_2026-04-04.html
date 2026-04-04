@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-04</title>
+    <style>
+        :root {
+            --bg-primary: #0f1117;
+            --bg-card: #1a1d2e;
+            --bg-card-hover: #222640;
+            --text-primary: #e8eaf6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-blue: #60a5fa;
+            --accent-purple: #a78bfa;
+            --accent-green: #34d399;
+            --accent-red: #f87171;
+            --accent-orange: #fb923c;
+            --accent-yellow: #fbbf24;
+            --border: #2d3148;
+            --tag-bg: rgba(96, 165, 250, 0.12);
+            --tag-border: rgba(96, 165, 250, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { max-width: 920px; margin: 0 auto; padding: 24px 20px 60px; }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 48px 0 36px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .header .date-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 16px;
+            border-radius: 20px;
+            background: var(--tag-bg);
+            border: 1px solid var(--tag-border);
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+        }
+        .toc h2 {
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+        }
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 4px 0;
+            display: block;
+            transition: color 0.2s;
+        }
+        .toc a:hover { color: var(--accent-blue); }
+        .toc .toc-num {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-right: 6px;
+            font-size: 0.85rem;
+        }
+
+        /* Market Tag */
+        .market-tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+        .market-us { background: rgba(96, 165, 250, 0.15); color: var(--accent-blue); border: 1px solid rgba(96, 165, 250, 0.3); }
+        .market-hk { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); border: 1px solid rgba(251, 191, 36, 0.3); }
+        .market-a { background: rgba(248, 113, 113, 0.15); color: var(--accent-red); border: 1px solid rgba(248, 113, 113, 0.3); }
+        .market-global { background: rgba(167, 139, 250, 0.15); color: var(--accent-purple); border: 1px solid rgba(167, 139, 250, 0.3); }
+
+        /* News Card */
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .news-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(96, 165, 250, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .news-card .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .news-card .emoji-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .news-card h3 {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        .news-card .summary {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 16px;
+            line-height: 1.75;
+        }
+
+        /* Key Data */
+        .key-data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .key-data .data-chip {
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.25);
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 0.82rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        /* Invest View */
+        .invest-view {
+            background: rgba(167, 139, 250, 0.08);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: 0 8px 8px 0;
+            padding: 10px 16px;
+            margin-bottom: 12px;
+        }
+        .invest-view .label {
+            font-size: 0.78rem;
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .invest-view .content {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .invest-view .ticker {
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        /* Source */
+        .source {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+        .source a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        .source a:hover { color: var(--accent-blue); }
+
+        /* Section divider */
+        .section-divider {
+            text-align: center;
+            margin: 40px 0 32px;
+            position: relative;
+        }
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+        .section-divider span {
+            position: relative;
+            background: var(--bg-primary);
+            padding: 0 20px;
+            color: var(--accent-blue);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 36px 0 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin-bottom: 6px;
+        }
+        .footer .brand {
+            color: var(--accent-purple);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container { padding: 16px 14px 40px; }
+            .header h1 { font-size: 1.5rem; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .news-card { padding: 18px 18px; }
+            .key-data { gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🤖📊 AI 投研日报</h1>
+        <div class="subtitle">AI 领域投资动态 · 三市联动追踪</div>
+        <div class="date-badge">📅 2026年4月4日 · 周六</div>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc">
+        <h2>📋 今日目录</h2>
+        <div class="toc-grid">
+            <a href="#n1"><span class="toc-num">01</span>OpenAI 完成1220亿美元史上最大融资</a>
+            <a href="#n2"><span class="toc-num">02</span>NVIDIA 60亿美元锁定光通信供应链</a>
+            <a href="#n3"><span class="toc-num">03</span>光通信供应链全面告急</a>
+            <a href="#n4"><span class="toc-num">04</span>Oracle 裁员3万人押注AI数据中心</a>
+            <a href="#n5"><span class="toc-num">05</span>智谱港股首份年报：营收翻倍至7.24亿</a>
+            <a href="#n6"><span class="toc-num">06</span>Q1全球风投创纪录达2970亿美元</a>
+            <a href="#n7"><span class="toc-num">07</span>微软65亿美元布局东南亚AI基建</a>
+            <a href="#n8"><span class="toc-num">08</span>蓝思科技：AI服务器订单饱满 机器人批量出货</a>
+            <a href="#n9"><span class="toc-num">09</span>德勤：2026半导体销售额将创9750亿新高</a>
+            <a href="#n10"><span class="toc-num">10</span>人形机器人2026量产元年：出货量破5万台</a>
+            <a href="#n11"><span class="toc-num">11</span>港股AI上市潮持续 新股波动剧烈</a>
+            <a href="#n12"><span class="toc-num">12</span>Apple 战略转向：Siri 开放第三方AI接入</a>
+            <a href="#n13"><span class="toc-num">13</span>AI引爆光芯片供需缺口 国产替代加速</a>
+        </div>
+    </div>
+
+    <!-- US Market Section -->
+    <div class="section-divider"><span>🇺🇸 美股市场</span></div>
+
+    <!-- News 1 -->
+    <div class="news-card" id="n1">
+        <div class="card-header">
+            <span class="emoji-icon">💰</span>
+            <div>
+                <span class="market-tag market-us">美股</span>
+                <span class="market-tag market-global">全球</span>
+                <h3>OpenAI 完成1220亿美元史上最大融资，估值8520亿美元</h3>
+            </div>
+        </div>
+        <div class="summary">
+            OpenAI 于3月31日宣布完成1220亿美元融资，创下风投史上最大单笔融资纪录。软银领投，ChatGPT 周活用户突破9亿，API每分钟处理超150亿token。但Bloomberg同日报道，二级市场约6亿美元OpenAI股份"几乎无法出手"，机构投资者正快速转向Anthropic。公司或将在2026下半年提交IPO申请，目标估值约1万亿美元。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">融资额 $1220亿</span>
+            <span class="data-chip">估值 $8520亿</span>
+            <span class="data-chip">周活 9亿+</span>
+            <span class="data-chip">IPO 目标 ~$1万亿</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                AI大模型赛道资本虹吸效应达到顶峰。关注 <span class="ticker">MSFT（微软，OpenAI最大股东）</span>、<span class="ticker">SFTBY（软银）</span>直接受益；二级市场资金转向Anthropic信号值得警惕，关注AI竞争格局变化。国内对标：<span class="ticker">智谱（02513.HK）</span>、百度文心等。
+            </div>
+        </div>
+        <div class="source">信源：CNBC / Bloomberg / 新华社 / 界面新闻</div>
+    </div>
+
+    <!-- News 2 -->
+    <div class="news-card" id="n2">
+        <div class="card-header">
+            <span class="emoji-icon">⚡</span>
+            <div>
+                <span class="market-tag market-us">美股</span>
+                <h3>NVIDIA 累计60亿美元战略投资锁定光通信供应链</h3>
+            </div>
+        </div>
+        <div class="summary">
+            NVIDIA于3月密集出手，分别向Lumentum、Coherent、Marvell各投资20亿美元（合计60亿美元），锁定光芯片产能和NVLink Fusion互连技术。Marvell股价当日飙涨13%。此举标志着光互连硬件已上升为与GPU同等重要的AI算力战略资源。Lumentum因产能爆满、订单排至2027年，股价持续飙升。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">总投资 $60亿</span>
+            <span class="data-chip">Marvell +13%</span>
+            <span class="data-chip">Lumentum 订单排至2027</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                光通信核心器件成为AI算力"卡脖子"环节。直接受益：<span class="ticker">MRVL（Marvell）</span>、<span class="ticker">LITE（Lumentum）</span>、<span class="ticker">COHR（Coherent）</span>。A股映射：<span class="ticker">中际旭创（300308）</span>、<span class="ticker">天孚通信（300394）</span>、<span class="ticker">新易盛（300502）</span>等光模块龙头。
+            </div>
+        </div>
+        <div class="source">信源：CNBC / 36氪 / 腾讯云开发者社区</div>
+    </div>
+
+    <!-- News 3 -->
+    <div class="news-card" id="n3">
+        <div class="card-header">
+            <span class="emoji-icon">🔥</span>
+            <div>
+                <span class="market-tag market-us">美股</span>
+                <span class="market-tag market-a">A股</span>
+                <h3>光通信供应链全面告急：光纤涨价450%+，PCB交期延至6个月</h3>
+            </div>
+        </div>
+        <div class="summary">
+            36氪报道，2026年4月光通信产业多个环节供需矛盾集中爆发。G.652D光纤价格从18元/芯公里飙至85-120元，涨幅达450%-567%。博通发出预警：DSP/ASIC芯片争抢台积电3nm先进制程，光通信处于弱势；高端PCB交付周期从6周延至6个月。光芯片积压订单超2年，上游磷化铟衬底短缺。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">光纤涨幅 450-567%</span>
+            <span class="data-chip">PCB交期 6周→6个月</span>
+            <span class="data-chip">光芯片积压订单 >2年</span>
+            <span class="data-chip">NVIDIA占CoWoS产能 >70%</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                供应链紧张 = 涨价逻辑。A股光通信产业链全线受益：<span class="ticker">长飞光纤（601869）</span>光纤涨价弹性最大；<span class="ticker">源杰科技（688498）</span>国产EML芯片替代加速；PCB板块关注<span class="ticker">胜宏科技（300476）</span>、<span class="ticker">沪电股份（002463）</span>。法拉第旋光片国产替代看<span class="ticker">福晶科技（002222）</span>。
+            </div>
+        </div>
+        <div class="source">信源：36氪 / 半导体产业纵横 / 雪球 Coherent会议纪要</div>
+    </div>
+
+    <!-- News 4 -->
+    <div class="news-card" id="n4">
+        <div class="card-header">
+            <span class="emoji-icon">🏭</span>
+            <div>
+                <span class="market-tag market-us">美股</span>
+                <h3>Oracle 裁员2-3万人，释放$80-100亿现金流投入AI数据中心</h3>
+            </div>
+        </div>
+        <div class="summary">
+            Oracle于3月31日凌晨6点群发解雇邮件，估计裁员2-3万人（约占全球16.2万员工的18%），涉及销售、咨询、支持等多部门。员工日出前已失去门禁权限。裁员目的是释放年均$80-100亿现金流，用于支撑其高达5000亿美元规模的Stargate AI基础设施建设计划。这是AI时代"用人力成本换GPU"最冷酷的资本置换案例。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">裁员 2-3万人</span>
+            <span class="data-chip">占比 ~18%</span>
+            <span class="data-chip">释放现金流 $80-100亿/年</span>
+            <span class="data-chip">AI基建计划 $5000亿</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                <span class="ticker">ORCL（Oracle）</span> 短期人事震荡但长期转型信号明确，All in AI基建。对比AWS/Azure的资本开支竞赛，数据中心产业链（IDC、液冷、电力）持续高景气。A股关注<span class="ticker">润泽科技（300442）</span>、<span class="ticker">浪潮信息（000977）</span>。
+            </div>
+        </div>
+        <div class="source">信源：CNBC / 澎湃新闻 / The Neuron / unwire.pro</div>
+    </div>
+
+    <!-- News 6 -->
+    <div class="news-card" id="n6">
+        <div class="card-header">
+            <span class="emoji-icon">🚀</span>
+            <div>
+                <span class="market-tag market-global">全球</span>
+                <h3>Q1 2026全球风投创纪录：2970亿美元涌入6000家初创企业</h3>
+            </div>
+        </div>
+        <div class="summary">
+            据Crunchbase数据，2026年Q1全球风投总额达到2970亿美元（环比增长约150%），创下历史纪录。AI算力和前沿实验室的资本需求是最大驱动力。同期AI网络安全公司Tenex以10亿美元+估值融资2.5亿美元（a16z参投），AI芯片设计公司Cognichip融资6000万美元。AI赛道资本热度持续升温，但二级市场对OpenAI等明星公司的估值分歧加大。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">Q1 风投 $2970亿</span>
+            <span class="data-chip">环比 +150%</span>
+            <span class="data-chip">6000家初创企业</span>
+            <span class="data-chip">Tenex $2.5亿 / Cognichip $6000万</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                AI风投热度验证行业仍在加速期，利好整个AI产业链估值。但需警惕过热信号——OpenAI二级市场遇冷已是预警。一级市场资金偏好正从大模型转向AI应用和基础设施。关注AI ETF如<span class="ticker">BOTZ</span>、<span class="ticker">AIQ</span>。
+            </div>
+        </div>
+        <div class="source">信源：Crunchbase / Bloomberg / CNBC</div>
+    </div>
+
+    <!-- News 7 -->
+    <div class="news-card" id="n7">
+        <div class="card-header">
+            <span class="emoji-icon">🌐</span>
+            <div>
+                <span class="market-tag market-us">美股</span>
+                <h3>微软65亿美元布局东南亚AI基建：新加坡55亿+泰国10亿</h3>
+            </div>
+        </div>
+        <div class="summary">
+            微软宣布至2029年在新加坡投资55亿美元、在泰国投资10亿美元用于AI云基础设施和数据中心建设。这是微软全球AI基建扩张战略的一部分。此前Microsoft已在全球多地宣布大规模AI数据中心投资计划，叠加Azure AI服务强劲增长，持续巩固云计算市场领先地位。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">新加坡 $55亿</span>
+            <span class="data-chip">泰国 $10亿</span>
+            <span class="data-chip">至2029年</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                <span class="ticker">MSFT（微软）</span> AI基建支出持续加码，利好Azure生态。东南亚数据中心需求对应服务器/液冷/电力设备出口机会。A股关注数据中心液冷设备商 <span class="ticker">英维克（002837）</span>、海外IDC概念 <span class="ticker">万国数据（GDS/09698.HK）</span>。
+            </div>
+        </div>
+        <div class="source">信源：WSJ / Microsoft 官方公告</div>
+    </div>
+
+    <!-- News 12 -->
+    <div class="news-card" id="n12">
+        <div class="card-header">
+            <span class="emoji-icon">🍎</span>
+            <div>
+                <span class="market-tag market-us">美股</span>
+                <h3>Apple 战略大转向：砍掉Mac Pro，Siri 开放第三方AI，发20-40万美元留人奖金</h3>
+            </div>
+        </div>
+        <div class="summary">
+            Bloomberg报道，Apple正在重塑AI战略：砍掉Mac Pro产品线，将Siri转型为类App Store的第三方AI聊天机器人平台。同时，为阻止iPhone硬件设计师向OpenAI等公司跳槽，Apple罕见发放20万-40万美元留人奖金。Apple成立50周年之际，在AI竞赛中面临来自微软、Google的激烈追赶。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">留人奖金 $20-40万</span>
+            <span class="data-chip">Siri平台化</span>
+            <span class="data-chip">砍掉Mac Pro</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                <span class="ticker">AAPL（苹果）</span> AI战略从自研转向平台化，可能加速iOS AI生态成熟。果链公司短期承压（Mac Pro砍掉），但Siri开放或催生新的AI应用分发红利。关注果链公司 <span class="ticker">立讯精密（002475）</span>、<span class="ticker">歌尔股份（002241）</span>战略转型。
+            </div>
+        </div>
+        <div class="source">信源：Bloomberg / USA Today</div>
+    </div>
+
+    <!-- HK Market Section -->
+    <div class="section-divider"><span>🇭🇰 港股市场</span></div>
+
+    <!-- News 5 -->
+    <div class="news-card" id="n5">
+        <div class="card-header">
+            <span class="emoji-icon">📊</span>
+            <div>
+                <span class="market-tag market-hk">港股</span>
+                <h3>智谱港股上市后首份年报：营收翻倍至7.24亿，GLM-5比肩美国大模型</h3>
+            </div>
+        </div>
+        <div class="summary">
+            "全球大模型第一股"智谱（02513.HK）发布上市后首份年报。2025年全年收入7.24亿元，同比增长131.9%；MaaS业务爆发式增长，覆盖218个国家超400万用户；GLM-5模型能力比肩美国同行。4月1日股价应声大涨35%，创历史新高。但亏损同步扩大至47亿元，毛利率承压是行业共性难题。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">营收 ¥7.24亿 (+131.9%)</span>
+            <span class="data-chip">股价 +35%</span>
+            <span class="data-chip">用户 400万+ / 218国</span>
+            <span class="data-chip">亏损 ¥47亿</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                <span class="ticker">智谱（02513.HK）</span> 营收高增验证大模型商业化路径可行，但亏损放大反映行业"烧钱换规模"阶段未结束。港股AI板块核心标的，估值已近4000亿港元，需关注后续MaaS业务毛利率改善节奏。同赛道关注 <span class="ticker">商汤-W（00020.HK）</span>。
+            </div>
+        </div>
+        <div class="source">信源：澎湃新闻 / 同花顺 / 163.com / 雪球</div>
+    </div>
+
+    <!-- News 11 -->
+    <div class="news-card" id="n11">
+        <div class="card-header">
+            <span class="emoji-icon">🎢</span>
+            <div>
+                <span class="market-tag market-hk">港股</span>
+                <h3>港股AI上市潮持续：新股成亚洲最具波动性板块</h3>
+            </div>
+        </div>
+        <div class="summary">
+            Bloomberg报道，港股新上市AI公司已成为亚洲最具波动性的权益市场之一。2026年初港交所迎来AI企业密集上市潮：智谱、MiniMax、天数智芯、壁仞科技等在短短数周内相继敲钟，千亿市值集群快速成型。2025年12月至2026年1月，AI产业链公司在港集资49亿美元。光大证券发布"四大AI主线"框架，看好港股TMT估值修复。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">AI企业集资 $49亿</span>
+            <span class="data-chip">恒生科技 +1.42%</span>
+            <span class="data-chip">千亿市值集群成型</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                港股AI板块进入"Token经济学"新叙事阶段，估值逻辑重构中。核心标的池扩大，但波动极大、散户推动特征明显，适合快进快出。关注 <span class="ticker">恒生科技指数</span> 走势。新上市AI股如 <span class="ticker">壁仞科技</span>、<span class="ticker">天数智芯</span> 需密切跟踪解禁期和业绩兑现节奏。
+            </div>
+        </div>
+        <div class="source">信源：Bloomberg / 智通财经 / 投资界 / 雪球</div>
+    </div>
+
+    <!-- A-Share Market Section -->
+    <div class="section-divider"><span>🇨🇳 A股市场</span></div>
+
+    <!-- News 8 -->
+    <div class="news-card" id="n8">
+        <div class="card-header">
+            <span class="emoji-icon">🤖</span>
+            <div>
+                <span class="market-tag market-a">A股</span>
+                <h3>蓝思科技：AI服务器在手订单饱满，人形机器人+机器狗批量出货</h3>
+            </div>
+        </div>
+        <div class="summary">
+            蓝思科技（300433.SZ）4月2日发布投资者关系活动记录，披露AI服务器在手订单饱满，具身智能机器人（人形机器人+机器狗）已实现批量出货。公司横跨消费电子大客户创新、AI服务器、机器人、商业航天四大增长赛道，有望在2026下半年迎来"低基数反转"行情。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">AI服务器订单饱满</span>
+            <span class="data-chip">机器人批量出货</span>
+            <span class="data-chip">四大增长赛道</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                <span class="ticker">蓝思科技（300433）</span> 从消费电子向AI服务器+机器人转型，估值有望重塑。机器人量产出货是关键催化剂。同赛道关注机器人零部件 <span class="ticker">绿的谐波（688017）</span>、<span class="ticker">汇川技术（300124）</span>，AI服务器散热 <span class="ticker">飞荣达（300602）</span>。
+            </div>
+        </div>
+        <div class="source">信源：财联社 / 腾讯新闻 / 雪球</div>
+    </div>
+
+    <!-- News 10 -->
+    <div class="news-card" id="n10">
+        <div class="card-header">
+            <span class="emoji-icon">🦿</span>
+            <div>
+                <span class="market-tag market-a">A股</span>
+                <span class="market-tag market-global">全球</span>
+                <h3>人形机器人2026量产元年：全球出货有望破5万台，价格下探至万元级</h3>
+            </div>
+        </div>
+        <div class="summary">
+            TrendForce预估2026年将是人形机器人商用化关键年，全球出货量有望突破5万台（年增>700%）。国内厂商国产化率已超90%，价格下探至万元级。IT之家梳理出5大具身智能企业值得关注。行业逻辑从"拼炫酷"转向"拼解决问题"，工业场景落地加速。美、中、日各有侧重应用场景。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">出货 >5万台</span>
+            <span class="data-chip">年增 >700%</span>
+            <span class="data-chip">国产化率 >90%</span>
+            <span class="data-chip">价格 万元级</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                机器人板块进入量产放量阶段，核心看零部件放量和成本曲线下降。关注：减速器 <span class="ticker">绿的谐波（688017）</span>、<span class="ticker">双环传动（002472）</span>；伺服电机 <span class="ticker">汇川技术（300124）</span>；传感器 <span class="ticker">柯力传感（603662）</span>；整机 <span class="ticker">优必选-W（09880.HK）</span>。
+            </div>
+        </div>
+        <div class="source">信源：TrendForce / 新华社 / IT之家 / 新浪财经</div>
+    </div>
+
+    <!-- News 9 -->
+    <div class="news-card" id="n9">
+        <div class="card-header">
+            <span class="emoji-icon">💎</span>
+            <div>
+                <span class="market-tag market-global">全球</span>
+                <span class="market-tag market-a">A股</span>
+                <h3>德勤报告：2026全球半导体销售额将创9750亿美元新高</h3>
+            </div>
+        </div>
+        <div class="summary">
+            德勤发布《2026全球半导体行业展望》，预测在AI基础设施热潮推动下，2026年全球半导体销售额将达到9750亿美元创历史新高。但报告同时预警行业正陷入"高利润、低销量"的结构性矛盾——AI芯片利润丰厚但整体出货量增长放缓，消费端需求复苏不及预期。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">全球销售额 $9750亿</span>
+            <span class="data-chip">创历史新高</span>
+            <span class="data-chip">AI基建驱动</span>
+            <span class="data-chip">⚠️ 高利润低销量</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                半导体行业总量创新高但结构分化——AI芯片"赢家通吃"，消费芯片承压。A股关注：AI芯片设计 <span class="ticker">寒武纪（688256）</span>、<span class="ticker">海光信息（688041）</span>；先进封装 <span class="ticker">长电科技（600584）</span>；设备 <span class="ticker">北方华创（002371）</span>。"高利润低销量"预警下消费芯片估值需谨慎。
+            </div>
+        </div>
+        <div class="source">信源：德勤 / 搜狐</div>
+    </div>
+
+    <!-- News 13 -->
+    <div class="news-card" id="n13">
+        <div class="card-header">
+            <span class="emoji-icon">🔬</span>
+            <div>
+                <span class="market-tag market-a">A股</span>
+                <h3>AI引爆光芯片供需缺口，国产替代加速</h3>
+            </div>
+        </div>
+        <div class="summary">
+            国盛证券发布研报指出，AI算力爆发引发光芯片结构性供需缺口。OFC 2026大会聚焦CPO/NPO技术路线和1.6T光模块量产，Intel展示光I/O芯粒技术。国内供应链重构加速：源杰科技实现25G EML芯片量产并追加投资扩产；福晶科技在法拉第旋光片领域开始小批量供货，依托国内稀土产业链优势补位。海光芯正携硅光全系列产品亮相OFC 2026。
+        </div>
+        <div class="key-data">
+            <span class="data-chip">1.6T光模块量产</span>
+            <span class="data-chip">CPO/NPO技术突破</span>
+            <span class="data-chip">国产替代加速</span>
+        </div>
+        <div class="invest-view">
+            <div class="label">📈 投资视角</div>
+            <div class="content">
+                光芯片国产替代是确定性最高的主线之一。核心受益：<span class="ticker">源杰科技（688498）</span> EML芯片量产突破；<span class="ticker">长光华芯（688048）</span> 激光芯片；<span class="ticker">福晶科技（002222）</span> 旋光片；硅光赛道关注 <span class="ticker">腾景科技（688195）</span>。CPO概念持续催化。
+            </div>
+        </div>
+        <div class="source">信源：国盛证券 / ICC / 36氪 / 腾讯云开发者社区</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>📋 本日报共收录 <strong>13</strong> 条 AI 领域投资相关新闻</p>
+        <p>覆盖 A股 · 港股 · 美股 三大市场</p>
+        <p style="margin-top: 12px;">⏰ 生成时间：2026年4月4日 08:00</p>
+        <p class="brand">🪷 由 小荷 自动整理生成</p>
+        <p style="margin-top: 8px; font-size: 0.75rem;">⚠️ 本日报仅供参考，不构成投资建议。投资有风险，入市需谨慎。</p>
+    </div>
+
+</div>
+</body>
+</html>
