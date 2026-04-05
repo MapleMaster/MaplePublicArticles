@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-05</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 60px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            font-size: 1.05em;
+            color: #8b949e;
+        }
+        .header .date-badge {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 20px;
+            background: rgba(56, 139, 253, 0.15);
+            border: 1px solid rgba(56, 139, 253, 0.4);
+            border-radius: 20px;
+            color: #58a6ff;
+            font-size: 0.95em;
+        }
+
+        /* Container */
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* TOC */
+        .toc {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            margin: 32px auto;
+            padding: 24px 28px;
+        }
+        .toc h2 {
+            font-size: 1.15em;
+            color: #f0f6fc;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+        .toc-section { margin-bottom: 12px; }
+        .toc-section h3 {
+            font-size: 0.95em;
+            color: #8b949e;
+            margin-bottom: 6px;
+        }
+        .toc-list {
+            list-style: none;
+            padding-left: 8px;
+        }
+        .toc-list li {
+            padding: 4px 0;
+            font-size: 0.92em;
+        }
+        .toc-list li a {
+            color: #58a6ff;
+            transition: color 0.2s;
+        }
+        .toc-list li a:hover {
+            color: #79c0ff;
+        }
+        .toc-list li .tag {
+            display: inline-block;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 0.78em;
+            margin-left: 6px;
+        }
+        .tag-us { background: rgba(56, 139, 253, 0.15); color: #58a6ff; }
+        .tag-hk { background: rgba(240, 80, 80, 0.15); color: #f07070; }
+        .tag-a { background: rgba(255, 180, 50, 0.15); color: #ffb432; }
+        .tag-global { background: rgba(130, 80, 255, 0.15); color: #a371f7; }
+
+        /* Section */
+        .section-title {
+            font-size: 1.3em;
+            color: #f0f6fc;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #30363d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .emoji { font-size: 1.3em; }
+
+        /* Card */
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            border-color: #58a6ff;
+            box-shadow: 0 0 20px rgba(56, 139, 253, 0.08);
+        }
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .card-emoji { font-size: 1.6em; flex-shrink: 0; margin-top: 2px; }
+        .card-title {
+            font-size: 1.1em;
+            color: #f0f6fc;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        .card-summary {
+            color: #8b949e;
+            font-size: 0.93em;
+            line-height: 1.8;
+            margin-bottom: 14px;
+            padding-left: 4px;
+        }
+        .card-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            background: #21262d;
+            border-radius: 8px;
+            font-size: 0.85em;
+        }
+        .metric-label { color: #8b949e; }
+        .metric-value { color: #f0f6fc; font-weight: 600; }
+        .metric-up { color: #f85149; }
+        .metric-down { color: #3fb950; }
+        .card-invest {
+            background: rgba(56, 139, 253, 0.06);
+            border-left: 3px solid #58a6ff;
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 10px;
+        }
+        .card-invest .label {
+            font-size: 0.82em;
+            color: #58a6ff;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .card-invest .text {
+            font-size: 0.88em;
+            color: #c9d1d9;
+            line-height: 1.7;
+        }
+        .card-source {
+            font-size: 0.8em;
+            color: #484f58;
+            text-align: right;
+            margin-top: 6px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            color: #484f58;
+            font-size: 0.85em;
+            border-top: 1px solid #21262d;
+            margin-top: 48px;
+        }
+        .footer .gen-time { color: #58a6ff; }
+        .disclaimer {
+            max-width: 700px;
+            margin: 16px auto 0;
+            font-size: 0.78em;
+            color: #30363d;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.5em; }
+            .card { padding: 18px; }
+            .card-metrics { gap: 6px; }
+            .metric { font-size: 0.8em; padding: 3px 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🤖 AI 投研日报</h1>
+    <div class="subtitle">📊 人工智能产业链 · 投资视角速览</div>
+    <div class="date-badge">📅 2026年4月5日 · 星期日</div>
+</div>
+
+<div class="container">
+
+    <!-- TOC -->
+    <nav class="toc" id="toc">
+        <h2>📋 目录导航</h2>
+        <div class="toc-section">
+            <h3>🇺🇸 美股市场</h3>
+            <ul class="toc-list">
+                <li><a href="#news-1">💰 OpenAI 完成 1220 亿美元史上最大私募融资</a> <span class="tag tag-us">美股</span></li>
+                <li><a href="#news-2">🔗 英伟达 20 亿美元战略投资 Marvell，NVLink Fusion 生态扩张</a> <span class="tag tag-us">美股</span></li>
+                <li><a href="#news-3">⚡ 英伟达 GTC 2026：Vera Rubin 平台 + Feynman 架构路线图发布</a> <span class="tag tag-us">美股</span></li>
+                <li><a href="#news-4">📈 全球半导体巨头 4 月集体涨价，TI 部分产品涨幅达 85%</a> <span class="tag tag-global">全球</span></li>
+            </ul>
+        </div>
+        <div class="toc-section">
+            <h3>🇭🇰 港股市场</h3>
+            <ul class="toc-list">
+                <li><a href="#news-5">🚀 智谱 & MiniMax 引爆港股 AI IPO 潮，Q1 破发率降至 12.5%</a> <span class="tag tag-hk">港股</span></li>
+                <li><a href="#news-6">🤖 优必选 1.24 亿天价年薪全球招募具身智能首席科学家</a> <span class="tag tag-hk">港股</span></li>
+                <li><a href="#news-7">🎵 傅里叶半导体港股上市首日暴涨超 100%，获 3100 倍超额认购</a> <span class="tag tag-hk">港股</span></li>
+                <li><a href="#news-8">☁️ 阿里云 AI 算力产品最高涨价 34%，4 月 18 日生效</a> <span class="tag tag-hk">港股</span></li>
+            </ul>
+        </div>
+        <div class="toc-section">
+            <h3>🇨🇳 A股市场</h3>
+            <ul class="toc-list">
+                <li><a href="#news-9">🔥 沪指再失 3900 点，AI 方向逆市走强，科创 AI ETF 放量</a> <span class="tag tag-a">A股</span></li>
+                <li><a href="#news-10">🏭 算力需求持续爆发，人工智能 ETF 盘中涨超 1%</a> <span class="tag tag-a">A股</span></li>
+                <li><a href="#news-11">💡 2026 年 4 月 A 股科技产业事件前瞻：多重催化剂待释放</a> <span class="tag tag-a">A股</span></li>
+                <li><a href="#news-12">🌐 AI 智能体加速落地，从聊天走向执行</a> <span class="tag tag-global">全球</span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== 美股 ==================== -->
+    <div class="section-title" id="section-us">
+        <span class="emoji">🇺🇸</span> 美股市场
+    </div>
+
+    <!-- News 1 -->
+    <article class="card" id="news-1">
+        <div class="card-header">
+            <span class="card-emoji">💰</span>
+            <div class="card-title">OpenAI 完成 1220 亿美元史上最大私募融资，估值 8520 亿美元</div>
+        </div>
+        <div class="card-summary">
+            3 月 31 日，OpenAI 宣布完成硅谷有史以来规模最大的一轮私募融资，总额达 1220 亿美元，投后估值 8520 亿美元。本轮由亚马逊、英伟达、软银领投，散户亦贡献约 30 亿美元。OpenAI 月营收已达 20 亿美元，企业端收入占比超 40%，计划整合产品线打造超级应用。据透露，OpenAI 或将在 2026 年下半年提交 IPO 申请，上市估值或冲击 1 万亿美元。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">融资额</span><span class="metric-value">$1220亿</span></span>
+            <span class="metric"><span class="metric-label">估值</span><span class="metric-value">$8520亿</span></span>
+            <span class="metric"><span class="metric-label">月营收</span><span class="metric-value">$20亿</span></span>
+            <span class="metric"><span class="metric-label">IPO估值预期</span><span class="metric-value metric-up">$1万亿</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>NVDA（英伟达）、AMZN（亚马逊）、9984.T（软银）、MSFT（微软）<br>
+                <strong>板块方向：</strong>AI 算力基础设施、云计算、AI 应用层。巨额融资进一步验证 AI 产业「烧钱换规模」逻辑，算力需求确定性最强。IPO 预期将持续催化 AI 概念股情绪。
+            </div>
+        </div>
+        <div class="card-source">信源：界面新闻 · IT之家 · 虎嗅 · 新华网 | 2026-04-01</div>
+    </article>
+
+    <!-- News 2 -->
+    <article class="card" id="news-2">
+        <div class="card-header">
+            <span class="card-emoji">🔗</span>
+            <div class="card-title">英伟达 20 亿美元战略投资 Marvell，NVLink Fusion 生态大扩张</div>
+        </div>
+        <div class="card-summary">
+            4 月 1 日，英伟达宣布向 Marvell Technology 投资 20 亿美元，双方深化 NVLink Fusion 合作，将 Marvell 接入英伟达 AI 工厂与 AI-RAN 生态。Marvell 是全球定制 AI 加速器龙头，客户包括 AWS、微软、Google 等超大规模云厂商。双方还将在硅光子技术上展开合作。Marvell 股价当日大涨。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">投资金额</span><span class="metric-value">$20亿</span></span>
+            <span class="metric"><span class="metric-label">合作方向</span><span class="metric-value">NVLink Fusion</span></span>
+            <span class="metric"><span class="metric-label">MRVL股价</span><span class="metric-value metric-up">大涨</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>NVDA（英伟达）、MRVL（Marvell）、AVGO（博通）、AMD<br>
+                <strong>板块方向：</strong>AI 芯片/ASIC、数据中心互联、硅光子。英伟达通过投资锁定定制芯片供应链，进一步巩固 AI 基础设施护城河。A股映射标的关注光模块、CPO 概念。
+            </div>
+        </div>
+        <div class="card-source">信源：Tom's Hardware · CNBC · TechPowerUp · NVIDIA 官方 | 2026-04-01</div>
+    </article>
+
+    <!-- News 3 -->
+    <article class="card" id="news-3">
+        <div class="card-header">
+            <span class="card-emoji">⚡</span>
+            <div class="card-title">英伟达 GTC 2026 重磅发布：Vera Rubin 平台 + 下一代 Feynman 架构</div>
+        </div>
+        <div class="card-summary">
+            3 月 16-19 日 GTC 2026 大会上，黄仁勋发布 Vera Rubin 全栈 AI 计算平台：Rubin GPU 采用 3nm 工艺，单卡推理算力 50 PFLOPS，性能较 Blackwell 提升 300%。同时公布下一代 Feynman 架构路线图，采用台积电 1.6nm A16 工艺，推理性能为 Blackwell 的 5 倍，能耗降 90%，计划 2028 年量产。此外，英伟达还展示了 Groq 3 LPU 推理专用芯片（收购 Groq 后整合）。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">Rubin工艺</span><span class="metric-value">3nm</span></span>
+            <span class="metric"><span class="metric-label">性能提升</span><span class="metric-value metric-up">300%</span></span>
+            <span class="metric"><span class="metric-label">Feynman工艺</span><span class="metric-value">1.6nm</span></span>
+            <span class="metric"><span class="metric-label">推理成本</span><span class="metric-value metric-down">降10倍</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>NVDA（英伟达）、TSM（台积电）、三星电子（HBM4供应商）<br>
+                <strong>板块方向：</strong>AI 算力芯片、先进制程、HBM 存储。Vera Rubin 2026 量产将拉动新一轮算力投资周期。A股关注中际旭创（光模块）、海光信息（国产 GPU）等。
+            </div>
+        </div>
+        <div class="card-source">信源：NVIDIA 官方 · IDC · 电子创新网 · 新浪科技 | 2026-03-17</div>
+    </article>
+
+    <!-- News 4 -->
+    <article class="card" id="news-4">
+        <div class="card-header">
+            <span class="card-emoji">📈</span>
+            <div class="card-title">全球半导体巨头 4 月集体涨价生效，TI 部分产品涨幅高达 85%</div>
+        </div>
+        <div class="card-summary">
+            4 月 1 日起，德州仪器（TI）、英飞凌、恩智浦、安森美等国际半导体巨头涨价函正式生效，覆盖 MCU、电源管理、功率器件、模拟芯片等核心品类。其中 TI 部分模拟芯片产品涨幅高达 85%，为近一年内第三轮涨价。涨价源于 AI 算力需求爆发叠加上游金属及晶圆成本飙升，行业进入「量价齐升」新阶段。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">TI最高涨幅</span><span class="metric-value metric-up">85%</span></span>
+            <span class="metric"><span class="metric-label">涨价轮次</span><span class="metric-value">年内第3次</span></span>
+            <span class="metric"><span class="metric-label">品类</span><span class="metric-value">MCU/功率/模拟</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>TXN（德州仪器）、IFX（英飞凌）；A股：斯达半导、士兰微、圣邦股份、兆易创新、北京君正<br>
+                <strong>板块方向：</strong>半导体/模拟芯片/功率器件。国际大厂涨价为国产替代打开价格空间，国内模拟芯片龙头直接受益。中证半导体ETF持续吸金。
+            </div>
+        </div>
+        <div class="card-source">信源：财联社 · 第一财经 · 东方财富 · 中国证券报 | 2026-04-01</div>
+    </article>
+
+    <!-- ==================== 港股 ==================== -->
+    <div class="section-title" id="section-hk">
+        <span class="emoji">🇭🇰</span> 港股市场
+    </div>
+
+    <!-- News 5 -->
+    <article class="card" id="news-5">
+        <div class="card-header">
+            <span class="card-emoji">🚀</span>
+            <div class="card-title">智谱 & MiniMax 引爆港股 AI IPO 潮，Q1 新股 40 只破发率仅 12.5%</div>
+        </div>
+        <div class="card-summary">
+            2026 年 Q1 港股迎来 AI 上市潮：智谱 1 月 8 日上市首日市值 578.9 亿港元，MiniMax 次日跟进敲钟。一季度共 40 只新股上市，募资规模超 2025 年全年，上市首日破发率降至仅 12.5%。AI 应用指数单日涨幅超 4%，资金加速回流科技成长赛道。港股 2026 年上半年解禁规模预计超 4500 亿港元，需关注减持压力。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">Q1新股</span><span class="metric-value">40只</span></span>
+            <span class="metric"><span class="metric-label">破发率</span><span class="metric-value metric-down">12.5%</span></span>
+            <span class="metric"><span class="metric-label">智谱首日市值</span><span class="metric-value">578.9亿港元</span></span>
+            <span class="metric"><span class="metric-label">H1解禁</span><span class="metric-value">4500亿+港元</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>智谱AI、MiniMax、天数智芯（均已港股上市）<br>
+                <strong>板块方向：</strong>AI 大模型/AI 应用。港股 AI IPO 集群效应明显，但需警惕上半年解禁潮带来的抛压。投资者可关注已兑现业绩的大模型标的。
+            </div>
+        </div>
+        <div class="card-source">信源：36氪 · 投中网 · 科创板日报 | 2026-04-02</div>
+    </article>
+
+    <!-- News 6 -->
+    <article class="card" id="news-6">
+        <div class="card-header">
+            <span class="card-emoji">🤖</span>
+            <div class="card-title">优必选 1.24 亿元天价年薪全球招募具身智能首席科学家</div>
+        </div>
+        <div class="card-summary">
+            4 月 2 日，「人形机器人第一股」优必选（09880.HK）发布重磅招聘公告，面向全球招募具身智能首席科学家，年薪 1500 万起步、最高 1.24 亿元，不设国籍年龄限制。这一薪酬水平远超国内 AI 顶级科学家普遍水平。背后是公司具身智能业务 2025 年收入暴涨超 2200%、机器人销量激增 358% 的强劲势头。当前股价 102.10 港元，市值约 514 亿港元。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">最高年薪</span><span class="metric-value metric-up">¥1.24亿</span></span>
+            <span class="metric"><span class="metric-label">具身智能收入增速</span><span class="metric-value metric-up">+2200%</span></span>
+            <span class="metric"><span class="metric-label">机器人销量增速</span><span class="metric-value metric-up">+358%</span></span>
+            <span class="metric"><span class="metric-label">市值</span><span class="metric-value">HK$514亿</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>优必选（09880.HK）<br>
+                <strong>板块方向：</strong>人形机器人/具身智能。天价招聘释放公司加速技术突破的强烈信号。人形机器人赛道 2026 年进入量产放量元年，关注整机及上游零部件供应链（减速器、传感器、伺服电机）。
+            </div>
+        </div>
+        <div class="card-source">信源：每日经济新闻 · 界面新闻 · IT之家 | 2026-04-02</div>
+    </article>
+
+    <!-- News 7 -->
+    <article class="card" id="news-7">
+        <div class="card-header">
+            <span class="card-emoji">🎵</span>
+            <div class="card-title">傅里叶半导体港股上市首日暴涨 112%，超 3100 倍超额认购</div>
+        </div>
+        <div class="card-summary">
+            3 月 31 日，上海傅里叶半导体（03625.HK）正式登陆港交所主板，发行价 40.00 港元，首日盘中涨幅超 100%，收盘涨 112.5%。公司是中国功放音频芯片及触觉反馈芯片龙头，产品应用于消费电子及智能汽车，招股获逾 3100 倍超额认购，成为港股「AI 音频芯片第一股」。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">首日涨幅</span><span class="metric-value metric-up">+112.5%</span></span>
+            <span class="metric"><span class="metric-label">超额认购</span><span class="metric-value">3100倍</span></span>
+            <span class="metric"><span class="metric-label">发行价</span><span class="metric-value">HK$40.00</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>傅里叶半导体（03625.HK）<br>
+                <strong>板块方向：</strong>感知芯片/触觉反馈/消费电子芯片。超高认购倍数反映市场对「AI+感知」细分赛道热情高涨。关注 A 股端同类公司艾为电子（688798）的竞合动态。
+            </div>
+        </div>
+        <div class="card-source">信源：新浪财经 · 东方财富 · OFweek | 2026-03-31</div>
+    </article>
+
+    <!-- News 8 -->
+    <article class="card" id="news-8">
+        <div class="card-header">
+            <span class="card-emoji">☁️</span>
+            <div class="card-title">阿里云 AI 算力产品最高涨价 34%，4 月 18 日正式生效</div>
+        </div>
+        <div class="card-summary">
+            3 月 18 日，阿里云官网发布调价公告：因全球 AI 需求爆发、供应链成本显著上涨，AI 算力相关产品上调 5%-30%，并行文件存储（CPFS）等上调约 30%，部分产品最高涨幅 34%。新价格将于 2026 年 4 月 18 日生效。这是阿里云自 2024 年多轮降价以来首次对核心 AI 产品线集中涨价，标志着云算力市场从价格战转向价值竞争。数据显示，2026 年 2 月最后一周中国 AI 模型周调用量达 5.16 万亿 Token，三周增长 127%。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">最高涨幅</span><span class="metric-value metric-up">34%</span></span>
+            <span class="metric"><span class="metric-label">算力卡涨幅</span><span class="metric-value metric-up">5%-30%</span></span>
+            <span class="metric"><span class="metric-label">Token调用量</span><span class="metric-value">5.16万亿/周</span></span>
+            <span class="metric"><span class="metric-label">生效日期</span><span class="metric-value">4月18日</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>阿里巴巴（09988.HK / BABA）、百度（09888.HK）<br>
+                <strong>板块方向：</strong>云计算/AI 算力租赁。算力涨价释放需求远超供给的信号，利好拥有自建算力中心的头部云厂商利润率修复。A 股端关注服务器、液冷、算力租赁概念。
+            </div>
+        </div>
+        <div class="card-source">信源：科创板日报 · IT之家 · 澎湃新闻 | 2026-03-18</div>
+    </article>
+
+    <!-- ==================== A股 ==================== -->
+    <div class="section-title" id="section-a">
+        <span class="emoji">🇨🇳</span> A股市场
+    </div>
+
+    <!-- News 9 -->
+    <article class="card" id="news-9">
+        <div class="card-header">
+            <span class="card-emoji">🔥</span>
+            <div class="card-title">沪指再失 3900 点，AI 方向逆市走强，创业板 AI ETF 放量涨 1%</div>
+        </div>
+        <div class="card-summary">
+            4 月 3 日（清明前最后一个交易日），A 股三大指数高开低走，沪指再度失守 3900 点关口，全市场超 4700 只个股下跌。但 AI 方向成为为数不多的亮点：创业板人工智能 ETF（159363）逆市收涨 1.06%，科技 ETF（515000）同步走强。光通信、电子板块表现活跃，超 60 亿主力资金涌入电子板块。市场短期受地缘局势及假期避险情绪压制。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">沪指</span><span class="metric-value metric-down">失守3900</span></span>
+            <span class="metric"><span class="metric-label">AI ETF 159363</span><span class="metric-value metric-up">+1.06%</span></span>
+            <span class="metric"><span class="metric-label">电子板块主力流入</span><span class="metric-value metric-up">60亿+</span></span>
+            <span class="metric"><span class="metric-label">下跌个股</span><span class="metric-value">4700+</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>创业板AI ETF（159363）、科技ETF（515000）、电子ETF<br>
+                <strong>板块方向：</strong>大盘弱势下 AI 板块资金避风港效应显现。中银证券认为中期 A 股比较优势有望显现，AI 主线或成节后反弹先锋。关注光通信（中际旭创、新易盛）、AI 算力（浪潮信息、紫光股份）。
+            </div>
+        </div>
+        <div class="card-source">信源：财联社 · 金融界 · 东方财富 | 2026-04-03</div>
+    </article>
+
+    <!-- News 10 -->
+    <article class="card" id="news-10">
+        <div class="card-header">
+            <span class="card-emoji">🏭</span>
+            <div class="card-title">AI 算力需求持续爆发，人工智能 ETF 易方达盘中涨超 1%</div>
+        </div>
+        <div class="card-summary">
+            4 月 3 日，人工智能 ETF 易方达（159819）盘中涨超 1%。该 ETF 跟踪科创 AI（950180.SH）指数，涵盖 AI 全产业链 30 只龙头标的。背后是算力需求持续爆发的基本面支撑：全球数据中心 AI 服务器出货加速，国内「东数西算」工程推进提速，AI 推理侧需求增速远超训练侧。科创人工智能 ETF 易方达（588730）同步获得资金关注。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">159819 涨幅</span><span class="metric-value metric-up">+1%+</span></span>
+            <span class="metric"><span class="metric-label">跟踪指数</span><span class="metric-value">科创AI 950180</span></span>
+            <span class="metric"><span class="metric-label">成分股</span><span class="metric-value">30只龙头</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>人工智能 ETF 易方达（159819）、科创人工智能 ETF（588730）<br>
+                <strong>板块方向：</strong>AI 全产业链/算力基础设施。对于看好 AI 长线但不想选个股的投资者，宽基 AI ETF 是配置工具。推理侧需求爆发将利好边缘计算、推理芯片相关标的。
+            </div>
+        </div>
+        <div class="card-source">信源：腾讯新闻 · 金融界基金频道 | 2026-04-03</div>
+    </article>
+
+    <!-- News 11 -->
+    <article class="card" id="news-11">
+        <div class="card-header">
+            <span class="card-emoji">💡</span>
+            <div class="card-title">2026 年 4 月 A 股科技产业事件前瞻：多重催化剂待释放</div>
+        </div>
+        <div class="card-summary">
+            4 月 A 股科技板块迎来多重催化：① 4 月 1 日英飞凌、TI、安森美等半导体涨价生效，利好国产替代；② 4 月 18 日阿里云 AI 算力涨价生效，算力板块关注度提升；③ 多家 AI 企业年报/一季报密集披露期，业绩兑现是关键；④ 海外 AI 大厂资本开支指引持续上调，算力产业链订单确定性强。市场从「概念炒作」全面转向「业绩兑现」。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">4月1日</span><span class="metric-value">半导体涨价生效</span></span>
+            <span class="metric"><span class="metric-label">4月18日</span><span class="metric-value">阿里云涨价生效</span></span>
+            <span class="metric"><span class="metric-label">4月中下旬</span><span class="metric-value">年报/一季报密集期</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>斯达半导、士兰微、圣邦股份（半导体涨价）；浪潮信息、紫光股份（算力）<br>
+                <strong>板块方向：</strong>半导体、AI 算力、光模块。4 月是年报/一季报窗口期，建议围绕「业绩确定性」筛选个股，警惕纯概念标的回调风险。
+            </div>
+        </div>
+        <div class="card-source">信源：新浪新闻 · 东方财富 · 微博 | 2026-04-01</div>
+    </article>
+
+    <!-- News 12 -->
+    <article class="card" id="news-12">
+        <div class="card-header">
+            <span class="card-emoji">🌐</span>
+            <div class="card-title">AI 智能体（Agent）加速落地，2026 年三大趋势：推理、Agent、场景闭环</div>
+        </div>
+        <div class="card-summary">
+            2026 年初，AI 领域从「大模型参数竞赛」全面转向「推理能力、智能体（Agent）与场景闭环」的深度较量。OpenAI GPT-5 系列引入原生「思考」机制；智能体从「聊天者」进化为「执行者」，可自动分析邮件、调用 API、操作软件。业界共识：谁先实现「端云协同 + 小场景闭环」，谁就掌握下一轮产业化红利。腾讯、字节、百度等国内大厂均加速智能体商业化。
+        </div>
+        <div class="card-metrics">
+            <span class="metric"><span class="metric-label">核心趋势</span><span class="metric-value">推理 + Agent + 闭环</span></span>
+            <span class="metric"><span class="metric-label">GPT-5系列</span><span class="metric-value">原生思考机制</span></span>
+            <span class="metric"><span class="metric-label">国内玩家</span><span class="metric-value">腾讯/字节/百度</span></span>
+        </div>
+        <div class="card-invest">
+            <div class="label">📌 投资视角</div>
+            <div class="text">
+                <strong>关联标的：</strong>腾讯（00700.HK）、百度（09888.HK）、科大讯飞（002230）、金山办公（688111）<br>
+                <strong>板块方向：</strong>AI 应用/智能体/SaaS。智能体是 AI 应用落地的关键一环，有望打开 SaaS 类公司的估值天花板。关注拥有场景闭环能力的平台型公司。
+            </div>
+        </div>
+        <div class="card-source">信源：澎湃新闻 · 腾讯云 · 36氪 | 2026-04-03</div>
+    </article>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>🤖 本日报由 <strong style="color:#58a6ff;">小荷 AI 投研助手</strong> 自动生成</p>
+    <p>⏰ 生成时间：<span class="gen-time">2026-04-05 08:00 CST</span></p>
+    <div class="disclaimer">
+        ⚠️ 免责声明：本日报内容仅供参考，不构成任何投资建议。投资有风险，入市需谨慎。信息来源于公开渠道，小荷不对其准确性和完整性做出保证。
+    </div>
+</footer>
+
+</body>
+</html>
