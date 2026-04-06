@@ -256,9 +256,69 @@
     .card { padding: 18px; }
     .container { padding: 0 14px; }
   }
+
+/* === 导航栏样式 (auto-injected) === */
+.daily-nav {
+    max-width: 920px;
+    margin: 16px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.daily-nav a, .daily-nav span.nav-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+}
+.daily-nav a {
+    color: #58a6ff;
+    background: #161b22;
+}
+.daily-nav a:hover {
+    background: #1c2333;
+    border-color: #58a6ff;
+    text-decoration: none;
+}
+.daily-nav span.nav-disabled {
+    color: #484f58;
+    background: #0d1117;
+    border-color: #21262d;
+    cursor: default;
+}
+.daily-nav .nav-home {
+    color: #f0b90b;
+    border-color: rgba(240, 185, 11, 0.3);
+    background: rgba(240, 185, 11, 0.06);
+}
+.daily-nav .nav-home:hover {
+    background: rgba(240, 185, 11, 0.12);
+    border-color: rgba(240, 185, 11, 0.5);
+}
+@media (max-width: 640px) {
+    .daily-nav { flex-wrap: wrap; justify-content: center; }
+    .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+}
+/* === 导航栏样式结束 === */
+
 </style>
 </head>
 <body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-01.html" id="nav-prev">← 2026-04-01</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <a href="AI_Daily_2026-04-03.html" id="nav-next">2026-04-03 →</a>
+</div>
+
 
 <div class="header">
   <h1>🤖📊 AI 投研日报</h1>
@@ -679,6 +739,12 @@
   <p>由 <strong>小荷</strong> 自动整理生成</p>
   <p>生成时间：2026-04-02 08:00 CST</p>
   <p style="margin-top: 8px; font-size: 0.75rem;">Powered by AI · 涨红跌绿 · 投资有风险</p>
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-01.html" id="nav-prev">← 2026-04-01</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <a href="AI_Daily_2026-04-03.html" id="nav-next">2026-04-03 →</a>
 </div>
 
 </body>

@@ -143,9 +143,69 @@
     .header h1 { font-size: 1.5em; }
     .data-grid { grid-template-columns: 1fr; }
   }
+
+/* === 导航栏样式 (auto-injected) === */
+.daily-nav {
+    max-width: 920px;
+    margin: 16px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.daily-nav a, .daily-nav span.nav-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+}
+.daily-nav a {
+    color: #58a6ff;
+    background: #161b22;
+}
+.daily-nav a:hover {
+    background: #1c2333;
+    border-color: #58a6ff;
+    text-decoration: none;
+}
+.daily-nav span.nav-disabled {
+    color: #484f58;
+    background: #0d1117;
+    border-color: #21262d;
+    cursor: default;
+}
+.daily-nav .nav-home {
+    color: #f0b90b;
+    border-color: rgba(240, 185, 11, 0.3);
+    background: rgba(240, 185, 11, 0.06);
+}
+.daily-nav .nav-home:hover {
+    background: rgba(240, 185, 11, 0.12);
+    border-color: rgba(240, 185, 11, 0.5);
+}
+@media (max-width: 640px) {
+    .daily-nav { flex-wrap: wrap; justify-content: center; }
+    .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+}
+/* === 导航栏样式结束 === */
+
 </style>
 </head>
 <body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-03-28.html" id="nav-prev">← 2026-03-28</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <a href="AI_Daily_2026-03-30.html" id="nav-next">2026-03-30 →</a>
+</div>
+
 
 <div class="header">
   <h1>🤖 AI 投研日报</h1>
@@ -428,6 +488,12 @@
   <p>📅 生成时间：2026-03-29 20:00 · 共 13 条新闻</p>
   <p>⚠️ 以上内容由 AI 自动整理，仅供投资参考，不构成投资建议</p>
   <p style="margin-top: 8px;">🍃 小荷 · Maple 的 AI 秘书</p>
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-03-28.html" id="nav-prev">← 2026-03-28</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <a href="AI_Daily_2026-03-30.html" id="nav-next">2026-03-30 →</a>
 </div>
 
 </body>
