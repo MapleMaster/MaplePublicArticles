@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 投研日报 · 2026-04-06</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card-bg: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --red: #f85149;
+    --green: #3fb950;
+    --orange: #d29922;
+    --purple: #bc8cff;
+    --pink: #f778ba;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.7;
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+  .header h1 {
+    font-size: 2em;
+    background: linear-gradient(135deg, var(--accent), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+  }
+  .time-window {
+    text-align: center;
+    padding: 14px 20px;
+    margin: 10px 0 24px;
+    background: linear-gradient(135deg, rgba(88,166,255,0.1), rgba(188,140,255,0.1));
+    border: 1px solid rgba(88,166,255,0.3);
+    border-radius: 10px;
+    font-size: 1em;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .holiday-notice {
+    text-align: center;
+    padding: 12px 20px;
+    margin: 0 0 24px;
+    background: rgba(210,153,34,0.1);
+    border: 1px solid rgba(210,153,34,0.3);
+    border-radius: 10px;
+    font-size: 0.92em;
+    color: var(--orange);
+  }
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin-bottom: 30px;
+  }
+  .toc h2 {
+    font-size: 1.1em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .toc ul { list-style: none; }
+  .toc li { padding: 4px 0; }
+  .toc a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc .section-label {
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    display: block;
+  }
+  .section-title {
+    font-size: 1.4em;
+    padding: 12px 0;
+    margin: 30px 0 16px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .emoji { font-size: 1.2em; }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card-title {
+    font-size: 1.15em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .card-title .icon { flex-shrink: 0; }
+  .card-summary {
+    color: var(--text-secondary);
+    font-size: 0.92em;
+    margin-bottom: 12px;
+    line-height: 1.8;
+  }
+  .card-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .metric {
+    background: rgba(88,166,255,0.08);
+    border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 0.85em;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .metric.up {
+    background: rgba(248,81,73,0.08);
+    border-color: rgba(248,81,73,0.3);
+    color: var(--red);
+  }
+  .metric.down {
+    background: rgba(63,185,80,0.08);
+    border-color: rgba(63,185,80,0.3);
+    color: var(--green);
+  }
+  .card-invest {
+    background: rgba(188,140,255,0.06);
+    border-left: 3px solid var(--purple);
+    padding: 8px 14px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 10px;
+    font-size: 0.88em;
+  }
+  .card-invest strong { color: var(--purple); }
+  .card-source {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .card-source .date-tag {
+    background: rgba(88,166,255,0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .no-news {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-secondary);
+    font-style: italic;
+    background: var(--card-bg);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+  }
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.82em;
+    line-height: 2;
+  }
+  .footer .brand {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    body { padding: 12px; }
+    .header h1 { font-size: 1.5em; }
+    .card { padding: 16px 18px; }
+    .card-metrics { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🤖 AI 投研日报</h1>
+  <div class="subtitle">2026年04月06日 · 星期一 · 清明假期最后一天</div>
+</div>
+
+<div class="time-window">
+  📰 新闻时间窗口：2026-04-05 08:00 ~ 2026-04-06 08:00（过去24小时）
+</div>
+
+<div class="holiday-notice">
+  ⚠️ 今日为清明节假期（4月4日-6日），A股与港股休市，4月7日（周二）恢复开市。以下新闻为假期期间发布的产业动态，供节后开盘参考。
+</div>
+
+<!-- 目录导航 -->
+<div class="toc">
+  <h2>📋 目录导航</h2>
+  <ul>
+    <li class="section-label">🇺🇸 美股 · AI</li>
+    <li>1. <a href="#us1">🔥 OpenAI IPO前夕三高管同步异动，管理层震荡加剧</a></li>
+    <li>2. <a href="#us2">🧬 Anthropic 4亿美元收购Coefficient Bio，进军AI制药</a></li>
+    <li>3. <a href="#us3">📈 AMD CEO苏姿丰：2026年数据中心营收增速将翻倍</a></li>
+    <li>4. <a href="#us4">🛡️ Claude自主攻破FreeBSD内核，AI安全能力引发全球关注</a></li>
+    <li>5. <a href="#us5">🚀 OpenAI预告4月下旬春季发布会，GPT-5传闻再起</a></li>
+    <li class="section-label">🇭🇰 港股 · AI</li>
+    <li>6. <a href="#hk1">💰 港股Q1融资140亿美元创五年新高，AI企业成吸金主角</a></li>
+    <li>7. <a href="#hk2">🏭 宜美智科递表港交所，冲刺"PCB质量控制第一股"</a></li>
+    <li>8. <a href="#hk3">📊 智谱、MiniMax上市以来累计涨超400%，港股AI板块火热</a></li>
+    <li class="section-label">🇨🇳 A股 · AI</li>
+    <li>9. <a href="#cn1">⚡ 节前A股算力板块逆势领涨，存储芯片量价齐升</a></li>
+    <li>10. <a href="#cn2">🏆 2026中国AI芯片Top10出炉：寒武纪4434亿领跑</a></li>
+    <li>11. <a href="#cn3">💡 阿里Qwen3.6-Plus编程盲测全球第二，对标Claude</a></li>
+    <li>12. <a href="#cn4">🔭 4月投资主线：光通信+硅光CPO+存储涨价</a></li>
+  </ul>
+</div>
+
+<!-- ==================== 美股 ==================== -->
+<div class="section-title" id="section-us">
+  <span class="emoji">🇺🇸</span> 美股 · AI
+</div>
+
+<div class="card" id="us1">
+  <div class="card-title">
+    <span class="icon">🔥</span>
+    <span>OpenAI IPO前夕三高管同步异动，管理层震荡加剧</span>
+  </div>
+  <div class="card-summary">
+    OpenAI完成1220亿美元史上最大融资后同一周爆出三位高管同步异动：COO Brad Lightcap转任特别专案（由新CRO Denise Dresser接手营收）、CMO Kate Rouch因癌症治疗请假、AGI应用部门CEO Fidji Simo因神经免疫疾病请假数周（由联合创始人Greg Brockman暂代）。Simo是推动ChatGPT"超级App"战略和"收缩战略"（砍Sora、停成人模式）的核心人物，其缺席对产品执行力影响最大。公司冲击2026年Q4上市，目前ChatGPT周活跃用户近9亿、付费用户超5000万、2025年营收131亿美元。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">估值 $8520亿</span>
+    <span class="metric">融资 $1220亿</span>
+    <span class="metric">周活 9亿用户</span>
+    <span class="metric">营收 $131亿</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>OpenAI IPO前管理层不确定性上升，短期可能压制MSFT（持股49%）估值中枢及AI概念股情绪；但庞大营收基本面依然强劲。关注竞品Anthropic（Claude）和Google（Gemini）的相对受益。
+  </div>
+  <div class="card-source">
+    <span>📰 TechCrunch / Bloomberg / AI邮报</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<div class="card" id="us2">
+  <div class="card-title">
+    <span class="icon">🧬</span>
+    <span>Anthropic 4亿美元收购Coefficient Bio，进军AI制药</span>
+  </div>
+  <div class="card-summary">
+    Anthropic以约4亿美元全股票交易收购了隐身模式的生物技术AI初创公司Coefficient Bio，正式进军AI药物发现领域。Coefficient Bio成立仅8个月，由风投公司Dimension持有半数股权，专注于将AI应用于药物开发和临床策略。这是前沿AI实验室首次大规模跨界生物技术领域，标志着AI+生物科技赛道竞争进入新阶段。Anthropic同时面临Claude在企业API市占率扩张和自身IPO传闻。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">交易额 $4亿</span>
+    <span class="metric">标的成立 8个月</span>
+    <span class="metric">全股票交易</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>AI+生物科技概念升温。美股关注AI制药龙头Recursion (RXRX)、Tempus AI (TEM)；A股关注成都先导、药明康德等CRO/CADD公司；港股关注药明生物(02269)。前沿AI实验室跨界加速"AI for Science"赛道估值重塑。
+  </div>
+  <div class="card-source">
+    <span>📰 TechCrunch / The Information / WinBuzzer</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<div class="card" id="us3">
+  <div class="card-title">
+    <span class="icon">📈</span>
+    <span>AMD CEO苏姿丰：2026年数据中心营收增速将翻倍</span>
+  </div>
+  <div class="card-summary">
+    AMD CEO苏姿丰(Lisa Su)于4月4日表示，公司2026年数据中心营收增速将接近2025年的两倍，核心驱动力为下半年推出的新一代AI加速器Instinct MI450。MI450采用2nm制程、配备更高HBM内存容量，直接挑战英伟达Ruby架构。Erste Group分析师Hans Engel将AMD评级从"持有"上调至"买入"，预计Q1营收同比增长约32%。华尔街共识评级"适度买入"，平均目标价285.16美元（上涨空间31%）。
+  </div>
+  <div class="card-metrics">
+    <span class="metric up">目标价 $285.16</span>
+    <span class="metric up">上涨空间 31%</span>
+    <span class="metric">MI450 2nm制程</span>
+    <span class="metric">Q1增速 ~32%</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>AMD (AMD) 直接受益，MI450对标NVDA Ruby架构，AI芯片双寡头竞争格局强化。A股算力链关注光模块（天孚通信、中际旭创）、PCB（沪电股份）；港股关注中芯国际(00981)先进制程承接能力。
+  </div>
+  <div class="card-source">
+    <span>📰 Edgen.tech / Lisa Su公开讲话</span>
+    <span class="date-tag">📅 2026-04-04</span>
+  </div>
+</div>
+
+<div class="card" id="us4">
+  <div class="card-title">
+    <span class="icon">🛡️</span>
+    <span>Claude自主攻破FreeBSD内核，AI安全能力引发全球关注</span>
+  </div>
+  <div class="card-summary">
+    Anthropic的Claude AI在安全研究员Nicholas Carlini指导下，仅凭一份漏洞公告，在4小时内自主编写了针对FreeBSD内核漏洞CVE-2026-4747的完整远程内核级攻击代码并获取root权限，全程零人工介入。这是已知首次AI自主完成从漏洞分析到内核级RCE exploit的完整链路。该事件属于"MAD Bugs"（4月AI发现漏洞月）计划的一部分。FreeBSD是Netflix、PlayStation、WhatsApp的底层系统，此事件在网络安全社区引发巨大震动。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">耗时 4小时</span>
+    <span class="metric">CVE-2026-4747</span>
+    <span class="metric">内核级RCE</span>
+    <span class="metric">零人工介入</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>AI网络安全攻防能力飞跃提升，利好安全厂商。美股关注CrowdStrike (CRWD)、Palo Alto Networks (PANW)、SentinelOne (S)；A股关注奇安信、深信服、安恒信息。AI安全监管趋严预期升温，也可能加速各国AI监管立法。
+  </div>
+  <div class="card-source">
+    <span>📰 WinBuzzer / OODA Loop / 知乎专栏</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<div class="card" id="us5">
+  <div class="card-title">
+    <span class="icon">🚀</span>
+    <span>OpenAI预告4月下旬春季发布会，GPT-5传闻再起</span>
+  </div>
+  <div class="card-summary">
+    OpenAI官方预告将于4月下旬举办春季发布会。市场传闻新一代旗舰模型GPT-5-Turbo可能亮相，支持超1000万Token长上下文、多模态理解增强，并首秀"实时世界模拟"功能。此前OpenAI已于3月发布GPT-5.4，整合推理、编码、智能体工作流于一体并原生支持100万Token上下文。国内竞品阿里Qwen3.6-Plus、字节Kimi等同步密集更新，全球AI大模型军备竞赛白热化。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">GPT-5-Turbo传闻</span>
+    <span class="metric">1000万Token</span>
+    <span class="metric">4月下旬发布会</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>大模型迭代加速→算力需求持续扩张。利好NVDA（GPU）、MSFT（Azure+OpenAI）、GOOGL（Gemini竞争）；A股算力基建链（浪潮信息、中科曙光）及应用端（科大讯飞、金山办公）关注度提升。
+  </div>
+  <div class="card-source">
+    <span>📰 知乎专栏 / 多课网AI日报 / 哔哩哔哩</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<!-- ==================== 港股 ==================== -->
+<div class="section-title" id="section-hk">
+  <span class="emoji">🇭🇰</span> 港股 · AI
+</div>
+
+<div class="card" id="hk1">
+  <div class="card-title">
+    <span class="icon">💰</span>
+    <span>港股Q1融资140亿美元创五年新高，AI企业成吸金主角</span>
+  </div>
+  <div class="card-summary">
+    据Dealogic及LSEG数据，2026年第一季度香港新股及增发合计募资约140亿美元，为2021年以来最佳首季表现，融资规模超越纳斯达克、纽约及孟买交易所。AI企业是核心推动力，智谱(02513)与MiniMax(00100)上市后累计涨幅均超400%。法国巴黎银行策略主管Jason Lui指出，今年市场涌现纯正AI实验室及AI硬件标的。目前港股IPO排队企业超400家，3月30日单日4家企业集体IPO鸣锣。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">Q1募资 $140亿</span>
+    <span class="metric">五年新高</span>
+    <span class="metric">排队企业 400+</span>
+    <span class="metric up">智谱/MiniMax 涨400%+</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>港股AI上市潮持续，资本虹吸效应明显。直接关注智谱(02513)、MiniMax(00100)、壁仞科技等已上市AI企业；间接利好港交所(00388)交易量及投行收入。A股可关注参股AI企业的上市公司。
+  </div>
+  <div class="card-source">
+    <span>📰 华尔街见闻 / ForexBNB / Dealogic</span>
+    <span class="date-tag">📅 2026-04-06</span>
+  </div>
+</div>
+
+<div class="card" id="hk2">
+  <div class="card-title">
+    <span class="icon">🏭</span>
+    <span>宜美智科递表港交所，冲刺"PCB质量控制第一股"</span>
+  </div>
+  <div class="card-summary">
+    深圳宜美智科技股份有限公司于4月1日向港交所主板递交上市申请，中金公司及招商证券国际担任联席保荐人，冲刺"PCB质量控制第一股"。公司年营收7.6亿元，净利润约2亿元，主营PCB（印制电路板）质量控制解决方案。此前曾筹备A股上市后转战港股（"弃A赴港"）。PCB是AI服务器、算力基础设施的核心组件，下游需求受AI建设拉动持续增长。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">年营收 7.6亿</span>
+    <span class="metric">净利润 ~2亿</span>
+    <span class="metric">保荐人 中金+招商</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>PCB产业链是AI算力硬件的底层配套。A股关注沪电股份、深南电路、兴森科技等PCB龙头；港股关注瑞声科技(02018)。宜美智科若成功上市，将为PCB检测细分赛道提供新的投资标的。
+  </div>
+  <div class="card-source">
+    <span>📰 雷递智驾 / 港交所披露 / 新时空</span>
+    <span class="date-tag">📅 2026-04-04</span>
+  </div>
+</div>
+
+<div class="card" id="hk3">
+  <div class="card-title">
+    <span class="icon">📊</span>
+    <span>智谱、MiniMax上市以来累计涨超400%，港股AI板块火热</span>
+  </div>
+  <div class="card-summary">
+    作为港股AI概念的两大标杆，智谱(02513)和MiniMax(00100)上市以来股价累计涨幅均超过400%，成为2026年港股表现最亮眼的新股。壁仞科技1月上市首日即涨120%成为港股GPU第一股（市值778亿港元）。科技硬件及软件公司在港股IPO中占据主导地位，部分涉及AI、量子计算领域的企业也在评估科创板上市可行性（可获"绿色通道"）。
+  </div>
+  <div class="card-metrics">
+    <span class="metric up">智谱 涨超400%</span>
+    <span class="metric up">MiniMax 涨超400%</span>
+    <span class="metric up">壁仞 首日涨120%</span>
+    <span class="metric">壁仞市值 778亿HK$</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>港股AI上市公司已形成千亿市值集群，投资者可通过港股通参与。关注智谱(02513)、MiniMax(00100)、壁仞科技、天数智芯等纯AI标的。回归科创板传闻也值得跟踪，可能带来跨市场套利机会。
+  </div>
+  <div class="card-source">
+    <span>📰 华尔街见闻 / BNP Paribas / 投资界</span>
+    <span class="date-tag">📅 2026-04-06</span>
+  </div>
+</div>
+
+<!-- ==================== A股 ==================== -->
+<div class="section-title" id="section-cn">
+  <span class="emoji">🇨🇳</span> A股 · AI
+</div>
+
+<div class="card" id="cn1">
+  <div class="card-title">
+    <span class="icon">⚡</span>
+    <span>节前A股算力板块逆势领涨，存储芯片量价齐升</span>
+  </div>
+  <div class="card-summary">
+    清明节前最后交易日（4月3日）沪指跌破3900点，但AI算力板块逆势走强。4月1日"开门红"中科创综指涨3.44%领涨全市场，算力产业链集中修复：智立方20%涨停、天孚通信涨超10%、寒武纪涨近7%。华泰证券指出DRAM合同价环比上涨90%-95%，短缺或持续至2027年；中信证券看好Agent AI时代存算产业趋势，HBM及CUBE产业链高景气。全市场4月前三个交易日23只个股创历史新高，多集中于光通信板块。
+  </div>
+  <div class="card-metrics">
+    <span class="metric up">科创综指 +3.44%</span>
+    <span class="metric up">智立方 涨停20%</span>
+    <span class="metric up">天孚通信 +10%+</span>
+    <span class="metric up">DRAM 涨90-95%</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>算力硬件链+存储涨价是4月核心主线。重点关注：光模块（天孚通信、中际旭创）、存储（佰维存储、江波龙）、先进封装（长电科技、通富微电）、PCB（沪电股份）。节后首个交易日（4月7日）关注资金回流算力板块的情况。
+  </div>
+  <div class="card-source">
+    <span>📰 新华网 / 上海证券报 / 雪球</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<div class="card" id="cn2">
+  <div class="card-title">
+    <span class="icon">🏆</span>
+    <span>2026中国AI芯片Top10出炉：寒武纪4434亿领跑</span>
+  </div>
+  <div class="card-summary">
+    AspenCore发布《2026中国IC设计Fabless100排行榜》AI芯片榜单：寒武纪以4434亿市值居首（2025年营收65亿，首次年度盈利）；摩尔线程2682亿市值列第二（营收增243%）；沐曦2440亿市值第三（营收增121%，具备万卡级训练方案）；壁仞科技778亿港元市值第四（港股GPU第一股，上市首日涨120%）。清微智能C轮融资超20亿刷新AI芯片领域纪录。国产AI芯片全线进入规模化盈利阶段。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">寒武纪 4434亿</span>
+    <span class="metric">摩尔线程 2682亿</span>
+    <span class="metric">沐曦 2440亿</span>
+    <span class="metric up">寒武纪首次年度盈利</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>国产AI芯片格局明朗化。A股直接标的：寒武纪(688256)、海光信息(688041)；关注沐曦（科创板新秀）盈利兑现节奏。港股关注壁仞科技。产业链上游设备端：北方华创、中微公司也间接受益。
+  </div>
+  <div class="card-source">
+    <span>📰 太平洋科技 / AspenCore榜单</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<div class="card" id="cn3">
+  <div class="card-title">
+    <span class="icon">💡</span>
+    <span>阿里Qwen3.6-Plus编程盲测全球第二，对标Claude</span>
+  </div>
+  <div class="card-summary">
+    阿里千问团队于4月2日发布闭源专有模型Qwen3.6-Plus，在LMArena Code Arena编程盲测中以1452分获全球第二，一举超越多款参数量2-3倍的国际竞品，编程能力比肩Claude系列。该模型采用MoE混合专家架构实现"轻量化高效"路线，以远低于竞品的参数量和算力消耗达到全球顶尖水准。模型以闭源形式通过阿里云API向企业客户提供服务，进一步验证了国产大模型在商业化核心赛道的实力。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">Code Arena 1452分</span>
+    <span class="metric">全球第二</span>
+    <span class="metric">MoE架构</span>
+    <span class="metric">闭源企业级</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>国产大模型编程能力跻身全球一线，利好阿里云(09988.HK / BABA)商业化前景。A股关注阿里系合作伙伴及AI编程应用受益标的：浪潮信息（算力）、科大讯飞（应用）、金山办公（AI+办公）。
+  </div>
+  <div class="card-source">
+    <span>📰 新浪科技 / LMArena榜单</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<div class="card" id="cn4">
+  <div class="card-title">
+    <span class="icon">🔭</span>
+    <span>4月投资主线：光通信+硅光CPO+存储涨价</span>
+  </div>
+  <div class="card-summary">
+    《证券市场周刊》梳理4月核心投资方向：① 英伟达3月31日投资Marvell 20亿美元，合作NVLink Fusion+硅光子技术，确立硅光和共封装光学（CPO）为行业核心方向，提升光模块/光芯片/DSP需求确定性。② 存储全面缺货涨价持续，Q2涨幅环比仍相仿，供不应求至少到2027年底。③ 今年以来44只个股翻倍，集中于光通信、特高压导线、AI存储等概念。典型如杭电股份（特高压+光通信）、佰维存储（净利润同比增超9倍）、源杰科技（数据中心业务爆发）。
+  </div>
+  <div class="card-metrics">
+    <span class="metric">NVDA投资Marvell $20亿</span>
+    <span class="metric up">年内44只股翻倍</span>
+    <span class="metric up">佰维存储 净利+900%</span>
+    <span class="metric">存储缺货至2027</span>
+  </div>
+  <div class="card-invest">
+    <strong>💎 投资视角：</strong>节后重点布局方向：光通信（长飞光纤、亨通光电、源杰科技）、硅光CPO（天孚通信、中际旭创）、存储涨价（佰维存储、江波龙）、先进封装（长电科技）。建议关注4月7日开盘后算力资金回流力度。
+  </div>
+  <div class="card-source">
+    <span>📰 证券市场周刊 / 腾讯新闻</span>
+    <span class="date-tag">📅 2026-04-05</span>
+  </div>
+</div>
+
+<!-- 底部 -->
+<div class="footer">
+  <div>
+    本日报由 <span class="brand">🪷 小荷 AI 投研助手</span> 自动生成<br>
+    生成时间：2026-04-06 08:00 CST<br>
+    数据来源：财联社、新华网、上海证券报、TechCrunch、Bloomberg、华尔街见闻 等公开信源<br>
+    <br>
+    ⚠️ <strong>免责声明</strong>：本日报仅供信息参考，不构成任何投资建议。投资有风险，入市需谨慎。<br>
+    所有新闻时效性已严格限定在过去24小时内（2026-04-05 08:00 ~ 2026-04-06 08:00）。
+  </div>
+</div>
+
+</body>
+</html>
