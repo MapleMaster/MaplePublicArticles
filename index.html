@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maple Hub · 数据驾驶舱</title>
+<style>
+  /* ===== Reset & Base ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #050a14;
+    --bg-card: rgba(12, 22, 42, 0.65);
+    --border-glow: rgba(88, 166, 255, 0.15);
+    --accent-blue: #58a6ff;
+    --accent-cyan: #00e5ff;
+    --accent-gold: #f0b90b;
+    --accent-purple: #a78bfa;
+    --accent-pink: #f472b6;
+    --accent-green: #34d399;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ===== Animated Background ===== */
+  .bg-grid {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .bg-grid::before {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background-image:
+      linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
+  }
+
+  /* Floating particles */
+  .particle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: float linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes float {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* Glow orbs */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    z-index: 0;
+    animation: orbDrift 12s ease-in-out infinite alternate;
+  }
+  .orb-1 { width: 400px; height: 400px; background: var(--accent-blue); top: -10%; left: -5%; animation-duration: 14s; }
+  .orb-2 { width: 350px; height: 350px; background: var(--accent-purple); bottom: -10%; right: -5%; animation-duration: 18s; animation-delay: -6s; }
+  .orb-3 { width: 250px; height: 250px; background: var(--accent-cyan); top: 50%; left: 50%; animation-duration: 16s; animation-delay: -3s; }
+
+  @keyframes orbDrift {
+    0%   { transform: translate(0, 0) scale(1); }
+    50%  { transform: translate(30px, -40px) scale(1.1); }
+    100% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  /* ===== Content ===== */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
+  }
+
+  /* ===== Header ===== */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .logo-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(88,166,255,0.15), rgba(167,139,250,0.15));
+    border: 1px solid rgba(88,166,255,0.2);
+    margin-bottom: 20px;
+    font-size: 36px;
+    animation: iconPulse 3s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(88,166,255,0.1);
+  }
+
+  @keyframes iconPulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(88,166,255,0.1); }
+    50%      { box-shadow: 0 0 50px rgba(88,166,255,0.25); }
+  }
+
+  .header h1 {
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    letter-spacing: 0.1em;
+  }
+
+  .header .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(88,166,255,0.08);
+    border: 1px solid rgba(88,166,255,0.15);
+    font-size: 0.82em;
+    color: var(--accent-blue);
+  }
+
+  .time-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.3; }
+  }
+
+  /* ===== Cards ===== */
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 24px;
+    border-radius: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glow);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    transform: translateY(24px);
+    animation: cardAppear 0.6s ease-out forwards;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.15s; }
+  .card:nth-child(2) { animation-delay: 0.25s; }
+  .card:nth-child(3) { animation-delay: 0.35s; }
+  .card:nth-child(4) { animation-delay: 0.45s; }
+  .card:nth-child(5) { animation-delay: 0.55s; }
+
+  @keyframes cardAppear {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Card hover glow line */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--card-accent);
+    opacity: 0;
+    transition: opacity 0.35s;
+    border-radius: 3px 0 0 3px;
+  }
+
+  .card:hover::before,
+  .card:active::before {
+    opacity: 1;
+  }
+
+  /* Card hover shimmer */
+  .card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, var(--card-accent-bg) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+
+  .card:hover::after,
+  .card:active::after {
+    opacity: 1;
+  }
+
+  .card:hover {
+    border-color: var(--card-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px -12px var(--card-accent-bg);
+  }
+
+  /* Active/tap state for mobile */
+  .card:active {
+    transform: scale(0.98);
+    transition-duration: 0.1s;
+  }
+
+  /* Card icon */
+  .card-icon {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: var(--card-accent-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.35s, box-shadow 0.35s;
+  }
+
+  .card:hover .card-icon {
+    transform: scale(1.08) rotate(-3deg);
+    box-shadow: 0 0 20px var(--card-accent-bg);
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-title {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-bottom: 4px;
+    transition: color 0.3s;
+  }
+
+  .card:hover .card-title {
+    color: var(--card-accent);
+  }
+
+  .card-desc {
+    font-size: 0.82em;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .card-arrow {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    font-size: 1.2em;
+    transition: transform 0.3s, color 0.3s;
+  }
+
+  .card:hover .card-arrow {
+    transform: translateX(4px);
+    color: var(--card-accent);
+  }
+
+  /* Card tag */
+  .card-tag {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    z-index: 2;
+    font-size: 0.65em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Per-card accent colors */
+  .card[data-accent="blue"]   { --card-accent: var(--accent-blue);   --card-accent-bg: rgba(88,166,255,0.1); }
+  .card[data-accent="cyan"]   { --card-accent: var(--accent-cyan);   --card-accent-bg: rgba(0,229,255,0.1); }
+  .card[data-accent="gold"]   { --card-accent: var(--accent-gold);   --card-accent-bg: rgba(240,185,11,0.1); }
+  .card[data-accent="purple"] { --card-accent: var(--accent-purple); --card-accent-bg: rgba(167,139,250,0.1); }
+  .card[data-accent="pink"]   { --card-accent: var(--accent-pink);   --card-accent-bg: rgba(244,114,182,0.1); }
+  .card[data-accent="green"]  { --card-accent: var(--accent-green);  --card-accent-bg: rgba(52,211,153,0.1); }
+
+  /* Sections */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 36px 0 14px;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .section-label:first-child { margin-top: 0; animation-delay: 0.05s; }
+  .section-label:nth-of-type(2) { animation-delay: 0.3s; }
+  .section-label:nth-of-type(3) { animation-delay: 0.5s; }
+
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-glow), transparent);
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(88,166,255,0.08);
+    animation: fadeIn 1s ease-out 0.8s forwards;
+    opacity: 0;
+  }
+
+  .footer p {
+    font-size: 0.78em;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .footer .maple {
+    color: var(--accent-gold);
+  }
+
+  .footer .lotus {
+    color: var(--accent-pink);
+  }
+
+  /* ===== Scan line effect ===== */
+  .scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    z-index: 100;
+    opacity: 0.4;
+    animation: scanDown 6s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes scanDown {
+    0%   { top: -2px; opacity: 0; }
+    5%   { opacity: 0.4; }
+    95%  { opacity: 0.4; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  /* ===== External link badge ===== */
+  .badge-external {
+    background: rgba(88,166,255,0.12);
+    color: var(--accent-blue);
+    border: 1px solid rgba(88,166,255,0.2);
+  }
+
+  .badge-live {
+    background: rgba(52,211,153,0.12);
+    color: var(--accent-green);
+    border: 1px solid rgba(52,211,153,0.2);
+    animation: tagPulse 2s ease-in-out infinite;
+  }
+
+  .badge-love {
+    background: rgba(244,114,182,0.12);
+    color: var(--accent-pink);
+    border: 1px solid rgba(244,114,182,0.2);
+  }
+
+  @keyframes tagPulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.6; }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 480px) {
+    .container { padding: 40px 16px 60px; }
+    .header h1 { font-size: 1.6em; }
+    .card { padding: 18px 16px; gap: 14px; }
+    .card-icon { width: 44px; height: 44px; font-size: 20px; border-radius: 12px; }
+    .card-title { font-size: 0.95em; }
+    .card-desc { font-size: 0.78em; }
+    .logo-icon { width: 60px; height: 60px; font-size: 30px; }
+    .orb { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background Effects -->
+<div class="bg-grid"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="scanline"></div>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-icon">🍁</div>
+    <h1>Maple Hub</h1>
+    <div class="subtitle">数据驾驶舱 · CONTROL CENTER</div>
+    <div class="time-badge">
+      <span class="dot"></span>
+      <span id="clock">系统在线</span>
+    </div>
+  </div>
+
+  <!-- Card List -->
+  <div class="card-list">
+
+    <!-- Section: 投研工具 -->
+    <div class="section-label">📡 投研工具</div>
+
+    <a class="card" data-accent="blue" href="https://maplemaster.github.io/MaplePublicArticles/daily-news/stock-invest/index.html">
+      <div class="card-icon">📰</div>
+      <div class="card-body">
+        <div class="card-title">AI 投研日报</div>
+        <div class="card-desc">每日 AI 产业新闻精选 · 三大市场全覆盖</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card" data-accent="cyan" href="https://maplemaster.github.io/MaplePublicArticles/stock-monitor/index.html">
+      <div class="card-icon">📊</div>
+      <div class="card-body">
+        <div class="card-title">AI 股票行情实时监控</div>
+        <div class="card-desc">自选股实时追踪 · 关键指标一目了然</div>
+      </div>
+      <span class="card-tag badge-live">LIVE</span>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <!-- Section: 实时股价 -->
+    <div class="section-label">💹 实时股价</div>
+
+    <a class="card" data-accent="gold" href="https://www.tossinvest.com/stocks/A000660/order" target="_blank" rel="noopener">
+      <div class="card-icon">🇰🇷</div>
+      <div class="card-body">
+        <div class="card-title">SK 海力士 · 실시간</div>
+        <div class="card-desc">KRX: 000660 · HBM 存储龙头</div>
+      </div>
+      <span class="card-tag badge-external">外部</span>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <a class="card" data-accent="purple" href="https://www.tossinvest.com/stocks/A005930/order" target="_blank" rel="noopener">
+      <div class="card-icon">🇰🇷</div>
+      <div class="card-body">
+        <div class="card-title">三星电子 · 실시간</div>
+        <div class="card-desc">KRX: 005930 · 半导体帝国</div>
+      </div>
+      <span class="card-tag badge-external">外部</span>
+      <div class="card-arrow">›</div>
+    </a>
+
+    <!-- Section: 私人空间 -->
+    <div class="section-label">💎 私人空间</div>
+
+    <a class="card" data-accent="pink" href="https://docs.qq.com/aio/DT3F6aEJjdEhGdVZK?from_wiki_space=1" target="_blank" rel="noopener">
+      <div class="card-icon">💕</div>
+      <div class="card-body">
+        <div class="card-title">亲爱的阿兰</div>
+        <div class="card-desc">给最特别的你 ♡</div>
+      </div>
+      <span class="card-tag badge-love">LOVE</span>
+      <div class="card-arrow">›</div>
+    </a>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>
+      <span class="maple">🍁 Maple Hub</span> · Powered by <span class="lotus">🪷 小荷</span><br>
+      Built with ♡ for a better investment journey
+    </p>
+  </div>
+
+</div>
+
+<!-- Particles -->
+<script>
+(function() {
+  const colors = ['#58a6ff','#00e5ff','#a78bfa','#f0b90b','#f472b6','#34d399'];
+  const container = document.body;
+  function createParticle() {
+    const el = document.createElement('div');
+    el.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const duration = Math.random() * 12 + 8;
+    const left = Math.random() * 100;
+    el.style.cssText = `
+      width:${size}px; height:${size}px;
+      background:${color};
+      box-shadow: 0 0 ${size*3}px ${color};
+      left:${left}%;
+      animation-duration:${duration}s;
+      animation-delay:${Math.random()*duration}s;
+    `;
+    container.appendChild(el);
+    setTimeout(() => el.remove(), (duration + 2) * 1000);
+  }
+  // Initial burst
+  for(let i = 0; i < 15; i++) setTimeout(createParticle, i * 200);
+  // Continuous
+  setInterval(createParticle, 800);
+})();
+
+// Live clock
+(function() {
+  const el = document.getElementById('clock');
+  function tick() {
+    const now = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    el.textContent = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
+</body>
+</html>
