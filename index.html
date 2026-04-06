@@ -43,6 +43,22 @@
     overflow: hidden;
   }
 
+  /* Background image */
+  .bg-img {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: url('assets/Dark_futuristic_financial_trad_2026-04-06T07-16-33.png') center top / cover no-repeat;
+    opacity: 0.18;
+  }
+  .bg-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg) 85%);
+  }
+
   /* Flowing mesh gradient */
   .mesh {
     position: absolute;
@@ -366,57 +382,6 @@
   .c-purple { --accent: var(--purple); --glow: rgba(167,139,250,0.06); --icon-bg: rgba(167,139,250,0.1); }
   .c-pink   { --accent: var(--pink);   --glow: rgba(244,114,182,0.06); --icon-bg: rgba(244,114,182,0.1); }
 
-  /* ===== Chart Block ===== */
-  .chart-block {
-    margin-bottom: 10px;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--card-bg);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    opacity: 0;
-    animation: cardIn 0.55s var(--ease-out-quint) forwards;
-  }
-  .chart-block:nth-of-type(1) { animation-delay: 0.3s; }
-  .chart-block:nth-of-type(2) { animation-delay: 0.4s; }
-
-  .chart-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 14px;
-  }
-  .chart-header .stock-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .chart-header .stock-info .flag { font-size: 16px; }
-  .chart-header .stock-info .name {
-    font-size: 0.85em;
-    font-weight: 600;
-  }
-  .chart-header .stock-info .code {
-    font-size: 0.65em;
-    color: var(--text-dim);
-  }
-  .chart-header .toss-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px 10px;
-    border-radius: 8px;
-    font-size: 0.62em;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--accent);
-    background: var(--glow);
-    border: 1px solid rgba(255,255,255,0.06);
-    transition: transform 120ms ease;
-  }
-  .toss-btn:active { transform: scale(0.95); }
-
   /* ===== Footer ===== */
   .footer {
     text-align: center;
@@ -447,6 +412,7 @@
 <body>
 
 <!-- Background -->
+<div class="bg-img"></div>
 <div class="bg-wrap">
   <div class="mesh mesh-1"></div>
   <div class="mesh mesh-2"></div>
@@ -518,34 +484,23 @@
     <span class="ln"></span>
   </div>
 
-  <!-- SK 海力士 -->
-  <div class="chart-block c-gold">
-    <div class="chart-header">
-      <div class="stock-info">
-        <span class="flag">🇰🇷</span>
-        <span class="name">SK 海力士</span>
-        <span class="code">000660.KS · HBM 龙头</span>
+  <div class="cards">
+    <a class="card c-gold" href="https://www.tossinvest.com/stocks/A000660/order" target="_blank" rel="noopener">
+      <div class="card-icon">🇰🇷</div>
+      <div class="card-body">
+        <div class="card-title">SK 海力士 <span style="font-size:0.72em;color:var(--text-dim)">000660.KS</span></div>
+        <div class="card-desc">HBM 存储龙头 · Toss 실시간 시세</div>
       </div>
-      <a class="toss-btn" href="https://www.tossinvest.com/stocks/A000660/order" target="_blank" rel="noopener">Toss 下单 ›</a>
-    </div>
-    <iframe style="width:100%;height:280px;border:none;display:block;"
-      src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=zh_CN#%7B%22symbol%22%3A%22KRX%3A000660%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22dateRange%22%3A%226M%22%2C%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22autosize%22%3Atrue%2C%22largeChartUrl%22%3A%22https%3A%2F%2Fcn.tradingview.com%2Fchart%2F%3Fsymbol%3DKRX%253A000660%22%7D"
-      allowtransparency="true" frameborder="0"></iframe>
-  </div>
-
-  <!-- 三星电子 -->
-  <div class="chart-block c-purple">
-    <div class="chart-header">
-      <div class="stock-info">
-        <span class="flag">🇰🇷</span>
-        <span class="name">三星电子</span>
-        <span class="code">005930.KS · 半导体帝国</span>
+      <span class="arrow">›</span>
+    </a>
+    <a class="card c-purple" href="https://www.tossinvest.com/stocks/A005930/order" target="_blank" rel="noopener">
+      <div class="card-icon">🇰🇷</div>
+      <div class="card-body">
+        <div class="card-title">三星电子 <span style="font-size:0.72em;color:var(--text-dim)">005930.KS</span></div>
+        <div class="card-desc">半导体帝国 · Toss 실시간 시세</div>
       </div>
-      <a class="toss-btn" href="https://www.tossinvest.com/stocks/A005930/order" target="_blank" rel="noopener">Toss 下单 ›</a>
-    </div>
-    <iframe style="width:100%;height:280px;border:none;display:block;"
-      src="https://s.tradingview.com/embed-widget/mini-symbol-overview/?locale=zh_CN#%7B%22symbol%22%3A%22KRX%3A005930%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22dateRange%22%3A%226M%22%2C%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22autosize%22%3Atrue%2C%22largeChartUrl%22%3A%22https%3A%2F%2Fcn.tradingview.com%2Fchart%2F%3Fsymbol%3DKRX%253A005930%22%7D"
-      allowtransparency="true" frameborder="0"></iframe>
+      <span class="arrow">›</span>
+    </a>
   </div>
 
   <footer class="footer">
