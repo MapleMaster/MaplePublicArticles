@@ -60,14 +60,24 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: url('assets/Dark_futuristic_financial_trad_2026-04-06T07-16-33.png') center top / cover no-repeat;
-    opacity: 0.18;
+    background: url('assets/Epic_dark_cyberpunk_cityscape__2026-04-06T07-43-27.png') center top / cover no-repeat;
+    opacity: 0.35;
+    animation: bgFadeIn 1.5s ease-out;
+  }
+  @keyframes bgFadeIn {
+    from { opacity: 0; transform: scale(1.05); }
+    to   { opacity: 0.35; transform: scale(1); }
   }
   .bg-img::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 0%, var(--bg) 85%);
+    background: linear-gradient(
+      to bottom,
+      rgba(3,7,18,0.3) 0%,
+      rgba(3,7,18,0.5) 40%,
+      var(--bg) 75%
+    );
   }
 
   /* Flowing mesh gradient */
