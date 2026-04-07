@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-07</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 40px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 40px 24px 28px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2em;
+            color: #f0f6fc;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+        }
+        .header .date {
+            font-size: 1.1em;
+            color: #8b949e;
+        }
+        .header .brand {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 6px 18px;
+            background: rgba(56, 139, 253, 0.15);
+            border: 1px solid rgba(56, 139, 253, 0.4);
+            border-radius: 20px;
+            color: #58a6ff;
+            font-size: 0.9em;
+        }
+
+        .time-window {
+            max-width: 800px;
+            margin: 20px auto 0;
+            padding: 12px 20px;
+            background: rgba(240, 185, 11, 0.08);
+            border: 1px solid rgba(240, 185, 11, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            color: #f0b90b;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .toc {
+            margin: 28px 0;
+            padding: 20px 24px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+        }
+        .toc h3 {
+            color: #f0f6fc;
+            font-size: 1.05em;
+            margin-bottom: 12px;
+        }
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+        }
+        .toc li { font-size: 0.9em; }
+        .toc a {
+            color: #8b949e;
+            transition: color 0.2s;
+        }
+        .toc a:hover { color: #58a6ff; }
+
+        .section-title {
+            font-size: 1.35em;
+            color: #f0f6fc;
+            margin: 36px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #21262d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .flag {
+            font-size: 0.7em;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .flag-us { background: rgba(56, 139, 253, 0.15); color: #58a6ff; }
+        .flag-hk { background: rgba(240, 185, 11, 0.15); color: #f0b90b; }
+        .flag-a { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+        .flag-global { background: rgba(139, 233, 253, 0.15); color: #8be9fd; }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 22px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #484f58; }
+        .card-title {
+            font-size: 1.08em;
+            font-weight: 700;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .card-summary {
+            font-size: 0.93em;
+            color: #b1bac4;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .card-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .metric {
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.82em;
+            font-weight: 600;
+        }
+        .metric-up { background: rgba(248, 81, 73, 0.12); color: #f85149; }
+        .metric-down { background: rgba(63, 185, 80, 0.12); color: #3fb950; }
+        .metric-neutral { background: rgba(139, 148, 158, 0.12); color: #8b949e; }
+        .metric-highlight { background: rgba(240, 185, 11, 0.12); color: #f0b90b; }
+
+        .card-invest {
+            padding: 10px 14px;
+            background: rgba(56, 139, 253, 0.06);
+            border: 1px solid rgba(56, 139, 253, 0.15);
+            border-radius: 8px;
+            font-size: 0.88em;
+            color: #79c0ff;
+            margin-bottom: 8px;
+        }
+        .card-invest strong { color: #58a6ff; }
+
+        .card-source {
+            font-size: 0.8em;
+            color: #6e7681;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .card-source .pub-date {
+            color: #f0b90b;
+            font-weight: 600;
+        }
+
+        .market-note {
+            padding: 16px 20px;
+            background: rgba(240, 185, 11, 0.06);
+            border: 1px dashed rgba(240, 185, 11, 0.3);
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            color: #f0b90b;
+            font-size: 0.92em;
+        }
+
+        .no-news {
+            padding: 16px 20px;
+            background: rgba(139, 148, 158, 0.06);
+            border: 1px dashed rgba(139, 148, 158, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            color: #8b949e;
+            font-size: 0.9em;
+            margin: 14px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 28px 20px;
+            border-top: 1px solid #21262d;
+            color: #8b949e;
+            font-size: 0.82em;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.4em; }
+            .toc ul { grid-template-columns: 1fr; }
+            .card { padding: 16px; }
+            .card-metrics { gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-06.html">&#8592; 2026-04-06</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 &#8594;</span>
+</div>
+
+<div class="header">
+    <h1>&#129302; AI 投研日报</h1>
+    <div class="date">2026年4月7日 · 星期二</div>
+    <div class="brand">&#127802; 小荷 AI 投研助手</div>
+</div>
+
+<div class="container">
+
+    <div class="time-window">
+        &#128240; 新闻时间窗口：2026-04-06 08:00 ~ 2026-04-07 08:00（过去24小时）
+    </div>
+
+    <div class="market-note">
+        &#128197; <strong>清明节后首个交易日</strong>：A股/港股4月4-6日休市，今日（4月7日）恢复正常交易。央行8000亿买断式逆回购今日落地。
+    </div>
+
+    <!-- 目录导航 -->
+    <div class="toc">
+        <h3>&#128221; 目录导航</h3>
+        <ul>
+            <li><a href="#us">&#127482;&#127480; 美股 AI 动态</a></li>
+            <li><a href="#hk">&#127469;&#127472; 港股 AI 动态</a></li>
+            <li><a href="#a">&#127464;&#127475; A股 AI 动态</a></li>
+            <li><a href="#global">&#127758; 产业 / 融资 / 大模型</a></li>
+        </ul>
+    </div>
+
+    <!-- ==================== 美股板块 ==================== -->
+    <h2 class="section-title" id="us">&#127482;&#127480; 美股 AI 动态 <span class="flag flag-us">US</span></h2>
+
+    <!-- 美股 新闻1 -->
+    <div class="card">
+        <div class="card-title">&#128165; OpenAI IPO前夜「内爆」：CFO公开反对上市，CEO与高管团队分裂</div>
+        <div class="card-summary">
+            4月6日据钛媒体等多家媒体报道，OpenAI CEO奥特曼力推2026 Q4 IPO，但CFO萨拉·弗莱尔明确反对，称公司治理结构未达标、2026年预亏140亿美元、未来五年6000亿美元资本开支不可持续。同时4月4日三名核心高管同日变动：COO莱特卡普被调任"特别项目"、应用CEO菲吉·西莫因神经免疫疾病休假、CMO凯特·鲁奇因癌症治疗离职。亚马逊350亿美元投资含对赌条款，倒逼2028年底前上市。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-highlight">估值 $8520亿</span>
+            <span class="metric metric-highlight">融资 $1220亿</span>
+            <span class="metric metric-down">预亏 $140亿/年</span>
+            <span class="metric metric-neutral">3名高管同日离岗</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>IPO不确定性加剧 → 利空一级市场OPENAI关联投资方（软银9984.T、微软MSFT）。若IPO推迟至2027+，二级市场AI估值锚或重置。关注竞对Anthropic窗口期。
+        </div>
+        <div class="card-source">
+            <span>来源：钛媒体、华尔街见闻、彭博社</span>
+            <span class="pub-date">&#128197; 2026-04-06</span>
+        </div>
+    </div>
+
+    <!-- 美股 新闻2 -->
+    <div class="card">
+        <div class="card-title">&#128640; 花旗看好AMD服务器CPU份额持续攀升，NVIDIA Rubin GPU或削减25%产能</div>
+        <div class="card-summary">
+            4月6日Citi发布报告：AMD服务器CPU市场份额升至41.3%（前季39%），Intel降至58.7%。AMD和Intel均已通知客户4月起涨价，Citi小幅上调AMD 2026年EPS至$6.38。同时KeyBanc指出，因SK Hynix和Micron的HBM供应短缺，NVIDIA下一代Rubin GPU 2026年产量或从200万削减至约150万台。黄仁勋称Vera Rubin平台已"全面生产"，性能比Blackwell Ultra快3.3倍。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">AMD CPU份额 41.3%</span>
+            <span class="metric metric-down">NVDA Rubin减产25%</span>
+            <span class="metric metric-highlight">云厂商CapEx +69% YoY</span>
+            <span class="metric metric-neutral">NVDA目标价 $275</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>AMD(AMD) CPU份额突破40%大关是里程碑 → 利多AMD及国产替代链。NVDA Rubin减产可能短期收紧供应反而支撑溢价。HBM短缺利好SK海力士(000660.KS)、三星。关注A股算力链光模块标的（中际旭创、新易盛）。
+        </div>
+        <div class="card-source">
+            <span>来源：Citi Research、KeyBanc、CoinAlertNews</span>
+            <span class="pub-date">&#128197; 2026-04-06</span>
+        </div>
+    </div>
+
+    <!-- 美股 新闻3 -->
+    <div class="card">
+        <div class="card-title">&#129302; Anthropic $4亿收购Coefficient Bio，AI制药赛道再添重磅玩家</div>
+        <div class="card-summary">
+            据TechCrunch等多家媒体4月3-6日持续报道，Anthropic以约4亿美元股票收购纽约隐身生物科技初创Coefficient Bio，进军AI驱动药物发现领域。此前Anthropic已推出面向生物制药专业人士的Claude Life Sciences模型。Coefficient Bio由风投Dimension部分持有。此举标志着AI大模型公司从通用智能向垂直行业（生命科学）的战略延伸。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-highlight">收购价 $4亿</span>
+            <span class="metric metric-neutral">股票交易</span>
+            <span class="metric metric-up">AI制药赛道</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>AI+制药赛道升温 → 关注CRO/CDMO标的（药明康德、康龙化成）以及AI制药概念股（晶泰科技2228.HK、英矽智能）。大模型厂进军垂直行业验证AI商业化广度。
+        </div>
+        <div class="card-source">
+            <span>来源：TechCrunch、FierceBiotech、RD World</span>
+            <span class="pub-date">&#128197; 2026-04-03~06</span>
+        </div>
+    </div>
+
+    <!-- 美股 新闻4 -->
+    <div class="card">
+        <div class="card-title">&#128214; 分析师4月精选AI中盘股：SoundHound AI获强烈买入，语音AI赛道看涨</div>
+        <div class="card-summary">
+            4月4-6日Invezz、TipRanks等发布4月AI股票精选：SoundHound AI(SOUN)获分析师"强烈买入"共识评级（4买1持有），语音AI技术在消费场景快速落地；Rezolve AI(RZLV)聚焦AI商务科技；Navan(NAVN)差旅AI管理。AI从概念炒作转向真实商业应用变现，语音交互赛道获分析师集体看多。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">SOUN 强烈买入</span>
+            <span class="metric metric-neutral">语音AI落地加速</span>
+            <span class="metric metric-highlight">AI商业化变现</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>SoundHound AI(SOUN)、Rezolve AI(RZLV) → 中小盘AI应用股。语音AI方向国内关注科大讯飞(002230)、云知声等。AI从基建投资转向应用端变现是2026核心主线。
+        </div>
+        <div class="card-source">
+            <span>来源：Invezz、TipRanks、MSN</span>
+            <span class="pub-date">&#128197; 2026-04-04~06</span>
+        </div>
+    </div>
+
+    <!-- ==================== 港股板块 ==================== -->
+    <h2 class="section-title" id="hk">&#127469;&#127472; 港股 AI 动态 <span class="flag flag-hk">HK</span></h2>
+
+    <!-- 港股 新闻1 -->
+    <div class="card">
+        <div class="card-title">&#128293; 港股Q1融资$140亿创五年新高，AI企业主导上市潮</div>
+        <div class="card-summary">
+            4月5日据Dealogic数据，港股2026年Q1融资规模达约140亿美元，创2021年以来五年新高，AI企业是核心驱动。智谱（3月上市首日涨超35%）与MiniMax等AI独角兽集中赴港，重新确立香港作为中国企业境外上市首选地。Q2预计还有多家AI公司跟进，包括灵心巧手等具身智能企业已启动IPO程序。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">Q1融资 $140亿</span>
+            <span class="metric metric-highlight">五年新高</span>
+            <span class="metric metric-up">智谱上市首日 +35%</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>港股AI板块估值重构 → 关注已上市AI新股（智谱、MiniMax-W、迅策3317.HK）及待上市标的。港交所(0388.HK)作为平台型受益方值得关注。AI IPO潮带动投行及券商股。
+        </div>
+        <div class="card-source">
+            <span>来源：Dealogic、搜狐财经、投资界</span>
+            <span class="pub-date">&#128197; 2026-04-05</span>
+        </div>
+    </div>
+
+    <!-- 港股 新闻2 -->
+    <div class="card">
+        <div class="card-title">&#128161; 智谱上市后首份业绩亮眼：2025年收入7.24亿元同比增132%</div>
+        <div class="card-summary">
+            4月1日消息，智谱公布上市后首份年度业绩：2025全年收入7.24亿元人民币，同比增长132%，超市场预期。消息带动智谱股价盘中大涨超35%，同时MiniMax-W跟涨17.27%。港股AI应用股板块整体走强。迅策(3317.HK)同日大涨11%，创上市以来新高。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">收入 ¥7.24亿 +132%</span>
+            <span class="metric metric-up">智谱盘中 +35%</span>
+            <span class="metric metric-up">MiniMax-W +17.27%</span>
+            <span class="metric metric-up">迅策 +11%</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>智谱业绩验证AI大模型营收爆发力 → 利好港股AI应用板块整体估值提升。关注GLM-5系列后续产品节奏和客户转化率。MiniMax-W(3610.HK)、百度(9888.HK)同赛道标的。
+        </div>
+        <div class="card-source">
+            <span>来源：中证网、格隆汇</span>
+            <span class="pub-date">&#128197; 2026-04-01</span>
+        </div>
+    </div>
+
+    <!-- 港股 新闻3 -->
+    <div class="card">
+        <div class="card-title">&#9889; 港股通互联网ETF集中发行，算力+AI应用核心标的一键打包</div>
+        <div class="card-summary">
+            4月2-3日，工银瑞信中证港股通互联网ETF(159179)等多只港股科技ETF密集发行。易方达港股通信息技术ETF(159196)主打"AI算力+AI应用"核心标的。分析指出全球AI产业正从模型创新转向广泛商业落地，相关投资工具备受市场追捧。4月定档发行基金近90只，增量资金有望入市。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-highlight">4月新发基金近90只</span>
+            <span class="metric metric-neutral">ETF密集布局AI赛道</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>被动资金持续流入港股AI板块 → 支撑科技龙头估值。关注港股通标的：腾讯(0700.HK)、阿里(9988.HK)、美团(3690.HK)及AI新贵。
+        </div>
+        <div class="card-source">
+            <span>来源：东方财富、每日经济新闻</span>
+            <span class="pub-date">&#128197; 2026-04-02~03</span>
+        </div>
+    </div>
+
+    <!-- ==================== A股板块 ==================== -->
+    <h2 class="section-title" id="a">&#127464;&#127475; A股 AI 动态 <span class="flag flag-a">A股</span></h2>
+
+    <!-- A股 新闻1 -->
+    <div class="card">
+        <div class="card-title">&#128176; 央行8000亿逆回购今日落地，节后A股流动性有保障</div>
+        <div class="card-summary">
+            4月3日央行公告：4月7日（今日）开展8000亿元3个月期买断式逆回购操作。因4月8日有1.1万亿元同类操作到期，净回笼3000亿元（连续两月缩量）。分析指出这是"精准对冲+稳预期"操作，非大水漫灌。清明节前A股缩量下跌，沪指失守3900点，4746只个股收跌，北向资金节前净流出21.58亿元、主力资金净流出312.4亿元，AI算力、半导体等成长板块承压。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-highlight">逆回购 ¥8000亿</span>
+            <span class="metric metric-down">净回笼 ¥3000亿</span>
+            <span class="metric metric-down">节前沪指 -1.00%</span>
+            <span class="metric metric-down">主力净流出 ¥312.4亿</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>流动性精准投放，不必过度悲观。节后关注3900点支撑争夺战。中信证券建议坚守中国优势制造业；中金认为当前或为A股中期相对低点，配置均衡化。AI板块短期有回调后低吸机会。
+        </div>
+        <div class="card-source">
+            <span>来源：央行公告、每日经济新闻、新华网</span>
+            <span class="pub-date">&#128197; 2026-04-03~07</span>
+        </div>
+    </div>
+
+    <!-- A股 新闻2 -->
+    <div class="card">
+        <div class="card-title">&#128200; 节前AI概念股逆市走强：中际旭创涨超5%，天孚通信涨超4%</div>
+        <div class="card-summary">
+            4月3日（节前最后交易日），沪指跌1%普跌格局下，AI概念股逆势走强。长芯博创涨超6%，中际旭创涨超5%，天孚通信涨超4%。创业板人工智能相关ETF涨约2%。算力硬件方向成为AI板块唯一亮点，通信、电子板块收红，超60亿主力资金涌入电子板块。OpenClaw引发Token需求暴增，国内算力调用量持续增长。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">长芯博创 +6%</span>
+            <span class="metric metric-up">中际旭创 +5%</span>
+            <span class="metric metric-up">天孚通信 +4%</span>
+            <span class="metric metric-up">电子板块 主力+60亿</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>算力基建持续吸金，AI板块结构性强势 → 重点关注光模块（中际旭创300308、天孚通信300394、新易盛300502）、PCB（沪电股份）及算力服务器标的。OpenClaw带动Token调用量是核心催化。
+        </div>
+        <div class="card-source">
+            <span>来源：每日经济新闻、金融界</span>
+            <span class="pub-date">&#128197; 2026-04-03</span>
+        </div>
+    </div>
+
+    <!-- A股 新闻3 -->
+    <div class="card">
+        <div class="card-title">&#128161; 国产算力崛起三重共振：算力攻坚+国产替代+涨价周期</div>
+        <div class="card-summary">
+            4月3日南方基金等机构发文指出，半导体板块迎来三重利好共振：（1）AI算力需求井喷，数据中心占半导体总需求34%；（2）国产替代加速，寒武纪2024年首次盈利、2025年营收4434亿领跑；（3）供应链涨价预期——Intel和AMD均已通知客户涨价，模拟芯片涨幅10-15%。机构建议关注半导体设备、AI芯片、光模块三大细分方向。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">数据中心占芯片需求 34%</span>
+            <span class="metric metric-up">芯片涨价 10-15%</span>
+            <span class="metric metric-highlight">国产替代加速</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>三重共振驱动半导体超级周期 → 关注寒武纪(688256)、海光信息(688041)、北方华创(002371)、中微公司(688012)。光模块涨价链条继续传导，利好上游材料和设备。
+        </div>
+        <div class="card-source">
+            <span>来源：南方基金、亿欧网、金融界</span>
+            <span class="pub-date">&#128197; 2026-04-03</span>
+        </div>
+    </div>
+
+    <!-- A股 新闻4 -->
+    <div class="card">
+        <div class="card-title">&#127968; 日韩股市节后率先上涨，机构称A股中期低点已现</div>
+        <div class="card-summary">
+            4月6日上观新闻报道，清明假期期间日经225涨0.55%、韩国KOSPI涨1.36%，美伊停火消息提振全球风险偏好。机构观点：中金认为A股风险已释放、估值合理，当下或为中期相对低点；中信建议坚守优势制造业+静待4月决断。4月7日27只新基金启动发行，4月全月近90只基金入场。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">日经225 +0.55%</span>
+            <span class="metric metric-up">KOSPI +1.36%</span>
+            <span class="metric metric-highlight">4月新基金近90只</span>
+            <span class="metric metric-neutral">中金：中期低点</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>外围偏暖+增量资金入场 → 节后A股有望企稳反弹。关注景气成长（光通信、电池、储能）+高股息资产双线配置。AI板块在调整后或迎来低吸窗口。
+        </div>
+        <div class="card-source">
+            <span>来源：上观新闻、腾讯新闻</span>
+            <span class="pub-date">&#128197; 2026-04-06</span>
+        </div>
+    </div>
+
+    <!-- ==================== 产业/融资/大模型 ==================== -->
+    <h2 class="section-title" id="global">&#127758; 产业 / 融资 / 大模型 <span class="flag flag-global">GLOBAL</span></h2>
+
+    <!-- 产业 新闻1 -->
+    <div class="card">
+        <div class="card-title">&#9889; 48小时连发5款大模型！阿里Wan2.7、谷歌Gemma4、智谱GLM-5V密集发布</div>
+        <div class="card-summary">
+            4月2-4日48小时内，阿里（Wan2.7-Image图像生成登顶）、谷歌（Gemma4开源31B模型性能逼近600B级别，Apache 2.0许可商用零门槛）、微软（Copilot全线升级）、智谱AI（GLM-5V-Turbo多模态炸裂）相继发布5款重磅模型。三大趋势：MoE架构普及、多模态大跃进、端侧部署门槛急降（Gemma4 2B版可手机离线运行AI Agent）。市场预计OpenAI 4月下旬将发布GPT-5回应。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-highlight">48小时 5款模型</span>
+            <span class="metric metric-up">Gemma4 31B ≈ 600B性能</span>
+            <span class="metric metric-neutral">Apache 2.0 商用免费</span>
+            <span class="metric metric-highlight">端侧AI爆发</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>大模型军备赛加速 → 模型免费+开源利好应用层公司（金山办公、万兴科技）、算力需求（寒武纪、中科曙光）。端侧AI利好手机/芯片链（高通QCOM、联发科、瑞芯微）。阿里系（阿里9988.HK）AI竞争力持续提升。
+        </div>
+        <div class="card-source">
+            <span>来源：腾讯云开发者、搜狐科技、36氪</span>
+            <span class="pub-date">&#128197; 2026-04-02~06</span>
+        </div>
+    </div>
+
+    <!-- 产业 新闻2 -->
+    <div class="card">
+        <div class="card-title">&#127981; Meta计划开源新AI模型，LLaMA 4用户采用率不及预期</div>
+        <div class="card-summary">
+            4月6日据humai.blog等报道，由于当前AI产品用户采用率低且LLaMA 4基准表现不及预期，Meta决定继续开源其即将推出的新一代AI模型，试图通过开发者社区支持来增加用户粘性。开源AI格局进入"Gemma4 vs Qwen3.6 vs LLaMA 4 vs GLM-5"四方混战，闭源模型商业壁垒进一步被侵蚀。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-down">LLaMA 4 采用率低</span>
+            <span class="metric metric-highlight">开源四方混战</span>
+            <span class="metric metric-neutral">Meta策略调整</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>Meta(META)开源策略加码，短期利空闭源模型商业化叙事。长期利好AI应用层：模型成本下降 → 应用落地加速。A股AI应用标的受益（用友网络、科大讯飞、拓尔思）。
+        </div>
+        <div class="card-source">
+            <span>来源：humAI.blog、DigitalApplied</span>
+            <span class="pub-date">&#128197; 2026-04-06</span>
+        </div>
+    </div>
+
+    <!-- 产业 新闻3 -->
+    <div class="card">
+        <div class="card-title">&#128220; 中国科协强硬反制NeurIPS：不资助、不认可，学术"脱钩"影响深远</div>
+        <div class="card-summary">
+            4月6日中青报发表评论文章，持续关注中国科协反制NeurIPS事件。NeurIPS在2026年征稿指南中依据美国单边制裁名单排除873家中国机构投稿。中国科协3月27日起停止资助学者参会、不认可本届论文成果。NeurIPS道歉后，中方重申措施原则不变。此事或加速中国AI学术自主体系建设和国产AI基础设施投资。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-down">873家中国机构被排除</span>
+            <span class="metric metric-highlight">中国科协强硬反制</span>
+            <span class="metric metric-neutral">学术生态分裂</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>学术脱钩加速国产AI自主化 → 利好国产AI基础设施（寒武纪、海光信息、华为昇腾生态链）。中长期推动中国AI训练框架、数据集、评测标准国产替代。关注科研信息化标的。
+        </div>
+        <div class="card-source">
+            <span>来源：中国青年报、中国科协官网</span>
+            <span class="pub-date">&#128197; 2026-04-06</span>
+        </div>
+    </div>
+
+    <!-- 产业 新闻4 -->
+    <div class="card">
+        <div class="card-title">&#129302; AI Agent持续冲击SaaS：VentureBeat称"AI代理时代已来"</div>
+        <div class="card-summary">
+            4月6日VentureBeat发表深度分析，回顾Anthropic Claude Cowork法律插件今年2月引发的"SaaSpocalypse"——单日蒸发$2850亿美元市值，指出AI Agent革命正在重塑SaaS价值链。OpenClaw开源执行引擎叠加Claude行业插件，使传统法律科技、HR SaaS、财务软件公司面临根本性颠覆。AI从"辅助工具"转向"直接执行者"。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-down">SaaS单日蒸发 $2850亿</span>
+            <span class="metric metric-highlight">AI Agent 直接执行</span>
+            <span class="metric metric-neutral">OpenClaw + Claude</span>
+        </div>
+        <div class="card-invest">
+            <strong>&#128200; 投资视角：</strong>AI Agent替代SaaS是2026核心主题 → 利空传统软件（ServiceNow、Salesforce），利多AI基建层（云计算、算力）和新型AI-native应用。A股关注金山办公(688111)向AI Agent转型进展。
+        </div>
+        <div class="card-source">
+            <span>来源：VentureBeat、TechBuddies</span>
+            <span class="pub-date">&#128197; 2026-04-06</span>
+        </div>
+    </div>
+
+</div><!-- container end -->
+
+<div class="footer">
+    <div>&#129302; AI 投研日报 · 由 <strong>小荷 &#127802;</strong> 于 2026-04-07 08:00 CST 自动生成</div>
+    <div style="margin-top: 8px;">&#9888;&#65039; 免责声明：本日报仅供投资参考，不构成任何买卖建议。所有信息均来自公开渠道，时效性和准确性以原始来源为准。投资有风险，入市需谨慎。</div>
+</div>
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-06.html">&#8592; 2026-04-06</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 &#8594;</span>
+</div>
+
+</body>
+</html>
