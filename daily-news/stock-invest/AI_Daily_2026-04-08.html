@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-08</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+        .header h1 { font-size: 1.8em; color: #f0f6fc; margin-bottom: 8px; }
+        .header .subtitle { color: #8b949e; font-size: 0.95em; }
+
+        .time-window {
+            text-align: center;
+            padding: 12px 20px;
+            margin-bottom: 24px;
+            background: rgba(240, 185, 11, 0.08);
+            border: 1px solid rgba(240, 185, 11, 0.25);
+            border-radius: 10px;
+            color: #f0b90b;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .toc {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .toc h2 { color: #f0f6fc; font-size: 1.1em; margin-bottom: 12px; }
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 6px; }
+        .toc-list a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.92em;
+            transition: color 0.2s;
+        }
+        .toc-list a:hover { color: #79c0ff; text-decoration: underline; }
+        .toc-section { color: #f0b90b; font-weight: 600; margin-top: 10px; margin-bottom: 4px; font-size: 0.95em; }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #f0f6fc;
+            margin: 28px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #21262d;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #30363d; }
+        .card-title {
+            font-size: 1.05em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .card-summary {
+            color: #8b949e;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .card-data {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 10px;
+            font-size: 0.88em;
+            border-left: 3px solid #58a6ff;
+        }
+        .card-invest {
+            background: rgba(88, 166, 255, 0.06);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            font-size: 0.88em;
+            border-left: 3px solid #f0b90b;
+        }
+        .card-source {
+            color: #484f58;
+            font-size: 0.8em;
+            text-align: right;
+        }
+
+        .up { color: #f85149; } /* 涨-红 */
+        .down { color: #3fb950; } /* 跌-绿 */
+        .highlight { color: #f0b90b; }
+        .tag {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.1);
+            color: #58a6ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
+        .tag-hot {
+            background: rgba(248, 81, 73, 0.1);
+            color: #f85149;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px 20px;
+            margin-top: 32px;
+            border-top: 1px solid #21262d;
+            color: #484f58;
+            font-size: 0.82em;
+        }
+
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 12px; }
+            .header h1 { font-size: 1.4em; }
+            .card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-07.html" id="nav-prev">← 2026-04-07</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🤖📊 AI 投研日报</h1>
+        <div class="subtitle">2026年4月8日 · 星期三 · 由小荷自动生成 🪷</div>
+    </div>
+
+    <div class="time-window">
+        📰 新闻时间窗口：2026-04-07 08:00 ~ 2026-04-08 08:00（过去24小时）
+    </div>
+
+    <!-- 目录 -->
+    <div class="toc">
+        <h2>📑 今日目录</h2>
+        <div class="toc-section">🇺🇸 美股 · AI</div>
+        <ul class="toc-list">
+            <li><a href="#us1">1. Anthropic年化营收突破$300亿，与Google/Broadcom签算力大单</a></li>
+            <li><a href="#us2">2. GPT-6代号"土豆"全面泄密，预计4月14日发布</a></li>
+            <li><a href="#us3">3. OpenAI内部分歧：CEO与CFO就IPO时间表对峙</a></li>
+            <li><a href="#us4">4. Meta计划斥资$30亿建造1GW超级AI数据中心</a></li>
+            <li><a href="#us5">5. Google Gemma 4全面开源，2.3B模型击败20倍体量对手</a></li>
+        </ul>
+        <div class="toc-section">🇭🇰 港股 · AI</div>
+        <ul class="toc-list">
+            <li><a href="#hk1">6. 腾讯曝光AI新平台DreamNow：互动电影+社交创作</a></li>
+            <li><a href="#hk2">7. 阿里千问3.6 Plus登顶OpenRouter，中国模型连续5周全球第一</a></li>
+            <li><a href="#hk3">8. 美团开源多模态模型LongCat-Next，超越Qwen3-VL</a></li>
+        </ul>
+        <div class="toc-section">🇨🇳 A股 · AI</div>
+        <ul class="toc-list">
+            <li><a href="#cn1">9. 智元机器人启动AI发布周，具身智能加速规模化落地</a></li>
+            <li><a href="#cn2">10. 滴滴×广汽埃安合资公司获批，首家L4自动驾驶量产车企落地</a></li>
+            <li><a href="#cn3">11. 国家安全部发布Token安全警示：日使用量超140万亿</a></li>
+            <li><a href="#cn4">12. A股4月首周回顾：算力硬件逆市走强，沪指失守3900点</a></li>
+        </ul>
+        <div class="toc-section">🌐 产业 · 融资</div>
+        <ul class="toc-list">
+            <li><a href="#ind1">13. 印度Sarvam AI获$3.5亿融资，估值达$15.5亿</a></li>
+        </ul>
+    </div>
+
+    <!-- ==================== 美股 ==================== -->
+    <h2 class="section-title" id="section-us">🇺🇸 美股 · AI</h2>
+
+    <div class="card" id="us1">
+        <div class="card-title">💰 Anthropic年化营收突破$300亿，与Google/Broadcom签算力大单</div>
+        <div class="card-summary">
+            Anthropic宣布年化营收已突破300亿美元，较2025年底的约90亿美元翻了三倍多。仅3月份营收环比暴涨58%。公司同时宣布与Google和Broadcom签署多年TPU算力供应协议，锁定5GW计算容量（2027年起交付），为Claude模型持续扩展提供底层支撑。超过1000家企业客户年消费超100万美元。
+        </div>
+        <div class="card-data">
+            📊 关键数据：年化营收 <span class="up">$300亿</span>（半年3倍增长）| 企业客户 <span class="up">1000+</span> 家百万级 | TPU容量 <span class="highlight">5GW</span> | IPO估值或超 <span class="highlight">$6000亿</span>
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag tag-hot">重磅</span><span class="tag">GOOGL</span><span class="tag">AVGO</span> Broadcom为TPU芯片供应商，直接受益；Google Cloud提供算力底座。Anthropic超越OpenAI营收，AI竞争白热化利好整个算力供应链
+        </div>
+        <div class="card-source">📅 2026-04-07 | TechCrunch · Fortune · The Information</div>
+    </div>
+
+    <div class="card" id="us2">
+        <div class="card-title">🚀 GPT-6代号"土豆"全面泄密，预计4月14日发布</div>
+        <div class="card-summary">
+            OpenAI下一代旗舰模型GPT-6（内部代号"Spud/土豆"）遭全面曝光。据多位爆料人士透露，该模型已完成全部开发，预计4月14日正式发布。GPT-6在代码、推理和智能体任务上较GPT-5.4提升约40%，原生支持200万Token超大上下文窗口及全模态处理（文本/音频/图像/视频）。OpenAI为此砍掉Sora等非核心项目，集中资源冲刺AGI。
+        </div>
+        <div class="card-data">
+            📊 关键数据：性能提升 <span class="up">~40%</span> | 上下文窗口 <span class="highlight">200万Token</span> | 预计发布日 <span class="highlight">4月14日</span> | Sora项目 <span class="down">已砍</span>
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag tag-hot">重磅</span><span class="tag">MSFT</span><span class="tag">NVDA</span> 微软作为OpenAI最大投资方将直接受益；200万Token上下文对算力需求指数级增长，利好NVIDIA等算力厂商。GPT-6或重塑AI应用格局
+        </div>
+        <div class="card-source">📅 2026-04-05~07 | 量子位 · 华尔街见闻 · 36氪</div>
+    </div>
+
+    <div class="card" id="us3">
+        <div class="card-title">⚡ OpenAI内部分歧：CEO与CFO就IPO时间表公开对峙</div>
+        <div class="card-summary">
+            据财联社报道，OpenAI内部围绕Q4 IPO计划出现严重分歧。CEO奥尔特曼频繁公开表态推动上市，但CFO明确反对，认为当前时机不成熟。此前已有COO、CMO、AGI CEO等多位高管离岗。同时奥尔特曼计划绕过CFO签署6000亿美元算力合同，进一步加剧内部矛盾。
+        </div>
+        <div class="card-data">
+            📊 关键数据：IPO目标估值 <span class="highlight">$8520亿</span>（最新融资轮） | 最近融资 <span class="highlight">$1220亿</span> | 算力合同 <span class="highlight">$6000亿</span>
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">MSFT</span><span class="tag">OpenAI生态</span> 管理层动荡为IPO蒙上阴影。若IPO延迟，短期利空OpenAI生态伙伴；但$6000亿算力支出计划利好NVIDIA、AMD等供应商
+        </div>
+        <div class="card-source">📅 2026-04-07 | 财联社 · Fortune</div>
+    </div>
+
+    <div class="card" id="us4">
+        <div class="card-title">🏭 Meta计划斥资$30亿建造1GW超级AI数据中心"Prometheus"</div>
+        <div class="card-summary">
+            Meta计划在美国俄亥俄州建设代号"Prometheus"的超大规模AI数据中心，功率达1GW（相当于核电站输出），为下一代Llama模型训练提供算力底座。项目预计借贷30亿美元，是继微软"星门"之后又一个十亿级算力基建项目。
+        </div>
+        <div class="card-data">
+            📊 关键数据：功率规模 <span class="highlight">1GW</span> | 融资规模 <span class="highlight">$30亿</span> | 位置：俄亥俄州
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">META</span><span class="tag">电力基建</span><span class="tag">液冷</span> 数据中心建设直接拉动GPU、电力设备、液冷散热需求。关注A股/港股配套供应链：光模块（中际旭创/新易盛）、液冷（英维克）等
+        </div>
+        <div class="card-source">📅 2026-04-07 | 多课网 · AI内参</div>
+    </div>
+
+    <div class="card" id="us5">
+        <div class="card-title">💡 Google Gemma 4全面开源，2.3B小模型击败20倍体量对手</div>
+        <div class="card-summary">
+            Google发布迄今最强开源模型矩阵Gemma 4，覆盖2.3B至310B四个版本。31B密集模型在Arena评测中排名全球开源第三；2.3B轻量模型激活参数仅3.8亿，却在多项基准测试中超越大20倍的对手。采用分层嵌入和混合注意力机制技术。支持iPhone等移动端离线运行，达40 token/s推理速度。
+        </div>
+        <div class="card-data">
+            📊 关键数据：模型版本 <span class="highlight">4个</span>（2.3B~310B） | 开源排名 <span class="up">全球第三</span> | 移动端推理 <span class="highlight">40 token/s</span>
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">GOOGL</span><span class="tag">端侧AI</span> 端侧模型突破加速"AI手机/AI PC"落地，利好消费电子终端升级。开源策略削弱闭源模型溢价，对Anthropic、OpenAI等构成竞争压力
+        </div>
+        <div class="card-source">📅 2026-04-07 | 多课网 · 机器之心</div>
+    </div>
+
+    <!-- ==================== 港股 ==================== -->
+    <h2 class="section-title" id="section-hk">🇭🇰 港股 · AI</h2>
+
+    <div class="card" id="hk1">
+        <div class="card-title">🎬 腾讯曝光AI新平台DreamNow：互动电影+社交创作</div>
+        <div class="card-summary">
+            腾讯被曝正在打造全新AI互动娱乐平台"DreamNow"，支持用户零门槛创作互动电影剧情，集成AIGC内容社区功能。该产品被定位为"AI版B站+抖音"，融合了互动叙事、AI生成内容和社交分发三大能力，是腾讯在AIGC消费侧的重要布局。
+        </div>
+        <div class="card-data">
+            📊 关键数据：产品定位 <span class="highlight">AI互动电影+社交创作</span> | 对标 <span class="highlight">B站+抖音</span>（AI版）
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">0700.HK</span><span class="tag">AIGC应用</span> 腾讯在C端AI应用场景持续发力，DreamNow有望成为继元宝之后又一现象级产品。关注AI内容创作产业链
+        </div>
+        <div class="card-source">📅 2026-04-07 | 多课网 · AI日报</div>
+    </div>
+
+    <div class="card" id="hk2">
+        <div class="card-title">📈 阿里千问3.6 Plus登顶OpenRouter，中国模型连续5周全球第一</div>
+        <div class="card-summary">
+            据OpenRouter最新数据，上周全球AI大模型总调用量达27万亿Token，环比增长18.9%。中国AI大模型周调用量达12.96万亿Token，环比暴涨31.48%，已连续5周超越美国（3.03万亿Token）。阿里通义千问、小米MiMo等中国模型包揽全球前6席位。阿里4月初发布的Qwen3.6-Plus被评为国产编程能力最强模型。
+        </div>
+        <div class="card-data">
+            📊 关键数据：全球总调用量 <span class="highlight">27万亿Token</span> | 中国模型 <span class="up">12.96万亿</span>（+31.48%） | 美国模型 3.03万亿 | 连续 <span class="up">5周第一</span>
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag tag-hot">重磅</span><span class="tag">9988.HK</span><span class="tag">1810.HK</span> 阿里云作为千问算力底座持续受益，小米AI概念强化。中国大模型从"技术追赶"进入"规模输出"阶段，利好整个港股AI板块估值重塑
+        </div>
+        <div class="card-source">📅 2026-04-06 | 每日经济新闻 · 同花顺</div>
+    </div>
+
+    <div class="card" id="hk3">
+        <div class="card-title">🔬 美团开源多模态模型LongCat-Next，超越Qwen3-VL</div>
+        <div class="card-summary">
+            美团MiTi团队正式开源基于DiNA架构的原生多模态模型LongCat-Next，在细粒度感知和视觉推理评测中表现优异，多项指标超越阿里Qwen3-VL。该模型实现了文本与图像的底层统一，是美团在AI技术研发上的重要突破，展现了其从"应用层"向"基座层"拓展的技术实力。
+        </div>
+        <div class="card-data">
+            📊 关键数据：架构 <span class="highlight">DiNA</span> | 多项评测 <span class="up">超越Qwen3-VL</span> | 状态 <span class="highlight">已开源</span>
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">3690.HK</span><span class="tag">多模态</span> 美团AI技术出圈提升科技属性，多模态模型可深度赋能本地生活、即时零售等核心业务场景
+        </div>
+        <div class="card-source">📅 2026-04-07 | 多课网 · 机器之心</div>
+    </div>
+
+    <!-- ==================== A股 ==================== -->
+    <h2 class="section-title" id="section-cn">🇨🇳 A股 · AI</h2>
+
+    <div class="card" id="cn1">
+        <div class="card-title">🤖 智元机器人启动AI发布周，具身智能加速规模化落地</div>
+        <div class="card-summary">
+            智元机器人（AGIBOT）4月7日正式启动"智元AI发布周"（AGIBOT AI Week），为期一周（4月7日至14日），每个工作日解锁一项具身智能核心技术突破。联合创始人彭志辉表示2026年通用具身机器人将加速进入规模化落地阶段。此前3月30日，智元第10000台产品已下线。
+        </div>
+        <div class="card-data">
+            📊 关键数据：发布周期 <span class="highlight">4月7日~14日</span> | 累计产量 <span class="up">10000台+</span>（3月30日） | 每日一项"王炸"技术
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag tag-hot">热点</span><span class="tag">具身智能</span><span class="tag">人形机器人</span> 智元发布周将持续催化机器人板块，关注A股减速器（绿的谐波）、伺服电机（汇川技术）、传感器（奥比中光）等核心零部件。智元规模化量产标志行业从概念进入放量阶段
+        </div>
+        <div class="card-source">📅 2026-04-07 | 财联社 · IT之家</div>
+    </div>
+
+    <div class="card" id="cn2">
+        <div class="card-title">🚗 滴滴×广汽埃安合资公司获批，首家L4自动驾驶量产车企落地</div>
+        <div class="card-summary">
+            滴滴自动驾驶与广汽埃安合资成立的"安迪科技"（安滴科技）正式获批工商执照。这是国内L4级自动驾驶公司与车企为打造Robotaxi量产车成立的首家合资公司。首款无人车定位为跨界SUV，计划明年实现量产并分批投放，接入滴滴出行网络。
+        </div>
+        <div class="card-data">
+            📊 关键数据：级别 <span class="highlight">L4自动驾驶</span> | 首款车型 <span class="highlight">跨界SUV</span> | 量产时间 <span class="highlight">2027年</span> | 运营平台：滴滴出行
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">自动驾驶</span><span class="tag">Robotaxi</span><span class="tag">广汽集团</span> L4量产车企落地是自动驾驶商业化里程碑。关注广汽集团（601238）、激光雷达（禾赛科技）、自动驾驶芯片（地平线）等产业链标的
+        </div>
+        <div class="card-source">📅 2026-04-07 | 新华网 · 财联社</div>
+    </div>
+
+    <div class="card" id="cn3">
+        <div class="card-title">🛡️ 国家安全部发布Token安全警示：日使用量超140万亿</div>
+        <div class="card-summary">
+            国家安全部正式发布AI Token安全警示，这是全球首个将AI Token列为国家安全议题的举措。据统计，截至2026年3月，中国日均Token调用量已超过140万亿。官方重点提示三类风险：AI身份劫持、数据伪造、以及以"囤积Token致富"为幌子的金融诈骗。
+        </div>
+        <div class="card-data">
+            📊 关键数据：日均Token调用量 <span class="highlight">140万亿+</span> | 风险类型 <span class="highlight">3类</span>（身份劫持/数据伪造/金融诈骗） | 全球首例国安级Token警示
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">AI安全</span><span class="tag">网络安全</span> 监管信号明确，AI安全合规需求将爆发式增长。关注A股网络安全龙头：奇安信（688561）、深信服（300454）、安恒信息（688023）
+        </div>
+        <div class="card-source">📅 2026-04-07 | 新浪AI热点 · 国家安全部</div>
+    </div>
+
+    <div class="card" id="cn4">
+        <div class="card-title">📊 A股4月首周回顾：算力硬件逆市走强，沪指失守3900点</div>
+        <div class="card-summary">
+            清明假期后首个交易周（4月1日~3日），A股市场整体震荡走低。沪指失守3900点收于3890.16，两市成交额缩量至不足1.7万亿。但AI板块表现分化，算力硬件逆势走强——德科立等算力概念股涨停。4月7日（昨日）为清明后首个完整交易日。AI与机器人赛道呈底部博弈特征。
+        </div>
+        <div class="card-data">
+            📊 关键数据：沪指 <span class="down">3890.16</span>（-0.26%区间） | 两市成交 <span class="down">&lt;1.7万亿</span> | 算力硬件 <span class="up">逆市走强</span> | 创业板指 3160.82
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">算力</span><span class="tag">光模块</span><span class="tag">AI硬件</span> 大盘缩量调整中算力硬件仍获资金青睐，显示AI算力主线韧性。关注中际旭创（300308）、新易盛（300502）、德科立（688205）等
+        </div>
+        <div class="card-source">📅 2026-04-07 | 财联社收评 · 东方财富 · 新华网</div>
+    </div>
+
+    <!-- ==================== 产业/融资 ==================== -->
+    <h2 class="section-title" id="section-ind">🌐 产业 · 融资</h2>
+
+    <div class="card" id="ind1">
+        <div class="card-title">💼 印度Sarvam AI获$3.5亿融资，估值达$15.5亿独角兽</div>
+        <div class="card-summary">
+            印度AI初创公司Sarvam AI完成3.5亿美元大额融资，投后估值达15.5亿美元，正式跻身独角兽行列。Sarvam AI专注于为印度市场定制的多语言大模型，是印度AI生态中成长最快的公司之一。此次融资反映了全球AI资本持续向新兴市场扩散的趋势。
+        </div>
+        <div class="card-data">
+            📊 关键数据：融资金额 <span class="highlight">$3.5亿</span> | 投后估值 <span class="highlight">$15.5亿</span> | 聚焦 <span class="highlight">印度多语言大模型</span>
+        </div>
+        <div class="card-invest">
+            🎯 投资视角：<span class="tag">新兴市场AI</span><span class="tag">全球化</span> AI资本从美国溢出至印度等新兴市场。中国AI公司出海参考：本土化+多语言是关键竞争力
+        </div>
+        <div class="card-source">📅 2026-04-07 | 多课网 · TechCrunch</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>⚠️ 免责声明：本日报由 AI 自动生成，仅供信息参考，不构成任何投资建议。投资有风险，入市需谨慎。</p>
+        <p style="margin-top: 8px;">🪷 小荷 · AI投研日报 | 生成时间：2026-04-08 08:00 CST</p>
+        <p style="margin-top: 4px; color: #30363d;">Powered by WorkBuddy Automation</p>
+    </div>
+
+</div>
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-07.html" id="nav-prev-bottom">← 2026-04-07</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next-bottom">无更新 →</span>
+</div>
+
+</body>
+</html>
