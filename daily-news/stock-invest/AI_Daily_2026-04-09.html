@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-09</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 40px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Navigation */
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.2em; color: #f0f6fc; margin-bottom: 8px; letter-spacing: 2px; }
+        .header p { color: #8b949e; font-size: 1.05em; }
+        .header .date-badge {
+            display: inline-block;
+            background: rgba(88,166,255,0.12);
+            color: #58a6ff;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            margin-top: 12px;
+            border: 1px solid rgba(88,166,255,0.25);
+        }
+
+        .time-window {
+            max-width: 920px;
+            margin: 18px auto 0;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .time-window .badge {
+            display: inline-block;
+            background: rgba(240, 185, 11, 0.10);
+            color: #f0b90b;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 0.98em;
+            border: 1px solid rgba(240, 185, 11, 0.25);
+            letter-spacing: 0.5px;
+        }
+
+        .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+        /* TOC */
+        .toc {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .toc h2 { color: #f0f6fc; font-size: 1.15em; margin-bottom: 14px; }
+        .toc ul { list-style: none; }
+        .toc li { margin-bottom: 6px; }
+        .toc a { font-size: 0.95em; color: #58a6ff; }
+        .toc a:hover { color: #79c0ff; }
+        .toc .toc-section { color: #f0b90b; font-weight: 600; margin-top: 10px; display: block; font-size: 0.92em; }
+
+        /* Section */
+        .section { margin-top: 36px; }
+        .section-title {
+            font-size: 1.35em;
+            color: #f0f6fc;
+            border-left: 4px solid #58a6ff;
+            padding-left: 14px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Card */
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #484f58; }
+        .card-title { font-size: 1.1em; color: #f0f6fc; font-weight: 600; margin-bottom: 8px; line-height: 1.5; }
+        .card-summary { color: #b1bac4; font-size: 0.95em; margin-bottom: 12px; line-height: 1.7; }
+        .card-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+        .metric {
+            background: rgba(88,166,255,0.08);
+            color: #79c0ff;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.82em;
+            border: 1px solid rgba(88,166,255,0.15);
+        }
+        .metric.up { background: rgba(248,81,73,0.10); color: #f85149; border-color: rgba(248,81,73,0.2); }
+        .metric.down { background: rgba(63,185,80,0.10); color: #3fb950; border-color: rgba(63,185,80,0.2); }
+        .card-invest {
+            background: rgba(240,185,11,0.06);
+            border-left: 3px solid #f0b90b;
+            padding: 8px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 8px;
+            font-size: 0.88em;
+            color: #d2a825;
+        }
+        .card-invest strong { color: #f0b90b; }
+        .card-source { color: #6e7681; font-size: 0.8em; }
+        .card-source .date-tag { color: #8b949e; font-weight: 500; }
+
+        .empty-note {
+            background: #161b22;
+            border: 1px dashed #30363d;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            color: #6e7681;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            max-width: 920px;
+            margin: 48px auto 0;
+            padding: 24px 20px;
+            border-top: 1px solid #21262d;
+            text-align: center;
+            color: #484f58;
+            font-size: 0.82em;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 640px) {
+            .header { padding: 32px 16px 24px; }
+            .header h1 { font-size: 1.5em; }
+            .container { padding: 0 14px; }
+            .card { padding: 16px; }
+            .toc { padding: 16px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-08.html">← 2026-04-08</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="header">
+    <h1>🤖 AI 投研日报</h1>
+    <p>AI · 投资 · 每日精选</p>
+    <div class="date-badge">📅 2026年4月9日 · 星期四</div>
+</div>
+
+<div class="time-window">
+    <div class="badge">📰 新闻时间窗口：2026-04-08 08:00 ~ 2026-04-09 08:00（过去24小时）</div>
+</div>
+
+<div class="container">
+
+    <!-- TOC -->
+    <div class="toc">
+        <h2>📋 目录导航</h2>
+        <ul>
+            <li><span class="toc-section">🇺🇸 美股</span></li>
+            <li><a href="#us1">1. Anthropic 发布 Claude Mythos Preview —— 联合12家巨头启动 Project Glasswing</a></li>
+            <li><a href="#us2">2. 博通牵手谷歌 + Anthropic，打造 AI 算力"第二供应链"</a></li>
+            <li><a href="#us3">3. GPT-6 代号"土豆"定档4月14日发布，性能暴涨40%</a></li>
+            <li><a href="#us4">4. 马斯克：xAI Colossus 2 正在同时训练6-7个大模型</a></li>
+            <li><a href="#us5">5. NVIDIA 20亿美元入股 Marvell，NVLink Fusion 生态扩张</a></li>
+            <li><span class="toc-section">🇭🇰 港股</span></li>
+            <li><a href="#hk1">6. 港股 AI 大模型板块集体暴涨——智谱涨超14%、MiniMax涨超8%</a></li>
+            <li><a href="#hk2">7. 思格新能源正式招股——AI 光储充"极速黑马"冲刺港交所</a></li>
+            <li><a href="#hk3">8. 港股大模型+AI应用方向集体高开，科网股全线走强</a></li>
+            <li><span class="toc-section">🇨🇳 A股</span></li>
+            <li><a href="#cn1">9. 国产AI芯片全球市占首破四成，寒武纪大涨9%领涨芯片板块</a></li>
+            <li><a href="#cn2">10. A股百点长阳逼近4000点——AI产业链全线爆发，蓝色光标20CM涨停</a></li>
+            <li><a href="#cn3">11. 海光信息发布科创板首份一季报，净利增近36%；东山精密预增超119%</a></li>
+            <li><a href="#cn4">12. 内蒙古印发"人工智能+"三年行动方案——建设全国领先绿色算力基地</a></li>
+            <li><span class="toc-section">🌐 产业/融资</span></li>
+            <li><a href="#ind1">13. DeepSeek V4 全面切换华为昇腾 950PR，彻底抛弃英伟达 CUDA</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== 美股 ========== -->
+    <div class="section" id="us-section">
+        <h2 class="section-title">🇺🇸 美股市场</h2>
+
+        <div class="card" id="us1">
+            <div class="card-title">🔬 Anthropic 发布 Claude Mythos Preview —— 联合12家科技巨头启动 Project Glasswing</div>
+            <div class="card-summary">
+                4月7日，Anthropic 正式发布旗下迄今最强大的前沿模型 Claude Mythos Preview，在几乎所有主流基准测试中大幅领先竞品。同时启动 Project Glasswing 项目，联合苹果、NVIDIA、微软、谷歌、AWS、Linux基金会等12家合作伙伴，将该模型专用于关键软件系统的安全漏洞检测与防御。<strong>该模型不会公开发售</strong>，仅限合作伙伴通过受限通道使用。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">全球最强前沿模型</span>
+                <span class="metric">12家顶级合作伙伴</span>
+                <span class="metric">不公开发售</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>Anthropic 年化收入突破$300亿，生态护城河加深。利好 $GOOGL（谷歌是Anthropic最大投资方+TPU算力供应商）、$AMZN（AWS是核心云平台），同时刺激AI安全赛道——CrowdStrike($CRWD)、Palo Alto($PANW)等网安龙头受益。
+            </div>
+            <div class="card-source">
+                来源：TechCrunch / Anthropic 官方 · <span class="date-tag">2026-04-07</span>
+            </div>
+        </div>
+
+        <div class="card" id="us2">
+            <div class="card-title">🤝 博通牵手谷歌 + Anthropic，打造 AI 算力"第二供应链"</div>
+            <div class="card-summary">
+                美东时间4月7日，博通(Broadcom)公布两项重大合作：①与谷歌签署持续至2031年的五年协议，为谷歌设计供应下一代定制AI芯片（TPU）；②与Anthropic扩大合作，从2027年起为其提供约3.5GW（吉瓦）的下一代TPU算力集群。消息公布后博通盘后涨约3%。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">5年期谷歌TPU协议</span>
+                <span class="metric">3.5GW算力承诺</span>
+                <span class="metric up">$AVGO 盘后+3%</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>直接利好 $AVGO（博通），巩固其定制AI芯片（ASIC）龙头地位；同时表明科技巨头正在建设"去英伟达化"的第二算力供应链。$GOOGL 算力生态持续扩张。关注 A 股算力标的中际旭创、新易盛（谷歌TPU产业链上游光模块）。
+            </div>
+            <div class="card-source">
+                来源：财联社 / SEC 文件 · <span class="date-tag">2026-04-07</span>
+            </div>
+        </div>
+
+        <div class="card" id="us3">
+            <div class="card-title">🥔 GPT-6 代号"土豆"定档4月14日发布——性能暴涨40%、200万Token上下文</div>
+            <div class="card-summary">
+                多个独立消息源确认：OpenAI 下一代旗舰模型 GPT-6（代号 Spud/土豆）已于3月24日在德克萨斯 Stargate 超算集群完成预训练，正式发布时间定在4月14日。核心升级：原生多模态架构（文本+音频+图像+视频统一处理）、上下文窗口200万Token、推理与代码能力较GPT-5.4提升约40%。内部定位为"迈向AGI的关键一步"。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">性能 +40%</span>
+                <span class="metric">200万 Token</span>
+                <span class="metric">原生多模态</span>
+                <span class="metric">4月14日发布</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>GPT-6发布将再次引爆AI应用生态。直接利好 $MSFT（微软/Azure独家合作）、AI应用概念。A股 AI 应用标的蓝色光标、科大讯飞、金山办公有望受情绪面催化。算力需求侧利好光模块/服务器产业链。
+            </div>
+            <div class="card-source">
+                来源：量子位 / The Information / 36氪 · <span class="date-tag">2026-04-07~08</span>
+            </div>
+        </div>
+
+        <div class="card" id="us4">
+            <div class="card-title">⚡ 马斯克：xAI Colossus 2 正在同时训练 6-7 个大模型</div>
+            <div class="card-summary">
+                4月8日，马斯克在 X 平台发文称 xAI 旗下全球首个吉瓦级超算集群 Colossus 2 目前同时有6个模型在训练中（另有消息称加上预训练共7个）。Colossus 2 今年1月全面上线，配备超20万块GPU（全站45万+），功耗达1GW。xAI 计划到Q2再将GPU总量大幅扩容。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">6-7个模型并行训练</span>
+                <span class="metric">20万+ GPU</span>
+                <span class="metric">1GW 功耗</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>xAI 算力军备升级驱动 GPU/数据中心产业链需求。利好 $NVDA（GPU供应商）、$MRVL（NVLink/网络芯片）、$VRT/$EATON（电力/散热基础设施）。A股液冷/数据中心概念股英维克、曙光数创、佳力图受益。
+            </div>
+            <div class="card-source">
+                来源：财联社 / X(@elonmusk) · <span class="date-tag">2026-04-08</span>
+            </div>
+        </div>
+
+        <div class="card" id="us5">
+            <div class="card-title">💰 NVIDIA 20亿美元入股 Marvell，NVLink Fusion 生态全面扩张</div>
+            <div class="card-summary">
+                NVIDIA 宣布向 Marvell Technology 投资20亿美元，双方将通过 NVLink Fusion 技术合作开发下一代 AI 数据中心互联架构及硅光子技术。此前 NVIDIA 已分别向 Lumentum、Coherent 投资同等规模。消息公布当日 Marvell 股价大涨13%，此后继续走强。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">$20亿投资</span>
+                <span class="metric up">$MRVL +13%</span>
+                <span class="metric">NVLink Fusion</span>
+                <span class="metric">硅光子</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>NVIDIA 通过资本+技术绑定上下游，持续巩固AI数据中心生态。直接利好 $MRVL、$NVDA。硅光子/光互联技术成为下一代算力基础设施核心——A股关注中际旭创、天孚通信、新易盛、腾景科技。
+            </div>
+            <div class="card-source">
+                来源：NVIDIA Newsroom / CNBC / Tom's Hardware · <span class="date-tag">2026-03-31 ~ 04-08 持续发酵</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 港股 ========== -->
+    <div class="section" id="hk-section">
+        <h2 class="section-title">🇭🇰 港股市场</h2>
+
+        <div class="card" id="hk1">
+            <div class="card-title">🚀 港股 AI 大模型板块集体暴涨——智谱涨超14%、MiniMax涨超8%</div>
+            <div class="card-summary">
+                4月8日，港股大模型及AI应用板块开盘即全面爆发。智谱(02513.HK)涨超14%领涨，受益于近期发布新模型+API提价双重利好，AI空头大撤退（卖空股数较年初下挫超九成）。MiniMax-W(00100.HK)高开超8%。腾讯控股、金山软件、金山云等科网巨头亦集体高开。
+            </div>
+            <div class="card-metrics">
+                <span class="metric up">智谱 +14%</span>
+                <span class="metric up">MiniMax +8%</span>
+                <span class="metric up">恒指 +2.61%</span>
+                <span class="metric up">科指 +2.95%</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>港股AI龙头加速盈利验证，智谱提价+新模型体现定价权。重点关注智谱(02513)、MiniMax(00100)、腾讯(00700)、金山软件(03888)。大模型板块有望从"炒概念"转向"炒业绩"。
+            </div>
+            <div class="card-source">
+                来源：财联社 / 金融界 / stockstar · <span class="date-tag">2026-04-08</span>
+            </div>
+        </div>
+
+        <div class="card" id="hk2">
+            <div class="card-title">🔋 思格新能源正式招股——AI 光储充"极速黑马"冲刺港交所，估值4年涨超40倍</div>
+            <div class="card-summary">
+                4月8日，AI原生光储充解决方案提供商思格新能源(6656.HK)正式启动招股（至4月13日），计划4月16日挂牌，集资约44亿港元。公司由华为前高管创立仅4年，获淡马锡、高盛、高瓴等顶级机构共22亿港元基石认购。定位为"能源界Apple"——以AI优化光伏、储能和充电系统集成。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">集资44亿港元</span>
+                <span class="metric">22亿基石认购</span>
+                <span class="metric">成立仅4年</span>
+                <span class="metric">估值涨40倍+</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>AI+新能源赛道的稀缺标的，华为系背景+顶级基石阵容。若认购火爆将提振港股AI+清洁能源板块情绪。关联标的：阳光电源(A股)、信义储电(港股)、宁德时代(A股)。
+            </div>
+            <div class="card-source">
+                来源：IPO早知道 / 界面新闻 / 凤凰财经 · <span class="date-tag">2026-04-08</span>
+            </div>
+        </div>
+
+        <div class="card" id="hk3">
+            <div class="card-title">📈 港股三大指数齐涨，大模型概念股全线走强</div>
+            <div class="card-summary">
+                4月8日，美伊停火利好叠加全球AI利好，港股三大指数全线大涨。恒指涨2.61%，科指涨2.95%。科网股、AI应用、黄金股集体走高。华源证券研报指出"AI仍是全球产业叙事最重要方向"，OpenClaw（开源Agent框架）加速渗透驱动国产大模型调用量持续攀升。
+            </div>
+            <div class="card-metrics">
+                <span class="metric up">恒指 +2.61%</span>
+                <span class="metric up">恒生科技 +2.95%</span>
+                <span class="metric">OpenClaw 渗透加速</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>港股进入"政策+盈利+估值+资金流"四重驱动窗口期。南向资金定价权质变中。关注腾讯(00700)、阿里(09988)、美团(03690)、商汤(00020)。
+            </div>
+            <div class="card-source">
+                来源：中国证券网 / 新浪港股 · <span class="date-tag">2026-04-08</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== A股 ========== -->
+    <div class="section" id="cn-section">
+        <h2 class="section-title">🇨🇳 A股市场</h2>
+
+        <div class="card" id="cn1">
+            <div class="card-title">🏭 国产AI芯片全球市占率首破四成——英伟达份额近乎腰斩，寒武纪大涨9%</div>
+            <div class="card-summary">
+                最新数据显示，2025年中国国产AI芯片全球市占率首次突破40%，英伟达在中国市场份额从此前近80%大幅萎缩至约30%。华为昇腾独占国产阵营49%份额（81.2万颗），其后阿里平头哥16%、寒武纪与昆仑芯各约7%。4月8日节后首个交易日，寒武纪大涨9%引领算力芯片板块反弹。
+            </div>
+            <div class="card-metrics">
+                <span class="metric up">国产市占 &gt;40%</span>
+                <span class="metric down">英伟达中国份额腰斩</span>
+                <span class="metric up">寒武纪 +9%</span>
+                <span class="metric">华为昇腾占比49%</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>国产替代逻辑持续兑现。重点关注：寒武纪(688256)、海光信息(688041)、中芯国际(688981)；华为昇腾产业链神州数码(000034)、拓维信息(002261)。设备端关注中微公司、北方华创。
+            </div>
+            <div class="card-source">
+                来源：金融界 / 芯东西 / 同花顺 · <span class="date-tag">2026-04-08</span>
+            </div>
+        </div>
+
+        <div class="card" id="cn2">
+            <div class="card-title">🔥 A股百点长阳逼近4000点——AI产业链全线爆发，蓝色光标20CM涨停</div>
+            <div class="card-summary">
+                4月8日，A股放量大涨，沪指日内暴涨逾百点逼近4000点，创业板指半日涨4.81%，全市场近5200股收红、123股涨停。AI应用概念全线爆发：蓝色光标20CM涨停（成交88亿）、志晟信息30CM涨停；算力硬件中际旭创涨超8%刷新历史高点；AI算力概念东方国信涨逾14%、优刻得涨逾12%、杭钢股份涨停。CPO/PCB板块集体拉升。
+            </div>
+            <div class="card-metrics">
+                <span class="metric up">沪指 +百点</span>
+                <span class="metric up">创业板 +4.81%</span>
+                <span class="metric up">蓝色光标 20CM涨停</span>
+                <span class="metric up">中际旭创 新高</span>
+                <span class="metric">123股涨停</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>AI产业链三大分支（应用/硬件/算力租赁）全面爆发，标志行情从"概念"转向"业绩驱动"。核心标的：蓝色光标(300058)、中际旭创(300308)、东山精密(002384)、铭普光磁(002902)。算力租赁新方向关注优刻得、杭钢股份。
+            </div>
+            <div class="card-source">
+                来源：同花顺 / 财联社 / 金融界 · <span class="date-tag">2026-04-08</span>
+            </div>
+        </div>
+
+        <div class="card" id="cn3">
+            <div class="card-title">📊 海光信息发布科创板首份一季报：净利增近36%；东山精密预增超119%</div>
+            <div class="card-summary">
+                4月7日晚，海光信息(688041)发布A股第二份、科创板首份2026年一季报，一季度净利同比增长约36%（此前预告区间22.56%~42.32%），营收同比增长约70%。同日东山精密(002384)披露一季报预告，净利润预增超119%，受益于AI服务器PCB+光模块双重放量。
+            </div>
+            <div class="card-metrics">
+                <span class="metric up">海光信息 净利+36%</span>
+                <span class="metric up">海光营收 +70%</span>
+                <span class="metric up">东山精密 净利+119%</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>AI算力产业链Q1业绩集中验证期，国产芯片+PCB硬件双轮驱动。海光信息(688041)作为国产GPU龙头业绩持续兑现；东山精密(002384)AI服务器PCB高增长确认产业趋势。关注同类预增的锐捷网络(301165)、香农芯创等。
+            </div>
+            <div class="card-source">
+                来源：财联社 / 上海证券报 / 讯石光通讯网 · <span class="date-tag">2026-04-07~08</span>
+            </div>
+        </div>
+
+        <div class="card" id="cn4">
+            <div class="card-title">🏗️ 内蒙古印发"人工智能+"三年行动方案——建设全国领先绿色智能算力基地</div>
+            <div class="card-summary">
+                4月8日，内蒙古自治区政府印发《内蒙古自治区"人工智能+"行动实施方案（2026—2028年）》，明确提出建设全国领先的绿色智能算力保障基地，持续提升智能算力规模。到2028年，人工智能与各领域融合创新水平大幅提升，培育一批新产品新服务。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">绿色算力基地</span>
+                <span class="metric">2026-2028三年计划</span>
+                <span class="metric">智能算力扩容</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>东数西算+绿色算力政策持续加码。内蒙古是"东数西算"八大枢纽节点之一，利好区域算力基建标的：特变电工(600089)、内蒙华电(600863)、中国电信/联通（IDC建设）。绿色电力+算力融合是长期趋势。
+            </div>
+            <div class="card-source">
+                来源：财联社 / 内蒙古自治区政府官网 · <span class="date-tag">2026-04-08</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== 产业/融资 ========== -->
+    <div class="section" id="ind-section">
+        <h2 class="section-title">🌐 产业动态</h2>
+
+        <div class="card" id="ind1">
+            <div class="card-title">🔄 DeepSeek V4 全面切换华为昇腾 950PR —— 彻底抛弃英伟达 CUDA 生态</div>
+            <div class="card-summary">
+                据 The Information 等多家媒体报道，DeepSeek 即将发布的下一代旗舰模型 V4 将完全运行在华为昇腾 950PR 芯片上，底层代码从英伟达 CUDA 全面迁移至华为 CANN 框架。这是全球首个头部大模型完全脱离英伟达生态的标志性事件。DeepSeek 甚至为此专门推迟发布时间，与华为、寒武纪共同重写底层模块。消息在清明假期期间持续发酵。
+            </div>
+            <div class="card-metrics">
+                <span class="metric">全面去CUDA化</span>
+                <span class="metric">华为昇腾950PR</span>
+                <span class="metric">CANN框架</span>
+                <span class="metric">全球首例</span>
+            </div>
+            <div class="card-invest">
+                <strong>💡 投资视角：</strong>国产AI算力生态历史性突破。华为昇腾产业链全面受益：神州数码(000034)、拓维信息(002261)、软通动力(301236)。寒武纪(688256)参与底层适配，估值有望重估。利空美股 $NVDA 中国区收入预期。
+            </div>
+            <div class="card-source">
+                来源：The Information / 量子位 / 钛媒体 · <span class="date-tag">2026-04-03~08 持续发酵</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>📊 本日报由 <strong>小荷 AI 投研助手</strong> 🪷 自动生成</p>
+    <p>生成时间：2026-04-09 08:00 CST</p>
+    <p style="margin-top: 8px;">⚠️ 免责声明：本日报仅供信息参考，不构成任何投资建议。投资有风险，入市需谨慎。</p>
+    <p>数据来源：财联社、金十数据、Bloomberg、Reuters、TechCrunch、36氪、量子位、同花顺、界面新闻等公开信源。</p>
+</div>
+
+<!-- Bottom Navigation -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-08.html">← 2026-04-08</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+</body>
+</html>
