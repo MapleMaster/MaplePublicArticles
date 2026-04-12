@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 投研日报 · 2026-04-12</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container { max-width: 920px; margin: 0 auto; }
+        
+        /* Navigation */
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            border-bottom: 1px solid #21262d;
+            margin-bottom: 10px;
+        }
+        .header h1 {
+            font-size: 2em;
+            background: linear-gradient(135deg, #58a6ff, #f0b90b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #8b949e;
+            font-size: 1em;
+        }
+        .header .weekend-badge {
+            display: inline-block;
+            background: rgba(240, 185, 11, 0.15);
+            color: #f0b90b;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 10px;
+            border: 1px solid rgba(240, 185, 11, 0.3);
+        }
+
+        /* Time window banner */
+        .time-window {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 12px 20px;
+            background: rgba(88, 166, 255, 0.08);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            color: #58a6ff;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        /* TOC */
+        .toc {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+        .toc h2 {
+            color: #f0b90b;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+        }
+        .toc a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.9em;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            display: block;
+        }
+        .toc a:hover { background: rgba(88, 166, 255, 0.1); }
+
+        /* Section */
+        .section {
+            margin: 30px 0;
+        }
+        .section-title {
+            font-size: 1.4em;
+            color: #f0f6fc;
+            padding: 12px 0;
+            border-bottom: 2px solid #f0b90b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .emoji { font-size: 1.3em; }
+
+        /* Cards */
+        .card {
+            background: #161b22;
+            border: 1px solid #21262d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #30363d; }
+        .card-title {
+            font-size: 1.15em;
+            color: #f0f6fc;
+            margin-bottom: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .card-title .news-emoji { flex-shrink: 0; }
+        .card-summary {
+            color: #8b949e;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        .card-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .metric {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.82em;
+            font-weight: 600;
+        }
+        .metric-up { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+        .metric-down { background: rgba(63, 185, 80, 0.15); color: #3fb950; }
+        .metric-neutral { background: rgba(139, 148, 158, 0.15); color: #8b949e; }
+        .metric-highlight { background: rgba(240, 185, 11, 0.15); color: #f0b90b; }
+        .card-invest {
+            background: rgba(88, 166, 255, 0.06);
+            border-left: 3px solid #58a6ff;
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 10px;
+        }
+        .card-invest-label {
+            color: #58a6ff;
+            font-size: 0.82em;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .card-invest-text {
+            color: #c9d1d9;
+            font-size: 0.9em;
+        }
+        .card-source {
+            color: #484f58;
+            font-size: 0.8em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .card-source .date-tag {
+            background: rgba(139, 148, 158, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #8b949e;
+        }
+
+        .no-news {
+            text-align: center;
+            color: #484f58;
+            padding: 30px;
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #21262d;
+            margin-top: 40px;
+            color: #484f58;
+            font-size: 0.85em;
+        }
+        .footer a { color: #58a6ff; text-decoration: none; }
+        .footer .disclaimer {
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(248, 81, 73, 0.06);
+            border: 1px solid rgba(248, 81, 73, 0.15);
+            border-radius: 8px;
+            color: #8b949e;
+            font-size: 0.8em;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 10px; }
+            .header h1 { font-size: 1.5em; }
+            .card { padding: 16px; }
+            .card-metrics { gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-11.html">← 2026-04-11</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🤖 AI 投研日报</h1>
+        <div class="subtitle">2026年4月12日 · 星期日</div>
+        <div class="weekend-badge">📅 周末版 · A股港股休市 · AI产业动态照常追踪</div>
+    </div>
+
+    <!-- Time Window -->
+    <div class="time-window">
+        📰 新闻时间窗口：2026-04-11 08:00 ~ 2026-04-12 08:00（过去24小时）
+    </div>
+
+    <!-- TOC -->
+    <div class="toc">
+        <h2>📋 目录导航</h2>
+        <div class="toc-grid">
+            <a href="#us-market">🇺🇸 美股市场（5条）</a>
+            <a href="#a-market">🇨🇳 A股市场（4条）</a>
+            <a href="#hk-market">🇭🇰 港股市场（2条）</a>
+            <a href="#industry">🏭 产业动态（2条）</a>
+        </div>
+    </div>
+
+    <!-- US Market -->
+    <div class="section" id="us-market">
+        <div class="section-title">
+            <span class="emoji">🇺🇸</span> 美股市场
+        </div>
+
+        <!-- News 1 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">🚀</span>
+                纳指八连升 费城半导体指数续刷历史新高 本周暴涨13.49%
+            </div>
+            <div class="card-summary">
+                4月10日美股收盘，纳斯达克综合指数涨0.35%报22,902.89点，录得八连升。费城半导体指数涨2.31%续刷历史新高，30只成分股中23家收涨，本周累计暴涨13.49%。标普500和纳指均创去年11月以来最佳单周表现，三大指数本周涨幅均超3%。芯片股成为领涨主力，存储概念股西部数据、希捷科技、闪迪均收于历史新高。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-up">纳指 +0.35% 八连升</span>
+                <span class="metric metric-up">费半 +2.31% 新高</span>
+                <span class="metric metric-up">费半周涨 +13.49%</span>
+                <span class="metric metric-up">标普周涨 +3.56%</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">半导体板块进入强势周期，费半创历史新高确认趋势。关联标的：英伟达(NVDA)、AMD、博通(AVGO)、闪迪(SNDI)、西部数据(WDC)。A股对标：中际旭创、新易盛、东山精密等光模块/存储链。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：财联社</span>
+                <span class="date-tag">📅 2026-04-11 06:04</span>
+            </div>
+        </div>
+
+        <!-- News 2 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">💰</span>
+                CoreWeave与Anthropic达成68亿美元算力租赁协议 股价飙涨13%
+            </div>
+            <div class="card-summary">
+                AI云计算公司CoreWeave(CRWV)与Anthropic签署多年期68亿美元算力租赁协议，为Claude系列大模型提供美国数据中心的多种英伟达芯片架构支持。这是CoreWeave继与Meta签署210亿美元协议后的又一重磅大单。CoreWeave目前已将四大AI模型开发商纳入客户名单，股价当日飙涨13%。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-highlight">协议规模 $68亿</span>
+                <span class="metric metric-up">CRWV +13%</span>
+                <span class="metric metric-highlight">Meta协议 $210亿</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">AI算力基础设施需求持续爆发，CoreWeave作为"AI算力中间商"商业模式获验证。英伟达(NVDA)作为底层芯片供应商持续受益。关注AI云计算/IDC产业链。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：Motley Fool / 财联社</span>
+                <span class="date-tag">📅 2026-04-11</span>
+            </div>
+        </div>
+
+        <!-- News 3 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">⚡</span>
+                英特尔单周暴涨24% 创2000年1月以来最佳周表现
+            </div>
+            <div class="card-summary">
+                英特尔(INTC)本周累计上涨23.82%，创下自2000年1月以来最大单周涨幅。此前有消息称英特尔正与SpaceX、特斯拉合作开发AI专用芯片，叠加其代工业务复苏预期。英特尔在AI芯片版图中的角色正从"掉队者"向"差异化竞争者"转型。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-up">INTC 周涨 +23.82%</span>
+                <span class="metric metric-highlight">26年来最佳周涨幅</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">英特尔低位反转信号明确，代工+AI定制芯片双驱动。但需注意单周暴涨后的回调风险。关联标的：英特尔(INTC)、代工概念。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：财联社</span>
+                <span class="date-tag">📅 2026-04-11 06:04</span>
+            </div>
+        </div>
+
+        <!-- News 4 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">🔬</span>
+                Anthropic斥资4亿美元收购生物科技AI公司Coefficient Bio
+            </div>
+            <div class="card-summary">
+                Anthropic以约4亿美元股票交易收购生物技术AI初创公司Coefficient Bio，这是Anthropic首次公开披露在生物科技领域的重大并购。Coefficient Bio核心业务为AI药物发现和新药候选分子筛选，团队约9-10人，创始人拥有前Genentech背景。CEO Dario Amodei表示此举旨在构建"AI比人类更早发现科学突破方向"的能力。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-highlight">收购金额 ~$4亿</span>
+                <span class="metric metric-highlight">首次进军生物科技</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">AI+生物科技（AI4Science）成为新热点赛道，头部AI公司开始垂直布局。关注AI制药概念：A股药明康德、成都先导、美迪西；美股Recursion(RXRX)、Tempus AI(TEM)。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：新浪新闻 / TechCrunch</span>
+                <span class="date-tag">📅 2026-04-11</span>
+            </div>
+        </div>
+
+        <!-- News 5 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">🔮</span>
+                Lumentum CEO：光学组件订单将排满至2028年 超大规模需求"远没见顶"
+            </div>
+            <div class="card-summary">
+                英伟达投资的光器件制造商Lumentum CEO Michael Hurlston表示，科技巨头对光学组件的需求正在加速，预计再过两个季度2028年全年产能将被全部预订。他强调"超大规模云厂商的资本开支规模惊人，远没有见顶迹象"，本轮行业周期至少持续5年。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-highlight">产能排至2028年</span>
+                <span class="metric metric-highlight">行业周期 ≥5年</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">光模块/光通信确认超级周期，订单能见度极高。A股核心标的：中际旭创(300308)、新易盛(300502)、天孚通信(300394)、东山精密(002384)。长青持仓天孚通信继续受益。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：财联社 / 华尔街见闻</span>
+                <span class="date-tag">📅 2026-04-11</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- A-Share Market -->
+    <div class="section" id="a-market">
+        <div class="section-title">
+            <span class="emoji">🇨🇳</span> A股市场
+            <span style="font-size: 0.6em; color: #f0b90b; margin-left: auto;">⚠️ 4月12日周末休市 · 数据截至4月10日收盘</span>
+        </div>
+
+        <!-- News 6 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">📈</span>
+                创业板暴涨3.78%创4年多新高 沪指盘中站上4000点 成交放量至2.34万亿
+            </div>
+            <div class="card-summary">
+                4月10日A股三大指数全线上涨。创业板指大涨3.78%（盘中一度涨超4%），创2021年12月以来新高。沪指涨0.51%盘中一度站上4000点关口，深成指涨2.24%。全市场约4000股飘红，成交额2.34万亿元，较前日放量近1900亿。动力电池产业链爆发，宁德时代大涨超7%市值达1.9万亿；四部委联合座谈治理"内卷式"竞争。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-up">创业板 +3.78% 4年新高</span>
+                <span class="metric metric-up">沪指盘中站上4000</span>
+                <span class="metric metric-up">成交 2.34万亿</span>
+                <span class="metric metric-up">宁德时代 +7% 1.9万亿</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">创业板创新高+放量确认强势行情。宁德时代权重股引领创业板，锂电产业链回暖。动力电池/储能方向值得关注：宁德时代(300750)、亿纬锂能(300014)。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：华尔街见闻 / 金十数据</span>
+                <span class="date-tag">📅 2026-04-10 收盘</span>
+            </div>
+        </div>
+
+        <!-- News 7 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">💎</span>
+                中际旭创市值突破8000亿创历史新高 光模块"易中天"组合继续疯涨
+            </div>
+            <div class="card-summary">
+                4月10日，光模块"易中天"（新易盛+中际旭创+天孚通信）继续上涨之旅。龙头中际旭创收涨6.01%，市值达8163亿元创历史新高，全天成交额超238亿。新易盛涨超6%市值达5193亿元同创新高，德明利涨停突破千亿，东山精密涨超8%。存储芯片一季报亮眼：香农芯创Q1扣非净利同比最高增9713%，德明利同比增长最高5383%。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-up">中际旭创 +6% 市值8163亿</span>
+                <span class="metric metric-up">新易盛 +6% 市值5193亿</span>
+                <span class="metric metric-up">东山精密 +8%</span>
+                <span class="metric metric-up">德明利 涨停</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">Lumentum产能排满至2028年利好直接传导至A股光模块板块。中际旭创3年涨40倍，估值需关注。长青持仓天孚通信处于同一赛道持续受益。关联标的：中际旭创、新易盛、天孚通信、东山精密。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：华尔街见闻 / 金融界</span>
+                <span class="date-tag">📅 2026-04-10 收盘</span>
+            </div>
+        </div>
+
+        <!-- News 8 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">🏦</span>
+                中信证券Q1净利102亿超预期 券商板块罕见爆发
+            </div>
+            <div class="card-summary">
+                中信证券一季报大超预期：Q1营收231.55亿元同比+40.91%，归母净利润102.16亿元同比+54.6%，单季净利润超过光模块巨头中际旭创全年水平。A股中信证券盘中飙升近10%收盘涨超7%，港股涨超8%。券商板块集体爆发：国泰君安国际(港股)涨近30%，申万宏源香港涨超18%。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-up">Q1营收 231.55亿 +40.91%</span>
+                <span class="metric metric-up">Q1净利 102.16亿 +54.6%</span>
+                <span class="metric metric-up">中信证券 +7%</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">"牛市旗手"券商业绩验证行情强度，Q1成交火爆+自营收益丰厚。券商板块历史上是行情中段加速的信号。关联标的：中信证券(600030)、华泰证券(601688)、东方财富(300059)。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：华尔街见闻 / 东方财富网</span>
+                <span class="date-tag">📅 2026-04-10</span>
+            </div>
+        </div>
+
+        <!-- News 9 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">🌐</span>
+                美国AI芯片出口审批放缓 国产替代逻辑持续强化
+            </div>
+            <div class="card-summary">
+                据最新报道，美国负责AI芯片出口许可审批的部门面临人员流动率上升及编制缩减双重挑战，直接导致审批处理速度放缓。此前美国已推进AI芯片出口全球许可制，采购超1000颗GPU需审核。这一消息进一步强化了国产AI芯片替代的产业逻辑。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-highlight">出口审批人员流失</span>
+                <span class="metric metric-highlight">全球许可制推进中</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">出口审批放缓短期可能影响英伟达等美企对华出货节奏，长期利好国产AI芯片产业链。关注：海光信息(688041)、寒武纪(688256)、龙芯中科(688047)、华为昇腾生态。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：Tech in Asia / AIToolly</span>
+                <span class="date-tag">📅 2026-04-11</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HK Market -->
+    <div class="section" id="hk-market">
+        <div class="section-title">
+            <span class="emoji">🇭🇰</span> 港股市场
+            <span style="font-size: 0.6em; color: #f0b90b; margin-left: auto;">⚠️ 4月12日周末休市 · 数据截至4月10日收盘</span>
+        </div>
+
+        <!-- News 10 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">📊</span>
+                港股随A股走强 恒指涨0.55% 中资券商集体爆发
+            </div>
+            <div class="card-summary">
+                4月10日港股市场跟随A股走强，恒生指数涨0.55%，恒生科技指数涨0.80%。受中信证券一季报超预期及香港首批稳定币牌照发布双重利好推动，港股中资券商板块集体爆发：国泰君安国际暴涨近30%，申万宏源香港涨超18%，中信证券港股涨超8%。宁德时代港股涨超9%。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-up">恒指 +0.55%</span>
+                <span class="metric metric-up">恒生科技 +0.80%</span>
+                <span class="metric metric-up">国泰君安国际 +30%</span>
+                <span class="metric metric-up">宁德港股 +9%</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">港股券商+稳定币双催化，金融科技概念值得关注。香港首批稳定币牌照颁发(碇点金融/汇丰)，Web3合规化进程加速。关联标的：中信证券-H(6030.HK)、港交所(0388.HK)。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：华尔街见闻 / 财联社</span>
+                <span class="date-tag">📅 2026-04-10 收盘</span>
+            </div>
+        </div>
+
+        <!-- News 11 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">🎬</span>
+                中信证券：港股有望4-5月迎估值扩张行情 AI技术主线持续
+            </div>
+            <div class="card-summary">
+                中信证券最新研报指出，2月以来受全球货币政策预期修正、AI技术对传统行业结构性冲击及地缘等多重因素影响，港股出现调整。但展望4-5月，随着美伊局势缓和、中国经济数据改善、AI产业催化密集（GPT-6发布、港股AI企业季报），港股有望迎来估值扩张行情，科技板块将是主线。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-highlight">4-5月估值扩张预期</span>
+                <span class="metric metric-highlight">AI科技主线</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">机构看好港股科技板块中期行情。GPT-6下周发布+港股AI企业季报将成催化。关联标的：腾讯(0700.HK)、阿里巴巴(9988.HK)、商汤(0020.HK)、快手(1024.HK)。长青持仓泡泡玛特(9992.HK)受益消费+AI赋能双逻辑。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：中信证券研报 / 金融界</span>
+                <span class="date-tag">📅 2026-04-11</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Industry -->
+    <div class="section" id="industry">
+        <div class="section-title">
+            <span class="emoji">🏭</span> 产业动态
+        </div>
+
+        <!-- News 12 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">🔥</span>
+                GPT-6确认4月14日发布 代号"土豆" 性能暴涨40% 支持200万Token
+            </div>
+            <div class="card-summary">
+                OpenAI官方确认下一代大模型GPT-6将于2026年4月14日（下周一）全球同步发布，代号"Spud（土豆）"。预训练已于3月17日完成，据称性能较GPT-5.4提升40%，支持原生多模态和200万Token上下文窗口，在代码生成、逻辑推理及智能体任务等核心能力全面突破。耗时18个月研发，被视为迈向AGI的关键一步。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-highlight">4月14日（下周一）发布</span>
+                <span class="metric metric-up">性能 +40%</span>
+                <span class="metric metric-highlight">200万Token</span>
+                <span class="metric metric-highlight">原生多模态</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">⚠️ 下周一重大事件！GPT-6发布可能引爆全球AI板块行情。关注AI应用层（蓝色光标、昆仑万维）和算力层（英伟达、博通）的联动机会。OpenAI估值8520亿美元，IPO预期升温利好一级市场投资者。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：36氪 / 钛媒体 / 知乎</span>
+                <span class="date-tag">📅 持续报道中（4月11-12日）</span>
+            </div>
+        </div>
+
+        <!-- News 13 -->
+        <div class="card">
+            <div class="card-title">
+                <span class="news-emoji">💵</span>
+                生数科技完成近20亿元B轮融资 阿里云领投 Vidu登陆阿里云百炼
+            </div>
+            <div class="card-summary">
+                清华系AI公司生数科技宣布完成近20亿元人民币B轮融资，由阿里云领投，中网投、九安海棠、好未来、光合创投等战略投资。融资前一天（4月9日），生数科技世界生成模型Vidu正式登陆阿里云百炼平台。生数科技专注多模态视频模型，核心产品Vidu系列在AI视频生成赛道处于领先位置。
+            </div>
+            <div class="card-metrics">
+                <span class="metric metric-highlight">融资 ~20亿元 B轮</span>
+                <span class="metric metric-highlight">阿里云领投</span>
+                <span class="metric metric-highlight">Vidu登陆百炼</span>
+            </div>
+            <div class="card-invest">
+                <div class="card-invest-label">💡 投资视角</div>
+                <div class="card-invest-text">AIGC视频生成赛道资本持续看好，阿里云战略布局世界模型。关联上市标的：阿里巴巴(9988.HK/BABA)受益生态完善、好未来(TAL)战略投资。A股AIGC概念：万兴科技、虹软科技。</div>
+            </div>
+            <div class="card-source">
+                <span>来源：投资界 / 每经 / 第一财经</span>
+                <span class="date-tag">📅 2026-04-10/11</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>🪷 由 <strong>小荷</strong> 自动生成 · 生成时间：2026-04-12 08:00 CST</p>
+        <p>GitHub Pages: <a href="https://maplemaster.github.io/MaplePublicArticles/daily-news/stock-invest/AI_Daily_2026-04-12.html" target="_blank">在线阅读</a></p>
+        <div class="disclaimer">
+            ⚠️ <strong>免责声明</strong>：本日报仅供信息参考，不构成任何投资建议。投资有风险，入市需谨慎。所有信息基于公开渠道整理，时效性和准确性请以官方来源为准。过往表现不代表未来收益。
+        </div>
+    </div>
+
+</div>
+
+<!-- Bottom Navigation -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-11.html">← 2026-04-11</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+</body>
+</html>
