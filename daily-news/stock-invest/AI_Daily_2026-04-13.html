@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-13</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 40px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* 导航栏 */
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 6px; }
+        .header .subtitle { color: #8b949e; font-size: 1em; margin-bottom: 4px; }
+        .header .date-badge {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            color: #58a6ff;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 12px;
+        }
+
+        .time-window {
+            max-width: 920px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+        }
+        .time-window-inner {
+            background: rgba(248, 81, 73, 0.08);
+            border: 1px solid rgba(248, 81, 73, 0.25);
+            border-radius: 10px;
+            padding: 12px 20px;
+            text-align: center;
+            font-size: 0.95em;
+            color: #f0883e;
+        }
+
+        .market-notice {
+            max-width: 920px;
+            margin: 12px auto 0;
+            padding: 0 20px;
+        }
+        .market-notice-inner {
+            background: rgba(240, 185, 11, 0.08);
+            border: 1px solid rgba(240, 185, 11, 0.25);
+            border-radius: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 0.88em;
+            color: #f0b90b;
+        }
+
+        .toc {
+            max-width: 920px;
+            margin: 24px auto 0;
+            padding: 0 20px;
+        }
+        .toc-inner {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+        .toc h2 { font-size: 1.1em; color: #f0f6fc; margin-bottom: 12px; }
+        .toc ul { list-style: none; padding: 0; }
+        .toc li { margin-bottom: 6px; }
+        .toc a { font-size: 0.92em; }
+        .toc .toc-market { color: #8b949e; font-size: 0.82em; margin-left: 6px; }
+
+        .section-title {
+            max-width: 920px;
+            margin: 32px auto 16px;
+            padding: 0 20px;
+            font-size: 1.3em;
+            color: #f0f6fc;
+            border-left: 4px solid #58a6ff;
+            padding-left: 16px;
+        }
+
+        .cards { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #58a6ff; }
+        .card-title { font-size: 1.1em; color: #f0f6fc; font-weight: 600; margin-bottom: 8px; }
+        .card-summary { color: #c9d1d9; font-size: 0.92em; margin-bottom: 10px; }
+        .card-data { color: #f0883e; font-size: 0.88em; margin-bottom: 8px; font-weight: 500; }
+        .card-invest {
+            background: rgba(63, 185, 80, 0.08);
+            border-left: 3px solid #3fb950;
+            padding: 8px 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.88em;
+            color: #7ee787;
+            margin-bottom: 8px;
+        }
+        .card-source { color: #8b949e; font-size: 0.8em; }
+        .card-source .date-tag {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            color: #58a6ff;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 0.92em;
+            margin-left: 4px;
+        }
+
+        .up { color: #f85149; }
+        .down { color: #3fb950; }
+
+        .footer {
+            max-width: 920px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+            text-align: center;
+            color: #484f58;
+            font-size: 0.82em;
+        }
+        .footer .disclaimer {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .no-news {
+            background: #161b22;
+            border: 1px dashed #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            color: #8b949e;
+            font-size: 0.95em;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-12.html" id="nav-prev">← 2026-04-12</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="header">
+    <h1>🤖📊 AI 投研日报</h1>
+    <div class="subtitle">AI · 算力 · 芯片 · 机器人 · 大模型 — 投资者视角</div>
+    <div class="date-badge">📅 2026年4月13日 · 周日</div>
+</div>
+
+<!-- 时间窗口标注 -->
+<div class="time-window">
+    <div class="time-window-inner">📰 新闻时间窗口：2026-04-12 08:00 ~ 2026-04-13 08:00（过去24小时）</div>
+</div>
+
+<!-- 市场状态标注 -->
+<div class="market-notice">
+    <div class="market-notice-inner">⚠️ 今日为周日，A股/港股/美股均休市。本期聚焦周末重磅消息面，为周一（4月14日）开盘做准备。明日 GPT-6 正式发布日！</div>
+</div>
+
+<!-- 目录导航 -->
+<div class="toc">
+    <div class="toc-inner">
+        <h2>📑 今日目录</h2>
+        <ul>
+            <li><a href="#us1">1. GPT-6 明日（4/14）全球发布，性能暴涨40%</a> <span class="toc-market">🇺🇸 美股</span></li>
+            <li><a href="#cn1">2. DeepSeek V4 确认4月下旬发布，首次适配华为昇腾</a> <span class="toc-market">🇨🇳 A股</span></li>
+            <li><a href="#us2">3. CoreWeave与Meta签署210亿美元AI算力协议</a> <span class="toc-market">🇺🇸 美股</span></li>
+            <li><a href="#cn2">4. 证监会发布创业板深化改革意见，增设第四套上市标准</a> <span class="toc-market">🇨🇳 A股</span></li>
+            <li><a href="#cn3">5. 工信部：加快构建AI芯片计算互联生态</a> <span class="toc-market">🇨🇳 A股</span></li>
+            <li><a href="#hk1">6. 世界互联网大会亚太峰会今日香港开幕</a> <span class="toc-market">🇭🇰 港股</span></li>
+            <li><a href="#us3">7. Sam Altman住宅遭燃烧弹袭击，AI焦虑升级</a> <span class="toc-market">🇺🇸 美股</span></li>
+            <li><a href="#cn4">8. 阿里云/百度智能云AI算力涨价4月18日正式生效</a> <span class="toc-market">🇨🇳 A股</span></li>
+            <li><a href="#hk2">9. 华工科技冲刺港股上市，AI光模块订单排到Q4</a> <span class="toc-market">🇭🇰 港股</span></li>
+            <li><a href="#us4">10. NVIDIA Vera Rubin平台确认部署，算力军备竞赛白热化</a> <span class="toc-market">🇺🇸 美股</span></li>
+            <li><a href="#cn5">11. 液冷技术大会4月16日深圳召开，腾讯战略协办</a> <span class="toc-market">🇨🇳 A股</span></li>
+            <li><a href="#hk3">12. 字节AI Seed团队一年流失近70人，AI人才争夺白热化</a> <span class="toc-market">🇭🇰 港股</span></li>
+        </ul>
+    </div>
+</div>
+
+<!-- ==================== 美股板块 ==================== -->
+<h2 class="section-title" id="section-us">🇺🇸 美股 · AI 前沿</h2>
+<div class="cards">
+
+    <!-- 美股1 -->
+    <div class="card" id="us1">
+        <div class="card-title">🚀 GPT-6 定档明日（4/14）全球发布，性能暴涨40%，AGI竞赛提速</div>
+        <div class="card-summary">
+            OpenAI 正式确认代号"Spud（土豆）"的新一代大模型 GPT-6 将于 2026 年 4 月 14 日全球同步发布。该模型预训练于 3 月 17 日完成，耗时 18 个月研发，核心亮点包括：<strong>原生多模态架构</strong>、<strong>200万 Token 上下文窗口</strong>、长时记忆能力，以及在代码、推理、智能体等核心能力上全面超越前代约 40%。定价保持竞争力。
+        </div>
+        <div class="card-data">📊 关键指标：OpenAI估值 8520 亿美元（最新融资轮 1220 亿美元）| 上下文窗口 200 万Token | 性能提升约 40%</div>
+        <div class="card-invest">💡 投资视角：明日发布直接催化 —— <strong>MSFT（OpenAI大股东）</strong>、<strong>NVDA（算力基座）</strong>、AI应用层 <strong>PLTR、CRM</strong> 受益。A股关注算力产业链 <strong>中际旭创、工业富联</strong>。GPT-6 发布当日关注美股盘后反应。</div>
+        <div class="card-source">来源：腾讯新闻、量子位、澎湃新闻 <span class="date-tag">2026-04-12</span></div>
+    </div>
+
+    <!-- 美股2 -->
+    <div class="card" id="us2">
+        <div class="card-title">💰 CoreWeave 与 Meta 签署 210 亿美元 AI 算力协议，部署 NVIDIA Vera Rubin</div>
+        <div class="card-summary">
+            4 月 9 日，CoreWeave（CRWV）宣布与 Meta 达成约 <strong>210 亿美元</strong>的扩大协议，为 Meta 提供 AI 云算力至 2032 年。加上此前 142 亿美元的合约，Meta 在 CoreWeave 的总承诺额达到 <strong>350 亿美元</strong>。协议含 NVIDIA 最新 Vera Rubin 平台的早期部署。消息当日 CoreWeave 盘前涨约 7%，NVIDIA 同步走高。
+        </div>
+        <div class="card-data">📊 协议价值 $210 亿 | Meta 总承诺 $350 亿 | CoreWeave 积压订单 $878 亿 | CRWV 当日 <span class="up">+11.9%</span></div>
+        <div class="card-invest">💡 投资视角：算力军备竞赛持续升级 —— <strong>CRWV</strong>（直接受益方）、<strong>NVDA</strong>（Vera Rubin 平台供应商）、<strong>META</strong>（AI基础设施投入加码）。国内关注 <strong>算力租赁板块</strong>。</div>
+        <div class="card-source">来源：CNBC、Barron's、CoreWeave官方 <span class="date-tag">2026-04-09~10</span></div>
+    </div>
+
+    <!-- 美股3 -->
+    <div class="card" id="us3">
+        <div class="card-title">🔥 Sam Altman 住宅遭燃烧弹袭击，"AI焦虑"引发社会关注</div>
+        <div class="card-summary">
+            4 月 9 日深夜，一名 20 岁男子向 OpenAI CEO Sam Altman 位于旧金山的住宅投掷燃烧弹（莫洛托夫鸡尾酒），导致外部门栅起火，Altman 本人未受伤。旧金山警方已逮捕嫌犯。Altman 随后发声将此归因于全球日益蔓延的"AI焦虑"。同时 OpenAI 总部也收到威胁。这是 AI 行业争议从网络辩论升级为物理暴力的标志性事件。
+        </div>
+        <div class="card-data">📊 嫌犯年龄 20 岁 | 无人受伤 | OpenAI 总部同日收到威胁 | 事件引发全球媒体广泛报道</div>
+        <div class="card-invest">💡 投资视角：短期对 <strong>OpenAI 相关概念股</strong> 无实质影响，但加剧 AI 监管预期。中长期关注 <strong>AI 安全/合规/伦理</strong> 板块机会。MSFT 等大股东需关注舆论风险传导。</div>
+        <div class="card-source">来源：AP News、LA Times、The Independent <span class="date-tag">2026-04-10~12</span></div>
+    </div>
+
+    <!-- 美股4 -->
+    <div class="card" id="us4">
+        <div class="card-title">⚡ NVIDIA Vera Rubin 平台确认部署，算力代际升级拉开序幕</div>
+        <div class="card-summary">
+            4 月 9 日 Meta-CoreWeave 协议中明确，NVIDIA 最新的 <strong>Vera Rubin 平台</strong>将成为核心算力基础。该平台此前于 3 月 GTC 大会正式发布，包含 Vera Rubin NVL72 GPU 机架、Vera CPU 机架、Groq 3 LPX 推理加速器等。结合 AMD-Meta 600 亿美元的 MI450 协议，美国 AI 算力基础设施正进入 <strong>"双源供应"新格局</strong>。
+        </div>
+        <div class="card-data">📊 NVDA FY2026 营收 $2159 亿 | 数据中心 $1937 亿 | AMD FY2026 营收 $346 亿 | AMD-Meta 订单 $600 亿</div>
+        <div class="card-invest">💡 投资视角：<strong>NVDA</strong> 依旧主导（80-90% 市场份额），但 <strong>AMD</strong> 正加速追赶（MI450 + Meta/OpenAI 双客户）。上游光模块 <strong>中际旭创、天孚通信、Lumentum</strong> 持续受益。关注 Vera Rubin 量产节奏。</div>
+        <div class="card-source">来源：NVIDIA 官方博客、Financial Content <span class="date-tag">2026-04-09</span></div>
+    </div>
+</div>
+
+<!-- ==================== A股板块 ==================== -->
+<h2 class="section-title" id="section-cn">🇨🇳 A股 · 政策与产业</h2>
+<div class="cards">
+
+    <!-- A股1 -->
+    <div class="card" id="cn1">
+        <div class="card-title">🧠 DeepSeek V4 确认4月下旬发布：万亿参数 + 华为昇腾深度适配</div>
+        <div class="card-summary">
+            据多方消息证实，DeepSeek 创始人梁文锋近日内部透露，旗舰大模型 <strong>DeepSeek V4</strong> 将于 4 月下旬正式发布，以 <strong>Apache 2.0 协议开源</strong>。核心突破：<strong>万亿级参数规模</strong>、<strong>百万级上下文窗口</strong>，且<strong>首次完全运行于华为昇腾 950PR 芯片</strong>，打破"唯英伟达"的算力路径依赖，是中国 AI 在"去 CUDA 化"道路上的关键里程碑。
+        </div>
+        <div class="card-data">📊 参数规模 ≈ 万亿级 | 上下文 百万级 Token | 首发华为昇腾 950PR | Apache 2.0 开源</div>
+        <div class="card-invest">💡 投资视角：直接利好国产算力产业链 —— <strong>华为昇腾概念（海光信息、寒武纪）</strong>、<strong>算力服务商（紫光股份、中科曙光）</strong>。开源利好 AI 应用层。本周预计为市场主线之一。</div>
+        <div class="card-source">来源：凤凰网、腾讯新闻、The Information <span class="date-tag">2026-04-10~12</span></div>
+    </div>
+
+    <!-- A股2 -->
+    <div class="card" id="cn2">
+        <div class="card-title">📋 证监会发布创业板深化改革意见：增设第四套上市标准，利好AI企业</div>
+        <div class="card-summary">
+            4 月 10 日盘后，经国务院同意，证监会正式发布《关于深化创业板改革 更好服务新质生产力发展的意见》。核心举措包括：<strong>增设第四套上市标准</strong>，面向新兴产业和未来产业领域的优质企业（含尚未盈利的高科技/AI企业），试点由地方政府推荐上市等。这是继 2020 年创业板注册制改革后最重要的一次制度升级。
+        </div>
+        <div class="card-data">📊 新增第四套上市标准 | 面向新兴产业/未来产业 | 支持尚未盈利企业上市 | 4月10日盘后发布</div>
+        <div class="card-invest">💡 投资视角：直接利好创业板及科技成长股 —— <strong>券商板块（中信证券、东方财富）</strong>因承销业务预期受益，<strong>AI/半导体/新能源</strong>未盈利龙头有望受益上市新通道。周一开盘重点关注创业板表现。</div>
+        <div class="card-source">来源：证监会官网、新华网、央视新闻 <span class="date-tag">2026-04-10</span></div>
+    </div>
+
+    <!-- A股3 -->
+    <div class="card" id="cn3">
+        <div class="card-title">🏭 工信部：加快构建高效统一的 AI 芯片计算互联生态</div>
+        <div class="card-summary">
+            4 月 10 日，工信部在武汉召开 2026 年全国电子信息制造业高质量发展行业会议。会议提出"十五五"重点任务：<strong>加快构建高效统一的 AI 芯片计算互联生态</strong>，促进 RISC-V 与 AI 终端升级，推进"1+M+N"国家算力互联互通节点建设，以及 CLink 高速互联总线标准制定等。
+        </div>
+        <div class="card-data">📊 CLink 高速互联总线 | "1+M+N" 算力节点体系 | RISC-V + AI 终端升级 | "十五五"规划核心方向</div>
+        <div class="card-invest">💡 投资视角：政策明确利好 —— <strong>国产 GPU/算力芯片（寒武纪、海光信息、景嘉微）</strong>、<strong>算力网络基础设施（紫光股份、中兴通讯）</strong>、<strong>RISC-V 概念（中科蓝讯、全志科技）</strong>。</div>
+        <div class="card-source">来源：工信部官网、每日经济新闻、同花顺 <span class="date-tag">2026-04-10</span></div>
+    </div>
+
+    <!-- A股4 -->
+    <div class="card" id="cn4">
+        <div class="card-title">💹 阿里云/百度智能云 AI 算力涨价 4 月 18 日正式生效，量价齐升</div>
+        <div class="card-summary">
+            3 月 18 日同步官宣的阿里云、百度智能云 AI 算力与存储产品涨价将于 <strong>4 月 18 日正式生效</strong>，最高涨幅达 <strong>34%</strong>。此前腾讯云智能体平台也宣布调价。云厂商从十年价格战转向涨价，标志着 AI 算力供需结构性反转。本周为涨价生效前最后一周，市场关注下游用户订单提前锁定情况。
+        </div>
+        <div class="card-data">📊 最高涨幅 34% | 4月18日生效 | 阿里云+百度+腾讯三大云全涨 | 国内AI大模型调用量上周环比+18.9%</div>
+        <div class="card-invest">💡 投资视角：算力涨价利好 —— <strong>算力租赁（优刻得、光环新网）</strong>、<strong>数据中心（万国数据、秦淮数据）</strong>、<strong>上游服务器/芯片</strong>。利空部分下游中小 AI 应用公司成本端。</div>
+        <div class="card-source">来源：财联社、36氪、澎湃新闻 <span class="date-tag">2026-04-12 回顾</span></div>
+    </div>
+
+    <!-- A股5 -->
+    <div class="card" id="cn5">
+        <div class="card-title">❄️ 液冷技术大会 4 月 16 日深圳召开，腾讯数据中心战略协办</div>
+        <div class="card-summary">
+            由 CDCC 主办、腾讯数据中心战略协办的<strong>第四届数据中心液冷技术大会</strong>将于 4 月 16 日在深圳召开，主题为"液冷遇见 800V"，聚焦液冷技术与 800V 高压直流在 AI 算力中心的融合应用。随着 AI 算力密度持续攀升，液冷散热成为下一代数据中心的刚需。
+        </div>
+        <div class="card-data">📊 4月16日深圳 | 主题"液冷遇见800V" | 腾讯战略协办 | 液冷市场 2026 预计 300+ 亿元</div>
+        <div class="card-invest">💡 投资视角：液冷概念催化 —— <strong>英维克、申菱环境、高澜股份</strong>（液冷温控设备）、<strong>曙光数创</strong>（液冷服务器）。4月16日前后为事件催化窗口。</div>
+        <div class="card-source">来源：雪球、CDCC公告 <span class="date-tag">2026-04-10</span></div>
+    </div>
+</div>
+
+<!-- ==================== 港股板块 ==================== -->
+<h2 class="section-title" id="section-hk">🇭🇰 港股 · 科技动态</h2>
+<div class="cards">
+
+    <!-- 港股1 -->
+    <div class="card" id="hk1">
+        <div class="card-title">🌐 2026 世界互联网大会亚太峰会今日在香港开幕，聚焦 AI 与数智</div>
+        <div class="card-summary">
+            4 月 13 日，2026 年世界互联网大会亚太峰会在<strong>香港会议展览中心</strong>正式开幕，为期两天（4/13-14）。主题为"数智赋能 创新发展——携手构建网络空间命运共同体"，聚焦人工智能、数字金融、网络安全治理等前沿议题。预计发布十余份成果报告，吸引全球 50+ 个国家和地区的近千名嘉宾参会。
+        </div>
+        <div class="card-data">📊 50+ 国家参会 | 近 1000 名嘉宾 | 10+ 成果报告 | AI+数字金融核心议题</div>
+        <div class="card-invest">💡 投资视角：港股科技板块情绪催化 —— <strong>腾讯、阿里、百度、金山云</strong>等港股科技龙头。峰会成果报告可能带动<strong>AI 应用、数字金融</strong>概念。关注周一港股开盘反应。</div>
+        <div class="card-source">来源：央视网、IT之家、中国网 <span class="date-tag">2026-04-13</span></div>
+    </div>
+
+    <!-- 港股2 -->
+    <div class="card" id="hk2">
+        <div class="card-title">🔬 华工科技冲刺港股上市，AI 光模块订单排满至 Q4</div>
+        <div class="card-summary">
+            "中国激光第一股"华工科技（000988.SZ）正处于<strong>冲刺港股 A+H 上市</strong>的关键期。据最新消息，公司联接业务（AI高速光模块）订单已排到 2026 年第四季度，武汉及泰国两大产线 24 小时满负荷运转。公司于 2026 年 1 月聘请 H 股发行审计机构，港股 IPO 进程加速。
+        </div>
+        <div class="card-data">📊 当前 A 股市值约 815 亿 | 光模块订单排至 2026Q4 | 产线 24 小时满产 | H股审计已启动</div>
+        <div class="card-invest">💡 投资视角：光模块赛道持续火热 —— A股端关注 <strong>华工科技</strong> H 股上市进展；港股端关注光模块新股标的。同业 <strong>中际旭创、天孚通信</strong> 估值对标参考。</div>
+        <div class="card-source">来源：东方财富、企业上市、新浪财经 <span class="date-tag">2026-04-12</span></div>
+    </div>
+
+    <!-- 港股3 -->
+    <div class="card" id="hk3">
+        <div class="card-title">👥 字节 AI Seed 团队一年流失近 70 人，AI 人才争夺白热化</div>
+        <div class="card-summary">
+            据 xix.ai 等外媒报道，字节跳动 AI Seed 团队在过去一年内流失<strong>近 70 名技术人才</strong>，其中大部分流向腾讯和阿里巴巴，部分人才也选择创业成立 AI 初创公司。这一人才流动反映了国内互联网大厂在 AI 领域的激烈竞争态势。
+        </div>
+        <div class="card-data">📊 一年流失约 70 人 | 主要流向腾讯、阿里 | 部分创业 | AI人才薪资涨幅显著</div>
+        <div class="card-invest">💡 投资视角：人才流向 = 资源流向 —— <strong>腾讯（00700.HK）、阿里（09988.HK）</strong> AI 团队实力增强。字节上市节奏值得关注。AI 人才招聘/培训赛道机会可留意。</div>
+        <div class="card-source">来源：xix.ai、科技媒体综合 <span class="date-tag">2026-04-12</span></div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <div class="disclaimer">
+        ⚠️ <strong>免责声明</strong>：本日报由 AI 自动生成，仅供投资参考，不构成任何投资建议。所有信息来源于公开渠道，准确性请以原始信源为准。投资有风险，入市需谨慎。<br>
+        🪷 生成时间：2026-04-13 08:00 CST | 小荷 AI 投研助手
+    </div>
+    <p>© 2026 AI 投研日报 · Powered by 小荷 🪷</p>
+</div>
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-12.html" id="nav-prev-bottom">← 2026-04-12</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next-bottom">无更新 →</span>
+</div>
+
+</body>
+</html>
