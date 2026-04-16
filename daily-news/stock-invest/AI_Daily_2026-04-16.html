@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-16</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 40px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* 导航栏 */
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            color: #8b949e;
+            font-size: 1.05em;
+        }
+        .time-window {
+            max-width: 920px;
+            margin: 18px auto 0;
+            padding: 14px 24px;
+            background: rgba(88, 166, 255, 0.08);
+            border: 1px solid rgba(88, 166, 255, 0.25);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.05em;
+            color: #58a6ff;
+            font-weight: 500;
+        }
+        .container { max-width: 920px; margin: 0 auto; padding: 24px 20px; }
+        .toc {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+        }
+        .toc h2 {
+            color: #f0f6fc;
+            font-size: 1.2em;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #21262d;
+        }
+        .toc-section { margin-bottom: 12px; }
+        .toc-section-title {
+            color: #f0b90b;
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-bottom: 6px;
+        }
+        .toc ol { padding-left: 24px; }
+        .toc li { margin-bottom: 4px; }
+        .toc a { font-size: 0.92em; }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #f0f6fc;
+            margin: 36px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0b90b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .emoji { font-size: 1.2em; }
+
+        .news-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+        .news-card:hover { border-color: #58a6ff; }
+        .card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+        .card-emoji { font-size: 1.6em; flex-shrink: 0; margin-top: 2px; }
+        .card-title {
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #f0f6fc;
+            line-height: 1.5;
+        }
+        .card-summary {
+            color: #b1bac4;
+            font-size: 0.95em;
+            margin-bottom: 14px;
+            line-height: 1.8;
+        }
+        .card-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .metric {
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 8px;
+            padding: 6px 14px;
+            font-size: 0.85em;
+            color: #8b949e;
+        }
+        .metric .value { font-weight: 700; margin-left: 4px; }
+        .metric .up { color: #f85149; }
+        .metric .down { color: #3fb950; }
+        .metric .neutral { color: #58a6ff; }
+        .card-invest {
+            background: rgba(88, 166, 255, 0.06);
+            border-left: 3px solid #58a6ff;
+            padding: 10px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 10px;
+        }
+        .card-invest-label { color: #58a6ff; font-weight: 600; font-size: 0.88em; margin-bottom: 4px; }
+        .card-invest-content { color: #b1bac4; font-size: 0.9em; }
+        .card-source {
+            color: #6e7681;
+            font-size: 0.82em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .tag {
+            display: inline-block;
+            background: rgba(240, 185, 11, 0.1);
+            color: #f0b90b;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.82em;
+            margin-right: 6px;
+        }
+        .no-news {
+            text-align: center;
+            color: #6e7681;
+            padding: 40px 20px;
+            font-size: 1em;
+        }
+
+        .footer {
+            max-width: 920px;
+            margin: 40px auto 0;
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid #21262d;
+            color: #6e7681;
+            font-size: 0.85em;
+            line-height: 2;
+        }
+
+        @media (max-width: 640px) {
+            .header { padding: 32px 16px 24px; }
+            .header h1 { font-size: 1.5em; }
+            .container { padding: 16px 12px; }
+            .news-card { padding: 18px 16px; }
+            .card-title { font-size: 1.05em; }
+            .section-title { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-15.html" id="nav-prev">← 2026-04-15</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="header">
+    <h1>🤖 AI 投研日报</h1>
+    <p class="subtitle">2026年4月16日 · 周四</p>
+    <div class="time-window">📰 新闻时间窗口：2026-04-15 08:00 ~ 2026-04-16 08:00（过去24小时）</div>
+</div>
+
+<div class="container">
+
+    <!-- 目录 -->
+    <div class="toc">
+        <h2>📑 今日目录</h2>
+        <div class="toc-section">
+            <div class="toc-section-title">🇺🇸 美股 · AI</div>
+            <ol>
+                <li><a href="#us1">S&P 500首破7000点创历史新高，纳斯达克同步刷新纪录</a></li>
+                <li><a href="#us2">台积电今日发布Q1完整财报，营收357亿美元同比+35%</a></li>
+                <li><a href="#us3">ASML Q1营收€88亿超预期，上调全年指引但对华限制引担忧</a></li>
+                <li><a href="#us4">NVIDIA发布全球首个开源量子AI模型Ising</a></li>
+                <li><a href="#us5">OpenAI内部备忘录泄露：指控Anthropic虚增80亿美元收入</a></li>
+            </ol>
+        </div>
+        <div class="toc-section">
+            <div class="toc-section-title">🇭🇰 港股 · AI</div>
+            <ol start="6">
+                <li><a href="#hk1">思格新能今日登陆港交所，暗盘收涨近80%</a></li>
+                <li><a href="#hk2">胜宏科技港股IPO提前截止认购，募资175亿创年内最大</a></li>
+                <li><a href="#hk3">港股芯片股受台积电催化集体走强，傅里叶曾涨超16%</a></li>
+            </ol>
+        </div>
+        <div class="toc-section">
+            <div class="toc-section-title">🇨🇳 A股 · AI</div>
+            <ol start="9">
+                <li><a href="#cn1">第四届数据中心液冷技术大会今日深圳开幕</a></li>
+                <li><a href="#cn2">A股高开低走科技主线分化，创新药走高算力板块调整</a></li>
+            </ol>
+        </div>
+        <div class="toc-section">
+            <div class="toc-section-title">🔬 产业 · AI 前沿</div>
+            <ol start="11">
+                <li><a href="#ind1">智元机器人精灵G2工厂8小时连续作业直播，2283次任务零失误</a></li>
+                <li><a href="#ind2">千问上线"表格Agent"智能体，AI办公迈向代理人时代</a></li>
+                <li><a href="#ind3">MIT提出CompreSSM技术：AI训练只需跑完前10%</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- ==================== 美股板块 ==================== -->
+    <div class="section-title" id="section-us">
+        <span class="emoji">🇺🇸</span> 美股 · AI
+    </div>
+
+    <!-- US1 -->
+    <div class="news-card" id="us1">
+        <div class="card-header">
+            <span class="card-emoji">🚀</span>
+            <div class="card-title">S&P 500首次突破7000点创历史新高，纳斯达克同步刷新纪录</div>
+        </div>
+        <div class="card-summary">
+            4月15日美股收盘，S&P 500指数收于7,022.95点（+0.80%），历史性首次站上7000点大关；纳斯达克综合指数收于24,016.02（+1.59%），同步创下历史新高。科技股是推动行情的核心力量——微软大涨+4.64%、ServiceNow暴涨+7.29%、Oracle上涨+4.18%、Salesforce上涨+3.67%。美伊和谈乐观预期叠加财报季开局强劲共同提振市场。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">S&P 500 <span class="value up">7,022.95 (+0.80%)</span></div>
+            <div class="metric">纳指 <span class="value up">24,016 (+1.59%)</span></div>
+            <div class="metric">MSFT <span class="value up">+4.64%</span></div>
+            <div class="metric">NVDA <span class="value up">+1.30%</span></div>
+            <div class="metric">特斯拉 <span class="value up">+7.6%</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">大盘趋势</span><span class="tag">科技股</span><span class="tag">AI SaaS</span>
+                微软、ServiceNow、Salesforce等AI SaaS龙头领涨表明市场对AI商业化应用的信心回升。S&P 500突破7000点后关注后续成交量确认，若配合Q1财报超预期有望打开新空间。关注MSFT、ORCL、NOW等AI受益SaaS标的。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-15 | 来源：Motley Fool / CNBC</span>
+        </div>
+    </div>
+
+    <!-- US2 -->
+    <div class="news-card" id="us2">
+        <div class="card-header">
+            <span class="card-emoji">💎</span>
+            <div class="card-title">台积电今日发布Q1完整财报，营收357亿美元同比+35%超预期</div>
+        </div>
+        <div class="card-summary">
+            台积电（TSM）将于4月16日（今日）下午2点（台北时间）召开Q1 2026业绩电话会。此前已发布的初步数据显示Q1营收约357亿美元，同比增长35%，再创历史新高。市场密切关注完整业绩中的毛利率（预计53%+创纪录）、Q2指引、2nm产能进展及全年资本支出。AI芯片需求持续爆发，2nm产能已全部预订满至2026年底。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">Q1营收 <span class="value up">$357亿 (+35% YoY)</span></div>
+            <div class="metric">毛利率预期 <span class="value up">53%+</span></div>
+            <div class="metric">2nm产能 <span class="value neutral">已满订至年底</span></div>
+            <div class="metric">FY26资本支出 <span class="value neutral">$380-420亿</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">TSM</span><span class="tag">半导体</span><span class="tag">AI芯片</span>
+                台积电业绩是AI芯片需求的风向标。Q1超预期增长验证AI算力景气度，2nm定价权和毛利率扩张是核心看点。今日财报电话会对Q2指引和全年展望至关重要，将直接影响全球半导体板块走势，关注TSM、NVDA、AMD及港股芯片概念。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-16 | 来源：TSMC IR / CNBC / Techi</span>
+        </div>
+    </div>
+
+    <!-- US3 -->
+    <div class="news-card" id="us3">
+        <div class="card-header">
+            <span class="card-emoji">🔬</span>
+            <div class="card-title">ASML Q1营收€88亿超预期，上调全年指引但对华出口限制引担忧</div>
+        </div>
+        <div class="card-summary">
+            光刻机巨头ASML于4月15日发布Q1 2026财报：总净营收€88亿，净利润€28亿，毛利率达53%创纪录水平，均超市场预期。公司上调2026全年营收指引至€360-400亿，毛利率51%-53%。然而，对华出口收紧政策引发投资者担忧，股价当日逆势下跌5%（盘中最大跌幅超5%），成为AI半导体板块的唯一例外。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">Q1营收 <span class="value up">€88亿 (超预期)</span></div>
+            <div class="metric">毛利率 <span class="value up">53% (创纪录)</span></div>
+            <div class="metric">全年指引 <span class="value up">€360-400亿</span></div>
+            <div class="metric">股价 <span class="value down">-5%</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">ASML</span><span class="tag">光刻机</span><span class="tag">半导体设备</span>
+                ASML业绩验证全球AI芯片需求旺盛，但对华出口限制是悬在头上的"达摩克利斯之剑"。EUV光刻机订单排满说明下游需求强劲，但中国市场收入占比下降将影响增长上限。短期股价回调或为长线买入机会。关注A股/港股光刻相关设备公司的国产替代逻辑。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-15 | 来源：ASML官方 / CNBC / Seeking Alpha</span>
+        </div>
+    </div>
+
+    <!-- US4 -->
+    <div class="news-card" id="us4">
+        <div class="card-header">
+            <span class="card-emoji">⚛️</span>
+            <div class="card-title">NVIDIA发布全球首个开源量子AI模型Ising</div>
+        </div>
+        <div class="card-summary">
+            NVIDIA于4月14日宣布推出全球首个开源量子AI模型系列——NVIDIA Ising，包含校准模型和解码模型两大核心组件。该模型可将量子处理器校准时间从数天缩短至约5小时，纠错速度提升2.5倍、精度提升3倍。哈佛大学、IonQ、桑迪亚国家实验室等顶尖机构已开始采用。这标志着AI与量子计算的深度融合迈出关键一步。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">校准加速 <span class="value up">数天→5小时</span></div>
+            <div class="metric">纠错速度 <span class="value up">+2.5x</span></div>
+            <div class="metric">精度提升 <span class="value up">+3x</span></div>
+            <div class="metric">合作机构 <span class="value neutral">哈佛/IonQ/桑迪亚等</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">NVDA</span><span class="tag">量子计算</span><span class="tag">AI+量子</span>
+                NVIDIA持续拓展AI版图至量子计算领域，"AI+量子"融合趋势明确。Ising模型开源策略将巩固NVIDIA在量子-AI生态中的平台地位，长期利好量子计算相关标的。关注NVDA、IonQ(IONQ)、Rigetti(RGTI)等量子概念股，A股关注国盾量子、本源量子等。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-14~15 | 来源：NVIDIA官方 / 量子位 / SiliconAngle</span>
+        </div>
+    </div>
+
+    <!-- US5 -->
+    <div class="news-card" id="us5">
+        <div class="card-header">
+            <span class="card-emoji">⚔️</span>
+            <div class="card-title">OpenAI内部备忘录泄露：指控Anthropic虚增80亿美元收入</div>
+        </div>
+        <div class="card-summary">
+            4月15日消息，OpenAI首席营收官Denise Dresser发送的一份内部备忘录遭泄露。备忘录中指控Anthropic所宣称的300亿美元年化收入（ARR）中有约80亿美元涉嫌虚增，同时批评前合作伙伴微软阻碍其企业客户拓展。备忘录还透露了OpenAI代号"Spud"的新模型计划以及与亚马逊的深化合作。这场AI双雄的商业战争正在从技术层面蔓延至财务透明度之争。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">Anthropic ARR <span class="value neutral">$300亿（存争议）</span></div>
+            <div class="metric">争议金额 <span class="value neutral">$80亿</span></div>
+            <div class="metric">OpenAI新模型 <span class="value neutral">代号Spud</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">AI平台</span><span class="tag">OpenAI</span><span class="tag">Anthropic</span>
+                AI双巨头的收入之争揭示行业竞争白热化。若Anthropic收入确有水分，将影响其3800亿估值基础和后续融资；若OpenAI"抹黑"对手，则反映其市场份额焦虑。关注下游变化：亚马逊(AMZN)、微软(MSFT)、Google(GOOG)作为AI平台投资方的立场博弈。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-15 | 来源：WinBuzzer / CNBC / The Decoder</span>
+        </div>
+    </div>
+
+    <!-- ==================== 港股板块 ==================== -->
+    <div class="section-title" id="section-hk">
+        <span class="emoji">🇭🇰</span> 港股 · AI
+    </div>
+
+    <!-- HK1 -->
+    <div class="news-card" id="hk1">
+        <div class="card-header">
+            <span class="card-emoji">🔔</span>
+            <div class="card-title">思格新能今日登陆港交所，暗盘收涨近80%，每手赚2.5万港元</div>
+        </div>
+        <div class="card-summary">
+            AI原生光储一体机龙头思格新能（06656.HK）于4月16日（今日）正式在港交所挂牌交易，发行价324.2港元/股。此前4月15日暗盘交易中，思格新能大涨近80%，收于约580港元，按每手100股计算每手赚约25,380港元。公司香港公开发售获1102倍超额认购，淡马锡、高瓴等豪华基石投资者阵容加持。从成立到上市仅用不足4年，募资约44亿港元。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">发行价 <span class="value neutral">324.2港元</span></div>
+            <div class="metric">暗盘涨幅 <span class="value up">+80%</span></div>
+            <div class="metric">公开发售超购 <span class="value up">1102倍</span></div>
+            <div class="metric">募资 <span class="value neutral">44亿港元</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">06656.HK</span><span class="tag">AI储能</span><span class="tag">新股</span>
+                思格新能定位"AI+新能源"交叉赛道，1102倍超购和暗盘暴涨80%反映市场极度追捧。但高溢价上市后需警惕获利盘回吐，首日走势是关键。关注同板块标的果下科技(估值仅300亿 vs 思格1500亿+)以及A股光伏储能概念。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-16（今日上市） | 来源：财联社 / 新浪财经 / 利弗莫尔证券</span>
+        </div>
+    </div>
+
+    <!-- HK2 -->
+    <div class="news-card" id="hk2">
+        <div class="card-header">
+            <span class="card-emoji">💰</span>
+            <div class="card-title">胜宏科技港股IPO提前截止认购，募资175亿创年内最大IPO</div>
+        </div>
+        <div class="card-summary">
+            A股PCB龙头胜宏科技（02476.HK）4月15日宣布提前停止接受机构投资者认购，认购火爆程度可见一斑。公司以209.88港元/股定价，最高募资174.93亿港元，成为2026年港股年内最大IPO。胜宏科技是全球AI服务器PCB市占率第一的龙头，近40家基石投资者包括摩根士丹利等国际巨头。发行后总市值预计约2006亿港元。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">发行价 <span class="value neutral">209.88港元</span></div>
+            <div class="metric">募资额 <span class="value up">174.93亿港元</span></div>
+            <div class="metric">基石投资者 <span class="value neutral">近40家</span></div>
+            <div class="metric">市值 <span class="value neutral">~2006亿港元</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">02476.HK</span><span class="tag">300476.SZ</span><span class="tag">AI服务器PCB</span>
+                胜宏科技"A+H"双上市，港股IPO火爆验证了全球资本对AI算力硬件产业链的追捧。作为英伟达AI服务器PCB核心供应商，直接受益于全球数据中心建设浪潮。注意A股端（300476.SZ）可能因H股定价效应产生联动，港股上市后关注A/H溢价变化。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-15 | 来源：财联社 / 东方财富 / 新浪财经</span>
+        </div>
+    </div>
+
+    <!-- HK3 -->
+    <div class="news-card" id="hk3">
+        <div class="card-header">
+            <span class="card-emoji">📈</span>
+            <div class="card-title">港股芯片股受台积电催化集体走强，傅里叶曾涨超16%</div>
+        </div>
+        <div class="card-summary">
+            受本周台积电Q1业绩催化，港股芯片概念股近两日集体拉涨。4月14日，傅里叶半导体（03625.HK）大涨超16%再创新高（较招股价已涨超10倍），爱芯元智（00600.HK）涨超10%。摩根大通上调谷歌TPU 2026-2027年出货预期至370万和500万颗，进一步验证AI芯片高景气。不过4月15日部分个股出现高位回调，傅里叶跌7.64%。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">傅里叶(4/14) <span class="value up">+16%+创新高</span></div>
+            <div class="metric">傅里叶(4/15) <span class="value down">-7.64%回调</span></div>
+            <div class="metric">爱芯元智(4/14) <span class="value up">+10%+</span></div>
+            <div class="metric">谷歌TPU 2026E <span class="value up">370万颗</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">03625.HK</span><span class="tag">港股芯片</span><span class="tag">台积电催化</span>
+                台积电Q1超预期是港股芯片行情的核心催化。今日台积电完整财报将决定港股芯片股后续走向。短线傅里叶等高位标的波动剧烈，注意追高风险。中长期AI芯片高景气确定性强，可关注回调后的布局机会。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-14~15 | 来源：财联社 / 证券之星 / 摩根大通研报</span>
+        </div>
+    </div>
+
+    <!-- ==================== A股板块 ==================== -->
+    <div class="section-title" id="section-cn">
+        <span class="emoji">🇨🇳</span> A股 · AI
+    </div>
+
+    <!-- CN1 -->
+    <div class="news-card" id="cn1">
+        <div class="card-header">
+            <span class="card-emoji">❄️</span>
+            <div class="card-title">第四届数据中心液冷技术大会今日深圳开幕，"液冷遇见800V"</div>
+        </div>
+        <div class="card-summary">
+            4月16日（今日），由CDCC主办、腾讯数据中心战略协办的第四届数据中心液冷技术大会在深圳盛大开幕，主题为"液冷遇见800V"。大会聚焦液冷技术与800V HVDC如何重新定义AI数据中心。此前受大会催化，液冷服务器概念股已提前活跃——新朋股份4天3板，英维克、飞龙股份、申菱环境涨幅靠前。机构指出液冷已成为AI数据中心散热主流方案。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">主题 <span class="value neutral">液冷+800V HVDC</span></div>
+            <div class="metric">新朋股份 <span class="value up">4天3板</span></div>
+            <div class="metric">协办方 <span class="value neutral">腾讯数据中心</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">液冷服务器</span><span class="tag">数据中心</span><span class="tag">AI算力基建</span>
+                AI大模型训练对算力密度要求不断提升，液冷已从"可选"变成"必选"。今日大会或将释放新技术标准和产业合作信号。关注英维克(002837)、申菱环境(301018)、高澜股份(300499)、飞龙股份(002536)等液冷产业链标的，以及相关冷却液材料公司。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-16（今日开幕） | 来源：证券时报 / 21世纪经济报道 / 中国财富网</span>
+        </div>
+    </div>
+
+    <!-- CN2 -->
+    <div class="news-card" id="cn2">
+        <div class="card-header">
+            <span class="card-emoji">📊</span>
+            <div class="card-title">A股高开低走科技主线分化，创新药走高算力板块调整</div>
+        </div>
+        <div class="card-summary">
+            4月15日A股三大指数集体高开后震荡走弱，沪指小幅收涨+0.01%报4026点，深成指-0.97%，创业板指-1.22%。盘面呈现科技主线分化格局：锂电池产业链、创新药概念走高，但前期强势的AI应用、算力板块出现回调。全市半日成交额1.51万亿，超2600只个股下跌，资金从高位AI板块向低估值板块轮动迹象明显。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">沪指 <span class="value up">4026 (+0.01%)</span></div>
+            <div class="metric">深成指 <span class="value down">-0.97%</span></div>
+            <div class="metric">创业板 <span class="value down">-1.22%</span></div>
+            <div class="metric">成交额 <span class="value neutral">1.51万亿</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">A股大盘</span><span class="tag">板块轮动</span><span class="tag">AI调整</span>
+                沪指在4000点上方连续窄幅整理，AI/算力板块在连续上涨后迎来技术性回调属正常节奏。资金向创新药、锂电池等低位板块轮动，表明市场整体风险偏好仍在。短线AI板块或需消化前期获利盘，中线不改上行趋势，回调是重新审视优质标的的机会。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-15 | 来源：中新网 / 腾讯新闻 / 新浪财经</span>
+        </div>
+    </div>
+
+    <!-- ==================== 产业板块 ==================== -->
+    <div class="section-title" id="section-ind">
+        <span class="emoji">🔬</span> 产业 · AI 前沿
+    </div>
+
+    <!-- IND1 -->
+    <div class="news-card" id="ind1">
+        <div class="card-header">
+            <span class="card-emoji">🤖</span>
+            <div class="card-title">智元机器人精灵G2工厂8小时连续作业直播，2283次任务零失误</div>
+        </div>
+        <div class="card-summary">
+            4月14日，智元机器人在龙旗科技南昌平板制造工厂开启全球首个具身智能工业产线并线直播。精灵G2机器人在新华社全程见证下，于20秒节拍的3C精密产线上连续作业8小时，完成2283次任务零失误、成功率100%。2026年Q3部署规模将扩大至100台，并向汽车制造、半导体等场景复制。此举标志着具身智能从"实验室概念"正式迈向"工业生产力"。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">连续作业 <span class="value up">8小时</span></div>
+            <div class="metric">任务完成 <span class="value up">2283次 零失误</span></div>
+            <div class="metric">成功率 <span class="value up">100%</span></div>
+            <div class="metric">Q3目标 <span class="value neutral">100台规模部署</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">具身智能</span><span class="tag">人形机器人</span><span class="tag">3C制造</span>
+                智元精灵G2的工业验证是人形机器人"从0到1"的关键里程碑事件。零失误率的数据极具说服力，若Q3百台部署顺利将进入"从1到N"阶段。关注A股人形机器人概念：绿的谐波(688017)、拓普集团(601689)、汇川技术(300124)、鸣志电器(603728)等核心零部件供应商。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-14~15 | 来源：每日经济新闻 / IT之家 / 观察者网</span>
+        </div>
+    </div>
+
+    <!-- IND2 -->
+    <div class="news-card" id="ind2">
+        <div class="card-header">
+            <span class="card-emoji">📋</span>
+            <div class="card-title">千问上线"表格Agent"智能体，AI办公迈向代理人时代</div>
+        </div>
+        <div class="card-summary">
+            4月14日消息，阿里千问大模型上线"表格Agent"智能体功能，支持在对话中直接生成和编辑Excel文件。用户可以通过自然语言要求千问检索信息后生成表格，或将多轮对话内容整理为表格，系统通常在1-2分钟内输出可下载的Excel文件，还支持自然语言修改。业界评论称AI能力评价标准正从"理解得准不准"转向"交付得完不完整"。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">功能 <span class="value neutral">自然语言→Excel</span></div>
+            <div class="metric">响应时间 <span class="value neutral">1-2分钟</span></div>
+            <div class="metric">平台 <span class="value neutral">千问/通义</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">AI Agent</span><span class="tag">BABA</span><span class="tag">AI办公</span>
+                千问持续强化AI Agent能力，"表格Agent"是AI从对话走向实际交付的标志性产品。AI办公赛道竞争加剧，利好阿里巴巴(BABA/09988.HK)云智能板块。同时关注A股AI办公概念：金山办公(688111)、泛微网络(603039)、致远互联(688369)等。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-14~15 | 来源：每日经济新闻 / 21世纪经济报道</span>
+        </div>
+    </div>
+
+    <!-- IND3 -->
+    <div class="news-card" id="ind3">
+        <div class="card-header">
+            <span class="card-emoji">🧠</span>
+            <div class="card-title">MIT提出CompreSSM技术：AI训练只需跑完前10%即可压缩加速</div>
+        </div>
+        <div class="card-summary">
+            MIT计算机科学与人工智能实验室（CSAIL）联合多所机构提出CompreSSM训练压缩技术——仅需完成约10%的训练，就能识别出哪些维度重要，之后以更小模型完成剩余90%训练。在Mamba架构上实现约4倍训练加速，压缩后性能仍具竞争力。该研究已被ICLR 2026接收，有望显著降低AI大模型训练的算力成本。
+        </div>
+        <div class="card-metrics">
+            <div class="metric">训练加速 <span class="value up">~4倍</span></div>
+            <div class="metric">只需训练 <span class="value up">前10%</span></div>
+            <div class="metric">架构 <span class="value neutral">Mamba SSM</span></div>
+            <div class="metric">发表 <span class="value neutral">ICLR 2026</span></div>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <div class="card-invest-content">
+                <span class="tag">AI训练</span><span class="tag">算力效率</span><span class="tag">降本增效</span>
+                训练效率提升意味着相同算力下可以训练更大/更多模型，对云计算厂商和AI应用公司都是利好——降低了AI研发的"入场门槛"。但对纯算力卖铲人(如NVDA)可能是远期隐忧。短期影响有限，中长期关注AI效率提升对产业格局的重塑。
+            </div>
+        </div>
+        <div class="card-source">
+            <span>📅 2026-04-15 | 来源：麻省理工科技评论 / CSDN</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>📝 本日报由 小荷 🪷 自动生成 | 生成时间：2026-04-16 08:00 CST</p>
+    <p>数据来源：公开市场信息、财经媒体报道、公司公告</p>
+    <p>⚠️ 免责声明：本日报仅供信息参考，不构成任何投资建议。投资有风险，入市需谨慎。</p>
+</div>
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-15.html" id="nav-prev-bottom">← 2026-04-15</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next-bottom">无更新 →</span>
+</div>
+
+</body>
+</html>
