@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-04-17</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 40px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* 导航栏 */
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #8b949e;
+            font-size: 1.1em;
+        }
+        .time-window {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 12px 20px;
+            background: rgba(88, 166, 255, 0.08);
+            border: 1px solid rgba(88, 166, 255, 0.25);
+            border-radius: 10px;
+            text-align: center;
+            color: #58a6ff;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .toc {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 28px;
+            margin: 24px 0;
+        }
+        .toc h2 {
+            color: #f0f6fc;
+            font-size: 1.15em;
+            margin-bottom: 12px;
+        }
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+        .toc li a {
+            display: block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: #8b949e;
+            font-size: 0.92em;
+            transition: background 0.2s;
+        }
+        .toc li a:hover {
+            background: #1c2333;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #f0f6fc;
+            margin: 36px 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #21262d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .flag { font-size: 1.2em; }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 22px 26px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #58a6ff; }
+        .card-title {
+            font-size: 1.1em;
+            color: #f0f6fc;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .card-title .emoji { flex-shrink: 0; }
+        .card-summary {
+            color: #8b949e;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        .card-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.82em;
+            font-weight: 600;
+        }
+        .metric-up { background: rgba(248, 81, 73, 0.12); color: #f85149; }
+        .metric-down { background: rgba(63, 185, 80, 0.12); color: #3fb950; }
+        .metric-neutral { background: rgba(139, 148, 158, 0.12); color: #8b949e; }
+
+        .card-invest {
+            background: rgba(56, 139, 253, 0.06);
+            border-left: 3px solid #388bfd;
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 10px;
+        }
+        .card-invest-label {
+            color: #388bfd;
+            font-size: 0.78em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .card-invest p {
+            color: #c9d1d9;
+            font-size: 0.88em;
+        }
+        .card-source {
+            color: #484f58;
+            font-size: 0.8em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .card-source .date { color: #58a6ff; font-weight: 500; }
+
+        .no-news {
+            background: #161b22;
+            border: 1px dashed #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            color: #484f58;
+            font-size: 0.95em;
+            margin-bottom: 16px;
+        }
+
+        .footer {
+            max-width: 920px;
+            margin: 40px auto 0;
+            padding: 24px 20px;
+            border-top: 1px solid #21262d;
+            color: #484f58;
+            font-size: 0.82em;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 640px) {
+            .header { padding: 32px 16px 24px; }
+            .header h1 { font-size: 1.6em; }
+            .card { padding: 16px 18px; }
+            .section-title { font-size: 1.2em; }
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-16.html" id="nav-prev">← 2026-04-16</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="header">
+    <h1>🤖 AI 投研日报</h1>
+    <p class="subtitle">2026年4月17日 · 周五 · AI 赛道投资视角</p>
+</div>
+
+<div class="time-window">
+    📰 新闻时间窗口：2026-04-16 08:00 ~ 2026-04-17 08:00（过去24小时）
+</div>
+
+<div class="container">
+
+    <!-- 目录导航 -->
+    <div class="toc">
+        <h2>📑 今日目录（共13条）</h2>
+        <ul>
+            <li><a href="#us">🇺🇸 美股 AI（5条）</a></li>
+            <li><a href="#hk">🇭🇰 港股 AI（4条）</a></li>
+            <li><a href="#cn">🇨🇳 A股 AI（3条）</a></li>
+            <li><a href="#ind">🏭 产业前沿（1条）</a></li>
+        </ul>
+    </div>
+
+    <!-- ==================== 美股 ==================== -->
+    <h2 class="section-title" id="us"><span class="flag">🇺🇸</span> 美股 AI</h2>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">📈</span>
+            <span>S&P 500 连续第二日刷新历史新高，纳指同步创纪录收盘</span>
+        </div>
+        <div class="card-summary">
+            4月16日（周四），S&P 500 上涨 0.3% 实现12个交易日中第11次上涨，连续第二日创下历史新高收盘。纳斯达克综合指数与罗素2000指数同样录得新高收盘。市场情绪受益于美伊和谈积极预期以及AI算力需求持续旺盛，叠加台积电财报超预期催化。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">S&P 500 +0.3% 新高</span>
+            <span class="metric metric-up">纳斯达克 新高收盘</span>
+            <span class="metric metric-up">Russell 2000 新高</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>美股三大指数齐创新高，AI 交易主线持续强势。关注 SPY/QQQ/IWM 等宽基 ETF，以及科技权重股的轮动节奏。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：AP News / CNBC / MarketWatch</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">🚀</span>
+            <span>台积电 Q1 净利润暴增58%创纪录，Q2营收指引超预期达$402亿</span>
+        </div>
+        <div class="card-summary">
+            台积电（TSM）4月16日公布2026年Q1完整财报，净利润达NT$5,724.8亿（约$176亿），同比增长58%，连续第四个季度创下利润新高。3nm与5nm先进制程贡献了74%的营收。Q2营收指引上调至$402亿，大幅超出市场预期，管理层表示AI相关需求仍在加速且无放缓迹象。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">净利润 +58% YoY</span>
+            <span class="metric metric-up">Q2指引 $402亿</span>
+            <span class="metric metric-up">EPS NT$22.08</span>
+            <span class="metric metric-neutral">3nm+5nm占比 74%</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>台积电是全球AI算力的"卖铲人"，Q1业绩验证了AI需求的强劲持续性。直接标的：TSM；A/港股联动关注中芯国际、华虹半导体；设备端关注ASML、应用材料。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：CNBC / Seeking Alpha / TipRanks</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">🔥</span>
+            <span>英伟达创纪录连涨11日突破$200，距历史高点仅5.5%</span>
+        </div>
+        <div class="card-summary">
+            英伟达（NVDA）4月15日延续涨势至第11个交易日，为公司历史最长连涨纪录。股价触及$200.40，近五个月来首次站上$200关口，距历史最高点仅差约5.5%。此轮上涨累计幅度超18%，主要受益于Rubin芯片需求爆棚、Ising量子AI模型发布以及地缘风险缓和三重催化。4月16日股价小幅回调结束连涨。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">11连涨 历史纪录</span>
+            <span class="metric metric-up">突破$200</span>
+            <span class="metric metric-up">10日累涨 18%+</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>英伟达作为AI算力核心龙头，Rubin下一代芯片预订火爆是核心驱动。连涨后短期存在技术性回调需求，但中长期AI算力需求仍有巨大空间。关注NVDA及其产业链SMH/SOXX。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：CNBC / Barron's / GuruFocus / LiveMint</span>
+            <span class="date">📅 2026-04-15~16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">💰</span>
+            <span>量化巨头 Jane Street 豪掷$60亿签约 CoreWeave AI 算力大单</span>
+        </div>
+        <div class="card-summary">
+            4月15日，华尔街量化交易巨头 Jane Street 与 AI 云基础设施公司 CoreWeave（CRWV）签署总额60亿美元的算力采购协议，同时以每股$109、总价$10亿入股CoreWeave。协议涵盖英伟达下一代 Vera Rubin 芯片算力及AI软件服务，将部署于多个数据中心。这是继 Meta 之后又一笔超级算力大单。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">协议金额 $60亿</span>
+            <span class="metric metric-up">入股 $10亿</span>
+            <span class="metric metric-neutral">每股$109入股</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>金融行业进军AI算力领域的标志性事件，验证了AI算力需求从科技巨头向金融机构扩散的趋势。关注 CRWV（CoreWeave）、NVDA（算力供应链上游）以及国内算力租赁概念股。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：21经济网 / 华尔街见闻 / 科技新报 / Cointelegraph</span>
+            <span class="date">📅 2026-04-15~16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">⚡</span>
+            <span>AMD 涨6%至$274，AI芯片挑战者地位再获认可</span>
+        </div>
+        <div class="card-summary">
+            4月16日，AMD 股价大涨约6%至$274附近，主要受益于：①台积电Q1财报超预期带动整个半导体板块；②Meta $60亿AI芯片采购协议持续发酵（采用AMD MI系列）；③5月即将发布Q1财报的预期提前交易。AMD 在AI加速器市场份额预计从5%攀升至7-8%，MI350X在FP8算力上已追平NVIDIA B200。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">AMD 单日 +6%</span>
+            <span class="metric metric-up">股价 ~$274</span>
+            <span class="metric metric-neutral">AI GPU份额 5→8%</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>AMD是NVIDIA之外最受瞩目的AI芯片挑战者，Meta大单验证了其产品竞争力。5月财报是重要催化剂。关注AMD、SMH、以及国内PCB/封测等AMD供应链。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：247 Wall St. / Motley Fool / Silicon Analysts</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <!-- ==================== 港股 ==================== -->
+    <h2 class="section-title" id="hk"><span class="flag">🇭🇰</span> 港股 AI</h2>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">🔋</span>
+            <span>宁德时代港股暴涨9%创新高，Q1净利润增48%超预期</span>
+        </div>
+        <div class="card-summary">
+            4月16日，宁德时代（03750.HK）港股暴涨9%触及722港元创历史新高，A股同步涨超4%，总市值突破2万亿元。公司4月15日晚披露Q1业绩：营收1,291.31亿元（+52.45%）创历史新高，归母净利润207.38亿元（+48.52%），均大幅超出市场预期。此外公司宣布4月21日将举办"超级科技日"发布会。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">港股 +9% 创新高</span>
+            <span class="metric metric-up">营收 1291亿 +52%</span>
+            <span class="metric metric-up">净利 207亿 +48%</span>
+            <span class="metric metric-up">A股市值破2万亿</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>宁德时代虽非纯AI标的，但AI数据中心储能+新能源车电池双轮驱动，业绩爆发力惊人。关注03750.HK/300750.SZ，以及锂电产业链赣锋锂业、天齐锂业、正力新能等。4.21科技日可能有新品催化。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：新浪财经 / 东方财富 / 同花顺</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">📊</span>
+            <span>恒生科技指数暴涨3.67%收复5000点，科网股全线飙升</span>
+        </div>
+        <div class="card-summary">
+            4月16日，港股三大指数集体走强。恒生科技指数大涨3.67%强势收复5000点关口，收于5092.08点。恒生指数涨1.72%报26394点。科网股全面暴涨：百度涨超8%、金蝶国际涨超7%、阿里巴巴涨近5%、网易涨超4%、腾讯、京东涨近3%。存储芯片、AI算力相关个股表现尤为突出。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">恒生科技 +3.67%</span>
+            <span class="metric metric-up">恒指 +1.72%</span>
+            <span class="metric metric-up">百度 +8%</span>
+            <span class="metric metric-up">阿里 +5%</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>港股科技指数强势反攻，AI+消费复苏双线催化。百度涨幅领先或与AI大模型商业化进展有关。关注恒生科技ETF、以及百度、阿里、腾讯等互联网龙头的AI变现节奏。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：财联社 / 每日经济新闻 / 格隆汇</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">☁️</span>
+            <span>阿里云四天连发三条涨价公告，百炼大模型平台上调2%-7%</span>
+        </div>
+        <div class="card-summary">
+            4月15日，阿里云宣布对大模型服务平台"百炼"部分MU（Model Unit）模型单元服务价格上调2%-7%。这是继3月18日大幅调价（AI算力卡涨5%-34%、CPFS智算版涨30%）后的又一轮涨价，四天内已累计发布三条涨价公告。涨价理由为"底层硬件成本攀升、算力市场供需紧张"。阿里巴巴港股受此利好涨近5%。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">百炼MU涨价 2-7%</span>
+            <span class="metric metric-up">阿里港股 +5%</span>
+            <span class="metric metric-neutral">4天3次涨价</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>云厂商集体涨价标志着AI算力"量价齐升"逻辑正在兑现。此前Anthropic也宣布涨价，全球算力荒再现。关注阿里巴巴(9988.HK/BABA)、以及A股算力租赁板块。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：经济观察网 / 阿里云官方 / 格隆汇</span>
+            <span class="date">📅 2026-04-15~16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">💎</span>
+            <span>港股芯片股走强，天数智芯涨超14%，存储芯片领涨AI板块</span>
+        </div>
+        <div class="card-summary">
+            4月16日，受台积电Q1财报超预期及全球AI算力涨价催化，港股芯片股全线走强。天数智芯盘中涨超14%领涨AI芯片板块，存储芯片概念股表现突出。同日，阿里云宣布涨价进一步印证算力紧缺，推动AI产业链情绪高涨。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">天数智芯 +14%</span>
+            <span class="metric metric-up">存储芯片板块走强</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>国产AI芯片替代逻辑持续兑现，天数智芯等作为国产GPU先锋受资金追捧。关注港股AI芯片标的：天数智芯、寒武纪-U(688256)联动效应。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：财联社 / 星岛新闻 / 每日经济新闻</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <!-- ==================== A股 ==================== -->
+    <h2 class="section-title" id="cn"><span class="flag">🇨🇳</span> A股 AI</h2>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">🏆</span>
+            <span>创业板指暴涨3.17%刷新近11年新高，AI算力+电池双线爆发</span>
+        </div>
+        <div class="card-summary">
+            4月16日，A股三大指数集体放量上涨。创业板指大涨3.17%续创近11年新高，深成指涨2.05%，沪指涨0.7%。全市场超4300只个股上涨，两市成交额约2.34万亿元。AI算力产业链全线爆发：算力租赁、光通信、PCB板块领涨，叠加宁德时代Q1超预期引爆电池产业链，创业板人工智能ETF华夏单日涨超5%。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">创业板指 +3.17%</span>
+            <span class="metric metric-up">沪指 +0.7%</span>
+            <span class="metric metric-up">成交 2.34万亿</span>
+            <span class="metric metric-up">4300+股飘红</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>创业板11年新高，AI算力+新能源双主线共振，市场做多情绪极强。关注创业板人工智能ETF(159381)、AI算力50ETF等宽基工具，以及算力租赁龙头协创数据、润泽科技等。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：金融界 / 每日经济新闻 / 东方财富 / 凤凰财经</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">🔥</span>
+            <span>全球算力涨价潮来袭！A股算力租赁概念全线爆发</span>
+        </div>
+        <div class="card-summary">
+            4月16日，受英伟达GPU云端租赁价格近月大幅上涨及阿里云连续涨价催化，A股算力租赁板块全线爆发。协创数据20CM涨停，亿田智能涨超10%，利通电子、鸿博股份等涨停。光通信龙头新易盛涨近8%，天孚通信涨7.6%，润泽科技涨6%。机构指出：算力租赁行业正从"卖算力"转向"卖Token"，涨价周期才刚开始。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">协创数据 20CM涨停</span>
+            <span class="metric metric-up">新易盛 +8%</span>
+            <span class="metric metric-up">天孚通信 +7.6%</span>
+            <span class="metric metric-up">润泽科技 +6%</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>全球算力"涨价潮"是当下A股AI最强催化剂，从"卖算力"到"卖Token"的商业模式升级打开盈利天花板。重点关注：协创数据(300857)、润泽科技(300442)、鸿博股份(002229)、新易盛(300502)、天孚通信(300394)。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：同花顺 / 界面新闻 / 21经济网</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">🏭</span>
+            <span>AI算力催动光通信产业变局，机构称2026是"AI光互联大年"</span>
+        </div>
+        <div class="card-summary">
+            4月16日，随着AI算力需求爆发，光通信板块在A股持续走强。科创创业50指数涨2.61%，新易盛(+8%)、天孚通信(+7.6%)领涨。机构研报指出，2026年是AI光互联大年：800G/1.6T光模块出货量爆发式增长，CPO（共封装光学）技术进入量产加速期。多家CPO概念股一季度业绩已验证高景气度。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">科创创业50 +2.61%</span>
+            <span class="metric metric-up">CPO概念活跃</span>
+            <span class="metric metric-neutral">800G/1.6T放量</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>光通信是AI算力基础设施的关键环节，CPO技术突破有望带来新一轮行情。关注光模块龙头中际旭创(300308)、新易盛(300502)、天孚通信(300394)以及CPO概念。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：每日经济新闻 / 光大证券 / 金融界</span>
+            <span class="date">📅 2026-04-16</span>
+        </div>
+    </div>
+
+    <!-- ==================== 产业前沿 ==================== -->
+    <h2 class="section-title" id="ind"><span class="flag">🏭</span> 产业前沿</h2>
+
+    <div class="card">
+        <div class="card-title">
+            <span class="emoji">🌊</span>
+            <span>全球AI算力严重短缺再现！云厂商集体涨价开启新周期</span>
+        </div>
+        <div class="card-summary">
+            过去24小时内，全球AI算力供需矛盾持续加剧：阿里云四天三次发布涨价公告（百炼平台MU涨2-7%）；此前Anthropic也宣布API价格上调；英伟达全系列GPU云端租赁价格近月大幅攀升。Jane Street $60亿签约CoreWeave更印证了算力需求正从科技界向金融界全面扩散。机构判断：当前算力紧缺程度已超过2023年ChatGPT发布时期，涨价周期或持续至2027年。
+        </div>
+        <div class="card-metrics">
+            <span class="metric metric-up">阿里云 百炼涨价 2-7%</span>
+            <span class="metric metric-up">Anthropic API涨价</span>
+            <span class="metric metric-up">GPU云租赁价格飙升</span>
+            <span class="metric metric-neutral">涨价周期或持续至2027</span>
+        </div>
+        <div class="card-invest">
+            <div class="card-invest-label">💡 投资视角</div>
+            <p>全产业链"涨价潮"是当下AI投资最核心的主线逻辑。上游英伟达/AMD→中游CoreWeave/阿里云→下游算力租赁股均受益。A股关注算力租赁、PCB、光通信；美股关注NVDA/AMD/CRWV；港股关注阿里巴巴云业务。</p>
+        </div>
+        <div class="card-source">
+            <span>来源：财联社 / 经济观察网 / 华尔街见闻 / 同花顺</span>
+            <span class="date">📅 2026-04-15~16</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>⏱ 报告生成时间：2026-04-17 08:00 CST</p>
+    <p>📌 数据来源：公开新闻报道、券商研报、交易所公告</p>
+    <p>⚠️ 免责声明：本日报仅供投资参考，不构成具体买卖建议。投资有风险，决策需谨慎。</p>
+    <p style="margin-top: 8px;">🪷 由 小荷 AI 投研助手自动生成</p>
+</div>
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-16.html" id="nav-prev-bottom">← 2026-04-16</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next-bottom">无更新 →</span>
+</div>
+
+</body>
+</html>
