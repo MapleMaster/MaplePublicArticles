@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 投研日报 · 2026-04-21</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.75;
+    padding: 0 0 40px 0;
+}
+.header {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 36px 20px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid #21262d;
+}
+.header h1 {
+    font-size: 2.1em;
+    color: #f0b90b;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+.header .subtitle {
+    color: #8b949e;
+    font-size: 1em;
+    margin-bottom: 12px;
+}
+.time-window {
+    display: inline-block;
+    background: rgba(240, 185, 11, 0.08);
+    border: 1px solid rgba(240, 185, 11, 0.35);
+    color: #f0b90b;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 600;
+    margin-top: 6px;
+}
+.daily-nav {
+    max-width: 920px;
+    margin: 16px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.daily-nav a, .daily-nav span.nav-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+}
+.daily-nav a { color: #58a6ff; background: #161b22; }
+.daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+.daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+.daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+.daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+@media (max-width: 640px) {
+    .daily-nav { flex-wrap: wrap; justify-content: center; }
+    .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+}
+.container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+.toc {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+}
+.toc h2 {
+    color: #58a6ff;
+    font-size: 1.15em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.toc ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 16px; }
+.toc a {
+    color: #c9d1d9;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    display: block;
+    transition: all 0.2s;
+    font-size: 0.95em;
+}
+.toc a:hover { background: #1c2333; color: #58a6ff; }
+.market-section { margin-bottom: 36px; scroll-margin-top: 20px; }
+.market-section h2 {
+    font-size: 1.5em;
+    color: #f0f6fc;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #30363d;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.a-stock { border-bottom-color: #f85149; }
+.hk-stock { border-bottom-color: #f0b90b; }
+.us-stock { border-bottom-color: #58a6ff; }
+.frontier { border-bottom-color: #bc8cff; }
+.news-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+    transition: all 0.2s;
+    scroll-margin-top: 20px;
+}
+.news-card:hover { border-color: #58a6ff; transform: translateY(-2px); }
+.news-card h3 {
+    color: #f0f6fc;
+    font-size: 1.18em;
+    margin-bottom: 10px;
+    line-height: 1.45;
+}
+.news-summary { color: #c9d1d9; margin-bottom: 14px; font-size: 0.98em; }
+.card-data, .card-view, .card-source {
+    margin-top: 12px;
+    font-size: 0.92em;
+    padding: 10px 14px;
+    border-radius: 6px;
+}
+.card-data {
+    background: rgba(63, 185, 80, 0.08);
+    border-left: 3px solid #3fb950;
+    color: #a8d5ad;
+}
+.card-view {
+    background: rgba(240, 185, 11, 0.06);
+    border-left: 3px solid #f0b90b;
+    color: #e8c56f;
+}
+.card-source {
+    color: #8b949e;
+    font-size: 0.85em;
+    margin-top: 10px;
+    padding: 6px 0 0 0;
+    border-top: 1px dashed #30363d;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.label { font-weight: 700; margin-right: 6px; }
+.tag {
+    display: inline-block;
+    background: #1f6feb33;
+    color: #79c0ff;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.82em;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    border: 1px solid #1f6feb66;
+}
+.tag-red { background: rgba(248, 81, 73, 0.12); color: #ff7b72; border-color: rgba(248, 81, 73, 0.4); }
+.tag-green { background: rgba(63, 185, 80, 0.12); color: #7ee787; border-color: rgba(63, 185, 80, 0.4); }
+.up { color: #f85149; font-weight: 700; }
+.down { color: #3fb950; font-weight: 700; }
+.footer {
+    max-width: 920px;
+    margin: 40px auto 0 auto;
+    padding: 24px 20px;
+    text-align: center;
+    color: #6e7681;
+    font-size: 0.85em;
+    border-top: 1px solid #21262d;
+}
+.footer .disclaimer {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    text-align: left;
+    line-height: 1.7;
+}
+a { color: #58a6ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-20.html" id="nav-prev">← 2026-04-20</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="header">
+    <h1>🤖📊 AI 投研日报</h1>
+    <div class="subtitle">投资/炒股视角 · AI 产业链每日要闻</div>
+    <div class="time-window">📰 新闻时间窗口：2026-04-20 08:00 ~ 2026-04-21 08:00（过去24小时）</div>
+</div>
+
+<div class="container">
+
+<div class="toc">
+    <h2>🧭 今日目录</h2>
+    <ul>
+        <li><a href="#overview">🌏 今日综览</a></li>
+        <li><a href="#a-stock">🇨🇳 A股 · AI 动态</a></li>
+        <li><a href="#hk-stock">🇭🇰 港股 · AI 动态</a></li>
+        <li><a href="#us-stock">🇺🇸 美股 · AI 动态</a></li>
+        <li><a href="#frontier">🔬 产业前沿</a></li>
+    </ul>
+</div>
+
+<!-- 综览 -->
+<section class="market-section" id="overview">
+    <h2>🌏 今日综览</h2>
+    <div class="news-card">
+        <h3>一句话判断：A股 AI 主线进入"应用+硬件"双轮共振，港股 AI 大模型情绪被 DeepSeek 融资点燃，美股聚焦 Marvell 抢下谷歌 TPU 订单重塑 ASIC 格局</h3>
+        <div class="news-summary">
+            昨日（周一）AI 板块三市联动：<br>
+            • <span class="up">A股</span>：液冷服务器集体爆发（圣阳股份 8 连板、康盛股份 7 天 4 板），光纤概念因 G.657.A2 价格年涨 650% 再掀涨停潮，光模块 CPO 高位震荡；AI 应用端"AI+电商"、智谱 AI 概念接力。<br>
+            • <span class="up">港股</span>：DeepSeek 传首轮外部融资估值破百亿美元，智谱单日涨逾 14%，AI 应用集体狂欢，摩根大通 5 只智谱/MiniMax 认购证今日（4/21）挂牌。<br>
+            • <span class="down">美股</span>：标普 500 微跌 0.09% 收 7120 点，受伊朗-以色列地缘紧张拖累；但 Marvell 涨逾 6%（谷歌 TPU 推理芯片合作曝光），Broadcom 跌 2%，AI 芯片代工格局生变；BlackBerry QNX 与 NVIDIA 深化边缘 AI 合作。
+        </div>
+        <div class="card-view">
+            <span class="label">📌 投资视角：</span>本轮行情主线已从"大模型叙事"转向"算力基建的细分瓶颈"——液冷、光纤、光模块、光芯片、HBM 轮番接力。同时 ASIC 阵营松动，Google 找 Marvell 做 MPU + 下一代 TPU，短期利好博通替代品、长期加速算力多元化。DeepSeek V4 定档 4 月下旬发布，即将成为国内 AI 行情的关键催化剂。
+        </div>
+    </div>
+</section>
+
+<!-- A 股 -->
+<section class="market-section" id="a-stock">
+    <h2 class="a-stock">🇨🇳 A股 · AI 动态</h2>
+
+    <div class="news-card" id="a1">
+        <h3>🔥 液冷服务器概念彻底爆发：圣阳股份斩获 8 连板，英维克创历史新高</h3>
+        <div class="news-summary">
+            4 月 20 日，A 股液冷服务器板块继续主线强势：圣阳股份（002580）<span class="up">8 连板</span>，康盛股份（002418）<span class="up">7 天 4 板</span>，英维克（002837）盘中触及涨停、股价刷新上市以来历史新高，华升股份、高澜股份等多股跟涨。催化主要来自第四届数据中心液冷技术大会深圳召开、谷歌 TPU v7 单芯片功耗跃升以及新一代 AI 芯片 TDP 突破 1000W 带来的冷板/浸没式散热增量空间。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>圣阳股份 8 连板 · 康盛股份 7 天 4 板 · 英维克创历史新高 · 谷歌 2026 年 TPU 出货量目标上调 50% 至 600 万颗
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">液冷</span><span class="tag">AI 服务器</span><span class="tag">数据中心</span> 液冷已从"选做项"变成"必做项"，冷板→浸没式→单相/两相路径清晰。核心关注：英维克（龙头）、高澜股份、申菱环境、飞荣达、依米康；温控空调链：佳力图、同飞股份。短期板块情绪高位，注意节奏。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：21 世纪经济报道 / 10jqka / 雪球复盘</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="a2">
+        <h3>⚡ 光纤价格暴涨 650%，通鼎互联 3 天 2 板，长飞光纤再创历史新高</h3>
+        <div class="news-summary">
+            4 月 20 日，A 股光纤概念股集体强势：通光线缆涨超 10%，中利集团、太阳电缆、云南锗业、光电股份、中天科技、通鼎互联等 10CM 涨停，烽火通信、长飞光纤、金信诺、驰宏锌锗涨超 5%。云南锗业、长飞光纤、光迅科技创历史新高。催化来自通鼎集团董事长沈小平披露 G.657.A2 光纤从每芯公里 32 元涨至 240 元，年涨幅 <span class="up">650%</span>；一季度光纤产销量同比增速 <span class="up">35%+</span>，海外需求占比提升。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>G.657.A2 光纤年涨 650% · G.652.D 较去年低点涨超 400% · 长飞光纤股价破 368 元/股 · 市值一度破 3000 亿
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">光纤光缆</span><span class="tag">AI 数据中心</span><span class="tag">海外需求</span> AI 数据中心建设 + 海外 FTTx 并驾齐驱，光纤进入紧缺涨价周期。核心标的：长飞光纤（龙头+海外）、中天科技、亨通光电、烽火通信；弹性标的：通鼎互联、通光线缆、汇源通信。关注业绩兑现度与 Q1 财报季催化。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：新浪财经 / 格隆汇 / 央视财经</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="a3">
+        <h3>💰 自变量机器人完成近 20 亿元 B 轮融资，小米战投、红杉中国领投</h3>
+        <div class="news-summary">
+            4 月 20 日，具身智能公司自变量机器人（X Square Robot）披露已于 3 月底至 4 月初完成近 <span class="up">20 亿元 B 轮融资</span>，领投方为小米战投和红杉中国。至此自变量成为国内<strong>唯一一家同时获得字节、美团、阿里、小米四大互联网巨头投资的具身智能企业</strong>。公司 1 月刚完成 10 亿元 A++ 轮，B 轮资金将用于万亿参数通用具身模型训练与商业化落地。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>B 轮融资近 20 亿元 · 2026 年 Q1 连融两轮合计约 30 亿元 · 四大互联网巨头同时入股（独家）
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">具身智能</span><span class="tag">人形机器人</span><span class="tag">小米产业链</span> 一级融资热度是二级市场人形机器人板块的前瞻指标。A 股可关注小米生态链/人形机器人零部件：三花智控、拓普集团、鸣志电器、兆威机电、绿的谐波、禾赛科技等；减速器/丝杠环节情绪有望受益。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：36 氪智能涌现 / IT 之家 / 财经网</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="a4">
+        <h3>🌐 A股 AI 应用接力算力：蓝色光标领涨 8%，创业板人工智能 ETF 再创新高</h3>
+        <div class="news-summary">
+            4 月 20 日，光模块 CPO 冲高回落但 AI 应用端发力上攻：蓝色光标领涨逾 <span class="up">8%</span>，华策影视、中文在线涨超 6%，值得买涨超 5%，长江通信涨超 4%，魅视科技涨停。"AI+电商"、智谱 AI 主题同步走强。创业板人工智能 ETF 华宝（159363）收涨 0.47% 再创上市新高，单日成交超 9 亿元，资金抢筹 7200 万份。光模块板块中际旭创盘中刷新高点收盘微跌 0.12%，新易盛、天孚通信小幅回调逾 1%。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>蓝色光标 +8% · AI 应用 ETF 单日成交 9 亿+ · 资金净流入 7200 万份 · 沪指涨 0.76% 收 4082
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">AI 应用</span><span class="tag">AI+电商</span><span class="tag">传媒</span> 硬件高位震荡→应用端接力是 AI 行情后半场的典型特征。DeepSeek V4 4 月下旬发布是重要催化。关注：蓝色光标（营销 AI）、华策影视、中文在线（AI 内容）、值得买（AI+电商）、昆仑万维、金山办公等应用标的。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：新浪财经 / 东方财富 / 10jqka</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- 港股 -->
+<section class="market-section" id="hk-stock">
+    <h2 class="hk-stock">🇭🇰 港股 · AI 动态</h2>
+
+    <div class="news-card" id="h1">
+        <h3>🔥 DeepSeek 首次启动外部融资，估值超 100 亿美元，AI 应用集体狂欢</h3>
+        <div class="news-summary">
+            据 The Information、上证报等媒体 4 月 19-20 日报道，国产大模型龙头 DeepSeek 正式启动成立以来的<strong>首次外部股权融资</strong>，估值超 <span class="up">100 亿美元</span>（约 680 亿元），计划募集至少 3 亿美元（约 20 亿元）。消息点燃港股 AI 应用板块：智谱（02513.HK）周一股价涨超 <span class="up">14%</span>、盘中最高报 10.18 港元、成交额 10.43 亿港元，MiniMax-W 同步拉升。投资人分析此次融资大概率是为员工期权定价与兑现。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>估值 100 亿美元+ · 募资 ≥ 3 亿美元 · 智谱 02513 单日涨 +14.25% · 智谱 Q1 收购北京红钻科技 3.61 亿元
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">港股AI</span><span class="tag">大模型</span><span class="tag">幻方系</span> DeepSeek 融资直接拉升港股 AI 板块估值锚。关注：智谱（02513.HK）、MiniMax-W、商汤（00020.HK）、第四范式（06682.HK）、出门问问（02438.HK）、云知声。摩根大通 5 只智谱/MiniMax 认购证今日（4/21）港交所挂牌，短期活跃度进一步放大。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：第一财经 / 网易财经 / 雪球</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="h2">
+        <h3>📈 摩根大通 5 只智谱/MiniMax 认购证今日挂牌港交所</h3>
+        <div class="news-summary">
+            为帮助投资者把握国内大模型相关投资机遇，摩根大通宣布发行共 <span class="up">5 只智谱及 MINIMAX-W 认购证</span>，并将于今日（2026 年 4 月 21 日）在港交所挂牌上市。这是继智谱、MiniMax 今年 1 月登陆港股以来，国际投行首次集中发行围绕国产 AI 大模型标的的结构化产品。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>摩根大通发行认购证共 5 只 · 涵盖智谱（02513）+ MINIMAX-W · 4 月 21 日挂牌
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">衍生品</span><span class="tag">港股AI</span><span class="tag">外资</span> 国际大行发行结构化产品=外资深度参与国产 AI 叙事。认购证上市将提升正股流动性和波动弹性。关注标的本身的基本面节奏，避免单边做多认购证（时间价值损耗）。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：格隆汇 / 网易财经 / 证券之星</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="h3">
+        <h3>🚀 AI 独角兽阶跃星辰加速赴港 IPO，拟 6 月底前递表、估值 100 亿美元</h3>
+        <div class="news-summary">
+            据《财经》《界面新闻》《路透》等多家媒体近期报道，国内 AI 大模型独角兽阶跃星辰（StepFun）正在拆除其离岸注册架构，为港股 IPO 铺路。据知情人士，阶跃星辰计划在 <span class="up">2026 年 6 月 30 日前</span>港股交表，预期基石定价约 <span class="up">100 亿美元</span>，预计年底完成上市。阶跃星辰由前微软副总裁姜大昕于 2023 年 4 月创立，拥有 Step 系列通用大模型矩阵，是继智谱、MiniMax 后"大模型赴港第三股"最有力竞争者。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>基石定价 ~100 亿美元 · 预计 Q2 末港交所递表 · 年底前完成上市 · 智谱港股 IPO 募资 43 亿港元（参照）
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">IPO 暗盘</span><span class="tag">大模型</span><span class="tag">港股打新</span> 港股 AI 板块中期供给仍在密集兑现，估值会有动态分化。短期打新机会值得关注（智谱、MiniMax 上市后均有显著溢价）；中期警惕板块供给放量后的估值收敛。已上市标的建议分批兑现高估值浮盈。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20（近期持续发酵）</span>
+            <span>🔗 信源：21 财经 / 腾讯新闻 / 东方财富</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- 美股 -->
+<section class="market-section" id="us-stock">
+    <h2 class="us-stock">🇺🇸 美股 · AI 动态</h2>
+
+    <div class="news-card" id="u1">
+        <h3>🔥 Marvell 传与谷歌合作开发两款 AI 芯片，盘中涨超 6%，博通下跌 2%</h3>
+        <div class="news-summary">
+            据 The Information 4 月 20 日独家报道，谷歌正在与 Marvell Technology（MRVL）<strong>商讨联合开发两款新 AI 芯片</strong>：一款是与现有 TPU 配对的内存处理单元（MPU），另一款是针对<strong>推理场景优化的下一代 TPU</strong>。消息刺激 Marvell 周一盘中涨逾 <span class="up">6%</span>收涨，头号竞争对手博通（AVGO）跌近 <span class="down">2%</span>（此前博通长期独占 TPU 定制设计）。分析认为 Google 正在扩大 TPU 供应链多元化，避免单一依赖。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>MRVL 盘中 +6% · AVGO -2% · 谷歌 2026 年 TPU 出货量目标 600 万颗 · NVIDIA 2025 年 3 月向 Marvell 注资 20 亿美元（铺垫）
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">ASIC</span><span class="tag">TPU</span><span class="tag">AI 芯片定制</span> Marvell 从"光电互连龙头"升级为"AI 定制芯片双雄之一"，估值重估空间显著。博通 TPU 独享逻辑出现松动，但仍是绝对龙头。A 股产业链关注：中际旭创、新易盛（光模块配套 TPU）、沪电股份、胜宏科技（PCB）。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：CNBC / The Information / The Motley Fool</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="u2">
+        <h3>🤝 BlackBerry QNX 与 NVIDIA 深化合作，推动安全关键型边缘 AI 落地</h3>
+        <div class="news-summary">
+            4 月 20 日 Hannover Messe 展会，BlackBerry（NYSE:BB）旗下 QNX 宣布与 NVIDIA 深化战略合作，将 <strong>QNX OS for Safety 8.0 与 NVIDIA IGX Thor 及 Halos Safety Stack 整合</strong>，打造面向机器人、医疗、工业边缘的统一实时控制 + 功能安全 + AI 一体化平台。BlackBerry 股价当日受消息提振明显。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>QNX OS for Safety 8.0 + NVIDIA IGX Thor · 覆盖机器人 / 医疗 / 工业边缘三大赛道 · BB 股价日内明显走高
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">边缘AI</span><span class="tag">机器人</span><span class="tag">工业安全</span> NVIDIA 正在将"GPU→RTOS→安全栈"整合成系统级方案，边缘 AI 市场正式进入工业落地窗口期。关注：NVIDIA、BlackBerry（QNX）、Rockwell Automation、Ambarella（边缘推理芯片）。A 股映射：机器视觉、工控 AI。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：Newswire / Robotics and Automation News / The Motley Fool</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="u3">
+        <h3>⚔️ 美股周一：标普收 7120 小幅 -0.09%，地缘拖累但 AI 芯片结构性强势</h3>
+        <div class="news-summary">
+            周一（4 月 20 日）美股在伊朗货轮被以色列扣押事件下承压：标普 500 收 <span class="down">7120 点（-0.09%）</span>，油价上涨，通用市场避险情绪升温。但 AI 芯片板块结构性强势：NVIDIA 延续此前 10 天连涨势头（近两周累涨 18%）、AMD 前一周已上涨 6%（5 月财报前预期升温，连涨 13 日累涨 42% 创 2005 年以来最长纪录）。ASML、台积电订单指引上调带动整个半导体设备链。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>标普 7120 (<span class="down">-0.09%</span>) · NVDA 近两周 +18% · AMD 月内 +42% · 标普月内 +8.18%
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">AI 半导体</span><span class="tag">地缘溢价</span><span class="tag">财报季</span> AI 逻辑+地缘风险博弈：短期指数承压但 AI 龙头韧性强。关注即将公布财报：AMD（5 月）、NVIDIA（Q1 FY27）。地缘溢价若延续，黄金、国防 AI、能源股有望分流资金。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：CNBC / TheStreet / Trading Economics / IBD</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="u4">
+        <h3>📊 Barclays 1H 2026 CIO 调研：超大规模 AI 资本开支将突破 7000 亿美元</h3>
+        <div class="news-summary">
+            4 月 20 日，Barclays 发布 1H 2026 CIO 调研：四大超大规模云厂商 2026 年资本开支已锁定超过 <span class="up">4700 亿美元</span>，全行业 AI-driven 超大规模 capex 将在 2026 年达到 <span class="up">7000 亿美元</span>量级，较 2025 年约 1.5 万亿美元全球 AI 支出再上台阶。半导体、数据中心、电力设备、企业软件将迎结构性需求。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>Barclays 1H26 CIO 调研 · 2026 hyperscaler capex 7000 亿美元 · 四大云 capex 锁定 4700 亿美元 · Futurum 690B / Moody's ~700B / CreditSights 602B（口径略不同）
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">Capex</span><span class="tag">AI基建</span><span class="tag">产业链</span> 2026 capex 7000 亿美元是 AI 硬件链最核心的 Beta。高景气细分排序：液冷 > 光模块/CPO > HBM/高端 DRAM > 电力设备（变压器/UPS）> PCB > ASIC。电力瓶颈日益凸显，2026 年"算电不够用"是最大的新变量。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20</span>
+            <span>🔗 信源：AInvest / CreditSights / Futurum Group</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- 产业前沿 -->
+<section class="market-section" id="frontier">
+    <h2 class="frontier">🔬 产业前沿</h2>
+
+    <div class="news-card" id="f1">
+        <h3>🚀 DeepSeek V4 定档 4 月下旬发布：万亿参数 + FP4 + 华为昇腾 950P 全面适配</h3>
+        <div class="news-summary">
+            DeepSeek 创始人梁文锋 4 月 10 日内部沟通中确认，新一代旗舰大模型 <strong>DeepSeek V4 将于 2026 年 4 月下旬正式发布</strong>。据披露，V4 采用 Mega MoE 架构，参数规模达 <span class="up">1.6 万亿</span>级别，激活专家数从 V3 的 256 跃升至更高规模；DeepGEMM 官方仓库新增 110 个文件，显示 V4 同时支持 FP8/FP4 精度，为 NVIDIA 下一代显卡做优化；同时完全适配华为昇腾 950PR，单卡推理性能达英伟达特供版 H20 芯片的 2.87 倍。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>参数 1.6 万亿 · MoE 架构升级 · FP4/FP8 双精度 · 昇腾 950PR 上推理性能 2.87× H20 · 发布窗口：2026 年 4 月下旬
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">国产大模型</span><span class="tag">华为昇腾</span><span class="tag">信创算力</span> V4 发布是未来 2 周 A 股 AI 板块最大催化。直接受益：华为昇腾产业链（高新发展、神州数码、广电运通、四川长虹）、DeepSeek 生态适配（浪潮信息、中科曙光、科大讯飞、拓维信息）、推理端光模块/服务器。注意"见光死"风险，临近发布反而建议逢高兑现部分浮盈。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20（V4 官宣 4/10，近日持续发酵）</span>
+            <span>🔗 信源：搜狐 / MSN / 财联社</span>
+        </div>
+    </div>
+
+    <div class="news-card" id="f2">
+        <h3>⚡ 算力涨价终结价格倒挂：阿里云最高涨 34%、百度云最高涨 30%</h3>
+        <div class="news-summary">
+            4 月 18 日，阿里云和百度智能云双双宣布<strong>上调 AI 算力及存储产品价格</strong>，最高涨幅分别达 <span class="up">34%</span> 和 <span class="up">30%</span>。此举终结了过去两年"算力贵但模型便宜"的价格倒挂时代——国内推理 Token 单价长期亏损运营。业内认为这是 AI 商业化正循环的重要信号：客户侧付费意愿和能力显著提升，云厂商盈利周期有望启动。
+        </div>
+        <div class="card-data">
+            <span class="label">📈 关键数据：</span>阿里云 AI 算力最高 +34% · 百度云 AI 算力最高 +30% · 2026 年国内 Token 定价周期启动
+        </div>
+        <div class="card-view">
+            <span class="label">💡 投资视角：</span><span class="tag tag-red">云厂商</span><span class="tag">算力涨价</span><span class="tag">AI 商业化</span> 算力涨价=云厂商盈利改善+下游应用付费验证，双向利好。关注港股云厂商：阿里巴巴（9988.HK）、百度（9888.HK）、腾讯（700.HK）；A 股 IDC/算力租赁：润泽科技、奥飞数据、光环新网、数据港；服务器代工：浪潮信息、中科曙光。
+        </div>
+        <div class="card-source">
+            <span>🗓 发布日期：2026-04-20（近日持续发酵，涨价生效 4/18）</span>
+            <span>🔗 信源：搜狐科技 / 阿里云/百度云官网公告</span>
+        </div>
+    </div>
+
+</section>
+
+</div>
+
+<div class="footer">
+    <div>🪷 本报告由 <strong>小荷</strong> 整理于 2026-04-21 08:00 CST</div>
+    <div class="disclaimer">
+        <strong>⚠️ 免责声明：</strong>本日报仅用于投资者研究参考，所有信息来源于公开渠道，小荷已尽力保证时效性与准确性，但不对信息的完整性、精确性作任何承诺。文中所涉个股仅为产业链映射举例，<strong>不构成任何投资建议</strong>。投资有风险，入市需谨慎。市场有其自身规律，请各位领导独立判断、审慎决策。
+    </div>
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-20.html">← 2026-04-20</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+</body>
+</html>
