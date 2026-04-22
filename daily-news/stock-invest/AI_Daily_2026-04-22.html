@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖📊 AI 投研日报 · 2026-04-22</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    line-height: 1.7;
+    padding: 0 0 60px 0;
+}
+a { color: #58a6ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.header {
+    background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+    border-bottom: 1px solid #30363d;
+    padding: 48px 24px 36px;
+    text-align: center;
+}
+.header h1 {
+    font-size: 2.2em;
+    color: #f0f6fc;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+.header .subtitle {
+    font-size: 1.05em;
+    color: #8b949e;
+}
+.header .brand {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 20px;
+    background: rgba(56, 139, 253, 0.15);
+    border: 1px solid rgba(56, 139, 253, 0.4);
+    border-radius: 20px;
+    color: #58a6ff;
+    font-size: 0.95em;
+}
+
+.time-window {
+    max-width: 920px;
+    margin: 20px auto 0;
+    padding: 12px 20px;
+    background: rgba(240, 185, 11, 0.08);
+    border: 1px solid rgba(240, 185, 11, 0.3);
+    border-radius: 10px;
+    text-align: center;
+    color: #f0b90b;
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+.daily-nav {
+    max-width: 920px;
+    margin: 16px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.daily-nav a, .daily-nav span.nav-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+}
+.daily-nav a { color: #58a6ff; background: #161b22; }
+.daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+.daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+.daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+.daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+@media (max-width: 640px) {
+    .daily-nav { flex-wrap: wrap; justify-content: center; }
+    .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+}
+
+.container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.toc {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 22px 28px;
+    margin: 28px 0;
+}
+.toc h3 {
+    font-size: 1.1em;
+    color: #f0f6fc;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.toc ul { list-style: none; columns: 2; column-gap: 20px; }
+.toc li { margin-bottom: 6px; break-inside: avoid; }
+.toc a { font-size: 0.95em; color: #7d8590; }
+.toc a:hover { color: #58a6ff; }
+.toc .anchor-emoji { margin-right: 6px; }
+@media (max-width: 640px) { .toc ul { columns: 1; } }
+
+.section {
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #30363d;
+}
+.section h2 {
+    font-size: 1.55em;
+    color: #f0f6fc;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.section .section-desc {
+    color: #8b949e;
+    font-size: 0.92em;
+    margin-top: 6px;
+}
+
+.card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+    transition: border-color 0.2s ease, transform 0.15s ease;
+}
+.card:hover { border-color: #58a6ff; transform: translateY(-2px); }
+.card-title {
+    font-size: 1.2em;
+    color: #f0f6fc;
+    margin-bottom: 10px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+.card-summary {
+    color: #c9d1d9;
+    font-size: 0.98em;
+    margin-bottom: 14px;
+}
+.card-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+.metric {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    font-size: 0.85em;
+    color: #8b949e;
+}
+.metric.up { color: #f85149; border-color: rgba(248, 81, 73, 0.4); background: rgba(248, 81, 73, 0.06); }
+.metric.down { color: #3fb950; border-color: rgba(63, 185, 80, 0.4); background: rgba(63, 185, 80, 0.06); }
+.metric.hot { color: #f0b90b; border-color: rgba(240, 185, 11, 0.4); background: rgba(240, 185, 11, 0.06); }
+.metric.info { color: #58a6ff; border-color: rgba(88, 166, 255, 0.4); background: rgba(88, 166, 255, 0.06); }
+
+.card-insight {
+    background: rgba(56, 139, 253, 0.05);
+    border-left: 3px solid #58a6ff;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+    color: #c9d1d9;
+    font-size: 0.95em;
+}
+.card-insight strong { color: #58a6ff; }
+
+.card-source {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px dashed #30363d;
+    font-size: 0.82em;
+    color: #6e7681;
+}
+.card-source .date-tag {
+    padding: 2px 8px;
+    background: rgba(240, 185, 11, 0.1);
+    border: 1px solid rgba(240, 185, 11, 0.3);
+    border-radius: 4px;
+    color: #f0b90b;
+}
+
+.footer {
+    max-width: 920px;
+    margin: 50px auto 0;
+    padding: 24px;
+    text-align: center;
+    color: #6e7681;
+    font-size: 0.85em;
+    border-top: 1px solid #30363d;
+}
+.footer .disclaimer {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    text-align: left;
+    line-height: 1.65;
+}
+.footer .sig {
+    margin-top: 16px;
+    color: #f0b90b;
+    font-size: 0.95em;
+}
+
+.market-empty {
+    background: #161b22;
+    border: 1px dashed #30363d;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    color: #8b949e;
+    font-style: italic;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🤖📊 AI 投研日报</h1>
+    <div class="subtitle">2026 年 4 月 22 日 · 星期三 · 三市 AI 行情聚焦</div>
+    <div class="brand">🪷 小荷 · 为长青整理</div>
+</div>
+
+<div class="time-window">
+    📰 新闻时间窗口：2026-04-21 08:00 ~ 2026-04-22 08:00（过去24小时）
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-21.html">← 2026-04-21</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+<div class="container">
+
+<div class="toc">
+<h3>📑 今日目录</h3>
+<ul>
+    <li><a href="#market-overview"><span class="anchor-emoji">📈</span>三市综览</a></li>
+    <li><a href="#a-stock"><span class="anchor-emoji">🇨🇳</span>A股AI聚焦</a></li>
+    <li><a href="#hk-stock"><span class="anchor-emoji">🇭🇰</span>港股AI聚焦</a></li>
+    <li><a href="#us-stock"><span class="anchor-emoji">🇺🇸</span>美股AI聚焦</a></li>
+    <li><a href="#industry"><span class="anchor-emoji">🏭</span>产业前沿</a></li>
+</ul>
+</div>
+
+<!-- 三市综览 -->
+<div class="section" id="market-overview">
+    <h2>📈 三市综览</h2>
+    <div class="section-desc">4月21日（周二）：A股算力链剧烈分化，港股PCB新王登场，美股因伊朗局势承压下跌</div>
+</div>
+
+<div class="card">
+    <div class="card-title">🎢 A股：算力全线重挫，CPO翻倍牛股逆市+14%</div>
+    <div class="card-summary">4月21日A股探底回升，三大指数微涨收红，但全市场超3400只个股下跌。早盘算力硬件板块集体重挫，创业板指一度跌超1.5%；午后商业航天、煤炭、绿电接力护盘。结构性分化极端：CPO板块内部有翻倍牛股逆势大涨14%，PCB概念飙升，3100亿光通信巨头续创历史新高。</div>
+    <div class="card-metrics">
+        <span class="metric up">沪指 +小幅收红</span>
+        <span class="metric up">创业板指 翻红</span>
+        <span class="metric hot">成交 2.4万亿</span>
+        <span class="metric down">下跌家数 3400+</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>今日A股AI板块呈"高标分化、低吸补涨"状态。Map的天孚通信所在的CPO板块虽整体调整，但龙头续创新高说明资金并未离场，只是在"易中天"之间切换。短期需警惕高位一字板的获利盘，中长期硬件景气仍在。</div>
+    <div class="card-source"><span>来源：21世纪经济报道 / 澎湃新闻</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">🚀 港股：恒指涨0.48%再创反弹新高，胜宏科技首日嗨爆</div>
+    <div class="card-summary">4月21日港股高开低走午后拉升，恒指收涨0.48%报26487.48点，创反弹以来新高；恒科指数微跌0.08%报5061.5点，成交2051.77亿港元。当日AI PCB龙头胜宏科技（2476.HK）以209.88港元港发行价挂牌，开盘即冲高336.2港元（+60.2%），公开发售获431.15倍认购，总市值突破2600亿港元。</div>
+    <div class="card-metrics">
+        <span class="metric up">恒指 +0.48%</span>
+        <span class="metric down">恒科 -0.08%</span>
+        <span class="metric hot">胜宏首日最高 +60.2%</span>
+        <span class="metric info">成交2051亿</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>胜宏科技A+H联动效应显著，对A股光通信/PCB板块是正向信号。中际旭创、天孚通信、新易盛"易中天"三巨头港股上市预期升温，未来A+H套利空间值得关注。</div>
+    <div class="card-source"><span>来源：华盛通 / 新时空 / 腾讯财经</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">📉 美股：三大指数齐跌0.6%，伊朗局势打断AI反弹</div>
+    <div class="card-summary">4月21日（美东周二）美股承压收跌。标普500跌约0.2%至7109.14，道指、标普、纳指三大指数盘中一度齐跌0.6%。霍尔木兹海峡持续关闭叠加美以伊停火截止日前的不确定性，油价盘中大涨近5%，压制风险偏好。地缘紧张与AI热情混杂，芯片股表现分化：英特尔因AI需求分析师上调评级延续反弹，但市场整体呈防御态势。</div>
+    <div class="card-metrics">
+        <span class="metric down">标普 -0.2% 至7109</span>
+        <span class="metric down">道指 -0.6%</span>
+        <span class="metric down">纳指 -0.6%</span>
+        <span class="metric hot">WTI原油 +5%</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>美股AI主线的确定性在财报验证中，本周台积电/ASML指引已给2026年AI支出"绿灯"；若伊朗局势24日停火落地，AI龙头有望重启反弹。关注NVDA、AMD、AVGO、MU等作为财报季核心标的。</div>
+    <div class="card-source"><span>来源：Investopedia / Zacks / 24/7 Wall St</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<!-- A股AI聚焦 -->
+<div class="section" id="a-stock">
+    <h2>🇨🇳 A股 AI 聚焦</h2>
+    <div class="section-desc">算力卫星、CPO/PCB结构分化、绿电直连政策三条主线</div>
+</div>
+
+<div class="card">
+    <div class="card-title">🛰️ 轨道辰光 Pre-A1 融资577亿，算力卫星成新题材</div>
+    <div class="card-summary">轨道辰光近日完成Pre-A1轮股权融资，并同步获多家银行战略授信/授信意向函，股债权融资合计577亿元人民币。公司核心任务是在地球晨昏轨道部署算力卫星，组建"太空数据中心"，为全球用户提供天基算力服务。工信部4月21日最新部署明确支持"太空算力技术前瞻性研究"。</div>
+    <div class="card-metrics">
+        <span class="metric hot">融资 577亿</span>
+        <span class="metric info">算力卫星 · 天基数据中心</span>
+        <span class="metric up">工信部 政策背书</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>商业航天+算力叠加题材，A股相关标的中衡设计2连板、神剑股份5天3板创历史新高。算力卫星产业链上游（卫星载荷、光通信星间链路）值得持续跟踪，但需警惕高标股波动风险。</div>
+    <div class="card-source"><span>来源：腾讯财经 · 涨停复盘</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">⚡ 工信部部署"绿电直连" + 源网荷储，AI数据中心用电迎新规</div>
+    <div class="card-summary">4月21日，工信部最新部署将开展"算电协同"政策研究和标准制定，促进源网荷储、绿电直连加速落地，支持太空算力技术前瞻性研究。消息驱动绿电概念集体走强，粤电力A、浙江新能、华电辽能涨停，固态电池、太空光伏概念股活跃。</div>
+    <div class="card-metrics">
+        <span class="metric up">粤电力A 涨停</span>
+        <span class="metric up">浙江新能 涨停</span>
+        <span class="metric up">华电辽能 涨停</span>
+        <span class="metric hot">算电协同新政</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>AI算力爆发推升数据中心用电需求，"绿电直连"打通政策后，直接利好绿电发电企业和数据中心EPC。关注龙头电力运营商（华能水电/长江电力）+ 数据中心配电标的（科华数据、英维克）的组合机会。</div>
+    <div class="card-source"><span>来源：工信部 / 澎湃新闻</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">🔆 TrendForce：2026全球AI光模块市场260亿美元，同比+57.6%</div>
+    <div class="card-summary">TrendForce 4月21日发布预测：2026年全球AI专用光（收发）模块市场规模将达260亿美元（约1776亿人民币），同比增长57.6%。EML、CW-LD等关键元器件供应紧张，光学对准等高精度工艺产能有限；英伟达等企业已签长期战略合同锁定供应。技术路线上，行业加速向低功耗LPO和硅光CPO演进。</div>
+    <div class="card-metrics">
+        <span class="metric hot">市场规模 $260亿</span>
+        <span class="metric up">同比 +57.6%</span>
+        <span class="metric info">EML/CW-LD 紧缺</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>260亿美元市场对应"易中天"三巨头（中际旭创、新易盛、天孚通信）1.6T产品放量的核心确定性。Map重点持仓的<strong>天孚通信</strong>作为光器件核心供应商，受益于EML紧缺下的价量齐升。LPO/CPO路线演进中，硅光细分龙头（仕佳光子、光迅科技）有弹性机会。</div>
+    <div class="card-source"><span>来源：TrendForce / 新浪财经 / IT之家</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">🏭 "易中天"三巨头齐聚港股？新易盛被传考虑赴港上市</div>
+    <div class="card-summary">继中际旭创（300308.SZ）、天孚通信（300394.SZ）已相继启动港股上市后，有自媒体4月20-21日报道称，新易盛（300502.SZ）也正在考虑赴港上市。三只A股光模块龙头"易中天"或齐聚港股。目前新易盛方面未公开回应。消息背景：光模块龙头2026Q1业绩全面兑现（中际旭创Q1净利57亿+262%），港股AI PCB胜宏科技首日+60%更是点燃情绪。</div>
+    <div class="card-metrics">
+        <span class="metric info">新易盛 赴港传闻</span>
+        <span class="metric hot">中际旭创 Q1净利57亿</span>
+        <span class="metric up">CPO指数近一年 +417%</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>对Map的天孚通信持仓是直接利好——港股IPO能显著打开估值天花板，参考胜宏科技A+H首日+60%的溢价效应。A股光模块三巨头若齐聚港股，"全球稀缺标的"属性强化，长线逻辑更硬。持续关注H股发行价定位和配售结构。</div>
+    <div class="card-source"><span>来源：新浪财经 / 雪球</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<!-- 港股AI聚焦 -->
+<div class="section" id="hk-stock">
+    <h2>🇭🇰 港股 AI 聚焦</h2>
+    <div class="section-desc">胜宏科技A+H壮举、佳都科技二次递表、AI IPO热浪继续</div>
+</div>
+
+<div class="card">
+    <div class="card-title">🎆 胜宏科技（2476.HK）：2026年港股最大IPO首日高开60%</div>
+    <div class="card-summary">4月21日，全球AI算力PCB龙头胜宏科技正式登陆港交所，全球发售9585万股H股，发行价209.88港元/股，净募资198.894亿港元，刷新2026年港股IPO纪录。早盘最高冲至336.2港元（+60.2%），截至午前仍涨45%+，总市值超2600亿港元。公开发售部分获431.15倍超购，国际发售获18.5倍。公司引入摩根士丹利等基石，英伟达AI服务器PCB核心供应商。</div>
+    <div class="card-metrics">
+        <span class="metric up">首日最高 +60.2%</span>
+        <span class="metric hot">募资 198.89亿</span>
+        <span class="metric hot">超购 431倍</span>
+        <span class="metric info">市值 2600亿</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>胜宏科技A+H效应示范，对Map重点关注的A股PCB/CPO板块是结构性利好。A股胜宏科技（300476）AH溢价空间打开，关注次新PCB龙头（沪电股份、生益电子、东山精密）的联动性。基石认购倍数创IPO纪录，说明机构对AI基建持续乐观。</div>
+    <div class="card-source"><span>来源：中信集团 / 21财经 / 腾讯财经</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">🚦 佳都科技4月21日二次递表港交所，AI+交通赛道</div>
+    <div class="card-summary">4月21日，佳都科技集团（600728.SH）二次向港交所提交上市申请书，联席保荐人为广发证券、农银国际。公司为中国AI赋能型智慧城市群立体交通产品及解决方案提供商，旗下鸿蒙交通版系全球首创。首次递表在2025年9月，本次为重启再报。</div>
+    <div class="card-metrics">
+        <span class="metric info">AI+交通 · A+H</span>
+        <span class="metric hot">二次递表</span>
+        <span class="metric up">鸿蒙交通 全球首创</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>港股AI应用层IPO热度延续，佳都科技的看点是"AI+国产化"（鸿蒙生态）双轮。对A股同题材标的（千方科技、易华录）也是估值催化。若成功二次递表后快速上市，可参考胜宏科技路径，关注定价区间和基石投资者。</div>
+    <div class="card-source"><span>来源：财联社 / 新时空</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">💹 港股一季度IPO延续井喷，AI/半导体是主角</div>
+    <div class="card-summary">港股IPO市场2026年持续火热。截至4月21日数据，胜宏科技刷新年度IPO募资纪录（近200亿港元）；前有智谱AI认购证/阶跃星辰待递表、MiniMax认购证已挂牌。恒指站上26487点创反弹新高，成交2051亿港元；恒生科技指数虽今日微跌0.08%，但一季度AI应用板块（智谱、群核、小马智行）集体上市后表现强劲。</div>
+    <div class="card-metrics">
+        <span class="metric up">恒指 反弹新高</span>
+        <span class="metric hot">2026 AI IPO 排队</span>
+        <span class="metric info">阶跃星辰 6月底递表</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>港股AI IPO井喷为投资者提供多元化配置机会。Map长线持有的港股杠杆ETF（南方2x 三星/海力士）受益于全球AI硬件beta；若短期追击AI IPO暗盘套利，可关注阶跃星辰、智谱等国产大模型标的。</div>
+    <div class="card-source"><span>来源：财联社 / 新浪财经</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<!-- 美股AI聚焦 -->
+<div class="section" id="us-stock">
+    <h2>🇺🇸 美股 AI 聚焦</h2>
+    <div class="section-desc">地缘风险压盘、Intel重启涨势、AMD财报季、Anthropic反超OpenAI</div>
+</div>
+
+<div class="card">
+    <div class="card-title">💎 Intel（INTC）重启上涨：分析师三连升评价，AI需求驱动</div>
+    <div class="card-summary">4月21日Intel股价在多家分析师上调评级后恢复上涨。文章明确将Intel与美光、英伟达并列为AI核心受益者——云厂商在抢购算力的同时，也在拉动内存需求前置。AI PC/数据中心双曲线共振，分析师普遍看好Intel的2026年下半年产品周期。</div>
+    <div class="card-metrics">
+        <span class="metric up">INTC 恢复上涨</span>
+        <span class="metric hot">三连升评级</span>
+        <span class="metric info">AI PC + 数据中心</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>Intel 2026年AI故事的关键是18A制程良率和Gaudi 3订单兑现。若台积电/ASML连续指引上调（本周二者都已确认），Intel作为替代补充供应商有β机会。搭配美光（MU）做"CPU+内存"组合。</div>
+    <div class="card-source"><span>来源：Invezz</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">⚔️ Anthropic反超OpenAI：ARR达300亿，Claude使用量飙1487%</div>
+    <div class="card-summary">最新披露（4月21日更新）：Anthropic年化收入（ARR）已达300亿美元，正式超越OpenAI的250亿美元。Claude工具使用量同比飙升1487%，一年内新增收入210亿美元。训练成本仅为OpenAI的四分之一。OpenAI估值8520亿美元当下受部分原始投资者质疑，公司正紧急转向企业客户并反击Anthropic。</div>
+    <div class="card-metrics">
+        <span class="metric up">Anthropic ARR $30B</span>
+        <span class="metric down">OpenAI ARR $25B</span>
+        <span class="metric hot">Claude +1487%</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>Anthropic大股东Amazon（AMZN）和Google（GOOGL）的AI战略价值被再次凸显。对比之下，Microsoft（MSFT）相对OpenAI的估值敞口值得警惕。AI基础设施层面，Anthropic大规模采用Trainium芯片，对AWS云增长是支撑——AMZN是更均衡的AI龙头配置。</div>
+    <div class="card-source"><span>来源：CNBC / TechCrunch / OpenTools</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">💥 美股三大指数齐跌0.6%，地缘扰动打断AI反弹</div>
+    <div class="card-summary">4月21日（美东周二）美股收盘：标普500跌16.92点至7109.14（-0.2%到-0.6%区间），道指、纳指同步下跌。伊朗停火倒计时+霍尔木兹海峡关闭继续，WTI原油盘中涨近5%。11个行业板块中5跌6涨，能源、防御性板块领涨，科技、消费承压。AI股表现分化：NVDA小幅下跌、AMD震荡、AVGO反弹；INTC、MU逆势。</div>
+    <div class="card-metrics">
+        <span class="metric down">标普 -0.2% / 7109</span>
+        <span class="metric down">纳指 -0.6%</span>
+        <span class="metric hot">油价 +5%</span>
+        <span class="metric info">11行业 5跌6涨</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>地缘事件是短期扰动，关键盯住4月24日（美伊停火截止日）。本周重点观察AI龙头财报：AMD在5月初发布Q1（预期EPS上修），TSLA、META等巨头陆续披露。AI主线基本面未变，逢跌分批建仓中长线标的（NVDA/AVGO/AMD）可接受。</div>
+    <div class="card-source"><span>来源：Investopedia / Zacks / The Street</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">🔬 Cerebras提交IPO：晶圆级AI芯片挑战NVIDIA/AMD</div>
+    <div class="card-summary">AI芯片厂商Cerebras Systems继与OpenAI达成大额协议后，正式提交IPO申请（4月中旬更新，21日前后持续发酵）。公司的Wafer-Scale Engine晶圆级处理器专注AI训练工作负载，挑战Nvidia和AMD主导的加速器市场。AMD同时是Cerebras的投资方之一。</div>
+    <div class="card-metrics">
+        <span class="metric hot">Cerebras IPO</span>
+        <span class="metric info">Wafer-Scale Engine</span>
+        <span class="metric up">OpenAI 大额合作</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>Cerebras IPO估值预计超千亿美元，将成为"NVIDIA之外的选择"题材的重要催化。对国产AI芯片链（寒武纪、海光、中科曙光）也是情绪面联动。AMD作为Cerebras投资方存在战略收益，进一步强化"AI多元化"叙事。</div>
+    <div class="card-source"><span>来源：Seeking Alpha</span><span class="date-tag">📅 2026-04-21 前后</span></div>
+</div>
+
+<!-- 产业前沿 -->
+<div class="section" id="industry">
+    <h2>🏭 产业前沿</h2>
+    <div class="section-desc">具身智能、数据中心Capex、AI基建升级</div>
+</div>
+
+<div class="card">
+    <div class="card-title">🤖 特斯拉官宣：上海超级工厂将是Optimus大规模量产核心枢纽</div>
+    <div class="card-summary">特斯拉副总裁、特斯拉中国总裁Allan Wang在4月政府组织的上海超级工厂参观活动中明确表态：上海超级工厂将成为Optimus人形机器人大规模量产的核心枢纽。Gen 3 Optimus已在2026 AWE上海展亮相，预计2026年内实现量产。这是特斯拉从汽车向"AI机器人"战略转型的最直接表态。</div>
+    <div class="card-metrics">
+        <span class="metric hot">Optimus Gen 3</span>
+        <span class="metric up">上海工厂核心枢纽</span>
+        <span class="metric info">2026年量产落地</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>Optimus中国供应链直接利好A股人形机器人产业链：丝杠（鸣志电器/贝斯特）、减速器（绿的谐波）、电机（鸣志/步科）、感知（奥比中光/鸣志电器）、PCB（沪电股份）。Map可关注"特斯拉国产化率"主题ETF/概念股。</div>
+    <div class="card-source"><span>来源：MSN / ApplyingAI / ChinaRoboticsDaily</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+<div class="card">
+    <div class="card-title">📊 具身智能Q1融资超200亿，十余家跻身独角兽阵营</div>
+    <div class="card-summary">IT桔子/CENTI数据显示，2026年第一季度国内具身智能赛道披露融资超50起，获投企业超30家，累计融资额约200亿元。百亿估值企业阵营持续扩容，十余家跻身独角兽。阿里、顺为资本、深创投等头部机构集中出手，产业资本与地方政府基金深度协同。4月下旬自变量机器人B轮近20亿（小米/红杉领投）继续延续这一热潮。</div>
+    <div class="card-metrics">
+        <span class="metric hot">Q1融资 200亿</span>
+        <span class="metric up">获投企业 30+</span>
+        <span class="metric info">百亿估值 十余家</span>
+    </div>
+    <div class="card-insight"><strong>💡 投资视角：</strong>一级市场火热向二级传导：A股人形机器人ETF（159551）、机器人产业ETF（562500）具备beta机会。Map关注的具身智能主题适合"硬件核心零部件+场景应用软件"双线布局，核心零部件确定性更高。</div>
+    <div class="card-source"><span>来源：21财经 / 金融界</span><span class="date-tag">📅 2026-04-21</span></div>
+</div>
+
+</div><!-- /container -->
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-21.html">← 2026-04-21</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+<div class="footer">
+    <div>🕒 日报生成时间：2026-04-22 08:00 CST · 🪷 小荷出品</div>
+    <div class="disclaimer">
+        <strong style="color:#f85149;">⚠️ 免责声明：</strong>本日报基于公开网络信息整理，仅供投资参考和信息交流，不构成任何投资建议。所有观点不代表任何机构立场。投资有风险，决策需谨慎。文中提及个股仅为分析示例，不作为买卖推荐。请读者独立判断，自行承担投资决策后果。
+    </div>
+    <div class="sig">✨ 以上由 小荷 自动整理，供各位领导参阅斧正 🙏</div>
+</div>
+
+</body>
+</html>
