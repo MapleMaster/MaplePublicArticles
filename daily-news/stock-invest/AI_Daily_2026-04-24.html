@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 投研日报 · 2026-04-24</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #0d1117;
+        color: #c9d1d9;
+        line-height: 1.7;
+        padding: 0;
+    }
+    .container { max-width: 920px; margin: 0 auto; padding: 24px 20px 48px; }
+    header {
+        text-align: center;
+        padding: 28px 20px 20px;
+        border-bottom: 1px solid #30363d;
+        margin-bottom: 10px;
+    }
+    header h1 {
+        font-size: 2em;
+        color: #f0b90b;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+    }
+    header .subtitle { color: #8b949e; font-size: 1em; }
+    .time-window {
+        max-width: 920px;
+        margin: 14px auto 4px;
+        padding: 12px 20px;
+        background: linear-gradient(90deg, rgba(240,185,11,0.08), rgba(240,185,11,0.02));
+        border: 1px solid rgba(240, 185, 11, 0.3);
+        border-radius: 10px;
+        text-align: center;
+        color: #f0b90b;
+        font-size: 0.95em;
+        font-weight: 600;
+    }
+    .daily-nav {
+        max-width: 920px;
+        margin: 16px auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+    .daily-nav a, .daily-nav span.nav-disabled {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid #30363d;
+        white-space: nowrap;
+    }
+    .daily-nav a { color: #58a6ff; background: #161b22; }
+    .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+    .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+    .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+    .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+    .toc {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding: 18px 22px;
+        margin-bottom: 28px;
+    }
+    .toc h3 { color: #f0b90b; margin-bottom: 10px; font-size: 1.1em; }
+    .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+    .toc a {
+        color: #58a6ff;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        background: #1c2128;
+        font-size: 0.9em;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+    }
+    .toc a:hover { background: #1f6feb; color: #fff; border-color: #58a6ff; }
+    .section {
+        margin-bottom: 36px;
+        scroll-margin-top: 20px;
+    }
+    .section-title {
+        font-size: 1.45em;
+        color: #f0b90b;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #30363d;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding: 20px 22px;
+        margin-bottom: 16px;
+        transition: all 0.2s ease;
+    }
+    .card:hover { border-color: #58a6ff; box-shadow: 0 2px 12px rgba(88, 166, 255, 0.1); }
+    .card-title {
+        font-size: 1.18em;
+        color: #e6edf3;
+        margin-bottom: 10px;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+    .card-summary {
+        color: #c9d1d9;
+        margin-bottom: 12px;
+        font-size: 0.98em;
+    }
+    .card-data {
+        background: #0d1117;
+        border-left: 3px solid #f0b90b;
+        padding: 10px 14px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+        font-size: 0.92em;
+        color: #8b949e;
+    }
+    .card-data strong { color: #e6edf3; }
+    .card-perspective {
+        background: linear-gradient(90deg, rgba(88,166,255,0.08), rgba(88,166,255,0.02));
+        border-left: 3px solid #58a6ff;
+        padding: 10px 14px;
+        margin: 12px 0;
+        border-radius: 0 8px 8px 0;
+        font-size: 0.92em;
+    }
+    .card-perspective strong { color: #58a6ff; }
+    .card-source {
+        font-size: 0.82em;
+        color: #8b949e;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed #30363d;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .card-source .pub-date { color: #f0b90b; font-weight: 600; }
+    .tag {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 0.78em;
+        margin-right: 6px;
+        font-weight: 600;
+    }
+    .tag-a { background: rgba(248, 81, 73, 0.15); color: #f85149; border: 1px solid rgba(248, 81, 73, 0.3); }
+    .tag-hk { background: rgba(240, 185, 11, 0.15); color: #f0b90b; border: 1px solid rgba(240, 185, 11, 0.3); }
+    .tag-us { background: rgba(88, 166, 255, 0.15); color: #58a6ff; border: 1px solid rgba(88, 166, 255, 0.3); }
+    .tag-industry { background: rgba(139, 148, 158, 0.15); color: #8b949e; border: 1px solid rgba(139, 148, 158, 0.3); }
+    .tag-overview { background: rgba(63, 185, 80, 0.15); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.3); }
+    .up { color: #f85149; font-weight: 600; }
+    .down { color: #3fb950; font-weight: 600; }
+    footer {
+        margin-top: 40px;
+        padding-top: 24px;
+        border-top: 1px solid #30363d;
+        text-align: center;
+        color: #8b949e;
+        font-size: 0.88em;
+        line-height: 1.8;
+    }
+    footer .disclaimer {
+        background: rgba(248, 81, 73, 0.08);
+        border: 1px solid rgba(248, 81, 73, 0.2);
+        border-radius: 8px;
+        padding: 12px 18px;
+        margin: 16px auto 8px;
+        max-width: 760px;
+        color: #f85149;
+        font-size: 0.85em;
+    }
+    @media (max-width: 640px) {
+        .daily-nav { flex-wrap: wrap; justify-content: center; }
+        .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        header h1 { font-size: 1.5em; }
+        .container { padding: 16px 14px 32px; }
+        .card { padding: 16px 18px; }
+    }
+</style>
+</head>
+<body>
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-23.html">← 2026-04-23</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+<header>
+    <h1>🤖📊 AI 投研日报</h1>
+    <div class="subtitle">2026-04-24 · 周五 · 投资/炒股视角</div>
+</header>
+
+<div class="time-window">
+    📰 新闻时间窗口：2026-04-23 08:00 ~ 2026-04-24 08:00（过去24小时）
+</div>
+
+<div class="container">
+
+<div class="toc">
+    <h3>📑 今日导航</h3>
+    <ul>
+        <li><a href="#overview">📈 市场综览</a></li>
+        <li><a href="#a-share">🇨🇳 A股动态</a></li>
+        <li><a href="#hk-share">🇭🇰 港股动态</a></li>
+        <li><a href="#us-share">🇺🇸 美股动态</a></li>
+        <li><a href="#industry">🏭 产业前沿</a></li>
+    </ul>
+</div>
+
+<!-- ============ 市场综览 ============ -->
+<section id="overview" class="section">
+    <h2 class="section-title">📈 市场综览</h2>
+
+    <div class="card">
+        <div><span class="tag tag-overview">A股收盘</span></div>
+        <div class="card-title">A股三大指数放量调整，沪指失守4100点 · 止步5连阳</div>
+        <div class="card-summary">4月23日，A股早盘高开低走，午后反弹后震荡收跌，呈 "W" 型走势。创业板指、深成指盘中跌超1.5%，沪指跌破4100点。<strong>中际旭创盘中总市值首次站上万亿</strong>，成为A股第8个万亿市值企业。沪深两市成交额放大至2.8万亿元，近4100只个股下跌。</div>
+        <div class="card-data">
+            📊 <strong>沪指</strong> 4093.25 <span class="down">-0.32%</span>（-13.01点）｜<strong>深成指</strong> 15043.45 <span class="down">-0.88%</span>｜<strong>创业板指</strong> 3720.25 <span class="down">-0.87%</span>｜成交额 2.8万亿 · 涨停58家 跌停30家
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>算力硬件冲高回落，CPO/PCB 齐跌，资金切换至绿电/特高压+消费防御。中际旭创盘中破万亿后有利好兑现压力，但 "易中天" 一季报业绩全部交卷且超预期，中长期逻辑未破。关注低位补涨的电力、有色稀土、稳定币防御板块。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：21经济网 / 金融界 / 财联社 / 第一财经</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-overview">美股收盘</span></div>
+        <div class="card-title">美股三大指数收涨，标普纳指创新高；费半16连涨创史上最长连涨纪录</div>
+        <div class="card-summary">强劲企业盈利叠加特朗普短暂延长美伊停火协议，<strong>标普500、纳指创新高</strong>，科技股主导涨势。<strong>费城半导体指数（SOX）4月23日录得第17个交易日连涨（一度16连涨已是 1994 年有数据以来最长连涨）</strong>，高盛上调半导体板块目标价。盘后谷歌、特斯拉等科技七巨头全线收涨，软件股连涨8日较4月低点反弹近20%。波音受季报优于预期推动涨超5.5%。</div>
+        <div class="card-data">
+            📊 <strong>SOX</strong> 9826.10（1年 +148.73%）｜<strong>标普500</strong>、<strong>纳指</strong> 创收盘历史新高｜软件股 8连阳反弹近 20%
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>费城半导体16连涨为30年最长，AI算力基础设施板块共振走强，NVIDIA、AMD、TSM、AVGO 全线受益。但盘后 IBM/ServiceNow 财报引发软件股 AI 替代焦虑，需警惕传统软件估值修正。费半过热后短期震荡风险加大，但中长期景气度仍最强。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：Bloomberg / Nasdaq SOX Index / 华尔街见闻早餐</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+</section>
+
+<!-- ============ A股动态 ============ -->
+<section id="a-share" class="section">
+    <h2 class="section-title">🇨🇳 A股动态</h2>
+
+    <div class="card">
+        <div><span class="tag tag-a">A股 · 万亿市值</span></div>
+        <div class="card-title">🏆 中际旭创盘中首破万亿，苏州诞生A股第8家万亿巨头；"易中天"一季报全部交卷</div>
+        <div class="card-summary">4月23日盘中，<strong>中际旭创最高涨至919.99元，总市值约1.02万亿</strong>，成为A股"万亿俱乐部"第8位成员，也是苏州下属企业首个万亿市值。当晚新易盛公布一季报及年报，至此光模块"易中天"（新易盛、中际旭创、天孚通信）2025年年报、2026年一季报均已披露，一季报业绩全面超预期。</div>
+        <div class="card-data">
+            📊 <strong>新易盛（300502）</strong>Q1 净利润 <strong class="up">27.80亿</strong>，<strong class="up">同比+76.8%</strong>，环比 -13%｜中际旭创 1.6T 产品出货验证｜"易中天"合计市值接近 1.9 万亿
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>新易盛 Q1 净利 27.80 亿（+76.8%）验证 AI 光模块赛道业绩真实兑现，支撑高估值。<strong>天孚通信（300394）</strong> 作为光引擎+器件双龙头，1.6T 光引擎量产，Map 核心持仓标的继续稳。但光模块原材料供给紧张、行业降价是挑战，关注 EML 芯片瓶颈进展。短期注意万亿市值后的利好兑现压力，中长期逻辑未破。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：21经济网 / 金融界 / 第一财经</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-a">A股 · 政策</span></div>
+        <div class="card-title">⚡ 国务院《服务业扩能提质意见》落地：首次明确支持采购大模型/Agent 服务</div>
+        <div class="card-summary">4月21日国务院印发《关于推进服务业扩能提质的意见》，明确到2030年服务业总规模迈上100万亿元台阶，<strong>首次明确提出"支持采购大模型、Agent 服务"</strong>，要求"加快智能编程工具研发使用""高质量建设国家人工智能应用中试基地"。相比以往侧重技术研发的政策，本次顶层设计聚焦采购端+场景端。</div>
+        <div class="card-data">
+            📊 政策目标：<strong>2030年服务业规模 100万亿</strong> | 新增：大模型采购、Agent 服务、智能编程工具
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>AI 产业政策从"研发补贴"转向"采购驱动"，G 端/政务 AI、大模型、AI Agent 应用端直接受益。相关标的：科大讯飞、金山办公、用友网络、泛微网络、中科闻歌（港股递表）、齐心集团（政务 AI 合作涨停）。AI 编程工具利好：CSIG 内部 CodeBuddy 类产品。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：新浪财经 / 中国政府网</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23（政策于4月21日印发）</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-a">A股 · 政策</span></div>
+        <div class="card-title">🔌 工信部定调算电协同：正制定政策标准 · 关注太空算力与 6G</div>
+        <div class="card-summary">4月21日国务院新闻办一季度工信部发布会，工信部副部长张云明表示"<strong>算力基础设施已成为驱动人工智能发展的关键底座</strong>"，并明确正在开展算电协同政策研究和标准制定，同时关注太空算力、6G 等未来产业方向。一季度工信部已累计部署 100+ 项未来产业"揭榜挂帅"攻关任务。</div>
+        <div class="card-data">
+            📊 一季度数据：31省规上工业增加值全部实现增长｜政策方向：算电协同 / 太空算力 / 6G / 未来产业
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>算电协同概念：绿电+特高压+数据中心闭环，受益方向——特变电工（昨日复盘重点）、中国核电、西北工业相关绿电直连。太空算力：航天宏图、中科星图、神剑股份、轨道辰光 Pre-A1 融资 577 亿概念。6G：中兴通讯、星网锐捷、奥雅纳。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：财联社 / 光明网</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23（发布会于4月21日）</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-a">A股 · 个股异动</span></div>
+        <div class="card-title">📦 齐心集团涨停：设立5亿AI算力子公司 + 政务AI助手合作双重驱动</div>
+        <div class="card-summary">4月23日齐心集团（002301）涨停收盘，收盘价 7.45 元，9:39 涨停未打开，<strong>封单资金 5419 万元</strong>，占流通市值 1.01%。公司 4月21日公告以自有资金 5 亿元设立全资子公司齐心智算科技，聚焦 AI 算力基础设施与行业大模型应用；同期披露与某省级政务云平台签署智慧办公+AI 助手联合试点协议，叠加"AI+办公"概念。</div>
+        <div class="card-data">
+            📊 <strong>齐心集团（002301）</strong>收盘 7.45 <span class="up">涨停</span>｜子公司注册资本 <strong>5亿</strong>｜省级政务云合作
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>"AI+办公"是大模型落地最快的场景之一，齐心本身是办公用品渠道商，有 B 端客户基础，AI Agent 助手+政务云是可信赖的收入来源。但需警惕概念炒作——算力子公司注册仅 5亿，短期难贡献业绩；关注后续政务订单真实落地情况。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：证券之星 / 股票星</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 港股动态 ============ -->
+<section id="hk-share" class="section">
+    <h2 class="section-title">🇭🇰 港股动态</h2>
+
+    <div class="card">
+        <div><span class="tag tag-hk">港股 · 异动</span></div>
+        <div class="card-title">🤖 港股三大指数集体调整，AI 相关概念股逆势走强</div>
+        <div class="card-summary">4月22日港股三大指数集体调整，恒生指数跌 1.22%，但<strong>AI 相关概念股逆势走强</strong>。4月23日延续震荡，科技新股与 AI 叙事仍是资金关注主线。中国证券报分析指出，"2026年被视为 AI 产业从算力基建迈向商业化兑现的元年"，头部云服务商提价、AI 应用标杆新股上市等现象显著提振市场对科技板块未来盈利的想象力。</div>
+        <div class="card-data">
+            📊 恒指 <span class="down">-1.22%</span>｜AI 相关概念股逆势走强｜港股制度优势吸引 AI 龙头 A+H 双重上市
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>港股 AI 叙事三大锚点：(1) 胜宏科技（02476.HK）最近 IPO 超购 431 倍 + 首日 +50%；(2) 新易盛被传考虑赴港，A+H 双重上市风潮；(3) 中科闻歌、佳都科技、华工科技等陆续递表。Map 可持续关注港股 AI+H 板块估值洼地机会。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：腾讯新闻 / 中国证券报</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-hk">港股 · AI IPO</span></div>
+        <div class="card-title">📨 华工科技递表港交所：AI 算力时代的战略性升级，打造"A+H"平台</div>
+        <div class="card-summary">4月21日华工科技递交港股上市申请，公司负责人表示："此次递交港股上市申请，不是短期的资本运作，而是公司立足全球化、面向 <strong>AI 算力时代</strong>的战略性升级，是构建 A+H 资本平台的关键一步"。华工科技主营智能激光装备、智能感知与连接、联接业务，与 AI 数据中心、光通信深度绑定。</div>
+        <div class="card-data">
+            📊 <strong>华工科技（000988）</strong>A 股市值约 1100 亿｜主业：激光装备 / 光通信模块 / 智能传感
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>华工科技是国内少数覆盖"激光+光通信+传感"的 AI 基础设施平台型公司，港股上市后估值重估+融资扩产双受益。A+H 平台思路可对标中际旭创/新易盛+天孚通信未来赴港计划。中长期看好，但需关注 H 股定价对 A 股估值的压力/提振。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：腾讯新闻 / 华工科技公告</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23（递表于4月21日）</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-hk">港股 · 研报</span></div>
+        <div class="card-title">🛰️ 诺比侃（2635.HK）再获"买入"，港股AI 基建运维赛道受关注</div>
+        <div class="card-summary">4月23日大西部证券发布诺比侃（2635.HK）首次覆盖报告，给予"买入"评级。诺比侃是港股市场中少数专注 AI 基建运维赛道的公司，目标价上调至机构一致预期翻倍空间。国内多家机构在 2026年 AI 产业"基建到兑现"的语境下，开始挖掘运维、监测、数据中心 PUE 管理等"镰刀"类标的。</div>
+        <div class="card-data">
+            📊 <strong>诺比侃（2635.HK）</strong>｜大西部证券"买入"｜机构一致看高翻倍空间
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>AI 基建运维是"算力中台"逻辑的下游，类似美股 Vertiv（VRT）路径。国内对标：润建股份、科华数据。港股小市值 AI+基建题材波动大，风控为主，不宜重仓。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：中金在线</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 美股动态 ============ -->
+<section id="us-share" class="section">
+    <h2 class="section-title">🇺🇸 美股动态</h2>
+
+    <div class="card">
+        <div><span class="tag tag-us">美股 · 财报</span></div>
+        <div class="card-title">🚗 特斯拉 Q1 2026 财报：EPS 微超预期，毛利率 21%，马斯克加码 Robotaxi + Optimus</div>
+        <div class="card-summary">4月22日盘后特斯拉（TSLA）公布 Q1 2026 财报：<strong>营收略高于预期，EPS 小幅超预期</strong>，毛利率 21%，运营现金流 39亿美元。马斯克在电话会上明确：(1) 提高全年资本开支；(2) 加速 Robotaxi 在多城市扩张；(3) Optimus 第三代年中启动生产，2027 年大规模量产；(4) 警示关税+供应链风险。</div>
+        <div class="card-data">
+            📊 <strong>TSLA Q1 2026：</strong>营收（对齐预期 $22.3B）｜EPS 小幅 Beat｜毛利率 <strong>21%</strong>｜经营现金流 $3.9B｜Optimus 量产时间表确认
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>特斯拉正式转型 "AI+Robotics" 公司，Optimus 量产路线图清晰（年中试产、2027大规模）。利好产业链：(1) 零部件——三花智控（丝杠/执行器，Map 持仓）、拓普集团、拓斯达；(2) 大脑/算法——特斯拉 FSD + 英伟达链；(3) 国内对标：优必选（港股）、智元机器人、宇树、它石智航（Pre-A 4.55亿美元）。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：Tesla IR / MarketBeat / CNBC / Electrek / USA Today</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-us">美股 · 软件股大跌</span></div>
+        <div class="card-title">💣 IBM + ServiceNow 财报引软件股"AI 替代"焦虑，盘中集体重挫</div>
+        <div class="card-summary">4月23日美股软件板块大幅下跌，起因是 IBM 与 ServiceNow 公布财报后市场担心 <strong>AI 工具和服务正在颠覆传统软件商业模式</strong>。IBM Q1 EPS 超预期但股价盘前跌 9.8%；ServiceNow 业绩 Beat、上调 AI 产品销售预期 50%，但股价仍跌。Salesforce、Workday、Adobe 等连带受拖累。Barron's 指出："即使业绩不错，软件股投资者也用脚投票。"</div>
+        <div class="card-data">
+            📊 <strong>IBM</strong> 盘前 <span class="down">-9.8%</span>（Beat 仍跌）｜<strong>ServiceNow</strong> 跌幅明显（即使上调 AI 产品预期 <strong class="up">+50%</strong>）｜波及 Salesforce、Workday、Adobe
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>"AI 颠覆软件"叙事开始影响估值模型，传统 SaaS 定价权/席位数被 AI Agent 稀释。美股看空：Salesforce、Workday、Box。看多：AI 原生软件（Palantir、Snowflake、MongoDB）、AI 基础设施（Nvidia、AMD、AVGO）。A 股映射：用友网络、金蝶国际、泛微网络需警惕同样叙事冲击。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：CNBC / Fortune / Barron's / American Bazaar</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-us">美股 · AI 芯片</span></div>
+        <div class="card-title">🚀 SpaceX 600亿美元"期权式"收购 AI 编程龙头 Cursor，重构 AI 编程格局</div>
+        <div class="card-summary">4月21日 SpaceX 官宣与 AI 编程初创公司 Cursor（Anysphere）达成战略期权合作：<strong>2026年年内 SpaceX 可选择以 600 亿美元全资收购 Cursor</strong>，或支付 100 亿美元独家合作费。Cursor 2025年1月估值 25 亿美元，一年时间 600 亿对价——增值 24 倍。此举被视为马斯克 AI 拼图关键落子，与 xAI（Grok）、Optimus 形成矩阵。</div>
+        <div class="card-data">
+            📊 <strong>收购对价：$60B（期权）</strong> | 合作费 $10B | Cursor 2025年1月估值 <strong>$2.5B</strong>｜一年增值 <strong class="up">24 倍</strong>
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>AI 编程赛道寡头化——GitHub Copilot (微软)、Cursor (SpaceX)、Claude Code (Anthropic) 三足鼎立。利好：(1) Nvidia (推理算力)；(2) 编程用户基数大的入口——Datadog, GitLab；(3) SpaceX 估值传导到 Starlink 概念：国内卫星互联网（中国星网、海格通信）。腾讯 CodeBuddy 对标 Cursor 的战略路径值得持续关注。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：21经济网 / 新浪财经 / 腾讯新闻</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23（官宣于4月21日）</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-us">美股 · 产业</span></div>
+        <div class="card-title">🎯 谷歌 TPU 第8代+Anthropic 百万芯片订单：定制 AI 芯片挤压 NVIDIA 推理市场</div>
+        <div class="card-summary">Google Cloud Next 2026 发布 TPU 8t 与 TPU 8i（"t"代表训练，"i"代表推理），<strong>算力达 121 Exaflops</strong>，由 Broadcom + MediaTek 联合设计，Anthropic 已签下 100万颗芯片订单（价值约 $21B）。多个机构指出，"定制 AI 芯片正在打破 NVIDIA 在推理端的垄断"，谷歌-博通联盟估值权重持续抬升。Marvell 也因承接谷歌定制芯片订单股价近期上涨。</div>
+        <div class="card-data">
+            📊 <strong>TPU 8t/8i 算力：</strong>121 Exaflops｜Anthropic 订单 <strong>100万颗（$21B）</strong>｜Broadcom + MediaTek 设计
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>AI 芯片竞争进入"通用（NVIDIA）vs 定制（TPU/MTIA/Maia）"分化期。推理端 NVIDIA 市占率受压，利好：<strong>Broadcom（AVGO）、Marvell（MRVL）</strong>，以及 TSMC 先进制程/CoWoS 代工。A 股映射：国产 ASIC（寒武纪、海光）长期替代逻辑更强；光模块环节（中际旭创、天孚、新易盛）则受益于 ALL OF THEM——无论哪家芯片公司赢，光互联都是刚需。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：Tech Insider / InvestorPlace / CNBC</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 产业前沿 ============ -->
+<section id="industry" class="section">
+    <h2 class="section-title">🏭 产业前沿</h2>
+
+    <div class="card">
+        <div><span class="tag tag-industry">产业 · 机器人</span></div>
+        <div class="card-title">🦾 FAIR plus 2026 在深圳启幕：500+ 企业同台，具身智能迈入"部署态元年"</div>
+        <div class="card-summary">4月22-24日，FAIR plus 2026 机器人全产业链接会在深圳开幕。<strong>展会规模从2025年7500㎡翻倍扩容至15000㎡</strong>，集结 500+ 产业链上下游企业、50+ 具身智能核心产业环节、70+ 同期重磅活动、200+ 行业顶尖领袖，预计吸引 2500+ 海外专业观众及超5万人次国内专业观众到场。重点展示特斯拉 Optimus 对标产品、宇树、智元、墨甲等量产能力。</div>
+        <div class="card-data">
+            📊 展会规模 <strong class="up">翻倍扩容</strong>（7500→15000㎡）｜500+企业｜50+产业环节｜5万+观众
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>具身智能从"炫技"转向"干活"，2026年是部署态元年。核心受益链：(1) 整机：优必选（港股）、宇树、智元、它石智航；(2) 大脑：英伟达、地平线、黑芝麻；(3) 零部件——减速器（绿的谐波、双环传动）、丝杠（鼎智科技、贝斯特）、电机（鸣志电器、步科股份）、<strong>三花智控（Map 持仓核心标的）</strong>。Map 关注三花的 Optimus 执行器订单节奏。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：深圳新闻网 / 腾讯新闻</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div><span class="tag tag-industry">产业 · 光通信</span></div>
+        <div class="card-title">🌏 Lumentum：光模块需求超强、产能排至2028年底；2030年光通信市场达900亿美元</div>
+        <div class="card-summary">4月23日上海证券报引用海外光模块巨头 Lumentum 最新表态：<strong>产品供不应求，产能已排至2028年底</strong>，预计2030年光通信市场规模将达到900亿美元，2025-2030年 CAGR 将达40%。方正证券研报指出，过去光模块行业周期性强，但此轮 AI 算力需求驱动的行业景气有望持续至 2028 年甚至更长。</div>
+        <div class="card-data">
+            📊 Lumentum 产能排至 <strong>2028年底</strong>｜2030 光通信市场 <strong>$900亿</strong>｜2025-2030 CAGR <strong class="up">40%</strong>
+        </div>
+        <div class="card-perspective">
+            <strong>💡 投资视角：</strong>海外一线企业披露产能锁定至 2028 年，是对 AI 光模块 3 年+ 景气期最强硬背书。利好 A 股"易中天"：中际旭创、新易盛、天孚通信（Map 核心持仓）。光芯片瓶颈：EML、CW-LD——国产替代标的：长光华芯（4月22日创新高）、源杰科技。Map 的"天孚通信+长光华芯"组合逻辑继续验证。
+        </div>
+        <div class="card-source">
+            <span>📌 信源：上海证券报 / 方正证券 / Lumentum IR</span>
+            <span class="pub-date">🗓️ 发布：2026-04-23</span>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<footer>
+    <div class="disclaimer">
+        ⚠️ <strong>免责声明：</strong>本日报由小荷（AI 助理）基于公开信息自动整理，仅供参考学习，不构成任何投资建议。市场有风险，投资需谨慎。数据如有偏差请以交易所官方信息为准。
+    </div>
+    <div>🪷 由小荷自动生成 · 生成时间：2026-04-24 08:00 CST</div>
+    <div style="margin-top:6px;color:#6e7681;">© 2026 Map's AI Investment Research Daily</div>
+</footer>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-23.html">← 2026-04-23</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+</body>
+</html>
