@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 投研日报 · 2026-04-26</title>
+<style>
+:root{
+  --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --sub:#8b949e;
+  --blue:#58a6ff; --red:#f85149; --green:#3fb950; --yellow:#f0b90b; --purple:#bc8cff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,"Microsoft YaHei","Segoe UI",Roboto,"PingFang SC",sans-serif;line-height:1.7;padding:0 16px 60px}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.daily-nav {
+    max-width: 920px;
+    margin: 16px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.daily-nav a, .daily-nav span.nav-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+}
+.daily-nav a { color: #58a6ff; background: #161b22; }
+.daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+.daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+.daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+.daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+@media (max-width: 640px) {
+    .daily-nav { flex-wrap: wrap; justify-content: center; }
+    .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+}
+
+.wrap{max-width:920px;margin:0 auto}
+header{padding:32px 0 12px;text-align:center;border-bottom:1px solid var(--border)}
+header h1{font-size:1.9em;color:#fff;letter-spacing:1px}
+header .date{color:var(--sub);margin-top:8px;font-size:.95em}
+.window-badge{max-width:920px;margin:18px auto 0;padding:12px 18px;background:rgba(240,185,11,.08);border:1px solid rgba(240,185,11,.3);border-radius:10px;text-align:center;color:var(--yellow);font-size:.95em;font-weight:500}
+.toc{margin:24px 0;padding:18px 22px;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.toc h3{font-size:1em;color:var(--sub);margin-bottom:10px;font-weight:500}
+.toc ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.toc a{padding:4px 12px;background:#21262d;border-radius:6px;font-size:.9em;border:1px solid transparent}
+.toc a:hover{border-color:var(--blue);text-decoration:none}
+section{margin:32px 0 8px}
+section h2{font-size:1.35em;padding:10px 14px;border-left:4px solid var(--blue);margin-bottom:16px;color:#fff}
+section.hk h2{border-left-color:var(--yellow)}
+section.us h2{border-left-color:var(--purple)}
+section.macro h2{border-left-color:var(--green)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin-bottom:16px;transition:.2s}
+.card:hover{border-color:var(--blue)}
+.card h3{color:#fff;font-size:1.08em;margin-bottom:8px;line-height:1.45}
+.card-summary{color:var(--text);margin:10px 0;font-size:.95em}
+.kpi{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.kpi span{background:#21262d;padding:3px 10px;border-radius:4px;font-size:.82em;color:var(--sub)}
+.kpi .up{color:var(--red);background:rgba(248,81,73,.08)}
+.kpi .down{color:var(--green);background:rgba(63,185,80,.08)}
+.view{margin-top:10px;padding:10px 14px;background:rgba(88,166,255,.06);border-left:3px solid var(--blue);border-radius:4px;font-size:.92em;color:var(--text)}
+.view b{color:var(--blue)}
+.card-source{margin-top:10px;font-size:.82em;color:var(--sub);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.card-source .date{color:var(--yellow)}
+.note-empty{padding:18px;text-align:center;color:var(--sub);font-style:italic;background:var(--card);border:1px dashed var(--border);border-radius:10px}
+footer{margin-top:50px;padding:24px 0;border-top:1px solid var(--border);text-align:center;color:var(--sub);font-size:.85em;line-height:1.8}
+footer .disclaim{color:#6e7681;font-size:.82em;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-25.html">← 2026-04-25</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+<div class="wrap">
+<header>
+  <h1>🤖 AI 投研日报</h1>
+  <div class="date">2026-04-26 · 星期日 · 小荷整理 🪷</div>
+</header>
+
+<div class="window-badge">📰 新闻时间窗口：2026-04-25 08:00 ~ 2026-04-26 08:00（过去24小时）</div>
+
+<div class="toc">
+  <h3>📑 目录导航</h3>
+  <ul>
+    <li><a href="#a">🇨🇳 A股</a></li>
+    <li><a href="#hk">🇭🇰 港股</a></li>
+    <li><a href="#us">🇺🇸 美股</a></li>
+    <li><a href="#macro">🌐 产业 / 融资</a></li>
+  </ul>
+</div>
+
+<!-- ====================== A股 ====================== -->
+<section id="a" class="a">
+  <h2>🇨🇳 A股 · AI 板块要闻</h2>
+
+  <div class="card">
+    <h3>💥 DeepSeek-V4 昨日上线引爆国产算力链，周末消息持续发酵</h3>
+    <div class="card-summary">
+      4月24日，DeepSeek 正式发布 V4 预览版并同步开源：Pro 版 1.6 万亿总参数 / 激活 49B，Flash 版 284B / 激活 13B，上下文 100 万 token，采用 MIT 开源协议。更关键的是，V4 已从英伟达 CUDA 全面迁移至华为昇腾平台，寒武纪、摩尔线程等国产芯片厂商 24 小时内完成 "Day 0 适配"。4月25日券商周末研报密集点评，将之定性为"国产算力产业链的成人礼"。
+    </div>
+    <div class="kpi">
+      <span class="up">海光信息 +11% ↑</span>
+      <span class="up">华丰科技 +12% ↑</span>
+      <span class="up">杰华特 +16% ↑</span>
+      <span>总参数 1.6T</span>
+      <span>上下文 100 万 token</span>
+    </div>
+    <div class="view"><b>投资视角：</b>国产算力"去英伟达化"进入加速兑现期。核心受益链：①国产 AI 芯片——寒武纪（688256）、海光信息（688041）、龙芯中科（688047）；②昇腾超节点配套——华丰科技（688629）、深南电路（002916）、华工科技（000988）；③大模型应用——科大讯飞（002230）、万兴科技（300624）。周一开盘该板块大概率延续强势，但需警惕前期领涨股回踩风险。</div>
+    <div class="card-source"><span>财联社 / 新浪财经 / 腾讯科技</span><span class="date">📅 2026-04-25</span></div>
+  </div>
+
+  <div class="card">
+    <h3>🤖 优必选完成要约收购锋龙股份，持股比例升至 43.01%</h3>
+    <div class="card-summary">
+      4月24日晚间，锋龙股份公告优必选要约收购结果：截至 4月20日要约期满，预受要约股份 2845.79 万股，收购人合计持有公司 9397.99 万股，占总股本 43.01%，社会公众持股比例保持不低于 25%。这是港股人形机器人龙头优必选首次通过要约收购方式深度绑定 A 股供应链上市公司。
+    </div>
+    <div class="kpi">
+      <span>持股比例 43.01%</span>
+      <span>收购股数 2845 万股</span>
+      <span class="up">人形机器人概念 ↑</span>
+    </div>
+    <div class="view"><b>投资视角：</b>港 A 人形机器人产业资本运作加速。关注：①优必选（09880.HK）港股供应链整合逻辑；②锋龙股份（002931）作为机器人精密零部件平台；③特斯拉 Optimus V3 中报亮相+7-8月量产催化下，三花智控、拓普集团、鸣志电器、绿的谐波等核心零部件股有望持续受益。</div>
+    <div class="card-source"><span>新浪财经</span><span class="date">📅 2026-04-25</span></div>
+  </div>
+
+  <div class="card">
+    <h3>🏭 证监会部署严打上市公司财务造假，沪深北交易所修订交易规则</h3>
+    <div class="card-summary">
+      4月25日陆家嘴财经早餐披露：国务院强调"紧盯全球科技前沿，加强原创性引领性科技攻关"；中国证监会部署专项行动，严打严防上市公司财务造假；沪深北交易所同步修订交易规则，创业板新规来袭；合格境外投资者 4月24日起可参与国债期货交易。
+    </div>
+    <div class="kpi">
+      <span>创业板新规</span>
+      <span>QFII 国债期货开闸</span>
+      <span>MLF 缩量续作</span>
+    </div>
+    <div class="view"><b>投资视角：</b>监管端对 AI 板块短期是双刃剑——一方面强化科技攻关定调利好硬科技龙头；另一方面严打财务造假对 AI 概念股中的"蹭热点"公司杀伤力较大。建议筛掉营收无法对应订单的 AI 纯概念股，聚焦业绩兑现确定的龙头（中际旭创、海光信息、工业富联等）。</div>
+    <div class="card-source"><span>腾讯新闻 / 陆家嘴财经早餐</span><span class="date">📅 2026-04-25</span></div>
+  </div>
+
+  <div class="card">
+    <h3>📈 上周 A 股算力链表现强势，光模块 CPO 板块订单能见度排至 2028</h3>
+    <div class="card-summary">
+      周末研报梳理显示：中际旭创 2026 年一季度单季利润 57 亿元，已超 2024 全年；市值突破 9000 亿，4 只 CPO 概念股今年累计翻倍。英伟达 GTC 后市场将 1.6T 光模块 2026 全年采购量预期从 700 万只上调至 2000 万只。中际旭创、新易盛、天孚通信等订单已排到 2028 年。
+    </div>
+    <div class="kpi">
+      <span class="up">中际旭创 Q1 单季利润 57 亿元</span>
+      <span>市值破 9000 亿</span>
+      <span>1.6T 采购量 +186%</span>
+    </div>
+    <div class="view"><b>投资视角：</b>光模块/CPO 是 AI 基建中"业绩 + 估值"双击最明确的子赛道。核心标的：中际旭创（300308）、新易盛（300502）、天孚通信（300394）、华工科技（000988）、源杰科技（688498）。注意绝对估值已不便宜，需关注后续北美云厂商 CapEx 指引是否超预期。</div>
+    <div class="card-source"><span>澎湃新闻 / 腾讯新闻 / 21 世纪经济报道</span><span class="date">📅 2026-04-23 ~ 04-25</span></div>
+  </div>
+</section>
+
+<!-- ====================== 港股 ====================== -->
+<section id="hk" class="hk">
+  <h2>🇭🇰 港股 · AI 板块要闻</h2>
+
+  <div class="card">
+    <h3>🏢 周末港股 AI 板块消化周内利好，下周聚焦 DeepSeek 链映射</h3>
+    <div class="card-summary">
+      港股本周五（4月25日）休市无交易，但消息面活跃：①工信部 4月10日武汉会议明确"加快构建高效统一的人工智能芯片计算互联生态"，政策定调延续发酵；②滴普科技（01384.HK）、迅策（03317.HK）、海致科技（02706.HK）本周累计涨幅居前，盘面看 AI 应用股资金聚焦度明显提升；③新浪 AI 小时报显示 4月25日谷歌确认向 Anthropic 追加投资至 400 亿美元，港股云厂商映射标的预计周一高开。
+    </div>
+    <div class="kpi">
+      <span class="up">滴普科技 周涨幅领先</span>
+      <span class="up">迅策 本周 +16%</span>
+      <span>周末休市 下周一复牌</span>
+    </div>
+    <div class="view"><b>投资视角：</b>下周一港股 AI 应用板块看点：①DeepSeek-V4 链映射——金蝶国际（0268.HK）、金山软件（3888.HK）、商汤-W（0020.HK）；②大模型概念——迅策（3317.HK）、滴普（1384.HK）、海致（2706.HK）继续博弈；③云服务及算力——阿里巴巴-W（9988.HK）、腾讯控股（0700.HK）、中国移动（0941.HK）政企云业务受 Anthropic/Google 协议映射。</div>
+    <div class="card-source"><span>新浪财经 / 智通财经</span><span class="date">📅 2026-04-25</span></div>
+  </div>
+
+  <div class="card">
+    <h3>🛰️ 北京鼓励卫星遥感数据资源开发，万亿级"太空算力"新赛道开启</h3>
+    <div class="card-summary">
+      周末港股概念追踪：北京市出台政策鼓励卫星遥感数据资源开发利用，叠加近期商业航天催化不断，市场开始交易"天基算力"/"太空 AI"长线逻辑。与此同时，港股商业航天概念股（中国卫星等 A 股通映射）持续活跃。
+    </div>
+    <div class="kpi">
+      <span>万亿级赛道</span>
+      <span>政策催化</span>
+      <span>商业航天 + AI</span>
+    </div>
+    <div class="view"><b>投资视角：</b>太空算力 = 低轨卫星 × 边缘 AI，目前仍处主题概念阶段，兑现期较长。港股相关受益：长城汽车-W（含卫星通信业务）、中国移动（5G + 天通卫星）；A 股更直接受益：中国卫星（600118）、航天电子（600879）、铖昌科技（001270）。周期长、波动大，适合小仓位埋伏。</div>
+    <div class="card-source"><span>智通财经</span><span class="date">📅 2026-04-25</span></div>
+  </div>
+</section>
+
+<!-- ====================== 美股 ====================== -->
+<section id="us" class="us">
+  <h2>🇺🇸 美股 · AI 板块要闻</h2>
+
+  <div class="card">
+    <h3>🚀 英伟达市值突破 5 万亿美元，创 10 月以来新高</h3>
+    <div class="card-summary">
+      4月25日美股收盘，英伟达股价创历史新高，市值首次突破 5 万亿美元（自 2025 年 10 月后首次），占标普 500 权重达 7%。核心催化为英特尔 Q1 财报大超预期（数据中心 + AI 业务 YoY +22%，股价单日飙涨逾 23%）叠加 AI 芯片需求持续爆发。费城半导体指数当日 +4.32%，连涨 18 个交易日，创纪录。
+    </div>
+    <div class="kpi">
+      <span class="up">NVDA 市值 $5T 历史首次</span>
+      <span class="up">INTC +23% 财报日</span>
+      <span class="up">AMD 创历史新高</span>
+      <span class="up">SOX +4.32%（18 连涨）</span>
+    </div>
+    <div class="view"><b>投资视角：</b>美股 AI 主线已切换至"硬件全面开花"——NVDA（GPU 霸主）+ AMD（AI CPU/GPU 双轮）+ INTC（AI CPU 推理觉醒）+ AVGO（ASIC 长周期）。A 股映射：工业富联（601138）、中际旭创（300308）、胜宏科技（300476）、沪电股份（002463）。提示：5 万亿市值 + SOX 连涨 18 天，短期过热，注意回调风险。</div>
+    <div class="card-source"><span>Benzinga / MSN / ebmnews</span><span class="date">📅 2026-04-25</span></div>
+  </div>
+
+  <div class="card">
+    <h3>💰 Google 最多向 Anthropic 投资 400 亿美元，AI 战略投资升级</h3>
+    <div class="card-summary">
+      4月24-25日，Google 和 Anthropic 联合确认：Google 将向 Anthropic 投资高达 400 亿美元，具体为已承诺 100 亿 + 后续可能追加 300 亿。这是在 Amazon 4月20日刚宣布 Anthropic 未来 10 年将在 AWS 上花费 100 亿+美元、并接受 Amazon 最多 250 亿美元追投之后的又一重磅加码。Anthropic 成为"史上最被巨头争抢的 AI 公司"。
+    </div>
+    <div class="kpi">
+      <span>Google 投资额 $40B</span>
+      <span>Amazon 承诺 $25B</span>
+      <span>AWS 长期合约 $100B+</span>
+    </div>
+    <div class="view"><b>投资视角：</b>①云厂商向大模型独角兽投资 + 绑定算力消耗的新型商业模式持续加强 GOOGL、AMZN、MSFT 的 AI 收入确定性；②直接利好上游算力供应商 NVDA、AMD、AVGO、MRVL；③A 股/港股映射：阿里云、腾讯云及国产 AI 算力板块（海光、寒武纪）有望复制"云 + 大模型"联动逻辑。</div>
+    <div class="card-source"><span>CNBC / Reuters / Gulf Today</span><span class="date">📅 2026-04-24 ~ 04-25</span></div>
+  </div>
+
+  <div class="card">
+    <h3>🧠 OpenAI 发布 GPT-5.5（代号 Spud），Token 成本大幅降低</h3>
+    <div class="card-summary">
+      OpenAI 4月23-24日发布最新旗舰 GPT-5.5：在 Agentic Coding、计算机使用、科研领域表现卓越，相比 GPT-5.4 在相同任务上 Token 成本显著下降，Terminal-Bench 取得 SOTA 成绩。该模型是 OpenAI 进入 AGI 冲刺前最后一次大规模基础模型重构，基于 GPT 系列生成能力 + o1 结构化推理框架融合训练。
+    </div>
+    <div class="kpi">
+      <span>GPT-5.5 最新旗舰</span>
+      <span>Token 成本 ↓ 显著</span>
+      <span>Terminal-Bench SOTA</span>
+    </div>
+    <div class="view"><b>投资视角：</b>GPT-5.5 + DeepSeek-V4 同日对撞，标志头部模型能力曲线继续陡峭上行：①应用侧——Agentic AI（AI Agent）有望全面商业化，利好微软（MSFT Copilot 生态）、ServiceNow、Salesforce；②API 降价加速 AI 应用公司盈利改善，Palantir、Datadog、MongoDB 有望受益；③A 股映射：金山办公、科大讯飞、万兴科技、福昕软件等 AI 应用股。</div>
+    <div class="card-source"><span>IT之家 / TechNews / AI Insight</span><span class="date">📅 2026-04-24</span></div>
+  </div>
+
+  <div class="card">
+    <h3>🔧 Google 发布新款 AI TPU，直指英伟达训练 & 推理市场</h3>
+    <div class="card-summary">
+      4月22日 CNBC 报道：Google 正式发布专门为 AI 训练和推理设计的新款 TPU 芯片，高规格集成 SRAM，对标英伟达的专用 SRAM 芯片布局。周末市场仍在消化此信息对英伟达垄断地位的长期影响。
+    </div>
+    <div class="kpi">
+      <span>Google TPU 新架构</span>
+      <span>高容量 SRAM 集成</span>
+      <span>训练 + 推理双覆盖</span>
+    </div>
+    <div class="view"><b>投资视角：</b>自研 ASIC（Google TPU、Meta MTIA、Amazon Trainium）加速抢占英伟达 GPU 份额是中长期大趋势。①利好 ASIC 设计产业链：博通（AVGO）、迈威尔（MRVL）；②中性偏空英伟达 GPU 在云厂商中的份额增长；③A 股映射：芯原股份（688521）国产 ASIC 定制龙头持续受益。</div>
+    <div class="card-source"><span>CNBC</span><span class="date">📅 2026-04-22（本周持续发酵）</span></div>
+  </div>
+</section>
+
+<!-- ====================== 产业 / 融资 ====================== -->
+<section id="macro" class="macro">
+  <h2>🌐 产业 / 融资 · 重要动态</h2>
+
+  <div class="card">
+    <h3>💎 SpaceX × Cursor 60 亿美元收购权 deal，AI Coding 赛道格局重塑</h3>
+    <div class="card-summary">
+      4月21日披露、周末持续发酵：SpaceX（已与 xAI 合并）与 AI 编程独角兽 Cursor 签署划时代协议——获得年内以 600 亿美元估值收购 Cursor 的权利，或选择以 100 亿美元开启深度合作。这是 AI 编程赛道迄今为止最大的战略性 deal，直接挤压 GitHub Copilot、Cognition AI（Devin）等竞争对手空间。
+    </div>
+    <div class="kpi">
+      <span>收购估值 $60B</span>
+      <span>合作付款 $10B</span>
+      <span>AI Coding 赛道洗牌</span>
+    </div>
+    <div class="view"><b>投资视角：</b>AI Coding 是 2026 年"AI 应用落地最快 + 变现模型最清晰"的子赛道之一。一级市场看 Cursor / Anysphere、Replit、Magic.dev；二级市场映射——微软（GitHub Copilot 生态）、Meta（Llama 生态）、Palantir（AIP 开发者）。A 股关注：金山办公（WPS AI + 开发者生态）、万兴科技（AI 视频 + 代码一体）。</div>
+    <div class="card-source"><span>CNBC / Benzinga / Silicon Review</span><span class="date">📅 2026-04-24 ~ 04-25 持续发酵</span></div>
+  </div>
+
+  <div class="card">
+    <h3>🏆 福布斯 2026 AI 50 榜单：OpenAI + Anthropic 累计融资 2426 亿美元</h3>
+    <div class="card-summary">
+      4月21日发布、本周持续讨论：福布斯第八届 AI 50 榜单揭晓，20 家新上榜，OpenAI、Anthropic 累计融资 2426 亿美元（约合 1.66 万亿人民币），占全部上榜企业总融资 3056 亿美元（2.09 万亿人民币）的约 80%。头部集中度继续加强，中型 AI 独角兽 Runway、Mistral、Perplexity 等仍需新融资。
+    </div>
+    <div class="kpi">
+      <span>总融资 $305.6B</span>
+      <span>Top2 占比 ~80%</span>
+      <span>20 家新上榜</span>
+    </div>
+    <div class="view"><b>投资视角：</b>①AI 一级市场"强者愈强"结构加剧，有利于绑定 OpenAI/Anthropic 生态的 MSFT、AMZN、GOOGL；②中腰部大模型公司融资压力加大，部分将转向被并购/上市退出，港股 Ascend / 美股 IPO 窗口可能集中开启；③A 股 AI 应用股需关注是否有海外大模型授权/接入带来的业绩弹性。</div>
+    <div class="card-source"><span>Forbes / IT之家</span><span class="date">📅 2026-04-21 ~ 04-25</span></div>
+  </div>
+
+  <div class="card">
+    <h3>📊 本周美股费城半导体指数连涨 18 日创纪录，AI 板块强势</h3>
+    <div class="card-summary">
+      华尔街见闻本周五（4月25日）总结：标普收涨 0.8%，纳指收涨 1.6%，齐创历史新高。但市场广度偏弱，62% 标普成分股下跌，强势行情高度集中于科技和半导体。费城半导体指数 +4.32%，连涨 18 个交易日创纪录，本周累计涨幅显著。美伊重启谈判预期、英特尔绩后飙升、美司法部撤销对鲍威尔的刑事调查为三大催化。
+    </div>
+    <div class="kpi">
+      <span class="up">标普 +0.8% 历史新高</span>
+      <span class="up">纳指 +1.6% 历史新高</span>
+      <span class="up">SOX +4.32%（18 连涨）</span>
+      <span>市场广度仅 38%</span>
+    </div>
+    <div class="view"><b>投资视角：</b>典型的"强势股愈强、指数失真"结构化行情。利好 A 股 AI 龙头映射；但需警惕——①18 连涨 + 市值集中度破纪录之后的技术性回调；②医疗健康等防御板块承压，意味着风险偏好极高；③若周一 A 股开盘 AI 板块跳空高开后快速冲高，可考虑分批兑现部分涨幅，等待回调再介入。</div>
+    <div class="card-source"><span>华尔街见闻</span><span class="date">📅 2026-04-25</span></div>
+  </div>
+</section>
+
+<footer>
+  <div>🪷 由小荷于 2026-04-26 07:58 自动整理 · 仅供参阅</div>
+  <div class="disclaim">免责声明：本日报所有内容均来自公开新闻信息整理，仅供投资研究参考，不构成任何买卖建议。投资有风险，决策需谨慎。涨红跌绿遵循 A 股惯例。</div>
+</footer>
+
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-25.html">← 2026-04-25</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+</body>
+</html>
