@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖📊 AI 投研日报 · 2026-04-27</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #0d1117;
+        color: #c9d1d9;
+        line-height: 1.7;
+        padding: 20px 0;
+    }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+    header {
+        background: linear-gradient(135deg, #1f6feb22, #8957e522);
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding: 32px;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+    header .subtitle { color: #8b949e; font-size: 1em; }
+    .time-window {
+        background: rgba(240, 185, 11, 0.1);
+        border: 1px solid rgba(240, 185, 11, 0.3);
+        border-radius: 10px;
+        padding: 14px 20px;
+        margin: 16px auto 24px;
+        max-width: 920px;
+        text-align: center;
+        color: #f0b90b;
+        font-weight: 600;
+        font-size: 1.02em;
+    }
+    .daily-nav {
+        max-width: 920px;
+        margin: 16px auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+    .daily-nav a, .daily-nav span.nav-disabled {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid #30363d;
+        white-space: nowrap;
+    }
+    .daily-nav a { color: #58a6ff; background: #161b22; }
+    .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+    .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+    .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+    .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+    @media (max-width: 640px) {
+        .daily-nav { flex-wrap: wrap; justify-content: center; }
+        .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+    }
+    .toc {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 10px;
+        padding: 20px 28px;
+        margin-bottom: 28px;
+    }
+    .toc h2 { font-size: 1.1em; color: #f0f6fc; margin-bottom: 14px; }
+    .toc ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 16px; }
+    .toc a { color: #58a6ff; text-decoration: none; font-size: 0.95em; }
+    .toc a:hover { text-decoration: underline; }
+    .section {
+        margin-bottom: 36px;
+        scroll-margin-top: 20px;
+    }
+    .section-header {
+        font-size: 1.4em;
+        color: #f0f6fc;
+        padding: 12px 18px;
+        background: linear-gradient(90deg, #1f6feb33, transparent);
+        border-left: 4px solid #58a6ff;
+        border-radius: 6px;
+        margin-bottom: 18px;
+    }
+    .section-a { border-left-color: #f85149; }
+    .section-h { border-left-color: #d29922; }
+    .section-u { border-left-color: #58a6ff; }
+    .section-x { border-left-color: #bc8cff; }
+    .card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 10px;
+        padding: 22px 26px;
+        margin-bottom: 16px;
+        transition: border-color 0.2s;
+    }
+    .card:hover { border-color: #58a6ff; }
+    .card-title {
+        font-size: 1.15em;
+        color: #f0f6fc;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+    .card-summary { color: #c9d1d9; margin-bottom: 12px; }
+    .card-data, .card-view, .card-source {
+        font-size: 0.92em;
+        margin-top: 10px;
+        padding-left: 12px;
+        border-left: 3px solid #30363d;
+    }
+    .card-data { color: #8b949e; }
+    .card-data strong { color: #d29922; }
+    .card-view { color: #c9d1d9; border-left-color: #3fb950; }
+    .card-view strong { color: #3fb950; }
+    .card-source { color: #6e7681; font-size: 0.85em; border-left-color: #484f58; }
+    .card-source a { color: #58a6ff; text-decoration: none; }
+    .card-source a:hover { text-decoration: underline; }
+    .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.78em;
+        margin-right: 6px;
+        background: #1f6feb33;
+        color: #58a6ff;
+    }
+    .tag-red { background: #f8514922; color: #f85149; }
+    .tag-green { background: #3fb95022; color: #3fb950; }
+    .tag-yellow { background: #d2992222; color: #d29922; }
+    .empty-notice {
+        background: #161b22;
+        border: 1px dashed #30363d;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        color: #8b949e;
+        font-size: 0.95em;
+    }
+    footer {
+        margin-top: 40px;
+        padding: 24px;
+        text-align: center;
+        color: #6e7681;
+        font-size: 0.85em;
+        border-top: 1px solid #30363d;
+    }
+    footer .disclaimer { margin-top: 12px; font-size: 0.8em; color: #484f58; }
+</style>
+</head>
+<body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-26.html">← 2026-04-26</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+<div class="container">
+    <header>
+        <h1>🤖📊 AI 投研日报</h1>
+        <div class="subtitle">2026-04-27 · 星期一 · 投资视角 AI 行业动态</div>
+    </header>
+
+    <div class="time-window">
+        📰 新闻时间窗口：2026-04-26 08:00 ~ 2026-04-27 08:00（过去24小时）
+    </div>
+
+    <div class="toc">
+        <h2>📑 目录导航</h2>
+        <ul>
+            <li>🌐 <a href="#section-global">全球大势</a></li>
+            <li>🇨🇳 <a href="#section-a">A股市场</a></li>
+            <li>🇭🇰 <a href="#section-h">港股市场</a></li>
+            <li>🇺🇸 <a href="#section-u">美股市场</a></li>
+            <li>💰 <a href="#section-x">融资与产业</a></li>
+        </ul>
+    </div>
+
+    <!-- 全球大势 -->
+    <div class="section" id="section-global">
+        <div class="section-header">🌐 全球大势 · 模型与生态</div>
+
+        <div class="card">
+            <div class="card-title">💡 英伟达 Blackwell 平台 24 小时内完成 DeepSeek-V4 适配</div>
+            <div class="card-summary">
+                DeepSeek 于 4 月 24 日开源 V4-Pro（1.6T MoE/49B active）和 V4-Flash 两个版本后，英伟达随即完成在 Blackwell 平台的适配，GB200 在部分场景下展现出高吞吐性能。与此同时，V4 模型首发即原生跑在华为昇腾上，形成"国产模型 + 国产算力 + 全球硬件生态"的协同格局。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>V4-Pro 1.6T 参数 MoE · 百万 Token 上下文全线标配 · 同时兼容英伟达 GB200 与华为昇腾
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>国产大模型进入"算力两条腿走路"阶段。A股关注昇腾链（海光信息、寒武纪、中科曙光）与 DeepSeek 概念股；港股关注华为昇腾合作方；美股英伟达受益于国产模型驱动的全球 GPU 需求。
+                <span class="tag tag-red">AI芯片</span><span class="tag tag-red">算力</span><span class="tag">昇腾链</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26 | 📰 来源：<a href="https://jimo.studio/blog/2026-ai-daily-report-nvidia-deepseek-v4-openai-workspace-agents-google-anthropic-investment/" target="_blank">即墨工作室 AI 日报</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🏢 OpenAI 推出 ChatGPT Workspace Agents 企业级智能体</div>
+            <div class="card-summary">
+                OpenAI 发布面向团队协作的 ChatGPT Workspace Agents 产品，定位于企业工作流自动化，紧跟 4 月 22 日发布的 GPT-5.5。此举进一步压实 OpenAI 在企业端的商业化节奏，与谷歌 Workspace Intelligence、微软 Copilot 正面争夺企业 AI 订阅市场。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>GPT-5.5 Token 成本较前代降至 1/35 · API 输入 $5/百万 Token · 聚焦 Terminal-Bench 2.0（82.7%）和 SWE-Bench Pro（58.6%）
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>企业级 AI 应用进入"结果付费"时代，利好能把 AI 做成闭环的 SaaS 厂商。港股关注迈富时（2556）、金蝶国际、微盟集团；美股关注 Microsoft（MSFT）、Salesforce（CRM）。
+                <span class="tag tag-red">AI应用</span><span class="tag">企业SaaS</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26 | 📰 来源：即墨工作室 AI 日报</div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">💰 谷歌 400 亿美元加码 Anthropic，AI 巨头阵营再洗牌</div>
+            <div class="card-summary">
+                2026 年 4 月 24 日，谷歌母公司 Alphabet 官宣斥资 400 亿美元（含现金与 TPU 算力）投资 Anthropic，资本量级刷新行业纪录。此轮投资将绑定 Anthropic 在 TPU 生态上的长期路径，对标微软-OpenAI 联盟。消息持续在 25-26 日市场发酵，美股云厂 Capex 军备竞赛升温。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>投资金额 400 亿美元（含算力） · Anthropic 最新估值约 1830 亿美元 · 福布斯 AI 50 榜单中 OpenAI + Anthropic 累计融资 2426 亿美元
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>北美 AI 基建资本开支还要继续膨胀，上游硬件是最确定受益方向。美股关注 NVIDIA（NVDA）、Broadcom（AVGO）、TSMC（TSM）；A股/港股关注北美算力链光模块、PCB 和液冷标的（中际旭创、新易盛、沪电股份）。
+                <span class="tag tag-red">AI基建</span><span class="tag tag-red">算力</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-24~26 | 📰 来源：<a href="https://www.winzheng.com/article/alphabet-40-billion-usd-invest-anthropic-2026-ai-industry-sh" target="_blank">Winzheng</a> / MSN</div>
+        </div>
+    </div>
+
+    <!-- A股 -->
+    <div class="section" id="section-a">
+        <div class="section-header section-a">🇨🇳 A股市场 · AI 产业链</div>
+
+        <div class="card">
+            <div class="card-title">🔥 DeepSeek V4 开源 + 昇腾原生部署，国产算力链迎来重估窗口</div>
+            <div class="card-summary">
+                4月24日 DeepSeek 同时开源 V4-Pro（1.6T/49B active）与 V4-Flash（284B/13B active），首发即原生跑在华为昇腾。此消息在周末持续发酵，AI 芯片、国产芯片概念周五已获大幅上涨（科创芯片 ETF 涨超 3%），周一（27日）开盘前市场普遍预期昇腾链标的延续强势。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>V4-Pro 1.6T 参数 · 百万 Token 上下文标配 · 科创芯片 ETF 周五涨超 3% · 机构预测 2026 年国产算力芯片出货有望翻倍
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>昇腾链是短期最纯的贝塔。关注海光信息、寒武纪、中科曙光、拓维信息；服务器/板卡端关注神州数码、中兴通讯、高新发展；应用端关注深度求索概念指数成分股。
+                <span class="tag tag-red">昇腾链</span><span class="tag tag-red">国产算力</span><span class="tag tag-red">AI芯片</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26 | 📰 来源：<a href="https://www.jiemian.com/article/14316487.html" target="_blank">界面新闻</a>、<a href="https://www.ai-insight.org/reports/deepseek-v4-2026" target="_blank">AI Insight</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⚡ 算力硬件周五调整，PCB 与光模块仍是机构核心配置</div>
+            <div class="card-summary">
+                4月24日（周五）A股算力硬件出现技术性回调，创业板指跌 1.41%，光模块、服务器短线获利了结。但从上周（22日）沪指重回 4100 点、光模块龙头新易盛一度涨 7% 的表现看，算力赛道中期趋势未改。TrendForce 预测 2026 年全球 AI 光模块市场规模达 260 亿美元，同比增幅 57.6%。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>新易盛市值突破 6000 亿 · 年内涨 43% · 250 交易日涨超 1033% · 全球 AI 光模块市场 260 亿美元/2026
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>调整后仍是主线。光模块关注中际旭创、新易盛、天孚通信、光迅科技；CPO 关注长光华芯、仕佳光子；PCB 关注沪电股份、生益电子；液冷关注英维克、高澜股份。
+                <span class="tag tag-red">光模块</span><span class="tag tag-red">CPO</span><span class="tag tag-red">PCB</span><span class="tag-yellow tag">短期震荡</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26（周末复盘） | 📰 来源：<a href="https://paper.cnstock.com/html/2026-04/24/content_2204904.htm" target="_blank">上海证券报</a>、<a href="https://fund.eastmoney.com/a/202604223713742094.html" target="_blank">东方财富</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🤖 具身智能 Q1 融资突破 200 亿元，百亿估值俱乐部加速扩容</div>
+            <div class="card-summary">
+                据 IT 桔子不完全统计，2026 年 Q1 国内具身智能赛道披露融资事件超 30 起，累计融资额约 200 亿元，同比增长近 60%，创历史新高。它石智航 4.55 亿美元 Pre-A 轮（人民币约 33 亿）刷新中国具身智能最大单轮融资纪录，估值从 50 亿跳到 180 亿。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>Q1 融资 200 亿（YoY +60%） · 它石智航 Pre-A 4.55 亿美元 · 估值增长 3.6 倍 · 北京人形机器人半马 6.94 分钟夺冠（领先人类）
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>一级市场热度传导到二级市场。关注人形机器人核心零部件（绿的谐波、鸣志电器、中大力德）、丝杠（贝斯特、鼎智科技）、传感器（奥比中光、康斯泰克）、总装（拓普集团、三花智控）。
+                <span class="tag tag-red">具身智能</span><span class="tag tag-red">人形机器人</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26 | 📰 来源：<a href="https://finance.sina.com.cn/wm/2026-04-24/doc-inhvramw7886083.shtml" target="_blank">新浪财经</a>、IT 桔子</div>
+        </div>
+    </div>
+
+    <!-- 港股 -->
+    <div class="section" id="section-h">
+        <div class="section-header section-h">🇭🇰 港股市场 · AI 去伪存真</div>
+
+        <div class="card">
+            <div class="card-title">🔥 DeepSeek V4 炸出港股 AI "去伪存真"：迈富时站上"全栈 Token 工厂"重估窗口</div>
+            <div class="card-summary">
+                智通财经 4 月 27 日早间报道：DeepSeek V4 上线后，港股 AI 板块进入"去伪存真"阶段——市场不再问"谁有 AI 概念"，而是问"谁能把 AI 能力落到经营结果中"。迈富时（HK 2556）凭借 GenAI OS + AI-Agentforce 智能体中台 3.0 + KnowForce 知识中台，从 AI 工具升级为"企业级 AI 生产系统"，获得"结果平台"和"全栈 Token 工厂"的重新定价。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>国务院常务会议（4/24）强调"AI 形成新质生产力" · 迈富时四层平台架构落地 · 覆盖 Data-Agent、GEO、AI销售、SuperCodeX 等场景
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>港股 AI 分化加剧，结果导向标的受宠。重点关注：迈富时（2556，企业 AI 结果平台）、金蝶国际（268，苍穹 AI）、微盟集团（2013，AI 营销）、同程旅行（780，AI Agent）；应用端避开纯概念股。
+                <span class="tag tag-red">AI应用</span><span class="tag tag-red">企业智能体</span><span class="tag">结果平台</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-27 06:46 | 📰 来源：<a href="https://stock.10jqka.com.cn/20260427/c676288468.shtml" target="_blank">同花顺财经/智通财经</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🌐 国产 AI 生态"自主可控"逻辑强化，港股半导体与 AI 应用双主线</div>
+            <div class="card-summary">
+                受美国出口管制压力影响，DeepSeek V4 原生昇腾部署让市场对"国产算力 + 国产模型 + 国产应用"协同预期进一步强化。港股半导体板块（881121）、AI 应用板块（886108）在周末研报中获多家机构加仓推荐，预期周一（27日）开盘继续分化上行。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>恒生科技指数上周五微幅调整 · 港股 AI 板块过去一个月跑赢恒指 · 半导体 + AI 应用双主线被视为 Q2 主要方向
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>港股半导体关注中芯国际（981）、华虹半导体（1347）、上海复旦（1385）；AI 应用关注商汤-W（20）、第四范式（6682）、快手-W（1024，可灵 AI）；云厂 AI 基建关注腾讯（700）、阿里巴巴-W（9988）、快手 AI。
+                <span class="tag">港股AI</span><span class="tag tag-red">国产自主</span><span class="tag tag-red">半导体</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-27 | 📰 来源：同花顺财经、智通财经研报综合</div>
+        </div>
+    </div>
+
+    <!-- 美股 -->
+    <div class="section" id="section-u">
+        <div class="section-header section-u">🇺🇸 美股市场 · 基建军备赛</div>
+
+        <div class="card">
+            <div class="card-title">🚀 英伟达 + Oklo + 洛斯阿拉莫斯：小型核电站 + AI 算力联姻</div>
+            <div class="card-summary">
+                4 月 23-24 日消息持续发酵：Oklo（核能技术公司）宣布与英伟达、洛斯阿拉莫斯国家实验室达成合作，共同推进核燃料验证和关键核基础设施建设。此次合作将 Oklo 的先进钠快堆平台、英伟达的 AI 基础设施与国家实验室的材料科学结合，支持联邦政府 Genesis 任务。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>英伟达 NVDA 4/23 收跌 1.40% 成交 225.24 亿美元 · Oklo 为 SMR（小型模块化反应堆）龙头 · AI 数据中心电力缺口推动核电需求
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>AI 电力短缺催生新赛道。美股关注 OKLO（小型核电）、NNE（Nano Nuclear Energy）、VST（Vistra）、CEG（Constellation Energy）、NVDA（受益电力充足）；A股映射：核电链关注中核科技、久立特材、兰石重装。
+                <span class="tag">核电</span><span class="tag tag-red">AI电力</span><span class="tag tag-red">NVDA生态</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26（周末持续发酵） | 📰 来源：<a href="https://finance.sina.com.cn/stock/usstock/c/2026-04-24/doc-inhvpusk4582998.shtml" target="_blank">新浪财经</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📈 英特尔指引 2026 年芯片支出增长 25%，北美半导体 Capex 进一步上修</div>
+            <div class="card-summary">
+                4 月 23 日美东盘前，英特尔发布财报并指引 2026 年资本开支增长 25%，主要投向先进制程和 AI 加速器产能。叠加 TSMC 上周（4/16）创纪录的 Q1 利润（同比 +58%）和再度上调 Capex 指引，2026 年全球半导体 Capex 明显超出年初预期。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>Intel Capex +25%/2026 · TSMC Q1 净利同比 +58% · 美股三大指数 4/23 集体收跌：标普 500 -0.41% / 道指 -0.36% / 纳指 -0.89%
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>美股上游设备受益最直接。关注 ASML、LRCX（Lam Research）、AMAT（应用材料）、KLAC（科磊）、TSM、INTC。A股半导体设备映射：北方华创、中微公司、拓荆科技、华海清科。
+                <span class="tag tag-red">半导体设备</span><span class="tag tag-red">Capex</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-24 | 📰 来源：<a href="https://stock.10jqka.com.cn/20260424/c676238973.shtml" target="_blank">同花顺/第一财经</a></div>
+        </div>
+    </div>
+
+    <!-- 融资 -->
+    <div class="section" id="section-x">
+        <div class="section-header section-x">💰 融资与产业 · 巨头角力</div>
+
+        <div class="card">
+            <div class="card-title">💰 SpaceX 600 亿美元收购 Cursor 选项权推进，AI 编程赛道估值再上台阶</div>
+            <div class="card-summary">
+                SpaceX 4 月 22 日宣布与 AI 编程初创公司 Cursor 达成协议，获得 2026 年晚些时候以 600 亿美元收购 Cursor 的选项权，或支付 100 亿美元维持合作。消息在 25-26 日持续发酵，SpaceX 本身秘密提交 IPO 申请，目标估值 1.75 万亿~2 万亿美元，拟募资 750 亿~800 亿美元，有望超越沙特阿美成为史上最大 IPO。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>Cursor 收购价 600 亿美元 · SpaceX 目标估值 2 万亿美元 · 拟募资 800 亿美元 · xAI 已合并进 SpaceX
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>AI 编程赛道整体估值抬升。A股关注金山办公（AI 办公）、卓易信息（AI 编程）、福昕软件；港股关注金蝶国际、金山软件；美股关注 MSFT（GitHub Copilot）、GTLB（GitLab）。
+                <span class="tag tag-red">AI编程</span><span class="tag">巨型IPO</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26（周末持续发酵） | 📰 来源：<a href="https://www.21jingji.com/article/20260422/herald/2a4926c3b6dc261365eade0890f66236.html" target="_blank">21世纪经济报道</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔬 DeepSeek 首轮外部融资估值跳至 200 亿美元，阿里腾讯争相入局</div>
+            <div class="card-summary">
+                4 月 17 日传出 DeepSeek 谈成立以来首次外部融资、目标估值 100 亿美元；4 月 22 日再传阿里、腾讯争相投资，估值已升至 200 亿美元以上。一周之内估值翻倍——周末（25-26 日）市场消化此消息，预期上市链条（阿里云、腾讯云、DeepSeek 生态）Q2 持续受益。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>估值区间 100 亿 → 200 亿美元（1 周 +100%） · 计划融资至少 3 亿美元 · 阿里腾讯同时入局 · V4 首发昇腾
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>DeepSeek 概念长期主题。港股关注阿里巴巴-W（9988）、腾讯（700）、商汤（20）；A股关注鸿博股份、并行科技、云赛智联、东方国信（DeepSeek 生态部署）；美股关注 NVDA 中国需求持续。
+                <span class="tag tag-red">DeepSeek概念</span><span class="tag tag-red">一级融资</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26（周末复盘持续发酵） | 📰 来源：<a href="https://news.qq.com/rain/a/20260424A07OFH00" target="_blank">腾讯新闻</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🏭 发改委加码"人工智能+"基建，国产算力芯片 2026 出货有望翻倍</div>
+            <div class="card-summary">
+                国家发改委近期再度加码"人工智能+"基础设施专项行动，机构研报指出 2026 年国产算力芯片出货有望翻倍。消息在过去一周持续发酵，叠加 DeepSeek V4 原生昇腾部署，周末机构纷纷上调国产算力链目标价。
+            </div>
+            <div class="card-data">
+                <strong>关键数据：</strong>发改委"人工智能+"专项行动加码 · 机构预测国产算力芯片 2026 出货翻倍 · 创业板人工智能 ETF 招商（159243）上周三连阳
+            </div>
+            <div class="card-view">
+                <strong>投资视角：</strong>政策面"人工智能+"定调清晰。ETF 工具关注创业板人工智能 ETF（159243）、科创芯片 ETF（588200）、AI ETF（515980）；个股关注海光信息、寒武纪、澜起科技、景嘉微、龙芯中科。
+                <span class="tag tag-red">政策利好</span><span class="tag tag-red">国产算力</span><span class="tag">ETF工具</span>
+            </div>
+            <div class="card-source">📅 发布日期：2026-04-26 | 📰 来源：<a href="https://news.qq.com/rain/a/20260420A043M900" target="_blank">腾讯财经</a></div>
+        </div>
+    </div>
+
+    <footer>
+        <div>🪷 由 小荷 于 2026-04-27 自动整理 | 📊 共 12 条 24 小时内 AI 投研要闻</div>
+        <div class="disclaimer">
+            ⚠️ 免责声明：本日报仅用于信息整理与交流参考，不构成任何投资建议。股市有风险，入市需谨慎。所有关联标的仅为逻辑梳理，不代表推荐买卖。请以券商研报和交易所公告为准。
+            <br>📍 注：周末 A 股/港股不交易，行情数据涉及 4 月 24 日（周五）收盘价；美股最新交易日为 4 月 24 日（周五）。
+        </div>
+    </footer>
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-04-26.html">← 2026-04-26</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+</body>
+</html>
