@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 投研日报 · 2026-05-03</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: #0d1117;
+        color: #c9d1d9;
+        line-height: 1.7;
+        padding: 0;
+    }
+    .container {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 32px 20px 60px;
+    }
+    header {
+        text-align: center;
+        padding: 40px 20px 24px;
+        border-bottom: 1px solid #21262d;
+        margin-bottom: 8px;
+    }
+    h1 {
+        font-size: 2.4em;
+        font-weight: 700;
+        background: linear-gradient(135deg, #58a6ff, #bc8cff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+    }
+    .subtitle {
+        color: #8b949e;
+        font-size: 1.05em;
+    }
+    .time-window {
+        max-width: 920px;
+        margin: 16px auto 8px;
+        padding: 12px 20px;
+        background: linear-gradient(90deg, rgba(88, 166, 255, 0.08), rgba(188, 140, 255, 0.08));
+        border: 1px solid rgba(88, 166, 255, 0.3);
+        border-radius: 10px;
+        text-align: center;
+        color: #58a6ff;
+        font-weight: 600;
+        font-size: 0.98em;
+    }
+    .toc {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 10px;
+        padding: 20px 24px;
+        margin-bottom: 32px;
+    }
+    .toc-title {
+        color: #f0b90b;
+        font-weight: 700;
+        font-size: 1.05em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .toc-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .toc-list a {
+        color: #58a6ff;
+        text-decoration: none;
+        padding: 6px 14px;
+        background: #0d1117;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        font-size: 0.9em;
+        transition: all 0.2s;
+    }
+    .toc-list a:hover {
+        background: #1c2333;
+        border-color: #58a6ff;
+    }
+    .market-section {
+        margin-bottom: 40px;
+    }
+    .market-title {
+        font-size: 1.5em;
+        font-weight: 700;
+        padding: 12px 0 16px;
+        border-bottom: 2px solid #30363d;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .market-title.a-shares { color: #f85149; }
+    .market-title.hk { color: #bc8cff; }
+    .market-title.us { color: #58a6ff; }
+    .market-title.industry { color: #3fb950; }
+    .card {
+        background: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 10px;
+        padding: 22px 24px;
+        margin-bottom: 16px;
+        transition: all 0.2s;
+    }
+    .card:hover {
+        border-color: #58a6ff;
+        transform: translateY(-2px);
+    }
+    .card-title {
+        font-size: 1.18em;
+        font-weight: 700;
+        color: #f0f6fc;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+    .card-summary {
+        color: #c9d1d9;
+        margin-bottom: 14px;
+    }
+    .card-metrics {
+        background: #0d1117;
+        border-left: 3px solid #f0b90b;
+        padding: 10px 14px;
+        margin: 12px 0;
+        border-radius: 4px;
+        font-size: 0.94em;
+    }
+    .card-metrics strong { color: #f0b90b; }
+    .card-perspective {
+        background: rgba(63, 185, 80, 0.08);
+        border: 1px solid rgba(63, 185, 80, 0.3);
+        border-radius: 6px;
+        padding: 12px 14px;
+        margin: 12px 0;
+        font-size: 0.95em;
+    }
+    .card-perspective strong { color: #3fb950; }
+    .card-source {
+        color: #8b949e;
+        font-size: 0.85em;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed #30363d;
+    }
+    .card-date {
+        color: #58a6ff;
+        font-weight: 600;
+    }
+    .tag {
+        display: inline-block;
+        padding: 2px 8px;
+        background: rgba(248, 81, 73, 0.12);
+        border: 1px solid rgba(248, 81, 73, 0.3);
+        color: #f85149;
+        border-radius: 4px;
+        font-size: 0.82em;
+        margin-right: 4px;
+    }
+    .tag.green {
+        background: rgba(63, 185, 80, 0.12);
+        border-color: rgba(63, 185, 80, 0.3);
+        color: #3fb950;
+    }
+    .tag.yellow {
+        background: rgba(240, 185, 11, 0.12);
+        border-color: rgba(240, 185, 11, 0.3);
+        color: #f0b90b;
+    }
+    .tag.blue {
+        background: rgba(88, 166, 255, 0.12);
+        border-color: rgba(88, 166, 255, 0.3);
+        color: #58a6ff;
+    }
+    footer {
+        margin-top: 50px;
+        padding: 24px 20px;
+        border-top: 1px solid #21262d;
+        text-align: center;
+        color: #8b949e;
+        font-size: 0.88em;
+    }
+    .disclaimer {
+        background: rgba(240, 185, 11, 0.05);
+        border: 1px solid rgba(240, 185, 11, 0.2);
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 16px;
+        text-align: left;
+        font-size: 0.85em;
+    }
+    .empty-market {
+        background: #161b22;
+        border: 1px dashed #30363d;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        color: #8b949e;
+        font-style: italic;
+    }
+    .daily-nav {
+        max-width: 920px;
+        margin: 16px auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+    .daily-nav a, .daily-nav span.nav-disabled {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 0.9em;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border: 1px solid #30363d;
+        white-space: nowrap;
+    }
+    .daily-nav a { color: #58a6ff; background: #161b22; }
+    .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+    .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+    .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+    .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+    @media (max-width: 640px) {
+        h1 { font-size: 1.8em; }
+        .container { padding: 20px 14px 40px; }
+        .card { padding: 18px; }
+        .daily-nav { flex-wrap: wrap; justify-content: center; }
+        .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+    }
+</style>
+</head>
+<body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-02.html">← 2026-05-02</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="container">
+    <header>
+        <h1>🤖 AI 投研日报</h1>
+        <div class="subtitle">2026 年 5 月 3 日 · 星期日 · 五一假期最后一天</div>
+    </header>
+
+    <div class="time-window">📰 新闻时间窗口：2026-05-02 08:00 ~ 2026-05-03 08:00（过去 24 小时）</div>
+
+    <div style="max-width:920px;margin:0 auto;padding:8px 0 20px;color:#8b949e;font-size:0.9em;text-align:center;">
+        ⚠️ 五一假期·A股休市至 5/5，港股休市至 5/5 开市；下文以产业动态 + 美股盘面 + 假期期间重磅事件为主
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">🧭 今日目录</div>
+        <div class="toc-list">
+            <a href="#macro">🔥 焦点事件</a>
+            <a href="#a-shares">🇨🇳 A 股 / 产业</a>
+            <a href="#hk">🇭🇰 港股</a>
+            <a href="#us">🇺🇸 美股</a>
+            <a href="#industry">🏭 产业 / 硬件</a>
+        </div>
+    </div>
+
+    <!-- ===================== 焦点事件 ===================== -->
+    <div class="market-section" id="macro">
+        <h2 class="market-title" style="color:#f0b90b;">🔥 焦点事件 · 伯克希尔股东大会 + 算电协同首秀</h2>
+
+        <div class="card">
+            <div class="card-title">🎙️ 后巴菲特时代首秀：阿贝尔定调伯克希尔 AI 战略——"不为 AI 而 AI"，但全面落地</div>
+            <div class="card-summary">
+                北京时间 5 月 2 日晚至 3 日凌晨，2026 年伯克希尔·哈撒韦股东大会在奥马哈召开，新任 CEO 阿贝尔（Greg Abel）首次主持。大会以一段 AI 深度伪造巴菲特视频作为问答首问开场，引爆现场。阿贝尔公布：伯克希尔一季度现金储备逼近 <strong>4000 亿美元</strong>，铁路子公司 BNSF 已应用 AI 进行机车预测性维护，公司正在大规模招聘工程师"自建 AI 方案而非外购"，保险业务已部署大模型辅助定价。阿贝尔同时强调"绝不为 AI 而 AI"，副董事长贾恩直言 AI 用于定价理赔等复杂决策"尚需数年"。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>现金储备 ≈ $4000 亿｜一季度回购 $2.3 亿｜巴菲特执掌 60 年 正式退居幕后｜苹果持仓回报 $1850 亿（税前）
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>两层信号——①巴菲特系仍对 AI 估值保持审慎，叠加 4000 亿现金，节后美股若 <span class="tag">AI 巨头调整</span> 不排除加仓机会；②<span class="tag green">BNSF 铁路 AI 化</span> 是传统行业 AI 落地的标志性案例，利好美国铁路股及工业 AI 方向；③对 A 股 <span class="tag yellow">工业 AI、预测性维护</span> 概念（如汉钟精机、能科科技）有类比效应。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-03 00:29</span>
+                <span>来源：证券时报 / 财联社 / CNBC</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⚡ 我国首个"算电协同"绿电直供项目投运：沙漠光伏直通算力大脑</div>
+            <div class="card-summary">
+                5 月 2 日，中国大唐中卫云基地 50 万千瓦光伏电站正式投运，这是我国首个大规模"算电协同"绿电直供项目，标志着"东数西算"工程实现从沙漠风光电到数字算力的"直连直通"。项目位于宁夏中卫腾格里沙漠东南边缘，光伏电站的电力不上网、直接通过四条 110 千伏输电线路送往算力园区，年发电量 9.7 亿度，满足园区一半用电。一期总规模 200 万千瓦（50 万光伏 + 150 万风电），总投资 <strong>87 亿元</strong>，全容量投产后年发电 43 亿度，每年减碳 365 万吨。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>总投资 ¥87 亿｜光伏电站 50 万千瓦｜风电场 150 万千瓦（年内并网）｜园区全国前十算力企业中已入驻 6 家｜绿电占比超 90%
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>国家战略级落地，电力成本占 AI 算力 60-70% 的痛点被系统性破解。关注方向：<span class="tag">算力 + 能源</span> IDC（润泽科技、数据港、光环新网）；<span class="tag green">绿电 + 储能</span>（宁德时代、阳光电源）；<span class="tag yellow">特高压/直流输电</span>（许继电气、国电南瑞）；大唐发电（601991）作为项目直接运营方受益。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-02</span>
+                <span>来源：央视新闻 / 科技日报 / 中国新闻网</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== A股 / 产业 ===================== -->
+    <div class="market-section" id="a-shares">
+        <h2 class="market-title a-shares">🇨🇳 A 股 / 产业动态</h2>
+
+        <div class="card">
+            <div class="card-title">📉 节前三日主力狂卖 520 亿：AI 算力/光模块成"重灾区"，工业富联遭抛 33.6 亿</div>
+            <div class="card-summary">
+                4 月 28-30 日节前三个交易日，A 股主力资金合计净流出超 <strong>520 亿元</strong>，创今年单周新高。268 只个股连续三日被净卖出超 5000 万元。<span class="tag">AI 算力/光模块</span> 净流出 120 亿居首——工业富联 -33.61 亿、中际旭创 -18.68 亿、新易盛 -19.1 亿、天孚通信 -15.33 亿；半导体/存储芯片净流出 76.85 亿；而国产芯片板块逆势活跃，寒武纪节前最后一个交易日再度 +20% 封板，收盘 ¥1699.96，创历史新高。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>三日净流出 ¥520 亿（年内新高）｜光模块板块今年涨 60%｜工业富联 -5.1% 遭抛 ¥33.6 亿｜寒武纪 ¥1699.96 +20%
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>节后 5/6（周三）开盘需警惕高位兑现盘延续——<span class="tag">光模块、液冷、BBU</span> 在业绩披露窗口仍有波动。但 <span class="tag green">国产算力</span>（寒武纪 688256、海光信息 688041）与 <span class="tag yellow">AI 应用</span>（金山办公 688111、蓝色光标 300058）受外资增持 + 政策催化，或承接资金轮动。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-03</span>
+                <span>来源：腾讯财经 / 同花顺数据</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🚀 双创 4 月成交占比 38.37%，创历史第二高——AI 算力 + 半导体 + 商业航天组成 5 月三主线</div>
+            <div class="card-summary">
+                2026 年 4 月创业板 + 科创板月度成交总额占全市场 <strong>38.37%</strong>，仅次于 2024 年 10 月的 38.81%，为历史第二高。机构研判 5 月三大主线：①AI 算力链——1.6T/3.2T 光模块、AI 服务器 PCB、国产 AI 芯片订单饱满，一季报业绩普遍高增；②半导体存储——兆易创新 Q1 净利同比 +522.8%，DDR5/NOR Flash 供不应求；③商业航天——5 月蓝箭朱雀三号遥二复飞 + 垂直回收、星河动力智神星一号首飞。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>双创 4 月成交占比 38.37%（历史第二）｜科创板 600 家公司平均市值 ¥211.74 亿｜千亿市值公司 17 家｜兆易创新 Q1 净利 +522.8%
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>科技主线仍是 5 月 Alpha 赛道，但内部需分化：<span class="tag green">强势继续</span>——国产 AI 芯片、存储涨价链；<span class="tag yellow">高位震荡</span>——高速光模块、PCB；<span class="tag blue">新热点</span>——商业航天（5 月密集催化）、AI 应用（智能体政策落地）。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-02</span>
+                <span>来源：腾讯财经</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🤖 小鹏 IRON 人形机器人：广州天河量产基地开工，目标 2026 年底月产千台</div>
+            <div class="card-summary">
+                小鹏集团布局的"行业首个人形机器人全链条量产基地"作为广州天河区重点项目开工。基地总建筑面积约 <strong>11 万平方米</strong>，满足研发验证、小批量试产到规模化制造全阶段。何小鹏在北京车展发布会上确认：IRON 机器人搭载 3 颗自研图灵 AI 芯片（总算力 2250 TOPS）、全固态电池（续航 12 小时）、22 自由度灵巧手，计划 2026 年底量产，月产 <strong>1000 台</strong>，2027 年开启全年商业化销售。IDC 数据显示 2025 年全球人形机器人出货近 1.8 万台（+508%），智元已下达超 1 万台订单（合作方领益智造东莞基地承接结构件）。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>量产基地 11 万平方米｜目标月产 1000 台｜图灵 AI 芯片算力 2250 TOPS｜2025 全球出货 1.8 万台 (+508%)｜智元新增订单 >10000 台
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>2026 是"量产元年"已形成市场共识。产业链：<span class="tag">整机</span> 小鹏 09868.HK、优必选 09880.HK、智元（未上市）；<span class="tag green">核心零部件</span> 领益智造 002600（结构件）、三花智控 002050（执行器）、绿的谐波 688017（减速器）；<span class="tag yellow">车规级 AI 芯片</span> 地平线（港股）、黑芝麻智能。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-03 (更新动态)</span>
+                <span>来源：新浪财经 / 腾讯财经 / 快科技</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🎭 智元远征 A3 首次进入剧院：人形机器人租赁平台开启文化消费场景驻场</div>
+            <div class="card-summary">
+                5 月 2 日，全国首个机器人租赁平台"擎天租"携智元最新全尺寸人形机器人 <strong>远征 A3</strong> 亮相上海大剧院，与音乐剧《娜塔莎、皮埃尔和 1812 年的大彗星》主演同台。远征 A3 用多国语言问好、即兴问答、舞蹈展示，自 5 月起开启剧院驻场模式。这是人形机器人首次进入以高文化属性著称的剧院空间，从工厂/展会等"标准化展示"场景向"文化消费"场景延伸。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>租赁模式商业化｜多语言交互｜首次文化消费场景落地
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>人形机器人 B 端租赁/商演赛道正式打开。关注：<span class="tag">机器人 SaaS/租赁</span>（科沃斯 603486 等服务型机器人延伸）；<span class="tag green">IP + 机器人</span>（华策影视 300133、奥飞娱乐 002292 联动场景）；智元上游供应链（宁德时代电池、拓普集团轻量化机身）。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-03 06:30</span>
+                <span>来源：上观新闻 / 东方财富</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== 港股 ===================== -->
+    <div class="market-section" id="hk">
+        <h2 class="market-title hk">🇭🇰 港股</h2>
+
+        <div class="card">
+            <div class="card-title">💰 基流科技递表港交所：冲刺"港股 AI 基础设施第一股"，完成近 18 亿元 D 轮融资估值 91.6 亿</div>
+            <div class="card-summary">
+                5 月 1 日，上海基流科技股份有限公司（清华系，创始人胡效赫 90 后博士后）递交港交所招股书。公司是中国最大的独立 AI 算力集群提供商（按 2025 年收入中国第九大），核心产品 Galaxy 端到端 AI 算力集群 + 自研 Venus 算力 OS。2026 年 4 月同期完成两轮融资：C 轮 6.28 亿（投后 46.28 亿）+ D 轮 <strong>11.6 亿</strong>（投后 <strong>91.6 亿</strong>）。营收 2023→2025 从 3180 万 爆发式增至 <strong>5.2 亿</strong>（三年 CAGR 304.5%），非 IFRS 口径连续两年盈利。2025 年净亏损 3.6 亿（含优先股公允价值变动）。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>投后估值 ¥91.6 亿｜2025 营收 ¥5.2 亿 (+60%)｜三年 CAGR 304.5%｜在线运维 GPU 超 9 万张｜万卡集群 MFU 提升 30%｜SLA 99.97%
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>港股 AI 算力 IPO 连续潮——继智谱、MiniMax、生数之后再迎"卖水人"。<span class="tag">港股 IPO 打新</span> 关注基流；<span class="tag green">A 股 AI 算力集群对标</span>——浪潮信息 000977、中科曙光 603019、神州数码 000034。独立算力集群模式验证成功（不依赖云厂）是关键差异化。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-01 ~ 2026-05-02</span>
+                <span>来源：上证报 / 雷递网 / 21 世纪经济报道</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📊 港股 AI 板块假期间观察：小鹏集团 09868.HK 成"AI + 机器人"最纯标的</div>
+            <div class="card-summary">
+                五一港股仅 5 月 1 日休市，5 月 2 日正常交易（按 2025 财年已披露资料看），假期消息面集中在三条主线：①小鹏 IRON 量产时间确认推高 <strong>09868.HK</strong> 市场预期（"AI 汽车 + 飞行汽车 + 人形机器人"三大物理 AI 载体）；②阿里云持续加注生数科技（投资 + 自研"欢乐马"视频大模型"双轨战略"）强化 <strong>09988.HK</strong> AI 叙事；③理想 02015.HK、比亚迪 01211.HK、吉利 00175.HK 均已明确公布机器人量产计划，港股车企集体"造人"。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>港股 5/2 正常交易 | 小鹏陆地航母已获 7000 台订单 | 港股车企 10+ 家布局机器人 | 阿里云 AI 视频"双轨战略"
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>"车企造人"估值重塑已半程——港股三大受益标的：<span class="tag">小鹏 09868.HK</span>（含飞行汽车 + 机器人 + AI 汽车三重弹性）；<span class="tag green">理想 02015.HK</span>（VLA 大模型 + 增程护城河）；<span class="tag yellow">阿里 09988.HK</span>（云 + AI 应用双轮）。节后 A/H 联动关注。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-02 / 05-03</span>
+                <span>来源：东方财富 / 新浪财经</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== 美股 ===================== -->
+    <div class="market-section" id="us">
+        <h2 class="market-title us">🇺🇸 美股</h2>
+
+        <div class="card">
+            <div class="card-title">📉 OpenAI CFO"踩刹车"：IPO 或推迟至 2027 年，与奥特曼现分歧</div>
+            <div class="card-summary">
+                华尔街日报 5 月 3 日独家披露：OpenAI 首席财务官 <strong>Sarah Friar</strong> 私下建议将 IPO 推迟至 <strong>2027 年</strong>，认为公司尚未准备好满足上市报告标准。主要矛盾：①算力支出承诺高达 <strong>1.4 万亿美元</strong>（奥特曼公开数据），仅 2028 年预计亏损 740 亿；②近期营收目标未达成（ChatGPT 周活未达 10 亿、编程工具市场被 Anthropic 蚕食）；③奥特曼仍推进 2026 年上市，Friar 踩刹车。华尔街将这场 AI"IPO 竞赛"定义为"赢家通吃"——先上市者定义行业。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>算力承诺 $1.4 万亿｜2028 预期亏损 $740 亿｜Anthropic 估值 $9000 亿（4 月刚完成融资）｜ChatGPT 周活未破 10 亿
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>"AI 熊市派"最有力的论据。短期影响：<span class="tag">算力供给链</span>（英伟达、甲骨文、CoreWeave）若 OpenAI 真推迟建设，订单能见度会打折；中期看：<span class="tag green">Anthropic</span> 作为最大竞争者估值支撑更强；<span class="tag yellow">谷歌 GOOGL</span>（AI 业务 Q1 +63% 实际落地）反而成"稳健派"最优选。A 股映射：<span class="tag">中科曙光、紫光股份</span> 若美股 AI 基建需求降温需警惕。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-03</span>
+                <span>来源：华尔街日报 / 网易财经 / 搜狐科技</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⚔️ AI 军备竞赛 Q1 交卷：4 巨头 2026 资本开支飙升至 7250 亿美元（+77% YoY）</div>
+            <div class="card-summary">
+                英国金融时报汇总：谷歌、微软、亚马逊、Meta 四巨头 2026 年计划合计投入 <strong>$7250 亿</strong> 资本开支，比 2025 年 $4100 亿 高出 <strong>77%</strong>。具体：<span class="tag yellow">微软</span> 2026 自然年 CapEx $1900 亿（远超分析师 $1520 亿）；<span class="tag">Meta</span> 全年 CapEx 上调至 $1350-1450 亿；<span class="tag green">Alphabet</span> 积压云订单 $4620 亿（花钱有回报逻辑）；<span class="tag blue">亚马逊</span> Q1 CapEx $442 亿。市场反应分化：GOOGL 盘后 +7%（云增速 63%），Meta -8.6%（用户增长担忧）。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>四巨头合计 CapEx $7250 亿 (+77%)｜MSFT $1900 亿｜Alphabet 云 +63%、订单 $4620 亿｜Meta CapEx $1350-1450 亿｜AWS +28%（15 季度新高）
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>"AI 熊市论就是垃圾"（杰富瑞分析师）。四巨头资本开支超预期 77% 直接托底 AI 基建链：<span class="tag">英伟达 NVDA</span>（最大受益但短期承压）；<span class="tag green">博通 AVGO</span>（ASIC 定制芯片 + 网络）；<span class="tag yellow">台积电 TSM</span>（代工制程）；A 股映射：工业富联 601138（AI 服务器 ODM）、中际旭创 300308、胜宏科技 300476（PCB）。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-02</span>
+                <span>来源：金融时报 / IT 之家 / 新浪财经</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🛡️ 五角大楼官宣与 7 家 AI 巨头签约：英伟达、微软、亚马逊、OpenAI、SpaceX 在列</div>
+            <div class="card-summary">
+                5 月 1 日，美国国防部宣布与 <strong>7 家前沿 AI 公司</strong> 达成里程碑式合作协议：SpaceX、OpenAI、Google、NVIDIA、Microsoft、Amazon AWS 等在列，将先进 AI 技术部署至国防部机密网络用于合法作战行动。声明未提及 Anthropic——该公司 3 月初因拒绝"国防部无限制使用其 AI 技术"被列入联邦供应链风险黑名单并已起诉国防部。这是美军"AI 优先作战力量"转型的关键一步。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>7 家 AI 公司中标｜签约日 5/1｜Anthropic 被排除且已起诉国防部｜涵盖云、大模型、芯片、航天全栈
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>"AI 国防化"订单驱动力重估。受益：<span class="tag">Palantir PLTR</span>（5/4 财报临近，政府订单 + AI 合同双催化）；<span class="tag green">NVDA / MSFT / AMZN / GOOGL</span> 获增量政府收入；<span class="tag yellow">SMCI、CRWD</span> 国防云 + 网安链；Anthropic 被边缘化强化 OpenAI/谷歌的商业地位。A 股关注：军工信息化 <span class="tag blue">中科星图 688568、中国卫通 601698</span> 有映射。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-01 ~ 05-02</span>
+                <span>来源：新华社 / 澎湃新闻</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🎯 AMD 本周财报前瞻：5/5 发布 Q1，市值已破 $5000 亿，PLTR & SMCI 同周</div>
+            <div class="card-summary">
+                AMD 股价自 3 月以来已 <strong>+88.65%</strong>，连涨 12 日冲破 <strong>$5000 亿</strong> 市值大关。5 月 5 日（周一）发布 Q1 财报，市场一致预期营收 ~$98 亿（+32% YoY），数据中心收入创新高。华尔街目标价 $375（押注 EPYC Turin 在 AI 智能体时代主导）。但技术面 RSI > 80 严重超买，需突破才能确认。同日（5/5）财报：Palantir（突破 $151.91 信号位）、Super Micro SMCI（DOJ 暴跌 40% 后关键确认）。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>AMD 市值 $5000 亿｜自 3 月 +88.65%｜Q1 预期营收 $98 亿 (+32%)｜目标价 $375｜PEG 仅 0.48｜数据中心 CAGR >60%
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>本周是美股 AI 二梯队关键验证窗口。<span class="tag yellow">AMD</span> 若指引超预期 → 英伟达"垄断叙事"再次被挑战；若不及 → 半导体板块集体回调。<span class="tag">Palantir</span> 破位 $151.91 则 AI 应用/国防双重题材共振。A 股映射：<span class="tag green">海光信息 688041</span>（x86 国产替代 AMD 路径）值得重点跟踪。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-02 / 05-03</span>
+                <span>来源：BeInCrypto / 长桥 Longbridge / 老虎社区</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== 产业 / 硬件 ===================== -->
+    <div class="market-section" id="industry">
+        <h2 class="market-title industry">🏭 产业 / 硬件</h2>
+
+        <div class="card">
+            <div class="card-title">🧠 DeepMind CEO Hassabis：当前 AI 仅"半成品"，AGI 预计 2030 年前后到来</div>
+            <div class="card-summary">
+                诺贝尔化学奖得主、DeepMind CEO Demis Hassabis 深度访谈直言：当下所有 AI 技术均是"半成品"，距离 AGI 还缺三块关键拼图：<strong>持续学习能力、长程推理能力、真正的记忆机制</strong>。预训练、RLHF、思维链仍将是 AGI 架构组成部分。他批评行业"疯狂比拼大上下文窗口"是"暴力胶带式笨办法"。基于当前迭代速度，预测 <strong>AGI 将在 2030 年左右到来</strong>，终极变革近在眼前。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>AGI 时间预期 ~2030｜三大技术缺口：持续学习 / 长程推理 / 记忆机制｜批评"大上下文窗口"路径
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>巨头 CEO 公开定调"4 年 AGI 倒计时"直接强化算力 + 能源 + 数据"AI 基建三件套"中期投资逻辑。<span class="tag">长期受益</span>——英伟达、台积电、博通、Palantir；<span class="tag green">A 股算力底座</span>——工业富联、寒武纪、海光、光模块龙头；<span class="tag yellow">能源侧</span>——核电（中广核 003816）、绿电储能。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-03 07:43</span>
+                <span>来源：东方财富 / 财联社</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">💹 数字广告历史性拐点：Meta 2026 净广告收入首次超越 Google（$2434 亿 vs $2395 亿）</div>
+            <div class="card-summary">
+                eMarketer 最新预测：Meta 2026 年全年净广告收入 <strong>$2434.6 亿</strong>，以 $39 亿微弱优势首次超越 Google $2395.4 亿。净广告收入剔除流量获取成本，直接反映广告系统"自我造血能力"。逻辑差异：Meta 依靠算法"造需求"（推荐引擎主动触发购买），Google 依赖搜索框"等需求"。Google 在美国搜索广告市场份额 2026 年预计首次跌破 <strong>50%</strong>，TikTok、Amazon 分流。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>Meta 净广告 $2434.6 亿｜Google $2395.4 亿｜差距 $39 亿｜Google 美国搜索份额首破 50%
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>但 Meta 股价 Q1 财报后 -8.6%（CapEx 过大 + 用户增长担忧）。核心变量：<span class="tag">AI 广告变现效率</span> 成为 Meta vs Google 估值分水岭。关注：<span class="tag green">蓝色光标 300058</span>（Meta + Google 全球顶级伙伴，80% 海外营收，Q1 净利 +32%、订单 +300%）；<span class="tag yellow">AppLovin APP</span>、<span class="tag blue">Trade Desk TTD</span> 等程序化广告标的。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-02</span>
+                <span>来源：ITBear / eMarketer</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔬 光模块 1.6T 代际切换：2026 年正式进入规模化替代期，LPO 2027 起渗透</div>
+            <div class="card-summary">
+                行业研报观察：AI 需求下光模块代际切换已从"3-4 年/代"缩短至 <strong>约 2 年</strong>。<strong>2026 是 800G → 1.6T 规模化替代的关键拐点</strong>。技术路径收敛：800G 硅光占比 >50%；1.6T 硅光占比高达 <strong>70-80%</strong>。LPO（移除 DSP 降功耗）预计 2027 年起在 1.6T/3.2T 快速渗透。CPO 大规模部署推迟至 2028-2030。Lumentum CEO 此前表态"两季度内可能把 2028 年底前产能订满"，印证供给紧缺。
+            </div>
+            <div class="card-metrics">
+                <strong>关键数据：</strong>800G 硅光占比 >50%｜1.6T 硅光占比 70-80%｜代际切换周期 2 年｜LPO 2027 年渗透｜CPO 2028-2030 大规模部署｜Lumentum 订单排至 2028 底
+            </div>
+            <div class="card-perspective">
+                <strong>💡 投资视角：</strong>供需紧张至少 2-3 年。核心标的：<span class="tag">1.6T 龙头</span>——中际旭创 300308、新易盛 300502、天孚通信 300394；<span class="tag green">硅光 + LPO</span>——光迅科技 002281、剑桥科技 603083、长光华芯 688048（CPO）、德科立 688205；<span class="tag yellow">上游</span>——源杰科技 688498（激光芯片）、腾景科技 688195（光学元件）。但需注意节前主力已兑现，短期高位震荡。
+            </div>
+            <div class="card-source">
+                <span class="card-date">📅 2026-05-02</span>
+                <span>来源：网易财经 / 集微网</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>📊 本日报由 <strong>小荷 🪷</strong> 自动整理生成 · 覆盖过去 24 小时 AI 领域重要资讯</p>
+        <p>⏰ 生成时间：2026-05-03 08:00 GMT+8</p>
+        <div class="disclaimer">
+            <strong>⚠️ 免责声明：</strong>本日报所有信息来源于公开网络，仅供参考，不构成任何投资建议。股市有风险，入市需谨慎。涉及的个股/标的仅为基于新闻内容的行业线索梳理，不代表推荐买卖。请读者自行核实信息时效性与准确性，据此操作风险自担。
+        </div>
+    </footer>
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-02.html">← 2026-05-02</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+</body>
+</html>
