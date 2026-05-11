@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-05-11</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 60px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .date {
+            font-size: 1.15em;
+            color: #8b949e;
+            margin-bottom: 16px;
+        }
+        .header .tagline {
+            display: inline-block;
+            padding: 6px 20px;
+            background: rgba(56, 139, 253, 0.15);
+            border: 1px solid rgba(56, 139, 253, 0.4);
+            border-radius: 20px;
+            color: #58a6ff;
+            font-size: 0.95em;
+        }
+
+        .time-window {
+            max-width: 920px;
+            margin: 24px auto 0;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .time-window-inner {
+            display: inline-block;
+            padding: 10px 24px;
+            background: rgba(240, 185, 11, 0.08);
+            border: 1px solid rgba(240, 185, 11, 0.25);
+            border-radius: 10px;
+            color: #f0b90b;
+            font-size: 0.95em;
+        }
+
+        .toc {
+            max-width: 920px;
+            margin: 28px auto;
+            padding: 0 20px;
+        }
+        .toc-inner {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+        .toc-title {
+            font-size: 1.1em;
+            color: #f0f6fc;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .toc-list li a {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #c9d1d9;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+        }
+        .toc-list li a:hover {
+            background: #1c2333;
+            border-color: #58a6ff;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            margin: 36px 0;
+        }
+        .section-title {
+            font-size: 1.35em;
+            color: #f0f6fc;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #30363d;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-count {
+            font-size: 0.7em;
+            padding: 3px 10px;
+            background: rgba(56, 139, 253, 0.15);
+            border-radius: 12px;
+            color: #58a6ff;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s ease;
+        }
+        .card:hover {
+            border-color: #58a6ff;
+        }
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 1.15em;
+            color: #f0f6fc;
+            font-weight: 600;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .card-source {
+            font-size: 0.8em;
+            color: #8b949e;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card-date {
+            background: rgba(139, 148, 158, 0.12);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+        .card-body {
+            color: #c9d1d9;
+            font-size: 0.95em;
+            margin-bottom: 14px;
+            line-height: 1.75;
+        }
+        .card-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            font-size: 0.85em;
+        }
+        .metric.up { color: #f85149; border-color: rgba(248, 81, 73, 0.3); }
+        .metric.down { color: #3fb950; border-color: rgba(63, 185, 80, 0.3); }
+        .metric.neutral { color: #8b949e; border-color: #21262d; }
+        .card-invest {
+            background: rgba(240, 185, 11, 0.06);
+            border-left: 3px solid #f0b90b;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.92em;
+        }
+        .card-invest .label {
+            color: #f0b90b;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 32px 20px;
+            border-top: 1px solid #21262d;
+            color: #8b949e;
+            font-size: 0.85em;
+        }
+
+        .market-holiday {
+            text-align: center;
+            padding: 32px 20px;
+            color: #8b949e;
+            font-style: italic;
+        }
+        .market-holiday-icon {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.5em; }
+            .header .date { font-size: 1em; }
+            .card-header { flex-direction: column; }
+            .card-source { white-space: normal; }
+            .section-title { font-size: 1.15em; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-10.html">← 2026-05-10</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="header">
+    <h1>🤖 AI 投研日报</h1>
+    <div class="date">2026年5月11日 · 星期一</div>
+    <div class="tagline">人工智能行业每日投资参考</div>
+</div>
+
+<div class="time-window">
+    <div class="time-window-inner">
+        📰 新闻时间窗口：2026-05-10 08:00 ~ 2026-05-11 08:00（过去24小时）
+    </div>
+</div>
+
+<div class="toc">
+    <div class="toc-inner">
+        <div class="toc-title">🧭 目录导航</div>
+        <ul class="toc-list">
+            <li><a href="#cn">🇨🇳 A股/中国市场</a></li>
+            <li><a href="#hk">🇭🇰 港股动态</a></li>
+            <li><a href="#us">🇺🇸 美股动态</a></li>
+            <li><a href="#funding">💰 融资/IPO</a></li>
+            <li><a href="#policy">📜 产业政策</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- ===== A股/中国市场 ===== -->
+<div class="section" id="cn">
+    <div class="section-title">
+        🇨🇳 A股/中国市场
+        <span class="section-count">4 条</span>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">中信建投：A股进入牛市下半场，AI算力PEG仅0.89倍远未到泡沫化</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>新浪财经 / 中信建投</span>
+            </div>
+        </div>
+        <div class="card-body">
+            中信建投策略团队发布中期展望，认为A股已从"拔估值"进入"涨业绩"的牛市下半场。当前AI算力产业链PEG中位数仅0.89倍，显著低于2015年TMT行情（3.38倍）、2021年核心资产行情（3.41倍）及2021年新能源行情（2.23倍）的历史见顶阈值。核心资产远未进入泡沫区间，机构持仓仍处于持续加仓的爬坡阶段。AI叙事逻辑正从核心抱团向全产业链景气扩散，沿缺货涨价、新需求挖掘和产能挤占三重逻辑演进。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">AI算力PEG中位数：0.89倍</span>
+            <span class="metric neutral">2015 TMT见顶PEG：3.38倍</span>
+            <span class="metric neutral">2021新能源见顶PEG：2.23倍</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            PEG<1意味着AI算力板块仍有较大估值提升空间。行情不会简单因估值过热而撤离，反而会在产业趋势验证下向上下游扩散。重点关注：光模块、PCB、电子布/CCL、先进封装、CPU、存储芯片、液冷散热、数据中心供电、算力租赁与云服务。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">A股总市值突破120万亿元，电子板块贡献近四成新增市值</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>中国经济网 / Wind</span>
+            </div>
+        </div>
+        <div class="card-body">
+            截至5月8日收盘，A股总市值达120.15万亿元，创历史新高。年初至今A股市值增长12.24万亿元，其中电子板块贡献约4.73万亿元新增市值，占比约四成。若加上电力设备、通信等赛道，新兴产业几乎贡献了绝大部分增量。工业富联市值突破万亿元，光模块龙头中际旭创市值逼近万亿元，反映全球算力需求爆发下中国制造在AI硬件领域的卡位优势。A股市值版图正从传统周期股向科技成长股加速重构。
+        </div>
+        <div class="card-metrics">
+            <span class="metric up">A股总市值：120.15万亿元</span>
+            <span class="metric up">年初至今新增市值：12.24万亿元</span>
+            <span class="metric up">电子板块贡献：4.73万亿元（占比~40%）</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            120万亿市值背后是新旧动能转换的深层逻辑。电子板块成为最大增量来源，验证了AI产业链的硬实力。关注：工业富联（AI服务器龙头）、中际旭创（光模块）、寒武纪（AI芯片）、海光信息（国产CPU/DCU）。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">国产大模型"锚定"国产算力：DeepSeek V4获昇腾支持，蚂蚁百灵适配昇腾910</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>证券时报 / 中证网</span>
+            </div>
+        </div>
+        <div class="card-body">
+            国产大模型与国产算力的双向奔赴正在加速。DeepSeek V4正式发布并获得昇腾超节点系列全面支持；蚂蚁百灵大模型Ling-2.6-flash开源后实现与昇腾910全系列产品适配。长期以来，全球AI产业被英伟达CUDA生态牢牢锁定，几乎所有主流AI框架和开源模型的首发优化都以CUDA为默认起点。如今越来越多国产大模型主动选择昇腾等国产算力底座，既为国产算力提供规模化应用场景，也实现了从"能用到好用"的自主突破。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">DeepSeek V4：昇腾超节点全面支持</span>
+            <span class="metric neutral">蚂蚁百灵：适配昇腾910全系</span>
+            <span class="metric neutral">核心突破：摆脱CUDA路径依赖</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            国产大模型+国产算力的生态闭环是AI自主可控的战略主线。昇腾产业链直接受益：华为系合作伙伴（神州数码、拓维信息、四川长虹）、国产AI芯片（寒武纪、海光信息）、服务器（工业富联、浪潮信息）。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">国产AI芯片Q1业绩与订单双双爆发，科创芯片设计ETF飙涨3%</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>格隆汇 / 开源证券</span>
+            </div>
+        </div>
+        <div class="card-body">
+            国产AI芯片龙头一季度业绩全面兑现。寒武纪Q1营收28.85亿元（+159.56%），归母净利润10.13亿元（+185.04%），创下历史最佳单季业绩；Q1末预付账款达18.97亿元，较2025年底增长154.6%，锁定上游产能。芯原股份Q1营收8.36亿元（+114.47%），单季度增速创历史新高；1月1日至4月20日新签订单金额45.16亿元。海光信息Q1归母净利润同比增长68.06%。科创芯片设计ETF天弘（589070）今日大涨3.12%，实时换手率9.38%居同标的第一。
+        </div>
+        <div class="card-metrics">
+            <span class="metric up">寒武纪 Q1净利 +185.04%</span>
+            <span class="metric up">寒武纪 预付账款 +154.6%</span>
+            <span class="metric up">芯原股份 Q1营收 +114.47%</span>
+            <span class="metric up">芯原 新签订单 45.16亿元</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            业绩+订单+产能锁定三重验证，国产AI芯片从主题炒作进入基本面驱动阶段。预付账款暴增说明上游产能紧张，涨价预期强烈。核心标的：寒武纪（688256）、海光信息（688041）、芯原股份（688521）、澜起科技（688008）。
+        </div>
+    </div>
+</div>
+
+<!-- ===== 港股动态 ===== -->
+<div class="section" id="hk">
+    <div class="section-title">
+        🇭🇰 港股动态
+        <span class="section-count">3 条</span>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">港股AI利好密集：阿里发布磐脉920智能网卡，千问APP月活1.65亿暴增4241%</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>新浪财经 / QuestMobile</span>
+            </div>
+        </div>
+        <div class="card-body">
+            港股互联网龙头近期持续释放AI利好。阿里平头哥发布旗下首款智能网卡磐脉920，支持万卡AI集群高速互联。QuestMobile数据显示，3月份阿里旗下千问APP月活跃用户达1.65亿，同比增长4241%，位列亿级APP增长榜首位。美团新一代基础大模型LongCat-2.0-Preview已开放测试，总参数规模突破万亿，与DeepSeek-V4基本一致，训练推理全程依托国产算力集群完成。腾讯混元Hy3 preview语言模型发布并开源，最大支持256K上下文长度。
+        </div>
+        <div class="card-metrics">
+            <span class="metric up">千问APP月活：1.65亿（+4241% YoY）</span>
+            <span class="metric neutral">阿里磐脉920：万卡集群互联</span>
+            <span class="metric neutral">美团LongCat-2.0：万亿参数</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            港股互联网龙头AI能力快速追赶，从"讲故事"进入"看业绩"的价值重估阶段。阿里（09988）AI应用数据爆发，腾讯（00700）混元开源生态扩张，美团（03690）大模型自研提速。本周财报密集：阿里5/12、腾讯5/13、中芯5/14，将成为重要催化剂。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">华泰证券：港股盈利预期持续上修，AI链中期能见度最高</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>格隆汇 / 华泰证券</span>
+            </div>
+        </div>
+        <div class="card-body">
+            华泰证券指出，港股盈利预期持续上修，互联网筑底回暖，大厂财报将成近期重要考验。流动性环境仍欠佳但盈利预期上修明显，结构分化或延续。AI链中期能见度最高，建议超配半导体（存储等）、互联网龙头及电力设备龙头，但短期财报落地叠加海外扰动加大，建议对浮盈较厚品种适度止盈。资金面方面，南向资金流向或重回净流入态势，内资长期配置港股低估值优质资产的逻辑未变。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">外资转为净流出：3.6亿美元</span>
+            <span class="metric neutral">情绪指数：37.5（悲观区间）</span>
+            <span class="metric neutral">沽空持仓比率：近五年新高</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            港股当前处于"指数上涨而情绪走弱"的背离状态，市场对远期趋于谨慎。建议沿两类确定性布局：现金流端关注低波红利；产业端AI链中期能见度最高。本周阿里/腾讯/中芯财报是重要观测窗口，若业绩超预期可能打破情绪冰点。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">港交所前4月IPO融资同比增6倍，港股迎来AI IPO大年</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>财联社 / 港交所</span>
+            </div>
+        </div>
+        <div class="card-body">
+            香港交易所数据显示，2026年首四个月有49家新上市公司，较去年同期的19家上升158%；首次公开招股集资金额达1514亿港元，同比上升604%。证券市场市价总值于2026年4月底为48.0万亿港元，同比上升24%。首四个月平均每日成交金额为2711亿港元，同比上升8%。港股IPO市场正迎来AI企业上市潮，阶跃星辰已拆除红筹架构准备赴港IPO，乐动机器人（01236.HK）今日挂牌。
+        </div>
+        <div class="card-metrics">
+            <span class="metric up">前4月IPO募资：1514亿港元（+604% YoY）</span>
+            <span class="metric up">新上市公司：49家（+158% YoY）</span>
+            <span class="metric up">港股总市值：48.0万亿港元（+24% YoY）</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            港股IPO融资暴增6倍，流动性改善将提升整体估值中枢。AI企业赴港上市潮（阶跃星辰、乐动机器人等）为港股注入新鲜血液，有望带动科技板块情绪。关注港交所（00388）本身作为平台型标的的受益逻辑，以及即将上市的AI新股申购机会。
+        </div>
+    </div>
+</div>
+
+<!-- ===== 美股动态 ===== -->
+<div class="section" id="us">
+    <div class="section-title">
+        🇺🇸 美股动态
+        <span class="section-count">3 条</span>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">美股三大指数齐创新高，费城半导体指数连涨六周涨超11%</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-09</span>
+                <span>财联社 / 华尔街见闻</span>
+            </div>
+        </div>
+        <div class="card-body">
+            上周五美股三大指数集体收涨并再创历史新高。道指涨0.02%，标普500指数涨0.84%，纳斯达克综合指数涨1.71%。纳指和标普500指数连续第六周上涨，为2024年10月以来最长连涨周期。费城半导体指数大涨5.51%，单周累计涨幅达11.14%。存储芯片股领涨全场，闪迪涨超16%，美光科技涨超15%，英特尔涨近14%，均创历史新高。纳斯达克中国金龙指数收跌0.46%，恒生指数ADR下跌0.05%。
+        </div>
+        <div class="card-metrics">
+            <span class="metric up">纳指：+1.71%（六周连涨）</span>
+            <span class="metric up">标普500：+0.84%</span>
+            <span class="metric up">费城半导体：+5.51%（单周+11.14%）</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            美股AI行情从GPU独舞扩散至全算力链共舞，半导体指数六周连涨验证产业高景气。存储芯片（美光、闪迪）成为本轮领涨先锋，反映AI Agent对内存需求的结构性拉升。中概股和港股ADR相对疲软，内资南向或需等待本周财报催化。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">AI芯片"权力交接"：英特尔年内暴涨200%，美光市值破8000亿美元</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-09</span>
+                <span>腾讯新闻 / 瑞穗证券</span>
+            </div>
+        </div>
+        <div class="card-body">
+            华尔街正经历AI投资逻辑的深层重构。曾经一枝独秀的英伟达正被投资者边缘化，资金大规模涌入英特尔、AMD、美光等此前被忽视的芯片公司。AMD和英特尔单周涨幅均约25%，美光飙升逾37%，康宁上涨约18%。上述四家公司今年以来股价均已翻倍，其中英特尔涨幅超过200%，领跑全场。相比之下，英伟达今年仅上涨约15%。瑞穗分析师Jordan Klein将此定性为AI领域的"权力交接"——AI应用从聊天机器人向AI智能体演进，催生全新硬件需求，同时全球内存芯片结构性短缺引发供需错配。
+        </div>
+        <div class="card-metrics">
+            <span class="metric up">英特尔年内：+200%+</span>
+            <span class="metric up">美光单周：+37%</span>
+            <span class="metric up">美光市值：>8000亿美元</span>
+            <span class="metric neutral">英伟达年内：+15%</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            资金从NVDA向全硬件链扩散是2026年美股AI投资的核心主题。CPU（AMD/Intel）、内存（美光/闪迪）、光纤（康宁）均受益。A股映射：CPU/内存接口（澜起科技、海光信息）、存储（兆易创新、江波龙）、光通信（中际旭创、新易盛）。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">Cerebras上调IPO定价至150-160美元，融资规模或达48亿美元</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>财联社 / 美股IPO周刊</span>
+            </div>
+        </div>
+        <div class="card-body">
+            人工智能芯片公司Cerebras Systems拟将IPO发行价区间上调至每股150至160美元，并计划发行3000万股股票。若按指导区间上限定价，IPO融资规模可能达到48亿美元，较此前预期显著上调。Cerebras的核心创新是晶圆级引擎（WSE），比NVIDIA GPU拥有更大片上存储和更高带宽。与此同时，英伟达今年已向OpenAI注资约300亿美元、向康宁投资最多32亿美元、向Iren投资21亿美元，年内AI生态投资承诺已超400亿美元。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">Cerebras IPO定价：$150-160/股</span>
+            <span class="metric neutral">融资规模：最高48亿美元</span>
+            <span class="metric neutral">英伟达2026年AI投资：>400亿美元</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            Cerebras IPO定价上调显示市场对非NVIDIA AI芯片架构的热情。晶圆级芯片若获认可，将验证chiplet/先进封装的商业可行性。英伟达400亿美元生态投资构建竞争护城河，被投公司（康宁GLW、Iren）直接受益。A股关注：长电科技、通富微电（先进封装）。
+        </div>
+    </div>
+</div>
+
+<!-- ===== 融资/IPO ===== -->
+<div class="section" id="funding">
+    <div class="section-title">
+        💰 融资/IPO
+        <span class="section-count">3 条</span>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">DeepSeek拟融资500亿元创中国AI纪录，估值515亿美元</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>中国证券报 / 澎湃新闻</span>
+            </div>
+        </div>
+        <div class="card-body">
+            国内大模型DeepSeek正在寻求其首轮融资，或募集最多500亿元人民币（约合73.5亿美元），若达成将创下中国AI企业史上最大单笔融资纪录。创始人梁文锋计划个人出资200亿元（占40%），国家集成电路产业投资基金正洽谈领投，腾讯拟出资60亿元获约2%股权。投后估值有望突破3500亿元（约515亿美元），不到一个月估值从100亿美元飙升至515亿美元。V4.1版本定档6月发布，将进一步提升推理效率和长上下文能力。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">融资规模：最高500亿元人民币</span>
+            <span class="metric neutral">投后估值：~515亿美元</span>
+            <span class="metric neutral">创始人出资：200亿元（40%）</span>
+            <span class="metric neutral">腾讯拟投：60亿元（~2%）</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            DeepSeek融资加速国产AI资本化进程，估值一个月翻5倍显示一级市场对中国AI龙头的疯狂追捧。腾讯若入股将强化其AI战略版图。间接利好DeepSeek算力供应商和生态伙伴。A股映射：AI芯片（寒武纪、海光）、服务器（工业富联、浪潮）、光模块（中际旭创）。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">阶跃星辰近25亿美元融资+拆除红筹冲刺港股IPO，月之暗面估值破200亿美元</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>每日经济新闻 / 澎湃新闻</span>
+            </div>
+        </div>
+        <div class="card-body">
+            国产大模型赛道进入"融资决战周"。阶跃星辰将完成近25亿美元融资，投资方包括华勤、龙旗、豪威、中兴等手机和消费电子产业链资本，香港投资管理有限公司也进入股东名单。工商信息显示阶跃星辰已于4月完成股改，由有限责任公司变为股份有限公司，红筹架构已拆除，港股IPO关键前置步骤完成。月之暗面完成约20亿美元融资，投后估值突破200亿美元，由美团龙珠领投，中国移动、CPE等参投。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">阶跃星辰：~25亿美元，港股IPO准备中</span>
+            <span class="metric neutral">月之暗面：~20亿美元，估值200亿美元</span>
+            <span class="metric neutral">阶跃股东：华勤/龙旗/豪威/中兴+港投公司</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            大模型"五虎"全部进入关键资本节点，港股AI赛道迎来IPO大年。阶跃星辰拆除红筹是赴港上市的明确信号，港投公司入股体现官方背书。港股已上市AI标的（商汤、第四范式）将获得估值锚定效应。A股映射：AI应用（科大讯飞、金山办公、万兴科技）。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">字节跳动AI基础设施支出计划增至2000亿元，加大国产芯片采购</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>上观新闻 / 行业媒体</span>
+            </div>
+        </div>
+        <div class="card-body">
+            据行业媒体报道，字节跳动已将今年的AI基础设施支出计划增加25%至2000亿元人民币。字节还计划把更大比例资金投向国产AI芯片。随着豆包推出会员服务、千问转型商业优先，字节和阿里开始正面竞速大模型商业化。业内预计，阿里和字节可能是今年国内AI领域投入最多的两家互联网大厂。此前字节跳动2025年资本开支约为1600亿元，此次上调至2000亿元意味着同比增长25%。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">字节2026年AI支出：2000亿元人民币</span>
+            <span class="metric up">同比增幅：+25%</span>
+            <span class="metric neutral">国产芯片采购比例：提升</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            互联网大厂AI军备竞赛升级，字节2000亿支出直接拉动国产算力产业链需求。国产芯片采购比例提升利好：华为昇腾产业链（神州数码、拓维信息）、寒武纪、海光信息。同时豆包会员化验证了国内AI应用商业化路径，利好AI应用层标的。
+        </div>
+    </div>
+</div>
+
+<!-- ===== 产业政策 ===== -->
+<div class="section" id="policy">
+    <div class="section-title">
+        📜 产业政策
+        <span class="section-count">2 条</span>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">国常会加强算力网建设，四部门推动AI与能源双向赋能</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-09~11</span>
+                <span>新华社 / 国家能源局</span>
+            </div>
+        </div>
+        <div class="card-body">
+            国务院总理李强5月9日主持召开国务院常务会议，指出要加强水网、新型电网、算力网、新一代通信网、城市地下管网、物流网等规划建设。与此同时，发改委等四部门联合编制《关于促进人工智能与能源双向赋能的行动方案》，明确提高算力设施多元电力供给能力，推动算力设施绿色低碳转型，促进算力电力高效经济协同。行动方案提出加强绿电直连政策指引，探索核电、氢能等能源以直连方式为算力中心供能。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">政策层级：国务院常务会议+四部门联合</span>
+            <span class="metric neutral">核心方向：算力网+绿色算力</span>
+            <span class="metric neutral">能源形式：绿电/核电/氢能直连</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            顶层设计将算力网提升至与电网、水网同等战略地位。算力+绿电是AI时代能源战略核心组合。利好：算力租赁与IDC（润泽科技、奥飞数据、光环新网）、绿电运营（三峡能源、龙源电力）、核电（中国核电）、储能（宁德时代、阳光电源）。
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">人形机器人：Optimus V3敲定7-8月量产，国家电网68亿元采购放量</div>
+            <div class="card-source">
+                <span class="card-date">2026-05-11</span>
+                <span>东方财富 / 财达证券</span>
+            </div>
+        </div>
+        <div class="card-body">
+            特斯拉Optimus V3敲定7-8月量产，国内头部厂商万台级订单落地，国家电网2026年采购68亿元具身智能设备，政策与设备更新资金加码等多重利好共振。近期A股人形机器人板块持续走强，概念板块指数已录得五连阳。摩根士丹利指出，技术验证→政策催化→资本涌入→供应链成熟→规模量产→成本下降→需求爆发这条路径在新能源汽车赛道已被中国完整走过一遍，如今正在人形机器人赛道上加速重演。北京人形机器人创新中心实现全局场景感知与动态记忆突破。
+        </div>
+        <div class="card-metrics">
+            <span class="metric neutral">特斯拉Optimus V3量产：7-8月</span>
+            <span class="metric neutral">国家电网采购：68亿元</span>
+            <span class="metric up">机器人概念指数：五连阳</span>
+        </div>
+        <div class="card-invest">
+            <div class="label">💡 投资视角</div>
+            人形机器人正处于从0到1向1到100跨越的关键期。特斯拉量产时间表明确，国内政策+订单双轮驱动。核心赛道：减速器（绿的谐波、双环传动）、丝杠（贝斯特、鼎智科技）、传感器（柯力传感、汉威科技）、电机（鸣志电器、步科股份）。
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- 底部导航栏 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-10.html">← 2026-05-10</a>
+    <a href="index.html" class="nav-home">🏠 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+<div class="footer">
+    <div>🤖 AI 投研日报 · 由 <strong>小荷 🪷</strong> 自动生成</div>
+    <div style="margin-top: 8px;">⏰ 生成时间：2026-05-11 08:00 CST</div>
+    <div style="margin-top: 8px;">⚠️ 免责声明：本日报仅供投资参考，不构成任何买卖建议。投资有风险，入市需谨慎。</div>
+</div>
+
+</body>
+</html>
