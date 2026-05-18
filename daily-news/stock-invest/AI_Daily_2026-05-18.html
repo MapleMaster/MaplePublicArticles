@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 投研日报 · 2026-05-18</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding-bottom: 40px;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 40px 24px 32px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 1.9em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .date {
+            font-size: 1.1em;
+            color: #8b949e;
+            margin-bottom: 12px;
+        }
+        .header .time-window {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(240, 185, 11, 0.1);
+            border: 1px solid rgba(240, 185, 11, 0.3);
+            border-radius: 20px;
+            color: #f0b90b;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+        .header .market-status {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(48, 54, 61, 0.6);
+            border: 1px solid #30363d;
+            border-radius: 16px;
+            color: #8b949e;
+            font-size: 0.85em;
+            margin-top: 8px;
+        }
+        .header .market-status .open {
+            color: #f85149;
+        }
+
+        .toc {
+            max-width: 920px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+        .toc-inner {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+        .toc-title {
+            font-size: 1.1em;
+            color: #f0f6fc;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .toc-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .toc-links a {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #8b949e;
+            transition: all 0.2s;
+        }
+        .toc-links a:hover {
+            background: #1c2333;
+            border-color: #58a6ff;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .section {
+            max-width: 920px;
+            margin: 32px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 1.3em;
+            color: #f0f6fc;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #30363d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon { font-size: 1.1em; }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover { border-color: #484f58; }
+        .card-title {
+            font-size: 1.08em;
+            color: #f0f6fc;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.82em;
+        }
+        .card-source {
+            color: #8b949e;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card-source .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .tag-us { background: rgba(88, 166, 255, 0.15); color: #58a6ff; }
+        .tag-cn { background: rgba(240, 185, 11, 0.15); color: #f0b90b; }
+        .tag-hk { background: rgba(63, 185, 80, 0.15); color: #3fb950; }
+        .tag-industry { background: rgba(139, 148, 158, 0.15); color: #8b949e; }
+        .card-body {
+            color: #c9d1d9;
+            font-size: 0.95em;
+            line-height: 1.75;
+            margin-bottom: 14px;
+        }
+        .card-body p { margin-bottom: 8px; }
+        .card-body p:last-child { margin-bottom: 0; }
+
+        .invest-view {
+            background: #0d1117;
+            border-left: 3px solid #f0b90b;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 12px;
+        }
+        .invest-view-label {
+            font-size: 0.82em;
+            color: #f0b90b;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .invest-view-body {
+            font-size: 0.9em;
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+        .ticker {
+            display: inline-block;
+            padding: 2px 8px;
+            background: rgba(56, 139, 253, 0.15);
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #58a6ff;
+            font-weight: 500;
+            margin-right: 4px;
+        }
+        .ticker-up { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+        .ticker-down { background: rgba(63, 185, 80, 0.15); color: #3fb950; }
+
+        .empty-note {
+            text-align: center;
+            padding: 24px;
+            color: #484f58;
+            font-size: 0.95em;
+            background: #161b22;
+            border: 1px dashed #30363d;
+            border-radius: 12px;
+        }
+
+        .footer {
+            max-width: 920px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+            text-align: center;
+            color: #484f58;
+            font-size: 0.85em;
+            border-top: 1px solid #21262d;
+            padding-top: 24px;
+        }
+        .footer p { margin-bottom: 6px; }
+
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.5em; }
+            .card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-17.html">&#8592; 2026-05-17</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 &#8594;</span>
+</div>
+
+<!-- Header -->
+<div class="header">
+    <h1>&#129302;&#128202; AI 投研日报</h1>
+    <div class="date">2026年5月18日 · 星期一</div>
+    <div class="time-window">&#128240; 新闻时间窗口：2026-05-17 08:00 ~ 2026-05-18 08:00（过去24小时）</div>
+    <div class="market-status">&#128197; 今日A股/港股<span class="open">开市</span> · 美股晚间开市</div>
+</div>
+
+<!-- 目录 -->
+<div class="toc">
+    <div class="toc-inner">
+        <div class="toc-title">&#128204; 目录导航</div>
+        <div class="toc-links">
+            <a href="#us">&#127482;&#127480; 美股 · 全球</a>
+            <a href="#cn">&#127464;&#127475; A股 · 国内</a>
+            <a href="#hk">&#127469;&#127472; 港股 · 科技</a>
+            <a href="#industry">&#127775; 产业 · 融资</a>
+        </div>
+    </div>
+</div>
+
+<!-- 美股 · 全球 -->
+<div class="section" id="us">
+    <div class="section-title"><span class="icon">&#127482;&#127480;</span>美股 · 全球</div>
+
+    <div class="card">
+        <div class="card-title">下周超级事件周：英伟达财报、AMD开发者日、谷歌I/O、联想天禧AI 4.0同日共振</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-us">美股</span>新浪新闻 / Gangtise投研</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>5月18日—5月24日堪称2026年AI领域"超级事件周"，四大科技节点密集落地：</p>
+            <p><strong>①英伟达2027财年Q1财报（5月20日美股盘后）</strong>：华尔街一致预期营收约$786亿（同比+78%），Q2指引约$870亿。核心看点：Blackwell GPU出货量、Hopper环比增速、中国市场H20需求恢复情况。作为全球AI算力总龙头，英伟达财报将直接决定半导体板块短期情绪。</p>
+            <p><strong>②AMD AI开发者日2026（5月19日，上海）</strong>：CEO苏姿丰确认出席，聚焦ROCm生态、MI300X客户落地进展及Instinct产品路线图。MI300X在中国市场的销售空间为最大关注点。</p>
+            <p><strong>③谷歌I/O 2026（5月19-20日）</strong>：聚焦AI与Android 17深度融合，市场预期发布Gemini 3系列模型及智能AI眼镜。谷歌作为全球AI基础设施最大投资方之一，I/O发布内容将影响全球AI应用生态预期。</p>
+            <p><strong>④联想天禧AI 4.0发布（5月19日）</strong>：核心升级为天禧Claw（AI主机伴侣），定位"专属超能搭档"，支持多模态交互与跨设备协同。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">NVDA</span><span class="ticker">AMD</span><span class="ticker">GOOGL</span><span class="ticker">992.HK</span> 四大事件同日共振，全球AI算力竞争白热化。<strong>英伟达财报</strong>是本周最大催化剂，若Blackwell出货超预期，将强化AI算力赛道信仰；若不及预期，A股光模块（中际旭创、天孚通信）、PCB（沪电股份）、散热（英维克）等算力链可能同步承压。<strong>AMD开发者日</strong>关注MI300X中国落地进展，若超预期将带动国产AI芯片情绪。<strong>谷歌I/O</strong>利好AI应用板块（软件、机器人、智能驾驶）。建议：财报前控制仓位，做好双向波动准备。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Coinbase上线四只AI基建股票永续合约，支持7x24小时杠杆交易</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-us">美股</span>Odaily</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>Coinbase宣布将于5月18日上线四只AI基础设施股票的永续合约（Perpetual Futures），包括：Cerebras Systems (CBRS)、台积电 (TSMC)、Nebius Group (NBIS) 和 Bloom Energy (BE)。</p>
+            <p>合约支持多空双向、杠杆交易及7x24小时不间断交易，面向满足流动性条件的零售与机构投资者开放。这是主流加密货币交易所首次将AI基建股票纳入永续合约标的，标志着AI概念股正加速进入衍生品交易生态。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">COIN</span><span class="ticker">TSM</span><span class="ticker">CBRS</span> Coinbase上线AI股票永续合约，说明AI基建板块已成为全球资金高度关注的主流交易标的。<strong>影响</strong>：①增加AI股票的流动性和价格发现效率；②杠杆工具将放大板块波动率；③Cerebras作为刚IPO的AI芯片新贵，其合约上线将提升市场关注度。<strong>注意</strong>：永续合约引入后，AI板块可能面临更剧烈的短期波动，需警惕高杠杆资金进出带来的"闪崩"风险。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">高瓴HHLR一季度大举增持半导体及光通信标的：英伟达、Intel、Coherent、Corning、Lumentum</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-us">美股</span>华尔街见闻 / 13F持仓披露</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>根据最新13F持仓报告，高瓴旗下HHLR Advisors在2026年一季度显著增持多只半导体及光通信相关标的，覆盖算力、芯片、数据中心互联（DCI）、光通信和光学材料等核心环节。</p>
+            <p>增持重点包括：NVIDIA（算力龙头）、Intel（CPU+AI芯片）、Coherent（光器件/DCI）、Corning（光纤/光通信材料）、Lumentum（激光/光通信）。高瓴的调仓方向明确指向AI算力基础设施全产业链，从GPU芯片到光模块再到光纤材料，形成完整的"卖铲人"组合。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">NVDA</span><span class="ticker">INTC</span><span class="ticker">COHR</span><span class="ticker">GLW</span><span class="ticker">LITE</span> 高瓴的持仓变化是顶级资本对AI算力产业链的"权威背书"。<strong>信号意义</strong>：①Coherent（LITE/COHR）和Corning（GLW）同时被增持，说明DCI（数据中心互联）和光通信材料环节被机构重新定价；②Intel获增持，可能反映市场对其Coral Rapids AI服务器CPU的期待；③光通信产业链从"光模块"向"上游材料/器件"延伸的投资逻辑被验证。<strong>A股映射</strong>：中际旭创、天孚通信（光模块）、菲利华（光纤材料）、光迅科技（光器件）。
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- A股 · 国内 -->
+<div class="section" id="cn">
+    <div class="section-title"><span class="icon">&#127464;&#127475;</span>A股 · 国内</div>
+
+    <div class="card">
+        <div class="card-title">逾60家上市公司披露扩产计划，AI算力、PCB、半导体成扩产最集中方向</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-cn">A股</span>东方财富 / 上海证券报 / 中国经济网</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>2026年开年以来，A股上市公司接连披露大额扩产与年度投资计划。据不完全统计，逾60家上市公司已披露扩产或大额投资计划，覆盖新能源、PCB产业链、半导体、光纤光棒、数据中心等多个领域，投资规模从数亿元到上百亿元不等。</p>
+            <p>AI上游企业"大手笔"全产业链协同扩张。PCB行业扩产节奏明显加快：胜宏科技、沪电股份、鹏鼎控股三家头部企业公布的投资计划总额已超过400亿元。沪电股份今年以来累计投资金额已达176亿元，是其2025年全年的5倍；胜宏科技将2026年资本开支上限抬升至200亿元。半导体行业也成为本轮产能扩张的重要一极，今年已有超20家A股半导体产业链公司宣布扩产计划。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker ticker-up">300476</span><span class="ticker ticker-up">002463</span><span class="ticker ticker-up">002938</span><span class="ticker ticker-up">688008</span> AI算力产业链扩产潮验证行业高景气。<strong>核心逻辑</strong>：①PCB是AI服务器核心增量部件（单机价值量较传统服务器提升3-5倍），龙头扩产说明订单饱满；②覆铜板、电子布等材料企业（中国巨石、生益科技）同步扩产，显示产业链上下游协同扩张；③半导体扩产聚焦先进封测等高附加值环节，设备与材料企业（北方华创、中微公司）将率先受益。<strong>风险</strong>：扩产过快可能导致2027年产能过剩，需跟踪龙头订单兑现节奏。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">多位基金经理把脉：AI产业革命是科技股核心引擎，从"训练时代"进入"推理与应用时代"</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-cn">A股</span>21经济网 / 中国基金报 / 新浪财经</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>中国基金报记者采访了多位基金经理，包括中银先锋半导体杨雷、长城改革红利赵凤飞、创金合信王先伟、诺德基金周建胜等。受访基金经理一致认为，本轮科技股行情核心驱动力在于全球AI产业革命的超预期发展，叠加业绩兑现与政策利好。</p>
+            <p>核心观点：①AI大模型从训练向推理规模化落地，从聊天机器人向生产力工具转变，Token消耗指数级增长直接转化为算力基础设施的旺盛需求；②国产芯片、国产存储及产业链进展喜人，在自主可控上迈出坚实一步；③全球各大云厂商持续上修资本开支，形成中美产业共振；④地缘冲突阶段性缓和，市场风险偏好修复，资金回流"硬科技"板块。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">688981</span><span class="ticker">688012</span><span class="ticker">688037</span><span class="ticker">300502</span> 机构共识：AI从"训练时代"进入"推理与应用时代"，算力需求逻辑重构。<strong>关键转变</strong>：推理算力需求更持久、更分散，利好边缘计算、端侧AI芯片、AI服务器配套产业链。<strong>国产替代</strong>：国产芯片（海光信息、寒武纪、龙芯中科）和国产存储（长鑫科技、兆易创新）在自主可控逻辑下持续受益。<strong>策略</strong>：基金经理普遍认为当前市场仍呈结构性特征，并未全面普涨，建议精选业绩兑现能力强的AI核心资产，避免盲目追高概念。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">算力饥荒与资本狂飙：半导体存储业再临"沸点"，SK海力士净利率飙升至77%</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-cn">A股</span>新快报 / 同花顺</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>5月11日A股半导体板块爆发，申万半导体指数盘中涨幅一度冲至2.8%，近5日主力净流入额高达492.31亿元，在全部申万二级行业中高居榜首。大洋彼岸，SK海力士今年一季度净利润同比暴涨406%，净利率飙升至77%，一举超越英伟达（65%）和台积电（58%）。</p>
+            <p>全球存储芯片价格在2026年第一季度继续狂飙40%-50%，涨幅甚至超过2018年历史高点。当AI从"讲故事"进入"交作业"阶段，存储芯片从"大宗商品"蜕变为"奢侈品"，一场席卷全球的半导体"超级周期"正在上演。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker ticker-up">688120</span><span class="ticker ticker-up">688037</span><span class="ticker ticker-up">688693</span><span class="ticker ticker-up">300666</span> 存储芯片超级周期确认，HBM（高带宽内存）是核心增量。<strong>SK海力士净利率77%</strong>创下半导体行业历史纪录，说明HBM供不应求格局极端。<strong>A股映射</strong>：①存储芯片设计（兆易创新、北京君正）；②HBM封装（通富微电、长电科技）；③存储设备（华海清科、芯源微）；④材料（雅克科技、南大光电）。<strong>注意</strong>：高盛警告"AI内存芯片繁荣正在埋下崩盘种子"——历史反复证明，低市盈率恰恰是周期顶部的常见特征，需警惕2027年供需拐点。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">国金证券：AI覆铜板/PCB及核心算力硬件、半导体设备景气加速向上</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-cn">A股</span>东方财富 / 国金证券</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>国金证券发布研报称，从AI产业链多家公司业绩超预期、谷歌TPU快速迭代、Anthropic营收爆发式增长、台积电先进制程加速扩产、CSP大厂长协抢锁存储产能及GPU租赁价格上涨来看，AI短期、中期需求都非常强劲。</p>
+            <p>国金证券研判：谷歌、亚马逊、Meta、OpenAI及微软的ASIC数量在2026-2027年将迎来爆发式增长。目前多家AI-PCB公司订单强劲、满产满销，正在大力扩产，业绩高增长有望持续。AI覆铜板需求旺盛，由于海外覆铜板扩产缓慢，大陆龙头厂商有望积极受益。细分行业景气指标：PCB（加速向上）、半导体芯片（稳健向上）、半导体代工/设备/材料/零部件（稳健向上）。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">002463</span><span class="ticker">300476</span><span class="ticker">002938</span><span class="ticker">688012</span> 券商明确看多AI-PCB和半导体设备。<strong>核心逻辑</strong>：①AI服务器用PCB层数增加、面积增大、材料升级（高速覆铜板），单机价值量较传统服务器提升3-5倍；②海外覆铜板扩产缓慢，大陆厂商（生益科技、华正新材）将承接转移订单；③ASIC爆发式增长利好先进封装（长电科技、通富微电）和半导体设备（北方华创、中微公司）。<strong>建议</strong>：关注PCB龙头订单排产情况，满产满销状态下业绩确定性高。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">发那科联手谷歌剑指实体AI！机器人ETF华夏跃升3%，机器人产业化进入"1-10"阶段</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-cn">A股</span>腾讯新闻 / 高工机器人</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>产业层面利好频传：全球工业机器人巨头发那科(FANUC)宣布与谷歌在实体人工智能(Physical AI)领域展开合作，旨在将谷歌的AI模型与发那科的机器人硬件深度融合，推动机器人在复杂环境中的自主决策与操作能力。</p>
+            <p>国内方面，FF(Faraday Future)2026年一季度经营亏损收窄18%，设定年内机器人出货1500台目标。国家级人工智能应用中试基地落地启用，助力人形机器人产业化、规模化发展，行业正式进入从小批量验证到规模化落地的"1-10"增长新阶段。全市场规模最大的机器人ETF华夏(562500)跃升3.01%，盘中成交额达7.83亿元。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker ticker-up">002747</span><span class="ticker ticker-up">688017</span><span class="ticker ticker-up">300124</span><span class="ticker ticker-up">300607</span> 机器人产业化从"0-1"进入"1-10"，2026年有望成为人形机器人规模化商业落地元年。<strong>催化因素</strong>：①发那科+谷歌合作标志传统工业机器人龙头全面拥抱AI；②特斯拉Optimus Gen-3已启动量产并交付测试；③国家电网等大额采购订单落地，产业驱动力从"主题想象"转向"订单兑现"。<strong>核心零部件</strong>：谐波减速器（绿的谐波）、行星滚柱丝杠（秦川机床、鼎智科技）、力矩传感器（柯力传感）、伺服电机（汇川技术）。<strong>注意</strong>：资金正从涨幅较大的AI算力向机器人、工业软件等"软科技"方向扩散，注意轮动节奏。
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 港股 · 科技 -->
+<div class="section" id="hk">
+    <div class="section-title"><span class="icon">&#127469;&#127472;</span>港股 · 科技</div>
+
+    <div class="card">
+        <div class="card-title">港股一周见：AI拥挤交易延续，通胀抬头引发流动性担忧，阿里腾讯财报分化</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-hk">港股</span>拔萃资本 / 新浪财经</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>上周港股三大指数齐跌：恒生指数报25,962.73点（周跌1.63%），国企指数报8,691.03点（周跌2.23%），恒生科技指数报4,941.14点（周跌3.17%）。前半周资金继续围绕AI产业链抱团，后半周因全球通胀与利率预期重新升温，风险偏好快速回落。</p>
+            <p>AI仍是当前最强交易主线，但随着全球资金持续集中于少数算力、半导体与AI平台资产，交易结构正变得越来越拥挤，波动率明显提升。市场消息称，DeepSeek首轮融资目标规模达到500亿元，总估值或突破3,500亿元；字节跳动则将2026年AI资本开支计划进一步上调至超过2,000亿元。</p>
+            <p>阿里与腾讯财报反馈分化：阿里季度收入同比增长3%，云业务收入同比增长38%，AI相关ARR已突破358亿元，财报后美股单日上涨约8%；腾讯一季度收入同比增长9%，净利润同比增长21%，资本开支达到370亿元，美股财报后涨超4%。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker ticker-up">9988.HK</span><span class="ticker ticker-up">0700.HK</span><span class="ticker ticker-down">7722.HK</span> 港股AI交易拥挤度上升，短期波动加大。<strong>关键信号</strong>：①阿里云AI收入年底剑指300亿元（ARR），AI相关产品收入占比有望超过50%，市场更愿意交易其"AI商业化弹性"；②腾讯资本开支370亿元，承认仍处于AI追赶阶段，经营稳健但AI叙事弱于阿里；③美债收益率升破4.5%，10Y美债利率突破关键关口后短期风险资产可能承压。<strong>策略</strong>：围绕业绩兑现能力与现金流较强的AI核心资产精选，同时适当关注高分红、防御性板块以应对波动。注意南方2x海力士、三星半导体等杠杆产品的剧烈波动风险。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">港股蜕变：从"互联网门面"到硬科技竞技场，IPO数量增长161%</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-hk">港股</span>上海证券报 / 同花顺</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>港股市场正经历深刻的"基因重组"。今年以来，多家硬科技企业密集登陆港交所，仅4月下旬以来就有曦智科技、乐动机器人(HK1236)、剂泰科技等标杆企业上市。与2025年同期相比，IPO项目数量增长161%，募资总额大幅提升602%。</p>
+            <p>从行业角度看，截至4月，资讯科技业、工业项目占比达68%，项目明显趋向于AI、高端装备等科技制造行业。中信证券研报称，截至2026年5月7日，港交所仍有排队上市公司442家，主要集中于生物医药、科技及制造产业。基石投资者阵容呈现国际化与多元化特征，中东主权基金、欧美资管巨头、中国公募基金及国家级投资平台等纷纷入局。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">6030.HK</span><span class="ticker">388.HK</span> 港股IPO结构从互联网转向硬科技，全球资本配置中国AI资产的重要竞技场正在形成。<strong>影响</strong>：①新增AI、机器人、半导体等优质标的，提升港股科技板块整体吸引力；②中东主权基金等长线资金入场，改善港股流动性与估值体系；③港交所(0388.HK)作为平台方直接受益于IPO放量。<strong>关注</strong>：排队上市的AI企业（如阶跃星辰、月之暗面等）若登陆港股，将带来板块情绪提振。当前港股整体估值仍处低位，真正具备"AI硬科技"属性的资产较为稀缺，资金持续集中于少数标的。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">深演智能启动招股，冲刺港股"企业决策AI智能体第一股"</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-hk">港股</span>凤凰网 / 智通财经</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>北京深演智能科技股份有限公司(02723.HK)于5月18日公告启动招股，拟全球发售906.8万股H股，发售价区间43.50-55.50港元，预计5月27日在港交所上市。公司为按2024年收入计中国营销和销售决策AI应用市场排名第一的企业。</p>
+            <p>募资用途：约50%用于持续研发AI应用产品，20%拓展销售网络，20%用于选择性战略收购，10%营运资金。公司2023-2025年收入分别为6.11亿元、5.38亿元、5.77亿元，利润下滑与客户集中度高为市场主要担忧。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">02723.HK</span> 港股AI应用IPO破冰，但深演智能基本面存在隐忧。<strong>看点</strong>：①"企业决策AI智能体第一股"概念具有稀缺性；②AI营销是AI应用落地最快的垂直场景之一；③工银国际独家保荐，IPO定价43.50-55.50港元对应估值需仔细评估。<strong>风险</strong>：收入下滑、客户集中度高（大客户流失风险）、AI营销赛道竞争激烈。可作为观察港股AI应用板块情绪的风向标，但建议观望首日表现后再做决策。
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 产业 · 融资 -->
+<div class="section" id="industry">
+    <div class="section-title"><span class="icon">&#127775;</span>产业 · 融资 · IPO</div>
+
+    <div class="card">
+        <div class="card-title">阳狮集团斥资22亿美元收购LiveRamp，强化智能体AI布局</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-industry">产业</span>Investing.com</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>法国广告与公关巨头阳狮集团(Publicis)宣布以21.67亿美元企业总价值收购数据协作公司LiveRamp(NYSE: RAMP)，收购价格每股$38.5，较公告前收盘价溢价29.8%。交易以全现金方式完成，总股权价值25.46亿美元。</p>
+            <p>阳狮集团表示，此次收购将使公司成为"数据共创领域的领导者"和"智能体业务转型的推动者"。收购完成后，阳狮上调2027-2028年净收入增长目标至7%-8%（此前6%-7%），核心EPS增长目标上调至8%-10%（此前7%-9%）。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">PUB</span><span class="ticker">RAMP</span> 全球广告巨头加速AI布局，智能体(Agent)营销成为新战场。<strong>信号</strong>：传统广告集团正在通过收购数据/AI公司来应对AI对营销行业的颠覆。AI智能体能够自动化广告投放、内容生成、客户洞察，将重塑整个广告产业链。<strong>A股映射</strong>：蓝色光标（AI营销龙头）、三人行（AI广告）、利欧股份（数字营销）。蓝色光标5月以来获融资净买入7.93亿元，市场已在交易AI营销替代逻辑。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">快手分拆可灵AI业务上市，估值200亿美元，标志大厂AI战争转向"资本叙事"</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-industry">产业</span>网易 / 财经早餐</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>快手计划将旗下可灵AI视频生成业务分拆上市，目标估值200亿美元。快手当前总市值约300亿美元，而可灵2025年营收仅10.4亿元，在集团总营收中占比不足1%。市场用真金白银投了赞成票，消息公布后快手股价一度大涨。</p>
+            <p>分析指出，快手分拆可灵标志着中国互联网大厂AI战争从"技术叙事"全面转向"资本叙事"。财务、估值、人才三重结构性矛盾共同促成了这一选择：可灵虽营收占比低，但AI视频生成是资本市场最热的赛道之一，独立上市有望释放其估值潜力。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">1024.HK</span> 大厂AI分拆潮开启，可灵估值200亿美元引发市场对AI视频赛道的重新定价。<strong>影响</strong>：①快手母公司市值仅300亿美元，可灵200亿美元估值意味着AI业务占比将大幅提升；②其他大厂（字节、百度、阿里）的AI业务也可能效仿分拆，带来港股/A股AI资产重估；③AI视频生成赛道竞争加剧（可灵vs Sora vs Runway），技术壁垒与商业化能力是关键。<strong>注意</strong>：可灵营收仅10.4亿元支撑200亿美元估值，PS倍数极高，需警惕概念炒作风险。
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">算力网要来了！全国数据中心、超算中心连成一张网，像用水用电一样用算力</div>
+        <div class="card-meta">
+            <span class="card-source"><span class="tag tag-industry">产业</span>新华社 / 华尔街见闻</span>
+            <span class="card-source">&#128197; 2026-05-18</span>
+        </div>
+        <div class="card-body">
+            <p>据新华社报道，算力网将把全国各地的数据中心、超算中心连成一张网，统一调度。用户可以直接在算力网上"买算力"，按需付费，成本自然降下来。未来或将享受到类似"算力券"，或像用水、用电、用流量套餐一样的算力便利。</p>
+            <p>同时，无锡落地省内首个华为昇腾384超节点算力集群，首批部署4台服务器、1536张GPU连成超级集群，规模居全国市场端前列，也是首个东数西算、算电融合的特大型"Token工厂"。弘信电子携手无锡高新区推进该项目。</p>
+        </div>
+        <div class="invest-view">
+            <div class="invest-view-label">&#128161; 投资视角</div>
+            <div class="invest-view-body">
+                <span class="ticker">300657</span><span class="ticker">300738</span><span class="ticker">600941</span><span class="ticker">000938</span> 算力网是国家战略级基础设施，将重塑国内算力供给格局。<strong>受益方向</strong>：①算力网络建设与运营（三大运营商、万国数据、世纪互联）；②算力调度与交易平台（潜在的新商业模式）；③东数西算节点城市的数据中心企业；④华为昇腾产业链（弘信电子、拓维信息、神州数码）。<strong>政策催化</strong>：算力券、算力补贴等配套政策有望陆续出台，降低中小企业用算成本，拉动算力需求。类比当年"宽带中国"对光通信的拉动，算力网建设可能带来一轮算力基础设施投资高峰。
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-17.html">&#8592; 2026-05-17</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 &#8594;</span>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    <p>&#129302; 由 小荷 自动生成于 2026-05-18 08:00 GMT+8</p>
+    <p>新闻时间窗口：2026-05-17 08:00 ~ 2026-05-18 08:00（过去24小时）</p>
+    <p>&#9888;&#65039; 免责声明：本日报仅供信息参考，不构成任何投资建议。投资有风险，入市需谨慎。</p>
+    <p>&#128279; <a href="https://maplemaster.github.io/MaplePublicArticles/daily-news/stock-invest/AI_Daily_2026-05-18.html">GitHub Pages 在线版</a></p>
+</div>
+
+</body>
+</html>
