@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 投研日报 · 2026-05-27</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            font-size: 1.05em;
+            color: #8b949e;
+        }
+        .header .time-window {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 8px 20px;
+            background: rgba(56, 139, 253, 0.1);
+            border: 1px solid rgba(56, 139, 253, 0.3);
+            border-radius: 20px;
+            color: #58a6ff;
+            font-size: 0.9em;
+        }
+        .header .brand {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 20px;
+            background: rgba(240, 185, 11, 0.1);
+            border: 1px solid rgba(240, 185, 11, 0.3);
+            border-radius: 20px;
+            color: #f0b90b;
+            font-size: 0.9em;
+        }
+
+        .toc {
+            max-width: 920px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+        .toc-title {
+            font-size: 1.1em;
+            color: #f0f6fc;
+            margin-bottom: 12px;
+        }
+        .toc-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+        }
+        .toc-list li a {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #8b949e;
+            transition: all 0.2s;
+        }
+        .toc-list li a:hover {
+            border-color: #58a6ff;
+            color: #58a6ff;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #f0f6fc;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #30363d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .icon { font-size: 1.2em; }
+
+        .news-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+        .news-card:hover { border-color: #484f58; }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #f0f6fc;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .card-tag {
+            font-size: 0.75em;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .tag-us { background: rgba(35, 197, 94, 0.15); color: #3fb950; }
+        .tag-cn { background: rgba(248, 81, 73, 0.15); color: #f85149; }
+        .tag-hk { background: rgba(56, 139, 253, 0.15); color: #58a6ff; }
+        .tag-industry { background: rgba(210, 153, 34, 0.15); color: #d29922; }
+
+        .card-summary {
+            color: #c9d1d9;
+            margin-bottom: 14px;
+            font-size: 0.95em;
+        }
+
+        .card-metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .metric {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: #0d1117;
+            border: 1px solid #21262d;
+            border-radius: 6px;
+            font-size: 0.85em;
+        }
+        .metric .up { color: #f85149; font-weight: 600; }
+        .metric .down { color: #3fb950; font-weight: 600; }
+
+        .card-perspective {
+            background: rgba(56, 139, 253, 0.06);
+            border-left: 3px solid #58a6ff;
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 14px;
+            font-size: 0.92em;
+        }
+        .card-perspective strong {
+            color: #58a6ff;
+        }
+
+        .card-source {
+            font-size: 0.82em;
+            color: #8b949e;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding: 32px 20px;
+            border-top: 1px solid #21262d;
+            color: #8b949e;
+            font-size: 0.85em;
+        }
+        .footer .generated {
+            margin-bottom: 8px;
+        }
+        .footer .disclaimer {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.5em; }
+            .header .time-window { font-size: 0.8em; }
+            .news-card { padding: 16px; }
+            .card-header { flex-direction: column; }
+            .section-title { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-26.html">&#8592; 2026-05-26</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 &#8594;</span>
+</div>
+
+<div class="header">
+    <h1>&#129302; AI 投研日报</h1>
+    <div class="subtitle">2026年5月27日 · 星期三</div>
+    <div class="time-window">&#128240; 新闻时间窗口：2026-05-26 08:00 ~ 2026-05-27 08:00（过去24小时）</div>
+    <div class="brand">&#127800; 小荷 AI 投研助手</div>
+</div>
+
+<div class="toc">
+    <div class="toc-title">&#128204; 目录导航</div>
+    <ul class="toc-list">
+        <li><a href="#us">&#127482;&#127480; 美股动态</a></li>
+        <li><a href="#cn">&#127464;&#127475; A股盘面</a></li>
+        <li><a href="#hk">&#127469;&#127472; 港股热点</a></li>
+        <li><a href="#industry">&#127775; 产业与融资</a></li>
+    </ul>
+</div>
+
+<div class="container">
+
+    <h2 class="section-title" id="us"><span class="icon">&#127482;&#127480;</span> 美股动态</h2>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">美光科技暴涨19%市值首破1万亿美元，存储芯片超级周期再证强度</div>
+            <span class="card-tag tag-us">美股</span>
+        </div>
+        <div class="card-summary">
+            当地时间5月26日，美光科技收盘暴涨19.29%，创2011年11月以来最大单日涨幅，市值首次突破1万亿美元大关，成为继英伟达、台积电、博通之后全球半导体行业又一只"万亿美元俱乐部"成员，同时也是美股市场罕见的10倍股。费城半导体指数同步大涨5.53%刷新历史新高。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">美光科技 <span class="up">+19.29%</span></span>
+            <span class="metric">AMD <span class="up">+7.78%</span></span>
+            <span class="metric">闪迪 <span class="up">+7.50%</span></span>
+            <span class="metric">西部数据 <span class="up">+8.34%</span></span>
+            <span class="metric">费城半导体 <span class="up">+5.53%</span></span>
+            <span class="metric">标普500 <span class="up">+0.61%</span></span>
+            <span class="metric">纳指 <span class="up">+1.19%</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>美光年内累计涨幅超200%，瑞银大幅上调目标价至1625美元（较前目标价535美元提升逾200%），看至1.8万亿美元市值。核心逻辑在于AI驱动的内存行业首次出现带固定定价的长期协议（LTA），周期属性弱化、成长属性增强。关注A股映射：澜起科技（内存接口芯片）、兆易创新（存储MCU）、江波龙（存储模组）。
+        </div>
+        <div class="card-source">
+            <span>来源：证券时报、财联社、TradingKey</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">英伟达首款智能体专用CPU Vera正式交付头部AI公司</div>
+            <span class="card-tag tag-us">美股</span>
+        </div>
+        <div class="card-summary">
+            英伟达近日宣布，首款面向智能体（Agentic AI）的专用CPU Vera正式投产交付，首批设备已送至Anthropic、OpenAI、SpaceX AI及甲骨文云等公司。Vera搭载88颗NVIDIA自研Olympus核心，内存带宽达1.2TB/s，单核性能提升50%，可搭配Rubin GPU、BlueField 4 DPU协同运作，数据供给能效较传统设施提升2倍。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">单核性能提升 <span class="up">+50%</span></span>
+            <span class="metric">内存带宽 <span class="up">1.2TB/s</span></span>
+            <span class="metric">数据能效提升 <span class="up">2倍</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>Vera CPU标志着英伟达从"GPU独舞"走向"CPU+GPU+DPU"全栈算力栈，直接冲击英特尔、AMD在数据中心CPU领域的传统格局。智能体AI被视为英伟达新的"数十亿美元级业务"，CPU价值量占比提升利好A股服务器产业链（工业富联、浪潮信息、中科曙光）。
+        </div>
+        <div class="card-source">
+            <span>来源：每日经济新闻、NVIDIA Forums</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">瑞银将美光目标价大幅上调至1625美元，LTA模式重塑存储估值逻辑</div>
+            <span class="card-tag tag-us">美股</span>
+        </div>
+        <div class="card-summary">
+            瑞银集团5月26日发布研报，将美光科技目标价从535美元大幅上调至1625美元，创下华尔街最高目标价，意味着较上周五收盘价有超100%的上行空间。瑞银指出，内存行业首次出现带部分固定定价的长期协议（LTA），将显著平滑盈利波动、削弱周期属性，推动市场从"周期股估值"转向"成长股估值"。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">瑞银目标价 <span class="up">$1,625</span></span>
+            <span class="metric">原目标价 <span class="up">$535</span></span>
+            <span class="metric">上调幅度 <span class="up">+204%</span></span>
+            <span class="metric">市值展望 <span class="up">$1.8万亿</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>LTA模式若成为行业标配，将彻底改变存储芯片"强周期、高波动"的投资属性。HBM量价齐升+LTA平滑周期=戴维斯双击。关注港股映射：SK海力士（HBM龙头）、三星电子；A股映射：深科技（存储封测）、香农芯创（存储分销）、佰维存储。
+        </div>
+        <div class="card-source">
+            <span>来源：瑞银研报、财联社、证券时报</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <h2 class="section-title" id="cn"><span class="icon">&#127464;&#127475;</span> A股盘面</h2>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">A股算力板块分化调整，资金向有业绩支撑的核心标的集中</div>
+            <span class="card-tag tag-cn">A股</span>
+        </div>
+        <div class="card-summary">
+            5月26日，A股算力相关板块内部分化。半导体材料设备板块下跌2.98%，科创芯片设计板块下跌2.98%。但个股层面显著分化——国产AI芯片龙头海光信息逆势上涨3.48%，拓荆科技上涨4.02%，显示资金在调整中向有业绩支撑的核心标的集中，而前期涨幅较大的标的出现获利回吐。有跌有涨的格局说明调整更多来自交易层面，而非基本面逻辑动摇。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">半导体材料设备 <span class="down">-2.98%</span></span>
+            <span class="metric">科创芯片设计 <span class="down">-2.98%</span></span>
+            <span class="metric">海光信息 <span class="up">+3.48%</span></span>
+            <span class="metric">拓荆科技 <span class="up">+4.02%</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>板块内部分化是行情从"Beta普涨"走向"Alpha精选"的必然过程。有业绩、有订单、有产能的核心标的抗跌甚至逆势上涨，纯题材标的回调明显。操作策略：对高位纯题材逐步止盈，向有Q2业绩兑现预期的低位核心标的切换。关注海光信息（CPU+DCU双轮驱动）、拓荆科技（薄膜沉积设备）。
+        </div>
+        <div class="card-source">
+            <span>来源：腾讯新闻、新浪财经</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">AI算力缺货从GPU烧向整条产业链：光模块/PCB/存储/交换机/MLCC/电源/液冷七大瓶颈</div>
+            <span class="card-tag tag-cn">A股</span>
+        </div>
+        <div class="card-summary">
+            5月26日，市场开始重新审视AI算力系统的完整供应链。如果说过去两年市场对AI基础设施的理解还停留在"买英伟达GPU"这一个环节，那么进入2026年，整个故事正在从"一张卡"升级为"一套系统"。AI算力系统需要高速光模块做数据传输、高多层PCB做信号承载、存储芯片做数据缓存、交换机做流量调度、MLCC电容维持电路稳定、电源管理做电力分配、液冷散热做温度控制——七个环节缺一个都转不动。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">光模块 <span class="up">紧缺</span></span>
+            <span class="metric">PCB <span class="up">涨价</span></span>
+            <span class="metric">存储 <span class="up">短缺</span></span>
+            <span class="metric">MLCC <span class="up">涨价</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>"GPU之外"的产业链环节正在迎来价值重估。通信ETF华夏（515050）跟踪指数CPO+PCB概念股权重合计近80%，年内涨幅超56%。七大瓶颈环节对应A股标的：光模块（中际旭创、新易盛、天孚通信）、PCB（沪电股份、深南电路、胜宏科技）、MLCC（风华高科、三环集团）、存储（兆易创新、澜起科技）、液冷（英维克、高澜股份）。
+        </div>
+        <div class="card-source">
+            <span>来源：新浪财经、财闻</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">A股融资余额历史首次站上2.9万亿元，电子行业净买入遥遥领先</div>
+            <span class="card-tag tag-cn">A股</span>
+        </div>
+        <div class="card-summary">
+            截至2026年5月25日，A股融资余额历史首次站上2.9万亿元，达29035.40亿元。此前两融余额已于5月20日率先突破2.9万亿。电子行业融资净买入额遥遥领先，半导体板块最受青睐。个人投资者（杠杆资金、龙虎榜等）仍是当前主要买入力量，但净买入幅度有所放缓。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">融资余额 <span class="up">2.90万亿</span></span>
+            <span class="metric">历史首次 <span class="up">突破2.9万亿</span></span>
+            <span class="metric">电子行业 <span class="up">净买入第一</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>融资余额创新高反映市场风险偏好处于高位，但需警惕"做多半导体"已成为全球最拥挤的交易之一（24%基金经理集中押注）。一旦资金共识松动，高杠杆持仓可能放大波动。国金证券提示：当前AI行情处于"理性狂热"阶段，泡沫已现但并未失控，中期需关注产业兑现度。
+        </div>
+        <div class="card-source">
+            <span>来源：华尔街见闻、国金证券</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <h2 class="section-title" id="hk"><span class="icon">&#127469;&#127472;</span> 港股热点</h2>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">港股AI半导体逆势爆发：恒科+1.59%，联想+15.5%创新高，华虹+10%</div>
+            <span class="card-tag tag-hk">港股</span>
+        </div>
+        <div class="card-summary">
+            5月26日，港股三大指数涨跌不一，恒生指数微跌0.03%，但恒生科技指数大涨1.59%报4946.88点。AI产业链继续爆发：联想集团大涨15.5%创历史新高，全年AI相关营收同比翻倍；华虹半导体涨超10%，中芯国际涨5.70%，均受益于华为"韬定律"发布带来的国产半导体情绪提振。智谱涨4.91%，MiniMax涨0.07%，两者将于6月被纳入恒生科技指数。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">恒生科技 <span class="up">+1.59%</span></span>
+            <span class="metric">联想集团 <span class="up">+15.50%</span></span>
+            <span class="metric">华虹半导体 <span class="up">+10.45%</span></span>
+            <span class="metric">中芯国际 <span class="up">+5.70%</span></span>
+            <span class="metric">智谱 <span class="up">+4.91%</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>联想集团FY26营收5899亿元（+20.3%），AI相关收入同比翻倍至105亿元，AI服务器订单储备达1400亿元，验证AI服务器需求爆发。恒科指纳入智谱、MiniMax是历史性时刻——首次纳入纯AI大模型原生龙头，指数"AI含量"将系统性提升，长期利好恒科指估值重估。关注联想集团（00992.HK）、华虹半导体（01347.HK）。
+        </div>
+        <div class="card-source">
+            <span>来源：财联社、网易新闻、Investing.com</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">深演智能今日挂牌港交所，成"企业决策AI智能体第一股"</div>
+            <span class="card-tag tag-hk">港股</span>
+        </div>
+        <div class="card-summary">
+            5月27日，深演智能正式登陆港交所，成为"企业决策AI智能体第一股"。公司此前孖展超购4056倍，冻资2041亿港元，市场热度极高。深演智能专注于AI驱动的企业营销与决策智能体解决方案，是AI应用层商业化落地的代表性企业。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">孖展超购 <span class="up">4056倍</span></span>
+            <span class="metric">冻资 <span class="up">2041亿港元</span></span>
+            <span class="metric">挂牌日期 <span class="up">2026-05-27</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>深演智能超高认购倍数反映市场对AI应用层标的的追捧热情。港股AI IPO热潮持续升温，年内募资已超1500亿港元，同比暴增574%。AI应用层商业化加速是2026年重要投资主线，关注同类型标的：明略科技（2718.HK）、第四范式（6682.HK）、商汤（0020.HK）。
+        </div>
+        <div class="card-source">
+            <span>来源：格隆汇、腾讯新闻</span>
+            <span>发布时间：2026-05-27</span>
+        </div>
+    </div>
+
+    <h2 class="section-title" id="industry"><span class="icon">&#127775;</span> 产业与融资</h2>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">长鑫科技今日（5/27）IPO上会，国产存储"双雄"冲刺A股万亿市值</div>
+            <span class="card-tag tag-industry">IPO</span>
+        </div>
+        <div class="card-summary">
+            据媒体5月23日报道，长鑫科技IPO将于5月27日上会，长江存储已进入上市辅导阶段。市场对二者估值预期颇高，普遍认为上市后市值均有望突破1万亿元，甚至冲击2万亿元。受益于AI基建热潮，国内存储芯片"双雄"相继冲刺A股，若顺利过会将深刻改变A股半导体板块格局。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">上会日期 <span class="up">2026-05-27</span></span>
+            <span class="metric">预期市值 <span class="up">1-2万亿</span></span>
+            <span class="metric">长江存储 <span class="up">辅导中</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>长鑫科技若顺利过会并上市，将成为科创板市值最大的半导体公司之一，带动国产存储产业链全面重估。关注产业链受益标的：兆易创新（持有长鑫1.80%股权）、深科技（封测）、雅克科技（材料）、北方华创（设备）。同时需关注上市后对存量存储标的的资金分流效应。
+        </div>
+        <div class="card-source">
+            <span>来源：证券时报、腾讯新闻</span>
+            <span>发布时间：2026-05-23（5/27上会）</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">深圳"十五五"规划：昇腾生态整体出海，具身智能等成新兴支柱产业</div>
+            <span class="card-tag tag-industry">政策</span>
+        </div>
+        <div class="card-summary">
+            5月26日，《深圳市国民经济和社会发展第十五个五年规划纲要》发布。其中提出：推动集昇腾软硬件生态和标准规范于一体的"中国人工智能体系"整体出海；统筹推进智算芯片研发制造、算力设施建设和模型算法发展；大力发展人工智能终端、具身智能机器人、低空经济、商业航天等一批新兴支柱产业；打造全球具身智能科技创新和产业发展高地。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">昇腾生态 <span class="up">整体出海</span></span>
+            <span class="metric">具身智能 <span class="up">支柱产业</span></span>
+            <span class="metric">智算芯片 <span class="up">研发制造</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>深圳十五五规划首次将"中国人工智能体系整体出海"写入地方政府纲领性文件，标志着国产AI生态从"自主可控"走向"全球输出"。昇腾产业链（华为合作伙伴）和具身智能产业链（三花智控、拓普集团、绿的谐波）获得政策加持。深圳本地AI标的：云天励飞、奥比中光、优必选。
+        </div>
+        <div class="card-source">
+            <span>来源：澎湃新闻、新浪财经</span>
+            <span>发布时间：2026-05-26</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">马斯克宣布Grok V9-Medium完成训练，1.5万亿参数剑指编程Agent</div>
+            <span class="card-tag tag-industry">大模型</span>
+        </div>
+        <div class="card-summary">
+            5月25日，马斯克在X平台宣布，Grok基础模型V9-Medium（1.5万亿参数）已完成训练，评估表现良好。该模型现阶段进入微调阶段，强化学习工作将在数日后启动，预计2~3周内正式上线。与当前主力运行的0.5T版本V8-Small相比，V9在复杂编码任务处理能力上提升尤为突出。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">参数规模 <span class="up">1.5万亿</span></span>
+            <span class="metric">当前版本 <span class="up">0.5T</span></span>
+            <span class="metric">预计上线 <span class="up">2-3周内</span></span>
+            <span class="metric">重点能力 <span class="up">编程Agent</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>马斯克以600亿美元锁定Cursor+Grok Build编程Agent上线+Grok V9训练完成，三步棋全部落定，剑指6月与OpenAI、Anthropic正面交锋。AI编程赛道竞争白热化，利好AI应用层商业化加速。关注A股AI编程/软件开发标的：金蝶国际、用友网络、恒生电子。
+        </div>
+        <div class="card-source">
+            <span>来源：每日经济新闻、X平台</span>
+            <span>发布时间：2026-05-25</span>
+        </div>
+    </div>
+
+    <div class="news-card">
+        <div class="card-header">
+            <div class="card-title">国金晨讯：决定AI牛市的关键变量——Agentic AI商业闭环验证</div>
+            <span class="card-tag tag-industry">宏观策略</span>
+        </div>
+        <div class="card-summary">
+            5月27日早间，国金证券发布晨讯指出：当前AI行情处于"理性狂热"阶段，泡沫已现但并未失控。底层支撑是Agentic AI从辅助工具向自主执行工具的跃迁，验证了"烧钱"到"赚钱"的商业闭环。AI牛市能否延续，短期看流动性冲击，中期看产业兑现度，长期直面能源物理瓶颈。
+        </div>
+        <div class="card-metrics">
+            <span class="metric">阶段判断 <span class="up">理性狂热</span></span>
+            <span class="metric">核心支撑 <span class="up">Agentic AI</span></span>
+            <span class="metric">短期变量 <span class="up">流动性</span></span>
+            <span class="metric">中期变量 <span class="up">产业兑现</span></span>
+        </div>
+        <div class="card-perspective">
+            <strong>投资视角：</strong>国金证券将当前AI行情定性为"理性狂热"——有泡沫但未失控，与1998年互联网周期有本质区别。核心建议是"大胆假设、小心求证"：看好AI主线但需关注估值与业绩的匹配度。资金从"泛AI"转向"窄AI"，精选有业绩兑现能力的标的。警惕高位抱团风险，做好高低切换。
+        </div>
+        <div class="card-source">
+            <span>来源：国金证券、东方财富</span>
+            <span>发布时间：2026-05-27</span>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <div class="generated">&#128336; 生成时间：2026-05-27 08:00 CST | &#127800; 小荷 AI 投研助手</div>
+    <div class="disclaimer">
+        &#9888; 免责声明：本日报仅供投资参考，不构成任何买卖建议。市场有风险，投资需谨慎。<br>
+        所有新闻均标注来源与发布时间，读者可自行验证时效性与准确性。
+    </div>
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-05-26.html">&#8592; 2026-05-26</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 &#8594;</span>
+</div>
+
+</body>
+</html>
