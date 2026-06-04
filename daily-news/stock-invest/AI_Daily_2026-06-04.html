@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI投研日报 · 2026-06-04</title>
+<style>
+  body { background: #0d1117; color: #c9d1d9; font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; margin: 0; padding: 0; }
+  a { color: #58a6ff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .daily-nav {
+    max-width: 920px;
+    margin: 16px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .daily-nav a, .daily-nav span.nav-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+  }
+  .daily-nav a { color: #58a6ff; background: #161b22; }
+  .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+  .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+  .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240,185,11,0.3); background: rgba(240,185,11,0.06); }
+  .daily-nav .nav-home:hover { background: rgba(240,185,11,0.12); border-color: rgba(240,185,11,0.5); }
+  @media (max-width: 640px) {
+    .daily-nav { flex-wrap: wrap; justify-content: center; }
+    .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+  }
+  .header { max-width: 920px; margin: 0 auto; padding: 40px 20px 20px; text-align: center; }
+  .header h1 { font-size: 2em; margin: 0 0 8px; color: #f0b90b; }
+  .header .subtitle { color: #8b949e; font-size: 1em; }
+  .time-window {
+    max-width: 920px;
+    margin: 8px auto 0;
+    padding: 10px 20px;
+    background: rgba(240,185,11,0.08);
+    border: 1px solid rgba(240,185,11,0.25);
+    border-radius: 8px;
+    color: #f0b90b;
+    font-size: 0.95em;
+    text-align: center;
+    font-weight: 600;
+  }
+  .toc { max-width: 920px; margin: 24px auto; padding: 0 20px; }
+  .toc h2 { color: #f0b90b; font-size: 1.1em; margin: 0 0 12px; }
+  .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toc-links a {
+    display: inline-block; padding: 6px 14px; background: #161b22;
+    border: 1px solid #30363d; border-radius: 20px; font-size: 0.85em; color: #c9d1d9;
+  }
+  .toc-links a:hover { border-color: #58a6ff; color: #58a6ff; text-decoration: none; }
+  .section { max-width: 920px; margin: 32px auto; padding: 0 20px; }
+  .section-title { font-size: 1.3em; font-weight: 700; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 2px solid #21262d; }
+  .news-card {
+    background: #161b22; border: 1px solid #21262d; border-radius: 10px;
+    padding: 16px 20px; margin-bottom: 14px; transition: border-color 0.2s;
+  }
+  .news-card:hover { border-color: #30363d; }
+  .news-card h3 { margin: 0 0 8px; font-size: 1.05em; color: #e6edf3; line-height: 1.5; }
+  .news-card .summary { font-size: 0.9em; color: #8b949e; line-height: 1.7; margin-bottom: 10px; }
+  .news-card .meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .news-card .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 0.75em; font-weight: 600;
+  }
+  .tag-ashare { background: rgba(248,81,73,0.15); color: #f85149; }
+  .tag-hk { background: rgba(63,185,80,0.15); color: #3fb950; }
+  .tag-us { background: rgba(88,166,255,0.15); color: #58a6ff; }
+  .tag-industry { background: rgba(240,185,11,0.15); color: #f0b90b; }
+  .news-card .investment { font-size: 0.85em; color: #f0b90b; margin-top: 8px; padding: 8px 10px; background: rgba(240,185,11,0.06); border-radius: 6px; border-left: 3px solid #f0b90b; }
+  .news-card .source { font-size: 0.78em; color: #484f58; margin-top: 8px; }
+  .news-card .date-tag { font-size: 0.72em; color: #58a6ff; background: rgba(88,166,255,0.1); padding: 2px 6px; border-radius: 4px; }
+  .footer { max-width: 920px; margin: 48px auto 24px; padding: 20px; text-align: center; color: #484f58; font-size: 0.82em; border-top: 1px solid #21262d; }
+  .footer a { color: #58a6ff; }
+  .disclaimer { max-width: 920px; margin: 16px auto; padding: 12px 20px; background: rgba(248,81,73,0.06); border: 1px solid rgba(248,81,73,0.2); border-radius: 8px; color: #f85149; font-size: 0.82em; }
+</style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<div class="daily-nav">
+  <a href="AI_Daily_2026-06-03.html">← 2026-06-03</a>
+  <a href="index.html" class="nav-home">🏠 日报主页</a>
+  <span class="nav-disabled">无更新 →</span>
+</div>
+
+<div class="header">
+  <h1>🤖 AI 投研日报</h1>
+  <div class="subtitle">2026年6月4日 · 星期四</div>
+</div>
+
+<div class="time-window">
+  📰 新闻时间窗口：2026-06-03 08:00 ~ 2026-06-04 08:00（过去24小时）
+</div>
+
+<div class="toc">
+  <h2>📋 目录导航</h2>
+  <div class="toc-links">
+    <a href="#ashare">🇨🇳 A股动态</a>
+    <a href="#hk">🇭🇰 港股动态</a>
+    <a href="#us">🇺🇸 美股动态</a>
+    <a href="#industry">🔬 产业融资</a>
+  </div>
+</div>
+
+<!-- A股动态 -->
+<div class="section" id="ashare">
+  <div class="section-title">🇨🇳 A股 · AI板块动态</div>
+
+  <div class="news-card">
+    <h3>💻 英伟达入局PC处理器，A股AI PC板块连续上涨</h3>
+    <div class="meta">
+      <span class="tag tag-ashare">A股</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      6月1日，英伟达CEO黄仁勋在GTC Taipei 2026上宣布正式进军PC处理器市场，发布RTX Spark平台（SoC芯片），集成20核Grace CPU+Blackwell GPU，128GB统一内存，6144个CUDA核心，搭载Windows系统，今年秋季上市。受此影响，A股AI PC板块接连上涨，截至6月3日收盘，春秋电子、雷神科技、英力股份等涨幅显著。分析认为，英伟达入局是端侧AI爆发的起点，AI推理时代全面开启，国内产业链可重点关注AI PC供应链标的。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>关注A股AI PC供应链——春秋电子(301366)、雷神科技、英力股份；AI推理芯片国产替代方向持续受益；端侧AI算力需求爆发，可关注SoC芯片、存储芯片、散热模组等细分赛道。
+    </div>
+    <div class="source">📌 来源：上海证券报 | 2026-06-04 07:47</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🔥 6月3日A股光芯概念大涨，成交额1.9万亿，半导体产业链强势</h3>
+    <div class="meta">
+      <span class="tag tag-ashare">A股</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      6月3日，A股继续追"光"逐"芯"，光芯片、超硬材料、光模块、光通信、GPU等概念涨幅居前。源杰科技涨超18%，仕佳光子、裕太微涨超16%，天孚通信、长光华芯、太辰光、联讯仪器、中际旭创等涨超10%。大唐电信、立昂微、华盛昌、剑桥科技、亨通光电等多股涨停。消息面，迈威尔科技（Marvell）隔夜美股飙升超30%，CEO表示数据中心连接（Connectivity）正成为AI增长下一个主要瓶颈，带动A股光互联板块情绪高涨。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>CPO/光互联赛道持续高景气，关注中际旭创(300308)、新易盛(300502)、天孚通信(300394)、源杰科技(688498)；AI数据中心连接需求爆发，光模块/光芯片龙头受益明显；注意短期涨幅较大后的回调风险。
+    </div>
+    <div class="source">📌 来源：大河财立方 | 2026-06-03</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🧠 CPU重回AI算力聚光灯下，国产CPU厂商获"替代窗口"</h3>
+    <div class="meta">
+      <span class="tag tag-ashare">A股</span>
+      <span class="tag tag-industry">产业</span>
+      <span class="date-tag">2026-06-04</span>
+    </div>
+    <div class="summary">
+      曾被GPU抢尽风头的CPU正在重回AI算力舞台中央。6月1日，英伟达宣布Vera CPU正式进入量产，Q3投产；5月下旬，AMD宣布下一代EPYC CPU"Venice"进入量产。分析师指出，Agentic AI时代，CPU与GPU配比将从1:4变为1:1，CPU需求大爆发。国内厂商亦动作不断：龙芯中科5月28日推出23亿元定增方案，其中4.85亿元投向CPU关键核心技术研发。国产CPU厂商在自主可控趋势下有望迎来规模化替代与产业地位重估。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>CPU超级周期开启，关注国产CPU标的——龙芯中科(688047)、海光信息(688041)、澜起科技(688008)；同时关注CPU封装测试供应链——通富微电(002156)等。
+    </div>
+    <div class="source">📌 来源：证券时报 | 2026-06-04 A003版</div>
+  </div>
+
+  <div class="news-card">
+    <h3>⚡ 大全能源拟投60亿元跨界AI智慧能源，一季度现金仅9亿元引关注</h3>
+    <div class="meta">
+      <span class="tag tag-ashare">A股</span>
+      <span class="tag tag-industry">产业</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      光伏硅料龙头大全能源（SH688303）6月3日公告，拟斥资60亿元在昆山建设"大全智慧能源系统制造基地项目"，主要从事智慧能源系统解决方案及相关设备（储能系统、固态变压器、固态断路器和固态电池等）的研发、制造与销售，精准指向AI智算中心（AIDC）赛道。但公司2026年一季报显示期末现金仅9.01亿元，较年初骤降逾七成，市场关注其资金筹措能力。公司表示资金来源于自有或自筹资金，2025年末账面资金储备约132.3亿元。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>AI算力驱动AIDC供配电系统升级，固态变压器/固态断路器赛道值得关注；大全能源转型能否成功仍待观察，注意跨界风险；可关注已布局AIDC供电赛道的优质标的——盛弘股份、科华数据、科士达等。
+    </div>
+    <div class="source">📌 来源：每日经济新闻 | 2026-06-04</div>
+  </div>
+
+  <div class="news-card">
+    <h3>📈 6月3日A股冲高回落，科技主线不变，创业板指涨1.65%创新高</h3>
+    <div class="meta">
+      <span class="tag tag-ashare">A股</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      6月3日，A股整体冲高回落，上证指数收报4083.97点涨0.22%，深证成指涨0.73%，创业板指涨1.65%收报4122.99点创近期新高，科创综指涨2.10%。两市成交额3.15万亿元，较前日放量3403亿元。盘面上，光通信、CPO、半导体、AI硬件板块强势，但午后多只科技龙头冲高回落。中际旭创成交额达438.81亿元位居A股第一，新易盛、工业富联、天孚通信成交额均超300亿元。市场结构性分化持续，科技主线不变。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>创业板/科创板持续强势，AI硬件/半导体仍是核心主线；成交额放量至3万亿+，资金持续流入科技赛道；关注光模块龙头中际旭创、新易盛、工业富联；短期注意高位震荡风险。
+    </div>
+    <div class="source">📌 来源：东方财富/财联社 | 2026-06-04</div>
+  </div>
+
+</div><!-- end ashare section -->
+
+<!-- 港股动态 -->
+<div class="section" id="hk">
+  <div class="section-title">🇭🇰 港股 · AI板块动态</div>
+
+  <div class="news-card">
+    <h3>🤖 恒生科技指数纳入智谱与MiniMax，AI主题转型里程碑</h3>
+    <div class="meta">
+      <span class="tag tag-hk">港股</span>
+      <span class="date-tag">2026-06-02</span>
+    </div>
+    <div class="summary">
+      恒生指数公司宣布将智谱、MiniMax正式纳入恒生科技指数，新成分股自6月起生效。智谱总市值已超6600亿港元，近一个月日均成交额超300亿港元；MiniMax市值约2100亿港元，累计服务超2.36亿全球用户及21.4万家企业客户。华泰证券指出，此次调整是恒生科技指数向AI主题转型的里程碑式变革，有望填补指数AI板块权重空白。2025年以来恒生科技指数累计上涨40.1%，但AI板块贡献度不足10%，新成分股加入后有望改善这一格局。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>港股AI资产配置价值提升，恒生科技指数ETF（3032.HK等）受益；智谱(26050.HK)、MiniMax(26060.HK)纳入指数后被动资金流入；关注港股AI板块估值重塑机会。
+    </div>
+    <div class="source">📌 来源：腾讯财经 | 2026-06-04</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🚗 小马智行、文远知行正式纳入港股通，6月4日生效</h3>
+    <div class="meta">
+      <span class="tag tag-hk">港股</span>
+      <span class="tag tag-industry">政策</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      6月3日，上海证券交易所公告，小马智行（PONY-W，02026.HK）和文远知行（WERIDE-W，00800.HK）正式被纳入港股通标的证券名单，调整于6月4日正式生效。纳入后，符合条件的内地投资者可通过港股通机制买卖两只股票。这是中国自动驾驶科技企业首次进入港股通，标志着L4自动驾驶赛道获得内地资本市场直接赋能，后续有望吸引更多南向资金配置。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>自动驾驶港股标的纳入港股通，南向资金增量可期；关注小马智行(02026.HK)、文远知行(00800.HK)；A股自动驾驶/车路协同标的亦有望联动受益。
+    </div>
+    <div class="source">📌 来源：上交所公告 | 2026-06-03</div>
+  </div>
+
+  <div class="news-card">
+    <h3>💰 腾讯AI智能体计划推进，港股大涨10.46%，燧原科技IPO二轮问询</h3>
+    <div class="meta">
+      <span class="tag tag-hk">港股</span>
+      <span class="date-tag">2026-06-02</span>
+    </div>
+    <div class="summary">
+      6月2日，腾讯控股（00700.HK）大涨10.46%，收盘报481.6港元，单日成交477.89亿港元。消息面，腾讯正加速推进在微信内嵌AI智能体的计划，分析认为可能重塑国内AI应用竞争格局。同日，腾讯核心国产算力供货商燧原科技披露科创板IPO二轮问询回复，监管围绕其与腾讯的关联交易展开问询——2025年燧原来自腾讯的营收占比高达83.79%。腾讯AI商业化落地进度，将成为左右燧原后续业绩成长的关键变量。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>腾讯AI战略加速，关注腾讯控股(00700.HK)AI变现进展；燧原科技IPO进展值得关注，国产AI芯片供应链标的受益；微信AI智能体若落地，将带动大模型应用生态全面爆发。
+    </div>
+    <div class="source">📌 来源：北京商报 | 2026-06-04</div>
+  </div>
+
+  <div class="news-card">
+    <h3>📊 港股6月2日全线飙升，科技股与AI概念引领，恒生科技指数涨4.72%</h3>
+    <div class="meta">
+      <span class="tag tag-hk">港股</span>
+      <span class="date-tag">2026-06-02</span>
+    </div>
+    <div class="summary">
+      6月2日，港股三大指数集体上攻，恒生指数涨2.52%，国企指数涨3%，恒生科技指数涨4.72%。科技板块全线爆发，腾讯控股涨10.46%，美团-W涨9.27%，京东集团-SW涨6.85%，阿里巴巴-W涨6.6%，心动公司涨5.96%。AI应用、云计算、智能驾驶概念同步走强。银河证券指出，市场正在重新定义港股核心资产——从"平台经济"到"硬科技"，AI是正在重塑港股估值体系的长期产业趋势。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>港股科技股估值重塑持续，AI算力+大模型应用双主线；关注腾讯(00700)、阿里(09988)、百度(09888)、快手(01024)等核心标的；港股通信息技术ETF(513240)等工具型产品受益。
+    </div>
+    <div class="source">📌 来源：腾讯财经 | 2026-06-02</div>
+  </div>
+
+</div><!-- end hk section -->
+
+<!-- 美股动态 -->
+<div class="section" id="us">
+  <div class="section-title">🇺🇸 美股 · AI板块动态</div>
+
+  <div class="news-card">
+    <h3>🏆 英伟达再度超越微软，重登全球市值第一宝座</h3>
+    <div class="meta">
+      <span class="tag tag-us">美股</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      6月3日，英伟达（NVDA）股价上涨约3%，收于141.40美元，市值约3.45万亿美元，再度超越微软（MSFT，市值3.44万亿美元），登顶全球最具价值上市公司。英伟达近期涨势源于上周发布的强劲财年Q1财报：调整后EPS 0.96美元，营收440.6亿美元，同比增长69%。其AI加速器被Meta、Alphabet、Amazon、Oracle、xAI等科技巨头批量采购。英伟达与微软在全球市值榜首频繁轮换，自2023年中期以来已多次交替登顶。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>英伟达龙头地位稳固，AI算力需求持续强劲；关注英伟达(NVDA)及供应链——台积电(TSM)、迈威尔科技(MRVL)、美光(MU)；AI算力基础设施投资浪潮持续，关注数据中心REITs及电力基础设施标的。
+    </div>
+    <div class="source">📌 来源：GuruFocus | 2026-06-03</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🤝 AMD与Meta达成600亿美元AI芯片供应协议，期限五年</h3>
+    <div class="meta">
+      <span class="tag tag-us">美股</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      据路透报道，AMD（超威半导体）宣布与Meta达成一项价值高达600亿美元的人工智能芯片供应协议，协议为期五年。根据协议，Meta有权购买AMD高达10%的股份，成为其核心股东之一。此次合作核心在于高度定制化的硬件解决方案，AMD将为Meta提供包括定制版中央处理器（CPU）在内的多代产品，专门针对Meta的低能耗和高性能需求进行优化。消息发布后，AMD股价在盘前交易中一度飙升15%，收涨约4%。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>AMD大客户绑定战略成效显著，挑战英伟达生态壁垒；关注AMD(AMD)CPU+GPU双线受益；Meta(META)AI基础设施成本优化，利好长期盈利能力；AI芯片竞争格局加速演进，利好下游云计算/互联网公司。
+    </div>
+    <div class="source">📌 来源：新浪财经 | 2026-06-03</div>
+  </div>
+
+  <div class="news-card">
+    <h3>📉 博通上季营收增48%再创新高，但AI芯片指引逊于预期，盘后跌超10%</h3>
+    <div class="meta">
+      <span class="tag tag-us">美股</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      博通（AVGO）第二财季营收超预期同比增长48%，EPS同比增54%，AI半导体收入增逾140%。但第三财季指引显示，AI半导体收入预计为160亿美元，较分析师预期均值低约7%；CEO陈福阳表示本财年AI芯片销售额将达560亿美元，也较预期均值低近3%。电话会上透露，博通为OpenAI开发芯片，将于2027财年部署1.3GW算力。受指引逊色影响，博通盘后跌超10%。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>博通AI芯片指引低于预期，反映定制芯片赛道竞争加剧；关注博通(AVGO)估值回调后的配置机会；OpenAI自研芯片进展值得关注，或重塑AI芯片供应链格局；定制芯片 vs GPU通用芯片路线之争持续。
+    </div>
+    <div class="source">📌 来源：华尔街见闻 | 2026-06-04</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🚀 Anthropic选定摩根士丹利和高盛主导IPO，最早今年10月上市，估值9650亿美元</h3>
+    <div class="meta">
+      <span class="tag tag-us">美股</span>
+      <span class="tag tag-industry">IPO</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      Anthropic已选定摩根士丹利和高盛集团主导其IPO，摩根大通亦参与承销，上市准备工作进入实质性阶段，最早可能于今年10月完成上市。Anthropic在5月下旬完成的H轮融资中筹集650亿美元，投后估值达9650亿美元，超越OpenAI的8520亿美元，成为全球估值最高的AI创业公司。公司今年Q1营收达48亿美元，Q2预计将超过109亿美元，五个月内年化收入从90亿美元飙升至约450亿美元，预计Q2首次实现运营利润约5.59亿美元。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>Anthropic IPO将是2026年最重磅的科技事件之一，关注其上市后的估值表现；大模型赛道商业化加速，利好算力基础设施需求；关注竞争对手OpenAI、Google Gemini的市场份额变化。
+    </div>
+    <div class="source">📌 来源：环球市场播报 | 2026-06-04</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🛰️ SpaceX IPO定价135美元/股，发行规模5.556亿股，马斯克距万亿富豪仅一步</h3>
+    <div class="meta">
+      <span class="tag tag-us">美股</span>
+      <span class="tag tag-industry">IPO</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      SpaceX将IPO发行规模定为5.556亿股，预计发行价为135美元/股，拟通过史上最大规模IPO筹集约750亿美元，目标估值1.75-2万亿美元。以135美元发行价计算，马斯克净资产将达9880亿美元，距全球首位"万亿富豪"仅一步之遥（股价只需再涨2.2%至138美元）。SpaceX星舰V3已成功完成首次可回收着陆，为IPO铺垫关键里程碑。公司计划部署100万颗卫星打造太空算力网络，与AI数据中心战略深度协同。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>SpaceX IPO是史上最大科技股IPO，关注上市后的市场吸金效应对其他科技股的短期冲击；太空算力+AI数据中心协同，利好卫星互联网、商业航天供应链；马斯克商业帝国版图持续扩张，关注特斯拉(TSLA)Optimus人形机器人量产进展。
+    </div>
+    <div class="source">📌 来源：华尔街见闻/彭博 | 2026-06-03</div>
+  </div>
+
+  <div class="news-card">
+    <h3>⚡ 纳微半导体暴涨24%，英伟达MGX生态合作引爆800V AI电源革命</h3>
+    <div class="meta">
+      <span class="tag tag-us">美股</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      美股纳微半导体（Navitas Semiconductor）6月3日盘前暴涨24%，收盘涨约19%。消息面，纳微半导体宣布与英伟达MGX生态系统合作，共同加速800Vdc人工智能基础设施建设。纳微的氮化镓（GaN）和碳化硅（SiC）功率半导体方案可直接向GPU供电，最高效率达97.5%，成为AI"电力革命"的核心受益者。AI数据中心从传统54V供电架构向800V高压直流架构升级，功率半导体市场空间被大幅打开。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>AI数据中心供电架构升级，800V HVDC赛道爆发；A股关注——盛弘股份、科华数据、科士达、英杰电气等HVDC/固态变压器标的；功率半导体受益，关注士兰微、斯达半导、宏微科技等。
+    </div>
+    <div class="source">📌 来源：新浪财经 | 2026-06-03</div>
+  </div>
+
+</div><!-- end us section -->
+
+<!-- 产业融资 -->
+<div class="section" id="industry">
+  <div class="section-title">🔬 产业融资 · 大模型IPO动态</div>
+
+  <div class="news-card">
+    <h3>💰 阶跃星辰将完成近25亿美元融资，拆除红筹加速赴港IPO</h3>
+    <div class="meta">
+      <span class="tag tag-industry">融资</span>
+      <span class="date-tag">2026-06-04</span>
+    </div>
+    <div class="summary">
+      据新民晚报从消息人士处获悉，阶跃星辰将完成近25亿美元融资，并加速上市进程，或将成为智谱、MiniMax之外又一家赴港上市的国产大模型公司。本轮融资的一个显著特点是产业链资本集中入场，除财务投资人外，华勤、龙旗、豪威、中兴等多家手机及消费电子产业链公司参与其中。工商信息显示，公司已于4月完成股改，由有限责任公司变更为股份有限公司，红筹架构亦已拆除，这通常被视为赴港IPO的关键前置步骤。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>大模型融资狂潮持续，阶跃星辰IPO进展值得关注；产业链资本深度入场，AI大模型+消费电子协同效应显现；关注已上市AI大模型标的——智谱、MiniMax、月之暗面等。
+    </div>
+    <div class="source">📌 来源：新民晚报 | 2026-06-04</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🎬 快手旗下可灵AI启动Pre-IPO融资，投前估值180亿美元，明年上市</h3>
+    <div class="meta">
+      <span class="tag tag-industry">融资</span>
+      <span class="tag tag-industry">IPO</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      据IPO早知道报道，快手旗下AI视频生成业务可灵AI已正式启动分拆后的首轮Pre-IPO融资，本轮为Pre-IPO轮，投前估值高达180亿美元。公司内部正按照2027年年初递交港股上市申报材料的目标推进相关工作。快手2026年Q1财报显示，可灵AI单季收入突破6.5亿元人民币，同比增幅超过300%；截至2026年3月，其年化收入运行率（ARR）已接近5亿美元，是去年同期的4倍。可灵3.0在文生视频能力上位居国产模型第一梯队，全球排名第四。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>AI视频生成赛道商业化加速，可灵AI估值已达快手市值的66%；关注快手(01024.HK)AI业务分拆后的价值重估机会；AI视频生成应用场景广阔，关注相关A股标的——万兴科技、虹软科技、当虹科技等。
+    </div>
+    <div class="source">📌 来源：PChome/IPE早知道 | 2026-06-03</div>
+  </div>
+
+  <div class="news-card">
+    <h3>📰 报道：DeepSeek据悉在首轮融资中预计筹资约70亿美元，估值最高可达590亿美元</h3>
+    <div class="meta">
+      <span class="tag tag-industry">融资</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      据报道，DeepSeek据悉在首轮融资中预计筹资约70亿美元，估值最高可达590亿美元。腾讯和宁德时代将成为DeepSeek最大的外部投资者，网易和京东也计划参与投资。国家大基金亦参与投资。DeepSeek此前以极低成本训练出媲美GPT-4的模型而震动全球AI圈，其商业化进展和融资动态持续受到市场高度关注。若融资完成，DeepSeek将成为中国估值最高的AI创业公司之一。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>DeepSeek融资落地将进一步巩固中国AI大模型全球竞争力；关注其国产算力供应商——华为昇腾、寒武纪、海光信息、昆仑芯等；AI大模型成本优势持续，利好AI应用商业化落地。
+    </div>
+    <div class="source">📌 来源：华尔街见闻 | 2026-06-03</div>
+  </div>
+
+  <div class="news-card">
+    <h3>🔋 黄仁勋向全球富豪家族力荐AI：回报"疯狂可观"，还在质疑的人才是"疯子"！</h3>
+    <div class="meta">
+      <span class="tag tag-us">美股</span>
+      <span class="tag tag-industry">产业</span>
+      <span class="date-tag">2026-06-03</span>
+    </div>
+    <div class="summary">
+      英伟达CEO黄仁勋在近期活动中向全球富豪家族强力推荐AI基础设施投资，称AI回报"疯狂可观"，并表示还在质疑AI的人才是"疯子"。他将富裕家族定位为AI基础设施建设的重要资金来源，释放出英伟达正加速为下一轮AI扩张寻找长期资本支持的信号。与此同时，数据显示AI过去半年回报率已被"彻底重塑"，如今已"疯狂盈利"。英伟达确认已锁定充足台积电产能支撑2027年增长，但届时市场供需仍将偏紧。
+    </div>
+    <div class="investment">
+      💡 <strong>投资视角：</strong>AI基础设施建设仍处于高景气周期，英伟达产能锁定至2027年；关注AI算力基础设施全链条——芯片（英伟达/AMD/美光）、设备（ASML/应用材料）、电力（ utilities）、REITs；长期投资者可关注AI"卖铲子"赛道。
+    </div>
+    <div class="source">📌 来源：华尔街见闻 | 2026-06-03</div>
+  </div>
+
+</div><!-- end industry section -->
+
+<!-- 免责声明 -->
+<div class="disclaimer">
+  ⚠️ <strong>免责声明：</strong>本日报内容综合公开媒体报道整理，仅供参考，不构成任何投资建议。股市有风险，投资需谨慎。AI大模型相关数据（估值、营收等）部分来源于媒体报道，未经官方审计确认，请审慎参考。
+</div>
+
+<div class="footer">
+  <p>📅 生成时间：2026年6月4日 07:50 (GMT+8)</p>
+  <p>🤖 由 <strong>小荷</strong> 自动整理 | <a href="https://maplemaster.github.io/MaplePublicArticles/daily-news/stock-invest/AI_Daily_2026-06-04.html">在线阅读</a></p>
+  <p style="margin-top:8px;color:#30363d;">All data sourced from publicly available news reports. Investment involve risks, please invest with caution.</p>
+</div>
+
+<!-- 底部导航 -->
+<div class="daily-nav">
+  <a href="AI_Daily_2026-06-03.html">← 2026-06-03</a>
+  <a href="index.html" class="nav-home">🏠 日报主页</a>
+  <span class="nav-disabled">无更新 →</span>
+</div>
+
+</body>
+</html>
