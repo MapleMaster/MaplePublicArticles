@@ -1,336 +1,672 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
+
 <html lang="zh-CN">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>?? AI Í¶ÑĞÈÕ±¨ ¡¤ ¹éµµ</title>
+
+    <title>ğŸ¤– AI æŠ•ç ”æ—¥æŠ¥ Â· å½’æ¡£</title>
+
     <style>
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
+
             background: #0d1117;
+
             color: #c9d1d9;
+
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+
             line-height: 1.7;
+
             padding: 0 0 60px 0;
+
         }
+
         a { color: #58a6ff; text-decoration: none; }
+
         a:hover { text-decoration: underline; }
 
+
+
         .header {
+
             background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+
             border-bottom: 1px solid #30363d;
+
             padding: 48px 24px 36px;
+
             text-align: center;
+
         }
+
         .header h1 {
+
             font-size: 2.2em;
+
             color: #f0f6fc;
+
             margin-bottom: 8px;
+
             letter-spacing: 2px;
+
         }
+
         .header .subtitle {
+
             font-size: 1.05em;
+
             color: #8b949e;
+
         }
+
         .header .brand {
+
             display: inline-block;
+
             margin-top: 16px;
+
             padding: 6px 20px;
+
             background: rgba(56, 139, 253, 0.15);
+
             border: 1px solid rgba(56, 139, 253, 0.4);
+
             border-radius: 20px;
+
             color: #58a6ff;
+
             font-size: 0.95em;
+
         }
+
+
 
         .container {
+
             max-width: 720px;
+
             margin: 0 auto;
+
             padding: 0 20px;
+
         }
+
+
 
         .stats {
+
             display: flex;
+
             justify-content: center;
+
             gap: 32px;
+
             margin: 32px 0;
+
             flex-wrap: wrap;
+
         }
+
         .stat-item {
+
             text-align: center;
+
         }
+
         .stat-num {
+
             font-size: 2em;
+
             font-weight: 700;
+
             color: #58a6ff;
+
         }
+
         .stat-label {
+
             font-size: 0.85em;
+
             color: #8b949e;
+
         }
+
+
 
         .month-group {
+
             margin: 32px 0 16px;
+
         }
+
         .month-title {
+
             font-size: 1.2em;
+
             color: #f0f6fc;
+
             padding-bottom: 8px;
+
             border-bottom: 1px solid #21262d;
+
             margin-bottom: 12px;
+
         }
+
+
 
         .daily-list {
+
             list-style: none;
+
         }
+
         .daily-item {
+
             margin-bottom: 8px;
+
         }
+
         .daily-link {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
             padding: 14px 18px;
+
             background: #161b22;
+
             border: 1px solid #30363d;
+
             border-radius: 10px;
+
             transition: all 0.2s ease;
+
             color: #c9d1d9;
+
             text-decoration: none;
+
         }
+
         .daily-link:hover {
+
             border-color: #58a6ff;
+
             background: #1c2333;
+
             text-decoration: none;
+
         }
+
         .daily-date {
+
             font-size: 1.05em;
+
             font-weight: 600;
+
             color: #f0f6fc;
+
             min-width: 120px;
+
         }
+
         .daily-weekday {
+
             font-size: 0.85em;
+
             color: #8b949e;
+
             padding: 2px 8px;
+
             background: rgba(139, 148, 158, 0.12);
+
             border-radius: 6px;
+
         }
+
         .daily-weekday.weekend {
+
             background: rgba(240, 185, 11, 0.12);
+
             color: #f0b90b;
+
         }
+
         .daily-arrow {
+
             margin-left: auto;
+
             color: #58a6ff;
+
             font-size: 1.1em;
+
         }
+
         .daily-link.latest {
+
             border-color: rgba(56, 139, 253, 0.5);
+
             background: rgba(56, 139, 253, 0.06);
+
         }
+
         .latest-badge {
+
             font-size: 0.75em;
+
             padding: 2px 8px;
+
             background: rgba(56, 139, 253, 0.2);
+
             color: #58a6ff;
+
             border-radius: 6px;
+
             font-weight: 600;
+
         }
+
+
 
         .footer {
+
             text-align: center;
+
             margin-top: 48px;
+
             padding: 32px 20px;
+
             border-top: 1px solid #21262d;
+
             color: #8b949e;
+
             font-size: 0.85em;
+
         }
+
+
 
         @media (max-width: 640px) {
+
             .header h1 { font-size: 1.5em; }
+
             .daily-link { padding: 12px 14px; }
+
             .daily-date { min-width: 100px; font-size: 0.95em; }
+
             .stats { gap: 20px; }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
 <div class="header">
-    <h1>?? AI Í¶ÑĞÈÕ±¨</h1>
-    <div class="subtitle">ÈË¹¤ÖÇÄÜĞĞÒµÃ¿ÈÕÍ¶×Ê²Î¿¼ ¡¤ ¹éµµÖĞĞÄ</div>
-    <div class="brand">?? Ğ¡ºÉ AI Í¶ÑĞÖúÊÖ</div>
+
+    <h1>ğŸ¤– AI æŠ•ç ”æ—¥æŠ¥</h1>
+
+    <div class="subtitle">äººå·¥æ™ºèƒ½è¡Œä¸šæ¯æ—¥æŠ•èµ„å‚è€ƒ Â· å½’æ¡£ä¸­å¿ƒ</div>
+
+    <div class="brand">ğŸª· å°è· AI æŠ•ç ”åŠ©æ‰‹</div>
+
 </div>
+
+
 
 <div class="container">
 
+
+
     <div class="stats">
+
         <div class="stat-item">
+
             <div class="stat-num" id="total-count">-</div>
-            <div class="stat-label">ÀÛ¼ÆÆÚÊı</div>
+
+            <div class="stat-label">ç´¯è®¡æœŸæ•°</div>
+
         </div>
+
         <div class="stat-item">
+
             <div class="stat-num" id="first-date">-</div>
-            <div class="stat-label">×îÔçÈÕÆÚ</div>
+
+            <div class="stat-label">æœ€æ—©æ—¥æœŸ</div>
+
         </div>
+
         <div class="stat-item">
+
             <div class="stat-num" id="latest-date">-</div>
-            <div class="stat-label">×îĞÂÈÕÆÚ</div>
+
+            <div class="stat-label">æœ€æ–°æ—¥æœŸ</div>
+
         </div>
+
     </div>
+
+
 
     <div id="daily-list-container">
-        <!-- JS¶¯Ì¬Éú³É -->
+
+        <!-- JSåŠ¨æ€ç”Ÿæˆ -->
+
     </div>
 
+
+
 </div>
+
+
 
 <div class="footer">
-    <div>?? AI Í¶ÑĞÈÕ±¨ ¡¤ ÓÉ <strong>Ğ¡ºÉ ??</strong> Ã¿ÈÕ×Ô¶¯Éú³É</div>
-    <div style="margin-top: 8px;">?? ÃâÔğÉùÃ÷£º±¾ÈÕ±¨½ö¹©Í¶×Ê²Î¿¼£¬²»¹¹³ÉÈÎºÎÂòÂô½¨Òé¡£Í¶×ÊÓĞ·çÏÕ£¬ÈëÊĞĞè½÷É÷¡£</div>
+
+    <div>ğŸ¤– AI æŠ•ç ”æ—¥æŠ¥ Â· ç”± <strong>å°è· ??</strong> æ¯æ—¥è‡ªåŠ¨ç”Ÿæˆ</div>
+
+    <div style="margin-top: 8px;">âš ï¸ å…è´£å£°æ˜ï¼šæœ¬æ—¥æŠ¥ä»…ä¾›æŠ•èµ„å‚è€ƒï¼Œä¸æ„æˆä»»ä½•ä¹°å–å»ºè®®ã€‚æŠ•èµ„æœ‰é£é™©ï¼Œå…¥å¸‚éœ€è°¨æ…ã€‚</div>
+
 </div>
 
+
+
 <script>
-// ===== ÈÕ±¨ÈÕÆÚÁĞ±í£¨°´ÈÕÆÚµ¹ĞòÅÅÁĞ£© =====
-// ×Ô¶¯»¯ÈÎÎñÃ¿ÌìÉú³ÉÈÕ±¨ºó£¬½«ĞÂÈÕÆÚ²åÈë´ËÊı×éµÄµÚÒ»¸öÎ»ÖÃ
+
+// ===== æ—¥æŠ¥æ—¥æœŸåˆ—è¡¨ï¼ˆæŒ‰æ—¥æœŸå€’åºæ’åˆ—ï¼‰ =====
+
+// è‡ªåŠ¨åŒ–ä»»åŠ¡æ¯å¤©ç”Ÿæˆæ—¥æŠ¥åï¼Œå°†æ–°æ—¥æœŸæ’å…¥æ­¤æ•°ç»„çš„ç¬¬ä¸€ä¸ªä½ç½®
+
 const dailyDates = [
+
     "2026-06-04",
+
     "2026-06-03",
+
     "2026-06-02",
+
     "2026-05-31",
+
     "2026-05-30",
+
     "2026-05-29",
+
     "2026-05-28",
+
     "2026-05-27",
+
     "2026-05-26",
+
     "2026-05-25",
+
     "2026-05-24",
+
     "2026-05-23",
+
     "2026-05-22",
+
     "2026-05-21",
+
     "2026-05-20",
+
     "2026-05-19",
+
     "2026-05-18",
+
     "2026-05-17",
+
     "2026-05-16",
+
     "2026-05-15",
+
     "2026-05-14",
+
     "2026-05-12",
+
     "2026-05-11",
+
     "2026-05-10",
+
     "2026-05-09",
+
     "2026-05-08",
+
     "2026-05-07",
+
     "2026-05-04",
+
     "2026-05-03",
+
     "2026-05-02",
+
     "2026-05-01",
+
     "2026-04-30",
+
     "2026-04-27",
+
     "2026-04-26",
+
     "2026-04-25",
+
     "2026-04-24",
+
     "2026-04-23",
+
     "2026-04-22",
+
     "2026-04-21",
+
     "2026-04-20",
+
     "2026-04-19",
+
     "2026-04-18",
+
     "2026-04-17",
+
     "2026-04-16",
+
     "2026-04-15",
+
     "2026-04-14",
+
     "2026-04-13",
+
     "2026-04-12",
+
     "2026-04-11",
+
     "2026-04-10",
+
     "2026-04-09",
+
     "2026-04-08",
+
     "2026-04-07",
+
     "2026-04-06",
+
     "2026-04-05",
+
     "2026-04-04",
+
     "2026-04-03",
+
     "2026-04-02",
+
     "2026-04-01",
+
     "2026-03-31",
+
     "2026-03-30",
+
     "2026-03-29",
+
     "2026-03-28",
+
     "2026-03-27",
+
     "2026-03-26"
+
 ];
 
-// ĞÇÆÚÓ³Éä
-const weekdays = ['ÈÕ', 'Ò»', '¶ş', 'Èı', 'ËÄ', 'Îå', 'Áù'];
+
+
+// æ˜ŸæœŸæ˜ å°„
+
+const weekdays = ['æ—¥', 'ä¸€', 'äºŒ', 'ä¸‰', 'å››', 'äº”', 'å…­'];
+
+
 
 function getWeekday(dateStr) {
+
     const d = new Date(dateStr + 'T00:00:00');
+
     return weekdays[d.getDay()];
+
 }
+
+
 
 function isWeekend(dateStr) {
+
     const d = new Date(dateStr + 'T00:00:00');
+
     return d.getDay() === 0 || d.getDay() === 6;
+
 }
 
-// °´ÔÂ·Ö×é
+
+
+// æŒ‰æœˆåˆ†ç»„
+
 function groupByMonth(dates) {
+
     const groups = {};
+
     dates.forEach(d => {
+
         const month = d.substring(0, 7); // "2026-04"
+
         if (!groups[month]) groups[month] = [];
+
         groups[month].push(d);
+
     });
+
     return groups;
+
 }
+
+
 
 function render() {
-    // Í³¼Æ
+
+    // ç»Ÿè®¡
+
     document.getElementById('total-count').textContent = dailyDates.length;
+
     document.getElementById('latest-date').textContent = dailyDates[0] ? dailyDates[0].substring(5) : '-';
+
     document.getElementById('first-date').textContent = dailyDates.length ? dailyDates[dailyDates.length - 1].substring(5) : '-';
 
+
+
     const container = document.getElementById('daily-list-container');
+
     const groups = groupByMonth(dailyDates);
 
-    // ÔÂ·İµ¹Ğò
+
+
+    // æœˆä»½å€’åº
+
     const months = Object.keys(groups).sort().reverse();
 
+
+
     months.forEach(month => {
+
         const [y, m] = month.split('-');
+
         const section = document.createElement('div');
+
         section.className = 'month-group';
-        section.innerHTML = `<div class="month-title">?? ${y}Äê${parseInt(m)}ÔÂ</div>`;
+
+        section.innerHTML = `<div class="month-title">?? ${y}å¹´${parseInt(m)}æœˆ</div>`;
+
+
 
         const ul = document.createElement('ul');
+
         ul.className = 'daily-list';
 
+
+
         groups[month].forEach((dateStr, idx) => {
+
             const wd = getWeekday(dateStr);
+
             const weekend = isWeekend(dateStr);
+
             const isLatest = (dateStr === dailyDates[0]);
+
             const li = document.createElement('li');
+
             li.className = 'daily-item';
+
             li.innerHTML = `
+
                 <a href="AI_Daily_${dateStr}.html" class="daily-link${isLatest ? ' latest' : ''}">
+
                     <span class="daily-date">${dateStr}</span>
-                    <span class="daily-weekday${weekend ? ' weekend' : ''}">ÖÜ${wd}</span>
-                    ${isLatest ? '<span class="latest-badge">×îĞÂ</span>' : ''}
-                    <span class="daily-arrow">¡ú</span>
+
+                    <span class="daily-weekday${weekend ? ' weekend' : ''}">å‘¨${wd}</span>
+
+                    ${isLatest ? '<span class="latest-badge">æœ€æ–°</span>' : ''}
+
+                    <span class="daily-arrow">â†’</span>
+
                 </a>
+
             `;
+
             ul.appendChild(li);
+
         });
 
+
+
         section.appendChild(ul);
+
         container.appendChild(section);
+
     });
+
 }
 
+
+
 render();
+
 </script>
 
+
+
 </body>
+
 </html>
+
