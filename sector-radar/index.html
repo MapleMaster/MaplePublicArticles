@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>A股板块雷达 · 华尔街之🦅</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="A股板块雷达 · 每日盘后总结">
+<meta property="og:description" content="大盘多空状态 · 板块四档分类 · 操作纪律确认">
+<meta property="og:url" content="https://maplemaster.github.io/MaplePublicArticles/sector-radar/index.html">
+<meta name="description" content="A股板块雷达 — 每个交易日收盘后自动生成的大盘多空状态、板块四档分类与操作纪律报告">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,0.7);--card-bg-hover:rgba(15,23,42,0.85);
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;--pink:#f472b6;
+  --green:#34d399;--red:#f87171;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,0.08);--border-hi:rgba(148,163,184,0.15);
+  --ease-out-quint:cubic-bezier(0.23,1,0.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+}
+/* Background */
+.bg-img{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,7,18,0.4) 0%,rgba(3,7,18,0.7) 40%,var(--bg) 80%),radial-gradient(ellipse at 30% 0%,rgba(96,165,250,0.06),transparent 50%),radial-gradient(ellipse at 70% 10%,rgba(167,139,250,0.05),transparent 50%);
+}
+.scan{position:fixed;left:0;width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,0.3),transparent);
+  z-index:2;pointer-events:none;animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+
+/* Page */
+.page{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:20px 16px 48px}
+
+/* Header */
+.hero{text-align:center;margin-bottom:16px}
+.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;
+  background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.12);
+  font-size:0.6em;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;
+  opacity:0;animation:enterUp 0.6s var(--ease-out-quint) 0.1s forwards;
+}
+.hero-badge .blink{width:5px;height:5px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 6px var(--green);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.7)}}
+.hero h1{font-size:clamp(1.3em,5vw,1.7em);font-weight:800;line-height:1.15;letter-spacing:-0.03em;
+  margin:8px 0 4px;opacity:0;animation:enterUp 0.7s var(--ease-out-quint) 0.25s forwards;}
+.hero h1 .g{background:linear-gradient(135deg,var(--blue),var(--cyan) 40%,var(--purple) 70%,var(--pink));
+  background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:gradientShift 5s ease-in-out infinite;}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero .sub{font-size:0.68em;color:var(--text-dim);letter-spacing:0.15em;text-transform:uppercase;
+  opacity:0;animation:enterUp 0.6s var(--ease-out-quint) 0.4s forwards;}
+@keyframes enterUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Back link */
+.back-link{display:inline-flex;align-items:center;gap:4px;font-size:0.7em;color:var(--text-dim);
+  text-decoration:none;margin-bottom:12px;opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.5s forwards;}
+.back-link:hover{color:var(--cyan)}
+
+/* Date switcher */
+.date-switch{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;
+  opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.55s forwards;}
+.date-btn{padding:6px 16px;border-radius:10px;border:1px solid var(--border);
+  background:var(--card-bg);color:var(--text-mid);font-size:0.75em;font-weight:600;
+  cursor:pointer;transition:all 200ms ease;backdrop-filter:blur(8px);font-family:inherit;}
+.date-btn:hover{border-color:var(--border-hi);color:var(--text)}
+.date-btn.active{background:rgba(96,165,250,0.12);border-color:rgba(96,165,250,0.3);color:var(--blue);
+  box-shadow:0 0 12px rgba(96,165,250,0.08);}
+
+/* Report content */
+#report-area{opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s ease;}
+#report-area.show{opacity:1;transform:translateY(0);}
+
+/* Markdown rendered styles */
+.md{font-size:0.82em;line-height:1.7;}
+.md h1{font-size:1.4em;font-weight:800;margin:0 0 16px;letter-spacing:-0.02em;
+  background:linear-gradient(135deg,var(--text),var(--text-mid));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.md h2{font-size:1.1em;font-weight:700;margin:24px 0 12px;color:var(--cyan);
+  padding-bottom:8px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:6px;}
+.md h2:before{content:'';width:3px;height:14px;background:var(--cyan);border-radius:2px;}
+.md h3{font-size:0.95em;font-weight:600;margin:16px 0 8px;color:var(--purple);}
+.md p{margin:8px 0;color:var(--text);}
+.md strong{color:var(--text);font-weight:700;}
+.md ul,.md ol{margin:8px 0;padding-left:20px;}
+.md li{margin:4px 0;color:var(--text-mid);}
+.md li strong{color:var(--text);}
+.md blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,0.04);border-radius:0 8px 8px 0;
+  font-size:0.9em;color:var(--text-dim);}
+.md blockquote p{color:var(--text-dim);}
+.md hr{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border-hi),transparent);margin:20px 0;}
+.md code{font-family:'SF Mono',Menlo,monospace;font-size:0.88em;
+  padding:1px 5px;border-radius:4px;background:rgba(96,165,250,0.08);color:var(--blue);}
+
+/* Report sections as cards */
+.md-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;
+  padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(12px);
+  opacity:0;transform:translateY(16px);animation:cardIn 0.5s var(--ease-out-quint) forwards;}
+@keyframes cardIn{to{opacity:1;transform:translateY(0);}}
+.md-card:nth-child(1){animation-delay:0.05s}
+.md-card:nth-child(2){animation-delay:0.12s}
+.md-card:nth-child(3){animation-delay:0.19s}
+.md-card:nth-child(4){animation-delay:0.26s}
+.md-card:nth-child(5){animation-delay:0.33s}
+
+/* Status badge */
+.status-badge{display:inline-block;padding:2px 10px;border-radius:6px;font-size:0.85em;font-weight:700;
+  margin:0 4px;}
+.status-bearish{background:rgba(74,222,128,0.12);color:var(--down);border:1px solid rgba(74,222,128,0.2);}
+.status-bullish{background:rgba(248,113,113,0.12);color:var(--up);border:1px solid rgba(248,113,113,0.2);}
+.status-neutral{background:rgba(148,163,184,0.12);color:var(--text-dim);border:1px solid rgba(148,163,184,0.15);}
+
+/* Level tags */
+.level-tag{display:inline-block;padding:1px 8px;border-radius:5px;font-size:0.8em;font-weight:700;
+  margin-right:4px;}
+.level-a{background:rgba(251,191,36,0.12);color:var(--gold);border:1px solid rgba(251,191,36,0.2);}
+.level-b{background:rgba(96,165,250,0.12);color:var(--blue);border:1px solid rgba(96,165,250,0.2);}
+.level-c{background:rgba(250,204,21,0.12);color:var(--yellow);border:1px solid rgba(250,204,21,0.2);}
+.level-d{background:rgba(100,116,139,0.12);color:var(--gray);border:1px solid rgba(100,116,139,0.15);}
+
+/* Footer */
+.footer{text-align:center;margin-top:28px;padding-top:14px;border-top:1px solid var(--border);
+  opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.8s forwards;}
+.footer p{font-size:0.62em;color:var(--text-dim);line-height:1.8;}
+.footer .hl{color:var(--gold);}
+.footer .lotus{color:var(--pink);}
+
+/* Loading */
+.loading{text-align:center;padding:40px;color:var(--text-dim);font-size:0.8em;}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  .scan{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-img"></div>
+<div class="scan"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge">
+      <span class="blink"></span>
+      <span>SECTOR RADAR</span>
+    </div>
+    <h1><span class="g">📡 A股板块雷达</span></h1>
+    <div class="sub">每日盘后总结 · 大盘多空 · 四档分类</div>
+  </header>
+
+  <a class="back-link" href="../index.html">‹ 返回主页</a>
+
+  <div class="date-switch" id="date-switch"></div>
+
+  <div id="report-area">
+    <div class="loading">加载中...</div>
+  </div>
+
+  <footer class="footer">
+    <p>
+      <span class="hl">🦅 华尔街之鹰</span> · 雷达由 <span class="lotus">🪷 小荷</span> 自动生成<br>
+      数据来源：腾讯自选股（westock-data）· 不构成投资建议
+    </p>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+
+<!-- Report data -->
+<script type="text/plain" id="md-2026-07-22">
+# 行业概念板块雷达 | 2026-07-22
+
+## 一、今日结论｜大盘多空状态
+
+**大盘状态**：偏空，且抛压较上一交易日大幅上升
+
+**中期趋势判断**：尚未趋势性反转，需连续确认
+
+中期反转需要连续确认，不能只看一天涨跌。现在 **5/5** 个指数站上5日线、**0/5** 个站上10日线、**0/5** 个站上20日线，上涨 **1530** 家、下跌 **3876** 家，主力资金以观测板块加总近似约 **-302亿**（偏空），大单/超大单分项暂无数据。今天仍不提高整体仓位；如果反弹继续，优先看它能不能让资金和上涨股票数量一起恢复。
+
+**指数与均线**：
+- 1/5 个主要指数收涨（上证微涨），5/5 站上5日线、0/5 站上10日线、0/5 站上20日线。
+- 五指数详情：上证综指 🔴+0.07%（站上MA5/跌破MA10/跌破MA20）、深证成指 🟢-1.42%（站上MA5/跌破MA10/跌破MA20）、创业板指 🟢-3.23%（站上MA5/跌破MA10/跌破MA20）、科创50 🟢-2.26%（站上MA5/跌破MA10/跌破MA20）、沪深300 🟢-0.46%（站上MA5/跌破MA10/跌破MA20）。
+- 上证综指收盘 3867.03，MA5=3834.85、MA10=3904.35、MA20=3977.33。五大指数虽全部站上5日线，但均跌破10日线和20日线，中期均线压制明显。
+
+**个股上涨覆盖面**：1530 家上涨、3876 家下跌，上涨占比 27%，中位数约 -1.2%（估算），跌超5%的股票 247 只（含跌停10只）。
+
+**资金面**：主力资金以30个观测板块加总近似约 -302亿（偏空），大单/超大单分项暂无数据。两市成交额 26533亿（较5日均值约 -0.2%，较10日均值约 -4.1%，较20日均值约 -12.8%，较上日减少 3037亿）。行业资金流入Top3：工业金属 +46.96亿、半导体 +24.24亿、电力 +18.34亿。
+
+**技术指标（上证指数，7/21数据）**：MACD -40.96（DIF -62.12 / DEA -41.63，空头排列）；KDJ K=24.05 D=22.82 J=26.50（低位超卖区）；RSI6=42.07 RSI12=40.17 RSI24=42.00（偏弱）；布林带价格在中轨3989.52与下轨3784.90之间运行。
+
+**与上一交易日对比（抛压变化）**：
+- 下跌家数从 2301 增到 3876（+68.4%），涨停从 120 只降到 48 只（-60%），跌停从 6 只增到 10 只，中位数从约 +0.3% 恶化到约 -1.2%。两市成交额从 29571亿 缩到 26533亿（-3037亿）。
+- 抛压比上一交易日大得多：7/21的反弹（上证+1.79%、56%上涨）未能延续，7/22高开后抛盘涌出，仅上证微涨收平，其余四大指数均跌，创业板跌超3%。
+- 盘中有局部资金买入迹象：上证综指从日内低点3839.67拉回收3867.03，但深成指、创业板指、科创50均从日内高点大幅回落收低。这个信号只证明上证层面有买盘支撑，不能证明多数板块转强。
+
+## 二、板块交易结论
+
+**优先做多方向（成熟上行趋势）是 2 条**：
+
+1. **贵金属**（行业涨幅 🔴+6.43%，5日 +9.80%，20日 +8.91%；黄金概念主力 +55.62亿，白银概念主力 +29.15亿）— 价格全周期上行，行业景气度最高。但需注意黄金概念5日主力 -11.13亿存在分歧，白银概念5日 +3.83亿配合度更好。
+2. **保险**（主力 +6.15亿，5日 +5.00亿，10日 +0.20亿，20日 +9.90亿）— 全周期资金正流入，连续性最佳。未入行业涨幅榜前6，具体涨跌幅暂无数据，但资金面信号明确偏多。
+
+**反转/新启动候选有 2 条**，前排是 **白银概念**（+4.31%，5日 +3.23%，20日 -5.43%；主力 +29.15亿，5日 +3.83亿，10日 +24.32亿，20日 +24.49亿）和 **有色(锡)**（+4.19%，5日 -0.40%，20日 -17.21%）。白银概念20日价格仍空但当日强势启动，资金全周期正流入配合；有色(锡)深跌后反弹但无资金数据确认。这些只能小仓位观察第二天确认，确认点是5日趋势继续修复、主力资金净额不转负、核心股不高开低走。
+
+**反弹修复里更偏减仓信号的是** HBM（主力 +39.10亿，5日 -353.52亿）、存储器（主力 +7.97亿，5日 -909.47亿）、AI算力芯片（主力 +11.18亿，5日 -238.81亿）、半导体设备概念（主力 +21.23亿，5日 -240.80亿）、黄金概念（主力 +55.62亿，5日 -11.13亿）、有色金属（主力 +68.56亿，5日 -1265.20亿）、电力（+1.50%，主力 +18.34亿，5日 -3.26亿）、工业金属（+4.33%，5日 +4.88%，20日 -0.45%；主力 +46.96亿，5日 +50.40亿；但上涨个股占比仅36%）等 8 条。这些方向当日有资金流入但5日趋势仍空或内部扩散差，反弹更适合降低弱势持仓；没有仓位不进行买入。
+
+**反弹修复要拆开看 — 医药生物/创新药链**：
+- 医药生物：7/7 个细分全部偏空、修复面极窄。当日资金流出最轻的是医药商业（-1.50亿）和生物疫苗（-1.69亿）；资金流出最重的是创新药（-14.63亿）。7个细分5日、10日主力全部为负（CRO 10日+20日例外）。操作上医药板块整体偏空，走势较弱的细分反弹时先减仓。
+
+**放弃/暂不做多有 13 条**，最需要避开的是 **共封装光模块/CPO**（主力 -129.34亿，5日 -845.95亿）、**芯片概念**（主力 -137.83亿，5日 -1931.20亿）、**通信设备**（主力 -93.01亿，5日 -325.20亿）。此外MiniLED（-62.05亿）、PCB概念（-58.04亿）、创新药（-14.63亿）、OLED（-22.95亿）、电子布（-21.56亿）、玻璃玻纤（-22.97亿）、通信服务（-0.94亿）、券商（-0.26亿）、多元金融（-1.51亿）、医药商业/化学制药/生物制品/生物疫苗/医疗器械（各-1.5~-5.1亿）均为当日资金净流出方向。
+
+**特别提示（用户持仓相关）**：
+- CPO/光模块（-129.34亿）、通信设备（-93.01亿）、PCB/电子基材（-58.04亿/-21.56亿/-22.97亿）均为D档重灾区，与用户持仓（中际旭创、天孚通信、生益科技、中国巨石、通信ETF）直接相关，需重点关注。
+- 半导体（申万二级）当日涨跌 -1.36%但主力 +24.24亿，属"价跌资金流入"的背离信号，暂列为观察（不归入四档），若次日资金继续流入且价格企稳可转为B档候选。
+
+## 三、操作纪律
+
+- **仓位**：不提高整体仓位。A档主线 2 条（<3），维持现有仓位。大盘偏空（0/5站上20日线、27%上涨占比），抛压较7/21大幅上升，不具备加仓条件。
+- **做多优先级**：贵金属、保险（A档2条）。贵金属中白银概念资金配合度优于黄金。
+- **观察候选**：白银概念（+4.31%，确认点：5日趋势继续修复、主力资金不转负）、有色(锡)（+4.19%，需资金数据确认）。B档2条，小仓位观察次日确认。
+- **减仓信号**：HBM、存储器、AI算力芯片、半导体设备概念、黄金概念、有色金属、电力、工业金属（C档8条）。降低弱势持仓、无仓位不买入。
+- **回避方向**：CPO/光模块、芯片概念、通信设备、MiniLED、PCB、创新药、OLED、电子布、玻璃玻纤、通信服务、券商、多元金融、医药全部细分（D档13+条）。弱势先减、暂不新增。
+
+## 四、数据备注
+
+- 数据日期：2026-07-22（kline、changedist、fund flow、sector ranking 均为7/22收盘数据；market-overview technical/interval 为7/21数据）
+- 数据来源：腾讯自选股接口（经 westock-data）
+- 缺口说明：全市场主动资金以30个观测板块加总近似（约-302亿）；中位数以changedist区间分布估算（约-1.2%）；半导体(申万二级)价跌资金流入背离暂列观察
+- 下一交易日：2026-07-23（周四，交易日）
+
+---
+
+> 本报告为客观数据整理与结构化分析，不构成投资建议。投资有风险，决策需谨慎。
+</script>
+
+<script type="text/plain" id="md-2026-07-23">
+# 行业概念板块雷达 | 2026-07-23
+
+## 一、今日结论｜大盘多空状态
+
+**大盘状态**：偏多，且抛压较上一交易日大幅下降
+
+**中期趋势判断**：尚未趋势性反转，需连续确认
+
+中期反转需要连续确认，不能只看一天涨跌。现在 **4/5** 个指数站上5日线、**1/5** 个站上10日线、**0/5** 个站上20日线，上涨 **4260** 家、下跌 **1208** 家，主力资金以29个观测板块加总近似约 **-1004亿**（价格反弹但机构资金加速流出，背离显著），大单/超大单分项暂无数据。今天**仍不提高**整体仓位；今天的反弹是情绪修复型，机构资金不配合，需要看到资金和上涨股票数量连续恢复才能考虑加仓。
+
+**指数与均线**：
+- 4/5 个主要指数收涨（科创50大跌），4/5 站上5日线、1/5 站上10日线、0/5 站上20日线。
+- 五指数详情：上证综指 🔴+0.25%（站上MA5/跌破MA10/跌破MA20）、深证成指 🔴+0.44%（站上MA5/跌破MA10/跌破MA20）、创业板指 🔴+0.25%（站上MA5/跌破MA10/跌破MA20）、科创50 🟢-3.78%（跌破MA5/跌破MA10/跌破MA20）、沪深300 🔴+0.23%（站上MA5/站上MA10/跌破MA20）。
+- 上证综指收盘 3876.78，MA5=3833.72、MA10=3888.37、MA20=3965.16。四大指数站上5日线但均远离20日线（上证距MA20约-2.2%），中期均线压制仍在。科创50独跌-3.78%，与全市场77%上涨形成强烈反差，反映大市值科技股遭机构集中抛售。
+
+**个股上涨覆盖面**：4260 家上涨、1208 家下跌，上涨占比 77%，中位数约 +1.5%（估算），跌超5%的股票 116 只（含跌停2只）。
+
+**资金面**：主力资金以29个观测板块加总近似约 -1004亿（偏空，较7/22的-302亿大幅恶化），大单/超大单分项暂无数据。两市成交额 21953亿（较5日均值约-17.9%，较10日均值约-20.9%，较20日均值约-27.1%，较上日减少4580亿，缩量反弹）。行业资金流入Top3：电力设备 +110.11亿、有色金属 +65.68亿、黄金概念 +29.36亿。芯片概念 -309.09亿、半导体 -187.24亿、CPO -164.92亿、存储器 -166.49亿，科技板块资金流出加剧。
+
+**技术指标（上证指数，7/22数据）**：MACD -31.67（DIF -61.43 / DEA -45.59，空头排列）；KDJ K=28.61 D=24.75 J=36.33（低位超卖区）；RSI6=42.62 RSI12=40.47 RSI24=42.17（偏弱）；布林带价格在中轨3977.33与下轨3774.09之间运行。
+
+**与上一交易日对比（抛压变化）**：
+- 下跌家数从 3876 降到 1208（-68.9%），跌超5%的股票从 247 只降到 116 只（-53.0%），中位数从约 -1.2% 修复到约 +1.5%。两市成交额从 26533亿 缩到 21953亿（-4580亿）。
+- 抛压确实比上一交易日小得多：7/22的全面下跌（27%上涨、创业板-3.23%）在7/23得到修复，77%个股上涨、涨停129只、跌停仅2只。
+- **但机构资金不配合**：主力资金从-302亿恶化到-1004亿，芯片/半导体/CPO/存储器四大科技主线资金流出全面加剧，说明反弹以散户资金推动为主，机构在趁反弹出货。
+- 盘中有资金买入迹象：上证综指从日内低点3851.71拉回收3876.78，深成指从低点13991.83拉回收14123.31，均收红。但创业板指从开盘3596.73跌至3575.52收低，科创50从开盘1876.61暴跌至1789.69收低（-4.6%盘中跌幅），科技板块盘中无买盘支撑。
+
+## 二、板块交易结论
+
+**优先做多方向（成熟上行趋势）是 3 条**：
+
+1. **保险**（主力 +1.44亿，5日 +4.90亿，10日 +7.74亿，20日 +20.57亿）— 全周期资金正流入，连续性最佳。
+2. **白银概念**（主力 +5.70亿，5日 +36.28亿，10日 +54.43亿，20日 +58.03亿）— 全周期资金正流入且20日全正，资金配合度优于黄金。昨日B档今日升级为A档。
+3. **黄金概念**（主力 +29.36亿，5日 +59.36亿，10日 +58.13亿，20日 -24.53亿）— 短中期资金正流入，20日资金微负但幅度小。注意20日资金分歧，若金价回调需警惕。
+
+**反转/新启动候选有 3 条**，前排是 **电网设备**（行业涨幅 🔴+6.20%，5日 +5.27%，20日 -12.66%；主力 +52.29亿，5日 +41.26亿，upDownRatio 125/126即99%上涨）、**工业金属**（+3.58%，主力 +32.45亿，5日 +87.64亿，upDownRatio 58/59即98%上涨）和 **电池**（+3.90%，5日 +1.72%，20日 -15.01%；主力 +37.54亿，5日 +20.24亿，upDownRatio 91/97即94%上涨）。三者共同特征：当日强势（>3%）、资金正流入、内部扩散极好（>94%个股上涨），但20日趋势仍空（深跌后反转）。确认点是5日趋势继续修复、主力资金净额不转负、核心股不高开低走。
+
+**反弹修复里更偏减仓信号的是** 电力设备（主力 +110.11亿，5日 -143.04亿）、券商（主力 +15.26亿，5日 -89.13亿）、有色金属（主力 +65.68亿，5日 -18.61亿）、CRO（主力 +1.15亿，5日 -55.06亿）等 4 条。这些方向当日有资金流入但5日趋势仍空，属单日脉冲无连续性；反弹更适合降低弱势持仓；没有仓位不进行买入。
+
+**反弹修复要拆开看 — 医药生物/创新药链**：
+- 医药生物：7/7 个细分全部偏空、修复面极窄。当日唯一正流入的是CRO（+1.15亿，但5日 -55.06亿仍空）。资金流出最重的是创新药（-17.11亿，5日 -193.39亿）和化学制药（-10.21亿，5日 -93.82亿）。7个细分5日主力全部为负，医药板块整体仍偏空，走势较弱的细分反弹时先减仓。
+
+**放弃/暂不做多有 21 条**，最需要避开的是 **芯片概念**（主力 -309.09亿，5日 -1543.51亿）、**半导体(申万二级)**（-187.24亿，5日 -403.71亿）、**CPO/共封装光模块**（-164.92亿，5日 -769.85亿）、**存储器**（-166.49亿，5日 -568.57亿）、**通信设备**（-84.93亿，5日 -391.06亿）。此外AI算力芯片（-57.70亿）、MiniLED（-46.96亿）、PCB概念（-44.99亿）、OLED（-34.25亿）、创新药（-17.11亿）、半导体设备概念（-16.95亿）、化学制药（-10.21亿）、通信服务（-4.49亿）、电子布（-4.94亿）、生物疫苗（-5.13亿）、医疗器械（-6.23亿）、多元金融（-0.58亿）、生物制品（-2.51亿）、玻璃玻纤（-2.94亿）、医药商业（-1.25亿）、HBM（-63.37亿）均为当日资金净流出方向。**科技板块（芯片/半导体/CPO/存储器/通信）是今日资金流出重灾区，合计流出约-855亿，占全市场流出近七成。**
+
+**特别提示（用户持仓相关）**：
+- 用户A股8只持仓全部位于D档区域：半导设备ETF/科创芯片ETF/长川科技→半导体(-187.24亿)、通信ETF/中际旭创/天孚通信→CPO(-164.92亿)+通信设备(-84.93亿)、生益科技→PCB(-44.99亿)+电子布(-4.94亿)、中国巨石→玻璃玻纤(-2.94亿)。科技板块机构资金持续大幅流出，需重点关注风险。
+- 7/22半导体(申万二级)价跌资金流入背离信号已消失——7/23转为价跌且资金大幅流出(-187.24亿)，空头信号确认。
+- 科创50今日暴跌-3.78%，用户科创芯片ETF(588200)直接受影响，从7/22收盘1860.08跌至1789.69，已跌破所有均线。
+
+## 三、操作纪律
+
+- **仓位**：不提高整体仓位。A档主线 3 条（≥3达标），但大盘0/5站上20日线、主力资金-1004亿严重背离，价格反弹缺乏资金配合，维持现有仓位。
+- **做多优先级**：保险、白银概念、黄金概念（A档3条）。白银概念资金配合度优于黄金（20日全正vs黄金20日微负）。
+- **观察候选**：电网设备（+6.20%，upDownRatio 99%）、工业金属（+3.58%，5日主力+87.64亿）、电池（+3.90%）。B档3条，小仓位观察次日确认。
+- **减仓信号**：电力设备、券商、有色金属、CRO（C档4条）。降低弱势持仓、无仓位不买入。
+- **回避方向**：芯片概念、半导体、CPO、存储器、通信设备、AI算力芯片、MiniLED、PCB、OLED、创新药、半导体设备概念、化学制药、HBM、通信服务、电子布、生物疫苗、医疗器械、多元金融、生物制品、玻璃玻纤、医药商业（D档21条）。弱势先减、暂不新增。
+
+## 四、数据备注
+
+- 数据日期：2026-07-23（kline、changedist、fund flow、sector ranking 均为7/23收盘数据；market-overview trade/updown/interval/technical 为7/22数据）
+- 数据来源：腾讯自选股接口（经 westock-data）
+- 缺口说明：全市场主动资金以29个观测板块加总近似（约-1004亿，较7/22的-302亿大幅恶化）；中位数以changedist区间分布估算（约+1.5%）；market-overview数据滞后一天
+- 下一交易日：2026-07-24（周五，交易日）
+
+---
+
+> 本报告为客观数据整理与结构化分析，不构成投资建议。投资有风险，决策需谨慎。
+</script>
+
+<script type="text/plain" id="md-2026-07-24">
+# 行业概念板块雷达 | 2026-07-24
+
+## 一、今日结论｜大盘多空状态
+
+**大盘状态**：偏空，且抛压较上一交易日大幅上升
+
+**中期趋势判断**：尚未趋势性反转，需连续确认
+
+中期反转需要连续确认，不能只看一天涨跌。现在 **0/5** 个指数站上5日线、**0/5** 个站上10日线、**0/5** 个站上20日线，上涨 **555** 家、下跌 **4940** 家，主力资金以30个观测板块加总近似约 **-1015亿**（与7/23的-1004亿基本持平，价格暴跌且机构资金持续流出），大单/超大单分项暂无数据。今天**仍不提高**整体仓位；7/23的反弹已被今日暴跌完全吞噬，机构资金两日合计流出超-2000亿，需要看到资金和上涨股票数量连续恢复才能考虑加仓。
+
+**指数与均线**：
+- 0/5 个主要指数收跌，0/5 站上5日线、0/5 站上10日线、0/5 站上20日线。
+- 五指数详情：上证综指 🟢（kline限频无7/24数据，7/23 MA5=3833.72/MA10=3888.37/MA20=3965.16，今日90%下跌估算全部跌破）、深证成指 🟢（同上估算）、创业板指 🟢（同上估算）、科创50 🟢（同上估算）、沪深300 🟢-1.67%（跌破MA5/MA10/MA20，MA5=4686.40/MA10=4693.82/MA20=4775.24）。
+- 沪深300收盘 4649.19，MA5=4686.40、MA10=4693.82、MA20=4775.24，全部跌破，距MA20约-2.6%。7/21反弹高点4739.23已被完全吞噬。其余4个指数因kline服务限频多次重试均失败，基于7/23技术指标 + 今日90%个股下跌，估算全部跌破MA5/MA10/MA20。
+
+**个股上涨覆盖面**：555 家上涨、4940 家下跌，上涨占比 10%，中位数约 -3.0%（估算），跌超5%的股票 711 只（含跌停25只）。
+
+**资金面**：主力资金以30个观测板块加总近似约 -1015亿（偏空，与7/23的-1004亿基本持平），大单/超大单分项暂无数据。两市成交额 19311亿（较5日均值约-26.6%，较20日均值约-34.3%，缩量下跌）。行业资金流入Top3：半导体 +36.53亿（行业排名#1，但upDownRatio 72/177=41%扩散差）、地面兵装Ⅱ +3.70亿、其他电子Ⅱ +2.62亿。芯片概念 -182.13亿、CPO -113.50亿、锂电池 -100.10亿、PCB -86.86亿，科技板块资金流出持续加剧。
+
+**技术指标（上证指数，7/23数据）**：MACD -22.11（DIF -59.41 / DEA -48.35，空头排列）；KDJ K=37.77 D=29.09 J=55.12（低位区）；RSI6=44.88 RSI12=41.63 RSI24=42.78（偏弱）；布林带价格在中轨3965.16与下轨3768.92之间运行（7/24暴跌后可能接近下轨）。
+
+**与上一交易日对比（抛压变化）**：
+- 下跌家数从 1208 暴增到 4940（+308.6%），跌超5%的股票从 116 只暴增到 711 只（+513.8%），中位数从 +1.5% 恶化到 -3.0%（恶化4.5个百分点）。两市成交额从 21953亿 缩到 19311亿（-2641亿）。
+- 抛压比上一交易日大得多：7/23的反弹（77%上涨、涨停120只）在7/24被完全吞噬，10%上涨、跌停25只、跌超5%达711只。7/23的"情绪修复型反弹"确认失败。
+- **机构资金两日持续流出**：7/23 -1004亿 + 7/24 -1015亿 = 两日合计约-2019亿。7/23是"价格涨但机构卖"（背离），7/24是"价格跌且机构卖"（一致看空），抛压从隐性转为显性。
+- 盘中无明显资金买入迹象：沪深300从开盘4685.41冲高4704.08后一路下跌至4642.94，收盘4649.19仅高于日内低点6点，全日单边下行无买盘支撑。
+
+## 二、板块交易结论
+
+**优先做多方向（成熟上行趋势）是 0 条**：今天没有适合主动提高整体仓位的主线。7/23的A档3条（保险、白银概念、黄金概念）今日全部转为资金净流出，A档归零。
+
+**反转/新启动候选有 0 条**：今日市场全面下跌，行业涨幅最高仅地面兵装+2.23%（非观测主线），无任何观测主线涨幅超3%触发反转信号。
+
+**反弹修复里更偏减仓信号的是** 半导体（主力 +36.53亿，5日 -336.47亿，upDownRatio 41%）、HBM（主力 +36.31亿，5日 -133.18亿）、存储器（主力 +4.24亿，5日 -424.73亿）等 3 条。这些方向当日有资金流入但5日趋势仍大幅流出，属单日脉冲无连续性；反弹更适合降低弱势持仓；没有仓位不进行买入。
+
+**特别提示**：半导体（申万二级）今日价涨+0.59%且资金净流入+36.53亿（行业资金排名#1），HBM紧随其后（+36.31亿，排名#2）。但半导体5日资金仍为-336.47亿，且内部扩散差（72/177=41%上涨），资金可能集中流入少数大市值股（如中芯国际概念+0.45%、大基金二期+1.21%），不具板块性。
+
+**反弹修复要拆开看 — 医药生物/创新药链**：
+- 医药生物：7/7 个细分全部偏空、修复面为零。当日无一正流入。资金流出最重的是创新药（-49.22亿，5日 -184.43亿）和化学制药（-25.98亿，5日 -93.09亿）。7个细分当日和5日主力全部为负，医药板块全面偏空，走势较弱的细分反弹时先减仓。
+
+**放弃/暂不做多有 27 条**，最需要避开的是 **芯片概念**（主力 -182.13亿，5日 -1275.99亿）、**CPO/共封装光模块**（-113.50亿，5日 -748.99亿）、**锂电池概念**（-100.10亿，5日 -151.05亿）、**PCB概念**（-86.86亿，5日 -391.70亿）、**有色金属**（-79.59亿，5日 +85.60亿）。此外通信设备（-65.90亿）、券商（-51.34亿）、MiniLED（-50.12亿）、创新药（-49.22亿）、黄金概念（-48.95亿）、电力设备（-48.21亿）、工业金属（-40.25亿）、化学制药（-25.98亿）、白银概念（-24.11亿）、电网设备（-17.38亿）、OLED（-15.71亿）、AI算力芯片（-15.16亿）、保险（-11.39亿）、电子布（-11.01亿）、生物疫苗（-11.01亿）、玻璃玻纤（-10.75亿）、通信服务（-7.40亿）、生物制品（-7.44亿）、CRO（-6.44亿）、医疗器械（-6.57亿）、多元金融（-4.57亿）、医药商业（-1.00亿）均为当日资金净流出方向。**芯片/半导体/CPO/存储器/通信设备五大科技核心主线合计当日流出约-321亿，两日累计流出超-1200亿。**
+
+**7/23 A档/B档今日降级情况**：
+- 保险：7/23 +1.44亿（A档）→ 7/24 -11.39亿（D档）
+- 白银概念：7/23 +5.70亿（A档）→ 7/24 -24.11亿（D档）
+- 黄金概念：7/23 +29.36亿（A档）→ 7/24 -48.95亿（D档）
+- 电网设备：7/23 +52.29亿（B档）→ 7/24 -17.38亿（D档）
+- 工业金属：7/23 +32.45亿（B档）→ 7/24 -40.25亿（D档）
+- 电池/锂电池：7/23 +37.54亿（B档）→ 7/24 -100.10亿（D档）
+
+**特别提示（用户持仓相关）**：
+- 用户A股8只持仓几乎全部位于D档区域：半导设备ETF/长川科技→半导体行业(+36.53亿但C档)、科创芯片ETF→芯片概念(-182.13亿)、通信ETF/中际旭创/天孚通信→CPO(-113.50亿)+通信设备(-65.90亿)、生益科技→PCB(-86.86亿)+电子布(-11.01亿)、中国巨石→玻璃玻纤(-10.75亿)。
+- 唯一相对正面的是半导体行业今日资金净流入+36.53亿（C档，行业排名#1），但5日仍为-336.47亿，且扩散差（41%上涨），不具持续性。
+
+## 三、操作纪律
+
+- **仓位**：不提高整体仓位。A档主线 0 条（远低于3条门槛），大盘0/5站上任何均线、主力资金-1015亿持续流出，维持现有仓位甚至考虑降低。
+- **做多优先级**：无（A档0条）。今天没有适合主动做多的主线。
+- **观察候选**：无（B档0条）。无任何板块触发反转启动信号。
+- **减仓信号**：半导体、HBM、存储器（C档3条）。当日资金正流入但5日趋势仍空，降低弱势持仓、无仓位不买入。
+- **回避方向**：芯片概念、CPO、锂电池、PCB、有色金属、通信设备、券商、MiniLED、创新药、黄金概念、电力设备、工业金属、化学制药、白银概念、电网设备、OLED、AI算力芯片、保险、电子布、生物疫苗、玻璃玻纤、通信服务、生物制品、CRO、医疗器械、多元金融、医药商业（D档27条）。弱势先减、暂不新增。
+
+## 四、数据备注
+
+- 数据日期：2026-07-24（changedist、kline sh000300、fund flow、sector ranking 均为7/24收盘数据；market-overview trade/updown/interval/technical 为7/23数据，后端滞后一天）
+- 数据来源：腾讯自选股接口（经 westock-data）
+- 缺口说明：4个指数kline因服务限频多次重试均失败，仅有sh000300成功；全市场主动资金以30个观测板块加总近似（约-1015亿）；中位数以changedist区间分布估算（约-3.0%）；market-overview数据滞后一天
+- 下一交易日：2026-07-27（周一，预计交易日）
+
+---
+
+> 本报告为客观数据整理与结构化分析，不构成投资建议。投资有风险，决策需谨慎。
+</script>
+
+<script>
+(function(){
+  var dates = ['2026-07-24','2026-07-23','2026-07-22'];
+  var switchEl = document.getElementById('date-switch');
+  var reportEl = document.getElementById('report-area');
+  var current = dates[0];
+
+  // Build date buttons
+  dates.forEach(function(d){
+    var btn = document.createElement('button');
+    btn.className = 'date-btn' + (d === current ? ' active' : '');
+    btn.textContent = d.slice(5).replace('-','/');
+    btn.onclick = function(){ selectDate(d); };
+    switchEl.appendChild(btn);
+  });
+
+  function selectDate(d){
+    if(d === current) return;
+    current = d;
+    // Update buttons
+    switchEl.querySelectorAll('.date-btn').forEach(function(b){
+      b.classList.toggle('active', b.textContent === d.slice(5).replace('-','/'));
+    });
+    renderReport(d);
+  }
+
+  function renderReport(d){
+    var mdEl = document.getElementById('md-' + d);
+    if(!mdEl){ reportEl.innerHTML = '<div class="loading">报告不存在</div>'; return; }
+
+    reportEl.classList.remove('show');
+    reportEl.style.opacity = '0';
+
+    setTimeout(function(){
+      var md = mdEl.textContent.trim();
+
+      // Use marked if available, otherwise fallback
+      var html;
+      if(typeof marked !== 'undefined'){
+        marked.setOptions({ breaks: true, gfm: true });
+        html = marked.parse(md);
+      } else {
+        // Fallback: very basic rendering
+        html = '<pre style="white-space:pre-wrap;font-size:0.8em;line-height:1.7;">' + md.replace(/</g,'&lt;') + '</pre>';
+      }
+
+      // Split into sections by ## headers for card layout
+      var sections = splitSections(html);
+
+      reportEl.innerHTML = sections.map(function(s){
+        return '<div class="md-card"><div class="md">' + s + '</div></div>';
+      }).join('');
+
+      // Trigger animation
+      requestAnimationFrame(function(){
+        reportEl.classList.add('show');
+      });
+    }, 200);
+  }
+
+  function splitSections(html){
+    // Split by h2 headers, keep h1 as first section
+    var parts = [];
+    var h1Match = html.match(/<h1[^>]*>[\s\S]*?<\/h1>/);
+    var h2Regex = /<h2[^>]*>[\s\S]*?(?=<h2|$)/g;
+    var h2Matches = html.match(h2Regex) || [];
+
+    if(h1Match){
+      // Combine h1 with content before first h2
+      var afterH1 = html.slice(h1Match.index + h1Match[0].length);
+      var firstH2 = afterH1.indexOf('<h2');
+      var intro = firstH2 >= 0 ? afterH1.slice(0, firstH2) : afterH1;
+      parts.push(h1Match[0] + intro);
+    }
+
+    h2Matches.forEach(function(m){ parts.push(m); });
+
+    return parts.length ? parts : [html];
+  }
+
+  // Initial render
+  renderReport(current);
+})();
+</script>
+
+</body>
+</html>
