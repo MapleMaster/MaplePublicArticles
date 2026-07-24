@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>每日盘后市场简报 · 华尔街之🦅</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="每日盘后市场简报 · 宏观与行业机会/风险">
+<meta property="og:description" content="覆盖A股·港股·美股三市场 · 宏观判断 · 行业主线 · 持仓映射">
+<meta property="og:url" content="https://maplemaster.github.io/MaplePublicArticles/daily-briefing/index.html">
+<meta name="description" content="每日盘后市场简报 — 宏观与行业机会/风险分析，覆盖A股、港股、美股三市场，含持仓映射">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,0.7);--card-bg-hover:rgba(15,23,42,0.85);
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;--pink:#f472b6;
+  --green:#34d399;--red:#f87171;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,0.08);--border-hi:rgba(148,163,184,0.15);
+  --ease-out-quint:cubic-bezier(0.23,1,0.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+}
+/* Background */
+.bg-img{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(3,7,18,0.4) 0%,rgba(3,7,18,0.7) 40%,var(--bg) 80%),radial-gradient(ellipse at 30% 0%,rgba(167,139,250,0.06),transparent 50%),radial-gradient(ellipse at 70% 10%,rgba(34,211,238,0.05),transparent 50%);
+}
+.scan{position:fixed;left:0;width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(167,139,250,0.3),transparent);
+  z-index:2;pointer-events:none;animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+
+/* Page */
+.page{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:20px 16px 48px}
+
+/* Header */
+.hero{text-align:center;margin-bottom:16px}
+.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;
+  background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.12);
+  font-size:0.6em;color:var(--purple);letter-spacing:0.1em;text-transform:uppercase;
+  opacity:0;animation:enterUp 0.6s var(--ease-out-quint) 0.1s forwards;
+}
+.hero-badge .blink{width:5px;height:5px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 6px var(--green);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.7)}}
+.hero h1{font-size:clamp(1.3em,5vw,1.7em);font-weight:800;line-height:1.15;letter-spacing:-0.03em;
+  margin:8px 0 4px;opacity:0;animation:enterUp 0.7s var(--ease-out-quint) 0.25s forwards;}
+.hero h1 .g{background:linear-gradient(135deg,var(--purple),var(--cyan) 40%,var(--blue) 70%,var(--pink));
+  background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:gradientShift 5s ease-in-out infinite;}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.hero .sub{font-size:0.68em;color:var(--text-dim);letter-spacing:0.15em;text-transform:uppercase;
+  opacity:0;animation:enterUp 0.6s var(--ease-out-quint) 0.4s forwards;}
+@keyframes enterUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* Back link */
+.back-link{display:inline-flex;align-items:center;gap:4px;font-size:0.7em;color:var(--text-dim);
+  text-decoration:none;margin-bottom:12px;opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.5s forwards;}
+.back-link:hover{color:var(--cyan)}
+
+/* Date switcher */
+.date-switch{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;
+  opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.55s forwards;}
+.date-btn{padding:6px 16px;border-radius:10px;border:1px solid var(--border);
+  background:var(--card-bg);color:var(--text-mid);font-size:0.75em;font-weight:600;
+  cursor:pointer;transition:all 200ms ease;backdrop-filter:blur(8px);font-family:inherit;}
+.date-btn:hover{border-color:var(--border-hi);color:var(--text)}
+.date-btn.active{background:rgba(167,139,250,0.12);border-color:rgba(167,139,250,0.3);color:var(--purple);
+  box-shadow:0 0 12px rgba(167,139,250,0.08);}
+
+/* Report content */
+#report-area{opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s ease;}
+#report-area.show{opacity:1;transform:translateY(0);}
+
+/* Markdown rendered styles */
+.md{font-size:0.82em;line-height:1.75;}
+.md h1{font-size:1.35em;font-weight:800;margin:0 0 16px;letter-spacing:-0.02em;
+  background:linear-gradient(135deg,var(--text),var(--text-mid));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.md h2{font-size:1.1em;font-weight:700;margin:24px 0 12px;color:var(--cyan);
+  padding-bottom:8px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:6px;}
+.md h2:before{content:'';width:3px;height:14px;background:var(--cyan);border-radius:2px;}
+.md h3{font-size:0.95em;font-weight:600;margin:16px 0 8px;color:var(--purple);}
+.md p{margin:8px 0;color:var(--text);}
+.md strong{color:var(--text);font-weight:700;}
+.md ul,.md ol{margin:8px 0;padding-left:20px;}
+.md li{margin:4px 0;color:var(--text-mid);}
+.md li strong{color:var(--text);}
+.md blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,0.04);border-radius:0 8px 8px 0;
+  font-size:0.9em;color:var(--text-dim);}
+.md blockquote p{color:var(--text-dim);}
+.md hr{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border-hi),transparent);margin:20px 0;}
+.md code{font-family:'SF Mono',Menlo,monospace;font-size:0.88em;
+  padding:1px 5px;border-radius:4px;background:rgba(96,165,250,0.08);color:var(--blue);}
+
+/* Up/Down colors (涨红跌绿) */
+.md .up{color:var(--up);font-weight:700;}
+.md .down{color:var(--down);font-weight:700;}
+
+/* Tables */
+.md table{width:100%;border-collapse:collapse;margin:12px 0;font-size:0.88em;
+  border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.md thead{background:rgba(96,165,250,0.06);}
+.md th{padding:8px 10px;text-align:left;font-weight:700;color:var(--blue);
+  border-bottom:1px solid var(--border-hi);font-size:0.92em;white-space:nowrap;}
+.md td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text-mid);
+  font-size:0.9em;vertical-align:top;}
+.md td strong{color:var(--text);}
+.md tr:last-child td{border-bottom:none;}
+.md tr:hover td{background:rgba(96,165,250,0.03);}
+
+/* Report sections as cards */
+.md-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;
+  padding:16px 18px;margin-bottom:12px;backdrop-filter:blur(12px);
+  opacity:0;transform:translateY(16px);animation:cardIn 0.5s var(--ease-out-quint) forwards;}
+@keyframes cardIn{to{opacity:1;transform:translateY(0);}}
+.md-card:nth-child(1){animation-delay:0.05s}
+.md-card:nth-child(2){animation-delay:0.12s}
+.md-card:nth-child(3){animation-delay:0.19s}
+.md-card:nth-child(4){animation-delay:0.26s}
+.md-card:nth-child(5){animation-delay:0.33s}
+.md-card:nth-child(6){animation-delay:0.40s}
+.md-card:nth-child(7){animation-delay:0.47s}
+
+/* Footer */
+.footer{text-align:center;margin-top:28px;padding-top:14px;border-top:1px solid var(--border);
+  opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.8s forwards;}
+.footer p{font-size:0.62em;color:var(--text-dim);line-height:1.8;}
+.footer .hl{color:var(--gold);}
+.footer .lotus{color:var(--pink);}
+
+/* Loading */
+.loading{text-align:center;padding:40px;color:var(--text-dim);font-size:0.8em;}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  .scan{display:none;}
+}
+@media (max-width:480px){
+  .md{font-size:0.78em;}
+  .md table{font-size:0.8em;}
+  .md th,.md td{padding:6px 7px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-img"></div>
+<div class="scan"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge">
+      <span class="blink"></span>
+      <span>MARKET BRIEFING</span>
+    </div>
+    <h1><span class="g">📋 每日盘后市场简报</span></h1>
+    <div class="sub">宏观与行业机会/风险 · 三市场 · 持仓映射</div>
+  </header>
+
+  <a class="back-link" href="../index.html">‹ 返回主页</a>
+
+  <div class="date-switch" id="date-switch"></div>
+
+  <div id="report-area">
+    <div class="loading">加载中...</div>
+  </div>
+
+  <footer class="footer">
+    <p>
+      <span class="hl">🦅 华尔街之鹰</span> · 简报由 <span class="lotus">🪷 小荷</span> 自动生成<br>
+      数据来源：westock-data · WebSearch · 新华社/财联社/每经/Bloomberg/Reuters 等 · 不构成投资建议
+    </p>
+  </footer>
+
+</div>
+
+<!-- Report data: 2026-07-22 -->
+<script type="text/plain" id="md-2026-07-22">
+# 市场简报：宏观与行业机会/风险（2026-07-22）
+
+## 宏观机会 / 风险
+
+**全球风险偏好修复严重不同步：美股芯片股暴力反弹，A股科技板块继续杀跌。** 7月21日隔夜美股三大指数全线收涨，道指涨0.74%报52,224.64点，标普500涨0.89%报7,509.20点，纳斯达克涨1.29%报25,837.21点（新华社，2026-07-22）；费城半导体指数暴涨5.21%，美光科技涨超12%至$970.82，英特尔涨8.64%至$105.45，光通信概念股AAOI涨超12%、Coherent涨逾11%、Lumentum涨超9%（财联社，2026-07-22）。然而7月22日A股与港股并未跟随，上证指数微涨0.07%报3,867.03点但深证成指跌1.42%、创业板指跌3.23%、科创综指跌2.25%，全市场3,876只个股下跌、仅1,530只飘红，通信板块领跌-4.44%（上海证券报，2026-07-22）；港股恒生指数跌0.95%报24,892.66点，恒生科技指数跌3.04%，腾讯跌7.05%、网易跌7.39%（财联社，2026-07-22）。与此同时，资金并未撤离——7月至今股票型ETF净流入¥3,717亿，宽基ETF揽入¥2,289亿，中国国新与中国诚通合计超¥600亿入市（21世纪经济报道，2026-07-22）。组合含义是：中美科技股的节奏差正在扩大，美股财报前的FOMO回补不等于A股科技端同步修复，仓位应保留在有订单和资金面支撑的强主线，回避情绪性追涨杀跌。风险在于美股财报季业绩"利好出尽"后A股映射端再度承压。
+
+**美债收益率高位运行，长久期估值继续承压。** 7月21日美国10年期国债收益率报4.63%，日内升3bps，2年期报4.26%，升5bps，2s10s利差+37bps（YieldCurvesToday，2026-07-21）；美债收益率曲线整体上移，30年期达5.13%。中国端，10年期国债收益率稳定在1.75%，7月LPR连续14个月维持不变，5年期3.5%、1年期3%（中证债券估值日报，2026-07-21）。中美利差深度倒挂约288bps，叠加美元指数维持在100.82-101区间（DollarMetal，2026-07-21），人民币汇率在6.77附近窄幅波动。对仓位的直接含义是，A股高估值成长股的折现率约束未解除，但国内低利率环境对红利和低波资产仍有支撑，配置上不宜对长久期高估值标的过度加杠杆。风险在于油价持续上行可能推高美国通胀预期，进一步推迟美联储降息甚至重启加息讨论。
+
+**中东地缘风险从条件性情景向基线情景滑动，能源与黄金同步走高。** 美军对伊朗实施连续第11晚空袭，伊朗反袭美国在巴林、科威特和约旦的设施，霍尔木兹海峡至少一艘油轮遭袭，7月21日仅3艘大宗商品船通过该海峡，无超大型油轮或LNG运输船通行（新华社，2026-07-22）。胡塞武装7月20日宣布对沙特实施海上禁运，冲突风险从海湾扩散至红海航线。布伦特原油涨2.01%至$91.01/桶、WTI涨2.02%至$84.91/桶，均创6月中旬以来新高（新华社，2026-07-22）。现货黄金7月22日盘中突破$4,100/盎司，截至11:28报$4,138.30/盎司，涨1.5%（金价查询网，2026-07-22）。高盛极端情景为若供应中断持续到四季度，布伦特可能上冲$120/桶以上，但这不是基线判断；TP ICAP警告若紧张持续数周，布伦特或破$100/桶（汇通网，2026-07-21）。净结论是：能源通胀和航运风险对航空、化工和高能耗制造构成基线性利空，对油气、炼化和黄金形成条件性利多，具备自备电源能力的数据中心基础设施也间接受益。风险在于停火谈判突然取得突破导致油价和避险资产快速回吐。
+
+**A股市场处于政策托底与杠杆出清的拉锯阶段，风格从极端分化向均衡回归。** 7月22日沪深两市成交额¥26,533亿，较前日缩量¥3,037亿（中新经纬，2026-07-22）；两市融资余额截至7月21日报¥26,895.21亿，仅微增0.62亿元，杠杆资金出清接近尾声但尚未完成（财联社，2026-07-22）。盘面呈现"煤飞色舞"行情，贵金属、煤炭、油气、电力板块领涨，而通信、光学光电、电池、机器人等科技板块跌幅靠前。证监会7月20-21日密集召开系列座谈会，强调"增强资本市场内在稳定性"，中国国新、中国诚通先后宣布大额增持（博时基金点评，2026-07-22）。行业含义是：短期市场波动率仍高，但政策底与资金底正在形成，风格上从此前极端的"科技独强"向"红利+科技轮动"过渡，不宜将宽基反弹等同于全面风险偏好回升。风险在于月底政治局会议政策定调不及预期，或地缘局势进一步恶化打断修复进程。
+
+## 行业机会 / 风险
+
+**neocloud投资质量继续改善，合同覆盖率与客户预付款成为核心验证指标。** IREN新签$28亿多年度AI云合同后，将2026年底年化运营收入目标上调至$40亿以上，其中约85%已被合同覆盖，客户预付款覆盖近45%的GPU资本开支；公司容量从约3MW扩张至2026年的480MW，规划2027年达1.2GW（The Block/同花顺，2026-07-21）。Hut 8签署15年、$98亿租赁协议，Beacon Point园区1GW全面商业化的总合同价值达$196亿，含续约选项潜在总值$502亿（The Block，2026-07-21）。Nebius(NBIS)7月21日暴涨18.78%至$216.92，英伟达向SEC披露持有9.3%受益所有权，Northland将目标价从$248上调至$410（Barchart/同花顺，2026-07-21）。Gartner预测到2030年neocloud将占$2,670亿AI云市场的20%份额，即$534亿收入（同花顺，2026-07-22）。行业含义很清晰：需求已从主题层面转化为土地、电力、债务和长期租赁的真实资本开支，最值得布局的是能让客户提前出钱、将资本密集部分转移给需求侧的运营商。风险在于重资产扩张、客户集中度、电价与债务成本上行，以及GPU代际迭代导致的残值风险。
+
+**存储仍是最强的景气主线，但已进入"高景气+高拥挤"的第二阶段，反弹剧烈但波动同步放大。** 美光科技7月21日反弹12.17%至$970.82，Roundhill DRAM ETF涨10.91%至$58.85（westock-data，2026-07-21）。TrendForce 7月3日报告显示，3Q26整体DRAM合约价预计季增13%-18%，NAND Flash季增10%-15%，涨幅较前几季收敛但格局仍"极度紧缺"；服务器DDR5价格环比涨10%-20%，eSSD涨25%-30%，AI服务器需求仍是核心动能（TrendForce，2026-07-03）。DDR5 16Gb现货均价$50.067，日内涨0.60%（TrendForce，2026-07-21）。国盛证券援引TrendForce预判2026下半年价格仍具70%-75%上行空间（国盛证券，2026-07-03）。这意味着主线没有结束，但交易方式必须从高杠杆追价切回"回调后只买有价格、订单和产能兑现的龙头"。风险在于把2026年的紧缺简单线性外推到2027年以后——消费端价格承受力已达极限，若AI推理需求增速放缓，供需格局可能逆转。
+
+**光通信出现"美股强反弹、A股深回调"的鲜明分化，A股映射端进入挤泡沫阶段。** 美股端，AAOI 7月21日涨超12%，全年营收指引上调至超$11亿，已获某hyperscaler超$2亿1.6T订单；Coherent数据中心订单排至2028年；Lumentum InP产能再增50%，1.6T光模块交付第一梯队，OCS签下数十亿美元多年期协议（东吴通信，2026-07-10）。然而A股端7月22日深度回调：中际旭创跌6.66%至¥1,060.80，天孚通信跌5.79%至¥217.63，通信板块整体跌4.44%（westock-data/上海证券报，2026-07-22）。港股长飞光纤光缆跌10.28%至HK$127.40，富瑞将其评级由"买入"下调至"持有"，认为全球大幅扩产将逐步消除供需缺口，2026-2027年盈利或为周期性顶部（智通财经，2026-07-22）。净结论是：光通信海外需求验证层（订单、客户、收入指引）仍然强劲，但A股映射端缺少新增订单和利润归因的直接验证，且面临供给端扩产担忧，只能放在观察主线而非追涨方向。风险在于CPO技术路线加速替代可插拔模块，改变现有价值链分配格局。
+
+**半导体设备处于"政策催化+业绩预增+资金逆势流入"的偏强阶段，但短期受板块情绪拖累。** 7月22日长川科技跌2.81%至¥309.05，但7月21日曾涨停+20.00%至¥318.00，显示高波动下的资金博弈（westock-data，2026-07-22）。资金面逆势布局：7月13-20日科创芯片ETF嘉实区间下跌22.47%但净流入¥58.85亿，半导体设备ETF易方达区间下跌29%但净流入¥26.48亿，通信ETF国泰净流入¥22.47亿（证券之星，2026-07-22）。芯片ETF国泰近20日净流入¥15.69亿（每日经济新闻，2026-07-22）。AI算力需求驱动半导体产业链上半年业绩大面积预增，最高预增743倍（同花顺，2026-07-22）。行业含义是：半导体设备和芯片方向的长期逻辑（国产替代+AI算力需求）未变，资金"越跌越买"的行为表明机构资金认可底部区域，但短期高波动下不宜追涨，适合回调后分批布局有订单和产能兑现的龙头。风险在于美国关税政策进一步收紧对半导体供应链的冲击，以及估值在高波动中持续压缩。
+
+**PCB与覆铜板赛道今日出现集体暴跌信号，供给端扩产担忧开始定价。** 建滔积层板(01888.HK)7月22日暴跌15.28%至HK$40.26，建滔集团跌10.17%（财联社，2026-07-22）；A股生益科技跌7.13%至¥126.00，中国巨石跌停-10.00%至¥38.70（westock-data，2026-07-22）。消息面上，烽火通信定增募资不超¥29.13亿扩产光纤制造，领益智造跨界切入富通嘉善重整，行业供给端快速增长引发份额流失担忧（智通财经，2026-07-22）。但高盛最新预测显示，全球AI服务器CCL覆铜板市场规模将从2024年的$15亿增至2027年的$187亿，2026和2027年增速分别达142%和222%（财联社，2026-07-22）。这意味着长期需求逻辑未变，但短期供给冲击和情绪宣泄可能持续，当前位置属于"长期逻辑强+短期杀跌猛"的矛盾阶段。风险在于扩产进度超预期导致供需缺口提前闭合，价格战压缩利润空间。
+
+## 持仓映射
+
+> 以下仅为方向性映射，不构成任何买卖建议。数据截至2026-07-22收盘（美股为7/21收盘）。
+
+### A股融资账户
+
+| 持仓 | 7/22收盘价 | 日涨跌 | 赛道映射 | 简报定位 |
+|---|---|---|---|---|
+| 中际旭创(300308) | ¥1,060.80 | -6.66% | 光通信 | 海外需求验证层强劲（AAOI/COHR订单排至2028），但A股映射端今日深度回调，处于"挤泡沫+观察"阶段 |
+| 天孚通信(300394) | ¥217.63 | -5.79% | 光通信/CPO | 同上，CPO产业链长期受益但短期板块情绪拖累 |
+| 生益科技(600183) | ¥126.00 | -7.13% | PCB/覆铜板 | 高盛长期逻辑强（CCL市场2027年$187亿），但供给端扩产担忧导致短期杀跌 |
+| 长川科技(300604) | ¥309.05 | -2.81% | 半导体设备 | 国产替代+AI算力需求驱动，资金逆势流入半导体ETF，偏强阶段但高波动 |
+| 中国巨石(600176) | ¥38.70 | -10.00%（跌停） | 玻纤/材料 | 今日跌停，与PCB板块集体回调有关，需关注周期顶部信号 |
+| 半导设备ETF(159516) | 未获数据 | — | 半导体设备 | 同长川科技映射，7月ETF资金"越跌越买"（半导体设备ETF净流入¥26.48亿） |
+| 科创芯片ETF(588200) | 未获数据 | — | 半导体/芯片 | 科创芯片ETF 7/13-20下跌22.47%但净流入¥58.85亿，机构底部认可 |
+| 通信ETF(515880) | 未获数据 | — | 通信/光模块 | 通信板块今日跌4.44%领跌，ETF净流入¥22.47亿，短期承压但资金面支撑 |
+
+### 港股通账户
+
+| 持仓 | 7/22收盘价 | 日涨跌 | 赛道映射 | 简报定位 |
+|---|---|---|---|---|
+| 建滔积层板(01888) | HK$40.26 | -15.28% | PCB/覆铜板 | 暴跌15%，供给端扩产担忧+板块集体回调；高盛长期逻辑未变但短期情绪宣泄剧烈 |
+| 长飞光纤光缆(06869) | HK$127.40 | -10.28% | 光纤光缆 | 富瑞下调至"持有"，认为2026-2027年盈利或为周期顶部，供给扩产消除短缺 |
+
+### 美股账户
+
+| 持仓 | 7/21收盘价 | 日涨跌 | 赛道映射 | 简报定位 |
+|---|---|---|---|---|
+| NBIS(Nebius) | $216.92 | +18.78% | neocloud | 英伟达9.3%持股验证，Northland目标价$410；验证层信号强（合同+大股东），但高beta波动剧烈 |
+| DRAM ETF | $58.85 | +10.91% | 存储/DRAM | 高景气第二阶段，TrendForce预判3Q26 DRAM +13-18%，反弹重启但不宜高杠杆追价 |
+
+### 映射小结
+
+今日持仓组合呈现"美股端强反弹、A股港股端深回调"的分化格局。核心观察点：
+1. **光模块/光通信**：海外需求验证（AAOI/COHR/LITE订单和指引）与A股映射端走势背离，短期A股端处于挤泡沫阶段，但海外端需求并未恶化。
+2. **存储/neocloud**：美股端（NBIS、DRAM ETF）强劲反弹，验证层信号持续改善，属于简报中"验证层"主线。
+3. **PCB/覆铜板/材料**：供给端扩产担忧开始定价，建滔积层板、生益科技、中国巨石集体杀跌，短期风险释放中。
+4. **半导体设备**：资金逆势流入ETF，长期逻辑未变，短期受板块情绪拖累。
+
+---
+
+数据截至：2026-07-22 16:55（A股/港股收盘），美股数据截至2026-07-21收盘 ｜ 主要来源：新华社、财联社、上海证券报、中新经纬、智通财经、TrendForce、The Block、Barchart、YieldCurvesToday、同花顺、westock-data、证券之星、每日经济新闻、21世纪经济报道、东吴通信研报、博时基金点评、汇通网、金价查询网 ｜ VIX数据未获 ｜ 个股ETF(159516/588200/515880)7/22收盘价未获数据 ｜ 仅供参考，不构成投资建议
+</script>
+
+<!-- Report data: 2026-07-23 -->
+<script type="text/plain" id="md-2026-07-23">
+# 市场简报：宏观与行业机会/风险（2026-07-23）
+
+## 宏观机会 / 风险
+
+**美股风险偏好进入芯片反弹后的喘息期，Google财报同时验证了AI需求的真实性与资本开支的代价。** 7月22日（周三）美股收盘，标普500报7,498.96点（-0.14%），纳斯达克报25,690.90点（-0.57%），费城半导体指数微涨0.44%，与前一日SOX +5.21%的暴力反弹相比明显减速（来源：中新经纬/Wind，2026-07-22）。大型科技股多数下跌——Meta -2.58%、微软 -1.86%、特斯拉 -1.30%、亚马逊 -1.09%、谷歌 -1.24%，仅英伟达 +2.30%延续独立走势；超微电脑 +19.84%和戴尔 +9.32%则反映AI硬件链的局部热度。盘后谷歌母公司Alphabet发布二季度财报：营收1,198亿美元（+24% YoY），谷歌云营收248亿美元（+82% YoY），云积压订单升至5,140亿美元，但同时资本开支同比翻倍至449亿美元，自由现金流数十年来首次转负至-58.55亿美元，全年资本开支指引从1,800-1,900亿美元上修至1,950-2,050亿美元，并预计2027年仍将"显著"增加（来源：Alphabet SEC 8-K/每日经济新闻，2026-07-22）。组合含义是：AI基建需求端被 hyperscaler 财报验证为真实且加速，但资本开支飙升对自由现金流的侵蚀正在被市场重新定价，估值压力从"故事端"转向"投入回报端"，Google盘后跌约3%即是此逻辑的即时反应。
+
+**利率仍是压制长久期估值的核心变量，且加息预期在油价推动下快速升温。** 7月22日，美国10年期国债收益率升至约4.63%，创5月21日以来两月新高；2年期收益率约4.255%（来源：Investopedia/Saxo，2026-07-22）。CME FedWatch显示，市场对7月29日FOMC会议加息的概率预期从一周前的不到11%升至24%，对9月会议至少加息25bp的概率从48%升至69%（来源：Investopedia，2026-07-22）。与此同时，美元兑日元突破163，创1986年以来新高，日本当局干预风险上升（来源：华尔街见闻，2026-07-22）。对仓位的直接含义是：高估值、长久期、依赖远期现金流折现的资产（尤其是AI软件和未盈利平台）应继续降权，优先保留有当期现金流或硬资产支撑的方向。
+
+**能源与地缘风险仍在升级，且已从条件性情景向基线情景偏移。** 美伊冲突进入第11天，美军连续11夜对伊朗境内军事目标实施打击，7月22日凌晨德黑兰等多地遭袭；伊朗反击美国在巴林、科威特的军事设施，并袭击了位于巴林的亚马逊中央数据基础设施（来源：新华社/证券时报，2026-07-22）。特朗普威胁"伊朗每次在霍尔木兹海峡开火，美国就轰炸并摧毁一座伊朗桥梁或发电厂"，伊朗议长回应"霍尔木兹海峡状况不会恢复到战前"（来源：央视新闻，2026-07-22）。也门胡塞武装同步对沙特实施海上封锁，曼德海峡风险溢价上升。7月22日布伦特原油收报94.07美元/桶（+3.36%），盘中一度突破95美元，创六周新高；WTI收报86.83美元/桶（+2.95%）（来源：新华社/Trading Economics，2026-07-22）。布伦特过去一个月涨幅21.98%，同比上涨37.24%。美军累计伤亡18人死亡、482人受伤（来源：美国国防部，2026-07-22）。黄金期货升至约4,120美元/盎司。净结论是：能源通胀和航运保险费对航空、化工和高能耗制造构成基线性利空，对油气、炼化和具备自备电源能力的数据中心基础设施形成条件性利多；IEA已警告全球石油供应安全风险不容忽视。
+
+**A股风险偏好表现为缩量普涨中的风格切换——资源与电网接管，科技让位。** 7月23日（周四），上证指数收报3,876.78点（+0.25%），深证成指+0.44%，创业板指+0.25%，但科创50指数大跌3.78%至1,789.69点，科创综指-2.60%（来源：证券时报/央广财经，2026-07-23）。两市成交额约2.2万亿元，较前一日缩量约4,580亿元。全市场4,260只个股上涨、1,208只下跌，128只涨停、2只跌停。板块上，电网设备板块爆发涨超6%（29股涨停），能源金属、油气开采、电池、风电、工业金属全面走强；半导体、电子化学品、存储芯片、先进封装概念下跌。截至7月22日，A股两融余额27,197.75亿元，较前一日增加14.93亿元，其中电子行业融资净买入58.14亿元居首，中际旭创获融资买入68.01亿元（来源：证券时报/21世纪经济报道，2026-07-23）。组合含义是：市场从前一日的集中抛压（7月22日创业板-3.23%）中企稳，但资金选择了低估值资源+电网而非科技反弹，科创板的持续杀跌说明半导体方向的杠杆去化尚未完成。港股方面，恒生指数+1.28%报25,210.81点，恒生科技+0.65%，重型机械、水泥、锂电走强，半导体与存储芯片继续下挫（来源：财联社，2026-07-23）。
+
+## 行业机会 / 风险
+
+**AI基建需求端再次被 hyperscaler 财报验证，但市场焦点从"需求在不在"切换为"投入回报何时兑现"。** Alphabet二季度资本开支449亿美元（同比翻倍），全年指引上修至1,950-2,050亿美元，2027年"显著增加"，云营收+82%至248亿美元，积压订单5,140亿美元（来源：Alphabet财报，2026-07-22）。CFO明确表示"仍处于供不应求的环境中"，约60%技术基础设施投资用于服务器、40%用于数据中心和网络设备，并计划Q3扩大对第三方算力的使用以填补自有产能建成前的缺口（来源：21世纪经济报道，2026-07-23）。摩根士丹利7月12日研报将五大hyperscaler 2027/2028年资本开支预测分别上调至约1.2万亿和1.4万亿美元（来源：智通财经，2026-07-14）。行业含义很清晰：需求不是停留在主题层面，而是已转化为土地、电力、债务和长期租赁的真实资本开支；但Google自由现金流转负说明"投入-产出"的时间错配正在被市场定价。受益链条维持neocloud、数据中心开发、供配电、服务器电源和光通信；主要风险是资金成本上行（10Y美债4.63%）、建设进度落后于需求以及资本回报率不达预期。
+
+**neocloud赛道进入资本密集爆发期，投资质量继续改善但拥挤度同步上升。** 7月21日，IREN宣布28亿美元多年度AI云合同，将2026年底年化收入目标从37亿上调至超40亿美元（85%已签约），容量从480MW规划扩张至2027年1.2GW；Hut 8签署15年98亿美元租约（含延期选项潜在总价值超500亿美元），签约容量翻倍至704MW；英伟达通过SEC文件正式披露持有Nebius 9.3%受益所有权（约20亿美元），Wolfe Research预测Nebius 2030年营收达300亿美元（来源：智通财经/Barrons，2026-07-21）。Nebius 7月14日另签Reflection AI超10亿美元算力协议至2029年（来源：智通财经，2026-07-14）。NBIS 7月22日收报218.16美元（+0.57%），盘后225.00美元（+3.08%），从6月22日高点299.86美元回落约27%（来源：市场数据，2026-07-22）。阶段定性：neocloud已从"主题映射"进入"合同与产能兑现期"，最值得关注的不是概念股而是能让客户预付资本开支的运营商。风险在于重资产扩张的杠杆风险、客户集中度以及电价与债务成本上行。
+
+**存储仍是最强景气主线，但已进入"高景气+高拥挤"的第二阶段——涨幅收敛、回撤后反弹、杠杆未清。** TrendForce 7月3日报告预计3Q26 DRAM合约价季增13%-18%（2Q26实际涨幅58-63%，1Q26为90-95%），NAND季增10%-15%，涨幅明显收敛但方向仍上行（来源：TrendForce/环球网，2026-07-03）。DDR4 8Gb 6月合约价21美元（月涨5%），NAND 128Gb 28.8美元（月涨8.7%，连涨18个月）（来源：DRAMeXchange/新浪财经，2026-07-01）。美光FY2026 Q3（6月24日发布）营收415亿美元（环比+74%），非GAAP毛利率84.9%，下季度指引营收约500亿美元、毛利率约86%（来源：Luminix，2026-07）。7月22日美股存储板块在前一日暴涨后分化：美光-1.17%、SK海力士-3.88%、闪迪-0.62%，西部数据+1.51%、希捷+1.82%；Roundhill Memory ETF（DRAM）盘前跌超3%（来源：Investopedia，2026-07-22）。A股存储芯片和先进封装概念7月23日继续下跌。行业含义：主线没有结束，但交易方式必须从高杠杆追价切回"回调后只买有价格、订单和产能兑现的龙头"。风险在于把2026年的紧缺简单线性外推到2027年以后——客户侧库存已从2-4周升至7-9周，接近8周早期预警线（来源：Luminix，2026-07）。
+
+**光通信海外龙头产能售罄至2029年，但A股映射端出现"海外强、国内弱"的分化加剧。** Lumentum（LITE）产能已售罄至2029年，EML芯片供需缺口约30%，FY2026 Q3营收8.084亿美元（+90.1% YoY），Q4指引上修至9.60-10.10亿美元（来源：行业分析，2026-07）。AAOI Q1 2026营收1.511亿美元（+51% YoY，连续4季创新高），数据中心营收+154% YoY，1.6T首笔批量订单超2亿美元，800G月产能从10万套目标年底65万套，全年营收指引上修至超11亿美元（来源：AAOI财报/TipRanks，2026-05-07）。但AAOI股价近期单日暴跌12.99%，反映高估值成长股在指引不及预期时的脆弱性。A股端，7月23日中际旭创收报1,072.52元（+1.10%），天孚通信收报212.09元（-2.55%），CPO板块-0.56%；通信ETF国泰（515880）+3.43%，近30日净流入172.46亿元（来源：市场数据/每日经济新闻，2026-07-23）。行业含义：海外光通信龙头的订单和产能数据属于验证层信号，但A股映射端在科创板整体杀跌环境中难以独立走强，当前处于"基本面强、股价受板块beta拖累"的阶段。风险在于A股光模块标的缺少当期新增订单和利润归因的独立验证，且科创板杠杆去化未完成。
+
+**半导体设备与材料链遭遇科创板杀跌的集中冲击，资金净流出。** 7月23日，半导设备ETF国泰（159516）收报0.72元（-3.61%），成交46.31亿元，资金净流出5.83亿元；科创芯片ETF（588200）同步下跌（具体收盘价未获数据），科创50指数-3.78%（来源：同花顺/每日经济新闻，2026-07-23）。长川科技收报291.24元（-5.76%），前一日曾+20.00%涨停（7月21日），两日振幅极大。中国巨石收报38.36元（-0.88%），前一日跌停（-10.00%），今日有所企稳但仍未收复失地。生益科技收报125.10元（-0.71%），相对抗跌。港股端，建滔积层板收报40.70港元（+1.09%），前一日暴跌15.28%后小幅反弹；长飞光纤光缆收报125.80港元（-1.26%），连续多日回调（来源：市场数据，2026-07-23）。行业含义：半导体设备和材料链的回调更多是科创板beta去杠杆的系统性冲击而非基本面恶化，但短期内资金流出和情绪偏弱构成实际压力。主要风险是科创板杠杆去化尚未完成时，个股基本面利好难以有效定价。
+
+## 持仓映射
+
+> 以下仅为方向性映射，不给买卖建议，不设目标价。持仓数据来源：~/.workbuddy/MEMORY.md（2026/07/20更新）。
+
+| 赛道 | 持仓标的 | 7/23收盘 | 当日涨跌 | 简报框架中的位置与方向性映射 |
+|---|---|---|---|---|
+| **光模块** | 中际旭创(300308) | ¥1,072.52 | +1.10% | 验证层。海外LITE/AAOI产能售罄至2029年+Google资本开支上修构成正面催化，但A股端受科创板beta拖累，股价与基本面阶段性背离。方向：基本面信号偏多，股价端需等待板块杠杆出清。 |
+| **光模块** | 天孚通信(300394) | ¥212.09 | -2.55% | 验证层。同上逻辑，天孚近5日跌9.07%、近20日跌35.08%，回调幅度大于中际旭创。方向：基本面未恶化，但短期股价弱势明显，需观察杠杆去化进度。 |
+| **光通信ETF** | 通信ETF(515880) | ¥0.694 | +3.43% | 验证层。近30日净流入172.46亿元，长线资金仍在配置。方向：ETF层面资金偏多，反映机构对光通信赛道的中长期判断未变。 |
+| **半导体设备** | 长川科技(300604) | ¥291.24 | -5.76% | 观察层。7/21曾+20%涨停，7/23回吐-5.76%，振幅极大。半导设备ETF资金净流出5.83亿。方向：个股基本面无新增利空，但科创板系统性去杠杆构成短期压制。 |
+| **半导体设备ETF** | 半导设备ETF(159516) | ¥0.72 | -3.61% | 观察层。资金净流出，反映短期情绪偏弱。方向：赛道中长期逻辑（国产替代+设备国产化率提升）未变，但短期需等待科创板企稳。 |
+| **科创芯片ETF** | 科创芯片ETF(588200) | 未获数据 | — | 观察层。跟随科创50（-3.78%）同步调整。方向：同上。 |
+| **覆铜板/材料** | 生益科技(600183) | ¥125.10 | -0.71% | 观察层。前一日-7.13%后企稳，抗跌性好于板块。方向：AI服务器PCB需求支撑中长期逻辑，但扩产担忧（建滔暴跌）对情绪有传染。 |
+| **玻纤/材料** | 中国巨石(600176) | ¥38.36 | -0.88% | 观察层。前一日跌停（-10.00%），今日小幅企稳。方向：供给扩产担忧定价中，短期情绪脆弱，需观察供给端是否有新增信息。 |
+| **PCB/港股** | 建滔积层板(01888) | HK$40.70 | +1.09% | 观察层。前一日暴跌15.28%后小幅反弹，从6月高点107.20港元已回落62%。方向：供给扩产+需求预期下修的双杀尚未结束，属"第三梯队"标的。 |
+| **光纤/港股** | 长飞光纤光缆(06869) | HK$125.80 | -1.26% | 观察层。连续多日回调，从52周高点305港元回落59%。Q1净利润+245%但Jefferies下调评级至Hold。方向：基本面强劲但市场定价扩产担忧，短期偏弱。 |
+| **neocloud/美股** | NBIS(Nebius) | $218.16 | +0.57% | 验证层。英伟达持股9.3%+IREN/Hut8大单催化+Reflection AI 10亿美元合约。ARR增速+674%，Wolfe预测2030年营收300亿美元。方向：赛道投资质量持续改善，但从6月高点回落27%，拥挤度上升。用户成本$225.02，当前浮亏约-3.1%。 |
+| **存储/美股** | DRAM ETF | 未获数据 | — | 验证层。3Q26 DRAM合约价+13-18%，美光毛利率84.9%。7/22盘前跌超3%（7/21涨11%后回吐）。方向：景气主线未变但涨幅收敛，第二阶段特征明显。 |
+| **网络安全/美股** | S(SentinelOne) | 未获数据 | — | 观察层。待开仓标的，等$18-19。利率上行环境下高估值软件股承压，10Y美债4.63%对长久期估值不利。方向：等待利率信号明朗后再评估介入时机。 |
+
+---
+
+**数据截至**：2026-07-23 16:55 (GMT+8)，A股/港股为7月23日收盘数据，美股为7月22日收盘数据，Alphabet财报为7月22日盘后发布。
+
+**主要来源**：中新经纬、证券时报、央广财经、财联社、每日经济新闻、21世纪经济报道、新华社、Investopedia、Saxo Bank、Alphabet SEC 8-K、TrendForce、智通财经、同花顺iFinD、东方财富、DRAMeXchange、Luminix、AAOI/TipRanks、Trading Economics、央视新闻。
+
+**数据缺口**：VIX 7月22日收盘价未获数据（仅获7月21日VIX=17.05）；科创芯片ETF(588200)7月23日收盘价未获数据；DRAM ETF(Roundhill Memory)7月22日收盘价未获数据（仅获盘前跌超3%信息）；SentinelOne(S)最新股价未获数据。
+
+**免责声明**：仅供参考，不构成投资建议。所有数据均标注来源与日期，查不到的数据标注"未获数据"，未做任何编造。
+</script>
+
+<!-- Report data: 2026-07-24 -->
+<script type="text/plain" id="md-2026-07-24">
+# 市场简报：宏观与行业机会/风险（2026-07-24）
+
+## 宏观机会 / 风险
+
+美股科技股去杠杆从"回调"演变为"抛售"，风险偏好全面回落。7月23日（周四）道指跌506.93点（-0.97%）收51,711.65点，标普500跌90.66点（-1.21%）收7,408.30点，纳指跌553.21点（-2.15%）收25,137.69点（新华社，7/23）。龙头股的崩塌信号极为清晰：特斯拉单日跌14.5%，二季度自由现金流转为负10.9亿美元，资本开支同比飙升至57.89亿美元（+142%），调整后EPS $0.33远低于预期$0.51（界面新闻，7/23）；Alphabet跌逾7%，二季度自由现金流负58.55亿美元为上市以来首次，并将2026年资本开支指引从1,800-1,900亿美元上修至1,950-2,050亿美元（每经，7/23）。与此同时，VIX在连续三日下跌后反弹2.81点至19.45点（新浪财经，7/23），说明市场定价已从"回调"切换至"风险事件"。组合含义是：AI资本开支的"烧钱-增收"剪刀差正被市场重新审视，买单方（Alphabet、Tesla）的现金流恶化压低估值，卖方（Micron、neocloud）短期受益但估值同样受长久期折现压制。风险在于如果资本开支上修引发的不是"更多订单"而是"对回报可持续性的质疑"，整个AI链的风险溢价将同步抬升，当前判断仍为基线情景下的阶段调整而非趋势反转。
+
+利率环境从"高利率"向"加息预期"切换，对长久期估值构成边际压制。7月23日10年期美债收益率上涨5bp至4.71%，创2025年1月以来18个月新高；30年期升至5.188%，年内已有27个交易日维持5%以上（华尔街见闻，7/23）。Bloomberg同日报道，2年期收益率升至约4.34%，初请失业金人数降至18.7万（预期21.2万），强化了美联储短期不降息的预期；芝商所FedWatch显示7月加息概率超过33%，9月加息概率升至78%以上（前日约61%）（Trading Economics/Bloomberg，7/23）。这意味着债市已从"高利率维持"定价切换至"进一步紧缩"定价。对仓位的直接含义是：AI软件、订阅模式和缺乏订单兑现的高估值品种应继续降权，优先保留算力、电力和已形成现金流闭环的资产。风险在于初请失业金人数骤降如果反映的是劳动力市场韧性而非"过热"，则加息概率的定价可能过度激进，届时长久期资产或有修复性反弹。
+
+能源与航运风险从条件性情景向基线情景移动。布伦特原油7/23收报94.07美元/桶（+3.36%），盘中一度逼近100美元；WTI收86.83美元/桶（+2.95%）；阿联酋穆尔班原油暴涨19.13%至106.60美元/桶（Gulf News/Reuters，7/23）。伊朗革命卫队宣布霍尔木兹海峡"完全关闭"，胡塞武装声称在红海袭击两艘沙特油轮并试图封锁沙特航线，美军已连续第12夜对伊朗发动打击（Reuters，7/23）。高盛预计油价将在7-8月维持近期涨幅，因全球库存持续下降、中东产量下降和夏季出行需求支撑。布伦特原油7月涨幅有望跻身过去十年单月涨幅前三（华尔街见闻，7/23）。净结论是：能源通胀对航空、化工和高能耗制造构成基线性利空，对油气、炼化和具备自备电源能力的数据中心基础设施形成条件性利多。风险在于地缘冲突的不可预测性——任何一方误判导致实际供油中断，油价可能进一步跳升至高盛极端情景的120美元/桶以上，但这不是当前基线判断。
+
+A股进入"杠杆去化后半段"，半导体逆市承接但整体风险偏好仍处脆弱修复。7月24日沪指跌1.61%收3,814.20点，深证成指跌2.47%，创业板指跌2.65%收3,480.87点，科创综指跌1.05%，全市场超4,900只个股下跌，三市合计成交1.9444万亿元，较上日缩量2,650亿元（证券时报/每经，7/24）。7月23日两融余额为27,103.13亿元，较前一交易日减少94.62亿元（证券时报，7/24）。招商证券指出当前市场已呈现"杠杆去化、交易降温、ETF托底"三位一体特征，融资出清进入后半段，强势科技股补跌意味着恐慌盘集中释放，进一步下行空间有限（证券时报，7/24）。与此同时，半导体设备ETF（159516）逆市收涨3.06%，成交额超51亿元，长川科技涨4.21%，显示资金并未放弃硬科技主线。组合含义是：不宜把宽基反弹等同于风险偏好全面回升，更适合保留有订单兑现路径的科技分支和国产替代方向，对纯题材、高杠杆追价品种保持降权。风险在于如果缩量持续且杠杆去化加速，指数可能进一步下探3,700-3,750区间寻找支撑。
+
+港股"地量"调整，南向资金净卖出但银行股逆势创新高。7月24日恒生指数跌0.98%收24,963.23点，恒生科技指数跌1.47%收4,629.51点，全天仅成交2,099亿港元为今年"地量"水平（每经，7/24）。板块上，银行股维持强势，中银香港（02388）大涨近6%创历史新高HK$51.25，总市值5,419亿港元；而PCB概念股下挫，建滔积层板（01888）跌超7%，科网股普跌，阿里巴巴跌超4%，南向资金净卖出超15亿港元（每经，7/24）。国元证券认为港股短期大幅下行空间有限，南向资金能维持指数韧性，但趋势性上涨条件尚不充分，外资配置意愿尚未明显改善（每经，7/24）。净结论是：港股当前不具备趋势性做多条件，但结构性亮点在银行高股息和国产科技替代。风险在于海外科技板块调整和地缘风险反复扰动可能进一步压缩流动性。
+
+## 行业机会 / 风险
+
+AI资本开支从"预期"切回"财报验证"阶段，分歧信号已经出现。Alphabet二季度云营收247.68亿美元（同比+82%），积压订单首次突破5,000亿美元至5,140亿美元，但二季度资本开支449亿美元，自由现金流转为负58.55亿美元，公司预计2027年资本开支仍将大幅增长（每经，7/23）。与此同时，AMD与Anthropic达成长期合作——Anthropic自2027年上半年起采购最多2GW搭载AMD Instinct MI450芯片的AI服务器，合作规模达数百亿美元，AMD另投资最高50亿美元（每经，7/23）。Tesla方向则提供反面信号：Q2营收282.4亿美元（+26%）创新高，但运营利润仅3.98亿美元（-57%），毛利率降至16.8%，马斯克称全年资本支出将超250亿美元（界面/每经，7/23）。行业含义很清晰：需求侧的资本开支兑现路径（云订单、合同）仍在验证层，但买单方的现金流恶化已开始约束估值，交易方式应从"追估值"切回"看合同和现金兑现"。风险在于大规模资本开支能否带来与投入匹配的收入增长，仍取决于AI应用层的商业化进展——如果后续财报持续显示买方FCF恶化，资本开支可持续性将被质疑。
+
+neocloud方向投资质量继续改善，但已进入"高景气+高拥挤"第二阶段。NBIS（Nebius）7/23收$220.97（+1.29%），合同收入$47.3B，英伟达披露持有NBIS 9.3%股份，Baird首次覆盖给予Outperform评级和$250目标价，下次财报日8月6日（ziven.io/TipRanks，7/23）。IREN收$40.58（-1.70%），Hut 8收$117.67（+7.11%，年内+154%）（westock-data，7/23）。值得注意的是，NBIS从6/22高点$299.86回落约26%，HUT从6/2高点$140.80回落约16%，但两家均在7/21出现明显反弹（NBIS +18.78%，HUT +7.98%）。行业判断是，neocloud的核心验证层（合同、客户预付、容量扩张）依然坚实，但估值已对远期增长充分定价，波动率显著放大。组合含义是：方向性看多neocloud的逻辑未变，但交易方式必须从"追高"切回"回调后只买有合同覆盖和客户预付支撑的龙头"。风险在于重资产扩张、客户集中度和电价/债务成本上行。
+
+存储仍是最强景气主线，但涨幅收敛信号已出现。美光7/23收$990.21（+3.20%），在纳指跌2.15%的背景下逆市上涨，跑赢纳指5.35个百分点，单日新增市值约350亿美元（ts2.tech，7/23）。TrendForce数据显示3Q26整体DRAM合约价预计季增13-18%（涨幅较前几季收敛），NAND Flash季增10-15%（集邦咨询，7/7）。瑞银大幅上调预期，预计3Q26 DDR环比+32%、NAND+30%，4Q26 DDR+18%、NAND+12%，并认为供需紧张至少持续至2028年上半年（环球网，7/5）。三星年内第三次推动DRAM涨价，目标3Q通用DRAM均价环比上调20%（每经，7/7）。DRAM ETF（Roundhill Memory）7/23收$58.30（+0.92%）（westock-data，7/23）。SK海力士将于7月29日公布Q2财报，是存储链下一个验证节点。行业含义是：存储主线未结束，但合约价涨幅收敛叠加股价已从高点回落20%+，表明市场已部分定价了"景气见顶"预期，交易方式应从"追涨"切回"回调后买有合约和产能兑现的龙头"。风险在于把2026年的紧缺简单线性外推到2027年以后——韩国800万亿韩元扩产计划和美国美光93亿美元扩产将在2027年逐步释放产能。
+
+光通信A股映射端继续杀跌，但1.6T量产交付的验证层信号依然坚实。7月24日中际旭创（300308）收¥1,046.51（-2.43%），天孚通信（300394）收¥203.41（-4.09%，连续3日累计跌11.94%），通信ETF（515880）收¥0.65（-3.73%）（westock-data，7/24）。与此同时，1.6T光模块已进入千万只级别批量交付：中际旭创1.6T硅光CPO模块已通过英伟达GB200服务器平台认证，全球1.6T市占率超50%，在英伟达供应链中拿下约70%订单，订单排至2027年（产业调研/公司公告，7/12）。2026年一季度中际旭创营收近¥195亿（同比+192%），归母净利润约¥57亿（+262%）。但天孚通信20日跌幅已达-36%，通信板块整体20日跌幅-22.45%。行业含义是：光通信的验证层信号（订单、收入、产能）依然坚实，但A股映射端在杠杆去化和风格切换中遭受系统性抛压，属于"基本面未恶化但估值压缩"的阶段。风险在于如果1.6T交付节奏低于预期或客户集中度过高导致订单波动，A股映射端的估值修复将缺乏催化剂。
+
+半导体设备逆市走强，国产替代与AI算力需求双重驱动。7月24日半导体设备ETF（159516）收¥0.74（+3.06%），成交额超51亿元，逆市飘红；长川科技（300604）收¥303.50（+4.21%），中科飞测涨7.43%，拓荆科技涨6.16%，北方华创涨3.49%（westock-data/每经，7/24）。中泰研究指出科技及高制板块是A股交易热度最高的板块，日均成交额达815.57亿元，且是资金流入最多的板块（每经，7/24）。产业层面，AI算力对高性能芯片的需求拉动晶圆厂扩产和技术升级，向上游设备环节传导；国产替代加速推进，设备环节作为产业链基石获得政策和市场持续支持。行业含义是：半导体设备是当前A股少数在市场调整中逆市获得资金净流入的方向，验证层（订单、政策支持）清晰，属于"高景气+国产替代"双轮驱动的主线。风险在于科创半导体材料设备等指数当前估值处于历史高位，如果后续扩产不及预期或国产替代进度放缓，高估值将面临回调压力。
+
+PCB与光纤材料端供给扩产担忧持续定价。7月24日建滔积层板（01888）收HK$37.72（-7.32%），从前高HK$107.20回落64.8%；长飞光纤光缆（06869）收HK$121.10（-3.74%），从前高HK$304.66回落60.2%（westock-data，7/24）。中国巨石（600176）收¥37.34（-2.66%），生益科技（600183）收¥118.71（-5.11%）（westock-data，7/24）。富瑞认为，虽然AI及地缘冲突带动光纤需求，但随着中国及全球大幅扩产，供应增加将逐渐消除短缺情况，长飞光纤可能面临市场份额流失风险，2026-2027年盈利或为周期性顶峰（智通财经，7/24）。行业含义是：材料端供给扩产预期正在系统性压低估值，属于"需求仍在但供给加速"的利空定价阶段，方向上应继续降权材料端敞口。风险在于如果AI算力需求增速超出扩产节奏，短缺可能在2027年重现，当前判断为"供给加速定价"而非"需求崩塌"。
+
+## 持仓映射
+
+基于 ~/.workbuddy/MEMORY.md 记录的三市场持仓（7/20更新），将上述宏观与行业判断映射到持仓赛道，只做方向性映射，不给买卖建议。
+
+### A股融资账户（8只）
+
+| 持仓标的 | 代码 | 7/24收盘 | 当日涨跌 | 所在赛道 | 简报映射 |
+|---|---|---|---|---|---|
+| 半导设备ETF | 159516 | ¥0.74 | <span style="color:red">+3.06%</span> | 半导体设备/国产替代 | 逆市飘红，国产替代+AI算力双轮驱动，验证层清晰，当前为"高景气"主线。阶段定性：景气上行期，估值处历史高位需注意波动 |
+| 科创芯片ETF | 588200 | ¥1.26 | <span style="color:red">+0.67%</span> | 半导体芯片 | 随半导体板块逆市走强，与159516同属国产替代主线，但波动更大 |
+| 通信ETF | 515880 | ¥0.65 | <span style="color:green">-3.73%</span> | 光通信 | 随光通信板块杀跌，20日跌幅-22.45%。1.6T量产验证层坚实但A股映射端遭系统性抛压 |
+| 中际旭创 | 300308 | ¥1,046.51 | <span style="color:green">-2.43%</span> | 光模块龙头 | 1.6T全球市占率超50%，英伟达GB200认证通过，订单排至2027年，验证层坚实。20日跌-16.54%，属"基本面未恶化但估值压缩"阶段 |
+| 天孚通信 | 300394 | ¥203.41 | <span style="color:green">-4.09%</span> | 光无源器件 | 连续3日跌11.94%，20日跌-36%。作为中际旭创上游供应商，需求逻辑跟随光模块，但跌幅更深反映杠杆去化压力 |
+| 生益科技 | 600183 | ¥118.71 | <span style="color:green">-5.11%</span> | 覆铜板/PCB材料 | PCB材料端供给扩产担忧持续定价，与建滔积层板同属"需求在但供给加速"利空阶段 |
+| 长川科技 | 300604 | ¥303.50 | <span style="color:red">+4.21%</span> | 半导体测试设备 | 随半导体设备板块逆市走强，属于国产替代主线中的设备端，验证层有政策支持 |
+| 中国巨石 | 600176 | ¥37.34 | <span style="color:green">-2.66%</span> | 玻纤/材料 | 材料端整体承压，供给扩产预期压低估值，与生益科技同属材料端降权方向 |
+
+### 港股通账户（2只）
+
+| 持仓标的 | 代码 | 7/24收盘 | 当日涨跌 | 所在赛道 | 简报映射 |
+|---|---|---|---|---|---|
+| 建滔积层板 | 01888 | HK$37.72 | <span style="color:green">-7.32%</span> | PCB/覆铜板 | 从前高HK$107.20回落64.8%，港股PCB概念板块跌幅居前。供给扩产+港股地量双重压制，属于"第三梯队"深度套牢标的 |
+| 长飞光纤光缆 | 06869 | HK$121.10 | <span style="color:green">-3.74%</span> | 光纤光缆 | 从前高HK$304.66回落60.2%。富瑞判断2026-2027年盈利或为周期性顶峰，供给扩产消除短缺。基本面恶化趋势明确，属"需求在但供给加速"利空定价 |
+
+### 美股账户
+
+| 持仓标的 | 代码 | 7/23收盘 | 当日涨跌 | 所在赛道 | 简报映射 |
+|---|---|---|---|---|---|
+| NBIS (Nebius) | NBIS | $220.97 | <span style="color:red">+1.29%</span> | neocloud龙头 | 合同收入$47.3B，英伟达持股9.3%，Baird给予$250目标价。从6/22高点$299.86回落约26%。验证层（合同、客户预付）坚实，但进入"高景气+高拥挤"第二阶段。8/6财报为下一验证节点 |
+| DRAM ETF (Roundhill) | DRAM | $58.30 | <span style="color:red">+0.92%</span> | 存储链 | 3Q26合约价+13-18%涨幅收敛但景气未结束，MU逆市+3.2%。DRAM ETF含MU 25%+，7/29 SK海力士财报为下一验证节点 |
+| S (SentinelOne) | S | $17.38 | <span style="color:green">-4.61%</span> | AI安全软件 | 属AI软件端，估值框架持续恶化（无正EPS，PE -13.26x）。当前$17.38已接近待开仓区间$18-19下方，但无新增订单验证。属于"预期层"标的，只能观察 |
+
+### 持仓映射总结
+
+- **验证层标的（有订单/合同/现金流支撑）**：中际旭创（1.6T订单排至2027年）、NBIS（$47.3B合同收入）、半导体设备ETF/长川科技（国产替代政策支持+AI需求）。这些方向在简报框架中属于"可保留"的主线。
+- **预期层标的（有指引但缺少新增订单验证）**：天孚通信（跟随光模块但自身无新增订单归因）、科创芯片ETF/通信ETF（板块映射但无个股级别验证）、DRAM ETF（存储链受益但涨幅收敛信号已现）。这些方向只能"观察"。
+- **利空定价阶段标的**：建滔积层板、长飞光纤光缆、中国巨石、生益科技。供给扩产预期系统性压低估值，方向上属"降权"。
+- **估值恶化标的**：SentinelOne。AI软件端估值框架持续恶化，无正EPS，只能观察等待。
+
+---
+
+**数据截至**：A股/港股 2026-07-24收盘 ｜ 美股 2026-07-23收盘 ｜ 宏观数据 2026-07-23-24
+
+**主要来源**：新华社、华尔街见闻、Bloomberg、Reuters、界面新闻、每经、证券时报、Gulf News、Trading Economics、TrendForce集邦咨询、瑞银(UBS)、Goldman Sachs、ts2.tech、ziven.io、TipRanks、智通财经、中泰研究、国泰基金、westock-data
+
+**数据缺口**：VIX 7/24盘中数据未获（仅7/23收盘19.45）；A股7/24两融余额数据尚未公布（使用7/23数据27,103.13亿元）；美元指数仅获7/23数据101.11-101.14
+
+**免责声明**：以上内容仅供参考，不构成投资建议。投资有风险，据此操作风险自担。
+</script>
+
+<script>
+(function(){
+  var dates = ['2026-07-24','2026-07-23','2026-07-22'];
+  var switchEl = document.getElementById('date-switch');
+  var reportEl = document.getElementById('report-area');
+  var current = dates[0];
+
+  // Build date buttons
+  dates.forEach(function(d){
+    var btn = document.createElement('button');
+    btn.className = 'date-btn' + (d === current ? ' active' : '');
+    btn.textContent = d.slice(5).replace('-','/');
+    btn.onclick = function(){ selectDate(d); };
+    switchEl.appendChild(btn);
+  });
+
+  function selectDate(d){
+    if(d === current) return;
+    current = d;
+    switchEl.querySelectorAll('.date-btn').forEach(function(b){
+      b.classList.toggle('active', b.textContent === d.slice(5).replace('-','/'));
+    });
+    renderReport(d);
+  }
+
+  // Inline lightweight Markdown parser (no external dependency)
+  function parseMarkdown(md){
+    var esc = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var lines = esc.split('\n');
+    var out = '';
+    var inUL = false, inOL = false, inBQ = false, inTable = false, tableRows = [];
+    var tableHeaders = [];
+
+    function inline(t){
+      // Restore span tags for up/down colors (涨红跌绿)
+      t = t.replace(/&lt;span\s+style="color:red"&gt;/g, '<span class="up">')
+           .replace(/&lt;span\s+style="color:green"&gt;/g, '<span class="down">')
+           .replace(/&lt;\/span&gt;/g, '</span>');
+      // Bold
+      t = t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+      return t;
+    }
+
+    function closeList(){ if(inUL){out+='</ul>';inUL=false;} if(inOL){out+='</ol>';inOL=false;} }
+    function closeBQ(){ if(inBQ){out+='</blockquote>';inBQ=false;} }
+
+    function flushTable(){
+      if(!inTable || tableRows.length === 0) return;
+      out += '<table><thead><tr>';
+      tableHeaders.forEach(function(h){
+        out += '<th>' + inline(h) + '</th>';
+      });
+      out += '</tr></thead><tbody>';
+      tableRows.forEach(function(row){
+        out += '<tr>';
+        row.forEach(function(cell){
+          out += '<td>' + inline(cell) + '</td>';
+        });
+        out += '</tr>';
+      });
+      out += '</tbody></table>';
+      inTable = false;
+      tableRows = [];
+      tableHeaders = [];
+    }
+
+    function parseTableRow(line){
+      // Remove leading/trailing pipes
+      var trimmed = line.trim();
+      if(trimmed.charAt(0) === '|') trimmed = trimmed.slice(1);
+      if(trimmed.charAt(trimmed.length-1) === '|') trimmed = trimmed.slice(0,-1);
+      return trimmed.split('|').map(function(c){ return c.trim(); });
+    }
+
+    function isSeparator(line){
+      return /^\|?[\s-:|]+\|?$/.test(line.trim()) && line.indexOf('-') >= 0;
+    }
+
+    for(var i=0;i<lines.length;i++){
+      var line = lines[i];
+
+      // Table detection
+      if(line.indexOf('|') >= 0 && line.trim().charAt(0) !== '-'){
+        var cells = parseTableRow(line);
+
+        // Check if next line is a separator
+        if(!inTable && i+1 < lines.length && isSeparator(lines[i+1])){
+          inTable = true;
+          tableHeaders = cells;
+          i++; // skip separator line
+          continue;
+        }
+
+        if(inTable){
+          // Check if this line is still a table row
+          if(line.trim().indexOf('|') >= 0){
+            tableRows.push(cells);
+            continue;
+          } else {
+            // End of table
+            flushTable();
+          }
+        }
+      } else if(inTable){
+        flushTable();
+      }
+
+      if(/^### /.test(line)){ closeList();closeBQ(); out+='<h3>'+inline(line.slice(4))+'</h3>'; }
+      else if(/^## /.test(line)){ closeList();closeBQ(); out+='<h2>'+inline(line.slice(3))+'</h2>'; }
+      else if(/^# /.test(line)){ closeList();closeBQ(); out+='<h1>'+inline(line.slice(2))+'</h1>'; }
+      else if(/^---+$/.test(line.trim())){ closeList();closeBQ(); out+='<hr>'; }
+      else if(/^&gt; /.test(line)){ closeList(); if(!inBQ){out+='<blockquote>';inBQ=true;} out+='<p>'+inline(line.slice(5))+'</p>'; }
+      else if(/^- /.test(line)){ closeBQ(); if(!inUL){closeList();out+='<ul>';inUL=true;} out+='<li>'+inline(line.slice(2))+'</li>'; }
+      else if(/^\d+\. /.test(line)){ closeBQ(); if(!inOL){closeList();out+='<ol>';inOL=true;} out+='<li>'+inline(line.replace(/^\d+\. /,''))+'</li>'; }
+      else if(line.trim()===''){ closeList();closeBQ(); }
+      else { closeList();closeBQ(); out+='<p>'+inline(line)+'</p>'; }
+    }
+    closeList();closeBQ();flushTable();
+    return out;
+  }
+
+  function renderReport(d){
+    var mdEl = document.getElementById('md-' + d);
+    if(!mdEl){ reportEl.innerHTML = '<div class="loading">报告不存在</div>'; return; }
+
+    reportEl.classList.remove('show');
+    reportEl.style.opacity = '0';
+
+    setTimeout(function(){
+      var md = mdEl.textContent.trim();
+      var html = parseMarkdown(md);
+
+      // Split into sections by ## headers for card layout
+      var sections = splitSections(html);
+
+      reportEl.innerHTML = sections.map(function(s){
+        return '<div class="md-card"><div class="md">' + s + '</div></div>';
+      }).join('');
+
+      // Trigger animation
+      requestAnimationFrame(function(){
+        reportEl.classList.add('show');
+      });
+    }, 200);
+  }
+
+  function splitSections(html){
+    var parts = [];
+    var h1Match = html.match(/<h1[^>]*>[\s\S]*?<\/h1>/);
+    var h2Regex = /<h2[^>]*>[\s\S]*?(?=<h2|$)/g;
+    var h2Matches = html.match(h2Regex) || [];
+
+    if(h1Match){
+      var afterH1 = html.slice(h1Match.index + h1Match[0].length);
+      var firstH2 = afterH1.indexOf('<h2');
+      var intro = firstH2 >= 0 ? afterH1.slice(0, firstH2) : afterH1;
+      parts.push(h1Match[0] + intro);
+    }
+
+    h2Matches.forEach(function(m){ parts.push(m); });
+
+    return parts.length ? parts : [html];
+  }
+
+  // Initial render
+  renderReport(current);
+})();
+</script>
+
+</body>
+</html>
