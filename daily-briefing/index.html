@@ -517,7 +517,6 @@ PCB与光纤材料端供给扩产担忧持续定价。7月24日建滔积层板�
     if(!mdEl){ reportEl.innerHTML = '<div class="loading">报告不存在</div>'; return; }
 
     reportEl.classList.remove('show');
-    reportEl.style.opacity = '0';
 
     setTimeout(function(){
       var md = mdEl.textContent.trim();
@@ -530,7 +529,8 @@ PCB与光纤材料端供给扩产担忧持续定价。7月24日建滔积层板�
         return '<div class="md-card"><div class="md">' + s + '</div></div>';
       }).join('');
 
-      // Trigger animation
+      // Trigger animation - clear inline opacity first to let CSS class take effect
+      reportEl.style.opacity = '';
       requestAnimationFrame(function(){
         reportEl.classList.add('show');
       });
