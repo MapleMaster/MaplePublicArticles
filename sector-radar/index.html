@@ -176,8 +176,6 @@ body{
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
-
 <!-- Report data -->
 <script type="text/plain" id="md-2026-07-22">
 # 行业概念板块雷达 | 2026-07-22
@@ -417,6 +415,36 @@ body{
     renderReport(d);
   }
 
+  // Inline lightweight Markdown parser (no external dependency)
+  function parseMarkdown(md){
+    var esc = md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var lines = esc.split('\n');
+    var out = '';
+    var inUL = false, inOL = false, inBQ = false;
+    var paras = [];
+
+    function inline(t){
+      return t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+    }
+    function closeList(){ if(inUL){out+='</ul>';inUL=false;} if(inOL){out+='</ol>';inOL=false;} }
+    function closeBQ(){ if(inBQ){out+='</blockquote>';inBQ=false;} }
+
+    for(var i=0;i<lines.length;i++){
+      var line = lines[i];
+      if(/^### /.test(line)){ closeList();closeBQ(); out+='<h3>'+inline(line.slice(4))+'</h3>'; }
+      else if(/^## /.test(line)){ closeList();closeBQ(); out+='<h2>'+inline(line.slice(3))+'</h2>'; }
+      else if(/^# /.test(line)){ closeList();closeBQ(); out+='<h1>'+inline(line.slice(2))+'</h1>'; }
+      else if(/^---+$/.test(line)){ closeList();closeBQ(); out+='<hr>'; }
+      else if(/^&gt; /.test(line)){ closeList(); if(!inBQ){out+='<blockquote>';inBQ=true;} out+='<p>'+inline(line.slice(5))+'</p>'; }
+      else if(/^- /.test(line)){ closeBQ(); if(!inUL){closeList();out+='<ul>';inUL=true;} out+='<li>'+inline(line.slice(2))+'</li>'; }
+      else if(/^\d+\. /.test(line)){ closeBQ(); if(!inOL){closeList();out+='<ol>';inOL=true;} out+='<li>'+inline(line.replace(/^\d+\. /,''))+'</li>'; }
+      else if(line.trim()===''){ closeList();closeBQ(); }
+      else { closeList();closeBQ(); out+='<p>'+inline(line)+'</p>'; }
+    }
+    closeList();closeBQ();
+    return out;
+  }
+
   function renderReport(d){
     var mdEl = document.getElementById('md-' + d);
     if(!mdEl){ reportEl.innerHTML = '<div class="loading">报告不存在</div>'; return; }
@@ -427,15 +455,7 @@ body{
     setTimeout(function(){
       var md = mdEl.textContent.trim();
 
-      // Use marked if available, otherwise fallback
-      var html;
-      if(typeof marked !== 'undefined'){
-        marked.setOptions({ breaks: true, gfm: true });
-        html = marked.parse(md);
-      } else {
-        // Fallback: very basic rendering
-        html = '<pre style="white-space:pre-wrap;font-size:0.8em;line-height:1.7;">' + md.replace(/</g,'&lt;') + '</pre>';
-      }
+      var html = parseMarkdown(md);
 
       // Split into sections by ## headers for card layout
       var sections = splitSections(html);
