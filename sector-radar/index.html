@@ -725,7 +725,9 @@ body{
     var btn = document.createElement('button');
     btn.className = 'date-btn' + (d === current ? ' active' : '');
     btn.setAttribute('data-date', d);
-    btn.textContent = d.slice(5).replace('-','/');
+    var label = d.slice(5).replace('-','/');
+    if(d.indexOf('-午盘') > -1){ label = label.replace('-午盘','') + ' 午'; }
+    btn.textContent = label;
     btn.onclick = function(){ selectDate(d); };
     switchEl.appendChild(btn);
   });
@@ -736,7 +738,8 @@ body{
     switchEl.querySelectorAll('.date-btn').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-date') === d);
     });
-    var tpl = document.getElementById('tpl-' + d);
+    var tplId = 'tpl-' + d.replace('-午盘','-mid');
+    var tpl = document.getElementById(tplId);
     if(!tpl) return;
     reportEl.classList.remove('show');
     reportEl.style.opacity = '0';

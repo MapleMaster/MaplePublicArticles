@@ -117,7 +117,9 @@ BODY_TEMPLATE = '''<body>
     var btn = document.createElement('button');
     btn.className = 'date-btn' + (d === current ? ' active' : '');
     btn.setAttribute('data-date', d);
-    btn.textContent = d.slice(5).replace('-','/');
+    var label = d.slice(5).replace('-','/');
+    if(d.indexOf('-午盘') > -1){ label = label.replace('-午盘','') + ' 午'; }
+    btn.textContent = label;
     btn.onclick = function(){ selectDate(d); };
     switchEl.appendChild(btn);
   });
@@ -128,7 +130,8 @@ BODY_TEMPLATE = '''<body>
     switchEl.querySelectorAll('.date-btn').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-date') === d);
     });
-    var tpl = document.getElementById('tpl-' + d);
+    var tplId = 'tpl-' + d.replace('-午盘','-mid');
+    var tpl = document.getElementById(tplId);
     if(!tpl) return;
     reportEl.classList.remove('show');
     reportEl.style.opacity = '0';
@@ -154,28 +157,30 @@ def main():
     md_dir = sys.argv[1]
     out = sys.argv[2] if len(sys.argv) > 2 else os.path.join(SCRIPT_DIR, 'index.html')
 
-    # 扫描所有 YYYY-MM-DD.md
-    files = glob.glob(os.path.join(md_dir, '20??-??-??.md'))
+    # 扫描所有 YYYY-MM-DD.md 和 YYYY-MM-DD-午盘.md
+    files = glob.glob(os.path.join(md_dir, '20??-??-??.md')) + \
+            glob.glob(os.path.join(md_dir, '20??-??-??-午盘.md'))
     if not files:
         print('错误：在', md_dir, '未找到 YYYY-MM-DD.md 报告')
         sys.exit(1)
 
-    # 按日期降序，只取最近 MAX_REPORTS 份
+    # 按日期降序；午盘版用 "日期-午" 作为key排在同日收盘版前面
     dated = []
     for f in files:
         b = os.path.basename(f)
-        m = re.match(r'(\d{4}-\d{2}-\d{2})', b)
+        m = re.match(r'(\d{4}-\d{2}-\d{2})(-午盘)?', b)
         if m:
-            dated.append((m.group(1), f))
+            sort_key = m.group(1) + ('-午' if m.group(2) else '')
+            dated.append((sort_key, m.group(1) + (m.group(2) or ''), f))
     dated.sort(key=lambda x: x[0], reverse=True)
     dated = dated[:MAX_REPORTS]
-    dates = [d for d, _ in dated]
+    dates = [d for _, d, _ in dated]
     latest = dates[0]
     print('发现报告:', dates, '首屏:', latest)
 
     # 渲染每份
     cards_map = {}
-    for d, f in dated:
+    for _, d, f in dated:
         with open(f, 'r', encoding='utf-8') as fh:
             cards_map[d] = render_to_cards(fh.read())
 
@@ -191,7 +196,8 @@ def main():
     # 组装 templates
     templates = []
     for d in dates:
-        templates.append('<template id="tpl-' + d + '">\n      ' + cards_map[d] + '\n    </template>')
+        tpl_id = 'tpl-' + d.replace('-午盘', '-mid')
+        templates.append('<template id="' + tpl_id + '">\n      ' + cards_map[d] + '\n    </template>')
     templates_str = '\n    '.join(templates)
     dates_js = '[' + ','.join("'" + d + "'" for d in dates) + ']'
 
