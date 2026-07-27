@@ -61,10 +61,13 @@ def render_to_cards(md_text):
 
 
 def extract_head(html_text):
-    """从现有 index.html 提取 head（到 </style></head>），含全部 CSS。"""
-    m = re.search(r'^(.*?</style>\s*</head>)', html_text, re.DOTALL)
+    """从现有 index.html 提取 <head>...</head> 内容（含全部 CSS，不含 DOCTYPE/html 标签）。
+
+    用非贪婪匹配取第一个 <head>...</head>，避免历史文件中 DOCTYPE 重复导致的污染。
+    """
+    m = re.search(r'<head>(.*?)</head>', html_text, re.DOTALL)
     if not m:
-        raise RuntimeError('无法从 index.html 提取 head（需包含 </style></head>）')
+        raise RuntimeError('无法从 index.html 提取 <head>...</head>')
     return m.group(1)
 
 
@@ -198,7 +201,7 @@ def main():
             .replace('__DATES_JS__', dates_js)
             .replace('__LATEST__', latest))
 
-    new_html = '<!DOCTYPE html>\n<html lang="zh-CN">\n' + head + '\n' + body + '\n</html>'
+    new_html = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>' + head + '</head>\n' + body + '\n</html>'
 
     with open(out, 'w', encoding='utf-8') as fh:
         fh.write(new_html)
