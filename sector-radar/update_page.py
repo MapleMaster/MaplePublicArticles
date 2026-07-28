@@ -164,13 +164,14 @@ def main():
         print('错误：在', md_dir, '未找到 YYYY-MM-DD.md 报告')
         sys.exit(1)
 
-    # 按日期降序；午盘版用 "日期-午" 作为key排在同日收盘版前面
+    # 按日期降序；同日收盘版排在午盘版后面（收盘版更新，应为首屏）
     dated = []
     for f in files:
         b = os.path.basename(f)
         m = re.match(r'(\d{4}-\d{2}-\d{2})(-午盘)?', b)
         if m:
-            sort_key = m.group(1) + ('-午' if m.group(2) else '')
+            # 午盘用 -0，收盘用 -1，降序排列时收盘在前（首屏）
+            sort_key = m.group(1) + ('-0' if m.group(2) else '-1')
             dated.append((sort_key, m.group(1) + (m.group(2) or ''), f))
     dated.sort(key=lambda x: x[0], reverse=True)
     dated = dated[:MAX_REPORTS]
