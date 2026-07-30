@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 AI 投研日报 · 2026-07-31</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            padding: 0 0 60px 0;
+        }
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #1a1f2e 50%, #161b22 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 48px 24px 36px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.2em;
+            color: #f0f6fc;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+        .header .subtitle {
+            font-size: 1.05em;
+            color: #8b949e;
+        }
+        .header .brand {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 20px;
+            background: rgba(56, 139, 253, 0.15);
+            border: 1px solid rgba(56, 139, 253, 0.4);
+            border-radius: 20px;
+            color: #58a6ff;
+            font-size: 0.95em;
+        }
+        .time-window {
+            max-width: 920px;
+            margin: 20px auto 0;
+            padding: 12px 24px;
+            background: rgba(56, 139, 253, 0.08);
+            border: 1px solid rgba(56, 139, 253, 0.25);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.95em;
+            color: #79c0ff;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .toc {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .toc h3 {
+            color: #f0f6fc;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+        .toc ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .toc li a {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #21262d;
+            border-radius: 6px;
+            font-size: 0.88em;
+            color: #c9d1d9;
+            transition: all 0.2s;
+        }
+        .toc li a:hover {
+            background: #30363d;
+            color: #58a6ff;
+        }
+
+        .section {
+            margin: 32px 0;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #f0f6fc;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #30363d;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .card:hover {
+            border-color: #484f58;
+        }
+        .card-title {
+            font-size: 1.1em;
+            color: #f0f6fc;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .card-summary {
+            color: #b1bac4;
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        .card-metrics {
+            background: rgba(56, 139, 253, 0.06);
+            border-left: 3px solid #58a6ff;
+            padding: 8px 14px;
+            margin-bottom: 10px;
+            font-size: 0.88em;
+            color: #79c0ff;
+            border-radius: 0 6px 6px 0;
+        }
+        .card-investment {
+            background: rgba(248, 81, 73, 0.06);
+            border-left: 3px solid #f85149;
+            padding: 8px 14px;
+            margin-bottom: 10px;
+            font-size: 0.88em;
+            color: #ffa198;
+            border-radius: 0 6px 6px 0;
+        }
+        .card-source {
+            font-size: 0.82em;
+            color: #6e7681;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-source .source-tag {
+            background: #21262d;
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+        .card-source .date-tag {
+            color: #8b949e;
+        }
+
+        .up { color: #f85149; }
+        .down { color: #3fb950; }
+
+        .footer {
+            max-width: 920px;
+            margin: 40px auto 0;
+            padding: 24px;
+            border-top: 1px solid #30363d;
+            text-align: center;
+            color: #6e7681;
+            font-size: 0.85em;
+        }
+        .footer p { margin-bottom: 8px; }
+        .disclaimer {
+            margin-top: 12px;
+            padding: 12px 20px;
+            background: rgba(248, 81, 73, 0.04);
+            border: 1px solid rgba(248, 81, 73, 0.15);
+            border-radius: 8px;
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-07-30.html">&larr; 2026-07-30</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled">无更新 &rarr;</span>
+</div>
+
+<div class="header">
+    <h1>🤖 AI 投研日报</h1>
+    <p class="subtitle">2026-07-31 · 星期五 · 小荷自动整理</p>
+    <span class="brand">📈 涨红跌绿 · 遵循A股惯例</span>
+</div>
+
+<div class="container">
+    <div class="time-window">
+        📰 新闻时间窗口：2026-07-30 08:00 ~ 2026-07-31 08:00（过去24小时）
+    </div>
+
+    <div class="toc">
+        <h3>📑 目录导航</h3>
+        <ul>
+            <li><a href="#a-share">🇨🇳 A股市场 (5条)</a></li>
+            <li><a href="#hk-share">🇭🇰 港股市场 (4条)</a></li>
+            <li><a href="#us-share">🇺🇸 美股市场 (5条)</a></li>
+            <li><a href="#finance">💰 融资/产业 (4条)</a></li>
+        </ul>
+    </div>
+
+    <div class="section" id="a-share">
+        <h2 class="section-title">🇨🇳 A股市场</h2>
+
+        <div class="card">
+            <h3 class="card-title">A股7/30收盘：沪指-0.62%，创业板-3.97%，AI硬件持续调整，大消费逆势走强</h3>
+            <p class="card-summary">7月30日A股震荡走低，上证指数收跌0.62%报3804.69点，深证成指跌2.73%，创业板指跌3.97%，科创50跌5.38%。两市成交额2.36万亿元。盘面上，半导体、算力硬件产业链持续调整，CPO题材大跌，寒武纪-9.11%，工业富联-6.84%，长电科技-10%跌停，紫光股份-9.99%跌停。大消费、大金融逆势走强，工商银行、建设银行股价双双创下历史新高。机构资金大幅净流出，从微幅净流入转为大幅流出，是主要做空力量。</p>
+            <div class="card-metrics">📊 沪指3804.69(-0.62%) | 创业板(-3.97%) | 科创50(-5.38%) | 成交2.36万亿</div>
+            <div class="card-investment">💡 投资视角：AI硬件板块经历持续调整，机构不计成本出逃算力板块。但大消费走强反映资金避险轮动。关注美股隔夜暴力反弹后A股科技板块能否止跌企稳，需突破站上10日线才能破坏7月后下跌趋势。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 同花顺/财联社</span>
+                <span class="date-tag">📅 2026-07-30</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">上半年集成电路制造业利润增长2579.5%！算力需求推动电子行业利润增96.9%</h3>
+            <p class="card-summary">国家统计局公布1-6月规上工业企业利润数据，算力需求大幅增长推动电子行业利润同比增长96.9%，集成电路制造行业利润增长高达2579.5%。计算机整机制造利润增689.3%，计算机外围设备制造增305.8%，电子专用材料制造增209.7%。实地调研显示，服务器合同价仅一周有效，内存价格从去年到现在涨了3倍，'1万元的内存条涨到3万元还买不着'，板卡全面缺货。</p>
+            <div class="card-metrics">📊 IC制造利润+2579.5% | 电子行业利润+96.9% | 内存价格涨3倍</div>
+            <div class="card-investment">💡 投资视角：数据验证AI算力产业链高景气度，存储芯片、集成电路制造、电子材料全产业链利润爆发。利好长鑫科技、海光信息、摩尔线程等国产算力芯片企业，以及江波龙、德明利等存储模组厂商。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 每日经济新闻/证券时报</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">宇树科技科创板IPO申购日期确定：8月5日询价，8月10日申购，人形机器人第一股来了</h3>
+            <p class="card-summary">7月30日晚，宇树科技(688836)公告称IPO获证监会同意注册，拟发行4044.64万股（占发行后总股本10%），募资42.02亿元，预计估值约420亿元。初步询价日8月5日，申购日8月10日。公司存在特别表决权安排，实控人王兴兴控制68.78%表决权。预计上半年营收10.52-11.28亿元，净利润2.58-3.06亿元。从受理到过会仅73天，创近年来A股硬科技IPO最快纪录。</p>
+            <div class="card-metrics">📊 募资42.02亿 | 估值约420亿 | H1净利润2.58-3.06亿 | 8月10日申购</div>
+            <div class="card-investment">💡 投资视角：A股人形机器人第一股，填补A股机器人整机标的空白。关联板块：人形机器人零部件（减速器、电机、传感器）、具身智能模型。竞品关注：优必选(港股)、智元创新(已启动赴港IPO)。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 证券时报/第一财经</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">字节跳动AI业务组织大调整：飞书并入豆包，GTM团队并入火山引擎，大模型ARR达40亿美元</h3>
+            <p class="card-summary">7月30日，字节跳动启动AI业务组织架构调整：飞书产品团队与豆包产品团队整合为新的豆包产品团队，飞书GTM团队与火山引擎团队整合成立'创造力服务平台'。豆包企业版已在部分飞书客户中开启内测。截至6月，豆包大模型日均Token调用量突破180万亿，字节大模型业务ARR（年化收入）达40亿美元，超过国内其他模型公司ARR总和。Q2飞书新增客户中超九成同步采购AI产品。</p>
+            <div class="card-metrics">📊 大模型ARR 40亿美元 | 日均Token 180万亿 | 飞书新客户90%+采购AI</div>
+            <div class="card-investment">💡 投资视角：字节AI To B战略升级，集中资源打造以豆包为核心的企业AI体系。利好火山引擎生态合作伙伴、飞书AI集成商。对比腾讯、阿里也在收拢AI战线，企业Agent竞争进入决战阶段。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 21世纪经济报道/科技日报</span>
+                <span class="date-tag">📅 2026-07-30</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">存储芯片供给紧缺加剧：华强北1TB固态硬盘涨132%，RTX5080涨50%</h3>
+            <p class="card-summary">央视财经报道，AI算力火爆导致全球存储芯片严重供给短缺。华强北主流型号存储产品和显卡价格持续攀升：1TB固态硬盘从去年9月410元涨至950元（+132%），16G DDR5涨幅超300%，RTX5080从7月22日8000元涨至12000元（+50%）。三星电子确认与五大数据中心签长期协议，预警'供应短缺将持续至2028年'。德明利公告二季度营收预增超200%。</p>
+            <div class="card-metrics">📊 1TB SSD +132% | 16G DDR5 +300% | RTX5080 +50% | 短缺持续至2028年</div>
+            <div class="card-investment">💡 投资视角：供需错配+价格重估，存储芯片板块从'去库存'切换至'补库存+涨价提利'逻辑。利好：德明利、江波龙、佰维存储（模组封装），兆易创新（设计），长鑫科技（DRAM龙头）。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 央视财经/第一财经</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="hk-share">
+        <h2 class="section-title">🇭🇰 港股市场</h2>
+
+        <div class="card">
+            <h3 class="card-title">港股7/30收盘：恒指+0.2%，恒科-1.25%，智谱大跌近17%，南向资金净卖出85.71亿</h3>
+            <p class="card-summary">7月30日港股窄幅整理，恒生指数收涨0.2%报25858.88点，恒生科技指数跌1.25%。半导体产业链、大模型概念股重挫，智谱大跌近17%。南向资金净卖出85.71亿元，阿里巴巴、中芯国际遭斩仓超11亿港元，腾讯控股获加仓10亿港元。AI产业进入'落地验证周期'，资金从硬件向应用层切换。</p>
+            <div class="card-metrics">📊 恒指25858.88(+0.2%) | 恒科-1.25% | 南向净卖出85.71亿 | 智谱-17%</div>
+            <div class="card-investment">💡 投资视角：港股AI板块分化加剧，大模型概念股回调但互联网平台相对抗跌。南向资金净卖出反映短期避险情绪，但腾讯逆势获加仓显示长线资金仍在布局。关注恒生科技ETF易方达等被动资金流向。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 雪球/财联社</span>
+                <span class="date-tag">📅 2026-07-30</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">中际旭创港股首日破发：980港元定价开盘即破，盘中跌超10%，近七年最大IPO'开门黑'</h3>
+            <p class="card-summary">7月30日，全球光模块龙头中际旭创(03308.HK)以980港元/股登陆港交所，开盘即跌破发行价，盘中最大跌幅超10%。募资534.1亿港元，为2019年阿里回港以来近七年最大IPO。首日成交114.87亿港元。破发原因：定价仅较A股折价11-21%，低于AH股IPO约13%折价中位数；上市首日同步推期权+卖空，空头提前布局；A股定价日前两天已累计跌超15%。33家基石合计认购34.5亿美元（淡马锡、贝莱德、阿里、腾讯等）。</p>
+            <div class="card-metrics">📊 发行价980港元 | 募资534亿港元 | 首日成交114.87亿 | 33家基石认购34.5亿美元</div>
+            <div class="card-investment">💡 投资视角：中际旭创港股破发反映AI硬件估值泡沫担忧。但公司Q1营收194.96亿（+192%）、净利57.35亿（+262%），基本面强劲。关注AH股联动效应及1.6T光模块降价传闻后续。长青持有中际旭创A股，需关注港股定价对A股的溢出影响。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 新浪财经/腾讯财经</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">明略科技7/31天量解禁：85.4%股份解禁，股价已较高点跌70%</h3>
+            <p class="card-summary">7月31日，'AI智能体第一股'明略科技(02718.HK)迎来上市后首次大规模限售股解禁，解禁股份1.24亿股，占总股本85.4%，对应解禁市值约319亿港元。公司采用同股不同权架构，基石投资者锁定期270天（非常规180天）。7/30股价已跌至79.75港元（-13.32%），较上市首日收盘290.6港元跌去73%。腾讯持股27.33%为最大外部股东。创始人吴明辉禁售期延长至11月3日。</p>
+            <div class="card-metrics">📊 解禁1.24亿股(85.4%) | 解禁市值319亿港元 | 股价较高点-73% | 7/31当日-13.32%</div>
+            <div class="card-investment">💡 投资视角：85.4%解禁比例在今年港股新股中极为罕见，短期抛压巨大。2026年港股7月为AI/硬科技企业集中解禁高峰，智谱、MiniMax、壁仞科技等也将在同期解禁。关注解禁后流动性释放与实际减持节奏。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 格隆汇/新浪财经</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">莲花控股转型算力：7月新增采购及租赁合同超10亿元，国产算力进入规模化交付</h3>
+            <p class="card-summary">7月31日，莲花控股披露转型算力业务进展，7月新增采购及租赁合同金额合计超10亿元，其中新签算力租赁合同约8.15亿元。公司科技业务再提速，国产算力布局进入规模化交付阶段。同期，美图公告Q1和Q2用户AI算力点消费总额均实现超46%环比增长，付费订阅用户超1844万，上半年经调整净利润预计同比增长36%-40%。</p>
+            <div class="card-metrics">📊 莲花控股7月新签算力租赁8.15亿 | 美图AI算力消费环比+46% | 付费用户1844万</div>
+            <div class="card-investment">💡 投资视角：算力租赁需求旺盛，国产算力进入规模化商业化阶段。莲花控股从传统味精企业转型算力服务商，关注业绩兑现节奏。美图AI应用付费转化加速，验证AI应用层商业化路径。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 金融界/北京商报</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="us-share">
+        <h2 class="section-title">🇺🇸 美股市场</h2>
+
+        <div class="card">
+            <h3 class="card-title">美股暴力反弹！纳指+2.78%，费半+8.19%，微软创18年最大单日涨幅+15.51%</h3>
+            <p class="card-summary">7月30日（美东时间周四），美股三大指数携手强势反弹。纳指涨2.78%报25122.18点，标普500涨1.66%报7437.63点，道指涨1.19%报52208.06点。微软暴涨15.51%，创2008年10月以来最大单日涨幅，单日市值暴增4497亿美元（约3.04万亿人民币），创全球股市史上单日市值增长纪录。费城半导体指数涨8.19%，将7月累计跌幅收窄至20%。全市场上涨个股6735只，下跌仅3627只。中概股连续第四日走强，纳斯达克中国金龙指数涨1.05%。</p>
+            <div class="card-metrics">📊 纳指+2.78% | 标普+1.66% | 道指+1.19% | 费半+8.19% | 微软+15.51%</div>
+            <div class="card-investment">💡 投资视角：AI交易经历'出清事件'后强势反弹，微软财报为AI投资可持续性背书。存储芯片全线暴涨反映供需缺口逻辑获市场认可。但BTIG警告反弹可能是'诱多陷阱'，历史经验显示动量崩盘后反弹往往难以持续。长青美股持仓多只大涨：AMD+13%、INTC+11.3%、SKHY+17.5%。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 财联社/华尔街见闻</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">微软Q4财报炸裂：营收900亿(+18%)，Azure+43%，Copilot用户破3000万，AI'算清了账'</h3>
+            <p class="card-summary">微软2026财年Q4（截至6月）财报全面超预期：营收900亿美元（+18%），净利润358亿（+31%），每股收益4.81美元（+32%）。Azure云业务增长43%（预期40%），全年Azure收入首破1000亿美元。Copilot付费用户从2000万增至3000万（预期2690万）。资本开支410亿美元（+69%），但低于预期424亿。新增商业订单全部来自非头部AI实验室企业客户，商业化更稳健。云业务未交付订单达6780亿美元（+510亿）。盘后大涨后次日暴涨15.51%。</p>
+            <div class="card-metrics">📊 营收900亿(+18%) | Azure+43% | 净利358亿(+31%) | Copilot 3000万 | Capex 410亿</div>
+            <div class="card-investment">💡 投资视角：微软财报核心意义：巨额AI投入开始换来更快的云增长，'投入即产出'拐点确认。Capex低于预期缓解市场对过度投资担忧。6780亿未交付订单=未来收入锁定。Azure增速超预期证明企业AI需求正转化为云收入。利好AI算力链：光模块、服务器、液冷。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 36氪/华尔街见闻</span>
+                <span class="date-tag">📅 2026-07-30</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">亚马逊盘后涨近10%！AWS Q2营收422亿(+37%)创2021年来最快增速，上调Capex至2200亿</h3>
+            <p class="card-summary">亚马逊Q2财报超预期：净销售2006亿美元（预期1970亿），每股收益5.75美元（预期1.82美元）。AWS营收422亿美元（+37%），创2021年Q4以来最快增速（预期+31%）。AWS营业利润166.2亿，利润率36.8%。AI和自研芯片业务年化营收均突破250亿美元。CEO贾西上调全年资本支出预期至2200亿美元（原2000亿），称'内存价格上涨推高支出'，'2028年需求都已非常显著'。AWS宣布上线托管OpenAI服务，与Meta签署三年Graviton芯片框架协议。盘后涨近10%。</p>
+            <div class="card-metrics">📊 营收2006亿(+20%) | AWS 422亿(+37%) | EPS 5.75美元 | Capex上调至2200亿</div>
+            <div class="card-investment">💡 投资视角：AWS增速创近五年新高，验证AI云需求爆发。三家云巨头（微软Azure+43%、谷歌云+82%、AWS+37%）均超预期，全球算力军备竞赛加速。Capex从2000亿上调至2200亿，利好AI基建链（数据中心、液冷、光模块、存储）。自研芯片（Trainium/Graviton）年化营收250亿+，关注芯片供应链。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 财联社/新浪财经</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">存储芯片全线暴涨！闪迪+25.99%，美光+18.36%，SK海力士+17.52%，供需缺口持续</h3>
+            <p class="card-summary">7月30日美股存储芯片板块成为绝对领涨龙头。闪迪+25.99%，美光+18.36%，SK海力士+17.52%，西部数据+15.37%，希捷+11.41%。三星Q2营收171.5万亿韩元（+130%），营业利润89.5万亿韩元（+1814%），均创历史新高，半导体部门利润89.2万亿韩元。三星预警服务器DRAM、企业级SSD和HBM需求加速，'存储芯片供应紧张局面将延续'。铠侠发货第九代NAND样品，针对AI系统GPU效率提升。半导体设备股同样暴涨：泛林+17.98%，应用材料+14.97%，泰瑞达+14.43%。</p>
+            <div class="card-metrics">📊 闪迪+25.99% | 美光+18.36% | SK海力士+17.52% | 三星利润+1814%</div>
+            <div class="card-investment">💡 投资视角：存储芯片供需缺口持续至2028年，价格上行周期确认。利好：美光(MU)、SK海力士ADR(SKHY)、闪迪(SNDK)、西部数据(WDC)。长青持仓SKHY（大小号共143股）和DRAM ETF（大号233股）有望大幅回血。半导体设备股同步大涨利好LRCX/AMAT/TER。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 财联社/第一财经</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">'AI股神'基金爆仓！Situational Awareness强平清仓，Citadel接盘160亿美元</h3>
+            <p class="card-summary">OpenAI前研究员利奥波德·阿申布伦纳创立的对冲基金'Situational Awareness'（年内净回报曾达439%）在AI板块暴跌中遭杠杆强平，被迫出售约160亿美元公开股票资产。Ken Griffin旗下Citadel在不到24小时内拍板接盘大部分持仓，避免了'连环爆仓'。高盛数据显示，全球AI交易中最拥挤仓位已快速出清，科技股拥挤度降至近一年低位，大规模被动平仓或已基本完成。散户以新冠疫情初期以来最快速度抛售个股，但资金转向ETF。MSCI动量指数四天跌17.4%，创历史最大四日跌幅。</p>
+            <div class="card-metrics">📊 基金清仓160亿美元 | 年内曾+439% | 动量指数4日-17.4% | Citadel接盘</div>
+            <div class="card-investment">💡 投资视角：AI交易去杠杆接近尾声，高盛称'拥挤仓位已快速出清'。但BTIG警告反弹可能是诱多陷阱，历史经验（2000年互联网泡沫）显示费半可能在反弹后再度下行考验200日均线。短期关注30年期美债收益率（破5.2%）对科技股估值的压制。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 FX168/全天候科技</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="finance">
+        <h2 class="section-title">💰 融资 / 产业</h2>
+
+        <div class="card">
+            <h3 class="card-title">月之暗面完成35亿美元F轮融资，估值350亿，国家AI基金入股，最快今年赴港IPO</h3>
+            <p class="card-summary">月之暗面（Moonshot AI）完成超35亿美元F轮融资，投后估值350亿美元，认购金额超原定目标3倍有余，融资提前关闭。国家人工智能产业投资基金（曾投资DeepSeek）领投。G轮Pre-IPO融资已提前启动，投前估值500亿美元，定位为赴港IPO前最后一轮私募。月之暗面7月29日完成工商变更，从有限责任公司改制为股份有限公司——冲刺资本市场的明确前置信号。年内已完成6轮融资，估值从100亿飙升至350亿美元。Kimi K3开源模型推动认购需求爆发。</p>
+            <div class="card-metrics">📊 F轮35亿美元 | 估值350亿 | G轮投前500亿 | 年内6轮融资</div>
+            <div class="card-investment">💡 投资视角：国家AI基金入股标志政府资金加码通用大模型赛道。月之暗面赴港IPO将丰富港股AI标的生态。对比智谱(02513)、MiniMax已上市，二级市场估值体系逐步形成。关注Kimi K3商业化落地节奏及算力采购需求。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 AI Insiders/证券时报</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">谷歌发布Gemini Robotics 2：实现人形机器人全身控制，与波士顿动力等合作</h3>
+            <p class="card-summary">7月31日，Google DeepMind发布新一代机器人AI模型Gemini Robotics 2，可对人形机器人实施从头到脚的全身控制（前代仅控制上半身）。演示中操控Apollo机器人完成穿越房间、取放水壶并自主避障。同步发布Gemini Robotics ER 2（推理系统，支持多步骤任务规划和多机协同）和On-Device 2（边缘部署）。'拧下灯泡'任务成功率92%。仅需不到200个示例即可在数小时内适配新机器人本体。合作伙伴包括Apptronik、Agile Robots、Boston Dynamics。但总监坦言真正灵活性仍是远期目标。</p>
+            <div class="card-metrics">📊 全身控制 | 拧灯泡成功率92% | <200示例适配新本体 | 合作波士顿动力</div>
+            <div class="card-investment">💡 投资视角：谷歌重燃十年机器人战略，具身智能进入产品密集发布期。利好人形机器人产业链：宇树科技（A股IPO在即）、优必选(港股)、智元创新（赴港IPO）。关注减速器、伺服电机、力传感器等核心零部件供应商。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 财联社/华尔街见闻</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">OpenAI GPT 5.6系列最高降价80%！Sol模型可自主优化内核，token效率提升15%</h3>
+            <p class="card-summary">7月30日，OpenAI宣布GPT 5.6系列全面降价：最便宜的Luna模型价格直降80%，Terra下调20%，智能体自动批准模式成本降至十分之一，Sol模型新增极速模式速度提升2.5倍。降价核心原因：Sol模型已能自主重写并优化底层生产内核，使端到端运行成本降低20%、token效率提升15%。同步，中国开源模型下载量占全球总量41%超越美国登顶世界第一，累计下载量突破100亿次，Kimi K3在情感智能基准逼近闭源顶尖。</p>
+            <div class="card-metrics">📊 Luna降价80% | Terra降价20% | 运行成本-20% | token效率+15%</div>
+            <div class="card-investment">💡 投资视角：AI模型价格战加速，降低应用层创业门槛，利好AI应用端商业化落地。但压缩模型公司利润空间，分化加剧。中国开源模型规模登顶全球，国产大模型从'可用'到'好用'转变，利好火山引擎、百度文心等平台型企业。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 AI寒武纪/央视新闻</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    
+        <div class="card">
+            <h3 class="card-title">Nscale推进IPO计划：AI云服务商目标估值250亿美元，最快秋季上市</h3>
+            <p class="card-summary">7月31日消息，AI云服务提供商Nscale正推进IPO计划，已与潜在投资者展开会面，计划下周在纽约举行投资者日活动。Nscale最快可能于今年秋季上市，但仍可能根据市场情况推迟。投行提出的估值目标约250亿美元，高于今年3月融资时的146亿美元估值。Nscale是欧洲领先的AI云服务商，专注于GPU算力租赁和AI基础设施服务。</p>
+            <div class="card-metrics">📊 目标估值250亿美元 | 3月估值146亿 | 最快秋季IPO</div>
+            <div class="card-investment">💡 投资视角：AI云服务赛道IPO加速，Nscale估值半年内从146亿飙升至250亿目标。对比CoreWeave（已上市）、Nebius（已上市），AI云服务商估值分化。关注AI基础设施REITs和数据中心运营商的估值联动。</div>
+            <div class="card-source">
+                <span class="source-tag">📡 界面新闻</span>
+                <span class="date-tag">📅 2026-07-31</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🤖 本日报由 <strong>小荷</strong> 🪷 自动整理生成 · 共 18 条新闻</p>
+        <p>⏰ 生成时间：2026-07-31 08:00 | 数据截止：2026-07-31 08:00</p>
+        <div class="disclaimer">
+            ⚠️ 免责声明：本日报仅供信息整理与参考，不构成任何投资建议。投资有风险，入市需谨慎。<br>
+            所有新闻均来自公开信源，版权归原作者所有。涨红跌绿配色遵循A股/中国市场惯例。
+        </div>
+    </div>
+</div>
+
+<div class="daily-nav">
+    <a href="AI_Daily_2026-07-30.html">&larr; 2026-07-30</a>
+    <a href="index.html" class="nav-home">&#127968; 日报主页</a>
+    <span class="nav-disabled">无更新 &rarr;</span>
+</div>
+
+</body>
+</html>
