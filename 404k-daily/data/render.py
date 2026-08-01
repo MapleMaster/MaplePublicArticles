@@ -141,7 +141,7 @@ li {{ margin: 4px 0; }}
 <body>
 <a class="back-link" href="../index.html">← 返回日报列表</a>
 {body_html}
-<div class="footer">404K半导体日报 | 数据来源：ima知识库"404k-0728" | 仅供参考，不构成投资建议</div>
+<div class="footer">404K半导体日报 | 仅供参考，不构成投资建议</div>
 </body>
 </html>"""
 
