@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>404K 持仓情报周报 · 华尔街之鹰</title>
+<meta name="description" content="404K持仓情报周报 — 每周日整合海外投行研报 + 价格数据时间序列 + 投行评级台账 · 覆盖全部持仓标的">
+<meta property="og:title" content="404K 持仓情报周报 · 华尔街之鹰">
+<meta property="og:description" content="持仓标的一周动态 · 价格数据时间序列 · 投行评级变化台账 · 每周日更新">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #030712;
+    --card-bg: rgba(15, 23, 42, 0.7);
+    --blue: #60a5fa;
+    --cyan: #22d3ee;
+    --purple: #a78bfa;
+    --gold: #fbbf24;
+    --green: #34d399;
+    --red: #ef4444;
+    --pink: #f472b6;
+    --text: #f1f5f9;
+    --text-dim: #64748b;
+    --border: rgba(148, 163, 184, 0.08);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'SF Pro Display', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 15% 30%, rgba(52,211,153,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 70%, rgba(96,165,250,0.04) 0%, transparent 60%);
+  }
+
+  .scan {
+    position: fixed; left: 0; width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(52,211,153,0.3), transparent);
+    z-index: 2; pointer-events: none;
+    animation: scanDown 7s linear infinite;
+  }
+  @keyframes scanDown {
+    0% { top: -1px; opacity: 0; } 3% { opacity: 1; } 97% { opacity: 1; } 100% { top: 100%; opacity: 0; }
+  }
+
+  .page {
+    position: relative; z-index: 1;
+    max-width: 760px; margin: 0 auto;
+    padding: 20px 18px 36px;
+  }
+
+  /* Header */
+  .header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header .back {
+    flex-shrink: 0; color: var(--text-dim); text-decoration: none;
+    font-size: 0.8em; padding: 6px 10px; border-radius: 8px;
+    background: var(--card-bg); border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .header .back:hover { color: var(--text); border-color: rgba(148,163,184,0.25); }
+  .header .title-block { flex: 1; min-width: 0; }
+  .header .pretitle {
+    font-size: 0.6em; color: var(--green); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 2px;
+  }
+  .header h1 {
+    font-size: clamp(1.1em, 4vw, 1.35em); font-weight: 700;
+  }
+  .header .status {
+    flex-shrink: 0; display: flex; align-items: center; gap: 6px;
+    font-size: 0.62em; color: var(--text-dim);
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 5px 10px; border-radius: 20px;
+  }
+  .header .status .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); box-shadow: 0 0 6px var(--green);
+  }
+
+  .info-bar {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;
+    font-size: 0.62em; color: var(--text-dim);
+  }
+  .info-bar span { display: flex; align-items: center; gap: 4px; }
+
+  /* Report list */
+  .report-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .report-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border-radius: 12px;
+    background: var(--card-bg); border: 1px solid var(--border);
+    text-decoration: none; color: inherit;
+    transition: border-color 0.2s;
+  }
+  .report-item:hover { border-color: rgba(52,211,153,0.25); }
+
+  .report-date {
+    flex-shrink: 0; text-align: center; min-width: 52px;
+  }
+  .report-date .day {
+    font-size: 1.2em; font-weight: 700; color: var(--text);
+    line-height: 1; margin-bottom: 2px;
+  }
+  .report-date .mon {
+    font-size: 0.6em; color: var(--text-dim); text-transform: uppercase;
+  }
+  .report-body { flex: 1; min-width: 0; }
+  .report-title {
+    font-size: 0.82em; font-weight: 600; color: var(--text); margin-bottom: 2px;
+  }
+  .report-meta {
+    font-size: 0.62em; color: var(--text-dim);
+  }
+  .report-item .arrow {
+    flex-shrink: 0; color: var(--text-dim); opacity: 0.4; font-size: 1.1em;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center; padding: 48px 20px; color: var(--text-dim);
+  }
+  .empty-state .icon { font-size: 2.5em; margin-bottom: 12px; display: block; }
+  .empty-state .title { font-size: 0.95em; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+  .empty-state .desc { font-size: 0.72em; }
+
+  /* Footer */
+  .footer {
+    text-align: center; margin-top: 28px; padding-top: 14px;
+    border-top: 1px solid var(--border); font-size: 0.62em; color: var(--text-dim);
+    line-height: 1.8;
+  }
+  .footer .hl { color: var(--gold); }
+  .footer .lotus { color: var(--pink); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; }
+    .scan { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="scan"></div>
+
+<div class="page">
+
+  <div class="header">
+    <a class="back" href="../index.html">← 首页</a>
+    <div class="title-block">
+      <div class="pretitle">404K SEMI · WEEKLY INTELLIGENCE</div>
+      <h1>404K 持仓情报周报</h1>
+    </div>
+    <div class="status">
+      <span class="dot"></span> 每周日 18:00 更新
+    </div>
+  </div>
+
+  <div class="info-bar">
+    <span>📊 覆盖：持仓动态/价格序列/评级台账</span>
+    <span>🎯 市场：A股 / 港股 / 美股</span>
+    <span>🪷 协作：小荷 AI</span>
+  </div>
+
+  <div class="report-list" id="reportList">
+
+  </div>
+
+  <!-- No reports state -->
+  <div class="empty-state" id="emptyState">
+    <span class="icon">📊</span>
+    <div class="title">周报即将上线</div>
+    <div class="desc">每周日 18:00，小荷会从404K知识库拉取本周全部海外研报<br>整合持仓标的一周动态、价格数据时间序列、投行评级台账<br>生成深度情报周报，自动更新到此页面。<br><br>首份周报将于 2026年8月9日 推送。</div>
+  </div>
+
+  <footer class="footer">
+    <p>
+      <span class="hl">🦅 华尔街之鹰</span> · Powered by <span class="lotus">🪷 小荷</span><br>
+      Built with ♡ for a better investment journey
+    </p>
+  </footer>
+
+</div>
+
+<script>
+// Toggle empty state based on actual reports
+(function(){
+  var list = document.getElementById('reportList');
+  var empty = document.getElementById('emptyState');
+  var realReports = list.querySelectorAll('a.report-item');
+  if (realReports.length > 0) {
+    empty.style.display = 'none';
+  }
+})();
+</script>
+
+</body>
+</html>
