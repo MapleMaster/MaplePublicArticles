@@ -1,0 +1,669 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI投研日报 · 2026-08-03</title>
+    <meta name="description" content="OpenAI下一代Astra攻克十项数学难题；国产AI包揽全球调用榜前五，小米MiMo登顶；科技巨头AI回报大分化——微软+19%亚马逊+15%Meta-6%">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="华尔街之鹰">
+    <meta property="og:title" content="AI投研日报 · 2026-08-03">
+    <meta property="og:description" content="OpenAI下一代Astra攻克十项数学难题；国产AI包揽全球调用榜前五，小米MiMo登顶；科技巨头AI回报大分化——微软+19%亚马逊+15%Meta-6%">
+    <meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="600">
+    <meta property="og:url" content="https://reports.xiaoyiyi.wang/daily-news/stock-invest/AI_Daily_2026-08-03.html">
+    <meta itemprop="name" content="AI投研日报 · 2026-08-03">
+    <meta itemprop="description" content="OpenAI下一代Astra攻克十项数学难题；国产AI包揽全球调用榜前五，小米MiMo登顶；科技巨头AI回报大分化——微软+19%亚马逊+15%Meta-6%">
+    <meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #1c2333;
+            --border: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #f0b90b;
+            --accent-purple: #a371f7;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .daily-nav {
+            max-width: 920px;
+            margin: 16px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .daily-nav a, .daily-nav span.nav-disabled {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #30363d;
+            white-space: nowrap;
+        }
+        .daily-nav a { color: #58a6ff; background: #161b22; }
+        .daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+        .daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+        .daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+        .daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+        @media (max-width: 640px) {
+            .daily-nav { flex-wrap: wrap; justify-content: center; }
+            .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 40px 20px 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(90deg, #58a6ff, #a371f7, #f0b90b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1em;
+        }
+        .header .time-window {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 8px 20px;
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 20px;
+            color: var(--accent-blue);
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        .header .weekend-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 16px;
+            background: rgba(240, 185, 11, 0.1);
+            border: 1px solid rgba(240, 185, 11, 0.3);
+            border-radius: 20px;
+            color: var(--accent-yellow);
+            font-size: 0.85em;
+        }
+
+        /* Container */
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* TOC */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px auto;
+            max-width: 920px;
+        }
+        .toc h3 {
+            color: var(--accent-blue);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        .toc ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+        }
+        .toc li {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .toc a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .toc a:hover { color: var(--accent-blue); }
+        .toc-count {
+            color: var(--text-muted);
+            font-size: 0.85em;
+        }
+
+        /* Section */
+        .news-section {
+            margin: 32px 0;
+        }
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #headline .section-title { color: var(--accent-red); border-color: rgba(248, 81, 73, 0.3); }
+        #a-shares .section-title { color: var(--accent-red); border-color: rgba(248, 81, 73, 0.3); }
+        #hk-stocks .section-title { color: var(--accent-green); border-color: rgba(63, 185, 80, 0.3); }
+        #us-stocks .section-title { color: var(--accent-blue); border-color: rgba(88, 166, 255, 0.3); }
+        #industry .section-title { color: var(--accent-purple); border-color: rgba(163, 113, 247, 0.3); }
+
+        /* Cards */
+        .news-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .news-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .news-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-1px);
+        }
+        .card-header {
+            padding: 18px 20px 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .card-number {
+            background: var(--accent-blue);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .card-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+        .card-body {
+            padding: 0 20px 14px;
+        }
+        .card-summary {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+        .card-impact {
+            background: rgba(88, 166, 255, 0.06);
+            border-left: 3px solid var(--accent-blue);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+        }
+        .impact-label {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--accent-blue);
+            display: block;
+            margin-bottom: 6px;
+        }
+        .card-impact p {
+            color: var(--text-secondary);
+            font-size: 0.92em;
+            line-height: 1.65;
+        }
+        .card-footer {
+            padding: 10px 20px;
+            border-top: 1px solid var(--border);
+            background: rgba(0,0,0,0.15);
+        }
+        .card-source {
+            font-size: 0.82em;
+            color: var(--text-muted);
+        }
+
+        /* No data */
+        .no-data {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.95em;
+        }
+
+        /* Highlight for key numbers */
+        .highlight-up { color: var(--accent-red); font-weight: 600; }
+        .highlight-down { color: var(--accent-green); font-weight: 600; }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+        .footer .disclaimer {
+            font-size: 0.8em;
+            color: #484f58;
+            margin-top: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header h1 { font-size: 1.5em; }
+            .card-title { font-size: 1em; }
+            .card-header { padding: 14px 16px 10px; }
+            .card-body { padding: 0 16px 12px; }
+            .card-footer { padding: 8px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <div class="daily-nav">
+        <a href="AI_Daily_2026-08-02.html">← 2026-08-02</a>
+        <a href="index.html" class="nav-home">🏠 日报主页</a>
+        <span class="nav-disabled" id="nav-next">无更新 →</span>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>🤖📊 AI投研日报</h1>
+        <p class="subtitle">AI Investment Research Daily · 2026-08-03</p>
+        <div class="time-window">📰 新闻时间窗口：2026-08-02 08:00 ~ 2026-08-03 08:00（过去24小时）</div>
+        <br>
+        <div class="weekend-badge">📅 周一特刊 | A股/港股今日开市 · 以周末产业动态+美股周五收盘为主要背景</div>
+    </header>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <h3>📑 今日速览（共18条）</h3>
+        <ul>
+                <li><a href="#headline">🔥 头条关注</a> <span class="toc-count">(1条)</span></li>
+                <li><a href="#a-shares">🇨🇳 A股市场</a> <span class="toc-count">(4条)</span></li>
+                <li><a href="#hk-stocks">🇭🇰 港股市场</a> <span class="toc-count">(4条)</span></li>
+                <li><a href="#us-stocks">🇺🇸 美股市场</a> <span class="toc-count">(4条)</span></li>
+                <li><a href="#industry">🏭 融资与产业动态</a> <span class="toc-count">(5条)</span></li>
+        </ul>
+    </div>
+
+    <div class="container">
+
+            <section id="headline" class="news-section">
+                <h2 class="section-title">🔥 头条关注</h2>
+                <div class="news-grid">
+                <div class="news-card" id="headline-1">
+                    <div class="card-header">
+                        <span class="card-number">#1</span>
+                        <h3 class="card-title">OpenAI下一代Astra攻克十项数学难题，AI进入原创科研新时代</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">OpenAI正式披露下一代模型Astra，内部版本在数学与理论计算机科学领域取得10项重大突破，涵盖高维几何、群论、格密码学等方向，总计算成本仅约2000美元。每项成果均附Lean形式化证明证书，标志着AI开始进入原创科学研究核心环节。奥特曼已向美国国会和白宫官员进行了闭门预览。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🔬 AI模型从「回答问题」升级到「发现新知识」，科研范式转折点。利好AI+科学计算赛道（中科曙光、华为昇腾），同时也意味着模型能力进入需要联邦审查的新等级。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 智东西/36氪/The Information</span>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <section id="a-shares" class="news-section">
+                <h2 class="section-title">🇨🇳 A股市场</h2>
+                <div class="news-grid">
+                <div class="news-card" id="a-shares-1">
+                    <div class="card-header">
+                        <span class="card-number">#1</span>
+                        <h3 class="card-title">一博科技H1净利暴增1561.55%，AI算力引爆PCB产业链</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">一博科技(301366)8月2日披露半年报，H1营收7.09亿元(+41.63%)，归母净利润6382.93万元(+1561.55%)，Q2环比增长350%。AI服务器、算力卡、光模块需求爆发带动三家工厂渡过盈亏平衡点。兴森科技H1预增247%-316%，沪电股份预增68%-78%，金安国纪预增936%-1063%，生益科技预增117%-131%。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🏭 PCB产业链全面验证AI算力需求传导：沪电股份(002463)、生益科技(600183)、深南电路(002916)、胜宏科技(300476)。银河证券指出AI PCB龙头订单满产满销、大力扩产，业绩高增长有望持续。长青持仓生益科技直接受益。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 证券时报/各公司公告</span>
+                    </div>
+                </div>
+                <div class="news-card" id="a-shares-2">
+                    <div class="card-header">
+                        <span class="card-number">#2</span>
+                        <h3 class="card-title">国产AI包揽OpenRouter全球调用榜前五，小米MiMo-V2.5登顶</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">8月2日，全球多模型聚合平台OpenRouter最新一周大模型调用榜单显示，前五产品均由中国企业研发。小米MiMo-V2.5单周调用量10.5万亿Token登顶(+12%)，DeepSeek两款模型分列第二、第五，腾讯混元3列第三，单周增幅超999%。中国模型全球市场份额已达63.5%，美国模型仅35.5%。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🚀 开源模型能力跃升至全球顶级，AI应用商业化大幕开启。国联民生证券：加速AI应用发展是当前AI资本开支获得正向资金回流的关键。利好AI应用标的：金山办公(688111)、昆仑万维(300418)、蓝色光标(300058)、易点天下(301171)。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 21世纪经济报道/OpenRouter</span>
+                    </div>
+                </div>
+                <div class="news-card" id="a-shares-3">
+                    <div class="card-header">
+                        <span class="card-number">#3</span>
+                        <h3 class="card-title">周五AI应用全线爆发：蓝色光标净流入24亿，算力+应用双主线</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">7月31日（上周五），A股三大指数放量反弹，近4700只个股收红。AI应用指数单日暴力反弹超5%，一周反弹近10%。主力净买入过亿48只个股，算力+AI应用各占一半。蓝色光标净流入24.29亿(20cm涨停)，新易盛净流入18.91亿(+6.71%)，金山办公净流入12.26亿(+6.9%)，昆仑万维净流入10.82亿(涨停)。海康威视、深信服、寒武纪净流入均超5亿。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>📈 AI从上游硬件切换到应用+算力双主线。东吴证券：7月科技板块深度调整后8月有望修复，AI算力+半导体设备为机构重点关注方向。国金证券：北京Token经济发展政策将围绕Token生产/分发/应用布局，「十五五」算力网新增直接投资4万亿。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 东吴证券/K线分析师/Wind</span>
+                    </div>
+                </div>
+                <div class="news-card" id="a-shares-4">
+                    <div class="card-header">
+                        <span class="card-number">#4</span>
+                        <h3 class="card-title">欣天科技控制权变更：AI营销龙头东信实控人溢价90%入主，8月3日复牌</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">欣天科技(300615.SZ)8月2日公告控股股东石伟平向深圳元启（实控人刘杨）转让22.5%股份，总价款约7.2亿元，每股16.58元较停牌前8.69元溢价90%。刘杨同为东信营销科技（中国最大AI营销公司，曾两次冲击港股IPO未果）实控人。深圳元启承诺36个月内不注入资产，12个月内不改变主营业务。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🤝 AI营销龙头曲线上市A股，溢价90%反映对AI赋能传统行业的估值重估。欣天科技主营通信射频器件，东信实控人入主后通信+AI营销协同想象空间。短期壳资源博弈，中长期关注资产注入预期变化。关联标的：蓝色光标(300058)、易点天下(301171)。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 21世纪经济报道/公司公告</span>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <section id="hk-stocks" class="news-section">
+                <h2 class="section-title">🇭🇰 港股市场</h2>
+                <div class="news-grid">
+                <div class="news-card" id="hk-stocks-1">
+                    <div class="card-header">
+                        <span class="card-number">#1</span>
+                        <h3 class="card-title">智谱本周暴跌20.17%，南向资金逆势净买入20亿港元</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">本周(7/27-7/31)港股主要指数集体上涨，恒指+3.69%，恒生科技+4.31%。但AI大模型龙头智谱(02513)单周暴跌20.17%，南向资金逆势净买入20.2亿港元。同期腾讯控股获净买入24.31亿港元、周涨9.34%，阿里巴巴获净买入3.88亿港元。建滔积层板(01888)一周跌22%，长飞光纤光缆(06869)跌20.11%。芯片龙头中芯国际遭净卖出48.09亿港元。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>⚠️ 港股AI板块严重分化：智谱、建滔、长飞遭遇猛烈抛售，长青持仓建滔/长飞深度套牢需密切关注。但同时南向资金逆势加仓智谱20亿港元，说明机构认为估值已具吸引力。腾讯获资金持续流入，WorkBuddy上架鸿蒙+人机双写催化。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 证券时报·数据宝</span>
+                    </div>
+                </div>
+                <div class="news-card" id="hk-stocks-2">
+                    <div class="card-header">
+                        <span class="card-number">#2</span>
+                        <h3 class="card-title">腾讯WorkBuddy上架鸿蒙电脑应用市场，联合腾讯文档推出「人机双写」</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">腾讯云WorkBuddy正式上架鸿蒙电脑应用市场，成为鸿蒙平台首个桌面办公智能体。WorkBuddy 5.3.5版本联合腾讯文档上线「人机双写」能力，支持用户在Word、Excel、PPT、Markdown等文档中直接与AI共同创作、实时协同编辑。腾讯控股本周连续5日上涨，累计涨9.34%。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>💻 腾讯AI应用商业化加速：WorkBuddy深入办公场景，从「AI助手」升级为「AI协作者」。「人机双写」模式有望大幅提升办公效率和企业付费意愿。腾讯控股(00700)AI应用落地+鸿蒙生态双重催化，港股互联网AI商业化标杆。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 证券时报/腾讯云</span>
+                    </div>
+                </div>
+                <div class="news-card" id="hk-stocks-3">
+                    <div class="card-header">
+                        <span class="card-number">#3</span>
+                        <h3 class="card-title">加幂科技配售融资1亿港元加码AI算力，港股AI基建赛道升温</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">加幂科技(08198.HK)7月31日公告通过配售新股份融资1亿港元，资金将用于大数据中心向AI算力设施拓展及算力服务开发。此前7月22日已公告与合作伙伴成立AI算力基础设施合资公司。公司自2019年起深耕数据存储服务，如今正式将AI推理基础设施推向战略前台。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🏗️ 港股「跨界算力」概念持续升温：粤港湾智算一年涨超200倍，德祥地产转型算力两月涨超200%。加幂科技1亿港元体量虽小，但验证了传统企业转型AI算力的资本市场认可度。关联：AI算力租赁板块、世纪互联(VNET)、万国数据(GDS)。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 深圳商报/公司公告</span>
+                    </div>
+                </div>
+                <div class="news-card" id="hk-stocks-4">
+                    <div class="card-header">
+                        <span class="card-number">#4</span>
+                        <h3 class="card-title">美图H1 AI应用收入18亿+30%，港股AI应用商业化标杆</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">美图公司(01357.HK)发布2026上半年业绩预告，影像与设计产品收入预计达18亿元，同比增长超30%；经调整归母净利润同比增长36%至40%。在去年上半年4.7亿净利润高基数上实现此增长，打破「AI应用赚不了钱」的市场偏见。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>✅ 美图以真实盈利验证AI应用商业化可能，为港股AI应用板块注入强心剂。高盛此前警告：若AI应用无法展现清晰ROI，上游庞大资产估值将面临均值回归。美图案例证明：AI应用赚钱的前提是拥有独立场景黏性与流量积累，而非简单「套壳大模型」。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 深水研究/公司公告</span>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <section id="us-stocks" class="news-section">
+                <h2 class="section-title">🇺🇸 美股市场</h2>
+                <div class="news-grid">
+                <div class="news-card" id="us-stocks-1">
+                    <div class="card-header">
+                        <span class="card-number">#1</span>
+                        <h3 class="card-title">科技巨头AI回报大分化：微软+19%、亚马逊+15%、Meta-6%、英伟达+2%</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">本周华尔街形成清晰「AI回报分化」：微软全周涨19%（Azure+43%云收入超预期），亚马逊涨15%（AWS+37%创18季新高），Alphabet涨7%（谷歌云+82%），甲骨文涨10%。但Meta跌6%（缺云计算变现出口），英伟达仅涨2%（股价195-200美元震荡，等待8/26财报）。费城半导体指数7月累跌16.9%，创2008年以来最差月度表现。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🎯 AI投资逻辑从「投多少」切换至「赚多少」：微软首次讲清ROIC框架（AI基建3年回本），亚马逊证云是变现出口。A股映射同样逻辑——纯硬件「卖铲人」（光模块/PCB/存储）高估值承压，算力租赁/云服务/应用方向获资金青睐。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 华尔街见闻/FactSet</span>
+                    </div>
+                </div>
+                <div class="news-card" id="us-stocks-2">
+                    <div class="card-header">
+                        <span class="card-number">#2</span>
+                        <h3 class="card-title">AWS Q2：AI年化收入破250亿美元，营业利润率39.4%，Capex上调至2200亿</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">亚马逊AWS二季度营收422亿美元(+37%)，连续五个季度加速增长，营业利润率39.4%。AI业务和自研芯片年化收入各自突破250亿美元，均录得三位数增长。CEO贾西表示算力供给2026-2027年持续供不应求，2028年已有大量订单提前锁定。全年资本开支上调至2200亿美元（此前2000亿）。在手订单4960亿美元。提出AWS未来年收入可达1万亿美元长期愿景。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>💰 AWS「算力印钞机」模式验证：设备回本不到3年，客户合同超过5年，ROIC极为诱人。摩根士丹利测算1GW数据中心GPU租赁ROIC达31%，自营模型API则达46%。利好全球AI算力链：中际旭创(300308)、新易盛(300502)、工业富联(601138)。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 亚马逊财报/摩根士丹利</span>
+                    </div>
+                </div>
+                <div class="news-card" id="us-stocks-3">
+                    <div class="card-header">
+                        <span class="card-number">#3</span>
+                        <h3 class="card-title">谷歌自研「Frozen」AI芯片曝光：能效6-10倍于TPU，计划2028年部署</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">谷歌正在研发代号Frozenv2的新型服务器芯片，旨在将Gemini模型部分架构永久嵌入芯片，相比最新TPU单位功耗可提供6-10倍Token处理能力。该芯片不会取代通用TPU，而是成为谷歌定制芯片产品线中的专用分支，计划2028年部署。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🔧 ASIC替代GPU趋势加速：谷歌Frozen芯片将模型+硬件深度融合，大幅降低推理成本。博通(AVGO)作为谷歌TPU核心设计合作伙伴直接受益，同时利好ASIC产业链：世芯-KY(3661)、创意电子(3443)。对英伟达GPU长期垄断地位构成边际挑战。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 巨丰财经/科技媒体</span>
+                    </div>
+                </div>
+                <div class="news-card" id="us-stocks-4">
+                    <div class="card-header">
+                        <span class="card-number">#4</span>
+                        <h3 class="card-title">四大云厂商单季Capex 1700亿美元，AI供需仍处紧平衡</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">国投证券复盘四大云厂Q2财报：Meta/Microsoft/Amazon/Google单季资本开支分别311亿/410亿/531亿/449亿美元，合计约1700亿美元（年化近7000亿）。云业务收入均连续多季度加速。但高Capex已对现金流形成压力：Meta自由现金流仅8亿，Google和Amazon自由现金流为负。后续关注点从「投入规模」转向「收入及效率能否覆盖折旧」。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>⚖️ AI供需紧平衡格局至少延续至2027年。Capex高烧不退利好上游设备商（中际旭创、沪电股份），但现金流压力开始显现，市场对「纯烧钱」公司的容忍度急剧下降。关注8/26英伟达财报对下一轮Capex周期的验证。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 国投证券研报</span>
+                    </div>
+                </div>
+                </div>
+            </section>
+            <section id="industry" class="news-section">
+                <h2 class="section-title">🏭 融资与产业动态</h2>
+                <div class="news-grid">
+                <div class="news-card" id="industry-1">
+                    <div class="card-header">
+                        <span class="card-number">#1</span>
+                        <h3 class="card-title">OpenAI下一代Astra多智能体模型：攻克十项数学难题，成本仅$2000</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">8月2日凌晨，OpenAI正式披露代号Astra的下一代模型。Astra支持多个智能体并行分工协作，在数学与理论计算机科学领域取得10项重大突破，涵盖高维球体堆积、非sofic群构造、Connes刚性猜想否证等悬而未决数十年的难题。每项成果附Lean形式化证明证书，总计算成本约2000美元。Astra可能命名为GPT-5.7或GPT-6，将成为首个在联邦审查框架下发布的模型。奥特曼已向白宫官员和国会进行闭门预览。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🔬 里程碑意义：AI从「知识检索」跨越到「知识创造」。菲尔兹奖得主Gowers称其为「AI辅助数学的里程碑」。对投资而言，(1) AGI进程加速→全球AI算力需求天花板被大幅抬高；(2) 国产模型差距关注→DeepSeek/智谱/月之暗面追赶速度；(3) 联邦审查框架→Astra可能成为全球首个「受监管的超级模型」，监管不确定性增加。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 智东西/36氪/OpenAI官网</span>
+                    </div>
+                </div>
+                <div class="news-card" id="industry-2">
+                    <div class="card-header">
+                        <span class="card-number">#2</span>
+                        <h3 class="card-title">谷歌发布Gemini Robotics 2：实现人形机器人「全身智能」控制</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">8月2日，Google DeepMind推出Gemini Robotics 2，主打「全身智能」，用单一视觉-语言-动作(VLA)模型统一控制人形机器人的行走、平衡与精细操作。测试中Apollo 2可自主完成弯腰捡水壶、拧灯泡、封垃圾袋等任务，地面取物成功率45.7%。宇树科技IPO在即，谷歌此举为具身智能赛道再添重磅催化。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🤖 人形机器人「AI大脑」竞赛白热化：谷歌Gemini Robotics 2 vs OpenAI Astra多智能体 vs 国产宇树自研。具身智能2026年进入「从实验室到工厂」关键拐点。A股关联：机器人(300024)、埃斯顿(002747)、拓斯达(300607)；宇树供应链概念股。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 雷科技/Google DeepMind</span>
+                    </div>
+                </div>
+                <div class="news-card" id="industry-3">
+                    <div class="card-header">
+                        <span class="card-number">#3</span>
+                        <h3 class="card-title">宇树科技8月10日申购，171名员工认购2.7亿元，估值约420亿</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">宇树科技科创板IPO关键节点：8月5日初步询价、8月10日网上网下申购、8月12日缴款。拟募资42.02亿元，85%用于研发（智能机器人大模型等），估值约420亿元。171名员工参与战略配售认购2.715亿元，其中创始人王兴兴个人出资1500万元。IPO审核仅73天过会，创科创板最快纪录。2025年人形机器人出货全球第一(超5500台)。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🏆 A股人形机器人第一股即将诞生！机构（建银国际）预估二级市场估值可达1090亿元。宇树上市将重置全球具身智能赛道估值体系，同时FCC禁令增加出海不确定性。关联：机器人板块、减速器(绿的谐波)、传感器(奥比中光)、伺服电机(汇川技术)。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 环球网/公司公告/新华社</span>
+                    </div>
+                </div>
+                <div class="news-card" id="industry-4">
+                    <div class="card-header">
+                        <span class="card-number">#4</span>
+                        <h3 class="card-title">寒武纪超8成员工获股票激励人均160万，字节飞书并入豆包团队</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">寒武纪向超80%员工发放股票激励，人均约160万元。字节跳动宣布飞书产品团队与豆包团队整合成立新部门「书包」，飞书GTM与火山引擎整合为「创造力服务平台」。AI行业人才争夺战白热化——寒武纪用股权绑定核心人才，字节用组织重构加速AI应用落地。同时飞书生命科学行业负责人刘新离职转向AI创业。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>👥 AI行业人才+组织双维度竞争加剧：寒武纪大额激励显示国产芯片公司留住人才的决心；字节飞书并入豆包验证「AI优先」战略，豆包大模型ARR已达40亿美元、日均Token 180万亿。关联：寒武纪(688256)、海光信息(688041)、字节产业链。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 InfoQ/36氪/公司公告</span>
+                    </div>
+                </div>
+                <div class="news-card" id="industry-5">
+                    <div class="card-header">
+                        <span class="card-number">#5</span>
+                        <h3 class="card-title">具身智能2026年并购大年：上半年超13起交易，三类路径浮现</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-summary">2026年上半年全球具身智能与机器人领域出现超13起代表性交易。Anthropic被曝与Physical Intelligence进行收购谈判（CEO否认但承认有过接触）。三类并购路径成型：(1)具身智能企业收购技术/产业资产(如Skild AI收购Zebra机器人业务)；(2)科技巨头补齐硬件拼图；(3)传统企业通过并购切入具身智能赛道。</p>
+                        <div class="card-impact">
+                            <span class="impact-label">💡 投资视角</span>
+                            <p>🔄 具身智能进入「洗牌期」：2025年以创业融资为主，2026年转向产业并购重组。行业从「百花齐放」进入「优胜劣汰」，头部企业通过并购加速商业化落地，尾部企业面临出清。利好具有并购整合能力的龙头：机器人(300024)、汇川技术(300124)。</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-source">📅 2026-08-02 | 📰 环球老虎财经/公开信息整理</span>
+                    </div>
+                </div>
+                </div>
+            </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🤖 本日报由 <strong>小荷</strong> 自动整理生成 | 生成时间：2026-08-03 08:00 CST</p>
+        <p>📊 数据来源：公开市场信息、券商研报、财经媒体 | 仅供参考，不构成投资建议</p>
+        <p class="disclaimer">⚠️ 投资有风险，入市需谨慎。本日报所有内容均基于公开信息整理，不对任何投资决策承担责任。</p>
+        <p style="margin-top:12px;color:var(--text-muted);">
+            🌐 <a href="https://reports.xiaoyiyi.wang/daily-news/stock-invest/index.html" style="color:var(--accent-blue);text-decoration:none;">日报主页</a>
+            &nbsp;·&nbsp;
+            📮 订阅推送：企微机器人每日08:00自动推送
+        </p>
+    </footer>
+
+    <!-- Bottom Navigation -->
+    <div class="daily-nav">
+        <a href="AI_Daily_2026-08-02.html">← 2026-08-02</a>
+        <a href="index.html" class="nav-home">🏠 日报主页</a>
+        <span class="nav-disabled" id="nav-next">无更新 →</span>
+    </div>
+
+</body>
+</html>
