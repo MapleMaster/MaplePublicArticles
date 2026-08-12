@@ -4,8 +4,8 @@ import sys
 from datetime import datetime
 
 date_str = sys.argv[1] if len(sys.argv) > 1 else datetime.now().strftime('%Y-%m-%d')
-md_path = f'D:/AI/MaplePublicArticles/404k-daily/data/report_{date_str}.md'
-html_path = f'D:/AI/MaplePublicArticles/404k-daily/data/report_{date_str}.html'
+md_path = f'F:/Projects/AI/MaplePublicArticles/404k-daily/data/report_{date_str}.md'
+html_path = f'F:/Projects/AI/MaplePublicArticles/404k-daily/data/report_{date_str}.html'
 
 with open(md_path, 'r', encoding='utf-8') as f:
     md_content = f.read()
