@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-render_report.py — 404K半导体日报 渲染脚本 v2（投研日报级排版）
+render_report.py — 404K持仓情报周报 渲染脚本 v2（投研日报级排版）
 =============================================================
 用法：
-    python render_report.py                # 渲染今天的报告
-    python render_report.py 2026-08-12     # 渲染指定日期
-    python render_report.py --all          # 重渲染全部历史报告
+    python render_report.py                # 渲染最近一份周报
+    python render_report.py 2026-08-09     # 渲染指定日期
+    python render_report.py --all          # 重渲染全部历史周报
 """
 import os
 import re
@@ -17,22 +17,19 @@ from datetime import datetime, date
 sys.path.insert(0, r'F:/Projects/AI/MaplePublicArticles/scripts')
 from pretty_report import render_article, postprocess_body, build_toc
 
-DATA_DIR = r'F:/Projects/AI/MaplePublicArticles/404k-daily/data'
-SITE_BASE = 'https://reports.xiaoyiyi.wang/404k-daily'
-BADGE = '404K SEMI · DAILY'
-TITLE = '404K 半导体日报'
+DATA_DIR = r'F:/Projects/AI/MaplePublicArticles/404k-weekly/data'
+SITE_BASE = 'https://reports.xiaoyiyi.wang/404k-weekly'
+BADGE = '404K SEMI · WEEKLY'
+TITLE = '404K 持仓情报周报'
 HOME = '../index.html'
-FOOTER = '数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 生成后自动归档'
+FOOTER = '数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 持仓数据以 PORTFOLIO.md 为准'
 
 WEEKDAYS = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
 
 
 def parse_md(md_text, date_str):
-    """从 md 提取标题、生成时间副标题。"""
-    subtitle = f'每日盘前 · AI/半导体产业链核心信号与持仓动态'
-    lines = md_text.split('\n')
-    # 生成时间行（首个 blockquote）
-    for line in lines:
+    subtitle = '周度深度整合 · 持仓追踪 / 价格时间序列 / 评级台账'
+    for line in md_text.split('\n'):
         line = line.strip()
         if line.startswith('>'):
             subtitle = line.lstrip('> ').strip('| ').strip()
@@ -67,7 +64,7 @@ def render_one(md_path, html_path, all_dates=None):
         if 0 <= idx < len(all_dates) - 1:
             next_html = f'report_{all_dates[idx+1]}.html'
 
-    og_desc = f'{TITLE} {date_str} - AI/半导体产业链每日核心信号、持仓动态与风险提示'
+    og_desc = f'{TITLE} {date_str} - 持仓标的一周动态、价格数据时间序列与投行评级台账'
     html = render_article(
         badge=BADGE, title=TITLE, date_label=date_label, subtitle=subtitle,
         body_html=body_html, toc=toc, prev_html=prev_html, next_html=next_html,
@@ -89,24 +86,23 @@ def main():
             date_str = os.path.basename(md_path)[len('report_'):-3]
             html_path = os.path.join(DATA_DIR, f'report_{date_str}.html')
             render_one(md_path, html_path, all_dates)
-        print(f'完成：共重渲染 {len(md_files)} 份日报')
+        print(f'完成：共重渲染 {len(md_files)} 份周报')
         return
 
     if args and args[0] != '--all':
         date_str = args[0]
     else:
-        date_str = date.today().strftime('%Y-%m-%d')
-
-    md_path = os.path.join(DATA_DIR, f'report_{date_str}.md')
-    if not os.path.exists(md_path):
-        # 回退到最近一份
         md_files = sorted(glob.glob(os.path.join(DATA_DIR, 'report_*.md')))
         if not md_files:
             print('错误：未找到任何 report_*.md')
             sys.exit(1)
         md_path = md_files[-1]
         date_str = os.path.basename(md_path)[len('report_'):-3]
-        print(f'警告：{date_str} 无报告，回退到最近一份 {date_str}')
+
+    md_path = os.path.join(DATA_DIR, f'report_{date_str}.md')
+    if not os.path.exists(md_path):
+        print(f'错误：{md_path} 不存在')
+        sys.exit(1)
     html_path = os.path.join(DATA_DIR, f'report_{date_str}.html')
     render_one(md_path, html_path, all_dates)
 

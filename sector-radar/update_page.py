@@ -19,6 +19,9 @@ import sys
 import glob
 import markdown
 
+sys.path.insert(0, r'F:/Projects/AI/MaplePublicArticles/scripts')
+from pretty_report import emoji_for_heading
+
 MAX_REPORTS = 30
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -47,9 +50,27 @@ def fix_lists(md_text):
 
 
 def render_to_cards(md_text):
-    md_ext = markdown.Markdown(extensions=['sane_lists'])
+    md_ext = markdown.Markdown(extensions=['sane_lists', 'tables', 'fenced_code'])
     body = md_ext.convert(fix_lists(md_text.strip()))
     md_ext.reset()
+
+    # 后处理 1：首个 h1（报告标题）转为标题条，与 hero 视觉统一
+    body = re.sub(r'<h1>(.*?)</h1>\s*',
+                  r'<div class="report-title-bar">\1</div>', body, count=1, flags=re.DOTALL)
+
+    # 后处理 2：h2 注入章节 emoji
+    def h2_repl(m):
+        txt = m.group(1)
+        plain = re.sub(r'<[^>]+>', '', txt).strip()
+        emoji = emoji_for_heading(plain)
+        return f'<h2><span class="sec-emoji">{emoji}</span>{txt}</h2>'
+    body = re.sub(r'<h2>(.*?)</h2>', h2_repl, body, flags=re.DOTALL)
+
+    # 后处理 3：table 包横向滚动容器
+    body = re.sub(r'<table>.*?</table>',
+                  lambda m: '<div class="table-wrap">' + m.group(0) + '</div>',
+                  body, flags=re.DOTALL)
+
     parts = re.split(r'(?=<h2)', body)
     cards = []
     for p in parts:
@@ -84,7 +105,13 @@ BODY_TEMPLATE = '''<body>
       <span>SECTOR RADAR</span>
     </div>
     <h1><span class="g">📡 A股板块雷达</span></h1>
-    <div class="sub">每日盘后总结 · 大盘多空 · 四档分类</div>
+    <div class="hero-line"></div>
+    <div class="sub">每日盘后总结 · 大盘多空 · 板块四档分类</div>
+    <div class="chips">
+      <span class="chip">🕐 交易日 15:40 更新</span>
+      <span class="chip">📊 33 个观测板块</span>
+      <span class="chip">🪷 小荷 AI</span>
+    </div>
   </header>
 
   <a class="back-link" href="../index.html">‹ 返回主页</a>

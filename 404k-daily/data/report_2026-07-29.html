@@ -1,33 +1,241 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404K半导体日报 | 2026-07-29</title>
-<meta property="og:title" content="404K半导体日报 | 2026-07-29">
+<title>404K 半导体日报 | 2026-07-29</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 半导体日报 | 2026-07-29">
+<meta property="og:description" content="404K 半导体日报 2026-07-29 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
 <meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-daily/data/report_2026-07-29.html">
+<meta itemprop="name" content="404K 半导体日报 | 2026-07-29">
+<meta itemprop="description" content="404K 半导体日报 2026-07-29 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:860px;margin:0 auto;padding:20px;background:#0d1117;color:#c9d1d9;line-height:1.7;font-size:15px}
-a{color:#58a6ff}h1{border-bottom:1px solid #30363d;padding-bottom:8px;font-size:1.5em}
-h2{margin-top:32px;color:#f0b90b;font-size:1.15em}
-h3{margin-top:20px;color:#58a6ff;font-size:1.05em}
-table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.85em}
-th,td{border:1px solid #30363d;padding:8px 12px;text-align:left}
-th{background:#161b22;color:#f0b90b}
-code{background:#161b22;padding:2px 6px;border-radius:4px}
-strong{color:#f0b90b}
-blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8b949e}
-.back{display:inline-block;margin-bottom:16px;color:#8b949e;text-decoration:none}
-.back:hover{color:#c9d1d9}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+.md h2{
+  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
+  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
+  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+}
+.md h2 .sec-emoji{font-size:.95em}
+.md h3{
+  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
+  border-left:3px solid var(--cyan);
+}
+.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
+  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
+  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+}
+.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
+.md tr:hover td{background:rgba(96,165,250,.06)}
+.md tbody tr:first-child td{border-top:none}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:28px 0 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:7px 9px}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
 </style>
 </head>
 <body>
-<a class="back" href="../index.html">← 返回列表</a>
-<h1>404K半导体日报 | 2026-07-29</h1>
-<blockquote>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · DAILY</span></div>
+    <h1><span class="g">404K 半导体日报</span></h1>
+    <div class="sub">生成时间：2026-08-02 重跑 | 文档总数：51份</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-07-29 · 周三</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、今日核心信号">🔍一、今日核心信号</a><a href="#sec-二、持仓个股动态">💼二、持仓个股动态</a><a href="#sec-三、产业链关键信号">🔗三、产业链关键信号</a><a href="#sec-四、重要风险提示">⚠️四、重要风险提示</a><a href="#sec-五、数据速览">📊五、数据速览</a><a href="#sec-六、附录：今日核心文档清">📎六、附录：今日核心文档清单</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><a class="nav-arrow" href="report_2026-07-28.html">← 2026-07-28</a><a class="nav-arrow" href="report_2026-07-30.html">2026-07-30 →</a></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
 <p>生成时间：2026-08-02 重跑 | 文档总数：51份</p>
 </blockquote>
-<h2>一、今日核心信号</h2>
+<h2 id="sec-一、今日核心信号"><span class="sec-emoji">🔍</span>一、今日核心信号</h2>
 <p><strong>1. SK海力士Q2碾压预期：营收79.32万亿韩元、营业利润60.54万亿、营业利润率76%</strong></p>
 <ul>
 <li>数据支撑：Q2 DRAM ASP环比约+30%，HBM4季度内出货，10项LTA引入定价+定金机制。Q3 DRAM位元出货指引环比约+10%。2026年资本开支40万亿韩元高位区间。UBS认为固定价格部分压低了ASP弹性，但仍重申买入，称大幅估值下调不合理。</li>
@@ -58,7 +266,7 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <li>产业链含义：如果CAPEX真能兑现$1.4万亿，光模块/存储/设备全链的增长天花板远超当前预期。但需持续验证：云厂FCF、融资成本和ROI。</li>
 <li>对持仓含义：长线逻辑强化，中际旭创/天孚通信/生益科技的成长空间进一步打开。</li>
 </ul>
-<h2>二、持仓个股动态</h2>
+<h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
 <h3>中际旭创 ★★★★★</h3>
 <ul>
 <li>CAPEX $1.4万亿远景→光模块需求长期空间巨大</li>
@@ -79,7 +287,7 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <ul>
 <li>存储CAPEX扩产→测试设备需求但无直接报告</li>
 </ul>
-<h2>三、产业链关键信号</h2>
+<h2 id="sec-三、产业链关键信号"><span class="sec-emoji">🔗</span>三、产业链关键信号</h2>
 <h3>存储</h3>
 <ul>
 <li>SK海力士：76% OPM，HBM4出货，10项LTA锁定</li>
@@ -98,7 +306,7 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <li>三星/海力士CAPEX扩产→设备需求</li>
 <li>KLA: 2026 WFE $1,500亿低位以上</li>
 </ul>
-<h2>四、重要风险提示</h2>
+<h2 id="sec-四、重要风险提示"><span class="sec-emoji">⚠️</span>四、重要风险提示</h2>
 <ul>
 <li>SK海力士LTA固定价格可能压制后续ASP弹性</li>
 <li>CXMT产能爬坡→DDR/LPDDR中长期价格压力</li>
@@ -106,8 +314,8 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <li>CSP CAPEX $1.4万亿远景过于乐观的可能性</li>
 <li>融资成本上升可能压制约束CAPEX兑现速度</li>
 </ul>
-<h2>五、数据速览</h2>
-<table>
+<h2 id="sec-五、数据速览"><span class="sec-emoji">📊</span>五、数据速览</h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>指标</th>
@@ -144,9 +352,9 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <td>持续</td>
 </tr>
 </tbody>
-</table>
-<h2>六、附录：今日核心文档清单</h2>
-<table>
+</table></div>
+<h2 id="sec-六、附录：今日核心文档清"><span class="sec-emoji">📎</span>六、附录：今日核心文档清单</h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -211,6 +419,44 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <td>存储+代工CAPEX扩产, KLA上调WFE展望</td>
 </tr>
 </tbody>
-</table>
+</table></div>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 生成后自动归档</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

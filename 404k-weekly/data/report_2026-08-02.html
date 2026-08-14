@@ -1,41 +1,244 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404K持仓情报周报 | 2026-08-02</title>
-<meta property="og:title" content="404K持仓情报周报 | 2026-08-02">
+<title>404K 持仓情报周报 | 2026-08-02</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 持仓情报周报 | 2026-08-02">
+<meta property="og:description" content="404K 持仓情报周报 2026-08-02 - 持仓标的一周动态、价格数据时间序列与投行评级台账">
 <meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-weekly/data/report_2026-08-02.html">
+<meta itemprop="name" content="404K 持仓情报周报 | 2026-08-02">
+<meta itemprop="description" content="404K 持仓情报周报 2026-08-02 - 持仓标的一周动态、价格数据时间序列与投行评级台账">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:900px;margin:0 auto;padding:20px;background:#0d1117;color:#c9d1d9;line-height:1.7;font-size:15px}
-a{color:#58a6ff}h1{border-bottom:1px solid #30363d;padding-bottom:8px;font-size:1.5em}
-h2{margin-top:32px;color:#f0b90b;font-size:1.15em;border-bottom:1px solid #21262d;padding-bottom:6px}
-h3{margin-top:20px;color:#58a6ff;font-size:1.05em}
-h4{margin-top:14px;color:#c9d1d9;font-size:.98em}
-table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.85em}
-th,td{border:1px solid #30363d;padding:8px 12px;text-align:left}
-th{background:#161b22;color:#f0b90b}
-tr:nth-child(even){background:#0f1419}
-code{background:#161b22;padding:2px 6px;border-radius:4px}
-strong{color:#f0b90b}
-blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8b949e}
-ul{padding-left:24px}li{margin:4px 0}
-hr{border:none;border-top:1px solid #21262d;margin:24px 0}
-.back{display:inline-block;margin-bottom:16px;color:#8b949e;text-decoration:none}
-.back:hover{color:#c9d1d9}
-@media (max-width:600px){body{padding:12px;font-size:14px}table{font-size:.78em}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;backdrop-filter:blur(14px);
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+.md h2{
+  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
+  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
+  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+}
+.md h2 .sec-emoji{font-size:.95em}
+.md h3{
+  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
+  border-left:3px solid var(--cyan);
+}
+.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
+  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
+  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+}
+.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
+.md tr:hover td{background:rgba(96,165,250,.06)}
+.md tbody tr:first-child td{border-top:none}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:28px 0 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:7px 9px}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
 </style>
 </head>
 <body>
-<a class="back" href="../index.html">← 返回列表</a>
-<h1>404K 持仓情报周报 | 2026-08-02（覆盖 07-28 ~ 08-02）</h1>
-<blockquote>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · WEEKLY</span></div>
+    <h1><span class="g">404K 持仓情报周报</span></h1>
+    <div class="sub">**生成时间**：2026-08-02 17:58 | **本周文档总数**：393份 / **筛选重点**：45份</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-08-02 · 周日</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、本周核心信号（8条）">🔍一、本周核心信号（8条）</a><a href="#sec-二、价格数据时间序列（本">📊二、价格数据时间序列（本周重点）</a><a href="#sec-三、持仓个股一周动态（按">💼三、持仓个股一周动态（按持仓分组）</a><a href="#sec-四、投行评级变化台账（本">🏦四、投行评级变化台账（本周全部，来源：404K个股评级台账 7/29-7/31 + 7/30-8/1）</a><a href="#sec-五、产业链关键信号">🔗五、产业链关键信号</a><a href="#sec-六、风险提示">⚠️六、风险提示</a><a href="#sec-七、下周关注清单（5条）">🎯七、下周关注清单（5条）</a><a href="#sec-八、附录：本周重点文档清">📎八、附录：本周重点文档清单</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><span class="nav-arrow disabled">← 无更早</span><a class="nav-arrow" href="report_2026-08-09.html">2026-08-09 →</a></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
 <p><strong>生成时间</strong>：2026-08-02 17:58 | <strong>本周文档总数</strong>：393份 / <strong>筛选重点</strong>：45份
 <strong>持仓数据来源</strong>：PORTFOLIO.md（最后更新：2026-08-02，⚠️持仓市价数据待刷新）
 <strong>本周覆盖</strong>：7/28(86份) + 7/29(51份) + 7/30(111份) + 7/31(78份) + 8/1(52份) + 8/2(15份)</p>
 </blockquote>
 <hr />
-<h2>一、本周核心信号（8条）</h2>
+<h2 id="sec-一、本周核心信号（8条）"><span class="sec-emoji">🔍</span>一、本周核心信号（8条）</h2>
 <p><strong>1. 云厂CAPEX全线加码但"钱变贵了"——融资换挡成下半年最大变量。</strong>
 四大CSP 2026年CAPEX合计上修至 $7,200-7,450亿（亚马逊$2,200亿、谷歌$1,950-2,050亿、Meta$1,300-1,450亿、微软约$1,750亿），云积压订单合计约$2万亿（微软$6,270亿/谷歌$5,140亿/甲骨文$5,530亿/AWS$3,640亿）。但直接债务融资占比上升，AI高收益债占Q2一级市场约25%，部分2027年投运项目面临电力/设备/人工约束。（来源：404K M7与CSP周报、AI产业链周报 7/31）
 → <strong>持仓含义</strong>：AI基建需求未退潮，但融资成本是下半年最需跟踪的宏观变量，光模块/设备链订单确定性仍在。</p>
@@ -61,9 +264,9 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 苹果FY26Q3营收$1,094亿（+16%）但指引转弱（Q4收入+9-11%），管理层称存储成本上升解释了大部分毛利率环比压缩，Mac/iPad平均提价20%；高通Android相关收入下滑、内存BOM成本涨幅远超SoC提价能力；三星手机与网络业务承受零部件成本上升。（来源：苹果Q3电话会 7/31、高通 7/30、评级台账）
 → <strong>持仓含义</strong>：若终端普遍削配置/延后采购，存储需求斜率将受损——本周新增的最重要反证信号。</p>
 <hr />
-<h2>二、价格数据时间序列（本周重点）</h2>
+<h2 id="sec-二、价格数据时间序列（本"><span class="sec-emoji">📊</span>二、价格数据时间序列（本周重点）</h2>
 <h3>GPU租赁价格（$/小时，来源：LLM Token支出·GPU租赁价格日图 7/28-8/2）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>指标</th>
@@ -113,10 +316,10 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <td>波动下行</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>解读</strong>：GPU租赁价格本周小幅上行（H100 $2.76→$2.78），算力需求仍紧；H200维持$3.0+高位。LLM Token支出出现区间波动（$1.31-1.76），与"AMD MI355X以更低每token成本提供同体验"的竞争叙事呼应（8/2资讯）。</p>
 <h3>存储价格（7日涨幅，周度对比，来源：存储价格涨跌幅图 7/28-8/1）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>品类</th>
@@ -181,10 +384,10 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <td>零售大涨</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>解读</strong>：DRAM/NAND合约价补涨（7日+13.6%/+11.5%），SSD零售+36.6%，但现货涨势放缓——"合约补涨、现货松动"的转折观察期特征。</p>
 <h3>韩国官方固定价（美元，来源：韩国7月进出口动向 8/1）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>品类</th>
@@ -225,9 +428,9 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <td>加速上行</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3>超大规模云商CAPEX（2026全年指引，来源：M7与CSP周报、财报电话会）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>云商</th>
@@ -262,9 +465,9 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <td><strong>上修约$250亿</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
-<h2>三、持仓个股一周动态（按持仓分组）</h2>
+<h2 id="sec-三、持仓个股一周动态（按"><span class="sec-emoji">💼</span>三、持仓个股一周动态（按持仓分组）</h2>
 <h3>A股</h3>
 <h4>中际旭创 (300308) ★★★★★ 本周最强信号</h4>
 <ul>
@@ -356,9 +559,9 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <li><strong>TQQQ</strong>：纳指3x杠杆，随AI板块波动放大</li>
 </ul>
 <hr />
-<h2>四、投行评级变化台账（本周全部，来源：404K个股评级台账 7/29-7/31 + 7/30-8/1）</h2>
+<h2 id="sec-四、投行评级变化台账（本"><span class="sec-emoji">🏦</span>四、投行评级变化台账（本周全部，来源：404K个股评级台账 7/29-7/31 + 7/30-8/1）</h2>
 <h3>持仓相关标的（直接映射）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>日期</th>
@@ -459,9 +662,9 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <td>1Q盈利创纪录、回购支撑情绪</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <h3>其他重要标的（产业链相关）</h3>
-<table>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>日期</th>
@@ -730,10 +933,10 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <td>HBM4 Q3销售环比3x</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p><strong>台账小结</strong>：本周评级变化"两极化"——<strong>存储链获密集上调（SK海力士KIS+24%、瑞银维持300万、希捷三家上调）</strong>，<strong>云商/消费电子链遭下调（Meta/苹果/高通/维谛/国巨/台达）</strong>；设备链获上调（LRCX JPM、KLA、东京电子、欣兴、日月光）。资金从"买AI应用"转向"验证存储与光模块兑现"，与你持仓方向一致。</p>
 <hr />
-<h2>五、产业链关键信号</h2>
+<h2 id="sec-五、产业链关键信号"><span class="sec-emoji">🔗</span>五、产业链关键信号</h2>
 <h3>存储（HBM/DRAM/NAND/eSSD）★★★★★</h3>
 <ul>
 <li>SK海力士：HBM产能售罄至2027、10份LTA+定金机制、HBM4已出货；3Q26 DRAM位元出货环比+10%</li>
@@ -782,7 +985,7 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <li><strong>功率半导体</strong>：MOSFET 4月和7月两次涨价（每次10-35%），影响服务器电源毛利率（台达）</li>
 </ul>
 <hr />
-<h2>六、风险提示</h2>
+<h2 id="sec-六、风险提示"><span class="sec-emoji">⚠️</span>六、风险提示</h2>
 <ol>
 <li><strong>NAND涨价裂缝扩散风险</strong>（新增，权重最高）：韩国NAND出口单位价值10个月首降 + 6月wafer现货已回落3-4%；若8月连续2个月下降且SSD转弱，存储链（MU/SKHY/SNDK）盈利预期需下修。区分信号：NAND现货偏弱 vs DRAM/HBM合约坚挺</li>
 <li><strong>融资成本上升</strong>：直接债务融资占CAPEX比例上升，AI高收益债利差扩大（超大规模云商信用利差+16bp至151bp vs 其他+1bp）；若信用利差继续走阔，高杠杆数据中心项目回报恶化</li>
@@ -796,7 +999,7 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <li><strong>CPO远端价值误读</strong>：野村scale-up CPO $1,039亿（2030）为情景假设，不能直接映射旭创/天孚当期收入</li>
 </ol>
 <hr />
-<h2>七、下周关注清单（5条）</h2>
+<h2 id="sec-七、下周关注清单（5条）"><span class="sec-emoji">🎯</span>七、下周关注清单（5条）</h2>
 <ol>
 <li><strong>NAND涨价裂缝验证</strong>（最重要）：8/2韩国NAND出口单位价值10个月首降，下周看8月关税厅数据+现货价是否跟进走弱；同时盯企业级SSD是否保持强势（结构分化 or 拐点）</li>
 <li><strong>Nebius NBIS Q2财报（8/12周三盘前）</strong>：neocloud盈利验证，直接映射美股大小号NBIS持仓（74股）</li>
@@ -805,8 +1008,8 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <li><strong>CPO产业链验证</strong>：光引擎良率/硅光产能瓶颈、ASMPT/泰瑞达订单兑现；旭创H股上市后资金面与1.6T出货节奏</li>
 </ol>
 <hr />
-<h2>八、附录：本周重点文档清单</h2>
-<table>
+<h2 id="sec-八、附录：本周重点文档清"><span class="sec-emoji">📎</span>八、附录：本周重点文档清单</h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -1014,9 +1217,47 @@ KOSPI从6/22高点回撤约40%（散户保证金贷款超60万亿韩元、超1/3
 <td>毛利率24.8%、CAPEX 537亿、EMIB-T</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
 <p><em>本报告基于404K知识库公开资料整理，不构成投资建议。数据来源标注于各段落。持仓数据以PORTFOLIO.md为准。</em>
 <em>价格数据均已保留数值+日期，供下周对比。</em></p>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 持仓数据以 PORTFOLIO.md 为准</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

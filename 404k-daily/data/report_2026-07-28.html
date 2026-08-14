@@ -1,33 +1,241 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404K半导体日报 | 2026-07-28</title>
-<meta property="og:title" content="404K半导体日报 | 2026-07-28">
+<title>404K 半导体日报 | 2026-07-28</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 半导体日报 | 2026-07-28">
+<meta property="og:description" content="404K 半导体日报 2026-07-28 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
 <meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-daily/data/report_2026-07-28.html">
+<meta itemprop="name" content="404K 半导体日报 | 2026-07-28">
+<meta itemprop="description" content="404K 半导体日报 2026-07-28 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:860px;margin:0 auto;padding:20px;background:#0d1117;color:#c9d1d9;line-height:1.7;font-size:15px}
-a{color:#58a6ff}h1{border-bottom:1px solid #30363d;padding-bottom:8px;font-size:1.5em}
-h2{margin-top:32px;color:#f0b90b;font-size:1.15em}
-h3{margin-top:20px;color:#58a6ff;font-size:1.05em}
-table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.85em}
-th,td{border:1px solid #30363d;padding:8px 12px;text-align:left}
-th{background:#161b22;color:#f0b90b}
-code{background:#161b22;padding:2px 6px;border-radius:4px}
-strong{color:#f0b90b}
-blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8b949e}
-.back{display:inline-block;margin-bottom:16px;color:#8b949e;text-decoration:none}
-.back:hover{color:#c9d1d9}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+.md h2{
+  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
+  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
+  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+}
+.md h2 .sec-emoji{font-size:.95em}
+.md h3{
+  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
+  border-left:3px solid var(--cyan);
+}
+.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
+  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
+  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+}
+.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
+.md tr:hover td{background:rgba(96,165,250,.06)}
+.md tbody tr:first-child td{border-top:none}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:28px 0 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:7px 9px}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
 </style>
 </head>
 <body>
-<a class="back" href="../index.html">← 返回列表</a>
-<h1>404K半导体日报 | 2026-07-28</h1>
-<blockquote>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · DAILY</span></div>
+    <h1><span class="g">404K 半导体日报</span></h1>
+    <div class="sub">生成时间：2026-08-02 重跑 | 文档总数：86份 / 筛选核心PDF：18份+关键汇总图片</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-07-28 · 周二</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、今日核心信号">🔍一、今日核心信号</a><a href="#sec-二、持仓个股动态">💼二、持仓个股动态</a><a href="#sec-三、产业链关键信号">🔗三、产业链关键信号</a><a href="#sec-四、重要风险提示">⚠️四、重要风险提示</a><a href="#sec-五、数据速览">📊五、数据速览</a><a href="#sec-六、附录：今日完整文档清">📎六、附录：今日完整文档清单（共86份，PDF 12份 + 资讯汇总图/图卡约40份）</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><span class="nav-arrow disabled">← 无更早</span><a class="nav-arrow" href="report_2026-07-29.html">2026-07-29 →</a></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
 <p>生成时间：2026-08-02 重跑 | 文档总数：86份 / 筛选核心PDF：18份+关键汇总图片</p>
 </blockquote>
-<h2>一、今日核心信号</h2>
+<h2 id="sec-一、今日核心信号"><span class="sec-emoji">🔍</span>一、今日核心信号</h2>
 <p><strong>1. 韩国半导体股崩盘：三星-9.25%、SK海力士-11.07%，触发熔断，月跌创GFC以来最差</strong></p>
 <ul>
 <li>数据支撑：KOSPI开盘后触发卖出熔断，三星电子-9.25%、SK海力士-11.07%，半导体板块重挫-10.26%。隔夜美股英伟达-3.76%、AMD-6.95%、美光-5.46%集体暴跌。多重利空共振：CXMT上市首日暴涨+466%，中国DUV光刻机传闻，以及对存储供应过剩的担忧。</li>
@@ -70,7 +278,7 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <li>产业链含义：CCL涨价和材料短缺是PCB/覆铜板产业链的结构性驱动力。欣兴电子Q2 ABF毛利率24.8%（+6.8pp环比）已验证涨价传导。</li>
 <li>对持仓含义：生益科技（CCL/覆铜板龙头）直接受益于材料涨价和产能紧张。</li>
 </ul>
-<h2>二、持仓个股动态</h2>
+<h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
 <h3>中际旭创 ★★★★★</h3>
 <ul>
 <li><strong>InP激光器短缺超级利好</strong>：Lumentum CEO表示短缺"比存储器严重"，单机架8,000激光器→光模块核心原材料约束，有产能的厂商定价权上升</li>
@@ -92,7 +300,7 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <ul>
 <li>半导体设备链间接受益于扩产，但今日无直接报告</li>
 </ul>
-<h2>三、产业链关键信号</h2>
+<h2 id="sec-三、产业链关键信号"><span class="sec-emoji">🔗</span>三、产业链关键信号</h2>
 <h3>AI基础设施与CAPEX</h3>
 <ul>
 <li>摩根士丹利GenAI ROIC框架：三种商业模式25-50%回报→CAPEX可持续</li>
@@ -114,7 +322,7 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <ul>
 <li>CCL材料瓶颈扩大，MLCC创纪录出货→高端材料需求验证</li>
 </ul>
-<h2>四、重要风险提示</h2>
+<h2 id="sec-四、重要风险提示"><span class="sec-emoji">⚠️</span>四、重要风险提示</h2>
 <ul>
 <li><strong>CXMT引发的供应过剩担忧</strong>：短期过度担忧，但中长期DDR/LPDDR价格压力真实</li>
 <li><strong>KOSPI熔断</strong>：仓位和情绪驱动的暴跌，基本面未变但恐慌可以自我强化</li>
@@ -122,8 +330,8 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <li><strong>CUDA迁移壁垒下降</strong>：AMD GPU份额可能提升，但英伟达生态护城河仍在</li>
 <li><strong>中国DUV光刻机传闻</strong>：28nm浸没式DUV交付传闻已被证实不可信，设备仍处于调试</li>
 </ul>
-<h2>五、数据速览</h2>
-<table>
+<h2 id="sec-五、数据速览"><span class="sec-emoji">📊</span>五、数据速览</h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>指标</th>
@@ -160,13 +368,14 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <td>75%（ROIC基准）</td>
 </tr>
 </tbody>
-</table>
-<h2>六、附录：今日核心文档清单</h2>
-<table>
+</table></div>
+<h2 id="sec-六、附录：今日完整文档清"><span class="sec-emoji">📎</span>六、附录：今日完整文档清单（共86份，PDF 12份 + 资讯汇总图/图卡约40份）</h2>
+<h3>PDF文档</h3>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
-<th>文档标题</th>
+<th>文档</th>
 <th>类型</th>
 <th>一句话摘要</th>
 </tr>
@@ -176,111 +385,264 @@ blockquote{border-left:3px solid #30363d;padding-left:16px;margin:8px 0;color:#8
 <td>1</td>
 <td>AI超节点深度更新</td>
 <td>自主报告</td>
-<td>1,024颗加速器架构→PCIe 6.x+跨机架光互连价值增量</td>
+<td>1,024加速器→PCIe 6.x+跨机架光互连</td>
 </tr>
 <tr>
 <td>2</td>
 <td>半导体AI网络-纵向扩展赋能本土超节点</td>
 <td>外资研报</td>
-<td>中国WAIC后AI超节点进展，光互连与国产供应链影响</td>
+<td>WAIC后中国超节点，国产光互连供应链</td>
 </tr>
 <tr>
 <td>3</td>
-<td>摩根士丹利GenAI ROIC框架</td>
-<td>外资研报</td>
-<td>GPU租赁30%+、模型API 40%+、企业应用25%+ ROIC</td>
+<td>404K科技晚报 7/28</td>
+<td>自主报告</td>
+<td>AI硬件延续，融资成本与良率进入验证期</td>
 </tr>
 <tr>
 <td>4</td>
-<td>CXMT上市+中国DRAM威胁分析(高盛)</td>
-<td>外资研报</td>
-<td>2030年产能翻三倍，DDR/LPDDR压力，但HBM壁垒仍在</td>
+<td>TMTB科技早报 7/28</td>
+<td>自主报告</td>
+<td>当日科技动态汇总</td>
 </tr>
 <tr>
 <td>5</td>
-<td>三星电子代工复苏+CUDA迁移分析</td>
-<td>信息汇总</td>
-<td>Groq LP30量产，AI辅助CUDA→ROCm迁移，AMD份额提升</td>
+<td>SemiVision CXMT IPO暴涨466%</td>
+<td>专题</td>
+<td>DRAM新势力崛起</td>
 </tr>
 <tr>
 <td>6</td>
-<td>Lumentum CEO InP激光器短缺预警</td>
-<td>信息汇总</td>
-<td>单机架8,000激光器，短缺比存储器严重，2H'27首次部署</td>
+<td>PhotonCap 英伟达vs AMD光学方案</td>
+<td>专题</td>
+<td>机架拆分位置决定光学利润分配</td>
 </tr>
 <tr>
 <td>7</td>
-<td>韩国KOSPI暴跌+SK海力士LPDDR6量产</td>
-<td>信息汇总</td>
-<td>三星-9.25%/SK海力士-11.07%，LPDDR6首发小米</td>
+<td>贝莱德 AI交易动量与基本面</td>
+<td>策略</td>
+<td>动量与基本面背离分析</td>
 </tr>
 <tr>
 <td>8</td>
-<td>AI服务器CCL材料瓶颈</td>
-<td>信息汇总</td>
-<td>二氧化硅/树脂/铜箔三重短缺，MLCC出货创五年新高</td>
+<td>JP Insights Cadence Q2</td>
+<td>外资研报</td>
+<td>出色但价格高昂，$81亿积压</td>
 </tr>
 <tr>
 <td>9</td>
-<td>三星增产DRAM 15%+龙仁集群加速</td>
-<td>摩根大通</td>
-<td>短期符合趋势，中长期供应扩张担忧</td>
+<td>Sam Altman谈AGI/算力</td>
+<td>访谈</td>
+<td>AGI进程和算力需求展望</td>
 </tr>
 <tr>
 <td>10</td>
-<td>CPO交换机量产验证+测试需求</td>
-<td>产业分析</td>
-<td>英伟达/博通初步扩产，光引擎良率是瓶颈</td>
+<td>Boris Cherny 构建Claude代码</td>
+<td>技术</td>
+<td>Claude代码架构分析</td>
 </tr>
 <tr>
 <td>11</td>
-<td>布鲁姆能源做空后业绩前瞻</td>
-<td>产业分析</td>
-<td>Hunterbrook做空后跌40%，业绩验证争议</td>
+<td>信息汇总晚报PDF 7/28</td>
+<td>汇总</td>
+<td>傍晚全量信息汇总</td>
 </tr>
 <tr>
 <td>12</td>
-<td>英伟达开放安全AI联盟</td>
-<td>产业动态</td>
-<td>SAP/Salesforce/Snowflake入局，OpenAI/谷歌未加入</td>
-</tr>
-<tr>
-<td>13</td>
-<td>韩国半导体结构性危机(CSIS分析)</td>
-<td>宏观研究</td>
-<td>出口创新高掩盖对华贸易顺差暴跌80%</td>
-</tr>
-<tr>
-<td>14</td>
-<td>Palantir CEO:企业被AI token价格欺骗</td>
-<td>行业观点</td>
-<td>客户对AI ROI不满，超额收益流向供应商</td>
-</tr>
-<tr>
-<td>15</td>
-<td>英伟达CUDA vs AMD ROCm竞争分析</td>
-<td>技术分析</td>
-<td>AI降低迁移成本，Claude在MI355X上运行案例</td>
-</tr>
-<tr>
-<td>16</td>
-<td>AT&amp;T CTO:月消耗万亿tokens</td>
-<td>客户案例</td>
-<td>100+GenAI模型投产，两位数增长</td>
-</tr>
-<tr>
-<td>17</td>
-<td>Cadence AI芯片设计超级Agent</td>
-<td>技术动态</td>
-<td>5周RTL验证→不到1天，ASIC设计巨大利好</td>
-</tr>
-<tr>
-<td>18</td>
-<td>亚马逊AI战略转向新前沿模型</td>
-<td>产业动态</td>
-<td>停用多款内部AI模型，聚焦新前沿</td>
+<td>Jared Isaacman NASA月球基地</td>
+<td>航天</td>
+<td>（与持仓无关）</td>
 </tr>
 </tbody>
-</table>
+</table></div>
+<h3>资讯汇总图片（约40张，含关键信息点）</h3>
+<p>每天约30-40张资讯汇总图片（media_type=9，AI自动整理的信息截图），按时间顺序覆盖当日从凌晨到夜间的全球AI/半导体/宏观动态。关键信息点已提炼进核心信号部分，以下为完整索引：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>时段</th>
+<th>关键信息点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00:06</td>
+<td>芯片股暴跌触发标普翻绿；Kimi K3权重发布</td>
+</tr>
+<tr>
+<td>11:04</td>
+<td>AT&amp;T CTO：月消耗万亿tokens，100+GenAI模型投产</td>
+</tr>
+<tr>
+<td>11:26</td>
+<td>Lumentum InP短缺预警（比存储严重）；CSP债券利差16bp扩大</td>
+</tr>
+<tr>
+<td>11:49</td>
+<td>Rambus Q2电话会；服务器需求可见度提高</td>
+</tr>
+<tr>
+<td>12:09</td>
+<td>KB证券过度担忧消退；CXMT+466%</td>
+</tr>
+<tr>
+<td>12:28</td>
+<td>Anthropic寻SK海力士供货；Vera Rubin过渡预期乐观</td>
+</tr>
+<tr>
+<td>16:18</td>
+<td>摩根大通：存储担忧+MLCC涨价；三星DRAM+15%；CXMT竞争</td>
+</tr>
+<tr>
+<td>17:10</td>
+<td>台积电熊本疏散（地震）；内存瓶颈言论被驳</td>
+</tr>
+<tr>
+<td>18:38</td>
+<td>Cadence AI设计Agent→5周验证变不到1天</td>
+</tr>
+<tr>
+<td>18:47</td>
+<td>UBS维持亚马逊买入，$305（下调因AWS时点）</td>
+</tr>
+<tr>
+<td>19:02</td>
+<td>又一次隔夜暴跌触发停牌</td>
+</tr>
+<tr>
+<td>19:13</td>
+<td>AAOI InP全产业链优势；PayPal双超预期</td>
+</tr>
+<tr>
+<td>19:29</td>
+<td>Galaxy $500英亩德州AI数据中心→74MW首期</td>
+</tr>
+<tr>
+<td>20:31</td>
+<td>美银：7月加息史无前例；苹果新租赁计划</td>
+</tr>
+<tr>
+<td>20:54</td>
+<td>Applied Digital Q4收入+407%；亚马逊AI战略转向</td>
+</tr>
+<tr>
+<td>22:06</td>
+<td>CSP CAPEX $4,260亿→$1.4万亿(2025→2028)</td>
+</tr>
+<tr>
+<td>存储价格</td>
+<td>DRAM DDR4 16Gb +4.78%；NAND MLC 64Gb +3.7%</td>
+</tr>
+<tr>
+<td>KOSPI分析</td>
+<td>韩国保证金贷款60万亿韩元；三星+SK海力士占1/3</td>
+</tr>
+<tr>
+<td>摩根士丹利ROIC</td>
+<td>Token利润率59-90%（Blackwell→Feynman）</td>
+</tr>
+<tr>
+<td>智能体AI</td>
+<td>Agentic AI时代CPU重要性扩大；至强6供应紧张</td>
+</tr>
+<tr>
+<td>闲置GPU</td>
+<td>H100半价转租市场兴起</td>
+</tr>
+<tr>
+<td>MLCC</td>
+<td>TrendForce：日韩MLCC创纪录出货，AI驱动</td>
+</tr>
+<tr>
+<td>CPO量产</td>
+<td>英伟达/博通初步扩产CPO→测试需求同步增长</td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td>年化$710亿超星巴克+麦当劳</td>
+</tr>
+<tr>
+<td>月之暗面</td>
+<td>寻求追加Blackwell→Kimi K4，K3 48h满负荷</td>
+</tr>
+<tr>
+<td>泰瑞达前瞻</td>
+<td>存储测试今晚关键验证点</td>
+</tr>
+<tr>
+<td>TFHK评论</td>
+<td>AI硬件回调与去年秋冬相似，财报仍正面</td>
+</tr>
+<tr>
+<td>SK海力士LPDDR6</td>
+<td>下半年量产，首发小米</td>
+</tr>
+<tr>
+<td>CSIS韩国危机</td>
+<td>对华贸易顺差暴跌80%→出口新高掩盖结构危机</td>
+</tr>
+<tr>
+<td>三星代工</td>
+<td>台积电72.3% vs 三星6.5%；Groq LP30量产</td>
+</tr>
+<tr>
+<td>CCL瓶颈</td>
+<td>二氧化硅/树脂/铜箔三重短缺</td>
+</tr>
+<tr>
+<td>布鲁姆能源</td>
+<td>做空跌40%后财报验证</td>
+</tr>
+<tr>
+<td>CUDA迁移</td>
+<td>Claude在AMD MI355X运行，AI降低迁移成本</td>
+</tr>
+<tr>
+<td>英伟达安全AI联盟</td>
+<td>SAP/Salesforce/Snowflake入局</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>每日资讯汇总图片数量多、信息密集但部分重复。核心信号已提炼为7条高密度结论。以上列出全部可识别条目（去重后约35个独立主题）。</p>
+</blockquote>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 生成后自动归档</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

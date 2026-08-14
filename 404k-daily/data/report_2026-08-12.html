@@ -1,141 +1,274 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="404K半导体日报 | 2026-08-12">
-    <meta property="og:type" content="article">
-    <meta name="description" content="404K半导体日报 2026-08-12 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
-    <title>404K半导体日报 | 2026-08-12</title>
-    <style>
-        :root {
-            --bg: #0d1117;
-            --bg-secondary: #161b22;
-            --border: #30363d;
-            --text: #c9d1d9;
-            --text-secondary: #8b949e;
-            --accent: #58a6ff;
-            --accent-green: #3fb950;
-            --accent-red: #f85149;
-            --accent-orange: #d2991d;
-            --accent-purple: #a371f7;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            line-height: 1.7;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px 24px 60px;
-        }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        h1 { font-size: 1.8em; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin: 20px 0 16px; }
-        h2 { font-size: 1.4em; margin: 32px 0 16px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
-        h3 { font-size: 1.15em; margin: 20px 0 10px; color: var(--accent-purple); }
-        h4 { font-size: 1.05em; margin: 16px 0 8px; }
-        blockquote {
-            border-left: 3px solid var(--accent);
-            padding: 10px 16px;
-            margin: 12px 0;
-            background: var(--bg-secondary);
-            border-radius: 0 6px 6px 0;
-            color: var(--text-secondary);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            font-size: 0.9em;
-        }
-        th, td {
-            border: 1px solid var(--border);
-            padding: 8px 12px;
-            text-align: left;
-        }
-        th {
-            background: var(--bg-secondary);
-            font-weight: 600;
-        }
-        tr:nth-child(even) { background: rgba(255,255,255,0.02); }
-        strong { color: #f0f6fc; }
-        hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-        code {
-            background: var(--bg-secondary);
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 0.9em;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 6px 14px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--text-secondary);
-            font-size: 0.9em;
-        }
-        .back-link:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            text-decoration: none;
-        }
-        .highlight-positive { color: var(--accent-red); }
-        .highlight-negative { color: var(--accent-green); }
-        em { color: var(--accent-orange); font-style: normal; }
-        ul, ol { padding-left: 24px; margin: 8px 0; }
-        li { margin: 4px 0; }
-        @media (max-width: 600px) {
-            body { padding: 12px 16px 40px; }
-            h1 { font-size: 1.4em; }
-            table { font-size: 0.8em; }
-            th, td { padding: 6px 8px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404K 半导体日报 | 2026-08-12</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 半导体日报 | 2026-08-12">
+<meta property="og:description" content="404K 半导体日报 2026-08-12 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-daily/data/report_2026-08-12.html">
+<meta itemprop="name" content="404K 半导体日报 | 2026-08-12">
+<meta itemprop="description" content="404K 半导体日报 2026-08-12 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+.md h2{
+  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
+  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
+  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+}
+.md h2 .sec-emoji{font-size:.95em}
+.md h3{
+  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
+  border-left:3px solid var(--cyan);
+}
+.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
+  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
+  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+}
+.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
+.md tr:hover td{background:rgba(96,165,250,.06)}
+.md tbody tr:first-child td{border-top:none}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:28px 0 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:7px 9px}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
+</style>
 </head>
 <body>
-    <a href="../index.html" class="back-link">← 返回日报列表</a>
-    <h1>404K半导体日报 | 2026-08-12</h1>
-<blockquote>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · DAILY</span></div>
+    <h1><span class="g">404K 半导体日报</span></h1>
+    <div class="sub">生成时间：2026-08-13 05:00 | 文档总数：74份 / 筛选重点：19份PDF</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-08-12 · 周三</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、今日核心信号">🔍一、今日核心信号</a><a href="#sec-二、持仓个股动态">💼二、持仓个股动态</a><a href="#sec-三、产业链关键信号">🔗三、产业链关键信号</a><a href="#sec-四、重要风险提示">⚠️四、重要风险提示</a><a href="#sec-五、数据速览">📊五、数据速览</a><a href="#sec-六、附录：今日文档清单">📎六、附录：今日文档清单</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><a class="nav-arrow" href="report_2026-08-11.html">← 2026-08-11</a><span class="nav-arrow disabled">无更新 →</span></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
 <p>生成时间：2026-08-13 05:00 | 文档总数：74份 / 筛选重点：19份PDF</p>
 </blockquote>
-<h2>一、今日核心信号</h2>
-<p><strong>1. Lumentum首个10亿美元季度：光模块/CPO超级周期加速，投行目标价分歧$280美元</strong><br />
-- 数据支撑：FQ4营收$10.063亿（同比+109.3%、环比+24.5%），非GAAP毛利率50.4%、营业利润率36.6%，EPS $3.23（超指引上限）；下季指引营收$12.25-12.75亿（中值环比+24%）、营业利润率39.5-40.5%。200G EML已占EML收入25%+、1.6T开始量产、OCS出货环比翻倍、泵浦激光器未来数季增至4倍（全球份额70-80%）。JPM目标价$1,165→$1,280（CY28 EPS $43.38×30倍）；Morgan Stanley目标价$1,000（约$40盈利能力×25倍，要求先见正式NPO合同）；Rosenblatt维持买入$1,300（来源：404K科技晚报/Lumentum财报深度/JPM F4Q26回顾）<br />
-- 产业链含义：光学超级周期"营收、EPS、利润率、1.6T、激光器"五线同时加速，无转弱迹象。管理层将远期营业利润率框架从38-42%上移至42%中值。核心变化是利润率比收入目标更早到达——旧模型需$20亿季度收入才跨50%毛利率，现在$10亿即越线<br />
+<h2 id="sec-一、今日核心信号"><span class="sec-emoji">🔍</span>一、今日核心信号</h2>
+<p><strong>1. Lumentum首个10亿美元季度：光模块/CPO超级周期加速，投行目标价分歧$280美元</strong>
+- 数据支撑：FQ4营收$10.063亿（同比+109.3%、环比+24.5%），非GAAP毛利率50.4%、营业利润率36.6%，EPS $3.23（超指引上限）；下季指引营收$12.25-12.75亿（中值环比+24%）、营业利润率39.5-40.5%。200G EML已占EML收入25%+、1.6T开始量产、OCS出货环比翻倍、泵浦激光器未来数季增至4倍（全球份额70-80%）。JPM目标价$1,165→$1,280（CY28 EPS $43.38×30倍）；Morgan Stanley目标价$1,000（约$40盈利能力×25倍，要求先见正式NPO合同）；Rosenblatt维持买入$1,300（来源：404K科技晚报/Lumentum财报深度/JPM F4Q26回顾）
+- 产业链含义：光学超级周期"营收、EPS、利润率、1.6T、激光器"五线同时加速，无转弱迹象。管理层将远期营业利润率框架从38-42%上移至42%中值。核心变化是利润率比收入目标更早到达——旧模型需$20亿季度收入才跨50%毛利率，现在$10亿即越线
 - 对持仓含义：Lumentum是海外光模块/CPO情绪锚，其"CPO客户生产计划按期推进+需求信号增强"直接回击6月CPO延期争议，利好中际旭创/天孚通信的CPO/NPO产业逻辑与估值锚</p>
-<p><strong>2. 美光/UBS：DRAM紧缺延长至2028年，NAND短期降温但未反转，目标价$1,625不变</strong><br />
-- 数据支撑：UBS维持美光$1,625目标价（改用11倍×CY2029 EPS $165，旧为15倍×$121）。行业C3Q DDR合约价+20% QoQ（美光C3Q +20%/C4Q +11%），供不应求至少延续至2028Q2。HBM4E价格或超$30/GB，2027行业HBM ASP同比+79%（美光+72%），2027 HBM总需求587→615亿Gb。NAND C3Q合约价涨幅+28%→+20%（美光+35%→+23%），FY27 NAND收入预测-17%，但位需求增速上调至23%/26%（来源：UBS美光报告/404K深度解读）<br />
-- 产业链含义：DRAM与NAND在同一周期内分叉——DRAM紧缺延长抬高2028-29盈利平台，NAND涨价斜率趋缓但企业级SSD订单与位需求未转弱。长鑫存储原计划4.5万片月产能中约3万片转向DRAM，减少NAND新增供给、缓冲DRAM短期冲击<br />
+<p><strong>2. 美光/UBS：DRAM紧缺延长至2028年，NAND短期降温但未反转，目标价$1,625不变</strong>
+- 数据支撑：UBS维持美光$1,625目标价（改用11倍×CY2029 EPS $165，旧为15倍×$121）。行业C3Q DDR合约价+20% QoQ（美光C3Q +20%/C4Q +11%），供不应求至少延续至2028Q2。HBM4E价格或超$30/GB，2027行业HBM ASP同比+79%（美光+72%），2027 HBM总需求587→615亿Gb。NAND C3Q合约价涨幅+28%→+20%（美光+35%→+23%），FY27 NAND收入预测-17%，但位需求增速上调至23%/26%（来源：UBS美光报告/404K深度解读）
+- 产业链含义：DRAM与NAND在同一周期内分叉——DRAM紧缺延长抬高2028-29盈利平台，NAND涨价斜率趋缓但企业级SSD订单与位需求未转弱。长鑫存储原计划4.5万片月产能中约3万片转向DRAM，减少NAND新增供给、缓冲DRAM短期冲击
 - 对持仓含义：存储涨价推高服务器BOM、HBM测试复杂度跃升，利好长川科技（测试设备）与半导设备ETF；DRAM结构性紧缺强化生益科技AI服务器CCL的量价逻辑</p>
-<p><strong>3. 苹果测试长鑫存储DRAM：全球DRAM市场迎来第4家供应商，"重新定价"启动</strong><br />
-- 数据支撑：8/9 WSJ报道苹果在iPhone/MacBook测试长鑫存储DRAM，讨论在中国销售设备采用。长鑫Q2约占全球DRAM营收7%，DDR5/LPDDR5/LPDDR5X已量产（2023/2024/2025），客户含阿里云/字节/腾讯/联想/小米/传音/荣耀/OPPO/vivo；惠普/宏碁/华硕已在非美市场有限认证。长鑫部分产品定价已接近甚至高于三大厂（来源：SemiVision深度/信息汇总晚报）<br />
-- 产业链含义：DRAM市场分化为"高端（HBM/AI服务器）vs 消费级（PC DDR5/LPDDR）"。三大厂将更强力转向高价值HBM与服务器内存，标准化DRAM腾出空间给长鑫扩张，形成自我强化循环。二阶影响落在封装/测试/模组与本土设备材料认证<br />
+<p><strong>3. 苹果测试长鑫存储DRAM：全球DRAM市场迎来第4家供应商，"重新定价"启动</strong>
+- 数据支撑：8/9 WSJ报道苹果在iPhone/MacBook测试长鑫存储DRAM，讨论在中国销售设备采用。长鑫Q2约占全球DRAM营收7%，DDR5/LPDDR5/LPDDR5X已量产（2023/2024/2025），客户含阿里云/字节/腾讯/联想/小米/传音/荣耀/OPPO/vivo；惠普/宏碁/华硕已在非美市场有限认证。长鑫部分产品定价已接近甚至高于三大厂（来源：SemiVision深度/信息汇总晚报）
+- 产业链含义：DRAM市场分化为"高端（HBM/AI服务器）vs 消费级（PC DDR5/LPDDR）"。三大厂将更强力转向高价值HBM与服务器内存，标准化DRAM腾出空间给长鑫扩张，形成自我强化循环。二阶影响落在封装/测试/模组与本土设备材料认证
 - 对持仓含义：长鑫扩产直接利好中国存储设备/材料生态，映射半导设备ETF与科创芯片ETF的国产化逻辑；对三大存储厂短期是供给格局变量而非价格崩跌</p>
-<p><strong>4. Counterpoint：企业级SSD占NAND比特出货48%，长江存储出货量跻身全球前三</strong><br />
-- 数据支撑：Q2 2026企业级SSD占全球NAND比特出货量48%（一年前26%，年底预计超50%）；行业营收较Q2 2025增至5倍。份额：三星25%领跑（低于2024Q2的32%）、SK海力士22%（Solidigm环比+40%）、长江存储14%升至第3（同比+22%/环比+5%，超铠侠）、美光13%、闪迪11%。长江存储营收仅排第5（产品偏消费级），已量产267层3D NAND、推进300+层（来源：Counterpoint Research）<br />
-- 产业链含义：AI从训练转向推理，KV缓存/数据集需求把NAND从消费级推向服务器级。铠侠超30%出货流向服务器但涨价放缓客户采购、增速落后于长鑫。决定盈利能力的是产品组合（企业级SSD占比）而非比特数量<br />
+<p><strong>4. Counterpoint：企业级SSD占NAND比特出货48%，长江存储出货量跻身全球前三</strong>
+- 数据支撑：Q2 2026企业级SSD占全球NAND比特出货量48%（一年前26%，年底预计超50%）；行业营收较Q2 2025增至5倍。份额：三星25%领跑（低于2024Q2的32%）、SK海力士22%（Solidigm环比+40%）、长江存储14%升至第3（同比+22%/环比+5%，超铠侠）、美光13%、闪迪11%。长江存储营收仅排第5（产品偏消费级），已量产267层3D NAND、推进300+层（来源：Counterpoint Research）
+- 产业链含义：AI从训练转向推理，KV缓存/数据集需求把NAND从消费级推向服务器级。铠侠超30%出货流向服务器但涨价放缓客户采购、增速落后于长鑫。决定盈利能力的是产品组合（企业级SSD占比）而非比特数量
 - 对持仓含义：NAND结构升级+存储涨价，强化AI服务器PCB/存储链景气，间接利好生益科技与半导设备ETF；长江存储企业级SSD转向是国产存储设备/材料的新催化</p>
-<p><strong>5. 英伟达$5,000亿第三方融资平台：算力从"IT设备"变成"可投资基础设施资产"</strong><br />
-- 数据支撑：英伟达联合Apollo/BlackRock/Blackstone/Brookfield/高盛/KKR，目标逐步调动超$5,000亿第三方资本投AI工厂；每个项目独立承销，非英伟达收入或已承诺资本。七大科技公司capex现金融资占比从2024年85%降至2026年约2/3（来源：404K科技早报/信息汇总晚报）<br />
-- 产业链含义：AI建设从公司现金流主导转向"机构基础设施资本"共同承担，可能拉长GPU、网络、光学、电力、冷却的投资周期。融资主体与芯片销售分离，有助于减轻循环交易疑虑<br />
+<p><strong>5. 英伟达$5,000亿第三方融资平台：算力从"IT设备"变成"可投资基础设施资产"</strong>
+- 数据支撑：英伟达联合Apollo/BlackRock/Blackstone/Brookfield/高盛/KKR，目标逐步调动超$5,000亿第三方资本投AI工厂；每个项目独立承销，非英伟达收入或已承诺资本。七大科技公司capex现金融资占比从2024年85%降至2026年约2/3（来源：404K科技早报/信息汇总晚报）
+- 产业链含义：AI建设从公司现金流主导转向"机构基础设施资本"共同承担，可能拉长GPU、网络、光学、电力、冷却的投资周期。融资主体与芯片销售分离，有助于减轻循环交易疑虑
 - 对持仓含义：第三方资本扩容→算力建设总量上修→光模块（中际旭创/天孚）、通信ETF、设备（长川科技）中长期需求确定性强化</p>
-<p><strong>6. CoreWeave积压订单$1,042亿、7月全面提价25%、A100续签到2029年</strong><br />
-- 数据支撑：Q2营收$25.75亿（+112%）、调整后EBITDA利润率59%，但净亏损$6.26亿；积压订单$301亿→$1,042亿（+246%），24个月确认比例50%→40%、超48个月从10%→21%。7月全SKU提价25%，新合同贡献利润率+5-10pp（Vera Rubin贡献大头）；托管推理ARR从$100万→$1亿+（年底目标$2.5亿+）；capex指引$310-350亿→$350-390亿。但折旧$5.59亿→$13.93亿、净利息$2.67亿→$6.4亿（下一季8.6-9.4亿）（来源：404K科技晚报/信息汇总晚报）<br />
-- 产业链含义：A100续签到2029年证明旧代GPU经济寿命长于折旧年限，算力成可融资资产。但营业杠杆改善先被膨胀的利息支出吸收，资本密集度而非需求是核心争议<br />
+<p><strong>6. CoreWeave积压订单$1,042亿、7月全面提价25%、A100续签到2029年</strong>
+- 数据支撑：Q2营收$25.75亿（+112%）、调整后EBITDA利润率59%，但净亏损$6.26亿；积压订单$301亿→$1,042亿（+246%），24个月确认比例50%→40%、超48个月从10%→21%。7月全SKU提价25%，新合同贡献利润率+5-10pp（Vera Rubin贡献大头）；托管推理ARR从$100万→$1亿+（年底目标$2.5亿+）；capex指引$310-350亿→$350-390亿。但折旧$5.59亿→$13.93亿、净利息$2.67亿→$6.4亿（下一季8.6-9.4亿）（来源：404K科技晚报/信息汇总晚报）
+- 产业链含义：A100续签到2029年证明旧代GPU经济寿命长于折旧年限，算力成可融资资产。但营业杠杆改善先被膨胀的利息支出吸收，资本密集度而非需求是核心争议
 - 对持仓含义：新云capex持续上调是光模块/设备/PCB的总量支撑；但需警惕折旧+利息集中释放对新云FCF的压制，影响下一轮订单节奏</p>
-<p><strong>7. Bernstein上调WFE预测：2027年+33%至$2,040亿、2028年+27%至$2,590亿，存储设备是亮点</strong><br />
-- 数据支撑：Bernstein预计WFE支出2027年+33%至$2,040亿、2028年+27%至$2,590亿。其中DRAM设备2027年+53%至$690亿、2028年+37%至$960亿；NAND设备2027年+58%至$200亿、2028年+42%至$290亿；逻辑/代工2027年+20%至$1,040亿、2028年+19%至$1,240亿（来源：Bernstein WFE图表/信息汇总晚报）<br />
-- 产业链含义：AI对存储（尤其HBM）的需求与持续扩产是主要驱动，设备景气从逻辑向存储扩散。存储厂订单而非预测数字是真正验证点<br />
+<p><strong>7. Bernstein上调WFE预测：2027年+33%至$2,040亿、2028年+27%至$2,590亿，存储设备是亮点</strong>
+- 数据支撑：Bernstein预计WFE支出2027年+33%至$2,040亿、2028年+27%至$2,590亿。其中DRAM设备2027年+53%至$690亿、2028年+37%至$960亿；NAND设备2027年+58%至$200亿、2028年+42%至$290亿；逻辑/代工2027年+20%至$1,040亿、2028年+19%至$1,240亿（来源：Bernstein WFE图表/信息汇总晚报）
+- 产业链含义：AI对存储（尤其HBM）的需求与持续扩产是主要驱动，设备景气从逻辑向存储扩散。存储厂订单而非预测数字是真正验证点
 - 对持仓含义：WFE上修直接利好长川科技、半导设备ETF；存储设备支出跃升是测试设备需求的核心驱动</p>
-<p><strong>8. SK海力士重启大连NAND二期扩产50%+淡马锡首投韩国存储，存储景气获多重确认</strong><br />
-- 数据支撑：SK海力士重启大连NAND Fab 2（停工约4年），2026年导入设备、2027上半年投产，中国NAND产能提升约50%。淡马锡首次直接投资韩国股市（三星电子+SK海力士），认为存储是AI价值链中被低估最多的环节，计划2031年AI敞口从6%提至15%。Cantor维持美光/闪迪/SK海力士增持，预计比特需求缺口5-10pp未来10年持续（来源：信息汇总早报/信息汇总晚报）<br />
-- 产业链含义：SK海力士NAND扩产指向AI服务器对企业级SSD的需求；淡马锡13F已持英伟达/台积电/阿斯麦/OpenAI/Anthropic。存储被主权基金视为结构性长周期而非短期热潮<br />
+<p><strong>8. SK海力士重启大连NAND二期扩产50%+淡马锡首投韩国存储，存储景气获多重确认</strong>
+- 数据支撑：SK海力士重启大连NAND Fab 2（停工约4年），2026年导入设备、2027上半年投产，中国NAND产能提升约50%。淡马锡首次直接投资韩国股市（三星电子+SK海力士），认为存储是AI价值链中被低估最多的环节，计划2031年AI敞口从6%提至15%。Cantor维持美光/闪迪/SK海力士增持，预计比特需求缺口5-10pp未来10年持续（来源：信息汇总早报/信息汇总晚报）
+- 产业链含义：SK海力士NAND扩产指向AI服务器对企业级SSD的需求；淡马锡13F已持英伟达/台积电/阿斯麦/OpenAI/Anthropic。存储被主权基金视为结构性长周期而非短期热潮
 - 对持仓含义：存储扩产资本开支利好设备（长川科技/半导设备ETF）；NAND供给边际增加是远期价格弹性风险，需区分DRAM与NAND周期位置</p>
-<h2>二、持仓个股动态</h2>
+<h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
 <h3>中际旭创 ★★★★★</h3>
 <ul>
 <li><strong>产业链强信号</strong>：Lumentum FQ4营收$10.06亿（+109%）、下季指引$12.5亿、营业利润率40%，1.6T量产、OCS单季首超$1亿、CPO客户生产计划按期推进+需求信号增强。光学超级周期无转弱迹象</li>
@@ -167,7 +300,7 @@
 <li><strong>通信ETF</strong>：Lumentum财报+CPO/NPO加速+新云capex上调，光通信中长期需求确定</li>
 <li><strong>中国巨石</strong>：今日无直接研报。玻纤/电子布上游，AI服务器PCB需求间接传导，但弹性弱于CCL/光模块核心环节</li>
 </ul>
-<h2>三、产业链关键信号</h2>
+<h2 id="sec-三、产业链关键信号"><span class="sec-emoji">🔗</span>三、产业链关键信号</h2>
 <h3>超大规模云商CAPEX</h3>
 <ul>
 <li><strong>CoreWeave</strong>：capex指引$310-350亿→$350-390亿，积压订单$1,042亿，7月全SKU提价25%，6月启用300MW+算力</li>
@@ -193,7 +326,7 @@
 <li><strong>臻鼎科技</strong>：服务器/光模块/载板营收+113%，占总营收21.6%（上年11.7%）</li>
 <li><strong>ABF载板</strong>：台积电将存储器与ABF载板列为AI关键瓶颈</li>
 </ul>
-<h2>四、重要风险提示</h2>
+<h2 id="sec-四、重要风险提示"><span class="sec-emoji">⚠️</span>四、重要风险提示</h2>
 <ol>
 <li><strong>光模块高估值预期兑现风险</strong>：Lumentum股价1年涨约6倍，业绩发布后几乎持平，已从"好业绩就能涨"变成"每季必须超极端高预期"。中际旭创/天孚通信面临同样的高预期压力，若CPO/NPO订单落地慢于预期，倍数将先于收入下修</li>
 <li><strong>新云折旧+利息集中释放风险</strong>：CoreWeave折旧$5.59亿→$13.93亿、净利息$2.67亿→$6.4亿（下一季8.6-9.4亿），营业杠杆改善先被利息支出吸收。资本密集度而非需求是新云核心争议，可能影响下一轮订单节奏</li>
@@ -202,8 +335,8 @@
 <li><strong>GPU降规格反证</strong>：英伟达Vera Rubin 300首批用384GB HBM4而非768GB，虽总HBM需求反升（系统可多交付），但降规格本身是供应极度紧张的直接证据，需跟踪8层 vs 12层比例变化</li>
 <li><strong>台积电营收增速略低于预期</strong>：7月+44.7%（预期46.8%），市场对"大规模AI投资能否转化为实际收益"的质疑增多，科技股较近期高点回调</li>
 </ol>
-<h2>五、数据速览</h2>
-<table>
+<h2 id="sec-五、数据速览"><span class="sec-emoji">📊</span>五、数据速览</h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>指标</th>
@@ -334,9 +467,9 @@
 <td>信息汇总</td>
 </tr>
 </tbody>
-</table>
-<h2>六、附录：今日文档清单</h2>
-<table>
+</table></div>
+<h2 id="sec-六、附录：今日文档清单"><span class="sec-emoji">📎</span>六、附录：今日文档清单</h2>
+<div class="table-wrap"><table>
 <thead>
 <tr>
 <th>#</th>
@@ -461,11 +594,44 @@
 <td>Q2 2026更新日志，AI硬件产业链观察</td>
 </tr>
 </tbody>
-</table>
-    <hr>
-    <p style="color: var(--text-secondary); font-size: 0.85em; margin-top: 20px;">
-        📌 以上所有内容均来源于404K Semi-AI知识库公开文档，仅供学习参考，不构成投资建议。<br>
-        生成时间：2026-08-14 00:00 | 数据日期：2026-08-12
-    </p>
+</table></div>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 生成后自动归档</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

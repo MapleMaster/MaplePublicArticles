@@ -24,107 +24,139 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#030712;--card-bg:rgba(15,23,42,0.7);--card-bg-hover:rgba(15,23,42,0.85);
+  --bg:#030712;--card-bg:rgba(15,23,42,0.72);--card-solid:#0d1117;
   --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;--pink:#f472b6;
   --green:#34d399;--red:#f87171;--yellow:#facc15;--gray:#64748b;
   --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
-  --border:rgba(148,163,184,0.08);--border-hi:rgba(148,163,184,0.15);
+  --border:rgba(148,163,184,0.1);--border-hi:rgba(148,163,184,0.22);
   --ease-out-quint:cubic-bezier(0.23,1,0.32,1);
   --up:#f87171;--down:#4ade80;
 }
 body{
-  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display',system-ui,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display',system-ui,'Microsoft YaHei',sans-serif;
   background:var(--bg);color:var(--text);min-height:100vh;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;
 }
 /* Background */
 .bg-img{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(3,7,18,0.4) 0%,rgba(3,7,18,0.7) 40%,var(--bg) 80%),radial-gradient(ellipse at 30% 0%,rgba(96,165,250,0.06),transparent 50%),radial-gradient(ellipse at 70% 10%,rgba(167,139,250,0.05),transparent 50%);
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
 }
 .scan{position:fixed;left:0;width:100%;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(34,211,238,0.3),transparent);
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
   z-index:2;pointer-events:none;animation:scanDown 8s linear infinite;
 }
 @keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
 
 /* Page */
-.page{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:22px 18px 52px}
+.page{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:24px 18px 52px}
 
 /* Header */
 .hero{text-align:center;margin-bottom:16px}
-.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;
-  background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.12);
-  font-size:0.6em;color:var(--blue);letter-spacing:0.1em;text-transform:uppercase;
-  opacity:0;animation:enterUp 0.6s var(--ease-out-quint) 0.1s forwards;
+.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.18);
+  font-size:0.62em;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;
+  animation:enterUp 0.6s var(--ease-out-quint) 0.1s both;
 }
 .hero-badge .blink{width:5px;height:5px;border-radius:50%;background:var(--green);
   box-shadow:0 0 6px var(--green);animation:pulse 2.5s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.7)}}
-.hero h1{font-size:clamp(1.3em,5vw,1.7em);font-weight:800;line-height:1.15;letter-spacing:-0.03em;
-  margin:8px 0 4px;opacity:0;animation:enterUp 0.7s var(--ease-out-quint) 0.25s forwards;}
-.hero h1 .g{background:linear-gradient(135deg,var(--blue),var(--cyan) 40%,var(--purple) 70%,var(--pink));
-  background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;animation:gradientShift 5s ease-in-out infinite;}
-@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.hero .sub{font-size:0.68em;color:var(--text-dim);letter-spacing:0.15em;text-transform:uppercase;
-  opacity:0;animation:enterUp 0.6s var(--ease-out-quint) 0.4s forwards;}
-@keyframes enterUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-size:clamp(1.35em,5vw,1.75em);font-weight:800;line-height:1.15;letter-spacing:-0.03em;
+  margin:10px 0 4px;color:#f0f6fc;text-shadow:0 0 26px rgba(96,165,250,.4);
+  animation:enterUp 0.7s var(--ease-out-quint) 0.25s both;}
+.hero .hero-line{width:110px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:0.72em;color:var(--text-dim);letter-spacing:0.1em;
+  animation:enterUp 0.6s var(--ease-out-quint) 0.4s both;}
+.hero .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;
+  animation:enterUp 0.5s var(--ease-out-quint) 0.48s both;}
+.hero .chip{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:0.68em;font-weight:600;}
+@keyframes enterUp{from{transform:translateY(14px)}to{transform:translateY(0)}}
 
 /* Back link */
-.back-link{display:inline-flex;align-items:center;gap:4px;font-size:0.7em;color:var(--text-dim);
-  text-decoration:none;margin-bottom:12px;opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.5s forwards;}
-.back-link:hover{color:var(--cyan)}
+.back-link{display:inline-flex;align-items:center;gap:4px;font-size:0.75em;color:var(--text-dim);
+  text-decoration:none;margin-bottom:12px;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+  animation:enterUp 0.5s var(--ease-out-quint) 0.5s both;}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
 
 /* Date switcher */
 .date-switch{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:20px;
-  opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.55s forwards;}
-.date-btn{padding:6px 16px;border-radius:10px;border:1px solid var(--border);
+  animation:enterUp 0.5s var(--ease-out-quint) 0.55s both;}
+.date-btn{padding:6px 15px;border-radius:10px;border:1px solid var(--border);
   background:var(--card-bg);color:var(--text-mid);font-size:0.75em;font-weight:600;
-  cursor:pointer;transition:all 200ms ease;backdrop-filter:blur(8px);font-family:inherit;}
+  cursor:pointer;transition:all 200ms ease;font-family:inherit;}
 .date-btn:hover{border-color:var(--border-hi);color:var(--text)}
-.date-btn.active{background:rgba(96,165,250,0.12);border-color:rgba(96,165,250,0.3);color:var(--blue);
-  box-shadow:0 0 12px rgba(96,165,250,0.08);}
+.date-btn.active{background:rgba(96,165,250,0.12);border-color:rgba(96,165,250,0.35);color:var(--blue);
+  box-shadow:0 0 12px rgba(96,165,250,0.08)}
 
 /* Report content */
 #report-area{opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s ease;}
 #report-area.show{opacity:1;transform:translateY(0);}
 
+/* 报告标题条（markdown 首个 h1） */
+.report-title-bar{
+  text-align:center;font-size:0.9em;font-weight:700;color:var(--text-mid);
+  padding-bottom:14px;margin-bottom:8px;letter-spacing:0.04em;
+  border-bottom:1px dashed var(--border-hi);
+}
+
 /* Markdown rendered styles */
-.md{font-size:16px;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%;}
-.md h1{font-size:1.4em;font-weight:800;margin:0 0 16px;letter-spacing:-0.02em;
-  background:linear-gradient(135deg,var(--text),var(--text-mid));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.md h2{font-size:1.16em;font-weight:700;margin:28px 0 14px;color:var(--cyan);
-  padding-bottom:10px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:6px;}
-.md h2:before{content:'';width:3px;height:15px;background:var(--cyan);border-radius:2px;}
-.md h3{font-size:1em;font-weight:600;margin:18px 0 8px;color:var(--purple);}
-.md p{margin:13px 0 15px;color:var(--text);}
-.md strong{color:var(--text);font-weight:700;}
-.md ul,.md ol{margin:12px 0;padding-left:24px;}
-.md li{margin:7px 0;color:var(--text-mid);line-height:1.8;}
-.md li strong{color:var(--text);}
-.md ul ul,.md ol ol,.md ul ol,.md ol ul{margin:6px 0 6px 4px;padding-left:22px;}
-.md ul ul li,.md ol ol li{margin:5px 0;font-size:0.95em;}
-.md ul > li{list-style:'›  ';}
-.md ul ul > li{list-style:'·  ';}
-.md ul > li::marker{color:var(--cyan);}
-.md ul ul > li::marker{color:var(--text-dim);}
-.md ol > li::marker{color:var(--gold);font-weight:700;}
-.md li:has(> strong:first-child){color:var(--text);}
-.md blockquote{margin:14px 0;padding:12px 16px;border-left:3px solid var(--gold);
-  background:rgba(251,191,36,0.04);border-radius:0 8px 8px 0;
-  font-size:0.95em;color:var(--text-dim);}
-.md blockquote p{color:var(--text-dim);}
-.md hr{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border-hi),transparent);margin:24px 0;}
-.md code{font-family:'SF Mono',Menlo,monospace;font-size:0.88em;
-  padding:1px 5px;border-radius:4px;background:rgba(96,165,250,0.08);color:var(--blue);}
+.md{font-size:15px;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%;}
+.md h2{
+  margin:32px 0 16px;padding:11px 16px;font-size:1.1em;font-weight:800;
+  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
+  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+}
+.md h2 .sec-emoji{font-size:.95em}
+.md h3{margin:24px 0 10px;padding-left:12px;font-size:1em;font-weight:700;color:var(--cyan);
+  border-left:3px solid var(--cyan);}
+.md h4{margin:20px 0 8px;font-size:.93em;font-weight:700;color:var(--purple)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{margin:14px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;font-size:.93em;color:var(--text-mid);}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:26px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);}
+.md pre{background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:14px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.md table{width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;}
+.md th{background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
+  color:var(--cyan);font-weight:700;padding:9px 13px;text-align:left;white-space:nowrap;
+  border-bottom:1px solid var(--border-hi);}
+.md td{padding:8px 13px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
+.md tr:hover td{background:rgba(96,165,250,.06)}
+.md tbody tr:first-child td{border-top:none}
 
 /* Report sections as cards */
-.md-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;
-  padding:22px 24px;margin-bottom:14px;backdrop-filter:blur(12px);
-  opacity:0;transform:translateY(16px);animation:cardIn 0.5s var(--ease-out-quint) forwards;}
-@keyframes cardIn{to{opacity:1;transform:translateY(0);}}
+.md-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;
+  padding:22px 24px;margin-bottom:14px;
+  transform:translateY(14px);animation:cardIn 0.5s var(--ease-out-quint) forwards;}
+@keyframes cardIn{to{transform:translateY(0);}}
 .md-card:nth-child(1){animation-delay:0.05s}
 .md-card:nth-child(2){animation-delay:0.12s}
 .md-card:nth-child(3){animation-delay:0.19s}
@@ -148,14 +180,24 @@ body{
 
 /* Footer */
 .footer{text-align:center;margin-top:28px;padding-top:14px;border-top:1px solid var(--border);
-  opacity:0;animation:enterUp 0.5s var(--ease-out-quint) 0.8s forwards;}
-.footer p{font-size:0.62em;color:var(--text-dim);line-height:1.8;}
+  animation:enterUp 0.5s var(--ease-out-quint) 0.8s both;}
+.footer p{font-size:0.64em;color:var(--text-dim);line-height:1.9;}
 .footer .hl{color:var(--gold);}
 .footer .lotus{color:var(--pink);}
+.footer .warn{color:var(--text-dim);}
 
 /* Loading */
 .loading{text-align:center;padding:40px;color:var(--text-dim);font-size:0.8em;}
 
+@media (max-width:600px){
+  .page{padding:18px 12px 40px}
+  .md-card{padding:16px 15px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:.98em;margin:26px 0 12px;padding:9px 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:7px 9px}
+  .date-btn{padding:5px 11px;font-size:.7em}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
   .scan{display:none;}
@@ -175,7 +217,13 @@ body{
       <span>SECTOR RADAR</span>
     </div>
     <h1><span class="g">📡 A股板块雷达</span></h1>
-    <div class="sub">每日盘后总结 · 大盘多空 · 四档分类</div>
+    <div class="hero-line"></div>
+    <div class="sub">每日盘后总结 · 大盘多空 · 板块四档分类</div>
+    <div class="chips">
+      <span class="chip">🕐 交易日 15:40 更新</span>
+      <span class="chip">📊 33 个观测板块</span>
+      <span class="chip">🪷 小荷 AI</span>
+    </div>
   </header>
 
   <a class="back-link" href="../index.html">‹ 返回主页</a>
@@ -183,8 +231,8 @@ body{
   <div class="date-switch" id="date-switch"></div>
 
   <div id="report-area" class="show">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-14</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-14</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>中性🟡</strong>，抛压<strong>小幅减轻</strong>。今日是8/13放量杀跌后的<strong>缩量企稳日</strong>：五指数4涨1跌（创业板🔴+1.12%领涨、深成🔴+0.45%、上证🔴+0.01%、沪深300🔴+0.04%、科创50基本走平-0.00%），上涨家数从昨日的1143回升至2400（+110%），上涨占比从20%修复至43%（+23pp），两市成交额缩量至21428亿（较上日-4081亿，<strong>-16.0%缩量企稳</strong>）。但<strong>科创50仍差-1.88点未收复MA20</strong>（1717.68 vs 1719.56），跌停家数从4只增至13只，上涨占比43%仍未过半——<strong>止跌企稳初步确认，但趋势反转的最后一环（科创50收复MA20）仍未完成</strong>。</p>
 <p><strong>中期趋势判断</strong>：<strong>尚未趋势性反转，需连续确认</strong>。8/13报告中提出的周五五大确认点今日 <strong>3✅2✗</strong>：企稳（缩量+跌超5%减少✅）、有色止住流出（✅）、科技超跌反抽（✅）；但科创50收复MA20（✗，差-1.88点）、防御性板块延续流入（✗，医药全线转负验证"单日避险脉冲"判断）。站上20日线4/5但科创50连续两日卡在MA20下方，需下周一（8/17）确认是否完成收复。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>2/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>4/5</strong> 个站上20日线（科创50跌破MA20，差-1.88点），上涨 <strong>2400</strong> 家、下跌 <strong>2970</strong> 家，主动资金以33个观测板块加总近似约 <strong>-154亿</strong>（vs 8/13的-950亿，大幅收窄-84%；概念间成份股有重叠）。今天<strong>不提高整体仓位</strong>——A档仅2条、上涨占比43%未过半、科创50未收复MA20，等待进一步确认。</p>
@@ -235,7 +283,7 @@ body{
   5. ✅ 科技板块超跌反抽：通信设备+122亿、CPO+117亿暴力回流、芯片转正+6.7亿。</li>
 <li>盘中资金买入迹象：创业板🔴+1.12%领涨且站上全部均线，深成指尾盘收于日内次高点（14354 vs 高点14384），科技硬件链（通信/CPO/PCB）有主动买盘；但上证、沪深300冲高回落（上证开盘3930最高3932.64收3927.18），权重蓝筹承接仍弱。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 2 条</strong>：</p>
 <ul>
 <li><strong>通信设备</strong>：行业+3.63%（5日+5.45%，20日+2.41%），主力资金净额 <strong>+122.19亿</strong>（5日+113.72亿，10日+297.69亿），upDownRatio <strong>74%</strong> ✅ —— <strong>唯一全5项满足的A档</strong>，8/13+7亿→今日+122亿连续放大，行业资金流入榜第1、行业内排名第1</li>
@@ -300,16 +348,75 @@ body{
 </ul>
 <p>这些方向今天缺趋势、缺资金持续流入，或内部扩散太差；已有的弱势持仓先减掉，暂时不需要新增仓位。</p>
 <p><strong>特别分析 — 资金的三日轮回（8/12→8/13→8/14）</strong>：</p>
-<p>| 板块 | 8/12 | 8/13 | 8/14 | 三日趋势 |
-|------|------|------|------|----------|
-| 通信设备 | +131.49亿 | +7.31亿 | <strong>+122.19亿</strong> | 🔴 V型反转，重回流入榜首 |
-| CPO | +171.43亿 | -26.69亿 | <strong>+116.97亿</strong> | 🔴 V型反转 |
-| PCB概念 | +61.96亿 | -74.43亿 | <strong>+22.39亿</strong> | 🔴 V型反转 |
-| 芯片概念 | +232.99亿 | -164.67亿 | <strong>+6.68亿</strong> | 🟡 流出收窄转正 |
-| 半导体产业 | +63.85亿 | -143.16亿 | <strong>-62.69亿</strong> | 🟢 仍在失血 |
-| 创新药 | -36.92亿 | +39.69亿 | <strong>-35.29亿</strong> | 🟢 脉冲一日游 |
-| 电力 | — | +36.61亿 | <strong>-46.92亿</strong> | 🟢 脉冲一日游 |
-| 有色金属 | -1.67亿 | -181.74亿 | <strong>-18.40亿</strong> | 🟡 流出收窄90% |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/12</th>
+<th>8/13</th>
+<th>8/14</th>
+<th>三日趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通信设备</td>
+<td>+131.49亿</td>
+<td>+7.31亿</td>
+<td><strong>+122.19亿</strong></td>
+<td>🔴 V型反转，重回流入榜首</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+171.43亿</td>
+<td>-26.69亿</td>
+<td><strong>+116.97亿</strong></td>
+<td>🔴 V型反转</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>+61.96亿</td>
+<td>-74.43亿</td>
+<td><strong>+22.39亿</strong></td>
+<td>🔴 V型反转</td>
+</tr>
+<tr>
+<td>芯片概念</td>
+<td>+232.99亿</td>
+<td>-164.67亿</td>
+<td><strong>+6.68亿</strong></td>
+<td>🟡 流出收窄转正</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td>+63.85亿</td>
+<td>-143.16亿</td>
+<td><strong>-62.69亿</strong></td>
+<td>🟢 仍在失血</td>
+</tr>
+<tr>
+<td>创新药</td>
+<td>-36.92亿</td>
+<td>+39.69亿</td>
+<td><strong>-35.29亿</strong></td>
+<td>🟢 脉冲一日游</td>
+</tr>
+<tr>
+<td>电力</td>
+<td>—</td>
+<td>+36.61亿</td>
+<td><strong>-46.92亿</strong></td>
+<td>🟢 脉冲一日游</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>-1.67亿</td>
+<td>-181.74亿</td>
+<td><strong>-18.40亿</strong></td>
+<td>🟡 流出收窄90%</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ol>
 <li><strong>资金从"全面普涨"走向"结构性聚焦"</strong>：8/12全面流入→8/13全面流出→8/14仅"通信设备+CPO+PCB"算力硬件链暴量回流（合计+262亿，占观测正流入的80%）。半导体/存储未获资金回流，芯片仅+6.7亿微正。</li>
@@ -325,7 +432,7 @@ body{
   4. <strong>上涨占比能否过半</strong>——今日43%，若周一&gt;55%且站上MA5指数≥3/5，则升级为偏多。
   5. <strong>跌停家数能否回落</strong>——今日13只跌停（vs 4只）是隐忧，若周一跌停明显减少，抛压解除。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>不提高</strong>整体仓位。A档仅2条（&lt;3）+ 大盘中性（上涨43%未过半）+ 科创50未收复MA20，维持现有仓位，等待确认。</li>
 <li><strong>做多优先级（A档2条）</strong>：</li>
@@ -351,7 +458,7 @@ body{
 <li>科创50连续2日差2点内未收复MA20，是市场趋势的"关键变量"。</li>
 <li>医药/电力防御性脉冲一日游被验证，昨日追高的今天已被套——教训：脉冲日不追高。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-14（changedist/kline/fund flow/sector ranking 均为8/14收盘数据；market-overview trade/updown/interval/technical 为8/13数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -381,8 +488,8 @@ body{
 </div>
 
     <template id="tpl-2026-08-14">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-14</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-14</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>中性🟡</strong>，抛压<strong>小幅减轻</strong>。今日是8/13放量杀跌后的<strong>缩量企稳日</strong>：五指数4涨1跌（创业板🔴+1.12%领涨、深成🔴+0.45%、上证🔴+0.01%、沪深300🔴+0.04%、科创50基本走平-0.00%），上涨家数从昨日的1143回升至2400（+110%），上涨占比从20%修复至43%（+23pp），两市成交额缩量至21428亿（较上日-4081亿，<strong>-16.0%缩量企稳</strong>）。但<strong>科创50仍差-1.88点未收复MA20</strong>（1717.68 vs 1719.56），跌停家数从4只增至13只，上涨占比43%仍未过半——<strong>止跌企稳初步确认，但趋势反转的最后一环（科创50收复MA20）仍未完成</strong>。</p>
 <p><strong>中期趋势判断</strong>：<strong>尚未趋势性反转，需连续确认</strong>。8/13报告中提出的周五五大确认点今日 <strong>3✅2✗</strong>：企稳（缩量+跌超5%减少✅）、有色止住流出（✅）、科技超跌反抽（✅）；但科创50收复MA20（✗，差-1.88点）、防御性板块延续流入（✗，医药全线转负验证"单日避险脉冲"判断）。站上20日线4/5但科创50连续两日卡在MA20下方，需下周一（8/17）确认是否完成收复。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>2/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>4/5</strong> 个站上20日线（科创50跌破MA20，差-1.88点），上涨 <strong>2400</strong> 家、下跌 <strong>2970</strong> 家，主动资金以33个观测板块加总近似约 <strong>-154亿</strong>（vs 8/13的-950亿，大幅收窄-84%；概念间成份股有重叠）。今天<strong>不提高整体仓位</strong>——A档仅2条、上涨占比43%未过半、科创50未收复MA20，等待进一步确认。</p>
@@ -433,7 +540,7 @@ body{
   5. ✅ 科技板块超跌反抽：通信设备+122亿、CPO+117亿暴力回流、芯片转正+6.7亿。</li>
 <li>盘中资金买入迹象：创业板🔴+1.12%领涨且站上全部均线，深成指尾盘收于日内次高点（14354 vs 高点14384），科技硬件链（通信/CPO/PCB）有主动买盘；但上证、沪深300冲高回落（上证开盘3930最高3932.64收3927.18），权重蓝筹承接仍弱。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 2 条</strong>：</p>
 <ul>
 <li><strong>通信设备</strong>：行业+3.63%（5日+5.45%，20日+2.41%），主力资金净额 <strong>+122.19亿</strong>（5日+113.72亿，10日+297.69亿），upDownRatio <strong>74%</strong> ✅ —— <strong>唯一全5项满足的A档</strong>，8/13+7亿→今日+122亿连续放大，行业资金流入榜第1、行业内排名第1</li>
@@ -498,16 +605,75 @@ body{
 </ul>
 <p>这些方向今天缺趋势、缺资金持续流入，或内部扩散太差；已有的弱势持仓先减掉，暂时不需要新增仓位。</p>
 <p><strong>特别分析 — 资金的三日轮回（8/12→8/13→8/14）</strong>：</p>
-<p>| 板块 | 8/12 | 8/13 | 8/14 | 三日趋势 |
-|------|------|------|------|----------|
-| 通信设备 | +131.49亿 | +7.31亿 | <strong>+122.19亿</strong> | 🔴 V型反转，重回流入榜首 |
-| CPO | +171.43亿 | -26.69亿 | <strong>+116.97亿</strong> | 🔴 V型反转 |
-| PCB概念 | +61.96亿 | -74.43亿 | <strong>+22.39亿</strong> | 🔴 V型反转 |
-| 芯片概念 | +232.99亿 | -164.67亿 | <strong>+6.68亿</strong> | 🟡 流出收窄转正 |
-| 半导体产业 | +63.85亿 | -143.16亿 | <strong>-62.69亿</strong> | 🟢 仍在失血 |
-| 创新药 | -36.92亿 | +39.69亿 | <strong>-35.29亿</strong> | 🟢 脉冲一日游 |
-| 电力 | — | +36.61亿 | <strong>-46.92亿</strong> | 🟢 脉冲一日游 |
-| 有色金属 | -1.67亿 | -181.74亿 | <strong>-18.40亿</strong> | 🟡 流出收窄90% |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/12</th>
+<th>8/13</th>
+<th>8/14</th>
+<th>三日趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通信设备</td>
+<td>+131.49亿</td>
+<td>+7.31亿</td>
+<td><strong>+122.19亿</strong></td>
+<td>🔴 V型反转，重回流入榜首</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+171.43亿</td>
+<td>-26.69亿</td>
+<td><strong>+116.97亿</strong></td>
+<td>🔴 V型反转</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>+61.96亿</td>
+<td>-74.43亿</td>
+<td><strong>+22.39亿</strong></td>
+<td>🔴 V型反转</td>
+</tr>
+<tr>
+<td>芯片概念</td>
+<td>+232.99亿</td>
+<td>-164.67亿</td>
+<td><strong>+6.68亿</strong></td>
+<td>🟡 流出收窄转正</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td>+63.85亿</td>
+<td>-143.16亿</td>
+<td><strong>-62.69亿</strong></td>
+<td>🟢 仍在失血</td>
+</tr>
+<tr>
+<td>创新药</td>
+<td>-36.92亿</td>
+<td>+39.69亿</td>
+<td><strong>-35.29亿</strong></td>
+<td>🟢 脉冲一日游</td>
+</tr>
+<tr>
+<td>电力</td>
+<td>—</td>
+<td>+36.61亿</td>
+<td><strong>-46.92亿</strong></td>
+<td>🟢 脉冲一日游</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>-1.67亿</td>
+<td>-181.74亿</td>
+<td><strong>-18.40亿</strong></td>
+<td>🟡 流出收窄90%</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ol>
 <li><strong>资金从"全面普涨"走向"结构性聚焦"</strong>：8/12全面流入→8/13全面流出→8/14仅"通信设备+CPO+PCB"算力硬件链暴量回流（合计+262亿，占观测正流入的80%）。半导体/存储未获资金回流，芯片仅+6.7亿微正。</li>
@@ -523,7 +689,7 @@ body{
   4. <strong>上涨占比能否过半</strong>——今日43%，若周一&gt;55%且站上MA5指数≥3/5，则升级为偏多。
   5. <strong>跌停家数能否回落</strong>——今日13只跌停（vs 4只）是隐忧，若周一跌停明显减少，抛压解除。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>不提高</strong>整体仓位。A档仅2条（&lt;3）+ 大盘中性（上涨43%未过半）+ 科创50未收复MA20，维持现有仓位，等待确认。</li>
 <li><strong>做多优先级（A档2条）</strong>：</li>
@@ -549,7 +715,7 @@ body{
 <li>科创50连续2日差2点内未收复MA20，是市场趋势的"关键变量"。</li>
 <li>医药/电力防御性脉冲一日游被验证，昨日追高的今天已被套——教训：脉冲日不追高。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-14（changedist/kline/fund flow/sector ranking 均为8/14收盘数据；market-overview trade/updown/interval/technical 为8/13数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -569,8 +735,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-14-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-14 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-14 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>中性偏空</strong>，上午收盘上涨 1954 家、下跌 3423 家，上涨占比 <strong>35%</strong>（vs 8/13 全天 20%，修复+15pp但仍是跌多涨少）</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -586,7 +752,7 @@ body{
 <li><strong>调味发酵品Ⅱ</strong> 🔴+11.69亿</li>
 <li><strong>小金属</strong> 🔴+5.45亿</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>通信设备</strong>：+2.48%，主力 🔴+54.67亿（8/13仅+7.31亿，今日放量转强🔥）</li>
@@ -612,7 +778,7 @@ body{
 <li><strong>科创芯片/芯片概念</strong>（科创芯片ETF）：🟢-80.68亿，偏空但流出收窄</li>
 <li><strong>电子布/玻纤</strong>（中国巨石/菲利华链）：+6.48/+5.35亿，🔴偏多转正✅</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>维持，不追高不加仓</strong>。上涨占比仅35%，市场整体跌多涨少；但结构性修复信号明确（通信/光模块资金V型反转、玻纤链转正、抛压缓解），持仓者持有，空仓者不急于进场。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -632,8 +798,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-13">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-13</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-13</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>明确看空🟢</strong>，抛压<strong>急剧上升</strong>。今日是8/12"暴力反弹"被彻底证伪的"反弹一日游"日：五指数全线下跌（5跌0涨），仅20%个股上涨（1143涨/4317跌），与昨日74%形成同样剧烈的逆转（-54pp）。上证-0.50%、深成-0.87%、创业板-0.45%、科创50-1.11%、沪深300-0.57%。最关键的坏信号——<strong>科创50重新跌破MA20（差-1.70点）</strong>，昨日"重新夺回MA20"的积极信号一日即告失效。两市成交额放量至25509亿（较上日+3985亿，+18.5%），是<strong>放量下跌</strong>，说明卖盘主动涌出而非缩量阴跌。</p>
 <p><strong>中期趋势判断</strong>：<strong>反弹一日游，尚未趋势性反转，需重新连续确认</strong>。昨日8/12报告中"反弹未被终结，重新确认上行"的判断今天被彻底推翻——科创50重新跌破MA20、上涨占比从74%暴跌至20%、跌超5%个股从15只暴增至127只（+747%）。8/12提出的五大周四确认点<strong>全部失效（5✗0✅）</strong>，本轮反弹的"假摔→修复"叙事在第三天就演变为"真跌"。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>1/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>4/5</strong> 个站上20日线（科创50重新跌破MA20），上涨 <strong>1143</strong> 家、下跌 <strong>4317</strong> 家，主动资金以30个观测板块加总近似约 <strong>-950亿</strong>（概念间成份股有重叠；vs 8/12的+843亿，摆动-1793亿🟢🟢🟢）。今天<strong>不提高、反而应降低</strong>整体仓位——主力资金从单日+843亿扭转为-950亿（-1793亿摆动），下跌家数从1280暴增至4317，上涨占比从74%暴跌至20%，科创50重新跌破MA20，反弹确认彻底失效。</p>
@@ -707,28 +873,145 @@ body{
 <ul>
 <li>盘中资金买入迹象：五指数全线下跌且盘中无有效拉回——上证从3957→3927（-30点，盘中最低3924.64）、深成从14536→14289（-247点）、创业板从3657→3586（-71点）、科创50从1763→1718（-45点）、沪深300从4717→4664（-53点）。盘面呈现"单边下行"特征，尾盘均收于日内低位附近，无护盘资金承接迹象。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>：</p>
 <p>今天没有适合主动提高整体仓位的主线。今日是8/12反弹一日游的证伪日——所有科技板块当日资金全部转负，医药/电力/金融的防御性流入也只是20日趋势仍空的单日脉冲，无任何板块满足A档全5项条件。与8/12的"全线暴涨"形成鲜明对比。</p>
 <p><strong>反转/新启动候选有 0 条</strong>：</p>
 <p>今日是全面杀跌日，无"当日涨超3%+主力流入+此前下行"的科技反转主线。医药板块（CRO+4.31%、医疗服务+2.41%）虽逆势上涨且主力流入，但其5日/20日价格趋势均已上行（CRO 5日+23.09%/20日+14.77%），属"防御性轮动"而非"反转新启动"，不纳入B档。</p>
 <p><strong>反弹修复里更偏减仓信号的是多条防御性主线</strong>（当日主力正流入但20日趋势全部深度为空，属单日脉冲）：</p>
 <p><em>防御性板块 — 今日逆势吸金，但都是20日趋势仍空的"避险脉冲"：</em></p>
-<p>| 板块 | 8/12主力 | 8/13主力 | 摆动 | 5日 | 20日 | 趋势判断 |
-|------|----------|----------|------|-----|------|----------|
-| 创新药 | -36.92亿 | <strong>+39.69亿</strong> | +77亿🔥 | -3.63亿 | -321.10亿 | 防御反转，20日深度空 |
-| 电力 | — | <strong>+36.61亿</strong> | — | -41.47亿 | -135.20亿 | 防御吸金，20日空 |
-| CRO | -23.32亿 | <strong>+18.85亿</strong> | +42亿🔥 | -10.14亿 | -55.37亿 | 价格强(+23%)但资金背离 |
-| 医疗服务 | +5.58亿 | <strong>+16.34亿</strong> | +11亿 | -9.19亿 | -58.65亿 | 防御吸金，20日空 |
-| 国有大型银行Ⅱ | — | <strong>+12.96亿</strong> | — | -0.04亿 | -16.51亿 | 防御吸金，近持平 |
-| 中药Ⅱ | -0.95亿 | <strong>+11.64亿</strong> | +13亿 | +1.23亿 | -50.51亿 | 防御吸金 |
-| 生物制品 | — | <strong>+7.47亿</strong> | — | -4.87亿 | -57.93亿 | 防御吸金 |
-| 通信设备 | +131.49亿 | <strong>+7.31亿</strong> | -124亿 | -9.58亿 | -576.86亿 | 科技唯一正，但转弱 |
-| 证券Ⅱ | -1.49亿 | <strong>+6.91亿</strong> | +8亿 | -65.05亿 | -251.45亿 | 金融防御，20日深度空 |
-| 生物疫苗 | -3.89亿 | <strong>+2.63亿</strong> | +7亿 | -3.83亿 | -68.30亿 | 防御吸金 |
-| 医疗器械概念 | +5.58亿 | <strong>+0.88亿</strong> | -5亿 | -18.51亿 | -282.08亿 | 转弱 |
-| 化学制药 | -5.11亿 | <strong>+0.82亿</strong> | +6亿 | +9.97亿 | -170.60亿 | 微正 |
-| 保险Ⅱ | +0.91亿 | <strong>+0.45亿</strong> | 0 | -25.51亿 | -39.81亿 | 微正 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/12主力</th>
+<th>8/13主力</th>
+<th>摆动</th>
+<th>5日</th>
+<th>20日</th>
+<th>趋势判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创新药</td>
+<td>-36.92亿</td>
+<td><strong>+39.69亿</strong></td>
+<td>+77亿🔥</td>
+<td>-3.63亿</td>
+<td>-321.10亿</td>
+<td>防御反转，20日深度空</td>
+</tr>
+<tr>
+<td>电力</td>
+<td>—</td>
+<td><strong>+36.61亿</strong></td>
+<td>—</td>
+<td>-41.47亿</td>
+<td>-135.20亿</td>
+<td>防御吸金，20日空</td>
+</tr>
+<tr>
+<td>CRO</td>
+<td>-23.32亿</td>
+<td><strong>+18.85亿</strong></td>
+<td>+42亿🔥</td>
+<td>-10.14亿</td>
+<td>-55.37亿</td>
+<td>价格强(+23%)但资金背离</td>
+</tr>
+<tr>
+<td>医疗服务</td>
+<td>+5.58亿</td>
+<td><strong>+16.34亿</strong></td>
+<td>+11亿</td>
+<td>-9.19亿</td>
+<td>-58.65亿</td>
+<td>防御吸金，20日空</td>
+</tr>
+<tr>
+<td>国有大型银行Ⅱ</td>
+<td>—</td>
+<td><strong>+12.96亿</strong></td>
+<td>—</td>
+<td>-0.04亿</td>
+<td>-16.51亿</td>
+<td>防御吸金，近持平</td>
+</tr>
+<tr>
+<td>中药Ⅱ</td>
+<td>-0.95亿</td>
+<td><strong>+11.64亿</strong></td>
+<td>+13亿</td>
+<td>+1.23亿</td>
+<td>-50.51亿</td>
+<td>防御吸金</td>
+</tr>
+<tr>
+<td>生物制品</td>
+<td>—</td>
+<td><strong>+7.47亿</strong></td>
+<td>—</td>
+<td>-4.87亿</td>
+<td>-57.93亿</td>
+<td>防御吸金</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>+131.49亿</td>
+<td><strong>+7.31亿</strong></td>
+<td>-124亿</td>
+<td>-9.58亿</td>
+<td>-576.86亿</td>
+<td>科技唯一正，但转弱</td>
+</tr>
+<tr>
+<td>证券Ⅱ</td>
+<td>-1.49亿</td>
+<td><strong>+6.91亿</strong></td>
+<td>+8亿</td>
+<td>-65.05亿</td>
+<td>-251.45亿</td>
+<td>金融防御，20日深度空</td>
+</tr>
+<tr>
+<td>生物疫苗</td>
+<td>-3.89亿</td>
+<td><strong>+2.63亿</strong></td>
+<td>+7亿</td>
+<td>-3.83亿</td>
+<td>-68.30亿</td>
+<td>防御吸金</td>
+</tr>
+<tr>
+<td>医疗器械概念</td>
+<td>+5.58亿</td>
+<td><strong>+0.88亿</strong></td>
+<td>-5亿</td>
+<td>-18.51亿</td>
+<td>-282.08亿</td>
+<td>转弱</td>
+</tr>
+<tr>
+<td>化学制药</td>
+<td>-5.11亿</td>
+<td><strong>+0.82亿</strong></td>
+<td>+6亿</td>
+<td>+9.97亿</td>
+<td>-170.60亿</td>
+<td>微正</td>
+</tr>
+<tr>
+<td>保险Ⅱ</td>
+<td>+0.91亿</td>
+<td><strong>+0.45亿</strong></td>
+<td>0</td>
+<td>-25.51亿</td>
+<td>-39.81亿</td>
+<td>微正</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ul>
 <li><strong>今日是典型的"防御性轮动"</strong>：资金从科技（芯片-165亿/半导体-143亿/存储器-118亿）和有色（有色-182亿/黄金-100亿）大幅撤出，涌入医药（创新药+40亿/CRO+19亿/医疗服务+16亿）、电力（+37亿）、银行（+13亿）避险。</li>
@@ -801,18 +1084,100 @@ body{
 <ul>
 <li><strong>本轮反弹主力资金轨迹（8/4→8/5→8/6→8/7→8/10→8/11→8/12→8/13，单位亿）</strong>：</li>
 </ul>
-<p>| 板块 | 8/10 | 8/11 | 8/12 | 8/13 | 趋势结论 |
-  |------|------|------|------|------|----------|
-  | 芯片概念 | -354 | -117 | <strong>+233</strong> | <strong>-165</strong> | 🟢暴力反杀 |
-  | 有色金属 | +30 | -153 | <strong>-1.7</strong> | <strong>-182</strong> | 🟢回正失败，崩塌 |
-  | 半导体产业 | -65 | -83 | <strong>+64</strong> | <strong>-143</strong> | 🟢暴力反杀 |
-  | 存储器 | -70 | -84 | <strong>+83</strong> | <strong>-118</strong> | 🟢暴力反杀 |
-  | 黄金概念 | +14 | -75 | <strong>-13</strong> | <strong>-100</strong> | 🟢崩塌 |
-  | 半导体(申万) | — | — | <strong>+60</strong> | <strong>-89</strong> | 🟢暴力反杀 |
-  | PCB概念 | -129 | -38 | <strong>+62</strong> | <strong>-74</strong> | 🟢暴力反杀 |
-  | CPO | -268 | -12 | <strong>+171</strong> | <strong>-27</strong> | 🟢暴力反杀 |
-  | 通信设备 | -164 | +17 | <strong>+131</strong> | <strong>+7</strong> | ⚡唯一残留正流入 |
-  | 创新药 | — | -4 | <strong>-37</strong> | <strong>+40</strong> | 🔴防御反转 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/10</th>
+<th>8/11</th>
+<th>8/12</th>
+<th>8/13</th>
+<th>趋势结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片概念</td>
+<td>-354</td>
+<td>-117</td>
+<td><strong>+233</strong></td>
+<td><strong>-165</strong></td>
+<td>🟢暴力反杀</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>+30</td>
+<td>-153</td>
+<td><strong>-1.7</strong></td>
+<td><strong>-182</strong></td>
+<td>🟢回正失败，崩塌</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td>-65</td>
+<td>-83</td>
+<td><strong>+64</strong></td>
+<td><strong>-143</strong></td>
+<td>🟢暴力反杀</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>-70</td>
+<td>-84</td>
+<td><strong>+83</strong></td>
+<td><strong>-118</strong></td>
+<td>🟢暴力反杀</td>
+</tr>
+<tr>
+<td>黄金概念</td>
+<td>+14</td>
+<td>-75</td>
+<td><strong>-13</strong></td>
+<td><strong>-100</strong></td>
+<td>🟢崩塌</td>
+</tr>
+<tr>
+<td>半导体(申万)</td>
+<td>—</td>
+<td>—</td>
+<td><strong>+60</strong></td>
+<td><strong>-89</strong></td>
+<td>🟢暴力反杀</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>-129</td>
+<td>-38</td>
+<td><strong>+62</strong></td>
+<td><strong>-74</strong></td>
+<td>🟢暴力反杀</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>-268</td>
+<td>-12</td>
+<td><strong>+171</strong></td>
+<td><strong>-27</strong></td>
+<td>🟢暴力反杀</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>-164</td>
+<td>+17</td>
+<td><strong>+131</strong></td>
+<td><strong>+7</strong></td>
+<td>⚡唯一残留正流入</td>
+</tr>
+<tr>
+<td>创新药</td>
+<td>—</td>
+<td>-4</td>
+<td><strong>-37</strong></td>
+<td><strong>+40</strong></td>
+<td>🔴防御反转</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ol>
 <li><strong>8/12的"暴力反弹"是典型一日游</strong>：几乎所有科技板块8/12单日暴力流入（芯片+233亿、CPO+171亿、半导体+64亿），8/13全部暴力反杀（芯片-165亿、CPO-27亿、半导体-143亿），两天摆动幅度惊人。8/10-11的"假恐慌"说法被推翻——真相是<strong>8/12才是"假反弹"</strong>。</li>
@@ -837,7 +1202,7 @@ body{
   4. <strong>有色/贵金属能否止住流出</strong>——有色-182亿是今日最大流出，若周五继续大幅流出，A股将失去此前最强的"涨价主线"支撑。
   5. <strong>科技板块是否出现超跌反抽</strong>——芯片-165亿/CPO-27亿等科技板块连续两日资金大进大出，周五若出现缩量企稳+资金回流，可视为短线超跌反抽信号，但20日趋势仍空，反抽不等于反转。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>不提高、反而应降低</strong>整体仓位。A档0条 + 大盘放量大跌（20%上涨、跌超5%达127只、跌停4只）+ 科创50重新跌破MA20，昨日"可小幅提高仓位"的判断今日被证伪。已按8/12建议小幅加仓的，建议在反抽时先减回防御仓位。</li>
 <li><strong>做多优先级（A档0条）</strong>：</li>
@@ -865,7 +1230,7 @@ body{
 <li>防御性轮动（医药/电力/银行）是今日唯一亮点，但20日趋势全部深度为空，属单日避险脉冲，不可追高。</li>
 <li>通信设备是科技中唯一残留正流入（+7亿），但已从+131亿骤降94%，5日资金转负，B档失效。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-13（changedist/kline/fund flow/sector ranking 均为8/13收盘数据；market-overview trade/updown/interval/technical 为8/12数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -884,8 +1249,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-13-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-13 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-13 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>中性偏多（指数强、个股弱的分化行情）</strong>，上午收盘上涨 2287 家、下跌 3095 家，上涨占比 41%（vs 昨日收盘 74%，大幅回落 -33pp，指数涨但个股普跌，赚指数不赚钱）</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30，5/5 全部站上 MA5/10/20，连续第二日）：</li>
@@ -901,7 +1266,7 @@ body{
 <li>半导体 🔴+19.01亿（行业第2）</li>
 <li>消费电子 🔴+15.54亿</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>CRO/医药链</strong>（今日最大反转🔥）：CRO 🔴+6.35%（主力+11.87亿，昨日-23亿→转正）、医疗服务 +3.77%、生物制品 +3.29%、创新药 🔴+40.16亿（昨日-37亿→单日摆动+77亿🔥）</li>
@@ -921,7 +1286,7 @@ body{
 <li>PCB +7.92亿（生益科技 偏多但较昨日+62亿大幅缩量⚠️）</li>
 <li>玻璃玻纤 -6.91亿（中国巨石 偏空🟢）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>维持</strong>。指数5/5站上全部均线、科创50继续领涨，但上涨占比仅41%、跌超5%回升至37只、中位数转负——指数行情下个股分化加剧，追高小票风险大，持仓不动、不加仓。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -939,8 +1304,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-12">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-12</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-12</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>明确看多🔴</strong>，抛压<strong>急剧下降</strong>。今日是8/11"反弹终结恐慌"被彻底颠覆的一天：五指数全线上涨（5涨0跌），74%个股上涨（4128涨/1280跌），与昨日29%形成暴烈逆转（+45pp）。上证+0.32%、深成+1.09%、创业板+1.49%、科创50+1.61%、沪深300+0.58%。更关键的是——科创50从昨日跌破MA20（差25.77点）到今天重新站上MA20且全5指数站上所有均线（MA5/10/20），标志本轮反弹"假摔"一日后即被修复。</p>
 <p><strong>中期趋势判断</strong>：<strong>反弹未被终结，重新确认上行</strong>。昨日8/11报告中"反弹终结信号明确"的判断未能延续到第二天——今日全5指数重新站上MA20，比昨日3/5大幅改善。科创50（1736.99 &gt; MA20=1725.91）重新夺回MA20是最大积极信号。8/11报告中提出的五大周三确认点中，最重要的一条（创业板守住MA20）已超额完成（3602 &gt; 3493，差+109点 vs 昨日仅+46点），另一关键确认点（科创50重新站上MA20）也已完成。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>5/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>5/5</strong> 个站上20日线，上涨 <strong>4128</strong> 家、下跌 <strong>1280</strong> 家，主动资金以27个观测板块加总近似约 <strong>+843亿</strong>（概念间成份股有重叠；vs 8/11的-821亿，摆动+1664亿🔥🔥🔥）。今天<strong>可以提高</strong>整体仓位——主力资金从单日-821亿扭转为+843亿（+1664亿摆动），下跌家数从3777骤降至1280，上涨占比从29%暴升至74%，科创50重回MA20，反弹确认延续。</p>
@@ -1010,7 +1375,7 @@ body{
 <ul>
 <li>盘中资金买入迹象：五指数全线上涨且盘中均无低位——上证从3927→3947（+20点拉回）、深成从14237→14414（+177点拉回）、创业板从3541→3602（+61点拉回）、科创50从1709→1737（+28点拉回）、沪深300从4658→4691（+33点拉回）。盘面呈现"单边上行"特征，无盘中恐慌。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>（虽然今日全线暴涨，但严格意义上仍无板块满足A档全5项条件——所有科技板块20日趋势仍为负）：</p>
 <p>今天没有适合主动提高整体仓位的主线。但今日是8/11恐慌一日即被修复的确认日——所有科技板块当日和5日资金全部转正（除个股医药细分），仅差20日趋势修复即可升入A档。与8/11的"全线崩溃"形成鲜明对比。</p>
 <p><strong>反转/新启动候选有 1 条</strong>（从sector ranking数据确认，当日涨超3%+主力正流入+20日趋势仍空）：</p>
@@ -1020,20 +1385,129 @@ body{
 <p>这些只能小仓位观察第二天确认，确认点是5日趋势继续修复、主力资金净额不转负、核心股不高开低走。</p>
 <p><strong>反弹修复里更偏减仓信号的是多条科技主线</strong>（当日主力正流入但多周期趋势分化，20日资金全部为负）：</p>
 <p><em>科技板块 — 全线暴力反转，但都缺20日趋势确认：</em></p>
-<p>| 板块 | 8/11主力 | 8/12主力 | 摆动 | 5日 | 20日 | 趋势判断 |
-|------|----------|----------|------|-----|------|----------|
-| 芯片概念 | -116.99亿 | <strong>+232.99亿</strong> | <strong>+350亿🔥🔥🔥🔥🔥</strong> | +125.93亿 | -2330.14亿 | 暴力反转，但20日缺确认 |
-| CPO | -11.72亿 | <strong>+171.43亿</strong> | <strong>+183亿🔥🔥🔥🔥</strong> | +2.40亿 | -1447.13亿 | 暴力反转，5日勉强回正 |
-| 存储器 | -83.86亿 | <strong>+83.34亿</strong> | <strong>+167亿🔥🔥🔥🔥</strong> | +174.36亿 | -602.50亿 | 暴力反转，5日极强 |
-| 半导体产业 | -83.24亿 | <strong>+63.85亿</strong> | <strong>+147亿🔥🔥🔥</strong> | +272.08亿 | -1753.66亿 | 暴力反转 |
-| PCB概念 | -38.02亿 | <strong>+61.96亿</strong> | <strong>+100亿🔥🔥🔥</strong> | +273.14亿 | -357.75亿 | 暴力反转，但20日仍大额负 |
-| 半导体(申万) | — | <strong>+59.67亿</strong> | — | +82.16亿 | -1306.02亿 | 板块扩散86% |
-| MiniLED | -4.66亿 | <strong>+43.65亿</strong> | <strong>+48亿🔥🔥</strong> | +37.20亿 | -462.65亿 | 暴力反转 |
-| Chiplet | -46.33亿 | <strong>+37.85亿</strong> | <strong>+84亿🔥🔥🔥</strong> | +218.48亿 | -865.69亿 | 暴力反转 |
-| 半导体设备概念 | -39.43亿 | <strong>+19.46亿</strong> | <strong>+59亿🔥🔥</strong> | +126.99亿 | -97.98亿 | 回暖，5日仍强 |
-| HBM | -23.82亿 | <strong>+14.32亿</strong> | <strong>+38亿🔥🔥</strong> | +97.11亿 | -415.92亿 | 暴力反转 |
-| OLED | -27.63亿 | <strong>+9.90亿</strong> | <strong>+38亿🔥🔥</strong> | +141.61亿 | -372.13亿 | 回暖 |
-| 医疗器械概念 | -38.87亿 | <strong>+5.58亿</strong> | <strong>+44亿🔥🔥</strong> | +59.41亿 | -314.79亿 | 暴力反转 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/11主力</th>
+<th>8/12主力</th>
+<th>摆动</th>
+<th>5日</th>
+<th>20日</th>
+<th>趋势判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片概念</td>
+<td>-116.99亿</td>
+<td><strong>+232.99亿</strong></td>
+<td><strong>+350亿🔥🔥🔥🔥🔥</strong></td>
+<td>+125.93亿</td>
+<td>-2330.14亿</td>
+<td>暴力反转，但20日缺确认</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>-11.72亿</td>
+<td><strong>+171.43亿</strong></td>
+<td><strong>+183亿🔥🔥🔥🔥</strong></td>
+<td>+2.40亿</td>
+<td>-1447.13亿</td>
+<td>暴力反转，5日勉强回正</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>-83.86亿</td>
+<td><strong>+83.34亿</strong></td>
+<td><strong>+167亿🔥🔥🔥🔥</strong></td>
+<td>+174.36亿</td>
+<td>-602.50亿</td>
+<td>暴力反转，5日极强</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td>-83.24亿</td>
+<td><strong>+63.85亿</strong></td>
+<td><strong>+147亿🔥🔥🔥</strong></td>
+<td>+272.08亿</td>
+<td>-1753.66亿</td>
+<td>暴力反转</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>-38.02亿</td>
+<td><strong>+61.96亿</strong></td>
+<td><strong>+100亿🔥🔥🔥</strong></td>
+<td>+273.14亿</td>
+<td>-357.75亿</td>
+<td>暴力反转，但20日仍大额负</td>
+</tr>
+<tr>
+<td>半导体(申万)</td>
+<td>—</td>
+<td><strong>+59.67亿</strong></td>
+<td>—</td>
+<td>+82.16亿</td>
+<td>-1306.02亿</td>
+<td>板块扩散86%</td>
+</tr>
+<tr>
+<td>MiniLED</td>
+<td>-4.66亿</td>
+<td><strong>+43.65亿</strong></td>
+<td><strong>+48亿🔥🔥</strong></td>
+<td>+37.20亿</td>
+<td>-462.65亿</td>
+<td>暴力反转</td>
+</tr>
+<tr>
+<td>Chiplet</td>
+<td>-46.33亿</td>
+<td><strong>+37.85亿</strong></td>
+<td><strong>+84亿🔥🔥🔥</strong></td>
+<td>+218.48亿</td>
+<td>-865.69亿</td>
+<td>暴力反转</td>
+</tr>
+<tr>
+<td>半导体设备概念</td>
+<td>-39.43亿</td>
+<td><strong>+19.46亿</strong></td>
+<td><strong>+59亿🔥🔥</strong></td>
+<td>+126.99亿</td>
+<td>-97.98亿</td>
+<td>回暖，5日仍强</td>
+</tr>
+<tr>
+<td>HBM</td>
+<td>-23.82亿</td>
+<td><strong>+14.32亿</strong></td>
+<td><strong>+38亿🔥🔥</strong></td>
+<td>+97.11亿</td>
+<td>-415.92亿</td>
+<td>暴力反转</td>
+</tr>
+<tr>
+<td>OLED</td>
+<td>-27.63亿</td>
+<td><strong>+9.90亿</strong></td>
+<td><strong>+38亿🔥🔥</strong></td>
+<td>+141.61亿</td>
+<td>-372.13亿</td>
+<td>回暖</td>
+</tr>
+<tr>
+<td>医疗器械概念</td>
+<td>-38.87亿</td>
+<td><strong>+5.58亿</strong></td>
+<td><strong>+44亿🔥🔥</strong></td>
+<td>+59.41亿</td>
+<td>-314.79亿</td>
+<td>暴力反转</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ul>
 <li><strong>所有科技板块5日资金均为正</strong>（除CPO仅+2.40亿勉强回正外），说明8/10-11的两日恐慌是短时冲击而非趋势逆转。</li>
@@ -1095,22 +1569,177 @@ body{
 <ul>
 <li><strong>本轮反弹主力资金轨迹（8/4→8/5→8/6→8/7→8/10→8/11→8/12，单位亿）</strong>：</li>
 </ul>
-<p>| 板块 | 8/4 | 8/5 | 8/6 | 8/7 | 8/10 | 8/11 | 8/12 | 趋势结论 |
-  |------|-----|-----|-----|-----|------|------|------|----------|
-  | 芯片概念 | +525 | +353 | -0.4 | +249 | -354 | -117 | <strong>+233</strong> | 🔴暴力反转 |
-  | CPO | +428 | +130 | +63 | +110 | -268 | -12 | <strong>+171</strong> | 🔴暴力反转 |
-  | 通信设备 | +223 | +2 | -121 | -20 | -164 | +17 | <strong>+131</strong> | 🔴🔥连续两日正流入，升B档 |
-  | 存储器 | 128 | +171 | -0.4 | +161 | -70 | -84 | <strong>+83</strong> | 🔴暴力反转 |
-  | 半导体产业 | +116 | +137 | -22 | +107 | -65 | -83 | <strong>+64</strong> | 🔴暴力反转 |
-  | PCB概念 | +211 | +119 | +64 | +258 | -129 | -38 | <strong>+62</strong> | 🔴暴力反转 |
-  | 半导体(申万) | — | — | — | — | — | — | <strong>+60</strong> | 🔴首次观测，86%扩散 |
-  | MiniLED | — | — | — | — | -82 | -5 | <strong>+44</strong> | 🔴暴力反转 |
-  | Chiplet | — | — | — | — | -55 | -46 | <strong>+38</strong> | 🔴暴力反转 |
-  | 半导体设备 | — | — | — | +38 | +52 | -39 | <strong>+19</strong> | 🔴回暖 |
-  | HBM | — | — | — | — | — | -24 | <strong>+14</strong> | 🔴首次观测 |
-  | 黄金概念 | -4 | +85 | -27 | +33 | +14 | -75 | <strong>-13</strong> | ⚡收窄83% |
-  | 白银概念 | — | +45 | -10 | +17 | +8 | -31 | <strong>-3</strong> | ⚡收窄90% |
-  | 有色金属 | +39 | +136 | -33 | +72 | +30 | -153 | <strong>-1.7</strong> | ⚡收窄99%，近乎回正 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/4</th>
+<th>8/5</th>
+<th>8/6</th>
+<th>8/7</th>
+<th>8/10</th>
+<th>8/11</th>
+<th>8/12</th>
+<th>趋势结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片概念</td>
+<td>+525</td>
+<td>+353</td>
+<td>-0.4</td>
+<td>+249</td>
+<td>-354</td>
+<td>-117</td>
+<td><strong>+233</strong></td>
+<td>🔴暴力反转</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+428</td>
+<td>+130</td>
+<td>+63</td>
+<td>+110</td>
+<td>-268</td>
+<td>-12</td>
+<td><strong>+171</strong></td>
+<td>🔴暴力反转</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>+223</td>
+<td>+2</td>
+<td>-121</td>
+<td>-20</td>
+<td>-164</td>
+<td>+17</td>
+<td><strong>+131</strong></td>
+<td>🔴🔥连续两日正流入，升B档</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>128</td>
+<td>+171</td>
+<td>-0.4</td>
+<td>+161</td>
+<td>-70</td>
+<td>-84</td>
+<td><strong>+83</strong></td>
+<td>🔴暴力反转</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td>+116</td>
+<td>+137</td>
+<td>-22</td>
+<td>+107</td>
+<td>-65</td>
+<td>-83</td>
+<td><strong>+64</strong></td>
+<td>🔴暴力反转</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>+211</td>
+<td>+119</td>
+<td>+64</td>
+<td>+258</td>
+<td>-129</td>
+<td>-38</td>
+<td><strong>+62</strong></td>
+<td>🔴暴力反转</td>
+</tr>
+<tr>
+<td>半导体(申万)</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>+60</strong></td>
+<td>🔴首次观测，86%扩散</td>
+</tr>
+<tr>
+<td>MiniLED</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>-82</td>
+<td>-5</td>
+<td><strong>+44</strong></td>
+<td>🔴暴力反转</td>
+</tr>
+<tr>
+<td>Chiplet</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>-55</td>
+<td>-46</td>
+<td><strong>+38</strong></td>
+<td>🔴暴力反转</td>
+</tr>
+<tr>
+<td>半导体设备</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>+38</td>
+<td>+52</td>
+<td>-39</td>
+<td><strong>+19</strong></td>
+<td>🔴回暖</td>
+</tr>
+<tr>
+<td>HBM</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>-24</td>
+<td><strong>+14</strong></td>
+<td>🔴首次观测</td>
+</tr>
+<tr>
+<td>黄金概念</td>
+<td>-4</td>
+<td>+85</td>
+<td>-27</td>
+<td>+33</td>
+<td>+14</td>
+<td>-75</td>
+<td><strong>-13</strong></td>
+<td>⚡收窄83%</td>
+</tr>
+<tr>
+<td>白银概念</td>
+<td>—</td>
+<td>+45</td>
+<td>-10</td>
+<td>+17</td>
+<td>+8</td>
+<td>-31</td>
+<td><strong>-3</strong></td>
+<td>⚡收窄90%</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>+39</td>
+<td>+136</td>
+<td>-33</td>
+<td>+72</td>
+<td>+30</td>
+<td>-153</td>
+<td><strong>-1.7</strong></td>
+<td>⚡收窄99%，近乎回正</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ol>
 <li><strong>8/10-11的"两天千亿出逃"是假恐慌</strong>：芯片概念8/10-11两天合计-471亿，今日单日+233亿即收回一半。CPO 8/10-11两天-280亿，今日+171亿收回61%。几乎所有科技板块今日都暴力反转，证明昨天的恐慌是"空头集中释放"而非"趋势逆转"。</li>
@@ -1135,7 +1764,7 @@ body{
   4. <strong>成交量能否不继续萎缩</strong>——今日21524亿（-7.3%缩量），周四若继续缩量至20000亿以下需警惕"无量空涨"。
   5. <strong>通信设备能否维持B档条件</strong>——当前是唯一B档，周四若能继续涨+资金正流入，则B档升级确认。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>可小幅提高</strong>整体仓位。A档0条严格来说不应提高仓位，但今日是罕见的"全5指数站上所有均线 + 74%上涨 + 主力+843亿 + 0跌停"的全面反转日。8/10-11两天恐慌已被确认为"假摔"，科技板块全线暴力反转。提高仓位的条件：科创50继续守住MA20、CPO/芯片维持正流入、成交量不萎缩到20000亿以下。若周四满足上述条件，仓位可从"防御"调至"中性偏积极"。</li>
 <li><strong>做多优先级（A档0条）</strong>：</li>
@@ -1165,7 +1794,7 @@ body{
 <li>半导体设备概念（5日+127亿，20日-98亿）——20日资金仅-98亿是科技板块中最浅的，距20日回正最近。</li>
 <li>医药板块明显掉队——创新药-37亿/CRO-23亿是今日逆势流出最重的方向，74%上涨日几乎未参与反弹，暂不配置。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-12（changedist/kline/fund flow/sector ranking 均为8/12收盘数据；market-overview trade/updown/interval/technical 为8/11数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -1184,12 +1813,11 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-12-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-12 上午</h1>
-<blockquote>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-12 上午</div><blockquote>
 <p>精简版 · 数据为上午盘实时数据（截至11:30）· 涨红跌绿</p>
 </blockquote>
 <hr /></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>偏多</strong>，上午收盘上涨 <strong>3694</strong> 家、下跌 <strong>1610</strong> 家，上涨占比 <strong>66%</strong>（vs 昨日收盘29%，大幅修复+37pp）</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30，全部站上MA5/10/20，5/5✅）：</li>
@@ -1205,7 +1833,7 @@ body{
 <li>半导体 🔴+58.81亿（涨幅+2.83%）</li>
 <li>光伏设备 🔴+8.59亿（涨幅+1.25%）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>通信设备/光模块/CPO</strong>：通信设备+4.76%（主力+111.2亿，连续第二日正流入且大幅加速）、CPO概念主力+138.6亿🔥（8/11 -12亿→今日+138.6亿，V型反转确认）、光芯片+6.36%（主力+73.7亿）、光纤概念+3.98%</li>
@@ -1229,7 +1857,7 @@ body{
 <li><strong>中国巨石（玻纤）</strong>：玻纤 -3.8亿 → <strong>中性</strong></li>
 <li><strong>长川科技（测试设备）</strong>：半导体设备 +19.3亿 → <strong>偏多</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>可小幅加仓</strong>。8/11"反弹终结"被上午数据证伪——主力单日回补+1562亿、5/5指数全站上均线（科创50重回MA20）、上涨占比66%、跌超5%仅10只。但半日数据需午后验证，加仓以主线龙头为主、不追高。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -1248,8 +1876,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-11">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-11</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-11</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>明确看空🔴</strong>，抛压<strong>急剧上升</strong>。今日是8/10"假反弹"被确认终结的第一天：五指数4跌1涨，29%个股上涨（1615涨/3777跌），与昨日73%形成断崖式逆转。创业板孤军上涨+0.34%但独木难支。8/10报告中警示的"假反弹+主力一日出逃-1249亿"风险全面兑现——今日主力继续大额流出约-821亿（26个观测板块加总），连续两日千亿级出逃，反弹终结信号明确。</p>
 <p><strong>中期趋势判断</strong>：<strong>反弹已被终结，中期转为防守</strong>。8/10的五大确认点全面失败（详见操作纪律章）。3/5站上MA20（vs昨日4/5）——科创50跌破MA20是最大警示信号。8/10报告中"若8/11主力继续大额流出，本轮反弹面临终结风险"的判断已得到验证。创业板虽然守住MA20（3549&gt;3503），但已从3575高位回落，上行受阻。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>3/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>3/5</strong> 个站上20日线，上涨 <strong>1615</strong> 家、下跌 <strong>3777</strong> 家，主动资金以26个观测板块加总近似约 <strong>-821亿</strong>（概念间成份股有重叠；vs 8/10的-1249亿）。今天<strong>不提高</strong>整体仓位——连续两日主力千亿级出逃（8/10 -1249亿 + 8/11 -821亿 = 两日约-2070亿），下跌家数从1391飙升至3777，反弹终结信号明确，应全面防御。</p>
@@ -1307,7 +1935,7 @@ body{
 <ul>
 <li>盘中资金买入迹象：创业板是唯一红盘指数（+0.34%），盘中从3517.57拉回至3549.16（+31.6点），有微弱托底。但上证（3950.71→3934.09，无拉回）、深成（14266.44→14259.44，无拉回）、科创50（1713.26→1709.50，无拉回）、沪深300（4689.45→4663.79，无拉回）均无有效盘中拉回，盘面呈现"单边下滑"特征。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>（较8/10的3条骤降至0，A档三剑客黄金/白银/有色全线崩溃）：</p>
 <p>今日无A档板块。8/10报告中预警的"A档3条能否扛住主力一日出逃"的问题已被市场回答：不能。黄金（+14.12亿→-74.55亿）、白银（+7.96亿→-31.41亿）、有色金属（+29.79亿→-152.77亿）全部从正流入转为大幅流出。A档清零意味着本轮反弹中所有具备全周期资金正流入的方向已不复存在，创业板虽微涨但无板块支撑。</p>
 <p>今天没有适合主动提高整体仓位的主线。</p>
@@ -1320,25 +1948,155 @@ body{
 <p>反弹更适合降低弱势持仓；没有仓位不进行买入。</p>
 <p><strong>反弹修复里需特别关注的主力逆势流出方向</strong>（29%上涨日几乎全线主力净流出，价格下跌叠加机构资金全面撤离⚠️⚠️⚠️）：</p>
 <p><em>黄金/有色——A档三剑客一日集体阵亡（8/11全线下泄）🔥🔥🔥：</em></p>
-<p>| 板块 | 8/10主力 | 8/11主力 | 摆动 | 5日 | 20日 | 趋势 |
-|------|----------|----------|------|-----|------|------|
-| 黄金概念 | +14.12亿 | <strong>-74.55亿</strong> | <strong>-88.7亿🔥🔥</strong> | +101.87亿 | +186.97亿 | 🟢首次转负 |
-| 白银概念 | +7.96亿 | <strong>-31.41亿</strong> | <strong>-39.4亿🔥</strong> | +54.43亿 | +105.50亿 | 🟢首次转负 |
-| 有色金属概念 | +29.79亿 | <strong>-152.77亿</strong> | <strong>-182.6亿🔥🔥🔥</strong> | +260.05亿 | +330.60亿 | 🟢首次转负 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/10主力</th>
+<th>8/11主力</th>
+<th>摆动</th>
+<th>5日</th>
+<th>20日</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黄金概念</td>
+<td>+14.12亿</td>
+<td><strong>-74.55亿</strong></td>
+<td><strong>-88.7亿🔥🔥</strong></td>
+<td>+101.87亿</td>
+<td>+186.97亿</td>
+<td>🟢首次转负</td>
+</tr>
+<tr>
+<td>白银概念</td>
+<td>+7.96亿</td>
+<td><strong>-31.41亿</strong></td>
+<td><strong>-39.4亿🔥</strong></td>
+<td>+54.43亿</td>
+<td>+105.50亿</td>
+<td>🟢首次转负</td>
+</tr>
+<tr>
+<td>有色金属概念</td>
+<td>+29.79亿</td>
+<td><strong>-152.77亿</strong></td>
+<td><strong>-182.6亿🔥🔥🔥</strong></td>
+<td>+260.05亿</td>
+<td>+330.60亿</td>
+<td>🟢首次转负</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心警示</strong>：5日/20日资金仍为正说明贵金属/有色中期趋势未坏，但单日流出规模极大（三板块合计-258.73亿），若连续2-3日维持此规模则5日也将转负。黄金概念5日仍有+101.87亿垫底，是有色/贵金属三剑客中最安全的。</p>
 <p><em>科技板块——连续两日全线下泄，今日流出规模虽较昨日有所收窄但仍严重：</em></p>
-<p>| 板块 | 8/10主力 | 8/11主力 | 8/10+8/11合计 | 5日 | 20日 | 趋势 |
-|------|----------|----------|--------------|-----|------|------|
-| 芯片概念 | -354.08亿 | <strong>-116.99亿</strong> | <strong>-471.07亿</strong> | +768.02亿 | -2171.51亿 | 🟢连续两日百亿流出 |
-| 存储器 | -69.92亿 | <strong>-83.86亿</strong> | <strong>-153.78亿</strong> | +385.90亿 | -586.21亿 | 🟢恶化加速 |
-| 半导体产业 | -64.62亿 | <strong>-83.24亿</strong> | <strong>-147.86亿</strong> | +541.28亿 | -1783.22亿 | 🟢恶化加速 |
-| 半导体设备概念 | +52.13亿 | <strong>-39.43亿</strong> | <strong>+12.70亿(两日)</strong> | +204.99亿 | -102.37亿 | 🟢首次转负🔥 |
-| Chiplet | -55.09亿 | <strong>-46.33亿</strong> | <strong>-101.42亿</strong> | +417.22亿 | -848.24亿 | 🟢连续两日大额流出 |
-| PCB概念 | -128.57亿 | <strong>-38.02亿</strong> | <strong>-166.59亿</strong> | +521.79亿 | -149.68亿 | 🟢连续两日大额流出 |
-| OLED | -39.51亿 | <strong>-27.63亿</strong> | <strong>-67.14亿</strong> | +243.81亿 | -380.34亿 | 🟢连续两日流出 |
-| CPO | -267.72亿 | <strong>-11.72亿</strong> | <strong>-279.44亿</strong> | +464.01亿 | -1249.17亿 | 🟢流出大幅收窄（昨日-268→今日-12）⚡ |
-| HBM | -23.82亿(推算) | <strong>-23.82亿</strong> | — | +164.19亿 | -430.25亿 | 🟢持续流出 |
-| MiniLED | -81.80亿 | <strong>-4.66亿</strong> | <strong>-86.46亿</strong> | +145.40亿 | -387.91亿 | 🟢流出大幅收窄 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/10主力</th>
+<th>8/11主力</th>
+<th>8/10+8/11合计</th>
+<th>5日</th>
+<th>20日</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片概念</td>
+<td>-354.08亿</td>
+<td><strong>-116.99亿</strong></td>
+<td><strong>-471.07亿</strong></td>
+<td>+768.02亿</td>
+<td>-2171.51亿</td>
+<td>🟢连续两日百亿流出</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>-69.92亿</td>
+<td><strong>-83.86亿</strong></td>
+<td><strong>-153.78亿</strong></td>
+<td>+385.90亿</td>
+<td>-586.21亿</td>
+<td>🟢恶化加速</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td>-64.62亿</td>
+<td><strong>-83.24亿</strong></td>
+<td><strong>-147.86亿</strong></td>
+<td>+541.28亿</td>
+<td>-1783.22亿</td>
+<td>🟢恶化加速</td>
+</tr>
+<tr>
+<td>半导体设备概念</td>
+<td>+52.13亿</td>
+<td><strong>-39.43亿</strong></td>
+<td><strong>+12.70亿(两日)</strong></td>
+<td>+204.99亿</td>
+<td>-102.37亿</td>
+<td>🟢首次转负🔥</td>
+</tr>
+<tr>
+<td>Chiplet</td>
+<td>-55.09亿</td>
+<td><strong>-46.33亿</strong></td>
+<td><strong>-101.42亿</strong></td>
+<td>+417.22亿</td>
+<td>-848.24亿</td>
+<td>🟢连续两日大额流出</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>-128.57亿</td>
+<td><strong>-38.02亿</strong></td>
+<td><strong>-166.59亿</strong></td>
+<td>+521.79亿</td>
+<td>-149.68亿</td>
+<td>🟢连续两日大额流出</td>
+</tr>
+<tr>
+<td>OLED</td>
+<td>-39.51亿</td>
+<td><strong>-27.63亿</strong></td>
+<td><strong>-67.14亿</strong></td>
+<td>+243.81亿</td>
+<td>-380.34亿</td>
+<td>🟢连续两日流出</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>-267.72亿</td>
+<td><strong>-11.72亿</strong></td>
+<td><strong>-279.44亿</strong></td>
+<td>+464.01亿</td>
+<td>-1249.17亿</td>
+<td>🟢流出大幅收窄（昨日-268→今日-12）⚡</td>
+</tr>
+<tr>
+<td>HBM</td>
+<td>-23.82亿(推算)</td>
+<td><strong>-23.82亿</strong></td>
+<td>—</td>
+<td>+164.19亿</td>
+<td>-430.25亿</td>
+<td>🟢持续流出</td>
+</tr>
+<tr>
+<td>MiniLED</td>
+<td>-81.80亿</td>
+<td><strong>-4.66亿</strong></td>
+<td><strong>-86.46亿</strong></td>
+<td>+145.40亿</td>
+<td>-387.91亿</td>
+<td>🟢流出大幅收窄</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ul>
 <li><strong>CPO流出今日大幅收窄</strong>——从昨日-267.72亿→今日-11.72亿（-96%🔥），是科技板块中唯一明显改善的方向。但5日资金仍有+464亿垫底，20日-1249亿。若本周三CPO继续收窄甚至转正，可能率先见底。</li>
@@ -1408,22 +2166,162 @@ body{
 <ul>
 <li><strong>本轮反弹主力资金轨迹（8/4→8/5→8/6→8/7→8/10→8/11，单位亿）</strong>：</li>
 </ul>
-<p>| 板块 | 8/4 | 8/5 | 8/6 | 8/7 | 8/10 | 8/11 | 趋势结论 |
-  |------|-----|-----|-----|-----|------|------|----------|
-  | 黄金概念 | -4 | +85 | -27 | +33 | +14 | <strong>-75</strong> | 🟢A档终结，首次大额转负 |
-  | 白银概念 | — | +45 | -10 | +17 | +8 | <strong>-31</strong> | 🟢A档终结 |
-  | 有色金属 | +39 | +136 | -33 | +72 | +30 | <strong>-153</strong> | 🟢A档终结 |
-  | 半导体设备 | — | — | — | +38 | +52 | <strong>-39</strong> | 🟢逆势加速终结 |
-  | 芯片概念 | +525 | +353 | -0.4 | +249 | -354 | <strong>-117</strong> | 🟢连续两日百亿级流出 |
-  | CPO | +428 | +130 | +63 | +110 | -268 | <strong>-12</strong> | ⚡流出-96%大幅收窄 |
-  | 通信设备 | +223 | +2 | -121 | -20 | -164 | <strong>+17</strong> | 🔴反弹以来首个正流入日！ |
-  | PCB概念 | +211 | +119 | +64 | +258 | -129 | <strong>-38</strong> | 连续两日流出 |
-  | 存储器 | +128 | +171 | -0.4 | +161 | -70 | <strong>-84</strong> | 🟢恶化加速 |
-  | 半导体产业 | +116 | +137 | -22 | +107 | -65 | <strong>-83</strong> | 🟢恶化加速 |
-  | CRO | — | — | +12 | +27 | -8 | <strong>-0.7</strong> | ⚡近乎回正(-91%) |
-  | 创新药 | — | — | +20 | +82 | -29 | <strong>-4</strong> | ⚡流出收窄86% |
-  | 玻璃玻纤 | — | — | +79 | +30 | -16 | <strong>-4</strong> | ⚡流出收窄76% |
-  | 化学制药 | — | — | +7 | +41 | -15 | <strong>-5</strong> | ⚡流出收窄64% |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/4</th>
+<th>8/5</th>
+<th>8/6</th>
+<th>8/7</th>
+<th>8/10</th>
+<th>8/11</th>
+<th>趋势结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黄金概念</td>
+<td>-4</td>
+<td>+85</td>
+<td>-27</td>
+<td>+33</td>
+<td>+14</td>
+<td><strong>-75</strong></td>
+<td>🟢A档终结，首次大额转负</td>
+</tr>
+<tr>
+<td>白银概念</td>
+<td>—</td>
+<td>+45</td>
+<td>-10</td>
+<td>+17</td>
+<td>+8</td>
+<td><strong>-31</strong></td>
+<td>🟢A档终结</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>+39</td>
+<td>+136</td>
+<td>-33</td>
+<td>+72</td>
+<td>+30</td>
+<td><strong>-153</strong></td>
+<td>🟢A档终结</td>
+</tr>
+<tr>
+<td>半导体设备</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>+38</td>
+<td>+52</td>
+<td><strong>-39</strong></td>
+<td>🟢逆势加速终结</td>
+</tr>
+<tr>
+<td>芯片概念</td>
+<td>+525</td>
+<td>+353</td>
+<td>-0.4</td>
+<td>+249</td>
+<td>-354</td>
+<td><strong>-117</strong></td>
+<td>🟢连续两日百亿级流出</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+428</td>
+<td>+130</td>
+<td>+63</td>
+<td>+110</td>
+<td>-268</td>
+<td><strong>-12</strong></td>
+<td>⚡流出-96%大幅收窄</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>+223</td>
+<td>+2</td>
+<td>-121</td>
+<td>-20</td>
+<td>-164</td>
+<td><strong>+17</strong></td>
+<td>🔴反弹以来首个正流入日！</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>+211</td>
+<td>+119</td>
+<td>+64</td>
+<td>+258</td>
+<td>-129</td>
+<td><strong>-38</strong></td>
+<td>连续两日流出</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>+128</td>
+<td>+171</td>
+<td>-0.4</td>
+<td>+161</td>
+<td>-70</td>
+<td><strong>-84</strong></td>
+<td>🟢恶化加速</td>
+</tr>
+<tr>
+<td>半导体产业</td>
+<td>+116</td>
+<td>+137</td>
+<td>-22</td>
+<td>+107</td>
+<td>-65</td>
+<td><strong>-83</strong></td>
+<td>🟢恶化加速</td>
+</tr>
+<tr>
+<td>CRO</td>
+<td>—</td>
+<td>—</td>
+<td>+12</td>
+<td>+27</td>
+<td>-8</td>
+<td><strong>-0.7</strong></td>
+<td>⚡近乎回正(-91%)</td>
+</tr>
+<tr>
+<td>创新药</td>
+<td>—</td>
+<td>—</td>
+<td>+20</td>
+<td>+82</td>
+<td>-29</td>
+<td><strong>-4</strong></td>
+<td>⚡流出收窄86%</td>
+</tr>
+<tr>
+<td>玻璃玻纤</td>
+<td>—</td>
+<td>—</td>
+<td>+79</td>
+<td>+30</td>
+<td>-16</td>
+<td><strong>-4</strong></td>
+<td>⚡流出收窄76%</td>
+</tr>
+<tr>
+<td>化学制药</td>
+<td>—</td>
+<td>—</td>
+<td>+7</td>
+<td>+41</td>
+<td>-15</td>
+<td><strong>-5</strong></td>
+<td>⚡流出收窄64%</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：</p>
 <ol>
 <li><strong>A档三剑客集体一日崩溃</strong>：黄金(-89亿摆动)、白银(-39亿)、有色(-183亿)，反弹期间最稳定的方向首次集体转负。但5日/20日资金全为正，属"强势板块的回调"而非"趋势逆转"。</li>
@@ -1447,7 +2345,7 @@ body{
 <li><strong>科创50能否重新站上MA20</strong>——当前差25.77点，需+1.5%涨幅。</li>
 <li><strong>上涨占比能否回到40%以上</strong>——今日29%，需改善。</li>
 </ol></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>不提高</strong>整体仓位。A档清零，反弹终结信号明确。连续两日主力千亿级出逃（两天合计约-2070亿），科创50跌破MA20，29%上涨占比创反弹以来最低。等待抛压回落（跌超5%降到50只以下）+ 主力回补信号 + 科创50重新站上MA20后再考虑加仓。现有弱势持仓优先减仓而非加仓。</li>
 <li><strong>做多优先级（A档0条）</strong>：</li>
@@ -1475,7 +2373,7 @@ body{
 <li>CPO：两日从+110→-268→-12亿的过山车，当前位置(-12亿近乎平)与8/7(+110亿)形成鲜明对比但修复极快，若周三转正则确认8/10-11的大额出逃是"短时恐慌"而非"趋势逆转"。</li>
 <li>通信设备：行业资金流入榜首(+16.54亿)，在29%上涨的恶劣环境下逆势吸金，值得持续跟踪。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-11（changedist/kline/fund flow/sector ranking 均为8/11收盘数据；market-overview trade/updown/interval/technical 为8/10数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -1494,8 +2392,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-11-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-11 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-11 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>中性偏多（权重强、个股弱的分化结构）</strong>，上午收盘上涨 2141 家、下跌 3194 家，上涨占比 <strong>38%</strong>（vs 8/10全天73%，赚钱效应大幅收窄）</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30盘中）：</li>
@@ -1512,7 +2410,7 @@ body{
 <li><strong>通信设备</strong> 🔴+27.19亿（涨+1.81%）</li>
 <li><strong>光伏设备</strong> 🔴+10.95亿（涨+2.24%）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>医药链整体走强</strong>（昨日全灭→今日全面回流）：</li>
@@ -1540,7 +2438,7 @@ body{
 <li><strong>生益科技（PCB）</strong>：🟢-8.62亿，偏空（5日+521亿仍强，当日调整）</li>
 <li><strong>电子布</strong>：🔴+1.49亿，微正 | <strong>玻纤（中国巨石）</strong>：🟢-0.42亿，中性</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>维持</strong>。5/5指数站上全部均线+主力资金回补+41亿是积极信号（8/10的五大确认点今日上午通过四项），但上涨占比仅38%+缩量12%的"权重拉指数"结构下，赚钱效应不足，不宜追高加仓；午后看个股扩散度能否回升再决定是否上调。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -1559,8 +2457,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-10">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-10</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-10</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>偏多但蕴含假反弹风险⚠️</strong>，抛压<strong>有所上升</strong>。今日是反弹第七日（跨周末），五指数3涨2微跌，<strong>4/5站上MA20</strong>（科创50差12.5点未站上），5/5站上MA5和MA10。73%个股上涨（4068涨/1391跌）创本轮反弹最高扩散度。但致命矛盾：<strong>主力资金以28个观测板块加总近似约-1249亿</strong>（vs 8/7的+1786亿，单日摆动-3035亿🔥），是"价涨量缩+主力出逃"的典型假反弹模式。今日看空信号（主力大规模出逃）严重程度超过看多信号（上涨扩散度改善），与8/3"假反弹"高度相似但均线结构更稳固。</p>
 <p><strong>中期趋势判断</strong>：<strong>反弹结构承压，尚未逆转但出现重大裂缝</strong>。4/5站上MA20（连续三日守住，与8/3一日即破本质不同），创业板3527→3537守住、沪深300 4655→4702守住，均线结构阶段性稳固。但主力从+1786亿→-1249亿一日逆转3035亿的规模，与8/3的+1583→-1295亿（摆动2878亿）完全同量级，<strong>8/11（周二）若主力继续大幅流出，反弹可能被终结</strong>。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>5/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>4/5</strong> 个站上20日线，上涨 <strong>4068</strong> 家、下跌 <strong>1391</strong> 家，主动资金以28个观测板块加总近似约 <strong>-1249亿</strong>（概念间成份股有重叠；vs 8/7的+1786亿，剧烈逆转-3035亿）。今日<strong>仍不提高</strong>整体仓位——主力一日出逃规模为反弹以来第二大（仅次于7/28的-3260亿），73%上涨的广泛扩散被主力出逃所对冲，需8/11确认是否为一日脉冲还是趋势逆转。</p>
@@ -1614,19 +2512,52 @@ body{
 <li><strong>抛压"表降里升"</strong>：表面上下跌家数大减45%+中位数改善+上涨扩散创反弹新高，但主力资金从+1786亿→<strong>-1249亿（单日摆动3035亿🔥）</strong>才是真正信号。跌超5%个股不降反增17只，说明权重个股拉抬指数的同时小盘股分化加大。缩量上涨+主力大幅出逃的"假反弹"特征需高度警惕。</li>
 <li><strong>"7/31→8/3假反弹"vs"8/7→8/10"结构对比</strong>：</li>
 </ul>
-<p>| 维度 | 7/31→8/3 | 8/7→8/10 |
-  |------|----------|----------|
-  | 主力摆动 | +1583→-1295亿(-2878亿) | +1786→-1249亿(-3035亿) |
-  | 上涨占比 | 84%→72% | 51%→73% |
-  | 均线结构 | 0/5站上MA20→0/5 | 4/5站上MA20→4/5（守住！）|
-  | 科创50 | -5.08%⚠️暴跌 | -0.36%微跌 |
-  | 指数走向 | 五指数全跌 | 三涨两微跌 |
-  | 跌超5% | 220只（飙升） | 69只（上升） |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>7/31→8/3</th>
+<th>8/7→8/10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主力摆动</td>
+<td>+1583→-1295亿(-2878亿)</td>
+<td>+1786→-1249亿(-3035亿)</td>
+</tr>
+<tr>
+<td>上涨占比</td>
+<td>84%→72%</td>
+<td>51%→73%</td>
+</tr>
+<tr>
+<td>均线结构</td>
+<td>0/5站上MA20→0/5</td>
+<td>4/5站上MA20→4/5（守住！）</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td>-5.08%⚠️暴跌</td>
+<td>-0.36%微跌</td>
+</tr>
+<tr>
+<td>指数走向</td>
+<td>五指数全跌</td>
+<td>三涨两微跌</td>
+</tr>
+<tr>
+<td>跌超5%</td>
+<td>220只（飙升）</td>
+<td>69只（上升）</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>当前结构优于7/31</strong>：4/5站上MA20且连续三日守住（7/31从未站上），科创50微跌-0.36%而非5%暴跌。但主力逆转规模（-3035亿）甚至略超7/31（-2878亿），说明资金面压力同样巨大。<strong>关键差异：若8/11能短期修复主力流出（类似8/6的休整后回补），则此轮只是"7日反弹后的正常休整"而非趋势终结。</strong></p>
 <ul>
 <li>盘中资金买入迹象：上证从日内低点3938.63拉回至3966.59（+28点）、深成从14102.66拉回至14316.96（+214点）、沪深300从4659.47拉回至4702.02（+43点），三指数盘中均有拉回。但创业板和科创50无有效拉回（创业板3537.21低于开盘3567.05、科创50 1737.77低于开盘1740.14），说明拉回主要靠权重股托举，成长股方向买盘不足。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 3 条</strong>（较8/7的4条减少1条，CRO退出A档）：</p>
 <ul>
 <li><strong>黄金概念</strong>：连续A档（7/27→7/28→7/29→7/30→8/3→8/4→8/5→8/6中断→8/7恢复→8/10连续）。主力 🔴+14.12亿（vs 8/7 +33.14亿，-57%放缓但维持正流入），5日 🔴+72.06亿，20日 🔴+146.78亿。三周期资金全部正向，贵金属方向机构持仓最坚定。sector ranking贵金属(行业) 🔴+3.89%，upDownRatio 11/11=100%。</li>
@@ -1646,18 +2577,111 @@ body{
 <p>反弹更适合降低弱势持仓；没有仓位不进行买入。</p>
 <p><strong>反弹修复里需特别关注的主力逆势流出方向</strong>（73%上涨日仍录得主力净流出，价格反弹但机构资金继续撤离⚠️⚠️⚠️）：</p>
 <p><em>科技板块——全线下泄，为今日主力出逃重灾区：</em></p>
-<p>| 板块 | 8/7主力 | 8/10主力 | 摆动 | 5日 | 20日 | 趋势 |
-|------|---------|----------|------|-----|------|------|
-| 芯片概念 | +248.62亿 | <strong>-354.08亿</strong> | <strong>-602.7亿🔥🔥🔥</strong> | +806.95亿 | -2876.55亿 | 🟢断崖逆转 |
-| CPO | +109.79亿 | <strong>-267.72亿</strong> | <strong>-377.5亿🔥🔥🔥</strong> | +684.34亿 | -1354.10亿 | 🟢四连正终结 |
-| 通信设备 | -19.72亿 | <strong>-163.82亿</strong> | <strong>-144.1亿🔥</strong> | +244.81亿 | -623.88亿 | 🟢恶化加速 |
-| PCB概念 | +257.52亿 | <strong>-128.57亿</strong> | <strong>-386.1亿🔥🔥🔥</strong> | +583.73亿 | -255.97亿 | 🟢四连正终结 |
-| MiniLED | +82.84亿 | <strong>-81.80亿</strong> | <strong>-164.6亿🔥</strong> | +171.76亿 | -474.72亿 | 🟢断崖逆转 |
-| 存储器 | +161.40亿 | <strong>-69.92亿</strong> | <strong>-231.3亿🔥🔥</strong> | +223.35亿 | -1014.91亿 | 🟢断崖逆转 |
-| AI算力芯片 | +42.94亿 | <strong>-67.25亿</strong> | <strong>-110.2亿🔥</strong> | +54.40亿 | -560.64亿 | 🟢断崖逆转 |
-| 半导体 | +106.65亿 | <strong>-64.62亿</strong> | <strong>-171.3亿🔥🔥</strong> | +139.96亿 | -1691.39亿 | 🟢断崖逆转 |
-| Chiplet | +109.83亿 | <strong>-55.09亿</strong> | <strong>-164.9亿🔥🔥</strong> | +385.72亿 | -1099.34亿 | 🟢断崖逆转 |
-| OLED | +82.62亿 | <strong>-39.51亿</strong> | <strong>-122.1亿🔥</strong> | +199.34亿 | -563.04亿 | 🟢断崖逆转 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/7主力</th>
+<th>8/10主力</th>
+<th>摆动</th>
+<th>5日</th>
+<th>20日</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片概念</td>
+<td>+248.62亿</td>
+<td><strong>-354.08亿</strong></td>
+<td><strong>-602.7亿🔥🔥🔥</strong></td>
+<td>+806.95亿</td>
+<td>-2876.55亿</td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+109.79亿</td>
+<td><strong>-267.72亿</strong></td>
+<td><strong>-377.5亿🔥🔥🔥</strong></td>
+<td>+684.34亿</td>
+<td>-1354.10亿</td>
+<td>🟢四连正终结</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>-19.72亿</td>
+<td><strong>-163.82亿</strong></td>
+<td><strong>-144.1亿🔥</strong></td>
+<td>+244.81亿</td>
+<td>-623.88亿</td>
+<td>🟢恶化加速</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>+257.52亿</td>
+<td><strong>-128.57亿</strong></td>
+<td><strong>-386.1亿🔥🔥🔥</strong></td>
+<td>+583.73亿</td>
+<td>-255.97亿</td>
+<td>🟢四连正终结</td>
+</tr>
+<tr>
+<td>MiniLED</td>
+<td>+82.84亿</td>
+<td><strong>-81.80亿</strong></td>
+<td><strong>-164.6亿🔥</strong></td>
+<td>+171.76亿</td>
+<td>-474.72亿</td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>+161.40亿</td>
+<td><strong>-69.92亿</strong></td>
+<td><strong>-231.3亿🔥🔥</strong></td>
+<td>+223.35亿</td>
+<td>-1014.91亿</td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>AI算力芯片</td>
+<td>+42.94亿</td>
+<td><strong>-67.25亿</strong></td>
+<td><strong>-110.2亿🔥</strong></td>
+<td>+54.40亿</td>
+<td>-560.64亿</td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>半导体</td>
+<td>+106.65亿</td>
+<td><strong>-64.62亿</strong></td>
+<td><strong>-171.3亿🔥🔥</strong></td>
+<td>+139.96亿</td>
+<td>-1691.39亿</td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>Chiplet</td>
+<td>+109.83亿</td>
+<td><strong>-55.09亿</strong></td>
+<td><strong>-164.9亿🔥🔥</strong></td>
+<td>+385.72亿</td>
+<td>-1099.34亿</td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>OLED</td>
+<td>+82.62亿</td>
+<td><strong>-39.51亿</strong></td>
+<td><strong>-122.1亿🔥</strong></td>
+<td>+199.34亿</td>
+<td>-563.04亿</td>
+<td>🟢断崖逆转</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心警示</strong>：CPO和PCB——反弹以来唯一四日连续正流入的板块——今日双双终结连续流入记录，且流出规模巨大（CPO -268亿、PCB -129亿）。科技板块全线从8/7的"大举流入"→8/10的"断崖式流出"，一日间10大科技板块合计流出约1292亿。</p>
 <p><em>医药板块——全线回撤（除医疗器械微正外）：</em></p>
 <ul>
@@ -1727,19 +2751,120 @@ body{
 <ul>
 <li><strong>本轮反弹七日主力资金轨迹（8/4→8/5→8/6→8/7→8/10，单位亿）</strong>：</li>
 </ul>
-<p>| 板块 | 8/4 | 8/5 | 8/6 | 8/7 | 8/10 | 趋势 |
-  |------|-----|-----|-----|-----|------|------|
-  | 黄金概念 | -4 | +85 | -27 | +33 | <strong>+14</strong> | ↕️波折但持续正 |
-  | 白银概念 | — | +45 | -10 | +17 | <strong>+8</strong> | ↕️波折但持续正 |
-  | 有色金属 | +39 | +136 | -33 | +72 | <strong>+30</strong> | ↕️波折但持续正 |
-  | 半导体设备 | — | — | — | +38 | <strong>+52</strong> | 🔥加速吸金 |
-  | 芯片概念 | +525 | +353 | -0.4 | +249 | <strong>-354</strong> | 🟢断崖逆转 |
-  | CPO | +428 | +130 | +63 | +110 | <strong>-268</strong> | 🟢四连正终结 |
-  | PCB概念 | +211 | +119 | +64 | +258 | <strong>-129</strong> | 🟢四连正终结 |
-  | 通信设备 | +223 | +2 | -121 | -20 | <strong>-164</strong> | 🟢加速恶化 |
-  | 存储器 | +128 | +171 | -0.4 | +161 | <strong>-70</strong> | 🟢断崖逆转 |
-  | 半导体 | +116 | +137 | -22 | +107 | <strong>-65</strong> | 🟢断崖逆转 |
-  | AI算力 | — | — | -25 | +43 | <strong>-67</strong> | 🟢断崖逆转 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/4</th>
+<th>8/5</th>
+<th>8/6</th>
+<th>8/7</th>
+<th>8/10</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>黄金概念</td>
+<td>-4</td>
+<td>+85</td>
+<td>-27</td>
+<td>+33</td>
+<td><strong>+14</strong></td>
+<td>↕️波折但持续正</td>
+</tr>
+<tr>
+<td>白银概念</td>
+<td>—</td>
+<td>+45</td>
+<td>-10</td>
+<td>+17</td>
+<td><strong>+8</strong></td>
+<td>↕️波折但持续正</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>+39</td>
+<td>+136</td>
+<td>-33</td>
+<td>+72</td>
+<td><strong>+30</strong></td>
+<td>↕️波折但持续正</td>
+</tr>
+<tr>
+<td>半导体设备</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>+38</td>
+<td><strong>+52</strong></td>
+<td>🔥加速吸金</td>
+</tr>
+<tr>
+<td>芯片概念</td>
+<td>+525</td>
+<td>+353</td>
+<td>-0.4</td>
+<td>+249</td>
+<td><strong>-354</strong></td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+428</td>
+<td>+130</td>
+<td>+63</td>
+<td>+110</td>
+<td><strong>-268</strong></td>
+<td>🟢四连正终结</td>
+</tr>
+<tr>
+<td>PCB概念</td>
+<td>+211</td>
+<td>+119</td>
+<td>+64</td>
+<td>+258</td>
+<td><strong>-129</strong></td>
+<td>🟢四连正终结</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>+223</td>
+<td>+2</td>
+<td>-121</td>
+<td>-20</td>
+<td><strong>-164</strong></td>
+<td>🟢加速恶化</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>+128</td>
+<td>+171</td>
+<td>-0.4</td>
+<td>+161</td>
+<td><strong>-70</strong></td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>半导体</td>
+<td>+116</td>
+<td>+137</td>
+<td>-22</td>
+<td>+107</td>
+<td><strong>-65</strong></td>
+<td>🟢断崖逆转</td>
+</tr>
+<tr>
+<td>AI算力</td>
+<td>—</td>
+<td>—</td>
+<td>-25</td>
+<td>+43</td>
+<td><strong>-67</strong></td>
+<td>🟢断崖逆转</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：8/10的暴跌式逆转与8/6的"温和休整"完全不同——8/6是主力从+353亿微降至-0.4亿（仅弱衰减），8/10是主力从+249亿→-<strong>354亿</strong>（断崖式逆转603亿），且波及范围极广（10/10科技板块全负）。唯一抗跌方向是贵金属/有色（黄金+14/白银+8/有色+30持续正）和半导体设备（+52亿逆势加速吸金）。</p>
 <ul>
 <li><strong>CRO：A档一日游</strong>——从A档跌落至D档：</li>
@@ -1776,7 +2901,7 @@ body{
   4. <strong>PCB/CPO/芯片概念是否止住流出</strong>— 四连正流入记录被终结后，能否一日修复（类似8/6→8/7模式）
   5. <strong>跌超5%个股降至50只以下</strong>— 当前69只偏高，需下降</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>不提高</strong>整体仓位。A档主线3条（黄金/白银/有色）但科技板块全线崩溃，主力一日出逃1249亿堪比7/28暴跌日（-3260亿），73%上涨的"假反弹"结构需要8/11确认主力是否回补。创业板距MA20仅+19点（0.5%）极度脆弱，维持现有仓位等待明确信号。</li>
 <li><strong>做多优先级（A档3条）</strong>：</li>
@@ -1798,7 +2923,7 @@ body{
 <li><strong>其他（3条）</strong>：通信服务（-7亿）/ 生物疫苗（-5亿）</li>
 </ul>
 <p><strong>特别警示</strong>：CPO/PCB四日连续正流入记录今日被正式终结，且流出规模巨大（合计-396亿），需高度警惕科技板块从"反弹修复"→"反弹终结"的切换风险。</p></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-10（changedist/kline/fund flow/sector ranking 均为8/10收盘数据；market-overview trade/updown/interval/technical 为8/7数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -1821,8 +2946,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-10-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-10 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-10 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>中性偏空（结构分化）</strong>，上午收盘上涨 3441 家、下跌 1973 家，上涨占比 62%。指数普跌但个股普涨——权重科技杀跌、低位防御补涨，典型高低切换日。</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30，数据日期2026-08-10）：</li>
@@ -1848,7 +2973,7 @@ body{
 <li>❌ 黄金/白银/有色当日全线转流出（黄金-9.45、白银-3.20、有色-20.27亿）</li>
 <li>→ <strong>8/7"中期反转"确认失败</strong>，8/6休整日的"断崖式衰减"信号被证实为获利了结前兆，本轮反弹进入回调段。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>医疗服务</strong>：🔴+3.27%，主力 +12.71亿（行业流入#1，5日+47.71亿，20日+24.82亿三周期全正）</li>
@@ -1874,7 +2999,7 @@ body{
 <li>玻璃玻纤/电子布（中国巨石）：🟢-18.19亿/-19.18亿（偏空）</li>
 <li>→ <strong>持仓8只中仅半导体设备方向偏多，其余7/8偏空，今日持仓承压</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>减仓/维持谨慎</strong>。8/7确认点大面积失败：主力资金一日逆转（+1786亿→-1260亿）、跌超5%暴增至155只、创业板跌破MA20——高低切换明确，科技持仓逢反弹<strong>降低仓位</strong>，不宜在杀跌首日抢反弹。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -1895,8 +3020,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-07">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-07</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-07</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>偏多</strong>，抛压<strong>基本持平</strong>。今日是本轮反弹第六日，五指数全线上涨，<strong>4/5个指数首次站上MA20</strong>（沪深300+创业板指双双首次收复），5/5站上MA5和MA10。主力资金从昨日的+33亿（近零）<strong>暴涨至约+1786亿</strong>——断崖式衰减后一日修复，但上涨占比仅51%（vs 8/5的67%），跌超5%个股52只仍高于50只警戒线。今天看多信号强于看空，但上涨扩散不够广泛是美中不足。</p>
 <p><strong>中期趋势判断</strong>：<strong>有反转迹象，但需连续确认</strong>。4/5站上MA20（首次突破阈值），沪深300+创业板首次收复MA20是结构性质变，5/5 MA10全站上且MACD金叉延续。但7/31→8/3"假反弹"的教训必须记住——今日需确认：主力流入是否为一日脉冲？创业板和沪深300能否守住MA20？</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>5/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>4/5</strong> 个站上20日线（沪深300+创业板<strong>首次站上</strong>），上涨 <strong>2856</strong> 家、下跌 <strong>2536</strong> 家，主动资金以30个观测板块加总近似约 <strong>+1786亿</strong>（概念间成份股有重叠）。今日<strong>仍不提高</strong>整体仓位——主力资金虽一日修复但需连续确认（昨日+33亿近零的断崖式衰减仅一天前），且沪深300和创业板刚站上MA20仅差临门一脚，下周一能否守住是关键。</p>
@@ -1945,7 +3070,7 @@ body{
 <li>→ <strong>当前结构显著优于7/31</strong>。但沪深300+创业板刚站上MA20仅差临门一脚，下周一能否守住是中期反转的关键确认点。</li>
 <li>盘中资金买入迹象：5个指数全部从日内低点拉回——上证3885→3940(+55点)、深成14049→14311(+262点)、创业板3507→3563(+56点)、科创50最低1686→1744(+58点)、沪深300最低4649→4694(+45点)，盘中拉回力度强劲，说明指数层面买盘积极。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 4 条</strong> 🔥（雷达启动以来最多！）：</p>
 <ul>
 <li><strong>黄金概念</strong>：8/6 A档→D档一日逆转→8/7回A档。主力 🔴+33.14亿（vs 8/6 -26.58亿，摆动+59.7亿），5日 🔴+75.11亿，20日 🔴+122.91亿。三周期资金全部正向，贵金属方向机构持仓坚定。</li>
@@ -2037,17 +3162,92 @@ body{
 <ul>
 <li><strong>本轮反弹六日主力资金轨迹（8/4→8/5→8/6→8/7，单位亿）</strong>：</li>
 </ul>
-<p>| 板块 | 8/4 | 8/5 | 8/6 | 8/7 | 趋势 |
-  |------|-----|-----|-----|-----|------|
-  | PCB概念 | +211 | +119 | +64 | <strong>+258</strong> | 🔥V型回升 |
-  | 芯片概念 | +525 | +353 | -0.4 | <strong>+249</strong> | 🔥V型修复 |
-  | 存储器 | +128 | +171 | -0.4 | <strong>+161</strong> | 🔥V型修复 |
-  | CPO | +428 | +130 | +63 | <strong>+110</strong> | ↕️四日连续 |
-  | Chiplet | — | — | +67 | <strong>+110</strong> | 🔥加速 |
-  | 半导体 | +116 | +137 | -22 | <strong>+107</strong> | 🔥V型修复 |
-  | 锂电池 | — | — | — | <strong>+102</strong> | 🔥新进 |
-  | 黄金概念 | -4 | +85 | -27 | <strong>+33</strong> | ↕️波折 |
-  | 有色金属 | +39 | +136 | -33 | <strong>+72</strong> | 🔥V型修复 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/4</th>
+<th>8/5</th>
+<th>8/6</th>
+<th>8/7</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PCB概念</td>
+<td>+211</td>
+<td>+119</td>
+<td>+64</td>
+<td><strong>+258</strong></td>
+<td>🔥V型回升</td>
+</tr>
+<tr>
+<td>芯片概念</td>
+<td>+525</td>
+<td>+353</td>
+<td>-0.4</td>
+<td><strong>+249</strong></td>
+<td>🔥V型修复</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>+128</td>
+<td>+171</td>
+<td>-0.4</td>
+<td><strong>+161</strong></td>
+<td>🔥V型修复</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+428</td>
+<td>+130</td>
+<td>+63</td>
+<td><strong>+110</strong></td>
+<td>↕️四日连续</td>
+</tr>
+<tr>
+<td>Chiplet</td>
+<td>—</td>
+<td>—</td>
+<td>+67</td>
+<td><strong>+110</strong></td>
+<td>🔥加速</td>
+</tr>
+<tr>
+<td>半导体</td>
+<td>+116</td>
+<td>+137</td>
+<td>-22</td>
+<td><strong>+107</strong></td>
+<td>🔥V型修复</td>
+</tr>
+<tr>
+<td>锂电池</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td><strong>+102</strong></td>
+<td>🔥新进</td>
+</tr>
+<tr>
+<td>黄金概念</td>
+<td>-4</td>
+<td>+85</td>
+<td>-27</td>
+<td><strong>+33</strong></td>
+<td>↕️波折</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>+39</td>
+<td>+136</td>
+<td>-33</td>
+<td><strong>+72</strong></td>
+<td>🔥V型修复</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现</strong>：8/6的断崖式衰减（芯片从+353→-0.4、存储器从+171→-0.4）被证明是短暂一日休整，8/7全线回补，多数板块回到或超过8/5水平。PCB概念+258亿创本轮反弹单日新高🔥；锂电+102亿首次大规模流入。科技板块四日资金轨迹呈"N型"确认——这不是"假反弹"而是有回调的正常上升趋势。</p>
 <ul>
 <li><strong>黄金/白银/有色金属：D档→A档一夜修复</strong>：</li>
@@ -2095,7 +3295,7 @@ body{
   6. <strong>黄金/白银/有色维持净流入</strong>— A档不能一日再次逆转</p>
 </li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>不提高</strong>整体仓位。A档主线4条（历史最多）但沪深300+创业板刚站上MA20仅需下周一确认（首次站上后第二天守住才算有效），且上涨占比仅51%不够广泛，跌超5%个股52只仍高于警戒线。维持现有仓位等待8/10确认六大条件后再决策。</li>
 <li><strong>做多优先级（A档4条🔥）</strong>：</li>
@@ -2133,7 +3333,7 @@ body{
 <li>通信设备（-19.72亿）/ 通信服务（-8.98亿）/ 证券Ⅱ（-8.45亿）/ 电网设备（-6.83亿）/ 多元金融（-2.45亿）/ 保险Ⅱ（-2.29亿）</li>
 </ul>
 <p>金融三板块（证券/多元金融/保险）在五日全线上涨的市场里持续遭主力净流出，为最弱势方向；通信设备虽5日+325.88亿大幅正流入但当日逆势流出，需观察是否为板块内部分化。</p></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-07（changedist/kline/fund flow/sector ranking 均为8/7收盘数据；market-overview trade/updown/interval/technical 为8/6数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -2154,8 +3354,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-07-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-07 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-07 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：中性偏多，指数普涨但个股分化——上午收盘上涨 2353 家、下跌 3046 家，上涨占比 42%（权重/科技主线强、中小盘弱）</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -2172,7 +3372,7 @@ body{
 <li>通信设备 🔴+49.33亿（upDownRatio 48/85=56%）</li>
 <li>半导体 🔴+42.23亿（upDownRatio 148/178=83%）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>芯片概念</strong>：主力 🔴+168.8亿（昨日-0.4亿，<strong>暴力逆转</strong>），5日 +990.6亿</li>
@@ -2204,7 +3404,7 @@ body{
 <li>8/6确认的5项反转确认点，今日上午 <strong>4/5 通过</strong>：①上证守住MA20 ✅ ②沪深300站上MA20 ✅ ③主力资金不转负 ✅（+1048亿大幅回流）④芯片/CPO无大额流出 ✅（均百亿级流入）⑤跌超5%≤50只 ❌（半日已达63只）</li>
 <li>8/6主力+33亿近零 → 今日+1048亿，验证"反弹动能未衰竭"；CPO/PCB 5日资金持续转正，从C档向A档升级</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>可适当加仓</strong>。主力资金大幅回流+指数4/5站上MA20+科技主线放量，8/6"主力不转负"确认点通过；但上涨占比仅42%、跌超5%达63只，属结构性行情——<strong>加仓聚焦主线，不追弱势小票</strong>。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -2225,8 +3425,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-06">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-06</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-06</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：<strong>中性</strong>，抛压<strong>上升</strong>。三大指数连续三日收涨后今日出现分化——上证+深成勉强维持MA20上方、创业板+科创50+沪深300回落（沪深300距MA20仅差7.82点），上涨占比从67%骤降至50%，主力资金从+1520亿骤降至+33亿（近零），成交缩量至25288亿（-1309亿）。连续三日放量反弹后进入阶段性休整，但均线结构未破坏。</p>
 <p><strong>中期趋势判断</strong>：<strong>尚未趋势性反转，需连续确认</strong>。上证+深成连续两日站上MA20为积极信号，但2/5不足3/5的阈值；创业板/科创50/沪深300距MA20仍有8~78点距离。今日休整是否演变为"假反弹后暴跌"需明日验证。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>5/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>2/5</strong> 个站上20日线，上涨 <strong>2789</strong> 家、下跌 <strong>2590</strong> 家，主动资金以26个观测板块加总近似约 <strong>+33亿</strong>（近零，概念间成份股重叠）。今日<strong>不提高</strong>整体仓位——连续三日反弹后出现首次主力资金断崖式衰减（+1520→+33亿），且黄金/白银从A档直接降为D档，需等待明日验证主力是否恢复流入。</p>
@@ -2275,7 +3475,7 @@ body{
 <li>→ 当前比7/31的结构更健康，但主力资金断崖式衰减需要8/7验证</li>
 <li>盘中资金买入迹象：上证综指开盘3864→收盘3900（+36点日内拉回），科创50开盘1651→收盘1701（+50点拉回），但深成/创业板/沪深300日内偏弱，整体拉回力度不如前两日。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>。</p>
 <p>今天没有适合主动提高整体仓位的主线。8/5的两条A档（黄金概念+85.1亿/白银概念+44.6亿）今日双双大幅流出（-26.58亿/-10.08亿），全周期资金正流入的A档被一日逆转——黄金概念虽然5日（+92.60亿）和20日（+128.07亿）仍为正，但当日逆转流出显示获利盘了结。</p>
 <p><strong>反转/新启动候选有 0 条</strong>。</p>
@@ -2387,17 +3587,82 @@ body{
 <ul>
 <li><strong>"3日反弹→休整"主力资金轨迹（8/4→8/5→8/6，单位亿）</strong>：</li>
 </ul>
-<p>| 板块 | 8/4 | 8/5 | 8/6 | 趋势 |
-  |------|-----|-----|-----|------|
-  | 芯片概念 | +525 | +353 | <strong>-0.4</strong> | ⬇️断崖 |
-  | CPO | +428 | +130 | +63 | ⬇️连续衰减 |
-  | 存储器 | +128 | +171 | <strong>-0.4</strong> | ⬇️逆转 |
-  | 通信设备 | +223 | +1.6 | +26 | ↕️回稳 |
-  | 半导体 | +116 | +137 | <strong>-22</strong> | ⬇️逆转 |
-  | PCB | +211 | +119 | +64 | ⬇️连续衰减 |
-  | 黄金概念 | -4 | +85 | <strong>-27</strong> | ⬇️逆转 |
-  | 有色金属 | +39 | +136 | <strong>-33</strong> | ⬇️逆转 |
-  | 电力设备 | — | +15 | <strong>-81</strong> | ⬇️逆转暴增 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/4</th>
+<th>8/5</th>
+<th>8/6</th>
+<th>趋势</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片概念</td>
+<td>+525</td>
+<td>+353</td>
+<td><strong>-0.4</strong></td>
+<td>⬇️断崖</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+428</td>
+<td>+130</td>
+<td>+63</td>
+<td>⬇️连续衰减</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>+128</td>
+<td>+171</td>
+<td><strong>-0.4</strong></td>
+<td>⬇️逆转</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>+223</td>
+<td>+1.6</td>
+<td>+26</td>
+<td>↕️回稳</td>
+</tr>
+<tr>
+<td>半导体</td>
+<td>+116</td>
+<td>+137</td>
+<td><strong>-22</strong></td>
+<td>⬇️逆转</td>
+</tr>
+<tr>
+<td>PCB</td>
+<td>+211</td>
+<td>+119</td>
+<td>+64</td>
+<td>⬇️连续衰减</td>
+</tr>
+<tr>
+<td>黄金概念</td>
+<td>-4</td>
+<td>+85</td>
+<td><strong>-27</strong></td>
+<td>⬇️逆转</td>
+</tr>
+<tr>
+<td>有色金属</td>
+<td>+39</td>
+<td>+136</td>
+<td><strong>-33</strong></td>
+<td>⬇️逆转</td>
+</tr>
+<tr>
+<td>电力设备</td>
+<td>—</td>
+<td>+15</td>
+<td><strong>-81</strong></td>
+<td>⬇️逆转暴增</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>核心发现：芯片概念+CPO+PCB+通信设备四板块仍维持正流入（+153亿合计），但较8/5四板块合计（+662亿）衰减77%。芯片概念从连续两日+525/+353亿骤降至-0.4亿，几乎归零——显示科技板块资金入场意愿在8/6急速冷却。</strong></p>
 <ul>
 <li><strong>黄金/白银A档→D档一日逆转分析</strong>：</li>
@@ -2425,7 +3690,7 @@ body{
   5. <strong>芯片概念/CPO不出现大额净流出</strong>——今日芯片概念已近零，8/7若大幅转负则科技反弹逻辑瓦解</p>
 </li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：<strong>不提高</strong>整体仓位。A档主线 0 条（昨日2条全部降级）+ 主力资金+1520→+33亿（断崖式衰减）+ 跌超5% 11→49只（抛压骤升）= 反弹动能显著减弱。维持现有仓位等待8/7确认，不追高、不加仓。若8/7主力转负+跌超5%&gt;50只，应降仓回避。</li>
 <li><strong>做多优先级（A档）</strong>：<strong>无</strong>。8/5的黄金概念和白银概念今日全部降级为D档，暂无适合主动做多的主线。</li>
@@ -2448,7 +3713,7 @@ body{
 <li>电力设备（-81.19亿⚠️今日最大流出）/ 有色金属（-32.60亿，A档一日逆转）/ 黄金概念（-26.58亿，A档一日逆转）/ AI算力芯片（-24.57亿）/ 半导体（-21.83亿）/ 创新药（-15.33亿）/ 白银概念（-10.08亿，A档一日逆转）/ 保险Ⅱ（-6.67亿）/ 化学制药（-5.86亿）/ 通信服务（-5.37亿）/ MiniLED（-4.95亿）/ CRO（-4.81亿）/ 生物疫苗（-4.84亿）/ 生物制品（-3.60亿）/ 多元金融（-0.96亿）/ 存储器（-0.42亿）/ 芯片概念（-0.41亿）/ 医疗器械（-0.20亿）</li>
 </ul>
 <p>黄金/白银/有色金属虽然5日/20日仍大幅正流入，但当日逆转流出+主力资金面整体恶化背景下，暂不新增仓位；CRO（5日+19亿/20日+23亿仍正）是医药唯一亮点但连续两日流出也需观察。</p></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-06（changedist/kline/fund flow/sector ranking 均为8/6收盘数据；market-overview trade/updown/interval/technical 为8/5数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -2469,12 +3734,11 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-06-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-06 上午</h1>
-<blockquote>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-06 上午</div><blockquote>
 <p>数据为上午盘实时（截至11:30）。涨红跌绿。</p>
 </blockquote>
 <hr /></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：偏空（结构性分化），上午收盘上涨 <strong>1717</strong> 家、下跌 <strong>3706</strong> 家，上涨占比仅 <strong>31%</strong>（昨日全天67%）</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30，低开→冲高→回落）：</li>
@@ -2490,7 +3754,7 @@ body{
 <li>通信设备 +14.9亿</li>
 <li>专用设备 +5.9亿</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>PCB概念</strong>：🔴+59.8亿（当日资金最强梯队），5日+257亿，行业资金流入第1</li>
@@ -2520,7 +3784,7 @@ body{
 <li><strong>半导体设备</strong>（159516/长川科技）：该板块资金接口持续返回0，暂无数据</li>
 <li><strong>科创芯片/半导体</strong>（588200）：🟢-18.7亿，<strong>偏空</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>维持</strong>，不追高。理由：5/5站上MA5、MA10但个股普跌（上涨占比31%）、低开冲高回落明显，半日放量至1.75万亿属高位分歧，资金强度较昨日（+1520亿→+38亿）大幅降温。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -2543,8 +3807,8 @@ body{
 <p><strong>数据备注</strong>：数据日期2026-08-06（上午盘）；半导体设备板块fund flow返回全0（暂无资金数据）；中位数-0.6%为区间估算；观测板块资金加总含概念/行业成份股重叠，仅作方向参考；昨日报告提示的"8/6确认要点"（主力不转负/跌超5%≤20只）上午均未达标，反转确认被推迟。</p></div></div>
     </template>
     <template id="tpl-2026-08-05">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-05</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-05</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏多（5/5站上MA5，5/5站上MA10，2/5站上MA20——雷达启动以来首次！）——"反弹—暴跌"循环第七轮被确认打破！8/4乐观信号在今日得到验证（非逆转），连续两日主力大规模净流入+放量上涨，与7/31→8/3逆转有本质区别。</p>
 <p><strong>中期趋势判断</strong>：<strong>有反转迹象</strong>。上证综指和深证成指今日首次站上MA20（上证+9.34点/深成+26.11点），5/5站上MA10为雷达启动以来首次，配合连续两日主力净流入（8/4约+2200亿→8/5约+1520亿）和放量（22136→26596亿），中期空头排列正在被打破。但创业板/科创50/沪深300尚未站上MA20，全面趋势反转仍需确认。</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>5/5</strong> 个指数站上5日线、<strong>5/5</strong> 个站上10日线、<strong>2/5</strong> 个站上20日线，上涨 <strong>3725</strong> 家、下跌 <strong>1621</strong> 家，主动资金以26个观测板块加总约 <strong>+1520亿</strong>（偏多，概念间成份股重叠导致偏高）。今日已是连续第二日放量上涨+主力正流入——<strong>本轮反弹与过去六轮有本质区别：首次连续两日站上5/5 MA10、首次站上MA20、首次主力连续正流入不逆转</strong>。今天<strong>可小幅提高</strong>整体仓位至中性偏积极，但需注意创业板/科创50/沪深300距MA20仍有31~110点距离。</p>
@@ -2593,7 +3857,7 @@ body{
   4. 成交额放量至26596亿（+20%），增量资金进场</li>
 <li>盘中资金买入迹象：五大指数均从日内低点明显拉回（开盘价均已低于收盘价，日内几乎单边上行），且板块扩散配合良好（科技+贵金属+周期全线正流入，仅医药/金融/通信服务微幅流出）。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 2 条</strong>（雷达启动以来首批真正的A档板块！全周期主力资金正流入）：</p>
 <ul>
 <li><strong>黄金概念</strong>：主力资金净额 🔴+85.1亿，5日 +13.6亿，20日 +29.3亿 | 贵金属行业涨幅+7.72%（行业#3）</li>
@@ -2680,18 +3944,89 @@ body{
 <ul>
 <li><strong>连续两日主力流入精选对比（8/4 → 8/5，单位亿）</strong>：</li>
 </ul>
-<p>| 板块 | 8/4 | 8/5 | 变化 | 两日合计 |
-  |------|-----|-----|------|----------|
-  | 芯片概念 | +525 | +353 | -173 | <strong>+878亿</strong> 🔥 |
-  | CPO | +428 | +130 | -298 | <strong>+558亿</strong> 🔥 |
-  | 存储器 | +128 | +171 | <strong>+43↑</strong> | <strong>+299亿</strong> 🔥 |
-  | 半导体 | +116 | +137 | <strong>+21↑</strong> | <strong>+253亿</strong> |
-  | PCB | +211 | +119 | -92 | +329亿 |
-  | OLED | +75 | +102 | <strong>+27↑</strong> | +177亿 |
-  | Chiplet | +152 | +143 | -9 | +295亿 |
-  | MiniLED | +104 | +46 | -58 | +150亿 |
-  | HBM | +43 | +57 | <strong>+14↑</strong> | +100亿 |
-  | 通信设备 | +223 | +1.6 | <strong>-221⚠️</strong> | +225亿 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>8/4</th>
+<th>8/5</th>
+<th>变化</th>
+<th>两日合计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片概念</td>
+<td>+525</td>
+<td>+353</td>
+<td>-173</td>
+<td><strong>+878亿</strong> 🔥</td>
+</tr>
+<tr>
+<td>CPO</td>
+<td>+428</td>
+<td>+130</td>
+<td>-298</td>
+<td><strong>+558亿</strong> 🔥</td>
+</tr>
+<tr>
+<td>存储器</td>
+<td>+128</td>
+<td>+171</td>
+<td><strong>+43↑</strong></td>
+<td><strong>+299亿</strong> 🔥</td>
+</tr>
+<tr>
+<td>半导体</td>
+<td>+116</td>
+<td>+137</td>
+<td><strong>+21↑</strong></td>
+<td><strong>+253亿</strong></td>
+</tr>
+<tr>
+<td>PCB</td>
+<td>+211</td>
+<td>+119</td>
+<td>-92</td>
+<td>+329亿</td>
+</tr>
+<tr>
+<td>OLED</td>
+<td>+75</td>
+<td>+102</td>
+<td><strong>+27↑</strong></td>
+<td>+177亿</td>
+</tr>
+<tr>
+<td>Chiplet</td>
+<td>+152</td>
+<td>+143</td>
+<td>-9</td>
+<td>+295亿</td>
+</tr>
+<tr>
+<td>MiniLED</td>
+<td>+104</td>
+<td>+46</td>
+<td>-58</td>
+<td>+150亿</td>
+</tr>
+<tr>
+<td>HBM</td>
+<td>+43</td>
+<td>+57</td>
+<td><strong>+14↑</strong></td>
+<td>+100亿</td>
+</tr>
+<tr>
+<td>通信设备</td>
+<td>+223</td>
+<td>+1.6</td>
+<td><strong>-221⚠️</strong></td>
+<td>+225亿</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>关键发现：存储器、半导体、OLED、HBM 四个板块8/5流入反超8/4</strong>，显示资金在科技板块内部轮动而非撤退。通信设备(+223→+1.6)大幅萎缩最异常，需关注是否为单日脉冲后的熄火。<strong>总体而言，8/4的主力流入非一日游——8/5各板块合计仍维持+1520亿正流入，确认了资金面的连续性。</strong></p>
 <ul>
 <li><strong>"反弹—暴跌"循环被打破的里程碑意义</strong>：</li>
@@ -2717,7 +4052,7 @@ body{
   4. 跌超5%个股维持20只以内</p>
 </li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：可小幅提高整体仓位至中性偏积极。A档主线 2 条（黄金+白银全周期正流入）+ 5/5站上MA10（首次）+ 2/5站上MA20（首次）+ MACD金叉 + 连续两日主力正流入 = 反转信号级别为雷达启动以来最强。维持现有仓位同时，可在A档和B档中5日已转正的芯片概念/CPO/PCB/MiniLED/有色金属中轻仓试探。创业板/科创50/沪深300距MA20仍有距离，不追高。</li>
 <li><strong>做多优先级（A档）</strong>：</li>
@@ -2744,7 +4079,7 @@ body{
 <li>医药细分（7条）：创新药（-13.3亿）/通信服务（-7.6亿）/生物制品（-2.2亿）/中药（-2.0亿）/生物疫苗（-1.9亿）/多元金融（-0.9亿）/医药商业（-0.5亿）/化学制药（-0.4亿）</li>
 <li>保险Ⅱ（+0.1亿极弱）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-05（changedist/kline/fund flow/sector ranking 均为8/5收盘数据；market-overview trade/updown/interval/technical 为8/4数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -2765,8 +4100,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-05-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-05 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-05 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：🔴偏多，上午收盘上涨 <strong>3940</strong> 家、下跌 <strong>1373</strong> 家，上涨占比 <strong>71%</strong>，市场情绪偏高。</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -2782,7 +4117,7 @@ body{
 <li>工业金属 🔴+42.0亿（53/59）</li>
 <li>小金属 🔴+29.7亿（27/27=100%）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
 <ul>
 <li><strong>存储器</strong>：主力 🔴+111.24亿（上午资金最强主线，5日-142亿修复中）</li>
@@ -2806,7 +4141,7 @@ body{
 <li>玻纤（中国巨石）：🔴偏多（行业涨幅#1）</li>
 <li>光模块/通信（旭创/天孚/通信ETF）：🟢偏谨慎（资金大幅降温）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>维持</strong>。方向未变（5/5站上5日线、5/5站上10日线、上证首破20日线），但半日主力+390亿较昨日全天+2211亿强度明显降温，且A档主线仅1条（贵金属），不满足"A档≥3条"的加仓条件。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -2826,8 +4161,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-04">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-04</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-04</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏多（5/5站上5日线），抛压大幅下降——跌超5%个股从220只骤降至8只（-96%），主力资金从-1295亿逆转为约+1500~2200亿（观测板块加总正流入约+2247亿，概念成份股重叠致偏高）</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转（0/5站上20日线），但今日与8/3的"假反弹"有本质区别——真金白银大规模回补，需连续确认MA10和MA20能否收复</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>5/5</strong> 个指数站上5日线、<strong>2/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线。今日五大指数全线反弹，与8/3"72%个股上涨但科创50暴跌-5.08%"形成鲜明对比——今日科创50也录得+4.09%反弹，科技板块资金全面回补，个股上涨覆盖面虽收窄（65% vs 72%）但质量更高。今天<strong>仍不提高</strong>整体仓位（谨防"反弹—暴跌"循环第6轮确认），但信号显著改善。</p>
@@ -2870,7 +4205,7 @@ body{
 <li><strong>"反弹—暴跌"循环第六轮？</strong>：过去五轮（7/23涨→7/24跌→7/27涨→7/28跌→7/29涨→7/30跌→7/31涨→8/3跌），每一轮反弹次日均被吞噬。8/4今日反弹力度（主力+2211亿 vs 7/31的+1583亿）和抛压下降程度（跌超5% 8只 vs 7/31的13只）均显著优于7/31。<strong>但需警惕：</strong> 7/31的"历史性流入"在8/3被完全逆转。今日反弹仍需8/5-8/6连续确认——若明日主力资金不转负、均线继续修复（深成/创业板继续守住MA10），则本轮反弹可信度将大幅提升。</li>
 <li>盘中有无资金买入迹象：五大指数均从日内低点明显拉回——上证从3799.52拉回至3822.28（+23点）、深成从13537.76拉回至13885.71（+348点）、创业板从3342.41拉回至3488.97（+147点）、科创50从1556.11拉回至1616.36（+60点）——<strong>日内拉回力度显著，且板块扩散配合良好（科技全线回补而非局部防御）</strong>。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>：</p>
 <p>今天没有适合主动提高整体仓位的主线。（0条A档=无板块满足"5日+20日双正趋势+主力连续正流入"的全部条件，尽管当日资金流入史无前例，但20日趋势尚未修复。）</p>
 <p><strong>反转/新启动候选有 13 条</strong>（当日超大额主力净流入+涨幅&gt;3%，但5日/20日趋势仍负，属首次反转信号——力度远超此前任何一天，是7/31 B档11条流入规模的约1.5倍）：</p>
@@ -2970,7 +4305,7 @@ body{
   4. 成交额不低于20000亿（不要大幅缩量）</li>
 <li>未覆盖板块说明：半导体设备(pt01850818) fund flow 返回全0，暂无资金数据；电子化学品II/光芯片/博通概念/谷歌概念/靶材/锗镓概念/AI-PIN/元件/非金属材料II/医疗服务等上榜概念因不在默认watchlist中未逐一下载资金流，但已通过sector ranking获取涨跌幅数据。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：不提高整体仓位。A档主线 0 条（0/5站上20日线，中期趋势未反转），但今日信号较昨日显著改善（5/5站上5日线、2/5站上10日线、跌超5%仅8只、主力+2211亿）。若8/5-8/6维持正流入+深成/创业板守住MA10+跌超5%不超20只，则可将仓位从"防守"调整为"中性偏积极"。当前维持现有仓位，观察确认后再行动。</li>
 <li><strong>做多优先级</strong>：无A档板块。今天没有适合主动提高整体仓位的主线——但B档覆盖范围之广（13条）、流入规模之大（芯片+525亿+CPO+428亿），是雷达启动以来最强单日反转信号。若8/5延续正流入，CRO、通信设备最有可能率先升入A档（CRO 5日-4亿即将转正，通信设备5日+8.05%已在上升）。</li>
@@ -2999,7 +4334,7 @@ body{
 <li>金融/贵金属（3条）：保险（-12.30亿）/多元金融（-2.38亿）/白银（-5.07亿）/黄金（-3.95亿）</li>
 <li>通信服务（-0.09亿）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-04（changedist/kline/fund flow/sector ranking 均为8/4收盘数据；market-overview trade/updown/interval/technical 为8/3数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -3020,17 +4355,64 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-04-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-04 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-04 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：🔴偏多，上午收盘上涨 3760 家、下跌 1599 家，上涨占比 67%</p>
 <p><strong>指数涨跌</strong>（截至11:30）：</p>
-<p>| 指数 | 上午收盘 | 涨跌幅 | MA5 | MA10 | MA20 |
-|------|---------|--------|-----|------|------|
-| <strong>上证综指</strong> | 3815.59 | 🔴+0.16% | 3818（跌破） | 3832（跌破） | 3873（跌破） |
-| <strong>深证成指</strong> | 13817.39 | 🔴+2.74% | 13558（🔴站上） | 13760（🔴站上） | 14240（跌破） |
-| <strong>创业板指</strong> | 3462.05 | 🔴+4.83% | 3346（🔴站上） | 3445（🔴站上） | 3595（跌破） |
-| <strong>科创50</strong> | 1598.13 | 🔴+2.91% | 1611（跌破） | 1699（跌破） | 1839（跌破） |
-| <strong>沪深300</strong> | 4585.65 | 🔴+0.94% | 4573（🔴站上） | 4623（跌破） | 4690（跌破） |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指数</th>
+<th>上午收盘</th>
+<th>涨跌幅</th>
+<th>MA5</th>
+<th>MA10</th>
+<th>MA20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>上证综指</strong></td>
+<td>3815.59</td>
+<td>🔴+0.16%</td>
+<td>3818（跌破）</td>
+<td>3832（跌破）</td>
+<td>3873（跌破）</td>
+</tr>
+<tr>
+<td><strong>深证成指</strong></td>
+<td>13817.39</td>
+<td>🔴+2.74%</td>
+<td>13558（🔴站上）</td>
+<td>13760（🔴站上）</td>
+<td>14240（跌破）</td>
+</tr>
+<tr>
+<td><strong>创业板指</strong></td>
+<td>3462.05</td>
+<td>🔴+4.83%</td>
+<td>3346（🔴站上）</td>
+<td>3445（🔴站上）</td>
+<td>3595（跌破）</td>
+</tr>
+<tr>
+<td><strong>科创50</strong></td>
+<td>1598.13</td>
+<td>🔴+2.91%</td>
+<td>1611（跌破）</td>
+<td>1699（跌破）</td>
+<td>1839（跌破）</td>
+</tr>
+<tr>
+<td><strong>沪深300</strong></td>
+<td>4585.65</td>
+<td>🔴+0.94%</td>
+<td>4573（🔴站上）</td>
+<td>4623（跌破）</td>
+<td>4690（跌破）</td>
+</tr>
+</tbody>
+</table></div>
 <ul>
 <li>站上5日线指数：3/5（深成、创业板、沪深300）</li>
 <li>站上10日线指数：2/5（深成、创业板）</li>
@@ -3045,26 +4427,116 @@ body{
 <li>元件 🔴+82.94亿（upDownRatio 60/60=100%）</li>
 <li>半导体 🔴+43.53亿（upDownRatio 171/178=96%）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先）：</p>
-<p>| 板块 | 涨跌幅 | 当日主力 | 5日主力 | 扩散率 |
-|------|--------|---------|---------|--------|
-| <strong>通信设备</strong> | 🔴+9.03% | 🔴+152.45亿 | -266.68亿 | 95% |
-| <strong>光芯片</strong> | 🔴+8.57% | — | — | — |
-| <strong>元件</strong> | 🔴+7.60% | 🔴+82.94亿 | — | 100% |
-| <strong>医疗服务</strong> | 🔴+6.84% | — | — | — |
-| <strong>光通信</strong> | 🔴+6.06% | 🔴+188.97亿 | -321.79亿 | — |
-| <strong>CPO/光模块</strong> | — | 🔴+284.44亿 | -689.34亿 | — |
-| <strong>芯片概念</strong> | — | 🔴+323.64亿 | -1294.35亿 | — |
-| <strong>PCB概念</strong> | — | 🔴+136.02亿 | -297.71亿 | — |
-| <strong>存储器</strong> | — | 🔴+56.62亿 | -608.52亿 | — |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>涨跌幅</th>
+<th>当日主力</th>
+<th>5日主力</th>
+<th>扩散率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>通信设备</strong></td>
+<td>🔴+9.03%</td>
+<td>🔴+152.45亿</td>
+<td>-266.68亿</td>
+<td>95%</td>
+</tr>
+<tr>
+<td><strong>光芯片</strong></td>
+<td>🔴+8.57%</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>元件</strong></td>
+<td>🔴+7.60%</td>
+<td>🔴+82.94亿</td>
+<td>—</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>医疗服务</strong></td>
+<td>🔴+6.84%</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>光通信</strong></td>
+<td>🔴+6.06%</td>
+<td>🔴+188.97亿</td>
+<td>-321.79亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>CPO/光模块</strong></td>
+<td>—</td>
+<td>🔴+284.44亿</td>
+<td>-689.34亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>芯片概念</strong></td>
+<td>—</td>
+<td>🔴+323.64亿</td>
+<td>-1294.35亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>PCB概念</strong></td>
+<td>—</td>
+<td>🔴+136.02亿</td>
+<td>-297.71亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>存储器</strong></td>
+<td>—</td>
+<td>🔴+56.62亿</td>
+<td>-608.52亿</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>上午弱势板块</strong>（资金流出）：</p>
-<p>| 板块 | 当日主力 | 5日主力 |
-|------|---------|---------|
-| <strong>黄金概念</strong> | 🟢-9.70亿 | -4.33亿 |
-| <strong>券商</strong> | 🟢-8.36亿 | -56.19亿 |
-| <strong>保险Ⅱ</strong> | 🟢-5.52亿 | +5.35亿 |
-| <strong>多元金融</strong> | 🟢-1.52亿 | -4.22亿 |</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>当日主力</th>
+<th>5日主力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>黄金概念</strong></td>
+<td>🟢-9.70亿</td>
+<td>-4.33亿</td>
+</tr>
+<tr>
+<td><strong>券商</strong></td>
+<td>🟢-8.36亿</td>
+<td>-56.19亿</td>
+</tr>
+<tr>
+<td><strong>保险Ⅱ</strong></td>
+<td>🟢-5.52亿</td>
+<td>+5.35亿</td>
+</tr>
+<tr>
+<td><strong>多元金融</strong></td>
+<td>🟢-1.52亿</td>
+<td>-4.22亿</td>
+</tr>
+</tbody>
+</table></div>
 <p><strong>用户持仓相关板块信号</strong>：</p>
 <ul>
 <li><strong>光模块/CPO</strong>：当日主力暴量流入 🔴+284.44亿（5日-689亿、20日-2182亿），超跌强力反弹，但中期趋势仍空</li>
@@ -3072,7 +4544,7 @@ body{
 <li><strong>PCB/CCL</strong>：主力🔴+136.02亿，反弹力度强（5日-298亿）</li>
 <li><strong>玻纤/玻璃玻纤</strong>：🔴+5.53%，主力🔴+7.94亿，温和反弹（5日-11亿）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li>
 <p><strong>整体仓位</strong>：维持。上午科技板块强力反弹（通信+9%、芯片+324亿、CPO+284亿），与昨日科技全线溃逃形成鲜明对比，且跌超5%从220只→6只、抛压骤降。<strong>但5日/20日主力仍为大幅净流出，反弹质量需下午确认</strong>——若下午科技板块资金持续流入且指数站稳MA5，可考虑轻仓试多。</p>
@@ -3114,8 +4586,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-03">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-08-03</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-08-03</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏空（0/5站上20日线），"反弹—暴跌"循环第5次确认——7/31强力反弹被8/3完全吞噬，科创50暴跌-5.08%，主力资金约<strong>-1295亿</strong>（7/31为+1583亿，单日摆动约-2878亿）</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转，"反弹—暴跌"循环持续升级（7/23涨→7/24跌→7/27涨→7/28跌→7/29涨→7/30跌→7/31涨→8/3跌），<strong>72%个股上涨但主力资金-1295亿，价升量缩+机构继续撤离=牛熊背离信号强化</strong></p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>0/5</strong> 个指数站上5日线、<strong>0/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线，上涨 <strong>4005</strong> 家、下跌 <strong>1466</strong> 家，主力资金以29个观测板块加总近似约 <strong>-1295亿</strong>（从7/31的+1583亿大幅反转，单日摆动约-2878亿）。今天<strong>仍不提高</strong>整体仓位；虽然72%个股上涨看似不差，但科创50暴跌-5.08%、科技板块资金全面溃逃、成交额缩量-5446亿，反弹质量远弱于7/31，8/4需继续确认。</p>
@@ -3158,7 +4630,7 @@ body{
 <li>盘中有无资金买入迹象：上证从日内低点3797.64拉回至3809.66（小幅拉回+12点），深成从13407.99拉回至13448.29，但拉升力度极弱且缺乏板块扩散——仅电网设备(+16亿)和电力(+14亿)两个防御板块录得明显正流入；创业板和科创50持续下挫无拉回。<strong>这个信号不证明指数层面有买盘支撑</strong>。</li>
 <li><strong>核心矛盾</strong>：72%个股上涨 vs 科创50-5.08% vs 主力资金-1295亿。上涨集中在小市值个股（中位数仅+1.3%），而大市值科技龙头遭机构集中抛售；表面普涨、实则分化——这是典型的"假反弹"特征。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>：</p>
 <p>今天没有适合主动提高整体仓位的主线。</p>
 <blockquote>
@@ -3240,7 +4712,7 @@ body{
 <li><strong>仅工业金属(+8.18亿/5日)、黄金(+24.03亿/5日)、白银(+20.52亿/5日)维持5日正流入</strong>，且20日均正（工业金属+64亿/黄金+12亿/白银+53亿），是当前市场唯一中期趋势未破坏的方向。但今日也遭遇单日回调（工业金属-19亿/黄金-16亿/白银-8亿）。</li>
 <li>上证综指距布林带下轨（3724.58）85点（2.3%），距中轨（3893.69）84点（2.2%），反弹空间和下跌空间相当，但均线全面空头排列制约上行。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：不提高整体仓位。A档主线 0 条，0/5站上5日线，0/5站上10日线，0/5站上20日线，均线全面空头排列，"反弹—暴跌"循环第5次确认。<strong>7/31乐观信号已全部逆转</strong>，维持现有仓位，等待8/4-8/5进一步确认方向。若8/4继续缩量下跌且跌超5%家数增加，考虑进一步降低科技方向持仓。</li>
 <li><strong>做多优先级</strong>：无A档板块。今天没有适合主动提高整体仓位的主线。</li>
@@ -3256,7 +4728,7 @@ body{
 <li><strong>回避方向</strong>（D档12条，弱势先减、暂不新增）：</li>
 <li>芯片概念（-315.15亿 ⚠️雷达第二大单日流出）、存储器（-232.47亿/5日+391.67亿 单日吞噬）、半导体（-197.33亿）、AI算力芯片（-89.90亿）、OLED（-83.98亿）、HBM（-72.78亿）、PCB（-66.63亿）、MiniLED（-55.44亿）、CPO（-47.39亿）、创新药（-16.20亿）、证券（-14.75亿）、化学制药（-12.76亿）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-08-03（changedist/kline/fund flow/sector ranking 均为8/3收盘数据；market-overview trade/updown/interval/technical 为7/31数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -3279,8 +4751,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-08-03-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-08-03 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-08-03 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>中性偏弱</strong>，上午收盘上涨 3717 家、下跌 1690 家，上涨占比 67%，表面偏多但5大指数全线微跌，0/5站上MA20/MA10，跌超5%达167只（较7/31午盘11只大幅恶化），科技板块主力再度大幅流出，反弹持续性存疑。</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -3306,7 +4778,7 @@ body{
 <li>主力资金从 +1409亿 逆转至 -369亿（-1778亿），通信设备为唯一正流入科技主线</li>
 <li>半日成交从 17853亿→13650亿（-24%缩量），反弹缩量+回撤放量不利信号</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入）：</p>
 <ul>
 <li><strong>通信设备</strong>：行业涨幅Top3，主力 <strong>+11.91亿</strong>（唯一正流入科技板块），5日 -263.99亿，行业排名第3</li>
@@ -3344,7 +4816,7 @@ body{
 <li><strong>HBM</strong>（澜起科技）：主力 -45.14亿，5日 -142.03亿 → <strong>D档·暂不做多</strong></li>
 <li><strong>Chiplet</strong>（长电科技）：主力 -49.39亿，5日 -355.01亿 → <strong>D档·暂不做多</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>维持或小幅减仓</strong>。7/31科技大反弹后今日主力再度大幅流出（+1409→-369亿逆转-1778亿），反弹"一日游"特征明显。0/5站上MA10/MA20，跌超5%从11→167只（抛压显著恶化），成交缩量24%，中线趋势未反转。但上涨占比仍67%，通信设备正流入，不宜清仓恐慌。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -3372,8 +4844,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-31">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-07-31</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-07-31</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏空（0/5站上20日线），但抛压较上一交易日（7/30）大幅下降——这是7/22雷达启动以来最强的单日资金净流入</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转，"反弹—暴跌"循环仍在持续（7/29涨→7/30跌→7/31涨），8/3（周一）是关键确认日</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>1/5</strong> 个指数站上5日线、<strong>0/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线，上涨 <strong>4691</strong> 家、下跌 <strong>728</strong> 家，主力资金以29个观测板块加总近似约 <strong>+1583亿</strong>（从7/30的-1875亿大幅反转，单日摆动+3458亿）。今天<strong>仍不提高</strong>整体仓位；虽然反弹力度强劲且科技板块首次获得大规模资金净流入，但均线系统仍全面空头排列，需8/3继续确认。</p>
@@ -3413,7 +4885,7 @@ body{
 <li><strong>仍不具备加仓条件</strong>：0/5站上10日线、0/5站上20日线，均线全面空头排列，A档0条。但与此前3轮反弹不同，7/31科技板块首次获得大规模资金净流入（芯片概念+432亿、CPO+169亿、存储器+183亿），而非此前的"被抛弃的反弹"。</li>
 <li>盘中有明显资金买入迹象：上证从日内低点3822.37拉升至3832.26，深成从13578.93低点反弹，创业板从3343.96低点回升；多个指数低开高走，5个指数全线上涨。这个信号证明指数层面有买盘支撑，且板块扩散配合（84%上涨），但均线仍未收回。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>：</p>
 <p>今天没有适合主动提高整体仓位的主线。</p>
 <blockquote>
@@ -3502,7 +4974,7 @@ body{
 <li>上证综指距布林带下轨（3725.19）107点（2.8%），距中轨（3904.26）72点（1.9%），7/31反弹后向上轨方向移动但空间有限。</li>
 <li>8/3（下周一）是"反弹—暴跌"循环的关键确认日：若科技板块延续流入且指数站上MA5/MA10，可能打破循环；若再次被吞噬，则循环延续第5轮。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：不提高整体仓位。A档主线 0 条，0/5站上10日线，0/5站上20日线，均线全面空头排列。维持现有仓位。但与7/30不同，7/31科技板块出现历史性大规模资金流入（芯片概念+432亿），若8/3确认延续，可考虑小幅提高科技方向仓位。</li>
 <li><strong>做多优先级</strong>：无A档板块。今天没有适合主动提高整体仓位的主线。</li>
@@ -3519,7 +4991,7 @@ body{
 <li>84%上涨日逆势流出（8条）：化学制药（-12.92亿）、创新药（-6.55亿）、证券（-3.24亿）、生物制品（-2.56亿）、生物疫苗（-1.52亿）、多元金融（-1.16亿）、医药商业（-1.15亿）、电力设备（-0.10亿/5日-108.73亿）、保险（-0.15亿/5日-6.00亿）</li>
 <li><strong>回避方向</strong>：今日无D档板块。84%上涨日无板块满足下跌+流出+扩散差条件。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-07-31（changedist/kline/fund flow/sector ranking 均为7/31收盘数据；market-overview trade/updown/interval/technical 为7/30数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -3541,8 +5013,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-31-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-07-31 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-07-31 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>偏多</strong>，上午收盘上涨 4517 家、下跌 903 家，上涨占比 81%，5大指数全线大涨，科技板块遭主力大幅回流，市场风格从消费防御切换至科技成长</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -3566,7 +5038,7 @@ body{
 <li>主力资金从 -1455亿 逆转至 +1409亿（+2864亿），科技板块全线回流</li>
 <li>4/5站上MA5（昨日0/5），短线企稳信号明确，但0/5站上MA10/MA20，中线趋势仍空</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金大幅回流+涨幅领先，科技全面反弹）：</p>
 <ul>
 <li><strong>芯片概念</strong>：主力 <strong>+470.89亿</strong>（全市场最大流入！昨日-499亿→今日+471亿，逆转+970亿），5日 -720.13亿，20日 -5437.66亿</li>
@@ -3601,7 +5073,7 @@ body{
 <li><strong>有色金属</strong>（中钨高新）：主力 +63.04亿 → <strong>B档·反转候选</strong>（5日仍-129亿）</li>
 <li><strong>白银概念</strong>：主力 +11.64亿，20日 +60.64亿 → <strong>A档候选·全周期基本正</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>可适度加仓</strong>。4/5站上MA5（昨日0/5），主力资金从-1455亿逆转至+1409亿（+2864亿），跌停归零、跌超5%从902→11只（-99%），抛压基本消除，科技板块全线大额回流。但0/5站上MA10/MA20，5日资金仍多为负，<strong>属反弹首日，不宜重仓追高</strong>。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -3628,8 +5100,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-30">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-07-30</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-07-30</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏空，且抛压较上一交易日（7/29）大幅上升</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转，"反弹—暴跌"循环仍在持续（7/29涨→7/30跌），需连续确认</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>0/5</strong> 个指数站上5日线、<strong>0/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线，上涨 <strong>1768</strong> 家、下跌 <strong>3635</strong> 家，主力资金以30个观测板块加总近似约 <strong>-1875亿</strong>（从7/29的-482亿大幅恶化，单日恶化-1393亿）。今天<strong>仍不提高</strong>整体仓位；7/29的修复反弹被完全吞噬，所有指数仍在全部关键均线下方运行，均线系统呈全面空头排列，不具备趋势性反转条件。</p>
@@ -3669,7 +5141,7 @@ body{
 <li><strong>仍不具备加仓条件</strong>：0/5站上5日线、0/5站上10日线、0/5站上20日线，均线全面空头排列，A档0条，科技板块流出加剧。</li>
 <li>盘中无明显资金买入迹象：上证从日内高点3839.34回落至3804.69（-0.9%），创业板从3353.81回落至3244.62（-3.3%），多个指数从日内高点持续走低；这个信号表明指数层面也缺乏买盘支撑。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>：</p>
 <p>今天没有适合主动提高整体仓位的主线。</p>
 <blockquote>
@@ -3759,7 +5231,7 @@ body{
 <li>上证综指距布林带下轨（3734.58）仅70点（1.9%），若7/31继续下跌可能触及下轨支撑，关注下轨附近是否有技术性反弹。</li>
 <li>仅3个板块今日正流入（保险+6.47亿、电子布+6.41亿、玻璃玻纤+6.21亿），30个观测板块中27个负流入，市场广度极差。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：不提高整体仓位。A档主线 0 条，0/5站上5日线，0/5站上20日线，均线全面空头排列。维持现有仓位或适度降低。</li>
 <li><strong>做多优先级</strong>：无A档板块。今天没有适合主动提高整体仓位的主线。</li>
@@ -3771,7 +5243,7 @@ body{
 <li><strong>回避方向</strong>（D档24条，当日+5日双空，弱势先减、暂不新增）：</li>
 <li>芯片概念（-495亿）、CPO（-299亿）、PCB（-138亿）、OLED（-113亿）、半导体（-105亿）、锂电池（-100亿）、MiniLED（-97亿）、通信设备（-122亿）、HBM（-61亿）、AI算力（-25亿）、有色金属（-30亿）、证券（-22亿）、创新药（-22亿）、工业金属（-14亿/20日仍正）、黄金（-9亿/20日仍正）、CRO（-8亿）、化学制药（-7亿）、通信服务（-5亿）、生物疫苗（-5亿）、医疗器械（-5亿）、生物制品（-4亿）、多元金融（-2亿）、医药商业（-1亿）、白银（-0.02亿/20日仍正）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-07-30（changedist/kline/fund flow/sector ranking 均为7/30收盘数据；market-overview trade/updown/interval/technical 为7/29数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -3792,8 +5264,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-30-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-07-30 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-07-30 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：<strong>偏空</strong>，上午收盘上涨 1901 家、下跌 3458 家，上涨占比仅 34%（较昨日午盘61%骤降27pp），5大指数全线暴跌，科技板块遭主力集中抛售</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -3817,7 +5289,7 @@ body{
 <li>5个指数仍全部跌破MA5/MA10/MA20（连续3日0/5），均线系统空头排列加剧</li>
 <li>创业板指从-0.47%恶化至-5.89%，科创50从-4.22%恶化至-6.34%，<strong>科技成长遭集中杀跌</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（消费/防御方向继续领涨，资金避险集中）：</p>
 <ul>
 <li><strong>商用车</strong> +4.04%（5日 +7.46%，20日 +8.18%，江淮汽车涨停）</li>
@@ -3855,7 +5327,7 @@ body{
 <li><strong>有色金属</strong>（中钨高新）：主力 -24.14亿，5日 -1.57亿 → <strong>D档·转负</strong></li>
 <li><strong>白银概念</strong>：主力 +2.30亿，20日 +8.46亿 → <strong>A档·全周期正，唯一亮点</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>减仓</strong>。0/5站上MA5/MA10/MA20连续3日，均线空头排列加剧；主力流出从-583亿扩大至-1455亿（+150%），科技板块恐慌性抛售，跌超5%家数从499→902只（+80%），<strong>不具备任何加仓条件，弱势持仓应优先降低</strong>。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -3882,8 +5354,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-29">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-07-29</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-07-29</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏空（0/5站上20日线触发偏空条件），但抛压较上一交易日（7/28）大幅下降，今日为7/28暴跌后的修复反弹</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转，"反弹—暴跌"循环仍在持续，需连续确认</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>0/5</strong> 个指数站上5日线、<strong>0/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线，上涨 <strong>4253</strong> 家、下跌 <strong>1215</strong> 家，主力资金以30个观测板块加总近似约 <strong>-482亿</strong>（从7/28的-3260亿大幅改善，单日改善+2778亿）。今天<strong>仍不提高</strong>整体仓位；虽然76%个股反弹、资金流出大幅收窄，但所有指数仍在全部关键均线下方运行，均线系统呈空头排列，不具备趋势性反转条件。</p>
@@ -3925,7 +5397,7 @@ body{
 <li><strong>但仍不具备加仓条件</strong>：0/5站上5日线、0/5站上10日线、0/5站上20日线，均线全面空头排列，A档仅3条且全为贵金属/有色方向，科技板块仍在大幅流出。</li>
 <li>盘中有资金买入迹象：上证从日内低点3782.48拉回至3828.47（+1.2%），创业板从3249.65拉回至3378.70（+4.0%），多个指数从日内低点有效拉回；但这个信号只证明指数层面有买盘，还不能证明多数科技板块转强（芯片概念-137亿、半导体-82亿仍大幅流出）。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 3 条</strong>：</p>
 <ul>
 <li><strong>黄金概念</strong>：主力资金净额 +6.16亿，5日 +26.80亿，20日 +64.97亿 —— 全周期主力资金正流入，7/28回调一日后恢复正流入</li>
@@ -4033,7 +5505,7 @@ body{
 <li>科技板块在76%上涨日仍遭大幅流出，芯片概念-137亿、半导体-82亿、CPO-66亿，"被抛弃的反弹"特征明显。</li>
 <li>消费/防御板块领涨（教育+5.56%、游戏+5.43%、休闲食品+4.57%），风格继续切向防御。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：不提高整体仓位。A档主线 3 条（&lt;5），0/5站上5日线，0/5站上20日线，均线全面空头排列。维持现有仓位或适度降低。</li>
 <li><strong>做多优先级</strong>（A档3条，全周期资金正流入）：</li>
@@ -4049,7 +5521,7 @@ body{
 <li><strong>回避方向</strong>（D档16条，当日+5日双空，弱势先减、暂不新增）：</li>
 <li>芯片概念（-137亿）、半导体（-82亿）、CPO（-66亿）、OLED（-58亿）、HBM（-52亿）、PCB（-39亿）、AI算力（-21亿）、MiniLED（-14亿）、创新药（-10亿）、通信设备（-8亿）、化学制药（-4亿）、生物疫苗（-3亿）、生物制品（-2亿）、通信服务（-1亿）、医药商业（-1亿）、多元金融（-1亿）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-07-29（changedist/kline/fund flow/sector ranking 均为7/29收盘数据；market-overview trade/updown/interval/technical 为7/28数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -4070,8 +5542,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-29-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-07-29 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-07-29 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：中性偏空，上午收盘上涨 3431 家、下跌 2000 家，上涨占比 61%（较昨日午盘51%显著回升），但5大指数全线收跌，呈现"小盘涨、大盘跌"的明显分化格局</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -4095,7 +5567,7 @@ body{
 <li>5个指数仍全部跌破MA5/MA10/MA20（0/5），均线系统空头排列未改变</li>
 <li><strong>抛压显著减轻，但尚未反转：指数仍全线下跌，科技板块流出虽缩减但仍为负</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（消费/防御方向领涨，与昨日类似但力度更强）：</p>
 <ul>
 <li><strong>教育</strong> +4.80%（5日 +10.70%）</li>
@@ -4132,7 +5604,7 @@ body{
 <li><strong>黄金概念</strong>：主力 +0.31亿，全周期正 → <strong>A档·全天候偏多</strong></li>
 <li><strong>白银概念</strong>：主力 +0.86亿，全周期正 → <strong>A档·全天候偏多</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>维持</strong>。0/5站上MA5/MA10/MA20，均线空头排列未改变，不具备加仓条件；但抛压显著减轻（主力流出-1728亿→-583亿，缩减66%），市场广度回升（61%上涨），暂不进一步减仓，观察午后企稳信号。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -4157,8 +5629,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-28">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-07-28</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-07-28</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏空，且抛压较上一交易日（7/27）大幅上升</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转，"反弹—暴跌"交替循环持续</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>0/5</strong> 个指数站上5日线、<strong>0/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线，上涨 <strong>2603</strong> 家、下跌 <strong>2769</strong> 家，主动资金以30个观测板块加总近似约 <strong>-3260亿</strong>（从7/27的+2040亿大幅转为净流出，变化-5300亿）。今天<strong>仍不提高</strong>整体仓位；7/27的反弹被完全吞噬，所有指数跌破全部关键均线，均线系统呈空头排列。</p>
@@ -4200,7 +5672,7 @@ body{
 <li><strong>不具备加仓条件</strong>：0/5站上5日线、0/5站上10日线、0/5站上20日线，均线全面空头排列，A档0条。</li>
 <li>盘中无明显资金买入迹象：5个指数全日震荡走低，上证从日内高点3844.01跌至收盘3813.31（-0.8%），创业板从3511.7暴跌至3327.03（-5.3%），无指数出现有效拉回。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>：</p>
 <p>今天没有适合主动提高整体仓位的主线。7/27的A档3条（黄金概念/白银概念/工业金属）今日全部降级——当日主力资金由正转负（黄金-21.90亿、白银-8.15亿、工业金属-17.71亿），虽然5日资金仍为正流入，但当日转负标志着反弹动能中断。</p>
 <p><strong>反转/新启动候选有 0 条</strong>：</p>
@@ -4287,7 +5759,7 @@ body{
 <li>"反弹—暴跌"交替循环持续：7/23反弹→7/24暴跌→7/27反弹→7/28暴跌，每次反弹均在次日被吞噬，市场处于下行通道中。</li>
 <li>防御性板块（银行+13.17亿、白酒+7.68亿）成为今日唯一资金正流入方向，风格切向防御。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：不提高整体仓位。A档主线 0 条，0/5站上5日线，0/5站上20日线，均线全面空头排列。维持现有仓位或适度降低。</li>
 <li><strong>做多优先级</strong>：无。今天没有适合主动提高整体仓位的主线。</li>
@@ -4298,7 +5770,7 @@ body{
 <li><strong>回避方向</strong>（D档13条，当日+5日双空，弱势先减、暂不新增）：</li>
 <li>CPO（-446亿）、半导体（-293亿）、通信设备（-212亿）、PCB（-187亿）、MiniLED（-133亿）、AI算力芯片（-132亿）、通信服务（-3亿）、电子布（-16亿）、CRO（-6亿）、化学制药（-8亿）、创新药（-14亿）、生物疫苗（-1亿）、医疗器械（-66亿）、券商（-33亿）</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-07-28（changedist/kline/fund flow/sector ranking 均为7/28收盘数据；market-overview trade/updown/interval/technical 为7/27数据，后端滞后一个交易日）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -4318,8 +5790,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-28-mid">
-      <div class="md-card"><div class="md"><h1>午盘操盘指引 | 2026-07-28 上午</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、上午盘面速览</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">午盘操盘指引 | 2026-07-28 上午</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>一、上午盘面速览</h2>
 <p><strong>大盘状态</strong>：偏空，上午收盘上涨 2836 家、下跌 2521 家，上涨占比 51%</p>
 <ul>
 <li><strong>指数涨跌</strong>（截至11:30）：</li>
@@ -4342,7 +5814,7 @@ body{
 <li>5个指数从 3/5站上MA5 降为 0/5站上MA5，0/5站上MA10，0/5站上MA20</li>
 <li><strong>昨日反弹被今日上午完全吞噬，抛压大幅上升</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块信号速览</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>二、板块信号速览</h2>
 <p><strong>上午强势板块</strong>（资金正流入+涨幅领先，均为消费/防御方向）：</p>
 <ul>
 <li><strong>休闲食品</strong>：+3.79%，休闲食品概念 +3.51%</li>
@@ -4373,7 +5845,7 @@ body{
 <li><strong>黄金概念</strong>：主力 -14.68亿，5日 +92.59亿，10日 +89.43亿 → <strong>今日转负但多周期仍正</strong></li>
 <li><strong>白银概念</strong>：主力 -4.29亿，5日 +39.62亿，10日 +46.93亿 → <strong>今日微负但多周期仍正</strong></li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、下午操盘指引</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📌</span>三、下午操盘指引</h2>
 <ul>
 <li><strong>整体仓位</strong>：<strong>减仓</strong>。全线主力流出约-1728亿，0/5站上MA5/MA10/MA20，抛压较昨日大幅上升（跌超5%从26只暴增至360只），昨日反弹全部回吐。午后以控制风险为主。</li>
 <li><strong>重点关注（做多方向）</strong>：</li>
@@ -4397,8 +5869,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-27">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-07-27</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-07-27</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏多，且抛压较上一交易日（7/24）大幅下降</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转，需连续确认</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>3/5</strong> 个指数站上5日线、<strong>1/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线，上涨 <strong>5195</strong> 家、下跌 <strong>286</strong> 家，主动资金以30个观测板块加总近似约 <strong>+2040亿</strong>（从7/24的-1015亿大幅转为净流入，变化+3055亿）。今天<strong>可以考虑小幅提高</strong>整体仓位——A档成熟上行主线达到3条门槛且大盘偏多；但0/5站上20日线，中期趋势尚未确认反转，需后续连续站稳均线才能持续加仓。</p>
@@ -4440,7 +5912,7 @@ body{
 <li><strong>已具备初步加仓条件</strong>：上涨家数93%远超半数，3/5站上5日线，A档3条达标。但0/5站上20日线、成交额仍低于多周期均值，中期趋势未确认。</li>
 <li>盘中资金买入迹象明显：5个指数全日震荡走高，上证从日内低点3793.45拉回收3858.25（+1.7%），创业板从3449.21拉回收3590.79（+4.1%），且板块扩散面广（93%个股上涨），非单纯指数行情。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 3 条</strong>（全周期主力资金正流入，当前市场唯一A档主线）：</p>
 <ul>
 <li><strong>黄金概念</strong>：主力 +12.67亿，5日 +75.46亿，10日 +50.69亿，20日 +67.19亿</li>
@@ -4521,7 +5993,7 @@ body{
 <li>7/24报告中提示的科技板块风险今日部分缓解（芯片概念从-182亿转为+873亿），但半导体行业本身仍在流出(-83亿)，资金回流集中在芯片概念（含更广范围）而非申万半导体行业本身。</li>
 <li>玻璃玻纤/电子布是今日最强主线（B档），中国巨石/生益科技受益明显，但20日仍-35%至-39%，属深度超跌反弹。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：可小幅提高整体仓位。A档主线 3 条（黄金/白银/工业金属，全周期资金正流入），达到≥3条门槛且大盘偏多（93%上涨、3/5站上5日线）。但0/5站上20日线、成交额仍低于多周期均值，提高幅度宜小不宜大。</li>
 <li><strong>做多优先级</strong>（A档3条，全周期资金正流入）：</li>
@@ -4536,7 +6008,7 @@ body{
 <li>主力逆势流出（9条）：半导体（-83亿）、AI算力芯片（-44亿）、券商、保险、化学制药、医疗器械、通信服务、CRO、生物制品</li>
 <li><strong>回避方向</strong>：无D档板块。但半导体(-83亿)和AI算力芯片(-44亿)在普涨日仍遭主力大幅流出，若持续流出将率先降级为D档，需重点跟踪。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li><strong>数据日期</strong>：2026-07-27（changedist/kline/fund flow/sector ranking 均为7/27收盘数据；market-overview trade/updown/interval/technical 为7/24数据，后端滞后一个交易日以上——7/24为周五，7/27为周一，后端尚未更新至7/27）</li>
 <li><strong>数据来源</strong>：腾讯自选股接口（经 westock-data）</li>
@@ -4557,8 +6029,8 @@ body{
 </blockquote></div></div>
     </template>
     <template id="tpl-2026-07-24">
-      <div class="md-card"><div class="md"><h1>行业概念板块雷达 | 2026-07-24</h1></div></div>
-      <div class="md-card"><div class="md"><h2>一、今日结论｜大盘多空状态</h2>
+      <div class="md-card"><div class="md"><div class="report-title-bar">行业概念板块雷达 | 2026-07-24</div></div></div>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📡</span>一、今日结论｜大盘多空状态</h2>
 <p><strong>大盘状态</strong>：偏空，且抛压较上一交易日大幅上升</p>
 <p><strong>中期趋势判断</strong>：尚未趋势性反转，需连续确认</p>
 <p>中期反转需要连续确认，不能只看一天涨跌。现在 <strong>0/5</strong> 个指数站上5日线、<strong>0/5</strong> 个站上10日线、<strong>0/5</strong> 个站上20日线，上涨 <strong>555</strong> 家、下跌 <strong>4940</strong> 家，主力资金以30个观测板块加总近似约 <strong>-1015亿</strong>（与7/23的-1004亿基本持平，价格暴跌且机构资金持续流出），大单/超大单分项暂无数据。今天<strong>仍不提高</strong>整体仓位；7/23的反弹已被今日暴跌完全吞噬，机构资金两日合计流出超-2000亿，需要看到资金和上涨股票数量连续恢复才能考虑加仓。</p>
@@ -4578,7 +6050,7 @@ body{
 <li><strong>机构资金两日持续流出</strong>：7/23 -1004亿 + 7/24 -1015亿 = 两日合计约-2019亿。7/23是"价格涨但机构卖"（背离），7/24是"价格跌且机构卖"（一致看空），抛压从隐性转为显性。</li>
 <li>盘中无明显资金买入迹象：沪深300从开盘4685.41冲高4704.08后一路下跌至4642.94，收盘4649.19仅高于日内低点6点，全日单边下行无买盘支撑。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>二、板块交易结论</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>二、板块交易结论</h2>
 <p><strong>优先做多方向（成熟上行趋势）是 0 条</strong>：今天没有适合主动提高整体仓位的主线。7/23的A档3条（保险、白银概念、黄金概念）今日全部转为资金净流出，A档归零。</p>
 <p><strong>反转/新启动候选有 0 条</strong>：今日市场全面下跌，行业涨幅最高仅地面兵装+2.23%（非观测主线），无任何观测主线涨幅超3%触发反转信号。</p>
 <p><strong>反弹修复里更偏减仓信号的是</strong> 半导体（主力 +36.53亿，5日 -336.47亿，upDownRatio 41%）、HBM（主力 +36.31亿，5日 -133.18亿）、存储器（主力 +4.24亿，5日 -424.73亿）等 3 条。这些方向当日有资金流入但5日趋势仍大幅流出，属单日脉冲无连续性；反弹更适合降低弱势持仓；没有仓位不进行买入。</p>
@@ -4603,7 +6075,7 @@ body{
 <li>唯一相对正面的是半导体行业今日资金净流入+36.53亿（C档，行业排名#1），但5日仍为-336.47亿，且扩散差（41%上涨），不具持续性。</li>
 <li>7/23报告中提示的科技板块风险今日全面兑现：芯片概念(-182.13亿)、CPO(-113.50亿)、PCB(-86.86亿)、通信设备(-65.90亿)均大幅流出。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>三、操作纪律</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">🎯</span>三、操作纪律</h2>
 <ul>
 <li><strong>仓位</strong>：不提高整体仓位。A档主线 0 条（远低于3条门槛），大盘0/5站上任何均线、主力资金-1015亿持续流出，维持现有仓位甚至考虑降低。</li>
 <li><strong>做多优先级</strong>：无（A档0条）。今天没有适合主动做多的主线。</li>
@@ -4611,7 +6083,7 @@ body{
 <li><strong>减仓信号</strong>：半导体、HBM、存储器（C档3条）。当日资金正流入但5日趋势仍空，降低弱势持仓、无仓位不买入。</li>
 <li><strong>回避方向</strong>：芯片概念、CPO、锂电池、PCB、有色金属、通信设备、券商、MiniLED、创新药、黄金概念、电力设备、工业金属、化学制药、白银概念、电网设备、OLED、AI算力芯片、保险、电子布、生物疫苗、玻璃玻纤、通信服务、生物制品、CRO、医疗器械、多元金融、医药商业（D档27条）。弱势先减、暂不新增。</li>
 </ul></div></div>
-      <div class="md-card"><div class="md"><h2>四、数据备注</h2>
+      <div class="md-card"><div class="md"><h2><span class="sec-emoji">📊</span>四、数据备注</h2>
 <ul>
 <li>数据日期：2026-07-24（changedist、kline sh000300、fund flow、sector ranking 均为7/24收盘数据；market-overview trade/updown/interval/technical 为7/23数据，后端滞后一天）</li>
 <li>数据来源：腾讯自选股接口（经 westock-data）</li>

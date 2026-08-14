@@ -1,0 +1,397 @@
+# -*- coding: utf-8 -*-
+"""
+pretty_report.py — 统一的「投研日报级」正文页渲染模板
+=====================================================
+供 404k-daily / 404k-weekly 的渲染脚本共用。
+
+设计语言对齐 AI投研日报（daily-news/stock-invest）：
+深色渐变背景 + hero 徽标/渐变标题 + TOC 胶囊导航 + 章节金色标题条 +
+圆角表格 + 金边引用卡 + 彩色列表 marker + 阅读进度条 + 前/后篇导航。
+
+用法：
+    from pretty_report import render_article
+    html = render_article(
+        badge='404K SEMI · DAILY',
+        title='404K 半导体日报',
+        date_label='2026-08-12 · 周三',
+        subtitle='生成时间 2026-08-13 05:00 · 文档 74 份 / 重点 19 份',
+        body_html=body_html,            # markdown 库渲染后的正文（已做后处理）
+        toc=[('id','一、今日核心信号'), ...],   # 可选，章节锚点
+        prev_html='report_2026-08-11.html',
+        next_html='report_2026-08-13.html',
+        home_href='../index.html',
+        footer_note='数据来源：404K Semi-AI 知识库',
+        og_desc='...',
+        og_url='...',
+    )
+
+依赖：无（纯字符串拼接）。
+"""
+import re
+import json
+
+# ---------------------------------------------------------------------------
+# 章节 emoji 映射：给 markdown 的 h2 章节标题自动配图标
+# ---------------------------------------------------------------------------
+SECTION_EMOJI = [
+    (r'今日核心信号|核心信号', '🔍'),
+    (r'持仓个股动态|持仓个股|持仓标的|个股动态', '💼'),
+    (r'产业链关键信号|产业链', '🔗'),
+    (r'风险提示|风险', '⚠️'),
+    (r'数据速览|数据', '📊'),
+    (r'附录|文档清单', '📎'),
+    (r'价格数据|时间序列', '💰'),
+    (r'投行评级|评级变化|评级台账', '🏦'),
+    (r'下周关注|关注清单', '🎯'),
+    (r'板块交易结论|交易结论|操作纪律', '🎯'),
+    (r'大盘多空|多空状态|大盘状态', '📡'),
+    (r'底部特征|顶部特征|指标', '🧭'),
+    (r'结论|总结', '📌'),
+]
+
+
+def emoji_for_heading(text):
+    for pat, emoji in SECTION_EMOJI:
+        if re.search(pat, text):
+            return emoji
+    return '📌'
+
+
+def build_toc(body_html):
+    """从渲染后的 HTML 提取 h2（带 id 的），生成 TOC 条目。"""
+    toc = []
+    for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>', body_html, re.DOTALL):
+        txt = re.sub(r'<[^>]+>', '', m.group(2)).strip()
+        toc.append((m.group(1), txt))
+    return toc
+
+
+def postprocess_body(body_html):
+    """对 markdown 渲染结果做后处理：
+    1. h2 注入 emoji + 锚点 id
+    2. table 包 .table-wrap（移动端横向滚动）
+    3. 删除第一个 h1（标题已在 hero 呈现）
+    """
+    # 1. 删除首个 h1（含其后续紧跟的空行）
+    body_html = re.sub(r'<h1>.*?</h1>\s*', '', body_html, count=1, flags=re.DOTALL)
+
+    # 2. h2: 加 id + emoji
+    def h2_repl(m):
+        txt = m.group(1)
+        plain = re.sub(r'<[^>]+>', '', txt).strip()
+        anchor = 'sec-' + re.sub(r'\s+', '', plain)[:12]
+        emoji = emoji_for_heading(plain)
+        return f'<h2 id="{anchor}"><span class="sec-emoji">{emoji}</span>{txt}</h2>'
+    body_html = re.sub(r'<h2>(.*?)</h2>', h2_repl, body_html, flags=re.DOTALL)
+
+    # 3. table 包横向滚动容器
+    def table_repl(m):
+        return '<div class="table-wrap">' + m.group(0) + '</div>'
+    body_html = re.sub(r'<table>.*?</table>', table_repl, body_html, flags=re.DOTALL)
+
+    return body_html
+
+
+# ---------------------------------------------------------------------------
+# 页面模板
+# ---------------------------------------------------------------------------
+def render_article(badge, title, date_label, subtitle, body_html,
+                   toc=None, prev_html=None, next_html=None,
+                   home_href='../index.html', footer_note='',
+                   og_desc='', og_url='', og_image=None):
+    toc_html = ''
+    if toc:
+        items = ''.join(
+            f'<a href="#{anchor}">{label}</a>'
+            for anchor, label in toc
+        )
+        toc_html = f'<nav class="toc">{items}</nav>'
+
+    prev_a = (f'<a class="nav-arrow" href="{prev_html}">← {prev_html.replace("report_", "").replace(".html", "")}</a>'
+              if prev_html else '<span class="nav-arrow disabled">← 无更早</span>')
+    next_a = (f'<a class="nav-arrow" href="{next_html}">{next_html.replace("report_", "").replace(".html", "")} →</a>'
+              if next_html else '<span class="nav-arrow disabled">无更新 →</span>')
+
+    og_img = og_image or 'https://reports.xiaoyiyi.wang/assets/og-share.jpg'
+    page_title = f'{title} | {date_label.split("·")[0].strip()}'
+
+    css = f'''
+*,*::before,*::after{{margin:0;padding:0;box-sizing:border-box}}
+:root{{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}}
+html{{scroll-behavior:smooth}}
+body{{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}}
+/* 背景光晕 */
+.bg{{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}}
+/* 扫描线 */
+.scan{{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}}
+@keyframes scanDown{{0%{{top:-1px;opacity:0}}3%{{opacity:1}}97%{{opacity:1}}100%{{top:100%;opacity:0}}}}
+/* 阅读进度条 */
+.progress{{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}}
+/* 页面容器 */
+.page{{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}}
+/* Hero */
+.hero{{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}}
+.hero-badge{{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}}
+.hero-badge .blink{{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}}
+@keyframes pulse{{0%,100%{{opacity:1;transform:scale(1)}}50%{{opacity:.35;transform:scale(.7)}}}}
+.hero h1{{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}}
+.hero .hero-line{{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}}
+.hero .sub{{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}}
+.hero .meta-line{{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}}
+.hero .chip{{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}}
+.hero .chip.hl{{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}}
+@keyframes enterUp{{from{{transform:translateY(16px)}}to{{transform:translateY(0)}}}}
+/* TOC */
+.toc{{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}}
+.toc a{{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}}
+.toc a:hover{{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}}
+.back-link{{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}}
+.back-link:hover{{color:var(--cyan);border-color:rgba(34,211,238,.4)}}
+.nav-arrows{{display:flex;gap:8px}}
+.nav-arrow{{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}}
+.nav-arrow:hover{{color:var(--blue);border-color:var(--blue)}}
+.nav-arrow.disabled{{color:var(--text-dim);opacity:.45;cursor:default}}
+/* 正文卡片 */
+.content{{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}}
+/* markdown 内容样式 */
+.md{{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}}
+.md h2{{
+  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
+  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
+  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+}}
+.md h2 .sec-emoji{{font-size:.95em}}
+.md h3{{
+  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
+  border-left:3px solid var(--cyan);
+}}
+.md h4{{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}}
+.md p{{margin:12px 0;color:var(--text-mid)}}
+.md strong{{color:var(--text);font-weight:700}}
+.md em{{color:var(--pink);font-style:normal}}
+.md a{{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}}
+.md a:hover{{border-bottom-style:solid}}
+.md ul,.md ol{{margin:10px 0;padding-left:24px}}
+.md li{{margin:6px 0;color:var(--text-mid);line-height:1.8}}
+.md ul>li{{list-style:'›  '}}
+.md ul>li::marker{{color:var(--cyan)}}
+.md ul ul>li{{list-style:'·  ';font-size:.95em}}
+.md ul ul>li::marker{{color:var(--text-dim)}}
+.md ol>li::marker{{color:var(--gold);font-weight:700}}
+.md li>strong{{color:var(--text)}}
+.md blockquote{{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}}
+.md blockquote strong{{color:var(--gold)}}
+.md hr{{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}}
+.md code{{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}}
+.md pre{{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}}
+.md pre code{{background:none;padding:0;color:var(--text)}}
+.table-wrap{{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}}
+.md table{{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+}}
+.md thead{{position:relative}}
+.md th{{
+  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
+  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
+  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+}}
+.md td{{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}}
+.md tr:nth-child(even) td{{background:rgba(148,163,184,.045)}}
+.md tr:hover td{{background:rgba(96,165,250,.06)}}
+.md tbody tr:first-child td{{border-top:none}}
+/* Footer */
+.footer{{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}}
+.footer .hl{{color:var(--gold)}}
+.footer .lotus{{color:var(--pink)}}
+.footer .warn{{color:var(--text-dim)}}
+/* 移动端 */
+@media (max-width:600px){{
+  .page{{padding:18px 12px 44px}}
+  .content{{padding:18px 16px 22px;border-radius:14px}}
+  .md{{font-size:.9em}}
+  .md h2{{font-size:1em;margin:28px 0 12px}}
+  .md table{{font-size:.78em}}
+  .md th,.md td{{padding:7px 9px}}
+  .toc a{{padding:4px 10px;font-size:.74em}}
+  .toolbar{{gap:6px}}
+}}
+@media (prefers-reduced-motion:reduce){{
+  *,*::before,*::after{{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+  .scan,.progress{{display:none}}
+}}
+'''
+
+    js = '''
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+'''
+
+    html = f'''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{page_title}</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="{page_title}">
+<meta property="og:description" content="{og_desc}">
+<meta property="og:image" content="{og_img}">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="{og_url}">
+<meta itemprop="name" content="{page_title}">
+<meta itemprop="description" content="{og_desc}">
+<meta itemprop="image" content="{og_img}">
+<meta name="twitter:card" content="summary_large_image">
+<style>{css}</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>{badge}</span></div>
+    <h1><span class="g">{title}</span></h1>
+    <div class="sub">{subtitle}</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 {date_label}</span>
+    </div>
+  </header>
+
+  {toc_html}
+
+  <div class="toolbar">
+    <a class="back-link" href="{home_href}">← 返回列表</a>
+    <div class="nav-arrows">{prev_a}{next_a}</div>
+  </div>
+
+  <article class="content">
+    {body_html}
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="{home_href}">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>{footer_note}</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+{js}
+</body>
+</html>'''
+    return html
