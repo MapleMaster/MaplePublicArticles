@@ -1,0 +1,706 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404K 半导体日报 | 2026-08-17</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 半导体日报 | 2026-08-17">
+<meta property="og:description" content="404K 半导体日报 2026-08-17 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-daily/data/report_2026-08-17.html">
+<meta itemprop="name" content="404K 半导体日报 | 2026-08-17">
+<meta itemprop="description" content="404K 半导体日报 2026-08-17 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+.md h2{
+  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
+  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
+  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+}
+.md h2 .sec-emoji{font-size:.95em}
+.md h3{
+  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
+  border-left:3px solid var(--cyan);
+}
+.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
+  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
+  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+}
+.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
+.md tr:hover td{background:rgba(96,165,250,.06)}
+.md tbody tr:first-child td{border-top:none}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:28px 0 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:7px 9px}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · DAILY</span></div>
+    <h1><span class="g">404K 半导体日报</span></h1>
+    <div class="sub">生成时间：2026-08-18 05:00 | 文档总数：50份 / 筛选重点：25份（PDF 12 + 关键数据图/资讯汇总 13）</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-08-17 · 周一</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、今日核心信号">🔍一、今日核心信号</a><a href="#sec-二、持仓个股动态">💼二、持仓个股动态</a><a href="#sec-三、产业链关键信号">🔗三、产业链关键信号</a><a href="#sec-四、重要风险提示">⚠️四、重要风险提示</a><a href="#sec-五、数据速览">📊五、数据速览</a><a href="#sec-六、附录：今日文档清单">📎六、附录：今日文档清单</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><a class="nav-arrow" href="report_2026-08-16.html">← 2026-08-16</a><span class="nav-arrow disabled">无更新 →</span></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
+<p>生成时间：2026-08-18 05:00 | 文档总数：50份 / 筛选重点：25份（PDF 12 + 关键数据图/资讯汇总 13）</p>
+</blockquote>
+<hr />
+<h2 id="sec-一、今日核心信号"><span class="sec-emoji">🔍</span>一、今日核心信号</h2>
+<h3>1. InP衬底短缺加剧：Q4涨价或超10%创历史最大涨幅，光模块供应链瓶颈上移至材料层</h3>
+<ul>
+<li><strong>数据支撑</strong>：业内消息称磷化铟（InP）衬底自去年Q4起已连续4次涨价，最新一轮（Q4）涨幅预计&gt;10%（此前为3-5%），外延片也将连续第3次涨价；供应商直言"即使有钱，也未必能拿到材料"（来源：AXTI报道、404K晚报/早报，8/17）。Lumentum JPM论坛同步确认：CW激光器在1.6T世代采用率升至50-60%（800G为20-30%），NPO营收2026Q4达$5,000万-1亿、2027Q1突破$1亿。</li>
+<li><strong>产业链含义</strong>：AI光通信需求爆发使 InP 从"可替代材料"变成"硬瓶颈"，上游衬底厂（AXTI/IQE/全新光电/联亚光电/IET）量价齐升；但若缺料压制模块厂出货，涨价未必完全转化为利润。光模块从芯片（DSP/激光器）到材料（InP衬底/外延）全面紧张，验证光学超级周期仍在加深。</li>
+<li><strong>对持仓含义</strong>：直接利好<strong>中际旭创/天孚通信</strong>所在赛道——上游材料紧缺=下游需求旺盛的铁证；天孚上游光器件布局（无源+FAU）在供应链紧张中议价能力增强；风险是InP成本上行短期压制毛利率，但量增逻辑优先。</li>
+</ul>
+<h3>2. 瑞穗：VR200 NVL72 2026Q4起爬坡、2027年机架&gt;5万个，NPO/CPO与HBM为核心增量</h3>
+<ul>
+<li><strong>数据支撑</strong>：瑞穗AI Server Call确认——2026年部署2,500-3,000个NVL72机架（xAI/Meta引领），2027年Vera Rubin机架超5万个+GB系列超2万个；VR-Ultra由4-die转2-die架构，性能提升依赖NPO/CPO光互连与HBM；HBM4e价格高出70-100%；CoWoS 2027年同比+75%（NVDA/AVGO主导），CoPoS/EMIB-T 2028年放量（来源：瑞穗，8/17）。</li>
+<li><strong>产业链含义</strong>：英伟达平台从"单GPU"转向"机架级"交付，机架数量直接传导至CoWoS/HBM/CPO/供电/冷却需求；CPO/Spectrum-X交换机2027年放量至8-10万台、2028年13万台+（瑞穗）；Feynman推迟4-die过渡，VR-Ultra 2-die转NPO/CPO是光模块最大增量窗口。</li>
+<li><strong>对持仓含义</strong>：<strong>中际旭创/天孚</strong>直接受益于NPO 2026-27放量+CPO 2028加速；<strong>通信ETF</strong>同步受益；机架爬坡不及预期则是光互连需求后移的最大风险变量。</li>
+</ul>
+<h3>3. 英伟达+OpenAI+SB Energy锁定俄亥俄8GW AI园区：AI工厂融资模式进入"电力即瓶颈"阶段</h3>
+<ul>
+<li><strong>数据支撑</strong>：英伟达投资SB Energy $15亿，PORTS-Pike园区总容量8GW（首期4.25GW用DSX平台，2028年起分阶段上线），OpenAI为租户；英伟达13F显示$632.4亿投资组合（英特尔47.4%/SpaceX 33.2%/CoreWeave 7.3%/Coherent 4.7%）；此前WSJ报道英伟达对OpenAI数据中心担保从$2,500亿降至&lt;$1,200亿（首期5GW）（来源：CNBC、WSJ、404K资讯汇总，8/16-17）。</li>
+<li><strong>产业链含义</strong>：云厂商与AI实验室的融资约束通过"芯片担保+电力锁定"解决，AWS员工称"电力比内存更稀缺、成本更高"；超大规模云+Meta占2026-28年新增GW的~75%。AI投资从GPU瓶颈扩散到供电、存储与光互连——正是今日404K科技晚报标题"瓶颈扩散"。</li>
+<li><strong>对持仓含义</strong>：AI算力CAPEX的确定性进一步夯实，对<strong>中际旭创/天孚/生益/长川/半导体ETF</strong>全链条形成需求支撑。</li>
+</ul>
+<h3>4. 存储长协战：美光16项SCA锁$220亿、2027年供需比2026更紧；铠侠仅能满足40-50%需求</h3>
+<ul>
+<li><strong>数据支撑</strong>：美光已签16项战略客户协议，覆盖约20% DRAM+1/3 NAND，期限5年（汽车3年），$220亿承诺含$180亿现金押金，设最低价格下限；美光CBO Sadana（8/10 KeyBanc）称"2027年供需将比2026年更紧张，仍不清楚供应何时满足需求"；铠侠FMS称只能满足40-50%需求，其余顺延至明年；群联CEO"2027年产能限制比2026年更严重"，6-7月购入NT$4.5亿+ NAND晶圆（来源：404K早报/晚报、美光财报会）。</li>
+<li><strong>产业链含义</strong>：存储从周期品转向"合同化+配额制"，SCA改变了盈利结构（照付不议+价格下限）；HBM每堆栈消耗晶圆为普通DRAM 3-4倍，供给弹性极低；NAND占CSP capex比例从12%升至2027年~17%（UBS）。</li>
+<li><strong>对持仓含义</strong>：存储超级周期延续至2027-2028年，HBM/DRAM/NAND扩产直接拉动<strong>长川科技、半导体设备ETF</strong>（测试设备/分选机需求）；存储涨价对<strong>科创芯片ETF</strong>（含存储权重）构成盈利支撑。</li>
+</ul>
+<h3>5. 三星1H26中国销售+208%反超美国，DRAM份额升至39.4%，HBM4已供货英伟达</h3>
+<ul>
+<li><strong>数据支撑</strong>：三星1H26中国销售额88.6万亿韩元（+207.7%）超美国70.7万亿韩元（+111%）；半导体DS部门营收209.2万亿韩元（占总营收68.5%、贡献97.4%营业利润）；DRAM份额从34.0%升至39.4%；已向英伟达Vera Rubin平台销售HBM4，但英伟达未进其前五大客户（前五为谷歌/亚马逊/苹果/港科大电子/至上电子）；三星+SK海力士1H26芯片设施投资+35%至43.2万亿韩元（来源：404K晚报、SemiVision）。</li>
+<li><strong>产业链含义</strong>：中国AI/存储需求爆发+三星HBM4进入英伟达供应链形成"竞争加剧+总量放大"格局；SK海力士对英伟达营收占比降至13.35%，客户集中度分散化。</li>
+<li><strong>对持仓含义</strong>：存储三巨头同步扩产验证设备需求；但HBM4竞争加剧可能压制价格预期，需跟踪Q3合约价。</li>
+</ul>
+<h3>6. BofA：美光按SNDK式假设EPS可达$236（FY30），市场一致预期仅$136——华尔街模型仍低估存储</h3>
+<ul>
+<li><strong>数据支撑</strong>：BofA用+15%销售CAGR、80%+毛利率、50%+FCF利润率测算美光FY30 EPS $236（一致预期$136，BofA情景高74%）；美光远期PE仅6-6.8x vs 历史均值~20x；若按20x×一致预期2027 EPS推算股价&gt;$3,000（现价$830-900）；美光16项SCA最低合同收入近$1,000亿（来源：BofA Global Research，8/17）。</li>
+<li><strong>产业链含义</strong>：存储盈利结构因SCA发生永久性改变，市场用旧周期估值框架定价新商业模式；闪迪Q4毛利率84.6%（去年26.4%）+80%毛利率目标正在被复制到全行业定价逻辑。</li>
+<li><strong>对持仓含义</strong>：存储板块估值重估逻辑强化，映射<strong>科创芯片ETF/半导体ETF</strong>；对<strong>长川科技</strong>而言，存储厂高盈利→资本开支延续→设备订单持续。</li>
+</ul>
+<h3>7. 超大规模云商3.2万亿美元"锁定"AI承诺：表外承诺是已确认负债4倍，融资环境仍健康</h3>
+<ul>
+<li><strong>数据支撑</strong>：五大云商AI相关承诺合计$3.2万亿——谷歌$9,460亿(+116% QoQ)/Meta$7,310亿(+59%)/微软$6,720亿(+50%)/亚马逊$4,530亿(+13%)/甲骨文$3,490亿(+16%)；四大云RPO/积压订单合计$2.3万亿（同比3.5倍）；2026-27年capex接近$1-1.5万亿，2028年&gt;1.6万亿；WSJ：表外承诺（租赁/采购/能源合同）约为已确认负债的4倍（来源：404K晚报、Exponential View、WSJ，8/17）。</li>
+<li><strong>产业链含义</strong>：AI capex从"可调整的年度计划"变成"多年合同化建设"，需求确定性极高；但需三角验证——融资成本（美投资级利差仍低位稳定）、电力交付（PJM模型修正后2028/29缺口6.8→3GW）、实际投资回报。公司债市场"困境指数"接近历史均值，尚无压力信号。</li>
+<li><strong>对持仓含义</strong>：为<strong>中际旭创/天孚/生益/巨石</strong>的需求端提供3-4年可见度；需持续跟踪公司债利差作为先行风险指标。</li>
+</ul>
+<h3>8. 光互连从"带宽竞赛"转向"物理空间约束"：多芯光纤/CPO生态/800V供电成为新瓶颈战场</h3>
+<ul>
+<li><strong>数据支撑</strong>：OCP APAC 2026（台北，8/11-12）——AI基础设施正超越GPU：配电（800VDC架构、机架功率125kW→500kW→1MW）、液冷（认证阶段）、光纤密度（线缆桥架/连接器/弯曲半径）、BMC升级机架控制平面；康宁多芯光纤解决"每单位物理空间带宽"；CPO是生态问题（PIC/EIC/激光器/FAU/封装/测试）；致茂回馈式测试应对100kW+验证需求（来源：SemiVision OCP APAC、Semiconductor Engineering，8/17）。</li>
+<li><strong>产业链含义</strong>：价值量从"芯片×数量"转向"芯片×电力×热×网络×控制"；800VDC带火SiC/GaN/固态变压器/PMIC；BMC（信骅/新唐）、液冷（高力/丹佛斯/nVent）、测试（致茂）等"卖铲人"受关注。</li>
+<li><strong>对持仓含义</strong>：<strong>天孚通信</strong>在光纤密度/FAU/无源器件上的布局契合"物理空间约束"主线；<strong>中际旭创</strong>的光引擎/硅光能力受益CPO生态演进；机架级交付确定性利好全链条。</li>
+</ul>
+<h3>9. 纳斯达克出现"史上最大空头头寸"，SPX净多头90%分位——科技股短期拥挤度风险需警惕</h3>
+<ul>
+<li><strong>数据支撑</strong>：MacroCharts——基金两周内大举抛售纳斯达克，创史上最大空头头寸；标普净多头90th百分位、铜93rd百分位（拥挤）；VIX仓位近历史最低；SOX触及12k阻力位或回调，SMH波动率降至7个月低点（买盘自然形成、非杠杆推动）；QQQ若回落$700-710构成支撑（来源：MacroCharts 8/17）。</li>
+<li><strong>产业链含义</strong>：多头与空头同时极端=波动放大器；宏观流动性（30Y美债拍卖收益率5.216%创2001年来最高）与AI产业景气背离，利率仍是科技估值的悬顶之剑。</li>
+<li><strong>对持仓含义</strong>：A股半导体持仓短期需防美股科技回调的联动风险；但产业面（CAPEX/存储/光模块）持续强化，回调或为加仓窗口而非趋势反转。</li>
+</ul>
+<h3>10. 美国施压苹果弃用中国存储芯片：长鑫/长江存储地缘风险再度升温</h3>
+<ul>
+<li><strong>数据支撑</strong>：WSJ——特朗普政府正施压苹果不要采购中国存储（长鑫/长江存储），商务部长Lutnick已直接告知苹果；美光游说政府阻止，称损害制造业回流；苹果COO称短缺严重"必须考虑所有选择"（来源：WSJ、TMTB早报，8/17）。</li>
+<li><strong>产业链含义</strong>：全球存储短缺+价格飙升下，地缘政治干预供应链选择；中国存储扩产与西方市场准入形成"剪刀差"，长鑫生态链（设备/材料）国产替代逻辑强化，但海外订单受限。</li>
+<li><strong>对持仓含义</strong>：对A股存储设备/材料（<strong>长川</strong>等）是"自主可控"逻辑加分项；对港股/美股存储链需评估地缘折价。</li>
+</ul>
+<hr />
+<h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
+<h3>中际旭创 ★★★★★</h3>
+<ul>
+<li><strong>瑞穗AI Server Call（8/17）</strong>：VR200 NVL72 2026Q4起爬坡、2027年&gt;50K机架，NPO/CPO为光互连核心增量；NPO 2026-27放量、CPO 2028加速，Spectrum-X CPO交换机2027年放量至8-10万台——光模块龙头直接受益，瑞穗对DELL/CRDO/NVDA/AVGO/LITE持积极观点（LITE即光模块链条）。</li>
+<li><strong>JPM管理层论坛（8/17）</strong>：NPO以较CPO低25%复杂度提供85%效益，涉及约6个项目；CW激光器1.6T采用率50-60%；光学产能至2027年中仍是业绩制约（供应瓶颈=需求旺盛）。</li>
+<li><strong>InP涨价（8/17）</strong>：上游衬底连续第4次涨价（Q4&gt;10%）——验证光模块需求强度，但需跟踪成本传导；"即使有钱也未必买得到"的供应链状态对头部厂商（有长协锁价）反而是竞争壁垒。</li>
+<li><strong>英伟达生态（8/16-17）</strong>：VR-Ultra 2-die架构+俄亥俄8GW园区，机架级需求确定性强；旭创在Scale-Up/Scale-Out光互连中的份额地位稳固。</li>
+</ul>
+<h3>天孚通信 ★★★★</h3>
+<ul>
+<li><strong>InP短缺与光互连物理空间约束（8/17）</strong>：光纤密度成为系统瓶颈、多芯光纤/FAU/无源器件需求上升——天孚的无源器件+FAU+光引擎布局契合"物理空间约束"主线。</li>
+<li><strong>JPM论坛（8/17）</strong>：NPO较CPO低25%复杂度、85%效益，2026Q4营收$5,000万-1亿——天孚作为FAU/光引擎核心供应商受益NPO上量。</li>
+<li><strong>瑞穗（8/17）</strong>：NPO/CPO放量窗口2026-27年开启，光互连激光器产能全售罄（此前Coherent/Lumentum/AAOI确认），上游景气度持续。</li>
+</ul>
+<h3>生益科技 ★★★</h3>
+<ul>
+<li><strong>今日无直接个股研报</strong>，但产业链信号延续利好：</li>
+<li>CSP capex $3.2万亿锁定+2026-27年$1-1.5万亿（谷歌/Meta/微软/亚马逊/甲骨文）——AI服务器PCB/CCL需求基石；</li>
+<li>三星DRAM份额39.4%+HBM4供货英伟达——服务器出货强度验证；</li>
+<li>富士康Q2 AI服务器营收占比51%（目标2026Q4量产VR机架）——机架级PCB/覆铜板用量提升；</li>
+<li>南亚塑胶9/1 CCL涨价20-25%的传导（8/15信号）继续利好上游定价权。</li>
+</ul>
+<h3>长川科技 ★★★★</h3>
+<ul>
+<li><strong>存储扩产直接拉动测试/分选设备</strong>：美光16项SCA+$220亿承诺+2027年供需更紧；铠侠只能满足40-50%需求（扩产中）；三星/SK海力士1H26设施投资+35%至43.2万亿韩元。</li>
+<li><strong>韩国设备进口数据（8/17）</strong>：韩国干法/等离子蚀刻设备进口额超$3亿（湿法维持$2,000-4,000万），SK海力士M15X/三星P4爬坡+HBM TSV蚀刻增加——设备景气向存储器全面扩散，泛林最受益（映射A股设备板块）。</li>
+<li><strong>泛林FY26采购义务创历史新高（$10亿）</strong>（8/17）：设备厂对供应链的约束性承诺创新高，验证WFE需求持续。</li>
+<li><strong>台积电亚利桑那2nm或提前4个季度落成</strong>（8/17）：先进制程海外扩张提速，设备验证窗口延长。</li>
+</ul>
+<h3>半导设备ETF / 科创芯片ETF / 通信ETF ★★★★</h3>
+<ul>
+<li><strong>半导设备ETF</strong>：存储三巨头扩产（HBM晶圆消耗3-4x）+泛林采购义务新高+韩国干法蚀刻进口激增+台积电亚利桑那提前——设备需求多线验证；CoWoS 2027年+75%（瑞穗）。</li>
+<li><strong>科创芯片ETF</strong>：BofA美光EPS $236 vs 一致$136（存储估值重估）+三星/海力士盈利创峰值+中国HBM年底可能亮相——芯片权重股盈利预期上修。</li>
+<li><strong>通信ETF</strong>：光模块需求（NPO/CPO/InP紧张）+英伟达机架爬坡+云商CAPEX锁定——通信链条景气度与中际旭创/天孚同源。</li>
+</ul>
+<h3>中国巨石 ★★★</h3>
+<ul>
+<li><strong>今日无直接研报</strong>，CSP capex $3.2万亿+服务器/PCB需求映射电子纱/电子布需求（8/15南亚塑胶CCL涨价20-25%已确认玻纤布短缺、2027年前无新增产能）；AI机架级交付（VR200/GB系列）提升覆铜板上游材料用量；PCB/CCL景气延续构成间接利好。</li>
+</ul>
+<hr />
+<h2 id="sec-三、产业链关键信号"><span class="sec-emoji">🔗</span>三、产业链关键信号</h2>
+<h3>超大规模云商CAPEX</h3>
+<ul>
+<li>五大云商AI承诺$3.2万亿：谷歌$9,460亿(+116% QoQ) / Meta$7,310亿(+59%) / 微软$6,720亿(+50%) / 亚马逊$4,530亿(+13%) / 甲骨文$3,490亿(+16%)（404K晚报）</li>
+<li>四大云RPO/积压订单$2.3万亿（同比3.5倍）；2026-27 capex $1-1.5万亿，2028年&gt;1.6万亿；2027年新云/二线CSP占30%+（MSUSA/瑞穗）</li>
+<li>表外承诺约为已确认负债4倍（WSJ）；谷歌$811B采购承诺（10-Q，同比+1,000%）；谷歌考虑发行澳元债券</li>
+<li>公司债市场：投资级利差低位稳定、困境指数接近历史均值——融资环境尚未出现压力信号（野村）</li>
+<li>美国7月零售销售-0.6%（2025年5月来最大降幅）、非店铺零售-2.2%——终端消费与AI基建背离</li>
+</ul>
+<h3>存储/DRAM/NAND</h3>
+<ul>
+<li>美光：16项SCA（20% DRAM+1/3 NAND）、$220亿承诺（$180亿现金押金）、5年期、价格下限；2027年供需比2026更紧</li>
+<li>铠侠：FMS确认只能满足40-50%需求，其余顺延明年；群联CEO"2027年产能限制比2026年更严重"</li>
+<li>三星：1H26中国销售+208%超美国，DRAM份额39.4%，HBM4供货英伟达；三星+海力士1H26设施投资+35%至43.2万亿韩元</li>
+<li>BofA：美光FY30 EPS $236（SNDK式假设）vs 一致$136；远期PE 6-6.8x vs 历史均值20x</li>
+<li>存储价格：Wafer现货256Gb TLC 7日+17.5%/20日+40.8%/30日+44.7%；16Gb DDR4/DDR5现货连续第18周上涨（+2%周环比）；1Tb NAND现货+10%（美银）</li>
+<li>群联CEO：NAND短缺可能持续多年（建厂到投产需4年）；已耗$4.5亿+购晶圆</li>
+</ul>
+<h3>半导体设备</h3>
+<ul>
+<li>泛林FY26采购义务$10亿创历史新高（FY15 $2亿→FY26 $10亿）</li>
+<li>韩国干法蚀刻设备进口额超$3亿（湿法仅$2,000-4,000万）：SK海力士M15X/三星P4爬坡+HBM TSV蚀刻，泛林最受益</li>
+<li>台积电亚利桑那2nm或提前最多4个季度落成，P2设备2026H2装机、2027H2量产；1H26亚利桑那盈利+663%（Q2环比-8.2%，折旧压力初现）</li>
+<li>中芯国际Q2产能利用率93.7%、华虹102.8%——成熟制程满载</li>
+<li>CoWoS 2027年+75%（NVDA/AVGO），CoPoS/EMIB-T 2028年放量；EMIB-T良率&gt;97%（瑞穗）</li>
+</ul>
+<h3>PCB/覆铜板</h3>
+<ul>
+<li>今日无直接PCB/CCL研报；间接信号：富士康Q2 AI服务器营收占比51%（目标2026Q4量产VR机架、设备投资+30%）；机架级交付提升PCB/CCL单机价值量</li>
+<li>8/15南亚塑胶9/1 CCL/半固化片涨价20-25%的产业验证持续：玻纤布短缺、2027年前无新增产能（利好生益/巨石）</li>
+<li>日月光：先进封装成为"主板"级系统架构，面板级封装/混合键合长期并存（OCP APAC）</li>
+</ul>
+<hr />
+<h2 id="sec-四、重要风险提示"><span class="sec-emoji">⚠️</span>四、重要风险提示</h2>
+<ol>
+<li><strong>科技股仓位极端化</strong>：纳斯达克史上最大空头头寸+SPX净多头90%分位（MacroCharts）——短期波动放大，A股半导体板块或联动</li>
+<li><strong>利率环境恶化</strong>：30Y美债拍卖收益率5.216%创2001年来最高、10Y 4.683%创2007年来最高；7月赤字$4,320亿（同比+$1,410亿）——融资成本上行或压制高估值科技股</li>
+<li><strong>AI承诺兑现风险</strong>：$3.2万亿"锁定"承诺中，租约可延期/重组、capex指引会修订、电力与回报未兑现（404K晚报明确提示"三角验证"）；表外承诺4倍于已确认负债</li>
+<li><strong>InP缺料反噬</strong>：上游涨价若压制模块厂出货，涨价未必完全转化为利润（404K晚报对AXTI的提示）</li>
+<li><strong>存储需求破坏</strong>：Wafer现货30日+44.7%已开始挤出消费需求（&lt;100美元手机Q2 -64%、企业手机涨价10%考虑二手），涨价动能或在下半年放缓</li>
+<li><strong>地缘政治</strong>：美国施压苹果弃用中国存储芯片（WSJ）——长鑫/长江存储海外准入受限，但国内自主可控逻辑强化</li>
+<li><strong>PJM电力模型修正</strong>：2028/29可靠容量缺口由6.8GW降至约3GW，但2025/26与2026/27年度多承担$115.7亿容量成本，兜底合同最长至2043年——电力成本与并网节奏是AI数据中心交付的硬约束</li>
+<li><strong>科技股资金流</strong>：全球科技股票基金8/12当周净流出$1.7亿，结束连续6周流入（投资者多元化配置）</li>
+</ol>
+<hr />
+<h2 id="sec-五、数据速览"><span class="sec-emoji">📊</span>五、数据速览</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>变动</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wafer现货 256Gb TLC</td>
+<td>—</td>
+<td>7日+17.5% / 30日+44.7%</td>
+<td>存储价格图(8/17)</td>
+</tr>
+<tr>
+<td>DDR4/DDR5 16Gb 现货</td>
+<td>—</td>
+<td>连续18周上涨(+2%周)</td>
+<td>BofA(8/17)</td>
+</tr>
+<tr>
+<td>1Tb NAND 现货</td>
+<td>—</td>
+<td>环比+10%</td>
+<td>BofA(8/17)</td>
+</tr>
+<tr>
+<td>美光远期PE</td>
+<td>6-6.8x</td>
+<td>历史均值~20x</td>
+<td>BofA(8/17)</td>
+</tr>
+<tr>
+<td>美光FY30 EPS (BofA)</td>
+<td>$236</td>
+<td>一致预期$136(+74%)</td>
+<td>BofA(8/17)</td>
+</tr>
+<tr>
+<td>Citi闪迪目标价</td>
+<td>$2,100</td>
+<td>买入（强势$2,700/弱势$970）</td>
+<td>Citi(8/17)</td>
+</tr>
+<tr>
+<td>英伟达目标价</td>
+<td>$288</td>
+<td>MS重申增持/首选</td>
+<td>MS(8/17)</td>
+</tr>
+<tr>
+<td>ALAB目标价</td>
+<td>$350</td>
+<td>Northland上调至跑赢大盘</td>
+<td>Northland(8/17)</td>
+</tr>
+<tr>
+<td>五大云AI承诺</td>
+<td>$3.2万亿</td>
+<td>谷歌+116% QoQ领跑</td>
+<td>404K晚报(8/17)</td>
+</tr>
+<tr>
+<td>四大云RPO</td>
+<td>$2.3万亿</td>
+<td>同比3.5倍</td>
+<td>瑞穗/MS(8/17)</td>
+</tr>
+<tr>
+<td>三星DRAM份额</td>
+<td>39.4%</td>
+<td>2025年34.0%</td>
+<td>404K晚报(8/17)</td>
+</tr>
+<tr>
+<td>铠侠需求满足率</td>
+<td>40-50%</td>
+<td>其余顺延明年</td>
+<td>FMS(8/17)</td>
+</tr>
+<tr>
+<td>泛林FY26采购义务</td>
+<td>$10亿</td>
+<td>历史新高</td>
+<td>404K早报(8/17)</td>
+</tr>
+<tr>
+<td>30Y美债拍卖收益率</td>
+<td>5.216%</td>
+<td>2001年来最高</td>
+<td>Bloomberg(8/17)</td>
+</tr>
+<tr>
+<td>美国7月零售销售</td>
+<td>-0.6%</td>
+<td>2025年5月来最大降幅</td>
+<td>美商务部(8/17)</td>
+</tr>
+<tr>
+<td>AI经济年化营收</td>
+<td>$2,100亿+</td>
+<td>7月同比3倍</td>
+<td>Exponential View(8/17)</td>
+</tr>
+<tr>
+<td>台积电亚利桑那2nm</td>
+<td>—</td>
+<td>或提前4个季度</td>
+<td>404K晚报(8/17)</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="sec-六、附录：今日文档清单"><span class="sec-emoji">📎</span>六、附录：今日文档清单</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文档标题</th>
+<th>类型</th>
+<th>一句话摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>404K科技晚报 2026-08-17 瓶颈扩散</td>
+<td>自主报告</td>
+<td>AI投资由GPU延伸至供电、存储与光互连；$2.3万亿RPO+$3.2万亿承诺三角验证</td>
+</tr>
+<tr>
+<td>2</td>
+<td>信息汇总早报PDF-20260817-0500</td>
+<td>自主报告</td>
+<td>Citi闪迪$2,100、BofA美光EPS $236、JPM Lumentum NPO/CPO、谷歌$811B采购承诺</td>
+</tr>
+<tr>
+<td>3</td>
+<td>信息汇总晚报PDF-20260817-1830</td>
+<td>自主报告</td>
+<td>CSP NAND占比12%→17%、铠侠40-50%满足率、三星中国+208%、InP涨价&gt;10%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>TMTB科技早报 20260817</td>
+<td>外资晨报</td>
+<td>MS AWS $1万亿路径、Anthropic $115亿Q2、NVDA俄亥俄担保降至&lt;$1,200亿、AAPL中国存储施压</td>
+</tr>
+<tr>
+<td>5</td>
+<td>PhotonCap 阿申布伦纳和贝克的Q2 2026 13F</td>
+<td>自主深度</td>
+<td>Aschenbrenner清仓$84亿看跌转做多内存（SNDK+MU占55.6%）；Baker连接层12.4%未动、清仓Lumentum</td>
+</tr>
+<tr>
+<td>6</td>
+<td>SemiVision OCP亚太 2026</td>
+<td>SemiVision</td>
+<td>AI基础设施超越GPU：800VDC/液冷认证/光纤密度/CPO生态/BMC机架控制平面</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SemiVision 从芯片到现金：台湾分享AI热潮红利</td>
+<td>SemiVision</td>
+<td>台湾2026 GDP预计+11.05%（39年来最强）；财政再分配</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Semiconductor Engineering 半导体工程每日汇总</td>
+<td>行业媒体</td>
+<td>800VDC供电架构深度（SiC/GaN/固态变压器/PMIC）+键合测试可靠性</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Exponential View 开启新一周的数据速览</td>
+<td>自主报告</td>
+<td>AI经济年化$2,100亿；智能体推CPU市场2026 $610亿→2030 $2,110亿；德州暂停数据中心接入</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MacroCharts 大空头</td>
+<td>宏观仓位</td>
+<td>纳斯达克史上最大空头头寸；SPX净多头90%分位；SOX 12k回调风险</td>
+</tr>
+<tr>
+<td>11</td>
+<td>信息汇总晚报（CPO/NPO市场更新图）</td>
+<td>关键数据图</td>
+<td>英伟达CPO Spectrum-X量产：2026E 1.5万units/2027E 10万units；Rubin Ultra 9-18-9托盘</td>
+</tr>
+<tr>
+<td>12</td>
+<td>英伟达SB Energy俄亥俄8GW园区图</td>
+<td>关键数据图</td>
+<td>英伟达$15亿投资、首期4.25GW DSX、2028起上线；黄仁勋称OpenAI为租户</td>
+</tr>
+<tr>
+<td>13</td>
+<td>260817存储价格涨跌幅图</td>
+<td>关键数据图</td>
+<td>Wafer 256Gb TLC 7日+17.5%、128Gb +14.9%；DDR5合同价续涨</td>
+</tr>
+<tr>
+<td>14</td>
+<td>三星中国/美国销售图</td>
+<td>关键数据图</td>
+<td>中国+207.7%至88.6万亿韩元超美国；DS部门贡献97.4%营业利润</td>
+</tr>
+<tr>
+<td>15</td>
+<td>群联CEO NAND短缺图</td>
+<td>关键数据图</td>
+<td>"2027年产能限制比2026年更严重"；NAND短缺持续多年</td>
+</tr>
+<tr>
+<td>16</td>
+<td>韩国干法蚀刻设备进口图</td>
+<td>关键数据图</td>
+<td>干法蚀刻进口超$3亿（湿法$2,000-4,000万）；泛林最大受益者</td>
+</tr>
+<tr>
+<td>17</td>
+<td>美光SCA/2027供需图</td>
+<td>关键数据图</td>
+<td>"2027年供需比2026年更紧张"；SCA客户获配额优先</td>
+</tr>
+<tr>
+<td>18</td>
+<td>InP短缺涨价图</td>
+<td>关键数据图</td>
+<td>Q4涨价&gt;10%历史最大涨幅；"即使有钱也未必买得到"</td>
+</tr>
+<tr>
+<td>19</td>
+<td>台积电亚利桑那2nm提前图</td>
+<td>关键数据图</td>
+<td>2nm厂或提前最多4季度落成；P2 2026H2装机</td>
+</tr>
+<tr>
+<td>20</td>
+<td>云商capex/公司债市场图</td>
+<td>关键数据图</td>
+<td>云商capex=营业现金流规模；投资级利差低位稳定</td>
+</tr>
+<tr>
+<td>21</td>
+<td>云商/Meta新增GW占比图</td>
+<td>关键数据图</td>
+<td>超大规模云+Meta占2026-28新增GW ~75%</td>
+</tr>
+<tr>
+<td>22</td>
+<td>LLM Token支出·GPU租赁价格图</td>
+<td>关键数据图</td>
+<td>H100/H200租赁价格周度更新；GPU租赁与AI股票回报无显著相关</td>
+</tr>
+<tr>
+<td>23</td>
+<td>VR200 NVL72爬坡图</td>
+<td>关键数据图</td>
+<td>2026E 2,500-3,000机架；2027E VR&gt;5万+GB&gt;2万；VR-Ultra 2-die</td>
+</tr>
+<tr>
+<td>24</td>
+<td>BofA美光EPS图</td>
+<td>关键数据图</td>
+<td>SNDK式假设FY30 EPS $236 vs 一致$136；34% CAGR FY26-30</td>
+</tr>
+<tr>
+<td>25</td>
+<td>美国企业AI支出图</td>
+<td>关键数据图</td>
+<td>Top 1%企业人均AI支出$7,400/月（2024年初&lt;$1,000），超典型企业600倍</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<p><em>本日报由小荷自动整理，基于404K知识库2026-08-17文档，仅作客观信息整理，不构成投资建议。数据标注来源，时效性截至2026-08-17。</em></p>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 生成后自动归档</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
