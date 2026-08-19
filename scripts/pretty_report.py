@@ -117,9 +117,12 @@ def postprocess_body(body_html):
     body_html = re.sub(r'<table>.*?</table>', table_repl, body_html, flags=re.DOTALL)
 
     # 4. 核心信号卡片化：<p><strong>N. 标题</strong></p> + <ul>…</ul> → .signal-card
-    #    仅标题带编号（"1. "）时生效，避免误伤普通粗体+列表；
-    #    同时兼容历史格式 <h3>N. 标题</h3> + <ul>（早期日报用 h3 编号）。
+    #    标题前缀支持 "1. " 与 "信号N：" 两种编号；同时兼容历史格式 <h3> 标题。
     def card_title_html(raw_title):
+        tm = re.match(r'信号(\d+)\s*[：:]\s*(.*)', raw_title, re.DOTALL)
+        if tm:
+            return (f'<strong><span class="num">信号{tm.group(1)}：</span>'
+                    f'{tm.group(2)}</strong>')
         tm = re.match(r'(\d+\.)\s*(.*)', raw_title, re.DOTALL)
         if tm:
             return (f'<strong><span class="num">{tm.group(1)}</span>'
@@ -139,11 +142,70 @@ def postprocess_body(body_html):
     def card_repl(m):
         return card_wrap(card_title_html(m.group(1)), card_lbl_html(m.group(2)))
     body_html = re.sub(
-        r'<p><strong>(\d+\.\s*.*?)</strong></p>\s*<ul>(.*?)</ul>',
+        r'<p><strong>((?:信号\d+[：:]|\d+\.)\s*[^<]*?)</strong></p>\s*<ul>(.*?)</ul>',
         card_repl, body_html, flags=re.DOTALL)
     body_html = re.sub(
-        r'<h3>(\d+\.\s*.*?)</h3>\s*<ul>(.*?)</ul>',
+        r'<h3>((?:信号\d+[：:]|\d+\.)\s*[^<]*?)</h3>\s*<ul>(.*?)</ul>',
         card_repl, body_html, flags=re.DOTALL)
+
+    # 5. 段落式/混合式信号卡片化（早期日报 8/03-8/14 变体）：
+    #    信号标题后跟的是 <p>段落（标签段/正文段）或 <hr>，而非 <ul>。
+    #    只在「核心信号」h2 区块内处理，避免误伤其他章节。
+    def _para_signal_to_card(raw_title, body):
+        tm = re.match(r'信号(\d+)\s*[：:]\s*(.*)', raw_title, re.DOTALL)
+        if tm:
+            num, title = f'信号{tm.group(1)}：', tm.group(2)
+        else:
+            tm = re.match(r'(\d+\.)\s*(.*)', raw_title, re.DOTALL)
+            num = tm.group(1) if tm else ''
+            title = tm.group(2) if tm else raw_title
+        title_html = f'<strong><span class="num">{num}</span>{title}</strong>'
+        # <p><strong>标签：</strong> 内容 → <li><span class="lbl">标签</span>：内容</li>
+        # <p>普通正文</p> → <li>正文</li>；<hr> 删除
+        def p2li(m2):
+            inner = m2.group(1)
+            tag = re.match(
+                r'<strong>((?:数据支撑|产业链含义|对持仓含义|持仓含义|关键数据|风险提示))[：:]?</strong>',
+                inner)
+            if tag:
+                rest = inner[tag.end():].lstrip('：: \t')
+                return f'<li><span class="lbl">{tag.group(1)}</span>：{rest}</li>'
+            plain = re.sub(r'<[^>]+>', '', inner).strip()
+            if plain:
+                return f'<li>{inner}</li>'
+            return ''
+        body = re.sub(r'<p>(.*?)</p>', p2li, body, flags=re.DOTALL)
+        body = re.sub(r'<hr\s*/?>', '', body)
+        # 已存在的 <ul><li>（8/07 列表式 li）加标签高亮
+        body = card_lbl_html(body)
+        return (f'<div class="signal-card"><div class="sc-title">{title_html}</div>'
+                f'<ul>{body}</ul></div>')
+
+    def _para_cardify(seg):
+        # 第一轮：h3 型标题 + 其后内容（到下一个 h3）
+        def h3_card(m):
+            return _para_signal_to_card(m.group(1), m.group(2))
+        seg = re.sub(
+            r'<h3>((?:信号\d+[：:]|\d+\.)\s*[^<]*?)</h3>\s*((?:(?!<h3>).)*?)(?=<h3>|\Z)',
+            h3_card, seg, flags=re.DOTALL)
+        # 第二轮：p 型标题（标题独立 p，或标题+正文同 p）+ 其后内容
+        def p_card(m):
+            raw_title = m.group(1)
+            tail = m.group(2).strip()      # 标题 p 内残留正文（8/14 变体）
+            body = m.group(3)
+            if tail:
+                body = f'<li>{tail}</li>\n' + body
+            return _para_signal_to_card(raw_title, body)
+        seg = re.sub(
+            r'<p><strong>((?:信号\d+[：:]|\d+\.)\s*[^<]*?)</strong>(.*?)</p>\s*'
+            r'((?:(?!<p><strong>(?:信号\d+[：:]|\d+\.)\s*).)*?)(?=<p><strong>(?:信号\d+[：:]|\d+\.)\s*|\Z)',
+            p_card, seg, flags=re.DOTALL)
+        return seg
+
+    body_html = re.sub(
+        r'(<h2[^>]*核心信号[^>]*>.*?</h2>)(.*?)(?=<h2|\Z)',
+        lambda m: m.group(1) + _para_cardify(m.group(2)),
+        body_html, flags=re.DOTALL)
 
     return body_html
 
