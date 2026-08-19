@@ -124,18 +124,34 @@ body{
 }
 /* markdown 内容样式 */
 .md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
 .md h2{
-  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
-  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
-  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
-  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
 }
-.md h2 .sec-emoji{font-size:.95em}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
 .md h3{
-  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
-  border-left:3px solid var(--cyan);
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
 }
-.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
 .md p{margin:12px 0;color:var(--text-mid)}
 .md strong{color:var(--text);font-weight:700}
 .md em{color:var(--pink);font-style:normal}
@@ -166,21 +182,57 @@ body{
   padding:14px 16px;overflow-x:auto;margin:14px 0;
 }
 .md pre code{background:none;padding:0;color:var(--text)}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
 .md table{
   width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
-  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
 }
 .md thead{position:relative}
 .md th{
-  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
-  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
-  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
 }
-.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
-.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
-.md tr:hover td{background:rgba(96,165,250,.06)}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
 .md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
 /* Footer */
 .footer{
   text-align:center;margin-top:26px;padding-top:18px;
@@ -195,9 +247,13 @@ body{
   .page{padding:18px 12px 44px}
   .content{padding:18px 16px 22px;border-radius:14px}
   .md{font-size:.9em}
-  .md h2{font-size:1em;margin:28px 0 12px}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
   .md table{font-size:.78em}
-  .md th,.md td{padding:7px 9px}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
   .toc a{padding:4px 10px;font-size:.74em}
   .toolbar{gap:6px}
 }
@@ -238,7 +294,7 @@ body{
 </blockquote>
 <hr />
 <h2 id="sec-一、本周核心信号"><span class="sec-emoji">🔍</span>一、本周核心信号</h2>
-<h3>1. 存储「锁量」合同化加速：美光与闪迪把长期协议延至2030年，涨价从现货逻辑变成「供给权」逻辑</h3>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">1.</span>存储「锁量」合同化加速：美光与闪迪把长期协议延至2030年，涨价从现货逻辑变成「供给权」逻辑</h3>
 <p>美光本周披露战略客户协议为多年、照付不议安排，部分合同带预付款/信用证支持，期限多至2030年末，已披露16份协议、现金及类现金承诺220亿美元（其中现金约180亿）；同时承认部分数据中心客户只能满足约50%的需求。闪迪投资者日（8/13）披露8家客户多年期合作（含美国三大超大规模云商），加权平均期限超4年，按底价计算的合同总价值939亿美元、剩余履约义务911亿美元、财务担保165亿美元，FY28约2/3位元进入多年期协议。摩根大通据此把FY26-28存储器TAM上调4-8%，判断短缺延续两年、FY27最紧（HBM供需缺口22%）。<strong>产业链含义</strong>：存储周期的定价框架从「现货涨价」切换为「锁量+价格下限+客户认证」，高确定性与低弹性并存。<strong>对持仓含义</strong>：SKHY（大小号合计173股）与MU（大号13股）的盈利确定性获结构性背书，回调即支撑。</p>
 <h3>2. NAND/DRAM价格继续大涨，但出现「涨得少了」的分歧——瑞银下调NAND涨幅、上修DRAM紧缺</h3>
 <p>本周Wafer现货256Gb TLC 7日+16.2%、20日+23.2%，NAND MLC 64Gb 60日+42.9%；服务器DDR5合同价本月+15-23%（32GB报900美元、96GB报2650美元，现货溢价近1倍）。但瑞银把行业3Q26 NAND合约价涨幅从+28%下调至+20%（美光35%→23%），同时把2026/27年NAND位需求增速上调至23%/26%，把DRAM紧缺判断延长至2028Q2（行业3Q DDR合约价+20%、美光3Q+20%/4Q+11%）。KeyBanc预测DRAM 3Q+15-20%、4Q再+15%；NAND 3Q+30-40%。<strong>产业链含义</strong>：NAND「涨得少」≠「开始跌」，是价格口径分化（裸片/合约/eSSD不能混用）；DRAM与HBM才是盈利上修主引擎。<strong>对持仓含义</strong>：MU、SKHY的DRAM/HBM敞口优于纯NAND敞口；长鑫科技（A股持仓）受长江存储转产DRAM消息正面映射。</p>
@@ -554,13 +610,12 @@ body{
 </table></div>
 <hr />
 <h2 id="sec-五、产业链关键信号"><span class="sec-emoji">🔗</span>五、产业链关键信号</h2>
-<h3>存储（HBM/DRAM/NAND/eSSD）</h3>
-<ul>
+<h3>存储（HBM/DRAM/NAND/eSSD）</strong></div><ul>
 <li><strong>DRAM/HBM</strong>：美光部分数据中心客户满足率约50%；HBM3E对普通DDR产能转换比约1:3；JPM 2027 DRAM缺口7%、2028 HBM缺口22%；瑞银2027行业HBM需求615亿Gb（+2.5x vs 2025）、HBM4E价格超30美元/GB；UBS 2027E存储支出8990亿美元（+18% vs 5月）；Cantor：存储器比特需求超供应5-10pct持续10年</li>
 <li><strong>NAND/eSSD</strong>：闪迪HBF首颗晶粒流片、2027年推理产品送样；铠侠GP1 2026年底送样（目标1000万IOPS）；群联：新NAND产能从投资到量产约需4年；企业级SSD占NAND出货48%（Q2 2026，近一年前26%的两倍）、长江存储跻身全球前三；SK海力士拟重启大连NAND二期（+50%产能）</li>
 <li><strong>HDD</strong>：希捷+19.86%、西数+13.12%；nearline EB/自由现金流待验证，暂维持结构性判断</li>
 <li><strong>合约结构</strong>：美光LTA预付款占比20-25%、量占比50-70%、AI/服务器LTA较其余溢价30-40%（JPM）；CSP长期协议占比提高使价格在整个2027年维持高位（FMS 2026共识）</li>
-</ul>
+</ul></div>
 <h3>光模块/CPO</h3>
 <ul>
 <li>Coherent：InP产能为本季「首要制约因素」，激光器产量同比+80%，2027财年订单订满、客户预订2028年；CPO无推迟迹象、客户要求提前供货</li>

@@ -124,18 +124,34 @@ body{
 }
 /* markdown 内容样式 */
 .md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
 .md h2{
-  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
-  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
-  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
-  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
 }
-.md h2 .sec-emoji{font-size:.95em}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
 .md h3{
-  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
-  border-left:3px solid var(--cyan);
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
 }
-.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
 .md p{margin:12px 0;color:var(--text-mid)}
 .md strong{color:var(--text);font-weight:700}
 .md em{color:var(--pink);font-style:normal}
@@ -166,21 +182,57 @@ body{
   padding:14px 16px;overflow-x:auto;margin:14px 0;
 }
 .md pre code{background:none;padding:0;color:var(--text)}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
 .md table{
   width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
-  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
 }
 .md thead{position:relative}
 .md th{
-  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
-  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
-  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
 }
-.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
-.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
-.md tr:hover td{background:rgba(96,165,250,.06)}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
 .md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
 /* Footer */
 .footer{
   text-align:center;margin-top:26px;padding-top:18px;
@@ -195,9 +247,13 @@ body{
   .page{padding:18px 12px 44px}
   .content{padding:18px 16px 22px;border-radius:14px}
   .md{font-size:.9em}
-  .md h2{font-size:1em;margin:28px 0 12px}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
   .md table{font-size:.78em}
-  .md th,.md td{padding:7px 9px}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
   .toc a{padding:4px 10px;font-size:.74em}
   .toolbar{gap:6px}
 }
@@ -236,48 +292,41 @@ body{
 <p>生成时间：2026-08-02 重跑 | 文档总数：86份 / 筛选核心PDF：18份+关键汇总图片</p>
 </blockquote>
 <h2 id="sec-一、今日核心信号"><span class="sec-emoji">🔍</span>一、今日核心信号</h2>
-<p><strong>1. 韩国半导体股崩盘：三星-9.25%、SK海力士-11.07%，触发熔断，月跌创GFC以来最差</strong></p>
-<ul>
-<li>数据支撑：KOSPI开盘后触发卖出熔断，三星电子-9.25%、SK海力士-11.07%，半导体板块重挫-10.26%。隔夜美股英伟达-3.76%、AMD-6.95%、美光-5.46%集体暴跌。多重利空共振：CXMT上市首日暴涨+466%，中国DUV光刻机传闻，以及对存储供应过剩的担忧。</li>
-<li>产业链含义：KB证券认为"过度担忧预计将迅速消退"，CXMT扩产短期不应被视为供应过剩。三星电子增产DRAM约15%符合年度趋势，但龙仁集群投产时间从2031年→2029年的方案加剧了中长期供应担忧。高盛预计到2030年中国DRAM产能将扩大两倍以上。</li>
-<li>对持仓含义：韩国存储股暴跌对A股半导体情绪有负面传导。但SK海力士和三星的基本面未变——HBM需求仍然强劲。需区分仓位驱动的抛售和基本面恶化。</li>
-</ul>
-<p><strong>2. CXMT上市首日暴涨+466%引发全球DRAM供应恐慌，高盛测算2030年产能翻三倍</strong></p>
-<ul>
-<li>数据支撑：CXMT IPO首日较发行价暴涨+466%，通过大规模IPO筹集投资资金。高盛预计中国DRAM产能到2030年将较目前扩大两倍以上。CXMT正以通用DDR4/DDR5为中心扩张，直接对手是南亚科技和华邦电子。</li>
-<li>产业链含义：中国DRAM对HBM尚不构成威胁（技术差距大），但DDR/LPDDR市场的供应压力和价格竞争可能加剧。中国制造设备在沉积、刻蚀、清洗等工序的采用正在扩大，形成国产设备生态闭环。</li>
-<li>对持仓含义：存储链整体面临中长期供给增加预期，但HBM4（SK海力士/三星/美光三家）的高壁垒仍在。短期市场过度反应，长期看HBM和先进NAND的竞争格局优于通用DRAM。</li>
-</ul>
-<p><strong>3. Lumentum CEO预警：InP激光器短缺将比存储器短缺更严重，单机架需8,000个激光器</strong></p>
-<ul>
-<li>数据支撑：Lumentum CEO Michael Hurlston明确表示"AI引发的磷化铟激光器短缺将比存储器紧张更加严重"，并指出英伟达同时投资Lumentum和Coherent。一个Scale-up机架需要约8,000个激光器，从千片晶圆扩产到百万片晶圆"绝非易事"。首次部署在2H'27。</li>
-<li>产业链含义：InP激光器短缺直接制约CPO和光互连放量。AXTI（晶圆供应商）已在31日确认营收同比+164%、利润率8%→45%。这是光模块产业链最上游的结构性瓶颈。</li>
-<li>对持仓含义：中际旭创（光模块龙头）的1.6T和NPO出货直接受InP供应约束；天孚通信（光器件）同步受益于InP短缺驱动的产业链价值重分配。</li>
-</ul>
-<p><strong>4. 摩根士丹利GenAI ROIC框架：GPU租赁30%+、模型API 40%+、企业应用25%+回报率</strong></p>
-<ul>
-<li>数据支撑：摩根士丹利提出三个自下而上的ROIC框架：①超大规模云商GPU租赁(IaaS)：60-70%增量EBIT利润率，30%+ROIC（基准场景GB300芯片，75%利用率，$8.50/小时）；②模型API（自有基础设施）：70%+增量EBIT利润率，40%+ROIC；③企业应用（第三方基础设施）：~30%增量EBIT利润率，25%+ROIC。</li>
-<li>产业链含义：这为AI资本开支的可持续性提供了量化论证。如果三大商业模式都能产生25-50%的ROIC，云厂商的CAPEX扩张就有经济基础。关键假设是75%利用率——如果利用率下降，ROIC会显著恶化。</li>
-<li>对持仓含义：ROIC验证降低了CAPEX骤停的风险，对光模块/存储/设备全链利好。但需持续跟踪利用率、token价格和使用量。</li>
-</ul>
-<p><strong>5. AI超节点架构深度：1,024颗加速器→跨机架光互连，铜退光进加速</strong></p>
-<ul>
-<li>数据支撑：摩根士丹利超节点深度报告系统比较多家平台架构，64-1,024颗加速器纳入单个Scale-up域，部分架构向更大规模扩展。PCIe 6.x重定时器、交换芯片、光引擎和高速线缆的总内容量随规模指数增长。中国AI超节点在WAIC后加速推进，国产光互连供应链受益。</li>
-<li>产业链含义：跨机架扩展后，铜连接的损耗/功耗/距离成为瓶颈，光互连价值上升。CPO交换机BOM约$8.32万，1.6T光引擎占43%。英伟达和博通已开始初步扩大CPO交换机生产，但光引擎良率、硅光产能、精密组装和先进封装仍是瓶颈。</li>
-<li>对持仓含义：中际旭创（1.6T/NPO/CPO远期）是超节点光互连的核心受益标的。CPO测试需求也将同步增长——测试设备链（爱德万/泰瑞达）间接受益。</li>
-</ul>
-<p><strong>6. 三星电子增加DRAM产量+代工复苏信号+博通Groq LP30量产</strong></p>
-<ul>
-<li>数据支撑：三星电子将在年底前把华城园区DRAM产量扩大约15%，与年度10-15%趋势一致。晶圆代工方面，Q1全球份额台积电72.3% vs 三星6.5%，但英伟达Groq LP30在三星4nm实际生产，黄仁勋公开感谢并称三星"正在最大限度提高产量"。</li>
-<li>产业链含义：三星代工正摆脱多年缺少大客户与先进制程利用率低的恶性循环。博通Groq LP30不是测试芯片，而是量产产品。CUDA迁移壁垒正在降低——AI可以辅助从CUDA向AMD ROCm的程序迁移。</li>
-<li>对持仓含义：存储增产+代工复苏对半导体设备链（KLA/AMAT/LRCX）构成中期利好。</li>
-</ul>
-<p><strong>7. AI服务器CCL出现新瓶颈：二氧化硅/树脂/铜箔短缺</strong></p>
-<ul>
-<li>数据支撑：404K汇总显示AI服务器CCL材料瓶颈正在扩大——高纯度球形二氧化硅、低介电树脂和铜箔同时承压。日本韩国MLCC供应商6月出货量创五年新高（村田1,400亿件/三星电机980亿件/太阳诱电400亿件），AI需求挤占消费级产能。</li>
-<li>产业链含义：CCL涨价和材料短缺是PCB/覆铜板产业链的结构性驱动力。欣兴电子Q2 ABF毛利率24.8%（+6.8pp环比）已验证涨价传导。</li>
-<li>对持仓含义：生益科技（CCL/覆铜板龙头）直接受益于材料涨价和产能紧张。</li>
-</ul>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">1.</span>韩国半导体股崩盘：三星-9.25%、SK海力士-11.07%，触发熔断，月跌创GFC以来最差</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：KOSPI开盘后触发卖出熔断，三星电子-9.25%、SK海力士-11.07%，半导体板块重挫-10.26%。隔夜美股英伟达-3.76%、AMD-6.95%、美光-5.46%集体暴跌。多重利空共振：CXMT上市首日暴涨+466%，中国DUV光刻机传闻，以及对存储供应过剩的担忧。</li>
+<li><span class="lbl">产业链含义</span>：KB证券认为"过度担忧预计将迅速消退"，CXMT扩产短期不应被视为供应过剩。三星电子增产DRAM约15%符合年度趋势，但龙仁集群投产时间从2031年→2029年的方案加剧了中长期供应担忧。高盛预计到2030年中国DRAM产能将扩大两倍以上。</li>
+<li><span class="lbl">对持仓含义</span>：韩国存储股暴跌对A股半导体情绪有负面传导。但SK海力士和三星的基本面未变——HBM需求仍然强劲。需区分仓位驱动的抛售和基本面恶化。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">2.</span>CXMT上市首日暴涨+466%引发全球DRAM供应恐慌，高盛测算2030年产能翻三倍</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：CXMT IPO首日较发行价暴涨+466%，通过大规模IPO筹集投资资金。高盛预计中国DRAM产能到2030年将较目前扩大两倍以上。CXMT正以通用DDR4/DDR5为中心扩张，直接对手是南亚科技和华邦电子。</li>
+<li><span class="lbl">产业链含义</span>：中国DRAM对HBM尚不构成威胁（技术差距大），但DDR/LPDDR市场的供应压力和价格竞争可能加剧。中国制造设备在沉积、刻蚀、清洗等工序的采用正在扩大，形成国产设备生态闭环。</li>
+<li><span class="lbl">对持仓含义</span>：存储链整体面临中长期供给增加预期，但HBM4（SK海力士/三星/美光三家）的高壁垒仍在。短期市场过度反应，长期看HBM和先进NAND的竞争格局优于通用DRAM。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">3.</span>Lumentum CEO预警：InP激光器短缺将比存储器短缺更严重，单机架需8,000个激光器</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：Lumentum CEO Michael Hurlston明确表示"AI引发的磷化铟激光器短缺将比存储器紧张更加严重"，并指出英伟达同时投资Lumentum和Coherent。一个Scale-up机架需要约8,000个激光器，从千片晶圆扩产到百万片晶圆"绝非易事"。首次部署在2H'27。</li>
+<li><span class="lbl">产业链含义</span>：InP激光器短缺直接制约CPO和光互连放量。AXTI（晶圆供应商）已在31日确认营收同比+164%、利润率8%→45%。这是光模块产业链最上游的结构性瓶颈。</li>
+<li><span class="lbl">对持仓含义</span>：中际旭创（光模块龙头）的1.6T和NPO出货直接受InP供应约束；天孚通信（光器件）同步受益于InP短缺驱动的产业链价值重分配。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">4.</span>摩根士丹利GenAI ROIC框架：GPU租赁30%+、模型API 40%+、企业应用25%+回报率</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：摩根士丹利提出三个自下而上的ROIC框架：①超大规模云商GPU租赁(IaaS)：60-70%增量EBIT利润率，30%+ROIC（基准场景GB300芯片，75%利用率，$8.50/小时）；②模型API（自有基础设施）：70%+增量EBIT利润率，40%+ROIC；③企业应用（第三方基础设施）：~30%增量EBIT利润率，25%+ROIC。</li>
+<li><span class="lbl">产业链含义</span>：这为AI资本开支的可持续性提供了量化论证。如果三大商业模式都能产生25-50%的ROIC，云厂商的CAPEX扩张就有经济基础。关键假设是75%利用率——如果利用率下降，ROIC会显著恶化。</li>
+<li><span class="lbl">对持仓含义</span>：ROIC验证降低了CAPEX骤停的风险，对光模块/存储/设备全链利好。但需持续跟踪利用率、token价格和使用量。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>AI超节点架构深度：1,024颗加速器→跨机架光互连，铜退光进加速</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：摩根士丹利超节点深度报告系统比较多家平台架构，64-1,024颗加速器纳入单个Scale-up域，部分架构向更大规模扩展。PCIe 6.x重定时器、交换芯片、光引擎和高速线缆的总内容量随规模指数增长。中国AI超节点在WAIC后加速推进，国产光互连供应链受益。</li>
+<li><span class="lbl">产业链含义</span>：跨机架扩展后，铜连接的损耗/功耗/距离成为瓶颈，光互连价值上升。CPO交换机BOM约$8.32万，1.6T光引擎占43%。英伟达和博通已开始初步扩大CPO交换机生产，但光引擎良率、硅光产能、精密组装和先进封装仍是瓶颈。</li>
+<li><span class="lbl">对持仓含义</span>：中际旭创（1.6T/NPO/CPO远期）是超节点光互连的核心受益标的。CPO测试需求也将同步增长——测试设备链（爱德万/泰瑞达）间接受益。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">6.</span>三星电子增加DRAM产量+代工复苏信号+博通Groq LP30量产</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：三星电子将在年底前把华城园区DRAM产量扩大约15%，与年度10-15%趋势一致。晶圆代工方面，Q1全球份额台积电72.3% vs 三星6.5%，但英伟达Groq LP30在三星4nm实际生产，黄仁勋公开感谢并称三星"正在最大限度提高产量"。</li>
+<li><span class="lbl">产业链含义</span>：三星代工正摆脱多年缺少大客户与先进制程利用率低的恶性循环。博通Groq LP30不是测试芯片，而是量产产品。CUDA迁移壁垒正在降低——AI可以辅助从CUDA向AMD ROCm的程序迁移。</li>
+<li><span class="lbl">对持仓含义</span>：存储增产+代工复苏对半导体设备链（KLA/AMAT/LRCX）构成中期利好。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">7.</span>AI服务器CCL出现新瓶颈：二氧化硅/树脂/铜箔短缺</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K汇总显示AI服务器CCL材料瓶颈正在扩大——高纯度球形二氧化硅、低介电树脂和铜箔同时承压。日本韩国MLCC供应商6月出货量创五年新高（村田1,400亿件/三星电机980亿件/太阳诱电400亿件），AI需求挤占消费级产能。</li>
+<li><span class="lbl">产业链含义</span>：CCL涨价和材料短缺是PCB/覆铜板产业链的结构性驱动力。欣兴电子Q2 ABF毛利率24.8%（+6.8pp环比）已验证涨价传导。</li>
+<li><span class="lbl">对持仓含义</span>：生益科技（CCL/覆铜板龙头）直接受益于材料涨价和产能紧张。</li>
+</ul></div>
 <h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
 <h3>中际旭创 ★★★★★</h3>
 <ul>

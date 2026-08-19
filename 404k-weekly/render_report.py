@@ -15,7 +15,7 @@ import markdown
 from datetime import datetime, date
 
 sys.path.insert(0, r'F:/Projects/AI/MaplePublicArticles/scripts')
-from pretty_report import render_article, postprocess_body, build_toc
+from pretty_report import render_article, postprocess_body, build_toc, preprocess_md
 
 DATA_DIR = r'F:/Projects/AI/MaplePublicArticles/404k-weekly/data'
 SITE_BASE = 'https://reports.xiaoyiyi.wang/404k-weekly'
@@ -48,7 +48,7 @@ def render_one(md_path, html_path, all_dates=None):
         md_text = f.read()
 
     md = markdown.Markdown(extensions=['tables', 'fenced_code', 'sane_lists'])
-    body_html = md.convert(md_text)
+    body_html = md.convert(preprocess_md(md_text))
     md.reset()
     body_html = postprocess_body(body_html)
     toc = build_toc(body_html)

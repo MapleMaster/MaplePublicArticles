@@ -57,6 +57,33 @@ def emoji_for_heading(text):
     return '📌'
 
 
+def preprocess_md(md_text):
+    """渲染前修复 markdown 源：给『段落/粗体标题行 后紧跟 `- ` 列表』补空行。
+
+    日报 md 里常见：
+        **1. 标题**
+        - 数据支撑：xxx
+        - 产业链含义：xxx
+    中间没有空行，sane_lists 会把 `- ` 行并进段落、列表符号丢失，
+    渲染成一大坨连续文本（排版难看的根源之一）。此函数在其间补空行，
+    让 markdown 正常解析为 <ul><li>。对表格行 / 标题 / 已有列表 / 引用安全。
+    """
+    lines = md_text.split('\n')
+    out = []
+    for i, line in enumerate(lines):
+        out.append(line)
+        nxt = lines[i + 1] if i + 1 < len(lines) else ''
+        cur = line.strip()
+        nxt_s = nxt.strip()
+        if (cur
+                and not cur.startswith(('#', '>', '|'))
+                and not cur.startswith(('- ', '* ', '+ '))
+                and re.match(r'^\d+\.\s', cur) is None
+                and nxt_s.startswith('- ')):
+            out.append('')
+    return '\n'.join(out)
+
+
 def build_toc(body_html):
     """从渲染后的 HTML 提取 h2（带 id 的），生成 TOC 条目。"""
     toc = []
@@ -88,6 +115,35 @@ def postprocess_body(body_html):
     def table_repl(m):
         return '<div class="table-wrap">' + m.group(0) + '</div>'
     body_html = re.sub(r'<table>.*?</table>', table_repl, body_html, flags=re.DOTALL)
+
+    # 4. 核心信号卡片化：<p><strong>N. 标题</strong></p> + <ul>…</ul> → .signal-card
+    #    仅标题带编号（"1. "）时生效，避免误伤普通粗体+列表；
+    #    同时兼容历史格式 <h3>N. 标题</h3> + <ul>（早期日报用 h3 编号）。
+    def card_title_html(raw_title):
+        tm = re.match(r'(\d+\.)\s*(.*)', raw_title, re.DOTALL)
+        if tm:
+            return (f'<strong><span class="num">{tm.group(1)}</span>'
+                    f'{tm.group(2)}</strong>')
+        return f'<strong>{raw_title}</strong>'
+
+    def card_lbl_html(ul_html):
+        # li 前缀标签高亮（数据支撑 / 产业链含义 / 对持仓含义 …），兼容 **标签** 与裸文本
+        return re.sub(
+            r'<li>(?:<strong>)?((?:数据支撑|产业链含义|对持仓含义|持仓含义|关键数据|风险提示))(?:</strong>)?[：:]',
+            r'<li><span class="lbl">\1</span>：', ul_html)
+
+    def card_wrap(title_html, ul_html):
+        return (f'<div class="signal-card"><div class="sc-title">{title_html}</div>'
+                f'<ul>{ul_html}</ul></div>')
+
+    def card_repl(m):
+        return card_wrap(card_title_html(m.group(1)), card_lbl_html(m.group(2)))
+    body_html = re.sub(
+        r'<p><strong>(\d+\.\s*.*?)</strong></p>\s*<ul>(.*?)</ul>',
+        card_repl, body_html, flags=re.DOTALL)
+    body_html = re.sub(
+        r'<h3>(\d+\.\s*.*?)</h3>\s*<ul>(.*?)</ul>',
+        card_repl, body_html, flags=re.DOTALL)
 
     return body_html
 
@@ -223,18 +279,34 @@ body{{
 }}
 /* markdown 内容样式 */
 .md{{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}}
+/* ── h2 大标题：金色渐变标题条 ── */
 .md h2{{
-  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
-  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
-  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
-  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
 }}
-.md h2 .sec-emoji{{font-size:.95em}}
+.md h2::after{{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}}
+.md h2 .sec-emoji{{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}}
+/* ── h3 小标题：青色胶囊标签 ── */
 .md h3{{
-  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
-  border-left:3px solid var(--cyan);
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
 }}
-.md h4{{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}}
+.md h4::before{{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}}
 .md p{{margin:12px 0;color:var(--text-mid)}}
 .md strong{{color:var(--text);font-weight:700}}
 .md em{{color:var(--pink);font-style:normal}}
@@ -265,21 +337,57 @@ body{{
   padding:14px 16px;overflow-x:auto;margin:14px 0;
 }}
 .md pre code{{background:none;padding:0;color:var(--text)}}
-.table-wrap{{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}}
+.table-wrap{{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}}
 .md table{{
   width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
-  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
 }}
 .md thead{{position:relative}}
 .md th{{
-  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
-  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
-  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
 }}
-.md td{{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}}
-.md tr:nth-child(even) td{{background:rgba(148,163,184,.045)}}
-.md tr:hover td{{background:rgba(96,165,250,.06)}}
+.md td{{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}}
+.md tr:nth-child(even) td{{background:rgba(148,163,184,.05)}}
+.md tr:hover td{{background:rgba(96,165,250,.07)}}
 .md tbody tr:first-child td{{border-top:none}}
+.md td:first-child{{color:#e2e8f0;font-weight:700}}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}}
+.signal-card:hover{{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}}
+.signal-card .sc-title{{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}}
+.signal-card .sc-title .num{{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}}
+.signal-card ul{{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}}
+.signal-card li{{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}}
+.signal-card li::before{{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}}
+.signal-card li .lbl{{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}}
 /* Footer */
 .footer{{
   text-align:center;margin-top:26px;padding-top:18px;
@@ -294,9 +402,13 @@ body{{
   .page{{padding:18px 12px 44px}}
   .content{{padding:18px 16px 22px;border-radius:14px}}
   .md{{font-size:.9em}}
-  .md h2{{font-size:1em;margin:28px 0 12px}}
+  .md h2{{font-size:1em;margin:32px 0 14px;padding:11px 14px}}
+  .md h2::after{{display:none}}
+  .md h3{{font-size:.98em;padding:5px 12px}}
   .md table{{font-size:.78em}}
-  .md th,.md td{{padding:7px 9px}}
+  .md th,.md td{{padding:8px 10px}}
+  .signal-card{{padding:14px 16px 6px}}
+  .signal-card .sc-title{{font-size:.98em}}
   .toc a{{padding:4px 10px;font-size:.74em}}
   .toolbar{{gap:6px}}
 }}

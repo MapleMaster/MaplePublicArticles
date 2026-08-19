@@ -124,18 +124,34 @@ body{
 }
 /* markdown 内容样式 */
 .md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
 .md h2{
-  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
-  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
-  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
-  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
 }
-.md h2 .sec-emoji{font-size:.95em}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
 .md h3{
-  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
-  border-left:3px solid var(--cyan);
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
 }
-.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
 .md p{margin:12px 0;color:var(--text-mid)}
 .md strong{color:var(--text);font-weight:700}
 .md em{color:var(--pink);font-style:normal}
@@ -166,21 +182,57 @@ body{
   padding:14px 16px;overflow-x:auto;margin:14px 0;
 }
 .md pre code{background:none;padding:0;color:var(--text)}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
 .md table{
   width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
-  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
 }
 .md thead{position:relative}
 .md th{
-  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
-  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
-  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
 }
-.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
-.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
-.md tr:hover td{background:rgba(96,165,250,.06)}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
 .md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
 /* Footer */
 .footer{
   text-align:center;margin-top:26px;padding-top:18px;
@@ -195,9 +247,13 @@ body{
   .page{padding:18px 12px 44px}
   .content{padding:18px 16px 22px;border-radius:14px}
   .md{font-size:.9em}
-  .md h2{font-size:1em;margin:28px 0 12px}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
   .md table{font-size:.78em}
-  .md th,.md td{padding:7px 9px}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
   .toc a{padding:4px 10px;font-size:.74em}
   .toolbar{gap:6px}
 }
@@ -263,32 +319,40 @@ body{
 <h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
 <h3>生益科技 ★★★★★</h3>
 <p><strong>高盛加入亚太确信名单，247元目标价维持，M9材料逻辑强化</strong></p>
-<p>高盛8月2日将生益科技加入亚太确信名单（26只股票），同时维持买入评级和247元目标价。核心驱动：
-- AI服务器2026-2027年向M9级CCL迁移，M9规格在更低信号损耗/热膨胀/散热方面远优于传统材料
-- 公司从GPU服务器向ASIC服务器客户扩展，覆盖NVIDIA GB200/300和Google TPU供应链
-- 52亿元CCL产线资本开支，目标扩大高端有效产能
-- 高盛预测：2026/2027年收入¥450.67亿/¥709.31亿，EPS ¥2.84/¥4.90，2027年AI服务器PCB收入占比~40%
-- 2026/2027年EPS比彭博一致预期高18%/42%</p>
+<p>高盛8月2日将生益科技加入亚太确信名单（26只股票），同时维持买入评级和247元目标价。核心驱动：</p>
+<ul>
+<li>AI服务器2026-2027年向M9级CCL迁移，M9规格在更低信号损耗/热膨胀/散热方面远优于传统材料</li>
+<li>公司从GPU服务器向ASIC服务器客户扩展，覆盖NVIDIA GB200/300和Google TPU供应链</li>
+<li>52亿元CCL产线资本开支，目标扩大高端有效产能</li>
+<li>高盛预测：2026/2027年收入¥450.67亿/¥709.31亿，EPS ¥2.84/¥4.90，2027年AI服务器PCB收入占比~40%</li>
+<li>2026/2027年EPS比彭博一致预期高18%/42%</li>
+</ul>
 <p><strong>风险</strong>：247元目标价基于2027年EPS ¥4.90 × 50.4倍PE。若M9渗透慢于预期、ASIC认证延迟、或营业利润率未能升至20%，目标价从盈利和估值两端承压。下一验证点：8月14日Q2业绩。</p>
 <p>来源：404K自主报告《胜宏科技移出，生益科技加入：高盛亚太确信名单重排背后的M9材料逻辑》</p>
 <h3>中际旭创 ★★★★</h3>
-<p>今日无直接个股研报。但从产业链信号可间接推断：
-- <strong>Coherent/Lumentum财报验证光通信需求强劲</strong>：Coherent Q3数据中心收入$13.62亿，产能仍售罄；Lumentum Q3收入$8.08亿，毛利率47.9%
-- <strong>四大CSP CAPEX持续上调</strong>：亚马逊$2,200亿/谷歌$2,050亿/微软$1,750亿/Meta $1,300-1,450亿，均为光模块需求提供强劲支撑
-- <strong>NPO/CPO路线演进</strong>：NPO可能成为CPO之前的过渡方案，短期可插拔光模块仍是主力，中际旭创在800G/1.6T可插拔领域地位稳固
-- <strong>InP衬底产能改善</strong>：AXT预计2026年产能翻倍，但内部InP晶圆厂产能仍是瓶颈——有利于具备垂直整合能力的厂商</p>
+<p>今日无直接个股研报。但从产业链信号可间接推断：</p>
+<ul>
+<li><strong>Coherent/Lumentum财报验证光通信需求强劲</strong>：Coherent Q3数据中心收入$13.62亿，产能仍售罄；Lumentum Q3收入$8.08亿，毛利率47.9%</li>
+<li><strong>四大CSP CAPEX持续上调</strong>：亚马逊$2,200亿/谷歌$2,050亿/微软$1,750亿/Meta $1,300-1,450亿，均为光模块需求提供强劲支撑</li>
+<li><strong>NPO/CPO路线演进</strong>：NPO可能成为CPO之前的过渡方案，短期可插拔光模块仍是主力，中际旭创在800G/1.6T可插拔领域地位稳固</li>
+<li><strong>InP衬底产能改善</strong>：AXT预计2026年产能翻倍，但内部InP晶圆厂产能仍是瓶颈——有利于具备垂直整合能力的厂商</li>
+</ul>
 <p>来源：Coherent财报、MS LITE/COHR报告、404K科技晚报</p>
 <h3>天孚通信 ★★★</h3>
-<p>今日无直接个股研报。产业链信号：
-- <strong>光器件需求同步受益</strong>：Coherent/Lumentum产能扩张带动上游光器件需求
-- <strong>CPO/NPO趋势</strong>：天孚在光引擎/光器件方面有布局，NPO架构对光引擎需求更大
-- <strong>中际旭创H股上市（前次信息）</strong>：募资~530亿港元扩产，上游光器件供应商（天孚）有望受益</p>
+<p>今日无直接个股研报。产业链信号：</p>
+<ul>
+<li><strong>光器件需求同步受益</strong>：Coherent/Lumentum产能扩张带动上游光器件需求</li>
+<li><strong>CPO/NPO趋势</strong>：天孚在光引擎/光器件方面有布局，NPO架构对光引擎需求更大</li>
+<li><strong>中际旭创H股上市（前次信息）</strong>：募资~530亿港元扩产，上游光器件供应商（天孚）有望受益</li>
+</ul>
 <p>来源：产业链交叉推断</p>
 <h3>长川科技 ★★</h3>
-<p>今日无直接个股研报。间接信号：
-- <strong>半导体测试设备需求强劲</strong>：Bernstein报告显示测试设备股YTD涨~108%，Chroma ATE（致茂）目标价上调
-- <strong>WFE上调至~$1,500亿</strong>：前次信号延续，测试设备是半导体CAPEX重要组成部分
-- <strong>ASIC加速采用</strong>：更多自研芯片→更多测试需求</p>
+<p>今日无直接个股研报。间接信号：</p>
+<ul>
+<li><strong>半导体测试设备需求强劲</strong>：Bernstein报告显示测试设备股YTD涨~108%，Chroma ATE（致茂）目标价上调</li>
+<li><strong>WFE上调至~$1,500亿</strong>：前次信号延续，测试设备是半导体CAPEX重要组成部分</li>
+<li><strong>ASIC加速采用</strong>：更多自研芯片→更多测试需求</li>
+</ul>
 <h2 id="sec-三、产业链关键信号"><span class="sec-emoji">🔗</span>三、产业链关键信号</h2>
 <h3>超大规模云商CAPEX</h3>
 <ul>

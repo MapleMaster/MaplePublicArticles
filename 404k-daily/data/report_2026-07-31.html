@@ -124,18 +124,34 @@ body{
 }
 /* markdown 内容样式 */
 .md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
 .md h2{
-  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
-  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
-  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
-  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
 }
-.md h2 .sec-emoji{font-size:.95em}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
 .md h3{
-  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
-  border-left:3px solid var(--cyan);
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
 }
-.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
 .md p{margin:12px 0;color:var(--text-mid)}
 .md strong{color:var(--text);font-weight:700}
 .md em{color:var(--pink);font-style:normal}
@@ -166,21 +182,57 @@ body{
   padding:14px 16px;overflow-x:auto;margin:14px 0;
 }
 .md pre code{background:none;padding:0;color:var(--text)}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
 .md table{
   width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
-  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
 }
 .md thead{position:relative}
 .md th{
-  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
-  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
-  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
 }
-.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
-.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
-.md tr:hover td{background:rgba(96,165,250,.06)}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
 .md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
 /* Footer */
 .footer{
   text-align:center;margin-top:26px;padding-top:18px;
@@ -195,9 +247,13 @@ body{
   .page{padding:18px 12px 44px}
   .content{padding:18px 16px 22px;border-radius:14px}
   .md{font-size:.9em}
-  .md h2{font-size:1em;margin:28px 0 12px}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
   .md table{font-size:.78em}
-  .md th,.md td{padding:7px 9px}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
   .toc a{padding:4px 10px;font-size:.74em}
   .toolbar{gap:6px}
 }
@@ -236,36 +292,31 @@ body{
 <p>生成时间：2026-08-02 重跑 | 文档总数：78份 / 筛选重点：12份核心PDF+4份汇总</p>
 </blockquote>
 <h2 id="sec-一、今日核心信号"><span class="sec-emoji">🔍</span>一、今日核心信号</h2>
-<p><strong>1. 云厂CAPEX继续上修至$7,200-7,450亿，需求加速向供应链下游扩散</strong></p>
-<ul>
-<li>数据支撑：美国主要云厂商2026年资本开支合计预期升至约$7,200-7,450亿，6月季度同比增长79%。亚马逊AWS增速升至36.7%，AI+芯片年化收入均超$250亿。Celestica Q2收入46.99亿美元超预期8%，通信业务同比+62%，企业业务同比+167%。安费诺AI收入环比+$7亿至27-28亿美元。</li>
-<li>产业链含义：增量正从GPU向服务器整机、800G/1.6T网络、连接器、ABF载板和测试设备扩散。维谛技术收入略低于预期但利润超预期，说明需求强但交付节奏受供应链约束。</li>
-<li>对持仓含义：中际旭创（光模块/1.6T/NPO）直接受益于CAPEX上修和光互连需求扩散；天孚通信（光器件配套）同步受益InP晶圆短缺和扩产；生益科技（PCB/覆铜板）间接受益于服务器和网络设备扩产。</li>
-</ul>
-<p><strong>2. 三星电子与博通签署超$2,000亿HBM多年合作，长协锁量成行业关键词</strong></p>
-<ul>
-<li>数据支撑：摩根大通估算博通对三星电子未来5年采购需求超$2,000亿，其中90-95%来自HBM。推算博通2026-2030年AI累计收入可能超$1万亿（情景推算，非已签收入）。三星电子目标价被KIS上调至650,000韩元（前收盘207,000韩元）。</li>
-<li>产业链含义：领先客户正提前锁定跨年度HBM供给，长协从"讲故事"变成"签合同"。SK海力士已签约10项LTA并引入定金机制，HBM4 Q2开始出货，营业利润率76%。但UBS认为固定价格部分压低了ASP弹性。</li>
-<li>对持仓含义：存储链整体景气确认。HBM产能占用先进DRAM晶圆，普通DDR供给反而更紧。对光模块/半导体设备链的间接含义：HBM扩产驱动先进封装、测试和ABF需求。</li>
-</ul>
-<p><strong>3. 铠侠财报揭示NAND企业级SSD弹性：ASP环比+70%，利润率达75%</strong></p>
-<ul>
-<li>数据支撑：铠侠FY2026 Q1收入1.767万亿日元，略低于预期；但非GAAP营业利润率75%，数据中心/企业级SSD占SSD业务超60%。Q2指引收入2.39万亿日元，营业利润率79.5%。NAND ASP环比约+70%。SSD及存储业务收入同比+440%。</li>
-<li>产业链含义：AI推理（RAG/向量数据库/KV Cache）正在把存储需求从HBM外溢到企业级SSD。铠侠管理层明确表示NAND供需失衡将持续到2027年。但新增供给若快于消费需求，NAND比DRAM更早转松。</li>
-<li>对持仓含义：半导体设备ETF间接利好——NAND扩产驱动沉积、量测和过程控制设备需求。KLA将2026年WFE市场展望上调至$1,500亿低位以上。</li>
-</ul>
-<p><strong>4. KOSPI单日暴涨17.91%，存储股极端反弹：三星+26.81%，SK海力士+29.95%</strong></p>
-<ul>
-<li>数据支撑：韩国政府计划向主权财富基金注入$140亿用于AI数据中心投资。KOSPI月跌22%创GFC以来最差后单日暴涨17.91%。外资创纪录单日流入+$36亿，估值4.7倍。三星电子262,500韩元(+26.81%)，SK海力士1,718,000韩元(+29.95%)。</li>
-<li>产业链含义：极端情绪化行情下基本面未变。三星Q2存储业务强劲，伯恩斯坦目标价440,000韩元（前一日收盘207,000韩元）。UBS重申SK海力士买入，认为大幅估值下调不合理，基本面仍在且回购可能跟进。</li>
-<li>对持仓含义：韩国存储股反弹对A股半导体情绪有正面传导。但需要注意：情绪反弹≠基本面改善已定价，后续看HBM4认证和LTA执行。</li>
-</ul>
-<p><strong>5. AI交易踩踏风险浮现：Situational Awareness $450亿基金崩盘</strong></p>
-<ul>
-<li>数据支撑：404K转载Vik's报告《AI交易被烧垮：第二轮开始吧》，详述SA基金崩盘过程。云商债务融资压力同步上升：亚马逊长期债务从$656亿→$1,289亿。AI相关高收益债Q2占一级发行约25%。</li>
-<li>产业链含义：产业景气继续向上（CAPEX上修、云收入加速），但融资成本上升会先压缩高杠杆数据中心项目的回报。资金没有断，但价格变贵了。</li>
-<li>对持仓含义：需要区分产业基本面与资产价格。光模块/存储/设备订单仍在增长，但估值可能在融资环境变化时承压。特别是高杠杆持仓（美股融资$22.4K）需要关注保证金压力。</li>
-</ul>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">1.</span>云厂CAPEX继续上修至$7,200-7,450亿，需求加速向供应链下游扩散</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：美国主要云厂商2026年资本开支合计预期升至约$7,200-7,450亿，6月季度同比增长79%。亚马逊AWS增速升至36.7%，AI+芯片年化收入均超$250亿。Celestica Q2收入46.99亿美元超预期8%，通信业务同比+62%，企业业务同比+167%。安费诺AI收入环比+$7亿至27-28亿美元。</li>
+<li><span class="lbl">产业链含义</span>：增量正从GPU向服务器整机、800G/1.6T网络、连接器、ABF载板和测试设备扩散。维谛技术收入略低于预期但利润超预期，说明需求强但交付节奏受供应链约束。</li>
+<li><span class="lbl">对持仓含义</span>：中际旭创（光模块/1.6T/NPO）直接受益于CAPEX上修和光互连需求扩散；天孚通信（光器件配套）同步受益InP晶圆短缺和扩产；生益科技（PCB/覆铜板）间接受益于服务器和网络设备扩产。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">2.</span>三星电子与博通签署超$2,000亿HBM多年合作，长协锁量成行业关键词</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：摩根大通估算博通对三星电子未来5年采购需求超$2,000亿，其中90-95%来自HBM。推算博通2026-2030年AI累计收入可能超$1万亿（情景推算，非已签收入）。三星电子目标价被KIS上调至650,000韩元（前收盘207,000韩元）。</li>
+<li><span class="lbl">产业链含义</span>：领先客户正提前锁定跨年度HBM供给，长协从"讲故事"变成"签合同"。SK海力士已签约10项LTA并引入定金机制，HBM4 Q2开始出货，营业利润率76%。但UBS认为固定价格部分压低了ASP弹性。</li>
+<li><span class="lbl">对持仓含义</span>：存储链整体景气确认。HBM产能占用先进DRAM晶圆，普通DDR供给反而更紧。对光模块/半导体设备链的间接含义：HBM扩产驱动先进封装、测试和ABF需求。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">3.</span>铠侠财报揭示NAND企业级SSD弹性：ASP环比+70%，利润率达75%</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：铠侠FY2026 Q1收入1.767万亿日元，略低于预期；但非GAAP营业利润率75%，数据中心/企业级SSD占SSD业务超60%。Q2指引收入2.39万亿日元，营业利润率79.5%。NAND ASP环比约+70%。SSD及存储业务收入同比+440%。</li>
+<li><span class="lbl">产业链含义</span>：AI推理（RAG/向量数据库/KV Cache）正在把存储需求从HBM外溢到企业级SSD。铠侠管理层明确表示NAND供需失衡将持续到2027年。但新增供给若快于消费需求，NAND比DRAM更早转松。</li>
+<li><span class="lbl">对持仓含义</span>：半导体设备ETF间接利好——NAND扩产驱动沉积、量测和过程控制设备需求。KLA将2026年WFE市场展望上调至$1,500亿低位以上。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">4.</span>KOSPI单日暴涨17.91%，存储股极端反弹：三星+26.81%，SK海力士+29.95%</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：韩国政府计划向主权财富基金注入$140亿用于AI数据中心投资。KOSPI月跌22%创GFC以来最差后单日暴涨17.91%。外资创纪录单日流入+$36亿，估值4.7倍。三星电子262,500韩元(+26.81%)，SK海力士1,718,000韩元(+29.95%)。</li>
+<li><span class="lbl">产业链含义</span>：极端情绪化行情下基本面未变。三星Q2存储业务强劲，伯恩斯坦目标价440,000韩元（前一日收盘207,000韩元）。UBS重申SK海力士买入，认为大幅估值下调不合理，基本面仍在且回购可能跟进。</li>
+<li><span class="lbl">对持仓含义</span>：韩国存储股反弹对A股半导体情绪有正面传导。但需要注意：情绪反弹≠基本面改善已定价，后续看HBM4认证和LTA执行。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>AI交易踩踏风险浮现：Situational Awareness $450亿基金崩盘</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K转载Vik's报告《AI交易被烧垮：第二轮开始吧》，详述SA基金崩盘过程。云商债务融资压力同步上升：亚马逊长期债务从$656亿→$1,289亿。AI相关高收益债Q2占一级发行约25%。</li>
+<li><span class="lbl">产业链含义</span>：产业景气继续向上（CAPEX上修、云收入加速），但融资成本上升会先压缩高杠杆数据中心项目的回报。资金没有断，但价格变贵了。</li>
+<li><span class="lbl">对持仓含义</span>：需要区分产业基本面与资产价格。光模块/存储/设备订单仍在增长，但估值可能在融资环境变化时承压。特别是高杠杆持仓（美股融资$22.4K）需要关注保证金压力。</li>
+</ul></div>
 <h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
 <h3>中际旭创 ★★★★★</h3>
 <ul>

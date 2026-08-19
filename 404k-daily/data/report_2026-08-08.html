@@ -124,18 +124,34 @@ body{
 }
 /* markdown 内容样式 */
 .md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
 .md h2{
-  margin:36px 0 16px;padding:11px 16px;font-size:1.12em;font-weight:800;
-  color:var(--gold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
-  background:linear-gradient(90deg,rgba(251,191,36,.09),transparent 75%);
-  letter-spacing:.02em;display:flex;align-items:center;gap:8px;
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
 }
-.md h2 .sec-emoji{font-size:.95em}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
 .md h3{
-  margin:26px 0 10px;padding-left:12px;font-size:1.02em;font-weight:700;color:var(--cyan);
-  border-left:3px solid var(--cyan);
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
 }
-.md h4{margin:20px 0 8px;font-size:.95em;font-weight:700;color:var(--purple)}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
 .md p{margin:12px 0;color:var(--text-mid)}
 .md strong{color:var(--text);font-weight:700}
 .md em{color:var(--pink);font-style:normal}
@@ -166,21 +182,57 @@ body{
   padding:14px 16px;overflow-x:auto;margin:14px 0;
 }
 .md pre code{background:none;padding:0;color:var(--text)}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;-webkit-overflow-scrolling:touch}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
 .md table{
   width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
-  border:1px solid var(--border-hi);border-radius:12px;overflow:hidden;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
 }
 .md thead{position:relative}
 .md th{
-  background:linear-gradient(135deg,rgba(96,165,250,.18),rgba(34,211,238,.09));
-  color:var(--cyan);font-weight:700;padding:10px 14px;text-align:left;
-  white-space:nowrap;border-bottom:1px solid var(--border-hi);
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
 }
-.md td{padding:9px 14px;border-top:1px solid var(--border);color:var(--text-mid);vertical-align:top}
-.md tr:nth-child(even) td{background:rgba(148,163,184,.045)}
-.md tr:hover td{background:rgba(96,165,250,.06)}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
 .md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
 /* Footer */
 .footer{
   text-align:center;margin-top:26px;padding-top:18px;
@@ -195,9 +247,13 @@ body{
   .page{padding:18px 12px 44px}
   .content{padding:18px 16px 22px;border-radius:14px}
   .md{font-size:.9em}
-  .md h2{font-size:1em;margin:28px 0 12px}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
   .md table{font-size:.78em}
-  .md th,.md td{padding:7px 9px}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
   .toc a{padding:4px 10px;font-size:.74em}
   .toolbar{gap:6px}
 }
@@ -236,34 +292,41 @@ body{
 <p>生成时间：2026-08-09 05:00 | 文档总数：31份 / 筛选重点：3份（PDF）+ 多份资讯图片</p>
 </blockquote>
 <h2 id="sec-一、今日核心信号"><span class="sec-emoji">🔍</span>一、今日核心信号</h2>
-<p><strong>1. BofA恢复SK海力士覆盖，全球存储预测上修：DRAM 2026年收入$5730亿，2027年$8470亿</strong>
-- 数据支撑：美银恢复SK海力士覆盖后更新全球存储模型。SK海力士Q2 DRAM ASP仅+30% QoQ（同业+45-70%），但Q3预计迅速回升25%，HBM4出货量将显著增加。铠侠Q3指引收入+35% QoQ，隐含NAND ASP上涨近20%，远高于行业中双位数涨幅。Q4存储再涨价：DRAM+8%、NAND+3% QoQ。全球DRAM营收预测：2025 $1340亿 / 2026 $5730亿（+328% YoY）/ 2027 $8470亿 / 2028 $9170亿
-- 产业链含义：存储涨价正在以"最后冲刺"方式完成Q4定价，此后ASP将趋于平稳至2027年Q1-Q4温和修正。美银明确指出2028年ASP回落（DRAM -8%、NAND -14%）并非硬着陆，而是高利润区间的"健康修正"。NAND现货本周意外走强（512Gb-1Tb +5-6%，256Gb +10%+），或与二线/白牌OEM为Q4旺季备货有关
-- 对持仓含义：存储产业链整体景气度延续至2028年，对科创芯片ETF（含存储相关标的）和PCB/覆铜板（生益科技）构成长期需求支撑。HBM4出货超预期利好相关设备/材料供应商</p>
-<p><strong>2. 存储长协全面锁量：三星60-70%产能五年合同覆盖，美光16份协议最低合同收入~$1000亿</strong>
-- 数据支撑：三星电子提出用滚动五年期协议覆盖60-70%存储销量，已收取约25%计划预付款；美光16份战略客户协议，14份按底价对应最低合同收入约$1000亿，保证金约$220亿；闪迪2027财年超一半位元、2028财年约三分之二位元纳入合同，最低收入约$939亿，担保支持约$165亿。铠侠目标2028年50%出货纳入合同
-- 产业链含义：存储供给方正把收入波动从季度现货价变成多年履约合同。长协含价格下限、预付款和照付不议条款，已不仅是"订单"而是"现金流下限"。但HBM3E再谈后价格走弱提示长协不等于利润率永久上升，仍需逐客户验证条款质量
-- 对持仓含义：存储长协提升三星/海力士/美光盈利可见度，间接受益于PCB（服务器DDR5板卡、SoCAMM模组PCB）和半导体设备（DRAM新产线浸没式光刻配套强于逻辑产线）</p>
-<p><strong>3. SoCAMM2配置下调构成本周最重要反证：英伟达平台从192GB降至64-96GB</strong>
-- 数据支撑：404K存储周报指出Vera CPU配置从192GB降至96GB，部分SKU进一步降至64GB。两类解释：谨慎观点视为单机存储含量下降；另一组信息称供应商只能满足原方案60-70%需求，减配为保整机出货量
-- 产业链含义：若减配因需求疲软，单机含量下降将压低DRAM需求模型；若因供给不足，总需求仍被约束在供应商产能上限内。最终物料清单和供应商分配量是判断关键。MRDIMM（Gen-2达12800MT/s）和CXL内存池（2027年量产）作为替代方案正在推进
-- 对持仓含义：生益科技（服务器PCB/CCL）在SoCAMM模组PCB供应链中有潜在受益，但平台减配若持续可能削弱单板价值量。需跟踪模组厂（Simmtech）实际出货和利用率</p>
-<p><strong>4. NAND现货逆势大涨+韩出口单价分化：企业级SSD vs 消费NAND成两套生意</strong>
-- 数据支撑：NAND现货512Gb-1Tb +5-6%、256Gb +10%+，由二线OEM旺季备货驱动。韩国7月SSD出口单价$25,072/kg（环比+19%），但NAND闪存出口单价$61,751/kg（环比-1%）——方向分化说明高价企业级SSD正在抬升产品组合。铠侠预测2028年NAND需求1807EB（2025年约1.8倍），数据中心占比从30%升至50%
-- 产业链含义：AI推理/RAG/KV cache正在把NAND需求从消费端迁移至数据中心。HBF开放标准（512GB/UCIe）补上HBM与SSD之间的层级。但消费NAND仍受手机/PC需求压制和制程转换增供威胁，闪迪展望趋温和、Edge库存积累、低毛利率长协均提示不宜高估产业链全面受益
-- 对持仓含义：对生益科技（消费电子占比）需区分消费端压力与数据中心增量；对通信ETF（网络设备存储需求）有利，因AI交换机和机架高规格NOR/DDR5/控制器需求上升</p>
-<p><strong>5. 三星电子拟推大规模回购+特别股息，存储龙头进入股东回报兑现期</strong>
-- 数据支撑：美银预计三星电子使用2024-26年FCF的50%（扣除年付W10万亿股息后）进行回购分红，具体方案：(1) Q3/Q4特别股息W30万亿+，(2) 2027年上半年回购W40万亿+，(3) 2027年4月支付年终股息W30万亿。SK海力士亦预期返还50%FCF，侧重回购（W40万亿+）而非现金分红（W20万亿+）
-- 产业链含义：存储景气带来的海量现金流正在以回购分红形式疏导，三星电子还需W30万亿+库存股用于员工特别奖金。这既是行业信心信号，也为估值提供支撑
-- 对持仓含义：亚洲存储龙头估值修复有利整体半导体板块情绪，间接受益于科创芯片ETF</p>
-<p><strong>6. NAND LTA覆盖加速扩散，但闪迪指引温和暴露合同质量差异</strong>
-- 数据支撑：闪迪在最新财报中披露已与八家关键数据中心和边缘客户签署LTA，单季新增五份协议（含三家新客户）。南亚科技（中型DRAM）LTA已覆盖50%产量。但闪迪预计位元与ASP增速趋于温和，低毛利率LTA抵消部分价格利好
-- 产业链含义：合同覆盖率提升不等于盈利质量改善。只有同时满足"采购量不可取消+价格下限覆盖再投资回报+保证金足额"三项，合同才从销售意向变为盈利下限
-- 对持仓含义：PCB/CCL（生益科技）的存储相关订单（eSSD板卡/模组PCB）受益，但应在跟踪中区分合同质量</p>
-<p><strong>7. 韩国半导体设备与材料分歧：Wonik IPS CVD销售弱于预期，Duksan OLED材料强劲</strong>
-- 数据支撑：美银下调Wonik IPS目标价从W9.5万至W8.5万（22x 2027E P/E），因Q2 CVD销售受美/日竞争对手冲击。Duksan Neolux维持买入，目标价W7万不变，受OLED材料和涡轮机械业务提振
-- 产业链含义：韩国设备链正从存储涨价逻辑分化——设备订单需经客户资本开支、认证、进场、验收，收入确认明显滞后存储价格。阿斯麦的30%产能扩张可在现有洁净室内完成，设备供给非硬上限
-- 对持仓含义：长川科技（测试设备）的逻辑与韩国设备商类似——HBM堆叠提高测试次数与时长，但客户自研方案和测试效率提升构成竞争。需跟踪订单、进场验收节奏而非价格</p>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">1.</span>BofA恢复SK海力士覆盖，全球存储预测上修：DRAM 2026年收入$5730亿，2027年$8470亿</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：美银恢复SK海力士覆盖后更新全球存储模型。SK海力士Q2 DRAM ASP仅+30% QoQ（同业+45-70%），但Q3预计迅速回升25%，HBM4出货量将显著增加。铠侠Q3指引收入+35% QoQ，隐含NAND ASP上涨近20%，远高于行业中双位数涨幅。Q4存储再涨价：DRAM+8%、NAND+3% QoQ。全球DRAM营收预测：2025 $1340亿 / 2026 $5730亿（+328% YoY）/ 2027 $8470亿 / 2028 $9170亿</li>
+<li><span class="lbl">产业链含义</span>：存储涨价正在以"最后冲刺"方式完成Q4定价，此后ASP将趋于平稳至2027年Q1-Q4温和修正。美银明确指出2028年ASP回落（DRAM -8%、NAND -14%）并非硬着陆，而是高利润区间的"健康修正"。NAND现货本周意外走强（512Gb-1Tb +5-6%，256Gb +10%+），或与二线/白牌OEM为Q4旺季备货有关</li>
+<li><span class="lbl">对持仓含义</span>：存储产业链整体景气度延续至2028年，对科创芯片ETF（含存储相关标的）和PCB/覆铜板（生益科技）构成长期需求支撑。HBM4出货超预期利好相关设备/材料供应商</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">2.</span>存储长协全面锁量：三星60-70%产能五年合同覆盖，美光16份协议最低合同收入~$1000亿</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：三星电子提出用滚动五年期协议覆盖60-70%存储销量，已收取约25%计划预付款；美光16份战略客户协议，14份按底价对应最低合同收入约$1000亿，保证金约$220亿；闪迪2027财年超一半位元、2028财年约三分之二位元纳入合同，最低收入约$939亿，担保支持约$165亿。铠侠目标2028年50%出货纳入合同</li>
+<li><span class="lbl">产业链含义</span>：存储供给方正把收入波动从季度现货价变成多年履约合同。长协含价格下限、预付款和照付不议条款，已不仅是"订单"而是"现金流下限"。但HBM3E再谈后价格走弱提示长协不等于利润率永久上升，仍需逐客户验证条款质量</li>
+<li><span class="lbl">对持仓含义</span>：存储长协提升三星/海力士/美光盈利可见度，间接受益于PCB（服务器DDR5板卡、SoCAMM模组PCB）和半导体设备（DRAM新产线浸没式光刻配套强于逻辑产线）</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">3.</span>SoCAMM2配置下调构成本周最重要反证：英伟达平台从192GB降至64-96GB</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K存储周报指出Vera CPU配置从192GB降至96GB，部分SKU进一步降至64GB。两类解释：谨慎观点视为单机存储含量下降；另一组信息称供应商只能满足原方案60-70%需求，减配为保整机出货量</li>
+<li><span class="lbl">产业链含义</span>：若减配因需求疲软，单机含量下降将压低DRAM需求模型；若因供给不足，总需求仍被约束在供应商产能上限内。最终物料清单和供应商分配量是判断关键。MRDIMM（Gen-2达12800MT/s）和CXL内存池（2027年量产）作为替代方案正在推进</li>
+<li><span class="lbl">对持仓含义</span>：生益科技（服务器PCB/CCL）在SoCAMM模组PCB供应链中有潜在受益，但平台减配若持续可能削弱单板价值量。需跟踪模组厂（Simmtech）实际出货和利用率</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">4.</span>NAND现货逆势大涨+韩出口单价分化：企业级SSD vs 消费NAND成两套生意</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：NAND现货512Gb-1Tb +5-6%、256Gb +10%+，由二线OEM旺季备货驱动。韩国7月SSD出口单价$25,072/kg（环比+19%），但NAND闪存出口单价$61,751/kg（环比-1%）——方向分化说明高价企业级SSD正在抬升产品组合。铠侠预测2028年NAND需求1807EB（2025年约1.8倍），数据中心占比从30%升至50%</li>
+<li><span class="lbl">产业链含义</span>：AI推理/RAG/KV cache正在把NAND需求从消费端迁移至数据中心。HBF开放标准（512GB/UCIe）补上HBM与SSD之间的层级。但消费NAND仍受手机/PC需求压制和制程转换增供威胁，闪迪展望趋温和、Edge库存积累、低毛利率长协均提示不宜高估产业链全面受益</li>
+<li><span class="lbl">对持仓含义</span>：对生益科技（消费电子占比）需区分消费端压力与数据中心增量；对通信ETF（网络设备存储需求）有利，因AI交换机和机架高规格NOR/DDR5/控制器需求上升</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>三星电子拟推大规模回购+特别股息，存储龙头进入股东回报兑现期</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：美银预计三星电子使用2024-26年FCF的50%（扣除年付W10万亿股息后）进行回购分红，具体方案：(1) Q3/Q4特别股息W30万亿+，(2) 2027年上半年回购W40万亿+，(3) 2027年4月支付年终股息W30万亿。SK海力士亦预期返还50%FCF，侧重回购（W40万亿+）而非现金分红（W20万亿+）</li>
+<li><span class="lbl">产业链含义</span>：存储景气带来的海量现金流正在以回购分红形式疏导，三星电子还需W30万亿+库存股用于员工特别奖金。这既是行业信心信号，也为估值提供支撑</li>
+<li><span class="lbl">对持仓含义</span>：亚洲存储龙头估值修复有利整体半导体板块情绪，间接受益于科创芯片ETF</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">6.</span>NAND LTA覆盖加速扩散，但闪迪指引温和暴露合同质量差异</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：闪迪在最新财报中披露已与八家关键数据中心和边缘客户签署LTA，单季新增五份协议（含三家新客户）。南亚科技（中型DRAM）LTA已覆盖50%产量。但闪迪预计位元与ASP增速趋于温和，低毛利率LTA抵消部分价格利好</li>
+<li><span class="lbl">产业链含义</span>：合同覆盖率提升不等于盈利质量改善。只有同时满足"采购量不可取消+价格下限覆盖再投资回报+保证金足额"三项，合同才从销售意向变为盈利下限</li>
+<li><span class="lbl">对持仓含义</span>：PCB/CCL（生益科技）的存储相关订单（eSSD板卡/模组PCB）受益，但应在跟踪中区分合同质量</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">7.</span>韩国半导体设备与材料分歧：Wonik IPS CVD销售弱于预期，Duksan OLED材料强劲</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：美银下调Wonik IPS目标价从W9.5万至W8.5万（22x 2027E P/E），因Q2 CVD销售受美/日竞争对手冲击。Duksan Neolux维持买入，目标价W7万不变，受OLED材料和涡轮机械业务提振</li>
+<li><span class="lbl">产业链含义</span>：韩国设备链正从存储涨价逻辑分化——设备订单需经客户资本开支、认证、进场、验收，收入确认明显滞后存储价格。阿斯麦的30%产能扩张可在现有洁净室内完成，设备供给非硬上限</li>
+<li><span class="lbl">对持仓含义</span>：长川科技（测试设备）的逻辑与韩国设备商类似——HBM堆叠提高测试次数与时长，但客户自研方案和测试效率提升构成竞争。需跟踪订单、进场验收节奏而非价格</li>
+</ul></div>
 <h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
 <h3>中际旭创 ★★★★★</h3>
 <p>今日直接相关信息较少。但404K存储周报提及"AI服务器与定制芯片需求底座上修"——2027年XPU市场约$5000亿，2026/2027年英伟达机架出货6.1万/8.8万架。这直接推升光模块需求。FCC相关风险延续前日判断。</p>
