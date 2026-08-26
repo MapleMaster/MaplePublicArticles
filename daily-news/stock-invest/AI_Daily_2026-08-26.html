@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI投研日报 · 2026-08-26</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="AI投研日报 · 2026-08-26">
+<meta property="og:description" content="英伟达今夜财报大考，预期营收922.9亿美元(+97%)；OpenAI自研芯片Jalapeno能效超GB300；Anthropic冲刺2万亿美元IPO；芯片设计半年报净利暴增405%">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/daily-news/stock-invest/AI_Daily_2026-08-26.html">
+<meta itemprop="name" content="AI投研日报 · 2026-08-26">
+<meta itemprop="description" content="英伟达今夜财报大考，预期营收922.9亿美元(+97%)；OpenAI自研芯片Jalapeno能效超GB300；Anthropic冲刺2万亿美元IPO；芯片设计半年报净利暴增405%">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0d1117; color: #c9d1d9; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.7; }
+.container { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+.daily-nav {
+    max-width: 920px;
+    margin: 16px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+.daily-nav a, .daily-nav span.nav-disabled {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid #30363d;
+    white-space: nowrap;
+}
+.daily-nav a { color: #58a6ff; background: #161b22; }
+.daily-nav a:hover { background: #1c2333; border-color: #58a6ff; text-decoration: none; }
+.daily-nav span.nav-disabled { color: #484f58; background: #0d1117; border-color: #21262d; cursor: default; }
+.daily-nav .nav-home { color: #f0b90b; border-color: rgba(240, 185, 11, 0.3); background: rgba(240, 185, 11, 0.06); }
+.daily-nav .nav-home:hover { background: rgba(240, 185, 11, 0.12); border-color: rgba(240, 185, 11, 0.5); }
+@media (max-width: 640px) {
+    .daily-nav { flex-wrap: wrap; justify-content: center; }
+    .daily-nav a, .daily-nav span.nav-disabled { padding: 6px 12px; font-size: 0.82em; }
+}
+header { text-align: center; padding: 40px 0 20px; }
+header h1 { font-size: 2em; color: #f0f6fc; margin-bottom: 8px; }
+header .sub { color: #8b949e; font-size: 0.95em; }
+.time-window {
+    background: linear-gradient(135deg, rgba(240,185,11,0.12), rgba(88,166,255,0.10));
+    border: 1px solid rgba(240,185,11,0.35);
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin: 18px 0 26px;
+    text-align: center;
+    font-weight: 600;
+    color: #f0b90b;
+    font-size: 1.02em;
+}
+.toc { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
+.toc a { color: #58a6ff; text-decoration: none; border: 1px solid #30363d; background: #161b22; padding: 6px 14px; border-radius: 20px; font-size: 0.88em; transition: all 0.2s; }
+.toc a:hover { background: #1c2333; border-color: #58a6ff; }
+.section { margin-top: 34px; }
+.section-title { display: flex; align-items: center; gap: 10px; font-size: 1.35em; color: #f0f6fc; padding-bottom: 10px; margin-bottom: 16px; border-bottom: 2px solid #30363d; }
+.section-title .mark { font-size: 1.1em; }
+.card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; transition: border-color 0.2s; }
+.card:hover { border-color: #58a6ff; }
+.card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.card-emoji { font-size: 1.4em; }
+.card-header h3 { font-size: 1.1em; color: #f0f6fc; flex: 1; }
+.card-body p { color: #c9d1d9; margin-bottom: 10px; }
+.card-metrics { list-style: none; margin: 0 0 12px; padding: 10px 14px; background: #0d1117; border-radius: 8px; border-left: 3px solid #f0b90b; }
+.card-metrics li { font-size: 0.9em; color: #8b949e; padding: 3px 0; }
+.card-metrics li::before { content: "▸ "; color: #f0b90b; }
+.card-invest { background: rgba(88,166,255,0.07); border-left: 3px solid #58a6ff; padding: 8px 12px; border-radius: 6px; font-size: 0.92em; color: #a5d6ff; }
+.card-source { margin-top: 12px; font-size: 0.8em; color: #8b949e; border-top: 1px dashed #30363d; padding-top: 8px; }
+.up { color: #f85149; font-weight: 600; }
+.down { color: #3fb950; font-weight: 600; }
+footer { text-align: center; padding: 30px 0 20px; color: #8b949e; font-size: 0.85em; border-top: 1px solid #21262d; margin-top: 40px; }
+footer .disclaimer { margin-top: 8px; font-size: 0.78em; color: #484f58; }
+</style>
+</head>
+<body>
+
+<div class="daily-nav">
+    <a href="../../index.html" class="nav-home">🏠 返回首页</a>
+    <a href="AI_Daily_2026-08-25.html">← 2026-08-25</a>
+    <a href="index.html">📰 日报主页</a>
+    <span class="nav-disabled">无更新 →</span>
+</div>
+
+<div class="container">
+<header>
+    <h1>🦅 AI 投研日报</h1>
+    <div class="sub">2026-08-26（周三）｜ A股/港股/美股 · AI产业链</div>
+</header>
+
+<div class="time-window">📰 新闻时间窗口：2026-08-25 08:00 ~ 2026-08-26 08:00（过去24小时）</div>
+
+<nav class="toc">
+    <a href="#a">🇨🇳 A股市场</a>
+    <a href="#h">🇭🇰 港股市场</a>
+    <a href="#u">🇺🇸 美股市场</a>
+    <a href="#f">🌍 融资/产业</a>
+</nav>
+
+<div class="section" id="a">
+    <div class="section-title"><span class="mark">🇨🇳</span> A股市场（4条）</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🚀</span>
+        <h3>芯片设计行业半年报爆发：存储反转+AI算力双主线，37家公司净利同比暴增405%</h3>
+      </div>
+      <div class="card-body">
+        <p>截至8/25，A股37家数字芯片设计公司披露2026半年报：合计营收1274.75亿元（同比+76.45%），合计归母净利润394.96亿元（同比+405.64%）。存储龙头江波龙以240.88亿营收、105.77亿净利居板块之首（净利同比暴增约7.1万倍）；兆易创新营收115.66亿元、净利68.57亿元（同比+1091.5%）。存储周期反转+AI算力芯片需求爆发两大主线交织，行业红利向优质赛道集中。</p>
+        <ul class="card-metrics"><li>江波龙：营收240.88亿元(+136.3%)，净利105.77亿元(暴增71528.7%)</li><li>兆易创新：营收115.66亿元(+178.7%)，净利68.57亿元(+1091.5%)</li><li>37家合计营收+76.45%、净利+405.64%</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>存储超级周期+国产AI算力双主线兑现期。关联标的：江波龙、兆易创新、澜起科技、普冉股份、佰维存储、东芯股份。</div>
+      </div>
+      <div class="card-source">📅 发布日期：经济参考报/新浪财经 · 2026-08-26 01:02</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🔬</span>
+        <h3>科创板硬科技半年报：寒武纪净利+122.61%，生益电子/中微/摩尔线程全线高增</h3>
+      </div>
+      <div class="card-body">
+        <p>科创板半年报密集披露，AI算力需求沿PCB、覆铜板向上游传导：寒武纪营收59.96亿元(+108.13%)、净利23.11亿元(+122.61%)，推理软件平台已完成对GLM、DeepSeek、Qwen等国产主流模型适配；生益电子营收57.84亿元(+53.46%)、净利11.11亿元(+109.36%)，800G光模块PCB已批量生产、1.6T交换机配套产品进入小批量量产；中微公司营收66.91亿元(+34.89%)；摩尔线程营收17.36亿元(+147.42%)，夸娥智算集群规模化销售。</p>
+        <ul class="card-metrics"><li>寒武纪：营收59.96亿(+108.13%)，净利23.11亿(+122.61%)</li><li>生益电子：营收57.84亿(+53.46%)，净利11.11亿(+109.36%)</li><li>摩尔线程：营收17.36亿(+147.42%)，亏损大幅收窄</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>国产算力芯片/高端PCB/半导体设备进入业绩兑现期。关联标的：寒武纪、海光信息、生益电子、中微公司、北方华创。</div>
+      </div>
+      <div class="card-source">📅 发布日期：上海证券报 · 2026-08-26</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">⚡</span>
+        <h3>8/25算力基建反弹：液冷主力净流入超86亿居全市场首位，光纤概念走强</h3>
+      </div>
+      <div class="card-body">
+        <p>8/25 A股沪指探底回升收涨0.19%报3889.44点，算力基建环节领涨：液冷服务器板块成为全市场资金焦点，英维克涨停，液冷概念主力资金净流入超86亿元居首；光纤概念同步走强，特发信息涨停，亨通光电涨6.9%、长盈通涨幅居前。英维克半年报营收30.17亿元(+17.24%)，Coolinside全链条液冷方案已获主流算力芯片厂商规模应用。机构判断Q3为液冷从试点验证走向批量交付的关键拐点。</p>
+        <ul class="card-metrics"><li>液冷概念主力净流入超86亿元，居全市场首位</li><li>英维克：上半年营收30.17亿(+17.24%)，涨停</li><li>亨通光电 +6.90%，特发信息涨停</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>英伟达VR200机柜放量驱动液冷渗透率快速提升，Q3进入业绩集中释放期。关联标的：英维克、飞龙股份、亨通光电、中天科技、烽火通信。</div>
+      </div>
+      <div class="card-source">📅 发布日期：证券时报 · 2026-08-25</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">💎</span>
+        <h3>半导体硅晶圆三年多来首次全尺寸大幅涨价：AI算力需求溢出是核心驱动</h3>
+      </div>
+      <div class="card-body">
+        <p>8/25行业消息，全球硅晶圆市场三年多来首次大规模涨价，覆盖12/8/6英寸全尺寸：12英寸抛光片合同已执行双位数涨幅，8/6英寸目标涨幅约10%。AI算力需求溢出为最核心驱动，晶圆厂扩产带动硅片需求，行业迈入新一轮上行周期。</p>
+        <ul class="card-metrics"><li>12英寸抛光片合同价执行双位数涨幅</li><li>8/6英寸目标涨幅约10%</li><li>三年多来首次覆盖全尺寸的调价</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>硅片涨价周期启动，利好上游材料与硅片厂商盈利弹性。关联标的：沪硅产业、TCL中环、立昂微、石英股份。</div>
+      </div>
+      <div class="card-source">📅 发布日期：半导体产业纵横 · 2026-08-25</div>
+    </div>
+</div>
+<div class="section" id="h">
+    <div class="section-title"><span class="mark">🇭🇰</span> 港股市场（4条）</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">📈</span>
+        <h3>港股芯片股午后拉升：兆易/澜起涨近5%，中芯国际今日放榜、华虹明日接力</h3>
+      </div>
+      <div class="card-body">
+        <p>8/25港股芯片股午后活跃：兆易创新、澜起科技涨近5%，中芯国际+1.65%报67.85港元，商汤-W+2.72%；中芯国际与华虹宏力将分别于8/26、8/27发布上半年业绩。当日恒指收跌0.02%报25511.1点，恒生科技指数-0.12%，南向资金净卖出66.05亿港元，芯片股逆势拉升成亮点。</p>
+        <ul class="card-metrics"><li>中芯国际(00981)：+1.65%，报67.85港元</li><li>兆易创新、澜起科技：涨近5%</li><li>南向资金净卖出66.05亿港元，芯片股逆势走强</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>中芯/华虹业绩为港股半导体情绪风向标，关注AI配套芯片与海外订单回流验证。关联标的：中芯国际(00981)、华虹宏力(01347)。</div>
+      </div>
+      <div class="card-source">📅 发布日期：21世纪经济报道 · 2026-08-25</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🏭</span>
+        <h3>建滔积层板单日+10.71%：8月CCL涨价落地，7628电子布价格突破10元/米</h3>
+      </div>
+      <div class="card-body">
+        <p>8/25港股通信息技术指数涨2.02%，成分股建滔积层板+10.71%、建滔集团+10.68%。消息面：8月CCL（覆铜板）涨价落地，主流7628型号电子布价格突破10元/米，铜箔、电子布等原材料价格上行；银河证券预计AI服务器PCB市场2024-2029年CAGR达18.7%，高频高速低损耗材料带动CCL量价齐升。</p>
+        <ul class="card-metrics"><li>建滔积层板 +10.71%，建滔集团 +10.68%</li><li>7628型号电子布价格突破10元/米</li><li>AI服务器PCB市场2024-2029年CAGR预计18.7%</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>CCL/电子布进入量价齐升周期，PCB材料涨价逻辑强化。关联标的：建滔积层板(01888)、建滔集团(00148)、生益科技、中国巨石。</div>
+      </div>
+      <div class="card-source">📅 发布日期：有连云/腾讯新闻 · 2026-08-26</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🏦</span>
+        <h3>中芯国际获华兴证券“买入”目标价142港元；高盛上调2030年中国芯片开支预期至820亿美元</h3>
+      </div>
+      <div class="card-body">
+        <p>华兴证券8/25维持中芯国际“买入”评级、目标价142港元：2Q26收入与毛利率超预期，受益AI配套芯片需求旺盛及海外订单回流，2026-2028年EPS预测分别上调11.3%/8.1%/12.6%。同日高盛估计2026年阿里等四家AI资本支出约1020亿美元，2030年中国芯片行业开支将达820亿美元，较去年预期上调79%。</p>
+        <ul class="card-metrics"><li>中芯国际目标价142港元（当前67.85港元）</li><li>高盛：2030年中国芯片行业开支820亿美元(+79%)</li><li>2026年阿里等四家AI资本支出约1020亿美元</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>国产晶圆代工景气上行+中国AI资本开支中枢上修，设备/代工/设计全链受益。关联标的：中芯国际、华虹宏力、北方华创、中微公司。</div>
+      </div>
+      <div class="card-source">📅 发布日期：财联社/天天基金 · 2026-08-25</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🏢</span>
+        <h3>马云增持阿里超6亿港元：管理层合计增持超8亿，800亿配售100%投向AI</h3>
+      </div>
+      <div class="card-body">
+        <p>消息人士透露，随着阿里巴巴发起配售融资，马云连日增持阿里港股总额超6亿港元，表达对阿里AI发展的坚定信心；蔡崇信、吴泳铭连续两日已合计增持2亿港元，管理层近日合计增持超8亿港元。此前阿里完成港股史上最大规模800亿港元配售（每股112.7港元），资金100%投向全栈AI基建；本季资本开支676.78亿元(+75%)，AI云收入484亿元(+45%)。</p>
+        <ul class="card-metrics"><li>马云增持超6亿港元，管理层合计增持超8亿港元</li><li>800亿港元配售100%投向全栈AI基建</li><li>本季资本开支676.78亿元(+75%)，AI云收入+45%</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>管理层真金白银护盘+AI资本开支高增，港股科网情绪修复信号。关联标的：阿里巴巴(09988)、港股互联网板块。</div>
+      </div>
+      <div class="card-source">📅 发布日期：陆家嘴财经早餐 · 2026-08-26</div>
+    </div>
+</div>
+<div class="section" id="u">
+    <div class="section-title"><span class="mark">🇺🇸</span> 美股市场（5条）</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🎯</span>
+        <h3>英伟达今夜财报终极考验：营收预期922.9亿美元(+97%)，期权市场预计波动2800亿美元</h3>
+      </div>
+      <div class="card-body">
+        <p>英伟达将于美东8/26盘后公布2027财年Q2财报，全球AI资本开支迎来“体检报告”：营收共识预期921.8-922.9亿美元（同比约+97%）、EPS 2.09美元、调整后毛利率约75%；Q3营收预期1045.7亿美元。期权市场隐含财报后股价波动5.4%（约2800亿美元市值变动），低于历史均值。关注点：Q3指引、毛利率轨迹、Blackwell Ultra交付与超大规模云资本开支表态。</p>
+        <ul class="card-metrics"><li>Q2营收预期922.9亿美元(+97%)，EPS 2.09美元</li><li>Q3营收预期1045.7亿美元</li><li>期权隐含波动5.4%≈2800亿美元市值变动</li><li>过去12季度财报后平均波动7.4%</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>财报定AI硬件链短期方向。关联：英伟达(NVDA)、台积电(TSM)、AMD(MD)；A股光模块/存储/服务器映射。</div>
+      </div>
+      <div class="card-source">📅 发布日期：财联社/环球市场播报/TipRanks · 2026-08-25~26</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">📊</span>
+        <h3>8/25美股芯片集体反弹：英伟达终结七连跌+2.19%，光通信Lumentum涨超6%</h3>
+      </div>
+      <div class="card-body">
+        <p>8/25美股三大指数集体收涨：纳指+0.66%报26151.30点、标普+0.32%、道指+0.30%连涨三日。芯片股领涨：英伟达+2.19%终结七连跌，AMD+4.91%、迈威尔+4.84%、台积电ADR+1.78%、美光+2.48%；光通信Lumentum+6.67%、Coherent+4.59%；希捷/西部数据涨超3%。费城半导体指数+1.44%，纳斯达克中国金龙指数+1.08%。</p>
+        <ul class="card-metrics"><li>英伟达 +2.19%（终结七连跌），AMD +4.91%</li><li>Lumentum +6.67%，Coherent +4.59%</li><li>费城半导体指数 +1.44%，纳指 +0.66%</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>财报前资金抢跑布局，光通信/存储弹性居前，印证硬件链需求韧性。关联：Lumentum、Coherent、迈威尔(MRVL)、美光(MU)。</div>
+      </div>
+      <div class="card-source">📅 发布日期：第一财经 · 2026-08-26 07:27</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🔥</span>
+        <h3>OpenAI自研芯片Jalapeno首测数据公布：能效与延迟双超英伟达GB300</h3>
+      </div>
+      <div class="card-body">
+        <p>OpenAI 8/25公布与博通联合开发的自研AI推理芯片Jalapeno首测结果：在单位功耗AI处理能力和响应延迟两项指标上均优于英伟达GB300，功耗约700瓦，最快于今年晚些时候投入实际使用。这是继Waymo自研ASIC后，又一AI巨头自研芯片验证，强化“定制化算力”渗透逻辑。</p>
+        <ul class="card-metrics"><li>单位功耗处理能力、响应延迟两项指标优于GB300</li><li>功耗约700瓦</li><li>最快今年晚些时候投入使用</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>巨头自研ASIC浪潮利好定制芯片设计龙头与先进制程代工。关联：博通(AVGO)、迈威尔(MRVL)、台积电(TSM)；A股先进封装/国产算力映射。</div>
+      </div>
+      <div class="card-source">📅 发布日期：OpenAI Blog/每日经济新闻 · 2026-08-25</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">💰</span>
+        <h3>英伟达服务器再涨15%：HBM内存成本飙升转嫁客户，2027年初交付机型先行</h3>
+      </div>
+      <div class="card-body">
+        <p>8/25报道，因内存（HBM）成本攀升，英伟达拟对2027年初交付的Vera Rubin及Grace Blackwell服务器涨价15%，涉及微软等核心客户，转嫁成本压力。此前英伟达已告知客户内存芯片成本大涨需要上调价格，市场担忧成本上升侵蚀利润率，尤其在Blackwell Ultra新品放量阶段。</p>
+        <ul class="card-metrics"><li>2027年初交付的Vera Rubin/Grace Blackwell服务器涨价15%</li><li>HBM成本飙升为核心驱动</li><li>涉及微软等核心客户</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>内存涨价周期强化HBM链景气，存储厂商受益于定价权。关联：SK海力士、美光(MU)、三星；A股兆易创新、江波龙、雅克科技。</div>
+      </div>
+      <div class="card-source">📅 发布日期：至顶科技 · 2026-08-25</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🍎</span>
+        <h3>苹果发布全球首款2nm芯片电脑：M6 Mac mini AI算力提升4倍，库克9/1卸任</h3>
+      </div>
+      <div class="card-body">
+        <p>苹果8/25晚更新Mac产品线：Mac mini首发2nm制程M6芯片（12核CPU+12核GPU+双16核神经引擎），AI性能较M4版提升4倍，LLM提示词处理速度提升4.8倍，国行起售价6999元；Mac Studio搭载“迄今最强大”的M5 Ultra芯片（四Die架构），两者9月22日发售。库克将于9月1日卸任CEO。</p>
+        <ul class="card-metrics"><li>M6为苹果首款2nm制程芯片，AI性能较M4提升4倍</li><li>Mac mini国行起售价6999元（涨2500元）</li><li>M5 Ultra为四Die架构，9/22发售</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>AI端侧硬件加速+苹果链价值量提升。关联标的：立讯精密、工业富联、歌尔股份、蓝思科技。</div>
+      </div>
+      <div class="card-source">📅 发布日期：第一财经/每日经济新闻 · 2026-08-25~26</div>
+    </div>
+</div>
+<div class="section" id="f">
+    <div class="section-title"><span class="mark">🌍</span> 融资/产业（2条）</div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🚀</span>
+        <h3>Anthropic冲刺2万亿美元IPO：披露30万亿美元TAM，拟募资最高1000亿美元</h3>
+      </div>
+      <div class="card-body">
+        <p>8/25消息，Claude制造商Anthropic向IPO投资者披露潜在市场总规模（TAM）超30万亿美元（超越SpaceX的28.5万亿纪录），预计2028年收入1900-2000亿美元，IPO估值目标约2万亿美元，拟募资最高1000亿美元，最快9月或10月上市，多项指标有望超越SpaceX（募资860亿美元）。隐忧：Ramp数据显示旗舰模型Fable 5上线两月仅占销售额11.4%，企业客户转向“够用就好”的高性价比模型，价格战冲击高端模型变现。</p>
+        <ul class="card-metrics"><li>IPO估值目标约2万亿美元，拟募资最高1000亿美元</li><li>披露TAM超30万亿美元，2028年收入预期1900-2000亿</li><li>旗舰模型Fable 5销售额占比仅11.4%，遇冷</li><li>7月年化收入650亿美元，首录调整后营运利润</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>AI应用龙头IPO或成年内最大IPO，重塑AI估值锚；高端模型定价权与价格战平衡成关键。关联：美股AI应用板块、大模型产业链。</div>
+      </div>
+      <div class="card-source">📅 发布日期：华尔街见闻/观点 · 2026-08-25~26</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-emoji">🌐</span>
+        <h3>摩根士丹利：五大云巨头+英伟达博通AI相关表外承诺超3.1万亿美元</h3>
+      </div>
+      <div class="card-body">
+        <p>摩根士丹利报告显示，Alphabet、亚马逊、Meta、微软、甲骨文五大云服务商及英伟达、博通通过担保、租赁等财务支持方式，合计AI相关表外承诺超3.1万亿美元；其中Alphabet承诺规模最高达8900亿美元。超大规模云商超40%的销售收入正被重新投入AI资本开支，AI资本开支闭环韧性得到验证。</p>
+        <ul class="card-metrics"><li>AI相关表外承诺合计超3.1万亿美元</li><li>Alphabet承诺规模最高达8900亿美元</li><li>超大规模云商超40%销售收入重新投入AI资本开支</li></ul>
+        <div class="card-invest">💡 <b>投资视角：</b>AI资本开支闭环数据缓解“泡沫”担忧，为硬件链估值提供支撑。关联：英伟达(NVDA)、博通(AVGO)、五大云巨头。</div>
+      </div>
+      <div class="card-source">📅 发布日期：财联社 · 2026-08-25</div>
+    </div>
+</div>
+
+<footer>
+    <div>🦅 AI 投研日报 · 生成时间：2026-08-26 08:00（北京时间）</div>
+    <div>数据来源：财联社、经济参考报、上海证券报、证券时报、第一财经、华尔街见闻、OpenAI Blog 等公开渠道</div>
+    <div class="disclaimer">⚠️ 免责声明：本报告仅供参考，不构成任何投资建议。市场有风险，投资需谨慎。新闻均标注发布日期以验证时效性。</div>
+</footer>
+</div>
+
+<div class="daily-nav">
+    <a href="../../index.html" class="nav-home">🏠 返回首页</a>
+    <a href="AI_Daily_2026-08-25.html">← 2026-08-25</a>
+    <a href="index.html">📰 日报主页</a>
+    <span class="nav-disabled" id="nav-next">无更新 →</span>
+</div>
+
+</body>
+</html>
