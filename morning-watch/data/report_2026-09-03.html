@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>关注列表晨报 2026-09-03 · 华尔街之鹰</title>
+<meta name="description" content="富途关注列表 640 只个股每日晨报 · 大盘综述/涨跌双榜/持仓快照/异动聚焦">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #030712; --card-bg: rgba(15, 23, 42, 0.7);
+    --blue: #60a5fa; --cyan: #22d3ee; --purple: #a78bfa; --gold: #fbbf24;
+    --green: #34d399; --red: #ef4444; --text: #f1f5f9; --text-dim: #64748b;
+    --border: rgba(148, 163, 184, 0.08);
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', system-ui, sans-serif;
+    background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .page { max-width: 760px; margin: 0 auto; padding: 20px 18px 36px; }
+  .header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .header .back { flex-shrink: 0; color: var(--text-dim); text-decoration: none; font-size: 0.8em; padding: 6px 10px; border-radius: 8px; background: var(--card-bg); border: 1px solid var(--border); }
+  .header .title-block { flex: 1; min-width: 0; }
+  .header .pretitle { font-size: 0.6em; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 2px; }
+  .header h1 { font-size: clamp(1.1em, 4vw, 1.35em); font-weight: 700;
+    background: linear-gradient(135deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .meta-line { font-size: 0.62em; color: var(--text-dim); margin-bottom: 20px; line-height: 1.8; }
+  .section { margin-bottom: 24px; }
+  .section-title { font-size: 0.95em; font-weight: 700; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid var(--cyan); }
+  .section-title .sub { font-size: 0.65em; color: var(--text-dim); font-weight: 400; margin-left: 8px; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+  .idx-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--border); gap: 8px; }
+  .idx-row:last-child { border-bottom: none; }
+  .idx-name { font-size: 0.8em; font-weight: 600; margin-right: 8px; }
+  .idx-note { font-size: 0.6em; color: var(--text-dim); }
+  .idx-price { font-size: 0.85em; font-weight: 700; margin-right: 8px; font-variant-numeric: tabular-nums; }
+  .idx-chg { font-size: 0.78em; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .up { color: var(--red); } .down { color: var(--green); }
+  .stock-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--border); }
+  .stock-row:last-child { border-bottom: none; }
+  .rank { flex-shrink: 0; width: 22px; font-size: 0.75em; color: var(--text-dim); padding-top: 2px; font-variant-numeric: tabular-nums; }
+  .stock-main { flex: 1; min-width: 0; }
+  .stock-line { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+  .stock-name { font-size: 0.82em; font-weight: 700; }
+  .stock-code { font-size: 0.62em; color: var(--text-dim); }
+  .stock-chg { font-size: 0.8em; font-weight: 700; margin-left: auto; font-variant-numeric: tabular-nums; }
+  .hold-mark { background: rgba(251,191,36,0.15); color: var(--gold); border: 1px solid rgba(251,191,36,0.3); padding: 0 5px; border-radius: 4px; font-size: 0.65em; }
+  .after { font-size: 0.65em; font-weight: 600; }
+  .stock-sub { font-size: 0.62em; color: var(--text-dim); margin-top: 2px; }
+  .why { font-size: 0.68em; color: #94a3b8; margin-top: 4px; line-height: 1.55; }
+  .focus-card { background: linear-gradient(135deg, rgba(96,165,250,0.08), rgba(34,211,238,0.05)); border: 1px solid rgba(96,165,250,0.25); border-radius: 14px; padding: 16px; }
+  .focus-card h3 { font-size: 0.9em; margin-bottom: 8px; }
+  .focus-card p { font-size: 0.72em; line-height: 1.75; color: #cbd5e1; margin-bottom: 8px; }
+  .focus-card .kv { font-size: 0.68em; color: var(--text-dim); }
+  .news-item { padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 0.72em; line-height: 1.65; }
+  .news-item:last-child { border-bottom: none; }
+  .news-item .n { color: var(--cyan); font-weight: 700; margin-right: 6px; }
+  .news-item b { color: var(--text); }
+  .news-item .src { color: var(--text-dim); font-size: 0.85em; }
+  .footer { font-size: 0.6em; color: var(--text-dim); line-height: 1.8; border-top: 1px solid var(--border); padding-top: 14px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 100px; font-size: 0.62em; margin-right: 6px; }
+  .badge-red { background: rgba(239,68,68,0.12); color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
+  .badge-green { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
+  .badge-gold { background: rgba(251,191,36,0.12); color: var(--gold); border: 1px solid rgba(251,191,36,0.25); }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="header">
+  <a class="back" href="../index.html">← 返回</a>
+  <div class="title-block">
+    <div class="pretitle">MORNING WATCH · 每日 07:00</div>
+    <h1>关注列表晨报 · 2026-09-03</h1>
+  </div>
+</div>
+
+<div class="meta-line">
+覆盖标的：富途关注列表 <b>640</b> 只（美股 392 / 港股 84 / A股 163）｜
+数据：美股 2026-09-02 收盘 + 盘后｜港股/A股 9/3 收盘｜来源：富途 OpenD · westock-data · 富途牛牛快讯<br>
+涨跌分布：<span style="color:var(--red)">↑372</span> / <span style="color:var(--green)">↓259</span> / —9
+（美股 259/392 · 港股 40/84 · A股 73/163）
+</div>
+
+<div class="section">
+  <div class="section-title">一、大盘综述<span class="sub">隔夜美股 + 当日 A/H</span></div>
+  <div class="card"><div class="idx-row"><div><span class="idx-name">道琼斯</span><span class="idx-note">9/2 收盘，+295.07 点</span></div>
+<div><span class="idx-price">53,061.95</span><span class="idx-chg up">+0.56%</span></div></div><div class="idx-row"><div><span class="idx-name">标普500</span><span class="idx-note">9/2 收盘，+35.13 点</span></div>
+<div><span class="idx-price">7,666.60</span><span class="idx-chg up">+0.46%</span></div></div><div class="idx-row"><div><span class="idx-name">纳斯达克</span><span class="idx-note">9/2 收盘，+118.06 点，科技股领涨</span></div>
+<div><span class="idx-price">26,217.83</span><span class="idx-chg up">+0.45%</span></div></div><div class="idx-row"><div><span class="idx-name">恒生指数</span><span class="idx-note">9/3 收盘，-97.9 点</span></div>
+<div><span class="idx-price">25,213</span><span class="idx-chg down">-0.39%</span></div></div><div class="idx-row"><div><span class="idx-name">恒生科技</span><span class="idx-note">9/3 收盘，续创调整新低</span></div>
+<div><span class="idx-price">4,468</span><span class="idx-chg down">-1.08%</span></div></div><div class="idx-row"><div><span class="idx-name">上证指数</span><span class="idx-note">9/3 收盘，缩量十字星</span></div>
+<div><span class="idx-price">3,942</span><span class="idx-chg up">+0.02%</span></div></div><div class="idx-row"><div><span class="idx-name">深证成指</span><span class="idx-note">9/3 收盘</span></div>
+<div><span class="idx-price">13,625</span><span class="idx-chg up">+0.10%</span></div></div><div class="idx-row"><div><span class="idx-name">创业板指</span><span class="idx-note">9/3 收盘，五日线企稳尝试</span></div>
+<div><span class="idx-price">3,313</span><span class="idx-chg up">+0.01%</span></div></div><div class="idx-row"><div><span class="idx-name">科创50</span><span class="idx-note">9/3 收盘，弱势未改</span></div>
+<div><span class="idx-price">1,611</span><span class="idx-chg down">-0.40%</span></div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">二、隔夜要闻<span class="sub">宏观 + 个股（与关注列表相关）</span></div>
+  <div class="card">
+    <div class="news-item"><span class="n">01</span><b>美国 8 月 ADP 新增就业仅 3.8 万</b>，远低于预期 4.7 万，创 1 月以来最低增速——降息预期升温，利率敏感型成长股隔夜走强 <span class="src">（ADP 报告）</span></div>
+    <div class="news-item"><span class="n">02</span><b>美联储褐皮书</b>：全美 12 辖区温和增长，AI 对劳动力两极分化（行政岗减少、高技能需求增加），工资压力适中 <span class="src">（Fed 褐皮书）</span></div>
+    <div class="news-item"><span class="n">03</span><b>戴尔 AI 服务器订单积压飙至约 950 亿美元</b>，股价暴涨近 16%——AI 资本开支从芯片向整机扩散的信号 <span class="src">（公司公告/盘中）</span></div>
+    <div class="news-item"><span class="n">04</span><b>Palo Alto Networks 财报后跌 9.3%</b>：FY2027 收入指引 141~142 亿（+23~24%）尚可，但 NGS ARR 增速指引从 63% 骤降至 22~23%，网安「高增长」叙事遭遇重定价 <span class="src">（财报电话会）</span></div>
+    <div class="news-item"><span class="n">05</span><b>博通盘后涨超 4%</b>：定制 AI 芯片与网络交换设备销售额创新高，AI 硬件叙事获财报验证——对 COHR/MRVL 等网络链构成情绪支撑 <span class="src">（盘后财报）</span></div>
+    <div class="news-item"><span class="n">06</span><b>Snowflake 盘后 +20%</b>：LLM 集成功能拉动，数据基础设施需求韧性超预期 <span class="src">（盘后财报）</span></div>
+    <div class="news-item"><span class="n">07</span><b>加拿大央行维持利率 2.25% 不变</b>；德国 8 月通胀回升至 3.3%（能源 +14.3%）——全球通胀粘性仍在 <span class="src">（央行决议/欧盟统计局）</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">三、板块轮动<span class="sub">A股申万行业 9/3 收盘 + 美股隔夜主线</span></div>
+  <div class="card">
+    <div class="news-item"><b>隔夜美股主线</b>：资金从高估值软件（MDB/CRWD/PANW 杀指引）流向<b>硬件与整机</b>（DELL +15.8% / AVGO 盘后新高）——「AI 叙事从训练到交付」的轮动特征明显；网安板块集体重挫（PANW/CRWD/S/FTNT 全线下跌）</div>
+    <div class="news-item"><b>A股 9/3 领涨</b>：航运港口 +2.99%、其他电源设备 +2.74%、保险 +2.58%、电机 +2.45%、贵金属 +2.18%——防御 + 涨价双主线；红利与出海设备获资金回流</div>
+    <div class="news-item"><b>A股 9/3 领跌</b>：房地产服务 -3.47%、饲料 -2.75%、玻璃玻纤 -2.24%、地面兵装 -2.16%、国有大行 -1.86%——昨日避险方向（军工/银行）今日回吐，资金快速轮动</div>
+    <div class="news-item"><b>半导体链</b>（组合重仓方向）：半导体行业 -0.41% 缩量调整、5 日主力 -392 亿仍在流出，但单日流出收窄至 -45 亿（vs 前日 -216 亿芯片概念口径）——<b>抛压边际减轻，等待企稳信号</b></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">四、关注列表涨幅榜 Top 15<span class="sub">美股为隔夜收盘，A/H 为 9/3 收盘</span></div>
+  <div class="card">
+<div class="stock-row">
+<div class="rank">1</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">戴尔科技</span><span class="stock-code">US.DELL</span><span class="stock-chg up">+15.81%</span><span class="after down">盘后-1.3%</span></div>
+<div class="stock-sub">492.20 · 成交 $17.1B</div>
+<div class="why">AI服务器订单积压约 950 亿美元创新高 + 液冷服务器放量 + AI PC 换机潮，资金从芯片端向整机硬件轮动的最大受益者</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">2</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">AST SpaceMobile</span><span class="stock-code">US.ASTS</span><span class="stock-chg up">+11.83%</span><span class="after up">盘后+0.4%</span></div>
+<div class="stock-sub">62.40 · 成交 $1.2B</div>
+<div class="why">投行密集上调目标价（B. Riley 15→26 美元、Scotiabank 上调至 28），首批 5 颗 BlueBird 卫星 9 月初由 SpaceX 发射在即</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">3</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">三倍做多黄金矿业ETN-MicroSectors</span><span class="stock-code">US.GDXU</span><span class="stock-chg up">+10.38%</span><span class="after up">盘后+0.7%</span></div>
+<div class="stock-sub">156.00 · 成交 $0.3B</div>
+<div class="why">贵金属突破上行，黄金矿业三倍杠杆 ETN 弹性放大</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">4</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">三安光电</span><span class="stock-code">SH.600703</span><span class="stock-chg up">+9.98%</span></div>
+<div class="stock-sub">13.89 · 成交 35亿</div>
+<div class="why">LED/化合物半导体涨价预期 + 消费电子旺季备货，三安为 Mini LED 与碳化硅双龙头</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">5</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">招商轮船</span><span class="stock-code">SH.601872</span><span class="stock-chg up">+8.37%</span></div>
+<div class="stock-sub">19.30 · 成交 28亿</div>
+<div class="why">地缘冲突推升油运运价，VLCC 旺季行情 + 能源运输风险溢价</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">6</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Ondas</span><span class="stock-code">US.ONDS</span><span class="stock-chg up">+8.10%</span></div>
+<div class="stock-sub">7.61 · 成交 $0.6B</div>
+<div class="why">无人机/防务子公司订单积压超预期，OAS 平台 + FullMAX 技术获军方订单，防务无人机情绪升温</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">7</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">宏发股份</span><span class="stock-code">SH.600885</span><span class="stock-chg up">+8.10%</span></div>
+<div class="stock-sub">35.65 · 成交 11亿</div>
+<div class="why">继电器全球龙头，电网设备板块资金净流入全市场第一 + 电力设备出海订单预期</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">8</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">万国黄金集团</span><span class="stock-code">HK.03939</span><span class="stock-chg up">+7.61%</span></div>
+<div class="stock-sub">15.84 · 成交 5.7亿港元</div>
+<div class="why">金价走强 + 新矿投产预期，港股黄金股集体拉升</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">9</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">IREN Ltd</span><span class="stock-code">US.IREN</span><span class="stock-chg up">+7.55%</span><span class="after down">盘后-0.8%</span></div>
+<div class="stock-sub">39.60 · 成交 $1.6B</div>
+<div class="why">比特币矿企转 AI 数据中心叙事强化，2026 财年 30 EH/s 算力目标 + Childress 站点扩容</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">10</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Silvercorp Metals</span><span class="stock-code">US.SVM</span><span class="stock-chg up">+7.39%</span></div>
+<div class="stock-sub">12.78 · 成交 $0.0B</div>
+<div class="why">白银价格突破 32 美元/盎司（11 年新高），白银矿商业绩弹性释放</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">11</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Aurora Innovation</span><span class="stock-code">US.AUR</span><span class="stock-chg up">+7.14%</span></div>
+<div class="stock-sub">5.85 · 成交 $0.2B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">12</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Cerebras Systems</span><span class="stock-code">US.CBRS</span><span class="stock-chg up">+6.89%</span></div>
+<div class="stock-sub">184.52 · 成交 $1.3B</div>
+<div class="why">Cerebras AI 推理芯片订单预期，AI 算力板块超跌反弹</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">13</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">3倍做多区域银行股ETF-Direxion</span><span class="stock-code">US.DPST</span><span class="stock-chg up">+6.51%</span></div>
+<div class="stock-sub">133.59 · 成交 $0.0B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">14</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Nu Holdings</span><span class="stock-code">US.NU</span><span class="stock-chg up">+6.50%</span></div>
+<div class="stock-sub">15.40 · 成交 $1.2B</div>
+<div class="why">拉美数字银行 Q1 财报超预期，ARPAC 攀升 + 墨西哥/哥伦比亚扩张顺利</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">15</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">中远海能</span><span class="stock-code">HK.01138</span><span class="stock-chg up">+6.49%</span></div>
+<div class="stock-sub">17.55 · 成交 4.6亿港元</div>
+<div class="why">油运运价上行 + 地缘风险溢价，中远海能 VLCC 运价弹性最大</div>
+</div>
+</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">五、关注列表跌幅榜 Top 15</div>
+  <div class="card">
+<div class="stock-row">
+<div class="rank">1</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Credo Technology</span><span class="stock-code">US.CRDO</span><span class="stock-chg down">-20.04%</span><span class="after up">盘后+1.5%</span></div>
+<div class="stock-sub">165.22 · 成交 $5.1B</div>
+<div class="why">Q3 营收指引 1.2~1.3 亿美元未达市场「耳语预估」，AEC 芯片客户集中度风险暴露——AI 连接芯片叙事首次证伪</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">2</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">燃料电池能源</span><span class="stock-code">US.FCEL</span><span class="stock-chg down">-15.69%</span></div>
+<div class="stock-sub">14.40 · 成交 $0.2B</div>
+<div class="why">燃料电池商业化进度不及预期 + 现金消耗担忧，题材股回吐</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">3</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">MongoDB</span><span class="stock-code">US.MDB</span><span class="stock-chg down">-13.54%</span><span class="after up">盘后+1.2%</span></div>
+<div class="stock-sub">375.40 · 成交 $2.8B</div>
+<div class="why">2026 财年指引营收 21.4~21.8 亿美元低于共识 22.6 亿，EPS 指引 2.45~2.70 vs 预期 3.55，数据库 SaaS 集体承压</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">4</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">2倍做多CLS ETF-Tradr</span><span class="stock-code">US.CSEX</span><span class="stock-chg down">-10.26%</span><span class="after up">盘后+4.2%</span></div>
+<div class="stock-sub">9.45 · 成交 $0.0B</div>
+<div class="why">两倍做多 CLS 杠杆 ETF，正股获利回吐带动杠杆反噬</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">5</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Palo Alto Networks</span><span class="stock-code">US.PANW</span><span class="stock-chg down">-9.28%</span><span class="after up">盘后+0.6%</span></div>
+<div class="stock-sub">328.48 · 成交 $4.4B</div>
+<div class="why">财报后 FY2027 指引不及预期 + NGS ARR 增速 63%→22~23% 骤降指引 + 平台化利润挤压，「网安泡沫」论发酵</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">6</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Upexi</span><span class="stock-code">US.UPXI</span><span class="stock-chg down">-7.66%</span><span class="after up">盘后+3.1%</span></div>
+<div class="stock-sub">0.96 · 成交 $0.0B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">7</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">2倍做多恐慌指数期货ETF</span><span class="stock-code">US.UVIX</span><span class="stock-chg down">-6.29%</span><span class="after up">盘后+0.7%</span></div>
+<div class="stock-sub">39.06 · 成交 $0.1B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">8</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Palantir</span><span class="stock-code">US.PLTR</span><span class="stock-chg down">-5.81%</span><span class="after up">盘后+0.3%</span></div>
+<div class="stock-sub">169.46 · 成交 $6.8B</div>
+<div class="why">AI 赛道估值溢价再评估，高估值科技股集体回撤</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">9</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">AIRO Group</span><span class="stock-code">US.AIRO</span><span class="stock-chg down">-5.75%</span><span class="after up">盘后+0.6%</span></div>
+<div class="stock-sub">6.88 · 成交 $0.0B</div>
+<div class="why">股份转售登记带来稀释风险</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">10</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">昆腾</span><span class="stock-code">US.QMCO</span><span class="stock-chg down">-5.75%</span><span class="after up">盘后+0.5%</span></div>
+<div class="stock-sub">22.78 · 成交 $0.0B</div>
+<div class="why">昆腾存储小盘股随存储板块高位震荡，流动性差放大波动</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">11</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">CrowdStrike</span><span class="stock-code">US.CRWD</span><span class="stock-chg down">-5.42%</span><span class="after up">盘后+0.8%</span></div>
+<div class="stock-sub">203.42 · 成交 $2.5B</div>
+<div class="why">网安板块连锁抛售，ARR 增长指引担忧 + 竞争定价压力</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">12</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">携程集团-S</span><span class="stock-code">HK.09961</span><span class="stock-chg down">-5.41%</span></div>
+<div class="stock-sub">325.20 · 成交 16.6亿港元</div>
+<div class="why">中概出行链走弱 + 南向资金获利了结，携程节前涨幅兑现</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">13</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Figma Inc</span><span class="stock-code">US.FIG</span><span class="stock-chg down">-5.40%</span><span class="after up">盘后+0.7%</span></div>
+<div class="stock-sub">25.73 · 成交 $0.3B</div>
+<div class="why">上市后估值消化，SaaS 板块情绪拖累</div>
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">14</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Bgin Blockchain</span><span class="stock-code">US.BGIN</span><span class="stock-chg down">-5.23%</span><span class="after down">盘后-4.5%</span></div>
+<div class="stock-sub">1.99 · 成交 $0.0B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">15</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">天弘科技</span><span class="stock-code">US.CLS</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-5.07%</span><span class="after up">盘后+1.9%</span></div>
+<div class="stock-sub">277.77 · 成交 $0.9B</div>
+<div class="why">AI 硬件代工「利好兑现」+ 毛利率担忧，与 CRDO 财报引发的 AI 硬件链连锁反应共振</div>
+</div>
+</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">六、今日异动聚焦：Palo Alto Networks（PANW）<span class="sub">-9.28%，网安泡沫破裂的标志性一天</span></div>
+  <div class="focus-card">
+    <h3>🧨发生了什么</h3>
+    <p>PANW 财报「表面超预期」：Q4 收入 34.1 亿（+34%）、NGS ARR 91 亿（+63%）、RPO 212 亿（+34%），全部亮眼。但股价暴跌近 10%，因为<b>指引揭示了增长的拐点</b>：FY2027 NGS ARR 增速指引从 63% 骤降至 22~23%——市场此前按 30~50% 长期增速定价，指引一出，估值模型直接坍塌。</p>
+    <h3>📊 利润质量的裂缝</h3>
+    <p>更值得警惕的是 GAAP 口径：Q4 GAAP 净利润由盈转亏（-2.82 亿），全年 GAAP 净利 3.07 亿 vs 上年 11.34 亿——收入多赚 22.6 亿、净利反减 8.3 亿。缺口来自股票薪酬 4.87 亿/季 + CyberArk 并购摊销 2.81 亿 + 研发销售费用翻倍扩张。<b>「增收不增利」是非 GAAP 美化下的典型泡沫结构</b>。</p>
+    <h3>🔍 对组合的映射</h3>
+    <p>组合内的网安敞口：SentinelOne（S）-4.6%、与 CRWD 联动的情绪传导。S 的逻辑是「纯 AI 原生 + 平台化追赶」，与 PANW 的「平台化整合者」不同，但板块性杀估值时难以独善其身——<b>注意 S 后续财报的 ARR 增速指引，若同样降档，需重新评估持仓逻辑</b>。同时警惕 MDB/CRDO式的「指引不及耳语」风险向 AI 硬件链蔓延：COHR/MRVL/CLS 明后两周将陆续公布财报，AVGO 盘后超预期是唯一积极信号。</p>
+    <p class="kv">数据来源：公司财报 / 财报电话会 / 盘后行情。观点仅供参考，不构成投资建议。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">七、持仓快照<span class="sub">PORTFOLIO.md 标记（美股 9/2 收盘 / A股·港股 9/3 收盘）</span></div>
+
+  <div class="section-title" style="font-size:0.78em;margin-top:8px">7.1 美股 IB（10涨 8跌 · 平均 +0.14%）</div>
+  <div class="card"><div class="stock-row">
+<div class="rank">1</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Vistra Energy</span><span class="stock-code">US.VST</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+3.90%</span><span class="after up">盘后+0.4%</span></div>
+<div class="stock-sub">143.46 · 成交 $0.7B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">2</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">SK海力士</span><span class="stock-code">US.SKHY</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+2.61%</span><span class="after down">盘后-0.4%</span></div>
+<div class="stock-sub">164.98 · 成交 $1.8B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">3</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Meta Platforms</span><span class="stock-code">US.META</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+2.47%</span><span class="after up">盘后+0.9%</span></div>
+<div class="stock-sub">592.85 · 成交 $9.8B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">4</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">美光科技</span><span class="stock-code">US.MU</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+2.43%</span></div>
+<div class="stock-sub">956.08 · 成交 $20.3B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">5</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">NEBIUS</span><span class="stock-code">US.NBIS</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+2.28%</span></div>
+<div class="stock-sub">204.09 · 成交 $2.2B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">6</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Tema Memory ETF</span><span class="stock-code">US.DISK</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+1.84%</span><span class="after down">盘后-1.3%</span></div>
+<div class="stock-sub">36.46 · 成交 $0.0B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">7</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Bloom Energy</span><span class="stock-code">US.BE</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+1.71%</span></div>
+<div class="stock-sub">217.28 · 成交 $1.9B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">8</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Rocket Lab</span><span class="stock-code">US.RKLB</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+0.90%</span><span class="after up">盘后+1.4%</span></div>
+<div class="stock-sub">63.10 · 成交 $1.0B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">9</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">台积电</span><span class="stock-code">US.TSM</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+0.36%</span></div>
+<div class="stock-sub">415.50 · 成交 $2.6B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">10</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">摩根大通</span><span class="stock-code">US.JPM</span><span class="hold-mark">★持仓</span><span class="stock-chg up">+0.36%</span></div>
+<div class="stock-sub">356.22 · 成交 $1.9B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">11</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">苹果</span><span class="stock-code">US.AAPL</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-0.05%</span></div>
+<div class="stock-sub">324.96 · 成交 $11.0B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">12</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">博通</span><span class="stock-code">US.AVGO</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-0.66%</span><span class="after down">盘后-0.8%</span></div>
+<div class="stock-sub">367.24 · 成交 $14.2B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">13</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Howmet Aerospace</span><span class="stock-code">US.HWM</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-0.76%</span><span class="after up">盘后+0.3%</span></div>
+<div class="stock-sub">252.96 · 成交 $0.9B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">14</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Coherent</span><span class="stock-code">US.COHR</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-1.25%</span><span class="after up">盘后+0.4%</span></div>
+<div class="stock-sub">268.64 · 成交 $1.1B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">15</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">迈威尔科技</span><span class="stock-code">US.MRVL</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-1.86%</span></div>
+<div class="stock-sub">206.48 · 成交 $3.1B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">16</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">Astera Labs</span><span class="stock-code">US.ALAB</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-2.06%</span></div>
+<div class="stock-sub">274.13 · 成交 $0.8B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">17</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">SentinelOne</span><span class="stock-code">US.S</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-4.60%</span><span class="after up">盘后+0.4%</span></div>
+<div class="stock-sub">19.68 · 成交 $0.2B</div>
+
+</div>
+</div>
+<div class="stock-row">
+<div class="rank">18</div>
+<div class="stock-main">
+<div class="stock-line"><span class="stock-name">天弘科技</span><span class="stock-code">US.CLS</span><span class="hold-mark">★持仓</span><span class="stock-chg down">-5.07%</span><span class="after up">盘后+1.9%</span></div>
+<div class="stock-sub">277.77 · 成交 $0.9B</div>
+
+</div>
+</div></div>
+
+  <div class="section-title" style="font-size:0.78em;margin-top:8px">7.2 A股融资（16 只，主要标的）</div>
+  <div class="card"><div class="stock-row"><div class="rank">1</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">长鑫科技</span><span class="stock-code">SH.688825</span><span class="stock-chg up">+2.26%</span></div>
+<div class="stock-sub">55.55 ¥</div><div class="why">9/1 加仓 400 股当日即有反馈，存储链 A 股唯一亮点</div></div></div><div class="stock-row"><div class="rank">2</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">中钨高新</span><span class="stock-code">SZ.000657</span><span class="stock-chg up">+0.42%</span></div>
+<div class="stock-sub">60.02 ¥</div><div class="why">硬质合金/钻针主业稳定，5 日 -11% 后首日翻红</div></div></div><div class="stock-row"><div class="rank">3</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">罗博特科</span><span class="stock-code">SZ.300757</span><span class="stock-chg up">+0.43%</span></div>
+<div class="stock-sub">585.20 ¥</div><div class="why">昨日 +3.6% 逆势后继续小阳，光伏设备+CPO 设备双逻辑</div></div></div><div class="stock-row"><div class="rank">4</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">金山办公</span><span class="stock-code">SH.688111</span><span class="stock-chg up">+0.27%</span></div>
+<div class="stock-sub">239.05 ¥</div><div class="why">WPS AI 商业化预期，20 日线附近企稳</div></div></div><div class="stock-row"><div class="rank">5</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">阳光电源</span><span class="stock-code">SZ.300274</span><span class="stock-chg up">+0.79%</span></div>
+<div class="stock-sub">87.08 ¥</div><div class="why">5 日 -11.9% 后超跌反抽，光伏产业链情绪修复</div></div></div><div class="stock-row"><div class="rank">6</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">中际旭创</span><span class="stock-code">SZ.300308</span><span class="stock-chg down">-1.14%</span></div>
+<div class="stock-sub">813.00 ¥</div><div class="why">光模块补跌延续，1.6T 订单逻辑未变但资金面弱势</div></div></div><div class="stock-row"><div class="rank">7</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">云南锗业</span><span class="stock-code">SZ.002428</span><span class="stock-chg down">-0.68%</span></div>
+<div class="stock-sub">91.60 ¥</div><div class="why">锗价高位但股价随小金属调整，5 日 -9.6%</div></div></div><div class="stock-row"><div class="rank">8</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">安集科技</span><span class="stock-code">SH.688019</span><span class="stock-chg down">-1.31%</span></div>
+<div class="stock-sub">222.64 ¥</div><div class="why">半导体材料随板块调整，5 日 -10.3%</div></div></div><div class="stock-row"><div class="rank">9</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">澜起科技</span><span class="stock-code">SH.688008</span><span class="stock-chg down">-1.60%</span></div>
+<div class="stock-sub">190.01 ¥</div><div class="why">内存接口芯片龙头，5 日 -14.1% 弱势，等待存储链资金回流</div></div></div><div class="stock-row"><div class="rank">10</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">北方稀土</span><span class="stock-code">SH.600111</span><span class="stock-chg down">-0.18%</span></div>
+<div class="stock-sub">39.02 ¥</div><div class="why">稀土价格企稳但股价缩量阴跌</div></div></div><div class="stock-row"><div class="rank">11</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">川恒股份</span><span class="stock-code">SZ.002895</span><span class="stock-chg down">-0.18%</span></div>
+<div class="stock-sub">33.46 ¥</div><div class="why">磷化工防御属性，新建仓后横盘</div></div></div></div>
+
+  <div class="section-title" style="font-size:0.78em;margin-top:8px">7.3 ETF</div>
+  <div class="card"><div class="stock-row"><div class="rank">1</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">创新药HK</span><span class="stock-code">SZ.159570</span><span class="stock-chg up">+3.35%</span></div>
+<div class="stock-sub">1.481 ¥</div><div class="why">今日最强持仓：港股创新药大涨，汇添富 ETF +3.35%，9/1 加仓 +7000 份即见效</div></div></div><div class="stock-row"><div class="rank">2</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">半导设备ETF</span><span class="stock-code">SZ.159516</span><span class="stock-chg down">-0.88%</span></div>
+<div class="stock-sub">0.678 ¥</div><div class="why">设备板块缩量调整，5 日 -8.8%，等待企稳信号</div></div></div><div class="stock-row"><div class="rank">3</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">科创芯片ETF</span><span class="stock-code">SH.588200</span><span class="stock-chg down">-0.44%</span></div>
+<div class="stock-sub">1.135 ¥</div><div class="why">芯片 ETF 相对抗跌，5 日 -5.7%</div></div></div><div class="stock-row"><div class="rank">4</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">科半导体ETF</span><span class="stock-code">SH.588710</span><span class="stock-chg down">-1.43%</span></div>
+<div class="stock-sub">0.965 ¥</div><div class="why">9/1 刚加仓 20000 份即遇调整，5 日 -9.5%</div></div></div></div>
+
+  <div class="section-title" style="font-size:0.78em;margin-top:8px">7.4 港股通</div>
+  <div class="card"><div class="stock-row"><div class="rank">1</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">长飞光纤光缆</span><span class="stock-code">HK.06869</span><span class="stock-chg down">-3.19%</span></div>
+<div class="stock-sub">164.00 HK$</div><div class="why">前两日累计 +26% 后回吐，光纤订单排产满的逻辑未变，回踩 10 日线观察</div></div></div><div class="stock-row"><div class="rank">2</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">胜宏科技</span><span class="stock-code">HK.02476</span><span class="stock-chg down">-0.40%</span></div>
+<div class="stock-sub">201.00 HK$</div><div class="why">AI PCB 龙头，5 日 -20.6% 深度调整，成本 233.8 套牢中</div></div></div><div class="stock-row"><div class="rank">3</div><div class="stock-main">
+<div class="stock-line"><span class="stock-name">ASMPT</span><span class="stock-code">HK.00522</span><span class="stock-chg up">+2.92%</span></div>
+<div class="stock-sub">162.00 HK$</div><div class="why">先进封装设备 HBM 需求逻辑，逆势 +2.9% 港股半导体独强</div></div></div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">八、纪律提示<span class="sub">基于 PORTFOLIO.md 9/1 刷新</span></div>
+  <div class="card">
+    <div class="news-item"><span class="badge badge-red">🔴 杠杆</span>A股仓位 148.2%、担保品比例 255.6%、可用保证金仅 2.5 万——<b>严禁加仓</b>，担保品比例逼近 230% 追保线需启动主动降仓预案</div>
+    <div class="news-item"><span class="badge badge-red">🔴 止盈</span>浮盈>+30% 共 4 只（科创芯片 +254%、半导设备 +252%、澜起 +67%、中钨 +53%）——阶梯止盈纪律应分批兑现，科创50 两日 -4% 浮盈蒸发加速</div>
+    <div class="news-item"><span class="badge badge-gold">🟡 利润线</span>A股总盈亏 +21.1 万，安全垫仅 1.1 万（20 万红线口径）——半导体链集中度 55% + 单日板块跌超 3% 双重触发，防守优先</div>
+    <div class="news-item"><span class="badge badge-green">🟢 亮点</span>创新药HK +3.35%（9/1 加仓即见效）、长鑫科技 +2.26%（A 股存储链唯一亮点）、ASMPT +2.92%（港股半导体独强）</div>
+  </div>
+</div>
+
+<div class="footer">
+<b>关注列表晨报</b> · 数据来源：富途 OpenD（关注列表快照 640 只，2026-09-03 17:00 拉取）· westock-data（指数/板块/补充行情）· 富途牛牛快讯 · 公司公告<br>
+时效说明：美股为 2026-09-02 收盘 + 盘后；港股/A股为 2026-09-03 收盘；指数点位以交易所收盘为准。<br>
+*本报告由 AI 基于公开数据自动生成，仅供个人学习参考，不构成任何投资建议。市场有风险，投资需谨慎。<br>
+<span style="opacity:0.5">华尔街之鹰 🦅 · Morning Watch Pipeline v1.0 · 生成时间 2026-09-03 17:12</span>
+</div>
+
+</div>
+</body>
+</html>
