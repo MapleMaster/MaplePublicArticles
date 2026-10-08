@@ -1,0 +1,892 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404K 半导体日报 | 2026-10-09</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 半导体日报 | 2026-10-09">
+<meta property="og:description" content="404K 半导体日报 2026-10-09 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-daily/data/report_2026-10-09.html">
+<meta itemprop="name" content="404K 半导体日报 | 2026-10-09">
+<meta itemprop="description" content="404K 半导体日报 2026-10-09 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
+.md h2{
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
+}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
+.md h3{
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
+}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
+}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
+.md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · DAILY</span></div>
+    <h1><span class="g">404K 半导体日报</span></h1>
+    <div class="sub">生成时间：2026-10-09 05:00 | 数据日期：2026-10-08（A股/港股长假后复市首日） | 文档总数：52份 / 筛选重点：22份（PDF 17 + 数据图 5）</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-10-09 · 周五</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、今日核心信号（7条）">🔍一、今日核心信号（7条）</a><a href="#sec-二、持仓个股动态">💼二、持仓个股动态</a><a href="#sec-三、产业链关键信号">🔗三、产业链关键信号</a><a href="#sec-四、重要风险提示">⚠️四、重要风险提示</a><a href="#sec-五、数据速览">📊五、数据速览</a><a href="#sec-六、附录：今日文档清单">📎六、附录：今日文档清单</a><a href="#sec-七、数据来源与方法说明">📊七、数据来源与方法说明</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><a class="nav-arrow" href="report_2026-09-09.html">← 2026-09-09</a><span class="nav-arrow disabled">无更新 →</span></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
+<p>生成时间：2026-10-09 05:00 | 数据日期：2026-10-08（A股/港股长假后复市首日） | 文档总数：52份 / 筛选重点：22份（PDF 17 + 数据图 5）</p>
+<p>⚠️ <strong>数据口径说明</strong>：本期 ima 共享知识库"404k-0728"的<strong>原文读取接口对共享库持续返回限制性错误（220030）</strong>，无法拉取 PDF 正文。本报告以 404K 文档<strong>标题口径</strong>（标题信息密度高，含核心结论与数字）+ <strong>独立行情数据源</strong>（A股/港股/美股真实收盘、板块资金流）交叉构建，所有事实均标注来源层级，<strong>未对无法核实的内容做推测性补全</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="sec-一、今日核心信号（7条）"><span class="sec-emoji">🔍</span>一、今日核心信号（7条）</h2>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">1.</span>亚马逊将 EC2 GPU 容量区块牌价上调 15%，"涨价向下游传导"成为算力链主线——AI 算力租赁价格首次出现云厂主动提价的明确信号</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K 科技晚报（2026-10-08）标题即点明"AWS 将 EC2 容量区块牌价上调 15%"；另有独立文档《紧随 Nebius 之后：AWS 将 EC2 容量区块牌价上调 15》单独成篇，说明提价被 404K 判定为需要拆解的独立事件；当日 404K 数据图《LLM Token支出 · GPU租赁价格 261008》同步更新（具体数值需图内读取，本期不可读）。<strong>"紧随 Nebius 之后"意味着这是继 Nebius 之后的又一家——云侧 GPU 供给紧张正在从新云商（neocloud）蔓延至超大规模云商。</strong></li>
+<li><span class="lbl">产业链含义</span>：① 算力租赁价格上行是<strong>算力需求&gt;供给</strong>的价格信号，与资本市场担忧的"AI 资本开支见顶"叙事相反；② 云厂把成本转嫁下游，意味着 AI 应用层的单位经济模型进一步恶化，但<strong>算力硬件与组件的定价权继续上移</strong>；③ 与 404K 大模型早报"小模型降价、智能体分工加深"形成鲜明对照——<strong>推理侧价格在降、算力侧价格在涨</strong>，剪刀差扩大将加速"以效率换成本"的模型架构演进。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>中际旭创/天孚通信</strong>——算力租赁提价本质是"算力仍紧缺"的确认，光互连作为算力集群的刚性配套，需求侧负面叙事被削弱；<strong>半导体ETF/科创芯片ETF</strong>——算力价格坚挺为上游设备与芯片订单提供支撑。但需注意：提价同时是"AI 成本压力加深"的表现，若下游承受不了，2027 年后可能出现需求价格弹性反噬。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">2.</span>404K 判定今日为"AI 成本分化"日：小模型降价与存储器提价并行，云厂商面临交付考验</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K 科技早报（2026-10-08）标题"AI 成本分化：小模型降价与存储器提价并行，云厂商面临交付考验"；404K 叙事科技早报（2026-10-08）"推理降价：扩张成本仍在上行"；404K 大模型早报（2026-10-08）"小模型降价，智能体分工加深"。三份自主报告同日指向同一主题，构成当日 404K 的核心判断。</li>
+<li><span class="lbl">产业链含义</span>：<strong>"推理降价 + 硬件提价"的组合，把压力集中在云厂商与中间层</strong>——云厂必须一边承接模型价格战（收入端承压），一边承担存储器/GPU 成本上行（成本端抬升），中间层利润被双向挤压；"交付考验"则指向扩产与供应链交付能力而非需求。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>生益科技（CCL）</strong>——云厂成本压力下，具备提价能力的高端材料环节反而是受益者；<strong>长川科技（测试设备）</strong>——"交付考验"对应设备交付与验证周期，测试环节是确定性受益；<strong>中际旭创</strong>——云厂资本开支韧性是光模块需求的前提。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">3.</span>TF（天风国际）深度：数据中心网络扩张拉动数据传输需求，VCSEL / NPO 光互连技术备受关注——光互连技术路线正向"更短距、更近距离封装"演进</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：《20261008_TF_数据中心网络扩张拉动数据传输需求_VCSEL_NPO光互连技术备受关注》。标题明确三大要素：① 需求侧"数据中心网络扩张拉动数据传输"；② 技术侧 <strong>VCSEL</strong>（垂直腔面发射激光器，短距多模光源）与 <strong>NPO</strong>（Near-Package Optics，近封装光学）同时被点名"备受关注"。</li>
+<li><span class="lbl">产业链含义</span>：① <strong>NPO 被单独点名</strong>意味着光互连的价值捕获点正从"可插拔模块"向"靠近交换/计算芯片的封装级光学"迁移，与 404K 此前"CPO 测试成为量产瓶颈"的判断衔接；② <strong>VCSEL 路线重回视野</strong>，指向多模短距（机柜内/AI 集群内）互连需求在放量，与传统 800G/1.6T 单模（EML/硅光）形成分层；③ 对国内光模块厂而言，NPO 是"封装内竞争"的机会也是份额重排的风险。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>天孚通信（★★★★★ 直接映射）</strong>——无源器件（FAU 光纤阵列、透镜、陶瓷插芯）是 NPO/CPO 架构下价值量提升最确定的一环，VCSEL 多模路线同时增加短距光路器件用量；<strong>中际旭创</strong>——NPO 若加速，可插拔模块的份额与单价受冲击的时点提前，但 2026-2027 年 NPO 仍处早期，可插拔仍是绝对主力。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">4.</span>存储涨价结构分化：三星 DRAM 价格涨幅高于 SK 海力士——涨价并非普惠，而是产品组合与议价权的差异</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：独立文档《20261008_为什么三星DRAM价格涨幅高于SK海力士》；当日数据图《261008存储价格涨跌幅.png》与《261008三星电子与SK海力士每日回购.png》同步更新（数值不可读）。海外侧：美光 10/7 收盘 🔴 +4%，D.A. Davidson 将 12 个月目标价自 2,100 美元上调 43% 至 <strong>3,000 美元</strong>（来源：每日盘后全景转引中国证券报/东方财富，10/7 纽约收盘），判断"未来两年内存需求将持续超过供给"。</li>
+<li><span class="lbl">产业链含义</span>：① 三星涨幅高于海力士，通常反映<strong>产品结构差异</strong>（HBM/服务器 DRAM 占比、合约 vs 现货结构）与<strong>定价策略差异</strong>，意味着存储涨价进入"结构性、非同步"阶段，后续跟踪要看的不是"涨不涨"而是"谁涨得多"；② 美光独立走强而 A股存储链当日 🔴 存储器 <strong>-3.41%</strong>（主力 -130.56 亿，20 日 -649.55 亿），<strong>"海外强、A股弱"的分化达到极致</strong>，说明 A 股存储更多受资金面与情绪驱动（来源：每日盘后全景，10/8）。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>半导体ETF/科创芯片ETF</strong>——存储是半导体权重方向，海外叙事（美光目标价上调 43%）未破，A股杀跌属资金面而非基本面；<strong>关注 10 月 DRAM 合约/现货报价</strong>，若三星涨幅兑现为行业性提价，"涨价逻辑"有望重新获得资金承接。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>深度报告《01_AI内存瓶颈：从 HBM 降配到 CXL 重估》——AI 内存焦虑正从"HBM 堆叠层数"转向"内存池化/近存计算"的架构性解法</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：2026-10-08 深度文档《01_AI内存瓶颈：从HBM降配到CXL重估》，标题给出明确方向演进：<strong>HBM 降配（容量/层数受限）→ CXL 重估（内存池化/扩展）</strong>。该文档为当日唯一"01_"编号深度，属 404K 专题系列。</li>
+<li><span class="lbl">产业链含义</span>：① "HBM 降配"是此前 404K 反复跟踪的线索（Rubin Ultra HBM 层数调整），其直接后果是<strong>单卡内存容量不足</strong>，倒逼系统层用 CXL/内存池化补齐；② <strong>CXL 重估</strong>意味着内存扩展控制器、Retimer、内存模组的需求曲线可能被系统性上修，内存接口芯片的价值量提升；③ 对存储原厂而言，HBM 降配部分释放了 DRAM 晶圆产能，但也可能削弱 HBM 单卡的溢价能力，<strong>"量"的弹性 vs"价"的弹性</strong>需要重新权衡。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>澜起科技（内存接口/CXL 受益方向）</strong>——CXL 落地是内存接口芯片的长期需求增量，该深度报告直接指向此逻辑；<strong>长鑫科技/存储链</strong>——HBM 降配改变 DRAM 产能分配，需跟踪通用 DRAM 供给是否因此边际宽松（对涨价逻辑是双刃）。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">6.</span>"需求兑现，扩产先过交付关"——404K 叙事晚报定调：当前约束不是需求，而是把扩产真正交付出来的能力</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K 叙事科技晚报（2026-10-08）标题"需求兑现：扩产先过交付关"；同日《20261008_AMD推进台湾产能布局_Lisa Su为何要为下一个AI周期锁定供应链》——AMD 在台湾锁定产能，本质是"交付焦虑"的产业侧证据；信息汇总晚报（2026-10-08 18:30）为当日产业链细节汇总。</li>
+<li><span class="lbl">产业链含义</span>：① 从"需求验证"到"交付验证"的切换，意味着<strong>设备、材料、测试、先进封装</strong>等"产能兑现环节"成为稀缺资源；② AMD 赴台锁产能，说明头部芯片厂已把<strong>供应链锁定</strong>当作竞争手段，台系（CoWoS/ABF/测试）产能竞赛加剧；③ 对国产替代逻辑是双面：海外抢产能→国内设备与材料的本土替代紧迫性上升，但先进制程/封装的可获得性下降。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>长川科技（测试设备）</strong>——交付与验证瓶颈直接对应测试机台需求；<strong>半导体ETF/半导设备ETF</strong>——设备端"交付关"是订单能见度上修的理由；<strong>生益科技</strong>——ABF/载板/CCL 同属"先进封装-基板"交付链。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">7.</span>风险侧信号：TF 提示成本上涨威胁 2027 年笔记本电脑需求，出货量下滑与价格上涨风险加剧——涨价正在向终端需求破坏传导</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：《20261008_TF_成本上涨威胁2027年笔记本电脑需求_出货量下滑与价格上涨风险加剧》；404K 科技晚报同日定调"涨价向下游传导……<strong>终端成本压力加深</strong>"；404K 科技早报"存储器提价……云厂商面临交付考验"。</li>
+<li><span class="lbl">产业链含义</span>：① 存储/材料涨价已经传导到 PC 等消费终端的 BOM，TF 直接给出"2027 年出货量下滑 + 价格上涨"的量化风险判断；② 这是本轮存储周期中<strong>第一个明确的"需求破坏"信号</strong>——涨价周期从"供给约束"进入"需求抑制"阶段的分水岭；③ 若消费端需求下滑幅度超预期，将反向削弱存储原厂的涨价持续性，对高估值存储/设备标的构成二阶风险。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>半导体ETF/科创芯片ETF</strong>——消费电子需求疲软会削弱半导体整体景气弹性；<strong>存储链</strong>——短期涨价逻辑仍强，但需开始为"需求破坏临界点"预留风险预算。</li>
+</ul></div>
+<hr />
+<h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
+<blockquote>
+<p>收盘价为 2026-10-08 A股实际收盘（来源：富途 OpenAPI 直连，基准为 09-30 收盘，因 A股 10/1–10/7 长假休市）；板块资金与归因来源：每日盘后全景（2026-10-08）。</p>
+</blockquote>
+<h3>中际旭创 ★★★★★</h3>
+<ul>
+<li><strong>行情</strong>：10-08 收 <strong>¥783.00（🟢 -3.15%）</strong>，盘中 ¥834.54 / ¥772.18（数据源：富途 OpenAPI；与每日盘后全景口径一致）。</li>
+<li><strong>今日相关文档（按相关度）</strong>：
+  1. <strong>《TF_数据中心网络扩张拉动数据传输需求_VCSEL_NPO光互连技术备受关注》</strong>——当日最直接的光互连技术路线深度，"网络扩张拉动数据传输需求"是光模块需求侧的基本盘论证，NPO/VCSEL 路线演进决定公司中期产品结构。
+  2. <strong>404K 叙事科技晚报：需求兑现：扩产先过交付关</strong>——供给侧约束从需求转向交付能力，对龙头（交付组织能力更强）相对有利。
+  3. <strong>404K 科技晚报：涨价向下游传导：亚马逊 GPU 预留容量提价 15%</strong>——算力租赁提价是算力紧缺的确认，间接支撑光互连需求。</li>
+<li><strong>方向含义</strong>（来源：每日盘后全景，10/8）：<strong>双杀催化</strong> —— ① <strong>FCC26-50 新规 10 月 13 日生效</strong>，将部分受限企业核心电子组件纳入设备授权限制，北美供应链强制切换美系光源，国产高速光芯片进入北美高端市场难度增加；② <strong>1.6T 光芯片价格已现下滑</strong>。券商观点认为规则大概率"保现有、卡未来"：已商用的 800G/1.6T 不受限、短期业绩基本盘稳固，但 <strong>3.2T（预计 2028-2029 放量）需满足"65% 美国价值占比"门槛，远期利润空间被挤压</strong> —— 即"短期业绩无虞、远期估值承压"。</li>
+<li><strong>资金面</strong>：CPO 概念当日 🟢 -4.08%、主力 <strong>-184.85 亿</strong>（5 日 -786.38 亿、<strong>20 日 -624.96 亿</strong>）；光通信 🟢 -4.16%、-113.07 亿；光芯片 🟢 <strong>-7.39%（全概念跌幅第一）</strong>。</li>
+<li><strong>观察点</strong>：10/13 FCC 新规生效细节；1.6T 光芯片降价是否被主流厂商确认为"普遍性"而非个案；NPO/VCSEL 新产品送样与认证节奏。</li>
+</ul>
+<h3>天孚通信</h3>
+<ul>
+<li><strong>行情</strong>：10-08 收 <strong>¥235.07（🟢 -9.86%）</strong>，盘中 ¥259.80 / ¥230.78 —— <strong>当日光器件链最弱之一，接近单日跌停</strong>（数据源：富途 OpenAPI；基准 09-30 收盘 ¥260.77）。</li>
+<li><strong>今日相关文档</strong>：<strong>《TF_数据中心网络扩张拉动数据传输需求_VCSEL_NPO光互连技术备受关注》</strong> 是当日唯一直接指向光器件技术路线的深度——NPO（近封装光学）架构下 <strong>FAU（光纤阵列单元）、透镜、陶瓷插芯等无源器件价值量提升</strong>，同时 VCSEL 多模短距路线增加短距光路器件用量，属中期结构性利好。</li>
+<li><strong>方向含义</strong>：天孚当日跌幅（-9.86%）显著大于中际旭创（-3.15%），反映两点 —— ① 光器件环节对"光芯片降价 + NPO 架构切换"的<strong>预期弹性更大</strong>（既受损于可插拔模块价格下行，又受益于 NPO 新架构，市场先交易前者）；② 高 Beta 属性在板块杀跌日放大回撤。技术路线的多头逻辑（NPO/FAU/短距多模）与短期价格冲击（1.6T 芯片降价、光芯片 -7.39%）方向相反，<strong>属"叙事切换期"的典型估值双杀</strong>。</li>
+<li><strong>观察点</strong>：Q3 光引擎/无源器件收入环比；NPO 配套器件送样进展；光芯片降价对公司 1.6T 光引擎毛利的影响幅度。</li>
+</ul>
+<h3>生益科技</h3>
+<ul>
+<li><strong>行情</strong>：10-08 收 <strong>¥131.86（🔴 +1.46%）</strong>，盘中 ¥140.00 / ¥130.07 —— <strong>在科技硬件全线杀跌日逆势红盘，为组合内最强标的</strong>（数据源：富途 OpenAPI）。</li>
+<li><strong>今日相关文档/产业信号</strong>：<strong>覆铜板 / 电子树脂 是当日全市场极少数"当日 / 5日 / 20日资金三项全正"的方向</strong>——电子树脂 🔴 +3.36%（主力 <strong>+16.09 亿</strong>，5 日 +7.95 亿、<strong>20 日 +25.38 亿</strong>）；覆铜板 🔴 +2.06%（主力 +11.84 亿，<strong>20 日 +0.22 亿，为唯一 20 日资金不为负的科技方向</strong>）。催化：AI 算力建设拉动高速 PCB 需求、高端 CCL 供需偏紧；<strong>建滔积层板本年度已发布多轮涨价通知、南亚塑胶自 9 月起上调价格</strong>；国金证券称海外覆铜板厂商扩产缓慢、缺货涨价态势有望延续。<strong>生益科技被点名为该方向龙头之一</strong>（来源：每日盘后全景，10/8）。</li>
+<li><strong>方向含义</strong>：在"涨价向下游传导"的主线下，<strong>具备提价能力的上游材料（高端 CCL / 电子树脂）是当日唯一被资金认可的科技硬件方向</strong>。产业逻辑三重验证：行业量价齐升（多轮涨价函）+ 资金三项全正 + 海外扩产缓慢。</li>
+<li><strong>风险</strong>：① 铜价、树脂等上游原料受地缘通胀推升，成本传导若受阻将压缩 CCL 毛利；② 港股端映射较弱——<strong>建滔积层板 10-08 🟢 -6.44%</strong>，说明资金在 A股做多该逻辑、在港股兑现前期涨幅（来源：每日盘后全景，10/8）。</li>
+</ul>
+<h3>长川科技</h3>
+<ul>
+<li><strong>行情</strong>：10-08 收 <strong>¥228.50（🟢 -4.71%）</strong>，盘中 ¥243.00 / ¥225.74（数据源：富途 OpenAPI）。</li>
+<li><strong>今日相关文档</strong>：<strong>404K 叙事晚报"需求兑现：扩产先过交付关"</strong> 与 <strong>《AMD 推进台湾产能布局》</strong> 共同指向"交付与产能锁定"是当前产业约束 —— 扩产真正落地需要设备与测试环节先行，测试机台/分选机需求对应"扩产兑现"的确定性环节。</li>
+<li><strong>方向含义</strong>：长川所属的<strong>半导体设备/测试链是当日 A股跌幅第一的行业</strong>——半导体（行业）🟢 <strong>-5.13%</strong>，主力 <strong>-156.62 亿</strong>（5 日 -495.92 亿、<strong>20 日 -633.07 亿</strong>）；美股侧设备/模拟链同步走弱（泰瑞达、安森美跌超 4%，微芯/TOWER/恩智浦跌超 3%），<strong>缺乏不对称的向上催化剂</strong>，属超跌后继续杀跌，不构成技术性反弹条件（来源：每日盘后全景，10/8）。</li>
+<li><strong>观察点</strong>：设备招标/交付节奏；三季报订单与在手订单披露；20 日资金失血是否出现拐点。</li>
+</ul>
+<hr />
+<h2 id="sec-三、产业链关键信号"><span class="sec-emoji">🔗</span>三、产业链关键信号</h2>
+<h3>超大规模云商 CAPEX</h3>
+<ul>
+<li><strong>AWS 主动提价</strong>：AWS 将 <strong>EC2 容量区块牌价上调 15%</strong>，404K 以"紧随 Nebius 之后"定性，并单独成篇解读（《为AI Agent构建云基础设施 AWS CEO Matt Garman》为当日另一篇云侧基础设施文档）。<strong>这是"供给紧张从 neocloud 蔓延到 hyperscaler"的标志性事件</strong>（来源：404K 科技晚报 + 独立文档标题，2026-10-08）。</li>
+<li><strong>成本侧双向挤压</strong>：404K 科技早报定调"小模型降价与存储器提价并行，云厂商面临交付考验"——云厂收入端（模型价格战）与成本端（存储/GPU 涨价）同时承压（来源：404K 自主报告标题，2026-10-08）。</li>
+<li><strong>估值分母恶化</strong>：10 年期美债盘中突破 <strong>5.362%</strong>（2002 年 4 月以来新高）、30 年期突破 <strong>5.731%</strong>（24 年新高）；FOMC 9 月纪要显示 <strong>12:0 全票加息 25bp 至 3.75%-4.00%</strong>（2023 年 7 月以来首次重启加息），市场隐含 12 月加息概率约 80%。<strong>高久期成长资产（半导体/光模块/存储/neocloud）的估值分母持续恶化</strong>（来源：每日盘后全景转引美联储/腾讯新闻/中国证券报，10/7-10/8）。</li>
+<li><strong>组合含义</strong>：CAPEX 绝对额仍在扩张（算力价格提价即证据），但<strong>估值锚正在被长端利率重构</strong> —— 这解释了为何 A股在"假期费半 +4.7%"的利好下仍开盘跳水：<strong>分子的利好被分母的恶化完全抵消</strong>。</li>
+</ul>
+<h3>存储 / DRAM / NAND</h3>
+<ul>
+<li><strong>涨价结构分化</strong>：《为什么三星DRAM价格涨幅高于SK海力士》指出两家涨幅差异（产品组合/议价权），当日《存储价格涨跌幅》《三星电子与SK海力士每日回购》两张数据图同步更新（来源：404K 文档，2026-10-08）。</li>
+<li><strong>架构性变量</strong>：深度报告《01_AI内存瓶颈：从HBM降配到CXL重估》指向 <strong>HBM 容量受限 → CXL 内存池化重估</strong>，内存接口/扩展控制器需求曲线可能被上修（来源：404K 深度，2026-10-08）。</li>
+<li><strong>海外 vs A股极致分化</strong>：美光 10/7 收盘 🔴 <strong>+4%</strong>、总市值 1.2 万亿美元，D.A. Davidson 目标价自 2,100 → <strong>3,000 美元（+43%）</strong>；而 A股存储器 10-08 🟢 <strong>-3.41%</strong>（主力 -130.56 亿，20 日 <strong>-649.55 亿</strong>），长鑫科技 🟢 -7.79%、澜起科技 🟢 -2.62%。<strong>A股存储杀跌属情绪与资金面主导，海外存储叙事未破</strong>（来源：每日盘后全景，10/8）。</li>
+<li><strong>需求破坏信号</strong>：TF 报告警示存储/材料涨价威胁 <strong>2027 年笔记本电脑需求</strong>，出货量下滑与价格上涨风险加剧（来源：404K 文档，2026-10-08）。</li>
+</ul>
+<h3>半导体设备</h3>
+<ul>
+<li><strong>A股</strong>：半导体行业 10-08 🟢 <strong>-5.13%（跌幅第一）</strong>，主力 -156.62 亿（20 日 -633.07 亿）；大硅片 -4.06%、光刻机 -4.05%、模拟芯片 -6.78%、国家大基金持股 -4.27%；科创芯片ETF 🟢 -5.28%、半导设备ETF 🟢 -3.69%、科半导体ETF 🟢 -3.83%（来源：每日盘后全景，10/8）。</li>
+<li><strong>美股</strong>：费城半导体 10/7 🟢 -1.15%，SITIME 跌超 6%、安森美/泰瑞达跌超 4%、微芯/TOWER/恩智浦跌超 3%，设备与模拟链走弱（来源：每日盘后全景，10/7 纽约收盘）。</li>
+<li><strong>产业逻辑</strong>：404K"需求兑现：扩产先过交付关"+"AMD 赴台锁定下一个 AI 周期供应链"共同表明，<strong>当前约束在交付能力而非需求</strong>，设备与测试环节的订单能见度上修（来源：404K 文档，2026-10-08）。但<strong>设备链在美股与 A股同步失血、缺乏不对称催化剂</strong>，属趋势失血而非技术性回调。</li>
+</ul>
+<h3>PCB / 覆铜板</h3>
+<ul>
+<li><strong>当日唯一被资金认可的科技硬件方向</strong>：覆铜板 🔴 +2.06%（主力 +11.84 亿，<strong>20 日 +0.22 亿 —— 唯一 20 日资金不为负的科技方向</strong>）、电子树脂 🔴 +3.36%（主力 +16.09 亿，<strong>当日/5日/20日三项全正</strong>）。龙头：世名科技涨停、<strong>生益科技</strong>、铜冠铜箔、南亚新材、东材科技（A股个股主力净流入第一 +15 亿）（来源：每日盘后全景，10/8）。</li>
+<li><strong>产业链验证</strong>：AI 算力拉动高速 PCB 需求、高端 CCL 供需偏紧；<strong>建滔积层板本年度多轮涨价通知 + 南亚塑胶 9 月起上调价格</strong>；国金证券称海外覆铜板厂商扩产缓慢、缺货涨价态势有望延续（来源：每日盘后全景转引国金证券）。</li>
+<li><strong>港A分化</strong>：A股板块红（生益科技 +1.46%）而港股映射弱（<strong>建滔积层板 -6.44%</strong>），属结构性而非趋势性差异——资金在 A股做多逻辑、在港股兑现涨幅（来源：每日盘后全景，10/8）。</li>
+<li><strong>成本端风险</strong>：当日国内燃油主力暴涨逾 18% 创历史新高、原油 +9%、液化气涨停，<strong>铜/树脂/化工原料上行将向 CCL 成本传导</strong>，需关注 10 月 CCL 报价能否顺利转移成本。</li>
+</ul>
+<h3>光互连技术路线（新增跟踪项）</h3>
+<ul>
+<li><strong>NPO / VCSEL 双路线被 TF 点名</strong>（《TF_数据中心网络扩张拉动数据传输需求_VCSEL_NPO光互连技术备受关注》），与 404K 此前"CPO 测试成量产瓶颈"的判断衔接：<strong>光互连的价值捕获点正从可插拔模块向近封装光学迁移</strong>（来源：404K 文档，2026-10-08）。</li>
+<li><strong>A股情绪侧</strong>：10-08 光芯片 🟢 <strong>-7.39%（全概念跌幅第一）</strong>、CPO 🟢 -4.08%（20 日 -624.96 亿）、光通信 🟢 -4.16%；源杰科技 <strong>20CM 跌停</strong>（本轮涨幅曾达 36 倍）、东山精密跌停（来源：每日盘后全景，10/8）。</li>
+</ul>
+<hr />
+<h2 id="sec-四、重要风险提示"><span class="sec-emoji">⚠️</span>四、重要风险提示</h2>
+<ol>
+<li><strong>长端利率系统性压制（最高优先级）</strong>：10Y 美债 5.362%、30Y 5.731% 均创 2002 年以来新高，FOMC 重启加息且 12 月加息概率约 80%。<strong>高久期成长资产（半导体/光模块/存储/neocloud）的估值分母持续恶化</strong>，且短期看不到逆转触发因素。若长端收益率见顶回落（拍卖需求转强/地缘降温/通胀低于预期），成长股将迎来最直接的估值修复弹性——<strong>此为当前组合最重要的向上期权</strong>（来源：每日盘后全景，10/8）。</li>
+<li><strong>FCC26-50 新规 10 月 13 日生效</strong>：光芯片/光模块链在生效前的政策不确定性未出清。若覆盖范围超预期收紧（如覆盖 800G/1.6T），则"短期业绩无虞"的前提失效；<strong>不宜在事件前博反弹</strong>。</li>
+<li><strong>1.6T 光芯片价格下滑</strong>：若从"传闻"变为"主流厂商确认"，光模块单价与毛利同步下行，估值与业绩双杀。<strong>天孚通信/中际旭创为该风险的直接暴露方</strong>。</li>
+<li><strong>存储涨价进入"需求破坏"观察期</strong>：TF 警示 <strong>2027 年笔记本电脑出货量下滑 + 价格上涨</strong>——涨价从"供给约束"转向"需求抑制"的临界信号；若消费端下滑超预期，将反向削弱存储涨价持续性。</li>
+<li><strong>A股科技硬件 20 日资金趋势性失血</strong>：CPO 20 日 <strong>-624.96 亿</strong>、芯片概念 20 日 <strong>-1587.01 亿</strong>、存储器 20 日 <strong>-649.55 亿</strong>、半导体行业 20 日 <strong>-633.07 亿</strong>——<strong>并非单日事件冲击，而是延续 9 月中旬以来的持续撤离</strong>。任何反弹应优先视为减仓窗口，而非左侧抢反弹机会。</li>
+<li><strong>组合集中度风险</strong>：科技硬件（半导体+光模块+光模块设备+PCB）合计敞口高度集中，复市首日全面受损；半导体行业单日跌幅 &gt;3% 已触发集中度预警（来源：每日盘后全景纪律检查，10/8）。</li>
+<li><strong>数据时效风险</strong>：持仓明细基准已过期（每日盘后全景提示 PORTFOLIO.md 最后更新 2026-09-24），所有浮盈/杠杆类数值仅供方向参考，<strong>建议复市后尽快刷新三市场持仓截图</strong>。</li>
+</ol>
+<hr />
+<h2 id="sec-五、数据速览"><span class="sec-emoji">📊</span>五、数据速览</h2>
+<h3>关注/持仓标的 2026-10-08 收盘（A股，数据源：富途 OpenAPI 直连，基准 09-30 收盘）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th style="text-align: right;">收盘</th>
+<th style="text-align: right;">日涨跌</th>
+<th style="text-align: right;">盘中高/低</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中际旭创</td>
+<td style="text-align: right;">¥783.00</td>
+<td style="text-align: right;">🟢 -3.15%</td>
+<td style="text-align: right;">834.54 / 772.18</td>
+<td>光模块，CPO 双杀</td>
+</tr>
+<tr>
+<td>天孚通信</td>
+<td style="text-align: right;">¥235.07</td>
+<td style="text-align: right;">🟢 <strong>-9.86%</strong></td>
+<td style="text-align: right;">259.80 / 230.78</td>
+<td>光器件，当日最弱</td>
+</tr>
+<tr>
+<td>生益科技</td>
+<td style="text-align: right;">¥131.86</td>
+<td style="text-align: right;">🔴 <strong>+1.46%</strong></td>
+<td style="text-align: right;">140.00 / 130.07</td>
+<td>覆铜板，逆势红盘</td>
+</tr>
+<tr>
+<td>长川科技</td>
+<td style="text-align: right;">¥228.50</td>
+<td style="text-align: right;">🟢 -4.71%</td>
+<td style="text-align: right;">243.00 / 225.74</td>
+<td>测试设备，随半导体杀跌</td>
+</tr>
+<tr>
+<td>中国巨石</td>
+<td style="text-align: right;">¥39.55</td>
+<td style="text-align: right;">🔴 +0.36%</td>
+<td style="text-align: right;">40.98 / 39.03</td>
+<td>玻纤/电子布</td>
+</tr>
+<tr>
+<td>科创芯片ETF</td>
+<td style="text-align: right;">¥1.023</td>
+<td style="text-align: right;">🟢 -5.28%</td>
+<td style="text-align: right;">1.082 / 1.016</td>
+<td>半导体</td>
+</tr>
+<tr>
+<td>半导体设备ETF(159516)</td>
+<td style="text-align: right;">¥0.627</td>
+<td style="text-align: right;">🟢 -3.69%</td>
+<td style="text-align: right;">0.659 / 0.621</td>
+<td>设备</td>
+</tr>
+<tr>
+<td>半导体设备ETF(561980)</td>
+<td style="text-align: right;">¥0.608</td>
+<td style="text-align: right;">🟢 -3.18%</td>
+<td style="text-align: right;">0.635 / 0.601</td>
+<td>设备</td>
+</tr>
+<tr>
+<td>通信ETF</td>
+<td style="text-align: right;">¥0.594</td>
+<td style="text-align: right;">🟢 -5.11%</td>
+<td style="text-align: right;">0.633 / 0.589</td>
+<td>通信</td>
+</tr>
+<tr>
+<td>沪电股份</td>
+<td style="text-align: right;">¥115.88</td>
+<td style="text-align: right;">🟢 -0.04%</td>
+<td style="text-align: right;">123.11 / 115.00</td>
+<td>PCB，几乎平盘</td>
+</tr>
+<tr>
+<td>澜起科技</td>
+<td style="text-align: right;">¥197.01</td>
+<td style="text-align: right;">🟢 -2.62%</td>
+<td style="text-align: right;">208.14 / 195.11</td>
+<td>内存接口/CXL</td>
+</tr>
+<tr>
+<td>中芯国际</td>
+<td style="text-align: right;">¥107.08</td>
+<td style="text-align: right;">🟢 -4.38%</td>
+<td style="text-align: right;">113.13 / 105.82</td>
+<td>晶圆代工</td>
+</tr>
+</tbody>
+</table></div>
+<h3>板块与指数（2026-10-08 收盘，来源：每日盘后全景）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上证综指</td>
+<td>3,811.90</td>
+<td>🟢 -0.79%</td>
+</tr>
+<tr>
+<td>深证成指</td>
+<td>12,620.90</td>
+<td>🟢 -2.07%</td>
+</tr>
+<tr>
+<td>创业板指</td>
+<td>3,036.66</td>
+<td>🟢 -3.15%</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td>1,456.32</td>
+<td>🟢 <strong>-4.82%</strong></td>
+</tr>
+<tr>
+<td>沪深300</td>
+<td>4,310.28</td>
+<td>🟢 -1.09%</td>
+</tr>
+<tr>
+<td>恒生指数</td>
+<td>23,785.79</td>
+<td>🟢 -1.43%</td>
+</tr>
+<tr>
+<td>恒生科技</td>
+<td>4,073.38</td>
+<td>🟢 -2.89%</td>
+</tr>
+<tr>
+<td>两市成交额</td>
+<td>1.69 万亿</td>
+<td>放量逾 2,400 亿</td>
+</tr>
+<tr>
+<td>涨/跌家数</td>
+<td>1,698 / 3,747</td>
+<td>上涨占比 30.48%</td>
+</tr>
+<tr>
+<td>半导体（行业）</td>
+<td>—</td>
+<td>🟢 -5.13%（跌幅第一），主力 -156.62 亿</td>
+</tr>
+<tr>
+<td>光芯片（概念）</td>
+<td>—</td>
+<td>🟢 -7.39%（跌幅第一），主力 -69.66 亿</td>
+</tr>
+<tr>
+<td>覆铜板（概念）</td>
+<td>—</td>
+<td>🔴 +2.06%，主力 +11.84 亿</td>
+</tr>
+<tr>
+<td>电子树脂（概念）</td>
+<td>—</td>
+<td>🔴 +3.36%，主力 +16.09 亿</td>
+</tr>
+</tbody>
+</table></div>
+<h3>海外与宏观</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10Y 美债</td>
+<td>5.362%（盘中）/ 5.28%（收）</td>
+<td>2002 年 4 月以来新高</td>
+</tr>
+<tr>
+<td>30Y 美债</td>
+<td>5.731%（盘中）</td>
+<td>24 年新高</td>
+</tr>
+<tr>
+<td>道指 / 纳指 / 标普500</td>
+<td>51,179.87 / 27,538.69 / 7,801.77</td>
+<td>🟢 -0.66% / -0.22% / -0.22%（10/7）</td>
+</tr>
+<tr>
+<td>费城半导体</td>
+<td>—</td>
+<td>🟢 -1.15%（10/7）</td>
+</tr>
+<tr>
+<td>美光科技</td>
+<td>市值 1.2 万亿美元</td>
+<td>🔴 +4%，目标价 2,100 → <strong>3,000 美元</strong></td>
+</tr>
+<tr>
+<td>假期累计（10/1-10/7）</td>
+<td>纳指 +2.75%、<strong>费半 +4.7%</strong></td>
+<td>中财网</td>
+</tr>
+<tr>
+<td>布伦特 / WTI</td>
+<td>$100.20 / $88.28</td>
+<td>🟢 -0.38% / -1.30%（10/7）</td>
+</tr>
+<tr>
+<td>现货黄金 / 白银</td>
+<td>$4,110.52 / $59.75</td>
+<td>🟢 -1%+ / -2.5%（10/7）</td>
+</tr>
+<tr>
+<td>比特币</td>
+<td>≈$8.3 万</td>
+<td>🟢 -2.73%（24h）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>GPU 租赁价格 / 存储价格涨跌幅 / 模型排名</strong>：当日 404K 数据图（<code>LLM Token支出 · GPU租赁价格 261008</code>、<code>261008存储价格涨跌幅</code>、<code>261008三星电子与SK海力士每日回购</code>、<code>261008美股个股成交额前十与涨跌幅榜</code>、<code>261008-OpenRouter文本模型排名</code>）<strong>已存在但原文不可读，数值待补</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="sec-六、附录：今日文档清单"><span class="sec-emoji">📎</span>六、附录：今日文档清单</h2>
+<blockquote>
+<p>2026-10-08 文件夹共 <strong>52 份</strong>（PDF 23 + 图片 29）。下表为筛选出的 <strong>重点文档 22 份</strong>（PDF 17 + 数据图 5），类型判定依据标题与 media_type。</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文档标题</th>
+<th>类型</th>
+<th>一句话摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>404K科技早报 2026-10-08 AI成本分化：小模型降价与存储器提价并行，云厂商面临交付考验</td>
+<td>404K自主</td>
+<td>当日主判断：推理降价与硬件提价并行，云厂双向挤压</td>
+</tr>
+<tr>
+<td>2</td>
+<td>404K科技晚报 2026-10-08 涨价向下游传导：亚马逊GPU预留容量提价15%，终端成本压力加深</td>
+<td>404K自主</td>
+<td>AWS EC2 GPU 容量牌价 +15%，涨价传导至终端</td>
+</tr>
+<tr>
+<td>3</td>
+<td>404K叙事科技早报 2026-10-08 — 推理降价：扩张成本仍在上行</td>
+<td>404K自主</td>
+<td>推理侧价格下行的同时扩张成本上行</td>
+</tr>
+<tr>
+<td>4</td>
+<td>404K叙事科技晚报 2026-10-08 — 需求兑现：扩产先过交付关</td>
+<td>404K自主</td>
+<td>当前约束在交付能力而非需求</td>
+</tr>
+<tr>
+<td>5</td>
+<td>404K大模型早报 2026-10-08 — 小模型降价，智能体分工加深</td>
+<td>404K自主</td>
+<td>小模型价格战，智能体架构分工深化</td>
+</tr>
+<tr>
+<td>6</td>
+<td>404K宏观晚报 2026-10-08 — 运费攀升、加息预期延续</td>
+<td>404K自主</td>
+<td>运费上行 + 加息预期延续</td>
+</tr>
+<tr>
+<td>7</td>
+<td>20261008_TF_数据中心网络扩张拉动数据传输需求_VCSEL_NPO光互连技术备受关注</td>
+<td>外资研报(TF/天风国际)</td>
+<td>光互连向 VCSEL/NPO 路线演进（光模块/光器件核心）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>20261008_为什么三星DRAM价格涨幅高于SK海力士</td>
+<td>外资研报</td>
+<td>存储涨价结构分化，产品组合与议价权差异</td>
+</tr>
+<tr>
+<td>9</td>
+<td>20261008_紧随Nebius之后_AWS将EC2容量区块牌价上调15</td>
+<td>外资研报/产业</td>
+<td>AWS GPU 容量提价，云侧供给紧张蔓延</td>
+</tr>
+<tr>
+<td>10</td>
+<td>20261008_AMD推进台湾产能布局_Lisa Su为何要为下一个AI周期锁定供应链</td>
+<td>产业/外资</td>
+<td>AMD 赴台锁产能，供应链锁定成竞争手段</td>
+</tr>
+<tr>
+<td>11</td>
+<td>20261008_TF_成本上涨威胁2027年笔记本电脑需求_出货量下滑与价格上涨风险加剧</td>
+<td>外资研报(TF/天风国际)</td>
+<td>涨价向终端传导，2027 年 PC 需求破坏风险</td>
+</tr>
+<tr>
+<td>12</td>
+<td>01_AI内存瓶颈：从HBM降配到CXL重估</td>
+<td>404K深度专题</td>
+<td>HBM 容量受限 → CXL 内存池化重估</td>
+</tr>
+<tr>
+<td>13</td>
+<td>20261008_科技早报</td>
+<td>信息汇总</td>
+<td>当日科技要闻早班汇总</td>
+</tr>
+<tr>
+<td>14</td>
+<td>20261008_科技晚报</td>
+<td>信息汇总</td>
+<td>当日科技要闻晚班汇总</td>
+</tr>
+<tr>
+<td>15</td>
+<td>信息汇总早报PDF-20261008-0500</td>
+<td>信息汇总</td>
+<td>盘前全球资讯汇总</td>
+</tr>
+<tr>
+<td>16</td>
+<td>信息汇总晚报PDF-20261008-1830</td>
+<td>信息汇总</td>
+<td>盘后全球资讯汇总</td>
+</tr>
+<tr>
+<td>17</td>
+<td>为AI Agent构建云基础设施 AWS CEO Matt Garman</td>
+<td>产业访谈</td>
+<td>AWS 云基础设施为 AI Agent 重构</td>
+</tr>
+<tr>
+<td>18</td>
+<td>261008存储价格涨跌幅.png</td>
+<td>数据图</td>
+<td>存储价格涨跌幅（数值待补）</td>
+</tr>
+<tr>
+<td>19</td>
+<td>261008三星电子与SK海力士每日回购.png</td>
+<td>数据图</td>
+<td>三星/SK 海力士回购跟踪（数值待补）</td>
+</tr>
+<tr>
+<td>20</td>
+<td>LLM Token支出 · GPU租赁价格 261008.png</td>
+<td>数据图</td>
+<td>Token 支出与 GPU 租赁价格（数值待补）</td>
+</tr>
+<tr>
+<td>21</td>
+<td>261008美股个股成交额前十与涨跌幅榜.png</td>
+<td>数据图</td>
+<td>美股个股成交/涨跌榜（数值待补）</td>
+</tr>
+<tr>
+<td>22</td>
+<td>261008-OpenRouter文本模型排名.png</td>
+<td>数据图</td>
+<td>文本模型调用排名（数值待补）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>未纳入筛选的文档（无持仓/关注方向映射）</strong>：纽约大学 Tristan Buckmaster 解析 OpenAI 数学成果争议、中期选举会考验AI投资周期吗、第36期（Opus Token 订阅实测）、日本银行业步入机遇新时代、星舰成功入轨（The Brainstorm 152）、与 Sam Newman 对话（分布式系统架构），以及 24 张 <code>NNNNNN_HHMM_资讯汇总.png</code> 滚动资讯图。</p>
+<hr />
+<h2 id="sec-七、数据来源与方法说明"><span class="sec-emoji">📊</span>七、数据来源与方法说明</h2>
+<p><strong>数据源与时效</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>数据类别</th>
+<th>来源</th>
+<th>时效</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>404K 文档清单与标题</td>
+<td>ima 共享知识库「404k-0728」目录接口（OpenAPI）</td>
+<td>2026-10-08 文件夹，52 份</td>
+</tr>
+<tr>
+<td><strong>404K 文档正文</strong></td>
+<td>⚠️ 共享库原文接口返回限制性错误（220030），<strong>本期不可读</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>A股个股/ETF 收盘与 K线</td>
+<td>富途 OpenAPI 直连（OpenD）</td>
+<td>2026-10-08 收盘（基准 09-30）</td>
+</tr>
+<tr>
+<td>A股/港股指数、板块涨跌与主力资金</td>
+<td>腾讯财经公开行情接口（转引：每日盘后全景）</td>
+<td>2026-10-08 收盘</td>
+</tr>
+<tr>
+<td>美股/美债/商品、FOMC 纪要</td>
+<td>中国证券报、东方财富、腾讯新闻、新浪财经（转引：每日盘后全景）</td>
+<td>2026-10-07 纽约收盘 / 10-08</td>
+</tr>
+<tr>
+<td>持仓成本与股数</td>
+<td>PORTFOLIO.md（<strong>最后更新 2026-09-24，已过期</strong>）</td>
+<td>9/24</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>方法说明</strong></p>
+<ul>
+<li>本期因共享知识库原文接口不可用，<strong>报告以标题口径 + 独立行情数据源交叉构建</strong>；标题中明确出现的数字与结论按原样引用并标注"404K 文档"，独立行情数据标注具体来源，<strong>未对不可读内容做数值推测</strong>。</li>
+<li>涨跌颜色遵循 A 股惯例：<strong>红涨绿跌</strong>；货币符号：A股 ¥、港股 HK$、美股 $。</li>
+<li>涨跌家数、板块主力资金为腾讯公开接口口径，与其他数据商口径存在量级差异，已标注来源。</li>
+<li>404K 每日数据图（价格/租赁/排名）<strong>存在但原文不可读，数值统一标注"待补"</strong>，不以估算值替代。</li>
+</ul>
+<p><strong>免责声明</strong>：本报告基于公开资料客观整理，仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 生成后自动归档</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
