@@ -1,0 +1,1242 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404K 半导体日报 | 2026-10-11</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 半导体日报 | 2026-10-11">
+<meta property="og:description" content="404K 半导体日报 2026-10-11 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-daily/data/report_2026-10-11.html">
+<meta itemprop="name" content="404K 半导体日报 | 2026-10-11">
+<meta itemprop="description" content="404K 半导体日报 2026-10-11 - AI/半导体产业链每日核心信号、持仓动态与风险提示">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
+.md h2{
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
+}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
+.md h3{
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
+}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
+}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
+.md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · DAILY</span></div>
+    <h1><span class="g">404K 半导体日报</span></h1>
+    <div class="sub">生成时间：2026-10-11 05:00 | 数据日期：2026-10-10（周六，A股/港股/美股均休市，行情取最近交易日 10/9 收盘） | 文档总数：36份 / 筛选重点：19份（PDF 14 + 数据图 5）</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-10-11 · 周日</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、今日核心信号（7条）">🔍一、今日核心信号（7条）</a><a href="#sec-二、持仓个股动态">💼二、持仓个股动态</a><a href="#sec-三、产业链关键信号">🔗三、产业链关键信号</a><a href="#sec-四、重要风险提示">⚠️四、重要风险提示</a><a href="#sec-五、数据速览">📊五、数据速览</a><a href="#sec-六、附录：今日文档清单">📎六、附录：今日文档清单</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><a class="nav-arrow" href="report_2026-10-10.html">← 2026-10-10</a><span class="nav-arrow disabled">无更新 →</span></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
+<p>生成时间：2026-10-11 05:00 | 数据日期：2026-10-10（周六，A股/港股/美股均休市，行情取最近交易日 10/9 收盘） | 文档总数：36份 / 筛选重点：19份（PDF 14 + 数据图 5）</p>
+<p>⚠️ <strong>数据来源与方法说明</strong>：本期 ima 共享知识库「404k-0728」的<strong>原文读取接口对共享库持续返回限制性错误（220030）</strong>，PDF 正文与数据图均不可拉取（已实测：同一凭据对个人库正常、对共享库全部失败，属服务端策略，非凭据/限频问题）。本报告以 404K 文档<strong>标题口径</strong>（404K 自主报告标题即为核心结论句，信息密度高）+ <strong>独立行情数据源</strong>（富途 OpenAPI 直连，A股/港股/美股真实收盘价与<strong>节后首周涨跌</strong>）交叉构建，所有事实均标注来源层级，<strong>未对无法核实的内容做推测性补全</strong>；数据图类文档统一标注「待补」。</p>
+</blockquote>
+<hr />
+<h2 id="sec-一、今日核心信号（7条）"><span class="sec-emoji">🔍</span>一、今日核心信号（7条）</h2>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">1.</span>404K 科技早报：瓶颈继续外溢——AI 光器件与供电吃紧，存储涨价反手压低终端出货</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K 科技早报 2026-10-10 标题「<strong>瓶颈继续外溢：AI 光器件与供电吃紧，存储涨价压低终端出货</strong>」（来源：404K 自主报告标题，10/10）。此为该主题<strong>第三日连续追踪</strong>：10/9 科技晚报「交付瓶颈细化」→ 10/9 设备周报「订单可见度拉长」→ 10/10「瓶颈继续外溢」，说明瓶颈定位已从「先进封装（CoWoS）」逐步迁移到<strong>光器件与电力</strong>两个新环节。海外市场节后首周侧面印证：<strong>光互连链全面暴涨——Ciena 🔴 +27.84%、Lumentum 🔴 +13.60%、Credo 🔴 +11.17%、应用光电 🔴 +10.46%、Coherent 🔴 +8.62%（10/9 vs 9/30 节前收盘，来源：富途 OpenAPI）</strong>。</li>
+<li><span class="lbl">产业链含义</span>：①「<strong>光器件吃紧</strong>」= 光模块的上游（激光器、无源器件、光芯片）供给已成为 AI 集群扩张的新瓶颈，与 10/9 科技晚报「光器件长单（LTA 锁产能）」形成完整链条——<strong>瓶颈在哪里，定价权就在哪里</strong>；②「<strong>供电吃紧</strong>」= 电力成为算力落地的硬约束，与 10/9 M7与CSP周报「谷歌锁电」同向；③「<strong>存储涨价压低终端出货</strong>」是本条<strong>唯一的负面传导</strong>——存储涨价已从「利好原厂」外溢为「压制终端（手机/PC）需求」的成本压力。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>天孚通信 ★★★★★</strong>——无源器件（FAU/透镜/隔离器）是「光器件吃紧」最直接的受益环节，海外同业 Lumentum +13.6% 已先行定价；<strong>中际旭创 ★★★★★</strong>——模块厂受益于上游器件紧张所印证的需求总量，但需承担光芯片成本上行；<strong>中国巨石 ★★★</strong>——「供电吃紧」指向数据中心电力基础设施与机房的配套材料（含玻纤/复材）需求韧性；<strong>生益科技 ★★★</strong>——高频高速 CCL 同属「配套瓶颈扩散」受益项。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">2.</span>深度《01_CPO放量之后：测试与封装如何跨过利润兑现的门槛》——CPO 的利润兑现卡在「测试+封装」两个后道环节</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：当日编号深度文档《01_CPO放量之后：测试与封装如何跨过利润兑现的门槛》（来源：404K 深度文档标题，10/10）。前序编号深度已形成系列：10/9《01_AI硬件利润分化：连接价值量为何更关键》论证「连接价值量 &gt; 算力单元」，本期进一步把视角推进到<strong>放量之后的兑现环节</strong>。美股节后首周结构印证后道/测试相对强势：<strong>泰瑞达 🔴 +0.44%（10/9 单日 🔴 +0.99%）跑赢泛林 🟢 -2.94%、应用材料 🟢 -0.85%（节后首周，来源：富途 OpenAPI）</strong>。</li>
+<li><span class="lbl">产业链含义</span>：① 该深度把 CPO 产业链的<strong>利润分配节点明确指向「测试」（光电测试）与「封装」（光引擎耦合/封装）</strong>——即 CPO 放量后，价值量并非平均分配，而是<strong>卡在良率与测试时间</strong>上；② 呼应 9/9 报告已记录的产业事实「<strong>CPO 光电测试 10-30 分钟成量产瓶颈</strong>」——测试时长直接决定 CPO 的量产爬坡斜率与经济性；③ 对「谁能在 CPO 时代拿到超额利润」给出可验证的观察指标：<strong>测试机台数量、测试时长、封装良率</strong>。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>长川科技 ★★★★★</strong>——测试机/分选机是「测试跨过利润兑现门槛」最直接的映射标的，该深度是本季度对长川逻辑最直接的第三方论证；<strong>中际旭创 ★★★★</strong>——模块/光引擎厂需在封装环节守住良率与毛利率，否则放量反而摊薄利润；<strong>天孚通信 ★★★★</strong>——无源器件与光引擎封装属该环节的核心工艺积累方。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">3.</span>先进封装产能外溢「双路径」成型：台积电主动把硅中介层外包给格芯，英伟达在酝酿 Foveros 3D 替代 CoWoS</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：当日两份独立深度——①《20261010_台积电将硅中介层生产外包给格芯_主动外溢订单第一部分》；②《20261010_英伟达会用英特尔_Foveros_3D_替代台积电_CoWoS_吗_被动外溢订单》（来源：404K 深度文档标题，10/10）。承接 10/9《台积电与格芯_一项 20 亿美元协议如何重塑美国先进封装供应链》。</li>
+<li><span class="lbl">产业链含义</span>：① <strong>一条是「主动外溢」</strong>——台积电因 CoWoS/中介层产能极度紧张，主动把硅中介层（interposer）生产外包给格芯，二供体系获得确定性订单；② <strong>另一条是「被动外溢」</strong>——客户端（英伟达）为分散产能风险，评估用英特尔 Foveros 3D 等替代封装方案承接部分产品，是<strong>封装环节「去单一供应商化」</strong>的信号；③ 两条路径共同指向：<strong>先进封装的价值量正在从「台积电独家」向「多供应体系」扩散</strong>，基板/载板/中介层材料与封装设备的需求外溢至二供。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>生益科技 ★★★★</strong>——封装基板/载板所用高频高速 CCL 与树脂材料是外溢的直接承接环节；<strong>中国巨石 ★★★</strong>——电子布（低介电玻纤布）是高端载板的上游材料，受益于载板扩产；<strong>长川科技 ★★★</strong>——先进封装与 3D 堆叠的测试复杂度同步上升；<strong>半导设备ETF / 半导体设备ETF ★★★</strong>——封装设备与检测设备需求增量。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">4.</span>404K 叙事科技早/晚报：芯片收入跃升 vs 算力回款承压；长单锁住供给、扩产考验现金——「收入端好看、现金流吃紧」的结构性矛盾</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：① 404K 叙事科技早报 2026-10-10「<strong>芯片收入跃升：算力回款承压</strong>」；② 404K 叙事科技晚报 2026-10-10「<strong>长单锁住供给：扩产考验现金</strong>」（来源：404K 自主报告标题，10/10）。这是 10/9「抢产能之后还得算回报」主题的<strong>继续深化与具体化</strong>。海外侧印证：节后首周 CSP 走强（<strong>亚马逊 🔴 +5.33%、微软 🔴 +4.32%、谷歌 🔴 +2.20%</strong>），而 neocloud 走弱（<strong>Nebius 🟢 -6.28%、CoreWeave 🟢 -5.79%</strong>，来源：富途 OpenAPI）——<strong>资金明确偏好「有回款能力的买家」而回避「重资本消耗的算力租户」</strong>。</li>
+<li><span class="lbl">产业链含义</span>：①「<strong>芯片收入跃升</strong>」= 上游（芯片/代工/存储）收入端仍在兑现，AI 的产业景气未破；②「<strong>算力回款承压</strong>」= 收入确认与现金回收之间的时滞在拉长，<strong>对重资产、高杠杆的算力租户（neocloud）构成现金流压力</strong>；③「<strong>长单锁住供给 + 扩产考验现金</strong>」= 上游用 LTA 锁定价格与产能（供给方议价权强），但扩产需要巨额前置资本开支，<strong>行业正从「需求稀缺」转向「资本稀缺」</strong>。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>中际旭创 / 天孚通信 ★★★★</strong>——客户结构决定应收账款质量，<strong>云厂直接客户占比高的厂商相对安全，neocloud 占比高的厂商需警惕回款</strong>；<strong>生益科技 ★★★</strong>——覆铜板/PCB 同样面临「成本前置、回款后置」的营运资金压力；<strong>半导体 ETF 系 ★★★</strong>——估值锚从「收入增速」转向「现金流质量」。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>《第37期：谁在为11万亿美元的AI基础设施建设提供资金？（资本市场）》——融资结构本身成为 AI 扩张的约束条件</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：当日专题《第37期：谁在为 11 万亿美元的 AI 基础设施建设提供资金？（资本市场）》（来源：404K 专题文档标题，10/10）。与当日叙事晚报「扩产考验现金」、10/9 科技早报「融资约束升温：OpenAI 收入口径引争议」形成<strong>三日同向的三份独立文档</strong>。利率侧背景：10/8 纽约 <strong>10Y 美债 5.231%（🟢 -4.6bp）、30Y 约 5.60%（🟢 由约 5.73% 回落）</strong>（来源：每日盘后全景）；当日 404K 宏观晚报标题「<strong>长债承压延续</strong>」说明长端绝对水平仍在高位。</li>
+<li><span class="lbl">产业链含义</span>：① 该专题把 AI 基建的<strong>资金来源（股权、债务、表外、厂商融资）</strong>作为独立研究对象——意味着市场开始质疑「11 万亿规模的投资强度能否被现有融资体系承接」；② 在长端利率 5%+ 的环境下，AI 基建的<strong>加权融资成本抬升</strong>，直接压缩项目 IRR，尤其影响「依赖外部融资的算力供应商」；③ <strong>对自有现金流充沛的云厂（AWS/Microsoft/Google）相对有利</strong>——它们既是买方也是出资方，融资约束对它们是「竞争优势」而非「约束」。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>半导体设备 ETF / 科创芯片ETF ★★★★</strong>——资本开支的资金可得性直接决定设备订单能见度；<strong>中际旭创 / 天孚通信 ★★★★</strong>——云厂自筹能力强的客户结构属于「稀缺资产」；<strong>长川科技 ★★★</strong>——设备交付节奏（bookings vs billings）受客户资金到位节奏影响。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">6.</span>404K 宏观晚报：长债承压延续、股市涨幅集中——「指数在涨、赚钱面在收窄」的市场宽度恶化</strong></div><ul>
+<li><span class="lbl">数据支撑</span>：404K 宏观晚报 2026-10-10「<strong>长债承压延续、股市涨幅集中</strong>」（来源：404K 自主报告标题，10/10）。A股 10/9 实际数据即体现「结构性走强」：<strong>上证 3,813.79 🔴 +0.05%、深证成指 🔴 +0.17%、创业板 🔴 +0.22%、科创50 🔴 +0.07%</strong>，五指数涨幅均在 0.25% 以内，而<strong>站上 MA5/10/20 的指数为 0/15（连续第 5 日）</strong>（来源：每日盘后全景，10/9）。</li>
+<li><span class="lbl">产业链含义</span>：①「<strong>涨幅集中</strong>」= 上涨由少数板块/权重贡献（10/9 A股 为「数字媒体 🔴 +8.00% 传媒涨停潮」「电池 🔴 +2.10%」），而<strong>科技硬件是主要的失血方</strong>（元件 🟢 -4.27%、覆铜板 🟢 -6.93%）；②「<strong>长债承压延续</strong>」= 长端利率高位→高久期成长资产的估值分母压制持续存在，<strong>成长股要涨必须靠「盈利上修」而非「估值扩张」</strong>；③ 二者叠加的市场含义是：<strong>指数层面的抗跌掩盖了科技硬件链的持续失血</strong>，赚钱效应实际在收窄。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>组合整体</strong>——「指数不跌但我的持仓在跌」是<strong>结构问题而非大盘问题</strong>，需要以板块资金流（CPO 20 日 -707 亿、芯片概念 20 日 -1,629 亿）而非指数点位作为风控依据；<strong>科创芯片ETF / 通信ETF ★★★</strong>——宽基 ETF 的抗跌来自成分分散，但无法对冲科技链的系统性失血。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">7.</span>节后首周（10/8-10/9 vs 9/30 节前收盘）跨市场复盘：海外光互连链暴涨、A股光模块链下跌，背离幅度为近期最大</strong></div><ul>
+<li>数据支撑（来源：富途 OpenAPI 直连，节后首周涨跌 = 10/9 收盘 vs 9/30 节前收盘）：</li>
+<li><strong>海外光互连链全面大涨</strong>：Ciena <strong>+27.84%</strong>、Lumentum <strong>+13.60%</strong>、Credo <strong>+11.17%</strong>、应用光电 <strong>+10.46%</strong>、Coherent <strong>+8.62%</strong>、Arista <strong>+6.46%</strong>；</li>
+<li><strong>A股光模块/光芯片链普跌</strong>：仕佳光子 <strong>-14.57%</strong>、天孚通信 <strong>-9.87%</strong>、太辰光 <strong>-8.92%</strong>、新易盛 <strong>-4.83%</strong>、中际旭创 <strong>-4.10%</strong>；</li>
+<li><strong>存储链跨市场同向下跌但幅度分化</strong>：美股 希捷 <strong>-15.11%</strong>、西部数据 <strong>-12.58%</strong>、闪迪 <strong>-9.09%</strong>、美光 <strong>-3.39%</strong> vs A股 兆易创新 -7.75%、澜起科技 -2.33%；</li>
+<li><strong>CSP 是唯一跨市场共振向上的一类</strong>：亚马逊 <strong>+5.33%</strong>、微软 <strong>+4.32%</strong>、谷歌 <strong>+2.20%</strong>；</li>
+<li><strong>设备链企稳</strong>：A股 长川科技 -4.92%、北方华创 -3.56%、中微公司 -2.37%；美股 泛林 -2.94%、应用材料 -0.85%、科磊 +0.33%、泰瑞达 +0.44%。</li>
+<li><span class="lbl">产业链含义</span>：① 该背离<strong>不是基本面背离，而是资金面与政策面背离</strong>——海外光互连链定价的是「AI 集群扩张 + 光器件吃紧 + LTA 锁产能」的产业事实，A股光模块链定价的是「FCC 26-50 新规不确定性 + 光芯片降价传闻 + 20 日趋势性资金撤离（CPO 20 日 -707 亿）」；② 由于 A股 10/9 收盘早于美股 10/9 开盘，<strong>本次背离对 A股 10/12（下一交易日）构成正向映射</strong>，但映射强度取决于 10/13 FCC 新规落地细节；③ <strong>存储链的跨市场同向下跌是本周期最一致的负面信号</strong>——HDD（希捷/西数）节后首周跌 12-15%，说明「NAND 太贵→冷数据回流机械盘」的替代逻辑在市场层面并未被买入，存储链整体进入估值消化期。</li>
+<li><span class="lbl">对持仓含义</span>：<strong>中际旭创 ★★★★★</strong>——基本面（需求/器件紧张）与资金面（撤离/政策）严重背离，属「左侧观察、不博弈反弹」状态；<strong>天孚通信 ★★★★★</strong>——同一背离的结构中，器件端受益逻辑更强（海外 Lumentum +13.6% 为直接可比）；<strong>生益科技 ★★★★</strong>——覆铜板为本周 A股 全概念跌幅第一（-6.93%），背离中属最弱一环；<strong>长川科技 ★★★★★</strong>——设备链在背离中相对抗跌，且《01_CPO放量之后》深度直接指向测试环节。</li>
+</ul></div>
+<hr />
+<h2 id="sec-二、持仓个股动态"><span class="sec-emoji">💼</span>二、持仓个股动态</h2>
+<blockquote>
+<p>收盘价为 2026-10-09 A股实际收盘（最近交易日，来源：富途 OpenAPI 直连）；「节后首周」= 10/9 收盘 vs 9/30 节前收盘。板块资金与归因来源：每日盘后全景（2026-10-09）。<strong>2026-10-10 为周六，三地市场均休市，无新增交易数据。</strong></p>
+</blockquote>
+<h3>中际旭创 ★★★★★</h3>
+<ul>
+<li><strong>行情</strong>：10-09 收 <strong>¥775.29（🟢 -0.98%）</strong>，盘中 ¥780.00 / ¥730.00；<strong>节后首周 🟢 -4.10%</strong>（9/30 收盘 ¥808.44）。为组合内最大权重与最大浮亏项（数据源：富途 OpenAPI）。</li>
+<li><strong>今日相关文档（按相关度）</strong>：
+  1. <strong>《01_CPO放量之后：测试与封装如何跨过利润兑现的门槛》</strong>——论证 CPO 放量后的利润兑现瓶颈在「测试+封装」，模块/光引擎厂需守住良率与毛利率。
+  2. <strong>404K 科技早报「瓶颈继续外溢：AI 光器件与供电吃紧」</strong>——上游光器件紧张印证需求总量，但成本上行压力同步传导。
+  3. <strong>《第37期：谁在为 11 万亿美元的 AI 基础设施建设提供资金？》</strong>——融资结构成为 CAPEX 继续扩张的约束条件，客户自筹能力（云厂 vs neocloud）开始影响订单可执行性。</li>
+<li><strong>海外同业对照（节后首周）</strong>：<strong>Coherent 🔴 +8.62%、Lumentum 🔴 +13.60%、Credo 🔴 +11.17%</strong> —— 海外光互连链与 A股 光模块链的<strong>节后首周背离幅度达 12-32 个百分点</strong>（来源：富途 OpenAPI）。</li>
+<li><strong>方向含义</strong>：基本面（光器件紧张 + LTA 锁产能 + CSP 资本开支仍在扩张）与资金/政策面（FCC 26-50 新规 10/13 生效未出清 + CPO 20 日资金 -707 亿）继续背离。<strong>本周新增变量是「融资约束」从宏观叙事进入资本市场定价</strong>——若 CSP 10 月下旬财报季的 CAPEX 指引因融资成本上修而下修，将是本方向最需警惕的变量。</li>
+<li><strong>观察点</strong>：① 10/13 FCC 26-50 新规生效细节与覆盖代际；② 10/12（下一交易日）海外光互连强势能否传导；③ CPO 光电测试时长与良率的产业验证；④ 三季报应收账款与客户结构。</li>
+</ul>
+<h3>天孚通信 ★★★★★</h3>
+<ul>
+<li><strong>行情</strong>：10-09 收 <strong>¥235.04（🟢 -0.01%）</strong>，盘中 ¥237.87 / ¥223.80；<strong>节后首周 🟢 -9.87%</strong>（9/30 收盘 ¥260.77）——<strong>10/8 重挫 -9.86% 后本日基本持平，日内振幅 6.0%，连续两日出现企稳迹象</strong>（数据源：富途 OpenAPI）。</li>
+<li><strong>今日相关文档</strong>：① <strong>404K 科技早报「AI 光器件与供电吃紧」</strong>——无源器件（FAU/透镜/陶瓷插芯/隔离器）是「光器件吃紧」的最核心环节，是本条对天孚最直接的供需确认；② <strong>《01_CPO放量之后：测试与封装如何跨过利润兑现的门槛》</strong>——光引擎封装与耦合工艺属该深度的核心环节；③ <strong>叙事科技晚报「长单锁住供给」</strong>——器件端 LTA 锁产能意味着供给方议价权提升。</li>
+<li><strong>海外可比（节后首周）</strong>：<strong>Lumentum 🔴 +13.60%（激光器/光器件可比）、Coherent 🔴 +8.62%</strong> —— 器件/激光环节在海外的定价显著强于 A股，<strong>天孚作为 A股 最接近的光器件标的，其背离最不合理，也最可能被修复</strong>（数据源：富途 OpenAPI）。</li>
+<li><strong>方向含义</strong>：天孚与中际旭创的角色互补——<strong>模块厂受损于单价（1.6T 光芯片降价传闻），器件厂受益于用量（NPO/CPO 架构下单位光路器件数量提升）</strong>。节后首周两者跌幅（-4.10% vs -9.87%）显示市场仍在交易「NPO 架构切换先伤器件」，与海外器件链的强势形成显著反差。</li>
+<li><strong>观察点</strong>：Q3 光引擎/无源器件收入环比；NPO 配套器件送样与认证进展；1.6T 光引擎毛利率对光芯片降价的敏感度。</li>
+</ul>
+<h3>生益科技 ★★★★</h3>
+<ul>
+<li><strong>行情</strong>：10-09 收 <strong>¥124.14（🟢 -5.85%）</strong>，盘中 ¥127.04 / ¥118.68；<strong>节后首周 🟢 -4.48%</strong>（9/30 收盘 ¥129.96）——10/9 为组合内跌幅最大标的，前一日（10/8）「逆势红盘 +1.46%」的涨幅被大幅回吐（数据源：富途 OpenAPI）。</li>
+<li><strong>今日相关文档 / 产业信号</strong>：① <strong>《台积电将硅中介层生产外包给格芯（主动外溢订单）》+《英伟达会用英特尔 Foveros 3D 替代 CoWoS 吗（被动外溢订单）》</strong>——先进封装产能外溢至二供体系，<strong>封装基板/载板材料需求向二线供应商扩散</strong>，是 CCL 链的中期增量方向；② <strong>404K 科技早报「瓶颈继续外溢」</strong>——高频高速 CCL 同属配套瓶颈扩散受益项；③ 资金面：覆铜板 10/9 🟢 <strong>-6.93%（全概念跌幅第一）</strong>，主力 -11.34 亿，20 日资金由 10/8 的 +0.22 亿转为 <strong>-5.39 亿</strong>（来源：每日盘后全景，10/9）。</li>
+<li><strong>港股映射</strong>：<strong>建滔积层板 HK$49.00（🟢 -2.29%，节后首周 🔴 +0.95%）、建滔集团 HK$55.70（🟢 -3.47%，节后首周 🟢 -0.09%）</strong>——港股覆铜板链节后首周<strong>基本持平</strong>，显著强于 A股 生益（-4.48%），跨市场一致性偏弱（来源：富途 OpenAPI）。</li>
+<li><strong>方向含义</strong>：<strong>本期最重要观察是「A股 与港股覆铜板链的分化」</strong>——同为 CCL 主体，建滔积层板节后首周 +0.95% 而 生益 -4.48%，差距近 5.4pt。归因两条：① 港股受惠于恒指节后首周 🔴 +1%、恒生科技 🔴 +0.96% 的β修复（建滔积层板同时具备地产敞口）；② A股 覆铜板链承受的是<strong>独立的资金撤离</strong>（20 日资金转负）。基本面（AI 高速 PCB/高端 CCL 供需偏紧 + 载板材料外溢）未变，<strong>但 A股 板块层面资金趋势由多转空已成事实</strong>。</li>
+<li><strong>风险</strong>：① 若 10 月 CCL 报价无法顺利转移铜价/树脂成本，毛利将被压缩；② A股 覆铜板 20 日资金尚无拐点；③ 载板材料外溢属「中期逻辑」，对当期业绩贡献有限。</li>
+</ul>
+<h3>长川科技 ★★★★★</h3>
+<ul>
+<li><strong>行情</strong>：10-09 收 <strong>¥228.00（🟢 -0.22%）</strong>，盘中 ¥229.50 / ¥212.08；<strong>节后首周 🟢 -4.92%</strong>（9/30 收盘 ¥239.79）——<strong>在元件 -4.27%、覆铜板 -6.93% 的普跌日几乎平盘，为组合内最抗跌的科技硬件持仓</strong>（数据源：富途 OpenAPI）。</li>
+<li><strong>今日相关文档</strong>：
+  1. <strong>《01_CPO放量之后：测试与封装如何跨过利润兑现的门槛》（本期最关键）</strong>——直指「测试」是 CPO 放量后利润兑现的核心门槛，与长川的测试机/分选机主业高度对应；该深度与 9/9 记录的「CPO 光电测试 10-30 分钟成量产瓶颈」形成完整证据链。
+  2. <strong>404K 半导体设备周报（10/9）「订单可见度拉长：光刻排产与测试投入增强，下周核实交付节奏」</strong>——「测试投入增强」为对测试环节最直接的正向表述。
+  3. <strong>《第37期：谁在为 11 万亿美元的 AI 基础设施建设提供资金？》</strong>——客户资金到位节奏影响设备交付确认。</li>
+<li><strong>同业对照（节后首周）</strong>：A股 北方华创 🟢 -3.56%、中微公司 🟢 -2.37%；美股 <strong>泰瑞达 🔴 +0.44%、科磊 🔴 +0.33%</strong>（测试/量测跑赢前道）。<strong>长川 -4.92% 略弱于设备同业，但仍显著强于光模块链</strong>（来源：富途 OpenAPI）。</li>
+<li><strong>方向含义</strong>：测试设备的需求由「芯片复杂度」而非「晶圆产能」驱动——AI 芯片（HBM 堆叠、Chiplet、CPO 光电耦合、高速 SerDes）的<strong>测试时长与机台需求随复杂度非线性提升</strong>，因此在本轮「AI 硬件」整体减仓中相对抗跌。本期《CPO放量之后》深度为该逻辑提供了<strong>具体的产业节点</strong>（测试+封装），是长川逻辑从「泛化的设备需求」升级为「CPO 兑现环节」的关键文档。</li>
+<li><strong>风险</strong>：设备周报明确点出「<strong>下周核实交付节奏</strong>」——订单（bookings）与收入确认（billings）存在时间差，三季报若显示交付延迟，短期业绩预期可能下修；且设备链 20 日资金失血（半导体行业 20 日 -630 亿）尚未见拐点。</li>
+<li><strong>观察点</strong>：Q3 在手订单与交付确认节奏；测试机/分选机新品验证；CPO 光电测试设备的技术卡位。</li>
+</ul>
+<h3>中国巨石（关注池）★★★</h3>
+<ul>
+<li><strong>行情</strong>：10-09 收 <strong>¥38.57（🟢 -2.48%）</strong>，盘中 ¥39.28 / ¥36.01；<strong>节后首周 🟢 -2.13%</strong>（9/30 收盘 ¥39.41）——<strong>节后首周跌幅为组合内最小之一</strong>（数据源：富途 OpenAPI）。</li>
+<li><strong>今日相关文档 / 信号</strong>：① <strong>《台积电将硅中介层外包给格芯》</strong>——高端载板扩产直接拉动低介电玻纤布（电子布）需求；② <strong>404K 科技早报「供电吃紧」</strong>——数据中心电力基础设施与机房建设对玻纤/复材存在配套需求；③ 负面：电子布 10/9 🟢 -3.15%、玻璃基板封装 🟢 -3.56%（来源：每日盘后全景）。</li>
+<li><strong>方向含义</strong>：中国巨石当期主要矛盾仍是「<strong>粗纱周期（风电/建筑/地产）</strong> vs <strong>电子布（AI 高端 PCB 上游）</strong>」的结构切换。节后首周 -2.13% 的韧性说明<strong>电子布端的成长属性正在部分对冲粗纱周期下行</strong>——这与生益科技（纯 CCL，-4.48%）的差距（+2.35pt）构成观察依据。港股的建滔积层板（同时含地产敞口）+0.95%，亦从侧面说明「玻纤/CCL 材料端并非本周的杀跌核心，A股 PCB 链的资金撤离才是」。</li>
+<li><strong>观察点</strong>：电子布/低介电玻纤布价格与出货占比；粗纱价格与风电装机节奏；载板扩产对电子布的订单传导。</li>
+</ul>
+<h3>半导体ETF / 科创芯片ETF / 通信ETF / 半导体设备ETF</h3>
+<ul>
+<li><strong>行情（10/9 收盘 / 节后首周 vs 9/30，来源：富途 OpenAPI）</strong>：</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ETF</th>
+<th style="text-align: right;">10/9 收盘</th>
+<th style="text-align: right;">10/9 日涨跌</th>
+<th style="text-align: right;">节后首周</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>科创芯片ETF</td>
+<td style="text-align: right;">¥1.019</td>
+<td style="text-align: right;">🟢 -0.39%</td>
+<td style="text-align: right;">🟢 -5.65%</td>
+</tr>
+<tr>
+<td>半导体设备ETF-159516</td>
+<td style="text-align: right;">¥0.622</td>
+<td style="text-align: right;">🟢 -0.80%</td>
+<td style="text-align: right;">🟢 -4.45%</td>
+</tr>
+<tr>
+<td>半导体设备ETF-561980</td>
+<td style="text-align: right;">¥0.604</td>
+<td style="text-align: right;">🟢 -0.66%</td>
+<td style="text-align: right;">🟢 -3.82%</td>
+</tr>
+<tr>
+<td>通信ETF</td>
+<td style="text-align: right;">¥0.592</td>
+<td style="text-align: right;">🟢 -0.34%</td>
+<td style="text-align: right;">🟢 -5.43%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>方向含义</strong>：半导体（行业）10/9 🟢 -0.68%，<strong>四只 ETF 当日跌幅均在 0.8% 以内，跑赢「元件 -4.27%」「覆铜板 -6.93%」等细分</strong>，宽基 ETF 的抗跌性来自成分分散（含存储/设备/设计）。但<strong>节后首周 ETF 跌幅（-3.82% ~ -5.65%）与行业指数基本同步</strong>，说明 ETF 只能平滑单日结构冲击，无法对冲科技链的系统性失血。<strong>芯片概念主力 10/9 🟢 -176.96 亿居概念流出第一（20 日 -1,628.76 亿）</strong>——资金面仍是主要压制。</li>
+<li><strong>补充观察（组合内其他标的，10/9 收盘 / 节后首周）</strong>：<strong>澜起科技 🔴 +0.30%（¥197.60 / 🟢 -2.33%）</strong>、<strong>长电科技 🔴 +0.22%（¥62.74 / 🟢 -2.40%）</strong> 为组合内逆势红盘；<strong>仕佳光子 🔴 +3.42%（¥131.97 / 🟢 -14.57%）</strong> 节后首周跌幅最深（前日抗跌后大幅回吐）；<strong>沪电股份 🟢 -3.10%（¥112.29 / 🟢 -3.14%）</strong>、<strong>新易盛 🟢 -2.19%（¥370.20 / 🟢 -4.83%）</strong>、<strong>兆易创新 🟢 -2.37%（¥326.46 / 🟢 -7.75%）</strong>、<strong>江波龙 🟢 -1.59%（¥284.00 / 🟢 -5.94%）</strong>（来源：富途 OpenAPI）。</li>
+</ul>
+<hr />
+<h2 id="sec-三、产业链关键信号"><span class="sec-emoji">🔗</span>三、产业链关键信号</h2>
+<h3>超大规模云商 CAPEX</h3>
+<ul>
+<li><strong>资金结构成为新的约束条件</strong>：404K 专题《第37期：谁在为 11 万亿美元的 AI 基础设施建设提供资金？（资本市场）》——把 AI 基建的资金来源（股权/债务/表外/厂商融资）作为独立研究对象（来源：404K 文档标题，10/10）。</li>
+<li><strong>现金流质量的定价分化（节后首周，来源：富途 OpenAPI）</strong>：<strong>CSP 显著走强——亚马逊 🔴 +5.33%、微软 🔴 +4.32%、谷歌 🔴 +2.20%</strong>；而<strong>算力租户走弱——Nebius 🟢 -6.28%、CoreWeave 🟢 -5.79%</strong>。市场明确用「回款能力」而非「CAPEX 规模」给两类公司定价。</li>
+<li><strong>利率背景</strong>：10/8 纽约 <strong>10Y 美债 5.231%（🟢 -4.6bp）、30Y 约 5.60%</strong>（来源：每日盘后全景）；404K 宏观晚报 10/10「<strong>长债承压延续</strong>」——长端绝对水平仍在 5% 以上，分母压制未解除。</li>
+<li><strong>新稀缺资源 = 电力</strong>：404K 科技早报「<strong>供电吃紧</strong>」与 10/9 M7与CSP周报「谷歌锁电」共同指向电力供给成为 CAPEX 落地的现实约束（来源：404K 文档标题，10/9-10/10）。</li>
+<li><strong>组合含义</strong>：CAPEX 绝对额仍在扩张，但<strong>估值锚已明确从「CAPEX 规模」转向「现金回收效率」</strong>——对客户为云厂的上游环节（光互连、设备）相对有利，对客户为融资依赖型租户的环节需警惕。</li>
+</ul>
+<h3>存储 / DRAM / NAND</h3>
+<ul>
+<li><strong>存储涨价开始反噬终端需求</strong>：404K 科技早报 2026-10-10「<strong>存储涨价压低终端出货</strong>」——此前 10/9 存储周报为「企业SSD强、终端减配检验涨价边界」，本期进一步明确为<strong>「涨价已实际压低终端出货」</strong>（来源：404K 文档标题，10/10）。</li>
+<li><strong>跨市场存储链同向下跌（节后首周）</strong>：美股 <strong>希捷 🟢 -15.11%、西部数据 🟢 -12.58%、闪迪 🟢 -9.09%、美光 🟢 -3.39%</strong>；A股 <strong>兆易创新 🟢 -7.75%、江波龙 🟢 -5.94%、澜起科技 🟢 -2.33%</strong>（来源：富途 OpenAPI）。<strong>HDD 跌幅（-12%~-15%）反而大于 NAND（-9%）与 DRAM（-3%）</strong>——说明「NAND 太贵→冷数据回流机械盘」的替代逻辑并未被市场买入，<strong>存储链整体进入估值消化期</strong>。</li>
+<li><strong>存储内部结构（10/9 收盘）</strong>：澜起科技 🔴 +0.30%、长电科技 🔴 +0.22% 逆势红盘，是内存接口/封测环节的相对强势（来源：富途 OpenAPI）。</li>
+<li><strong>数据图</strong>：<code>261010存储价格涨跌幅.png</code> 已存在但原文不可读，<strong>数值待补</strong>。</li>
+<li><strong>组合含义</strong>：<strong>澜起科技</strong>（关注池）直接受益企业级/服务器内存需求确认；<strong>科创芯片ETF</strong> 中存储权重方向需跟踪 DRAM 合约价能否走出「合约涨、现货平」的僵持；<strong>存储链的估值消化期意味着短期不宜将「涨价」作为加仓理由</strong>。</li>
+</ul>
+<h3>半导体设备</h3>
+<ul>
+<li><strong>测试环节被明确点名为 CPO 兑现的门槛</strong>：深度《01_CPO放量之后：测试与封装如何跨过利润兑现的门槛》（来源：404K 深度文档标题，10/10）——这是本期对设备链（尤其测试）<strong>最重要的一份文档</strong>。</li>
+<li><strong>订单可见度延续上修（承接 10/9 周报）</strong>：404K 半导体设备周报「订单可见度拉长：光刻排产与测试投入增强，<strong>下周核实交付节奏</strong>」——明确提示 bookings 与 billings 的时间差（来源：404K 文档标题，10/9）。</li>
+<li><strong>市场表现（节后首周）</strong>：A股 北方华创 🟢 -3.56%、中微公司 🟢 -2.37%、长川科技 🟢 -4.92%；美股 泛林 🟢 -2.94%、应用材料 🟢 -0.85%、<strong>科磊 🔴 +0.33%、泰瑞达 🔴 +0.44%</strong>（来源：富途 OpenAPI）。<strong>测试/量测（泰瑞达/科磊）跑赢前道（泛林/AMAT）</strong>，与「测试投入增强」「CPO 测试瓶颈」的方向一致。</li>
+<li><strong>组合含义</strong>：<strong>长川科技 / 半导设备ETF / 半导体设备ETF</strong>——设备端属「中期订单能见度上修 + 短期 A股 资金失血」的组合，需等待 20 日资金拐点（半导体行业 20 日 -630 亿）。</li>
+</ul>
+<h3>PCB / 覆铜板</h3>
+<ul>
+<li><strong>A股 覆铜板为节后最弱细分</strong>：10/9 覆铜板 🟢 <strong>-6.93%（全概念跌幅第一）</strong>，主力 -11.34 亿，<strong>20 日资金由 10/8 的 +0.22 亿转为 -5.39 亿</strong>；PCB 🟢 -2.52%（主力 -89.02 亿，20 日 -290.91 亿）；电子布 🟢 -3.15%、电子树脂 🟢 -3.02%（来源：每日盘后全景，10/9）。</li>
+<li><strong>中期产业线索（本期强化）</strong>：<strong>《台积电将硅中介层外包给格芯》+《英伟达 Foveros 3D 替代 CoWoS》</strong>——先进封装产能外溢至二供体系，<strong>中介层/载板/基板材料需求向二线供应商扩散</strong>，是 PCB/CCL 链最明确的中期增量方向（来源：404K 深度文档标题，10/10）。404K 科技早报「瓶颈继续外溢」同向佐证。</li>
+<li><strong>跨市场对比（节后首周）</strong>：<strong>A股 生益科技 🟢 -4.48% vs 港股 建滔积层板 🔴 +0.95%</strong> —— 差距 5.4pt，<strong>A股 PCB 链的杀跌具有市场特殊性（资金撤离），而非全球性的产业需求转弱</strong>（来源：富途 OpenAPI）。</li>
+<li><strong>组合含义</strong>：<strong>生益科技</strong>——短期需观察 CCL 报价能否转移铜/树脂成本、以及 20 日资金能否出现拐点；<strong>中国巨石</strong>——电子布受益载板扩产，节后首周 -2.13% 的相对韧性是正面信号。</li>
+</ul>
+<h3>光互连技术路线（持续跟踪项）</h3>
+<ul>
+<li><strong>海外节后首周暴涨</strong>：<strong>Ciena 🔴 +27.84%、Lumentum 🔴 +13.60%、Credo 🔴 +11.17%、应用光电 🔴 +10.46%、Coherent 🔴 +8.62%、Arista 🔴 +6.46%</strong>（来源：富途 OpenAPI，10/9 vs 9/30）。</li>
+<li><strong>A股 同期普跌</strong>：<strong>仕佳光子 🟢 -14.57%、天孚通信 🟢 -9.87%、太辰光 🟢 -8.92%、新易盛 🟢 -4.83%、中际旭创 🟢 -4.10%</strong>（来源：富途 OpenAPI）。</li>
+<li><strong>404K 口径</strong>：科技早报「<strong>光器件与供电吃紧</strong>」；叙事科技晚报「<strong>长单锁住供给</strong>」；深度《01_<strong>CPO放量之后：测试与封装如何跨过利润兑现的门槛</strong>》（来源：404K 文档标题，10/10）。</li>
+<li><strong>跨市场背离幅度（12-32pt）为近期最大</strong>——属<strong>资金面/政策面背离而非基本面背离</strong>，构成 10/12（下一交易日）A股的正向映射预期，但强度取决于 10/13 FCC 26-50 新规落地细节。</li>
+</ul>
+<hr />
+<h2 id="sec-四、重要风险提示"><span class="sec-emoji">⚠️</span>四、重要风险提示</h2>
+<ol>
+<li><strong>FCC 26-50 新规 10 月 13 日生效（最近事件窗口，本周末为最后观察期）</strong>：光芯片/光模块链在生效前的政策不确定性尚未出清；大摩「3.2T 世代限制中国光模块」报告<strong>并非正式文件</strong>，真实性待验证。若覆盖范围波及 800G/1.6T（当前主流商用代际），则「短期业绩无虞」的前提失效；<strong>事件前不宜博反弹</strong>。</li>
+<li><strong>「融资结构」成为 AI 扩张的硬约束（本期新增维度）</strong>：404K 专题《第37期：谁在为 11 万亿美元的 AI 基础设施建设提供资金？》+ 叙事晚报「扩产考验现金」+ 宏观晚报「长债承压延续」——12 份/3 日同向文档。<strong>若资本开支的资金可得性下降，设备订单能见度与光模块出货节奏将同步承压</strong>；这已不是「估值」问题而是「盈利」问题。</li>
+<li><strong>存储涨价反噬终端需求（本期升级为确定性信号）</strong>：404K 科技早报明确表述「<strong>存储涨价压低终端出货</strong>」，此前为「终端减配检验涨价边界」。若消费端下滑超预期，将反向削弱存储涨价的持续性与原厂盈利能力。</li>
+<li><strong>跨市场背离的双向风险</strong>：海外光互连链节后首周 +8%~+28%、A股 同链 -4%~-15%，背离幅度为近期最大。<strong>若 10/12 A股 高开后美股再度回落，背离将被反向修正</strong>，不宜单边押注修复。</li>
+<li><strong>A股 AI 硬件 20 日资金趋势性失血未止</strong>：CPO 20 日 <strong>-707.01 亿</strong>、芯片概念 20 日 <strong>-1,628.76 亿</strong>、存储器 20 日 <strong>-694.80 亿</strong>、半导体行业 20 日 <strong>-630.09 亿</strong>、PCB 20 日 <strong>-290.91 亿</strong> —— 属<strong>延续型撤离而非单日冲击</strong>，任何反弹应优先视为减仓窗口。</li>
+<li><strong>市场宽度恶化（本期新增观察）</strong>：404K 宏观晚报「<strong>股市涨幅集中</strong>」；A股 10/9 五指数涨幅均 ≤0.25%、<strong>站上 MA5/10/20 的指数 0/15（连续第 5 日）</strong> —— <strong>指数抗跌掩盖了科技硬件链的持续失血</strong>，风控应以板块资金流而非指数点位为依据。</li>
+<li><strong>PCB/覆铜板板块资金趋势由多转空</strong>：覆铜板 20 日资金由 +0.22 亿转为 <strong>-5.39 亿</strong>，10/8 的「三项全正」特征被打破；生益科技 10/9 -5.85% 为该风险的直接体现。</li>
+<li><strong>组合集中度与杠杆</strong>：科技硬件合计敞口约 92%（半导体链 + 光模块链 + PCB/硬质合金）；A股 担保比例约 364.7%、仓位比 &gt;130%；港股证券仓位接近满仓（来源：每日盘后全景纪律检查，10/9）。<strong>中际旭创浮亏已跌破 -25% 复核线下沿，需按既定纪律执行复核</strong>。</li>
+<li><strong>数据时效</strong>：美股持仓明细仍为 2026-09-24 快照（已过期 17 天），相关浮盈/杠杆为推算值，<strong>建议尽快刷新美股账户截图</strong>。</li>
+</ol>
+<hr />
+<h2 id="sec-五、数据速览"><span class="sec-emoji">📊</span>五、数据速览</h2>
+<h3>持仓/关注标的 2026-10-09 收盘 + 节后首周（数据源：富途 OpenAPI 直连）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th style="text-align: right;">10/9 收盘</th>
+<th style="text-align: right;">日涨跌</th>
+<th style="text-align: right;">节后首周</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中际旭创</td>
+<td style="text-align: right;">¥775.29</td>
+<td style="text-align: right;">🟢 -0.98%</td>
+<td style="text-align: right;">🟢 -4.10%</td>
+<td>光模块，背离海外同业 12pt+</td>
+</tr>
+<tr>
+<td>天孚通信</td>
+<td style="text-align: right;">¥235.04</td>
+<td style="text-align: right;">🟢 -0.01%</td>
+<td style="text-align: right;">🟢 <strong>-9.87%</strong></td>
+<td>光器件，连续两日企稳</td>
+</tr>
+<tr>
+<td>生益科技</td>
+<td style="text-align: right;">¥124.14</td>
+<td style="text-align: right;">🟢 <strong>-5.85%</strong></td>
+<td style="text-align: right;">🟢 -4.48%</td>
+<td>覆铜板，10/9 组合内最弱</td>
+</tr>
+<tr>
+<td>长川科技</td>
+<td style="text-align: right;">¥228.00</td>
+<td style="text-align: right;">🟢 -0.22%</td>
+<td style="text-align: right;">🟢 -4.92%</td>
+<td>测试设备，显著抗跌</td>
+</tr>
+<tr>
+<td>中国巨石</td>
+<td style="text-align: right;">¥38.57</td>
+<td style="text-align: right;">🟢 -2.48%</td>
+<td style="text-align: right;">🟢 -2.13%</td>
+<td>玻纤/电子布，相对韧性</td>
+</tr>
+<tr>
+<td>科创芯片ETF</td>
+<td style="text-align: right;">¥1.019</td>
+<td style="text-align: right;">🟢 -0.39%</td>
+<td style="text-align: right;">🟢 -5.65%</td>
+<td>半导体</td>
+</tr>
+<tr>
+<td>半导体设备ETF(159516)</td>
+<td style="text-align: right;">¥0.622</td>
+<td style="text-align: right;">🟢 -0.80%</td>
+<td style="text-align: right;">🟢 -4.45%</td>
+<td>设备</td>
+</tr>
+<tr>
+<td>半导体设备ETF(561980)</td>
+<td style="text-align: right;">¥0.604</td>
+<td style="text-align: right;">🟢 -0.66%</td>
+<td style="text-align: right;">🟢 -3.82%</td>
+<td>设备</td>
+</tr>
+<tr>
+<td>通信ETF</td>
+<td style="text-align: right;">¥0.592</td>
+<td style="text-align: right;">🟢 -0.34%</td>
+<td style="text-align: right;">🟢 -5.43%</td>
+<td>通信</td>
+</tr>
+<tr>
+<td>沪电股份</td>
+<td style="text-align: right;">¥112.29</td>
+<td style="text-align: right;">🟢 -3.10%</td>
+<td style="text-align: right;">🟢 -3.14%</td>
+<td>PCB</td>
+</tr>
+<tr>
+<td>澜起科技</td>
+<td style="text-align: right;">¥197.60</td>
+<td style="text-align: right;">🔴 <strong>+0.30%</strong></td>
+<td style="text-align: right;">🟢 -2.33%</td>
+<td>内存接口/CXL，逆势</td>
+</tr>
+<tr>
+<td>新易盛</td>
+<td style="text-align: right;">¥370.20</td>
+<td style="text-align: right;">🟢 -2.19%</td>
+<td style="text-align: right;">🟢 -4.83%</td>
+<td>光模块</td>
+</tr>
+<tr>
+<td>仕佳光子</td>
+<td style="text-align: right;">¥131.97</td>
+<td style="text-align: right;">🔴 <strong>+3.42%</strong></td>
+<td style="text-align: right;">🟢 <strong>-14.57%</strong></td>
+<td>光芯片，节后首周最深</td>
+</tr>
+<tr>
+<td>兆易创新</td>
+<td style="text-align: right;">¥326.46</td>
+<td style="text-align: right;">🟢 -2.37%</td>
+<td style="text-align: right;">🟢 -7.75%</td>
+<td>存储</td>
+</tr>
+<tr>
+<td>江波龙</td>
+<td style="text-align: right;">¥284.00</td>
+<td style="text-align: right;">🟢 -1.59%</td>
+<td style="text-align: right;">🟢 -5.94%</td>
+<td>存储模组</td>
+</tr>
+<tr>
+<td>北方华创</td>
+<td style="text-align: right;">¥594.04</td>
+<td style="text-align: right;">🟢 -1.05%</td>
+<td style="text-align: right;">🟢 -3.56%</td>
+<td>设备</td>
+</tr>
+<tr>
+<td>中微公司</td>
+<td style="text-align: right;">¥311.00</td>
+<td style="text-align: right;">🟢 -0.72%</td>
+<td style="text-align: right;">🟢 -2.37%</td>
+<td>设备</td>
+</tr>
+<tr>
+<td>长电科技</td>
+<td style="text-align: right;">¥62.74</td>
+<td style="text-align: right;">🔴 +0.22%</td>
+<td style="text-align: right;">🟢 -2.40%</td>
+<td>封测</td>
+</tr>
+<tr>
+<td>太辰光</td>
+<td style="text-align: right;">¥193.40</td>
+<td style="text-align: right;">🟢 -2.81%</td>
+<td style="text-align: right;">🟢 -8.92%</td>
+<td>光器件</td>
+</tr>
+<tr>
+<td>顺络电子</td>
+<td style="text-align: right;">¥45.60</td>
+<td style="text-align: right;">🟢 -5.18%</td>
+<td style="text-align: right;">🟢 -5.47%</td>
+<td>被动元件</td>
+</tr>
+</tbody>
+</table></div>
+<h3>港股（2026-10-09 收盘 + 节后首周，数据源：富途 OpenAPI）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th style="text-align: right;">10/9 收盘</th>
+<th style="text-align: right;">日涨跌</th>
+<th style="text-align: right;">节后首周</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>建滔积层板</td>
+<td style="text-align: right;">HK$49.00</td>
+<td style="text-align: right;">🟢 -2.29%</td>
+<td style="text-align: right;">🔴 <strong>+0.95%</strong></td>
+<td>覆铜板，节后首周逆势收正</td>
+</tr>
+<tr>
+<td>建滔集团</td>
+<td style="text-align: right;">HK$55.70</td>
+<td style="text-align: right;">🟢 -3.47%</td>
+<td style="text-align: right;">🟢 -0.09%</td>
+<td>覆铜板</td>
+</tr>
+<tr>
+<td>ASMPT</td>
+<td style="text-align: right;">HK$161.30</td>
+<td style="text-align: right;">🟢 -1.53%</td>
+<td style="text-align: right;">🔴 +0.81%</td>
+<td>半导体封装设备</td>
+</tr>
+<tr>
+<td>长飞光纤光缆</td>
+<td style="text-align: right;">HK$168.30</td>
+<td style="text-align: right;">🔴 +0.42%</td>
+<td style="text-align: right;">🔴 +0.12%</td>
+<td>光纤光缆</td>
+</tr>
+<tr>
+<td>中兴通讯</td>
+<td style="text-align: right;">HK$20.76</td>
+<td style="text-align: right;">🔴 +0.29%</td>
+<td style="text-align: right;">🟢 -5.03%</td>
+<td>通信设备</td>
+</tr>
+<tr>
+<td>舜宇光学</td>
+<td style="text-align: right;">HK$60.50</td>
+<td style="text-align: right;">🔴 +0.75%</td>
+<td style="text-align: right;">🟢 -4.50%</td>
+<td>光学</td>
+</tr>
+</tbody>
+</table></div>
+<h3>海外关键标的：美股 2026-10-09 纽约收盘 + 节后首周（数据源：富途 OpenAPI）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>标的</th>
+<th style="text-align: right;">10/9 收盘</th>
+<th style="text-align: right;">日涨跌</th>
+<th style="text-align: right;">节后首周</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算力</td>
+<td>英伟达</td>
+<td style="text-align: right;">$229.28</td>
+<td style="text-align: right;">🟢 -0.52%</td>
+<td style="text-align: right;">🔴 +0.39%</td>
+</tr>
+<tr>
+<td>算力</td>
+<td>AMD</td>
+<td style="text-align: right;">$608.10</td>
+<td style="text-align: right;">🟢 -2.03%</td>
+<td style="text-align: right;">🟢 -0.60%</td>
+</tr>
+<tr>
+<td>代工</td>
+<td>台积电</td>
+<td style="text-align: right;">$453.31</td>
+<td style="text-align: right;">🟢 -1.02%</td>
+<td style="text-align: right;">🟢 -0.63%</td>
+</tr>
+<tr>
+<td>光互连</td>
+<td><strong>Ciena</strong></td>
+<td style="text-align: right;">$449.77</td>
+<td style="text-align: right;">🔴 <strong>+5.60%</strong></td>
+<td style="text-align: right;">🔴 <strong>+27.84%</strong></td>
+</tr>
+<tr>
+<td>光互连</td>
+<td><strong>Lumentum</strong></td>
+<td style="text-align: right;">$1,103.36</td>
+<td style="text-align: right;">🔴 <strong>+5.22%</strong></td>
+<td style="text-align: right;">🔴 <strong>+13.60%</strong></td>
+</tr>
+<tr>
+<td>光互连</td>
+<td><strong>Credo</strong></td>
+<td style="text-align: right;">$216.55</td>
+<td style="text-align: right;">🔴 +2.21%</td>
+<td style="text-align: right;">🔴 <strong>+11.17%</strong></td>
+</tr>
+<tr>
+<td>光互连</td>
+<td><strong>应用光电</strong></td>
+<td style="text-align: right;">$109.64</td>
+<td style="text-align: right;">🔴 +3.53%</td>
+<td style="text-align: right;">🔴 <strong>+10.46%</strong></td>
+</tr>
+<tr>
+<td>光互连</td>
+<td><strong>Coherent</strong></td>
+<td style="text-align: right;">$312.62</td>
+<td style="text-align: right;">🔴 +3.40%</td>
+<td style="text-align: right;">🔴 <strong>+8.62%</strong></td>
+</tr>
+<tr>
+<td>光互连</td>
+<td>Arista</td>
+<td style="text-align: right;">$216.74</td>
+<td style="text-align: right;">🔴 +2.73%</td>
+<td style="text-align: right;">🔴 +6.46%</td>
+</tr>
+<tr>
+<td>交换/ASIC</td>
+<td>博通</td>
+<td style="text-align: right;">$361.54</td>
+<td style="text-align: right;">🔴 +0.39%</td>
+<td style="text-align: right;">🔴 +2.95%</td>
+</tr>
+<tr>
+<td>交换/ASIC</td>
+<td>迈威尔</td>
+<td style="text-align: right;">$275.28</td>
+<td style="text-align: right;">🔴 +0.25%</td>
+<td style="text-align: right;">🔴 +4.21%</td>
+</tr>
+<tr>
+<td>交换/ASIC</td>
+<td>Astera Labs</td>
+<td style="text-align: right;">$342.21</td>
+<td style="text-align: right;">🟢 -1.39%</td>
+<td style="text-align: right;">🟢 -3.87%</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>美光</td>
+<td style="text-align: right;">$1,029.00</td>
+<td style="text-align: right;">🟢 -0.66%</td>
+<td style="text-align: right;">🟢 -3.39%</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>闪迪</td>
+<td style="text-align: right;">$1,581.82</td>
+<td style="text-align: right;">🟢 -1.72%</td>
+<td style="text-align: right;">🟢 -9.09%</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>西部数据</td>
+<td style="text-align: right;">$397.28</td>
+<td style="text-align: right;">🔴 +1.01%</td>
+<td style="text-align: right;">🟢 <strong>-12.58%</strong></td>
+</tr>
+<tr>
+<td>存储</td>
+<td>希捷</td>
+<td style="text-align: right;">$783.00</td>
+<td style="text-align: right;">🔴 +1.06%</td>
+<td style="text-align: right;">🟢 <strong>-15.11%</strong></td>
+</tr>
+<tr>
+<td>设备</td>
+<td>泛林</td>
+<td style="text-align: right;">$318.84</td>
+<td style="text-align: right;">🟢 -0.55%</td>
+<td style="text-align: right;">🟢 -2.94%</td>
+</tr>
+<tr>
+<td>设备</td>
+<td>应用材料</td>
+<td style="text-align: right;">$507.03</td>
+<td style="text-align: right;">🟢 -0.50%</td>
+<td style="text-align: right;">🟢 -0.85%</td>
+</tr>
+<tr>
+<td>设备</td>
+<td>科磊</td>
+<td style="text-align: right;">$195.57</td>
+<td style="text-align: right;">🟢 -0.58%</td>
+<td style="text-align: right;">🔴 +0.33%</td>
+</tr>
+<tr>
+<td>设备</td>
+<td>泰瑞达</td>
+<td style="text-align: right;">$402.68</td>
+<td style="text-align: right;">🔴 +0.99%</td>
+<td style="text-align: right;">🔴 +0.44%</td>
+</tr>
+<tr>
+<td>云商</td>
+<td><strong>亚马逊</strong></td>
+<td style="text-align: right;">$262.43</td>
+<td style="text-align: right;">🔴 <strong>+3.29%</strong></td>
+<td style="text-align: right;">🔴 <strong>+5.33%</strong></td>
+</tr>
+<tr>
+<td>云商</td>
+<td><strong>微软</strong></td>
+<td style="text-align: right;">$535.07</td>
+<td style="text-align: right;">🔴 <strong>+2.38%</strong></td>
+<td style="text-align: right;">🔴 <strong>+4.32%</strong></td>
+</tr>
+<tr>
+<td>云商</td>
+<td>谷歌</td>
+<td style="text-align: right;">$351.66</td>
+<td style="text-align: right;">🔴 +0.97%</td>
+<td style="text-align: right;">🔴 +2.20%</td>
+</tr>
+<tr>
+<td>云商</td>
+<td>Meta</td>
+<td style="text-align: right;">$718.67</td>
+<td style="text-align: right;">🟢 -0.31%</td>
+<td style="text-align: right;">🟢 -0.90%</td>
+</tr>
+<tr>
+<td>Neocloud</td>
+<td>Nebius</td>
+<td style="text-align: right;">$221.07</td>
+<td style="text-align: right;">🔴 +0.62%</td>
+<td style="text-align: right;">🟢 -6.28%</td>
+</tr>
+<tr>
+<td>Neocloud</td>
+<td>CoreWeave</td>
+<td style="text-align: right;">$82.08</td>
+<td style="text-align: right;">🔴 +0.61%</td>
+<td style="text-align: right;">🟢 -5.79%</td>
+</tr>
+<tr>
+<td>电力设备</td>
+<td>Vertiv</td>
+<td style="text-align: right;">$242.78</td>
+<td style="text-align: right;">🟢 -0.39%</td>
+<td style="text-align: right;">🔴 +0.61%</td>
+</tr>
+</tbody>
+</table></div>
+<h3>板块与指数（2026-10-09 收盘，来源：每日盘后全景）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上证综指</td>
+<td>3,813.79</td>
+<td>🔴 +0.05%</td>
+</tr>
+<tr>
+<td>深证成指</td>
+<td>12,641.86</td>
+<td>🔴 +0.17%</td>
+</tr>
+<tr>
+<td>创业板指</td>
+<td>3,043.33</td>
+<td>🔴 +0.22%</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td>1,457.27</td>
+<td>🔴 +0.07%</td>
+</tr>
+<tr>
+<td>沪深300</td>
+<td>4,317.25</td>
+<td>🔴 +0.16%</td>
+</tr>
+<tr>
+<td>站上 MA5/10/20 指数</td>
+<td>0 / 15</td>
+<td>连续第 5 日</td>
+</tr>
+<tr>
+<td>两市成交额</td>
+<td>1.90 万亿</td>
+<td>放量 2,184 亿（+13%）</td>
+</tr>
+<tr>
+<td>涨 / 跌 / 平</td>
+<td>3,296 / 2,145 / 131</td>
+<td>上涨占比 59.15%</td>
+</tr>
+<tr>
+<td>涨停 / 跌停</td>
+<td>69 / 8</td>
+<td>媒体口径 109 / 14</td>
+</tr>
+<tr>
+<td>元件（行业）</td>
+<td>—</td>
+<td>🟢 <strong>-4.27%</strong>（跌幅第一），主力 -56.41 亿</td>
+</tr>
+<tr>
+<td>覆铜板（概念）</td>
+<td>—</td>
+<td>🟢 <strong>-6.93%</strong>（跌幅第一），主力 -11.34 亿（20 日转负 -5.39 亿）</td>
+</tr>
+<tr>
+<td>半导体（行业）</td>
+<td>—</td>
+<td>🟢 -0.68%，主力 -41.89 亿（20 日 -630.09 亿）</td>
+</tr>
+<tr>
+<td>CPO（概念）</td>
+<td>—</td>
+<td>🟢 -1.79%，主力 -125.36 亿（20 日 -707.01 亿）</td>
+</tr>
+<tr>
+<td>存储器（概念）</td>
+<td>—</td>
+<td>🟢 -1.56%，主力 -80.10 亿（20 日 -694.80 亿）</td>
+</tr>
+<tr>
+<td>电池（行业）</td>
+<td>—</td>
+<td>🔴 +2.10%（主力 +50.39 亿，行业第一）</td>
+</tr>
+<tr>
+<td>数字媒体（行业）</td>
+<td>—</td>
+<td>🔴 +8.00%（传媒涨停潮）</td>
+</tr>
+<tr>
+<td>恒生指数</td>
+<td>24,211.35</td>
+<td>🔴 +1.79%（本周 🔴 +1%）</td>
+</tr>
+<tr>
+<td>恒生科技</td>
+<td>4,197.84</td>
+<td>🔴 +3.06%（本周 🔴 +0.96%）</td>
+</tr>
+<tr>
+<td>南向资金</td>
+<td>净买入 2.91 亿港元</td>
+<td>净卖出长飞光纤光缆 5.57 亿</td>
+</tr>
+</tbody>
+</table></div>
+<h3>宏观与商品（10/8 纽约收盘，来源：每日盘后全景）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10Y 美债</td>
+<td>5.231%</td>
+<td>🟢 -4.6bp</td>
+</tr>
+<tr>
+<td>30Y 美债</td>
+<td>≈5.60%</td>
+<td>🟢 由约 5.73% 回落</td>
+</tr>
+<tr>
+<td>道指 / 纳指 / 标普500</td>
+<td>51,231.64 / 27,193.34 / 7,765.36</td>
+<td>🔴 +0.10% / 🟢 -1.25% / 🟢 -0.47%</td>
+</tr>
+<tr>
+<td>费城半导体</td>
+<td>—</td>
+<td>🟢 -3.39%</td>
+</tr>
+<tr>
+<td>布伦特原油</td>
+<td>$104.28</td>
+<td>🔴 +4.07%</td>
+</tr>
+<tr>
+<td>WTI 原油</td>
+<td>$91.18</td>
+<td>🔴 +3.29%</td>
+</tr>
+<tr>
+<td>现货黄金</td>
+<td>$4,219.7</td>
+<td>🔴 +1.51%</td>
+</tr>
+<tr>
+<td>美元指数</td>
+<td>102.10</td>
+<td>🟢 -0.13%</td>
+</tr>
+<tr>
+<td>VIX</td>
+<td>15.41</td>
+<td>+2.19%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>GPU 租赁价格 / 存储价格涨跌幅 / 模型排名 / 美股成交额榜</strong>：当日 404K 数据图（<code>LLM Token支出 · GPU租赁价格 261010</code>、<code>261010存储价格涨跌幅</code>、<code>261010美股个股成交额前十与涨跌幅榜</code>、<code>261010-OpenRouter文本模型排名</code>、<code>261010-Vercel AI Gateway模型排名</code>）<strong>已存在但原文不可读，数值待补</strong>。</p>
+<p><strong>注</strong>：2026-10-10 为周六，A股/港股/美股均休市，本期所有行情数据取最近交易日 2026-10-09 收盘；「节后首周」= 10/9 收盘 vs 9/30 节前收盘（A股 10/1-10/7 休市）。</p>
+</blockquote>
+<hr />
+<h2 id="sec-六、附录：今日文档清单"><span class="sec-emoji">📎</span>六、附录：今日文档清单</h2>
+<blockquote>
+<p>2026-10-10 文件夹共 <strong>36 份</strong>（PDF 16 + 图片 20）。下表为筛选出的<strong>重点文档 19 份</strong>（PDF 14 + 数据图 5），类型判定依据标题与 media_type；排除《Claude拥有意识吗？教皇明确反对…》《20261010_调查评估与内部使用中出现的非预期模型行为》（AI 伦理/模型行为，与半导体产业链无直接关联）+ 15 张 <code>2026xxxx_HHMM_资讯汇总.png</code>（盘中滚动资讯截图，重复度高）。</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文档标题</th>
+<th>类型</th>
+<th>一句话摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>404K科技早报 2026-10-10 瓶颈继续外溢：AI光器件与供电吃紧，存储涨价压低终端出货</td>
+<td>404K自主</td>
+<td>光器件+供电双吃紧；存储涨价反噬终端出货</td>
+</tr>
+<tr>
+<td>2</td>
+<td>01_CPO放量之后：测试与封装如何跨过利润兑现的门槛</td>
+<td>404K深度</td>
+<td>CPO 利润兑现瓶颈在「测试+封装」后道环节</td>
+</tr>
+<tr>
+<td>3</td>
+<td>404K叙事科技早报 2026-10-10 — 芯片收入跃升：算力回款承压</td>
+<td>404K自主</td>
+<td>芯片收入好、算力回款差的结构性矛盾</td>
+</tr>
+<tr>
+<td>4</td>
+<td>404K叙事科技晚报 2026-10-10 — 长单锁住供给：扩产考验现金</td>
+<td>404K自主</td>
+<td>LTA 锁供给，扩产前置资本开支成门槛</td>
+</tr>
+<tr>
+<td>5</td>
+<td>404K宏观晚报 2026-10-10 — 长债承压延续、股市涨幅集中</td>
+<td>404K自主·宏观</td>
+<td>长端利率高位＋市场宽度恶化</td>
+</tr>
+<tr>
+<td>6</td>
+<td>第37期：谁在为11万亿美元的AI基础设施建设提供资金？（资本市场）</td>
+<td>404K专题</td>
+<td>AI 基建融资结构成为扩张硬约束</td>
+</tr>
+<tr>
+<td>7</td>
+<td>404K大模型早报 2026-10-10 — 智能体扩编加速，成本约束显现</td>
+<td>404K自主</td>
+<td>Agent 规模化部署提速，成本约束显现</td>
+</tr>
+<tr>
+<td>8</td>
+<td>20261010_台积电将硅中介层生产外包给格芯_主动外溢订单第一部分</td>
+<td>产业深度</td>
+<td>TSMC 中介层外包格芯，先进封装主动外溢</td>
+</tr>
+<tr>
+<td>9</td>
+<td>20261010_英伟达会用英特尔_Foveros_3D_替代台积电_CoWoS_吗_被动外溢订单</td>
+<td>产业深度</td>
+<td>NVDA 评估 Foveros 3D，封装被动去单一化</td>
+</tr>
+<tr>
+<td>10</td>
+<td>AI能保持指数级增长吗？对话SemiAnalysis的Dylan Patel与Jordan Nano</td>
+<td>机构访谈</td>
+<td>SemiAnalysis 论 AI 增长的可持续性与约束</td>
+</tr>
+<tr>
+<td>11</td>
+<td>20261010_马斯克想在半导体洁净室里吃汉堡抽雪茄_他能否重塑芯片制造</td>
+<td>产业观察</td>
+<td>马斯克自建晶圆制造可行性与模式讨论</td>
+</tr>
+<tr>
+<td>12</td>
+<td>20261010_AI目前能实现AI研发自动化吗</td>
+<td>技术讨论</td>
+<td>AI 研发自动化的当前边界</td>
+</tr>
+<tr>
+<td>13</td>
+<td>信息汇总早报PDF-20261010-0500</td>
+<td>资讯汇总</td>
+<td>05:00 信息汇总早报</td>
+</tr>
+<tr>
+<td>14</td>
+<td>信息汇总晚报PDF-20261010-1830</td>
+<td>资讯汇总</td>
+<td>18:30 信息汇总晚报</td>
+</tr>
+<tr>
+<td>15</td>
+<td>261010存储价格涨跌幅.png</td>
+<td>数据图</td>
+<td>存储价格涨跌幅（<strong>数值待补</strong>）</td>
+</tr>
+<tr>
+<td>16</td>
+<td>LLM Token支出 · GPU租赁价格 261010.png</td>
+<td>数据图</td>
+<td>Token 支出与 GPU 租赁价格（<strong>数值待补</strong>）</td>
+</tr>
+<tr>
+<td>17</td>
+<td>261010美股个股成交额前十与涨跌幅榜.png</td>
+<td>数据图</td>
+<td>美股成交额/涨跌幅榜（<strong>数值待补</strong>）</td>
+</tr>
+<tr>
+<td>18</td>
+<td>261010-OpenRouter文本模型排名.png</td>
+<td>数据图</td>
+<td>OpenRouter 文本模型调用排名（<strong>数值待补</strong>）</td>
+</tr>
+<tr>
+<td>19</td>
+<td>261010-Vercel AI Gateway模型排名.png</td>
+<td>数据图</td>
+<td>Vercel AI Gateway 模型排名（<strong>数值待补</strong>）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>未纳入清单</strong>：《Claude拥有意识吗？教皇明确反对、模型福利运动、OpenAI数学风波与法国骚乱》《20261010_调查评估与内部使用中出现的非预期模型行为》（与半导体/AI 产业链无直接关联）；另有 15 张 <code>20261010_HHMM_资讯汇总.png</code> 为盘中滚动资讯截图（内容重复度高，已由 PDF 版信息汇总覆盖）。</p>
+</blockquote>
+<hr />
+<p><em>本报告基于公开资料客观整理，仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</em></p>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 生成后自动归档</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
