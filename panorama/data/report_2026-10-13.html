@@ -1,0 +1,947 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日盘后全景 | 2026-10-13</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="每日盘后全景 | 2026-10-13">
+<meta property="og:description" content="每日盘后全景 2026-10-13 - A股板块雷达 × 宏观市场简报 合并全景：大盘多空、板块四档分类、宏观归因、持仓映射与纪律检查">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/panorama/data/report_2026-10-13.html">
+<meta itemprop="name" content="每日盘后全景 | 2026-10-13">
+<meta itemprop="description" content="每日盘后全景 2026-10-13 - A股板块雷达 × 宏观市场简报 合并全景：大盘多空、板块四档分类、宏观归因、持仓映射与纪律检查">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
+.md h2{
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
+}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
+.md h3{
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
+}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
+}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
+.md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>DAILY PANORAMA · 盘后全景</span></div>
+    <h1><span class="g">每日盘后全景</span></h1>
+    <div class="sub">生成时间：2026-10-13 19:40 | 数据截至：A股/港股 10/13 收盘、美股/商品 10/12 纽约收盘（美债 10/12 哥伦布日休市，沿用 10/9 收盘） | 主要来源：腾讯财经公开行情接口 / 东方财富 / 新浪财经 / 财联社 / 证券时报 / 中国证券网 / 智通财经 / 研报</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-10-13 · 周二</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、大盘状态与板块雷达">📡一、大盘状态与板块雷达</a><a href="#sec-二、宏观与全球市场">📌二、宏观与全球市场</a><a href="#sec-三、持仓映射">📌三、持仓映射</a><a href="#sec-四、纪律检查">📌四、纪律检查</a><a href="#sec-五、数据速览">📊五、数据速览</a><a href="#sec-六、附录：信息来源">📎六、附录：信息来源</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><a class="nav-arrow" href="report_2026-10-12.html">← 2026-10-12</a><span class="nav-arrow disabled">无更新 →</span></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
+<p>生成时间：2026-10-13 19:40 | 数据截至：A股/港股 10/13 收盘、美股/商品 10/12 纽约收盘（美债 10/12 哥伦布日休市，沿用 10/9 收盘） | 主要来源：腾讯财经公开行情接口 / 东方财富 / 新浪财经 / 财联社 / 证券时报 / 中国证券网 / 智通财经 / 研报</p>
+<p>🗓️ <strong>本周第 2 个交易日</strong>（10/13 周二）。<strong>隔夜 AI 硬件「黑色星期一」→ A股早盘急跌逾 3% → 午后 V 型反转翻红</strong>：上证<strong>收复 3800 点</strong>，全市场上涨占比自 20.96% 大幅修复至 <strong>52.20%</strong>，<strong>但五指数站上均线连续第 7 日 0/15</strong>。</p>
+<p>⚠️ <strong>持仓数据时效</strong>：持仓总表最后更新 <strong>2026-10-13 14:57</strong>（A股/港股双账户刷新，为<strong>盘中快照</strong>；⚠️ 美股仍为 <strong>9/24</strong> 快照，<strong>已过期 19 天</strong>）。第四章纪律检查的 A股/港股按 <strong>10/13 收盘价 + 最新成本/股数</strong> 重算，美股沿用 9/24 并标注过期。</p>
+</blockquote>
+<hr />
+<h2 id="sec-一、大盘状态与板块雷达"><span class="sec-emoji">📡</span>一、大盘状态与板块雷达</h2>
+<h3>大盘状态（结论先行）</h3>
+<p><strong>深 V 反抽、个股普涨修复、但指数仍全线贴地：资金在「超跌算力硬件 + 军工事件 + AI 内容端」三线回补，属外盘情绪冲击后的仓位再平衡，而非趋势反转。</strong> 上涨占比自 10/12 的 20.96% 拉升至 <strong>52.20%</strong>（涨 2909 / 跌 2485 / 平 179），涨跌幅中位数 <strong>+0.154%</strong>（10/12 为 -1.683%），<strong>涨跌家数比 1.17</strong> —— 规则判定由「&lt;25% 偏空」回到「25–40% 中性」区间上沿偏多。但<strong>五指数仅上证与科创 50 微红</strong>（上证 <strong>+0.10%</strong>、深成 <strong>-0.25%</strong>、创业板 <strong>-0.18%</strong>），<strong>0/15 均线连续第 7 日</strong>未被打破。</p>
+<p><strong>核心特征是「外盘定价杀估值 vs 国内三季报兑现」的对冲</strong>：隔夜费半 <strong>-2.67%</strong>（连跌第 4 日）、光通信与存储龙头单日跌 6%–10%，A股早盘创业板一度跌近 3.5%，但午后由 <strong>PCB（近十只涨停）、CPO/光通信、军工</strong> 三条线带头翻红 —— 触发点是 <strong>CPO/光模块龙头（联讯仪器、源杰科技）10/12 晚间公告前三季度净利大幅增长 + PCB 链业绩预增（华正新材净利预增 2658%、生益科技 +175%、景旺电子 Q3 净利约 10 亿 / +235%）</strong>，以及 <strong>股票 ETF 已连续 6 日净流入、累计约 817 亿元</strong> 的增量资金托底。</p>
+<ul>
+<li>抛压 vs 前一日（10/12）：上涨占比 20.96% → <strong>52.20%</strong>；涨/跌家数 1166:4325 → <strong>2909:2485</strong>；涨超 5% 由 123 → <strong>236 家</strong>、跌超 5% 由 471 → <strong>83 家（降 82%）</strong>；涨停/跌停 46:19 → <strong>67:8</strong>；两市成交 1.538 万亿 → <strong>1.676 万亿（放量 1381 亿 / +9.0%）</strong>；站上 MA5/10/20 连续第 7 日 <strong>0/15</strong>。</li>
+</ul>
+<h3>指数与均线</h3>
+<ul>
+<li>站上 MA5/MA10/MA20 指数个数：<strong>0/15（连续第 7 日）</strong> —— 五指数无一家收复 MA5</li>
+<li>上证综指：<strong>3800.86（🔴 +0.10%）</strong> —— <strong>收盘收复 3800 点关口</strong>（盘中最低 3757.86，振幅后翻红）；MA5 3813.20 / MA10 3849.71 / MA20 3879.51 全数未收复，距 MA20 <strong>-2.03%</strong>；距 52 周低点（3741.11）缓冲 <strong>+1.60%</strong></li>
+<li>深证成指：<strong>12353.70（🟢 -0.25%）</strong> —— 距 MA20（13237.50）<strong>-6.68%</strong></li>
+<li>创业板指：<strong>2958.34（🟢 -0.18%）</strong> —— <strong>连续第 2 日收盘跌破 3000 点</strong>（早盘一度跌近 3.5%），距 MA20（3238.95）<strong>-8.66%</strong></li>
+<li>科创50：<strong>1427.18（🔴 +0.03%）</strong> —— 振幅 <strong>5.04%</strong>（今开 1389.53、最高 1447.19、最低 1375.33），距 MA20（1563.85）<strong>-8.74%</strong>，仍为五指数中距均线最远</li>
+<li>沪深300：<strong>4275.68（🟢 -0.29%）</strong> —— 距 MA20（4442.16）<strong>-3.75%</strong></li>
+<li>北证50：<strong>1008.66（🟢 -0.31%）</strong>；国证2000 <strong>🔴 +0.29%</strong>（9,337.52，风格偏小盘）、中证1000 <strong>+0.02%</strong>、中证500 <strong>-0.11%</strong></li>
+</ul>
+<h3>个股覆盖面</h3>
+<ul>
+<li>上涨 <strong>2909</strong> / 下跌 <strong>2485</strong> / 平 <strong>179</strong>（全A 5573 只），上涨占比 <strong>52.20%</strong>（10/12 为 20.96%），涨跌家数比 <strong>1.17</strong>；媒体口径「个股涨多跌少、午后三大指数集体翻红」</li>
+<li>涨停 <strong>67 只</strong>、跌停 <strong>8 只</strong>（东方财富涨跌停池口径）—— <strong>跌停家数自 10/12 的 19 只大幅收敛</strong></li>
+<li>涨超 5% <strong>236 家</strong>、跌超 5% <strong>83 家</strong> —— 较 10/12 的 123 / 471 <strong>两端完全反向</strong>（跌端收敛 82%），涨端扩张近 1 倍</li>
+<li>涨跌幅中位数 <strong>+0.154%</strong> —— 中位数由负转正，<strong>说明修复虽不及指数（指数横盘），但个股层面已回到「涨多跌少」的常态分布</strong></li>
+<li>两市（沪深）成交额 <strong>16759.08 亿（1.68 万亿）</strong>，较上日 <strong>放量 1380.87 亿（+9.0%）</strong> —— 其中沪市 <strong>7793.02 亿</strong>、深市 <strong>8966.06 亿</strong>（创业板 4497.38 亿、科创50 769.80 亿）</li>
+<li>行业口径（腾讯 124 个）：<strong>67 涨 / 57 跌</strong>（10/12 为 5 涨 / 26 跌，申万口径）；涨幅居前 <strong>地面兵装 +5.08% / 航空装备 +3.55% / 航海装备 +3.18% / 元件 +2.97% / 旅游及景区 +3.18% / 航运港口 +2.38%</strong>；跌幅居前 <strong>电池 -3.13% / 保险 -3.10% / 风电设备 -2.82% / 能源金属 -2.07% / 乘用车 -1.93% / 生物制品 -1.74% / 城商行 -1.45%</strong></li>
+</ul>
+<h3>资金面</h3>
+<p><strong>板块资金（腾讯板块资金流口径，单位亿元；⚠️ 腾讯口径与媒体/同花顺存在差异，仅作横向比较）：</strong></p>
+<ul>
+<li>概念<strong>净流入</strong>：<strong>光通信 +37.49（全概念第一）</strong>、<strong>军工集团 +24.80</strong>、<strong>军工央企 +24.10</strong>、<strong>CPO +20.79</strong>、<strong>军工 +18.68</strong>、中字头 +16.63、<strong>PCB 概念 +16.42</strong>、军民融合 +15.32、无人驾驶 +15.24、谷歌概念 +12.81、航母概念 +11.90、AIGC +11.79、光芯片 +7.74、中航系 +7.86、F5G +7.94、中船系 +8.62、航海装备 +7.99、光纤概念 +7.12、AI 营销 +9.19、冰雪概念 +9.02、文化传媒 +8.14、网络游戏 +6.68、农业种植 +6.70、氦气 +5.57、BDI +4.78、分散染料 +4.73</li>
+<li>概念<strong>净流出</strong>（剔除富时罗素/MSCI/沪股通等指数类重复口径）：<strong>锂电池概念 -74.82</strong>、储能概念 -59.31、动力电池回收 -34.94、钠离子电池 -39.41、磷酸铁锂 -31.13、机器人概念 -30.81、智能汽车 -30.79、光伏概念 -23.73、有色金属概念 -22.42、芯片概念 -23.18、燃料电池 -17.64、风电概念 -16.90、半导体产业 -17.38、存储器 -14.33、固液电池 -15.27、MCU 芯片 -12.68、碳基半导体 -12.07、汽车芯片 -12.95、长鑫存储 -9.71</li>
+<li>行业<strong>净流入</strong>：元件 <strong>+14.75</strong>、航海装备 +9.73、航空装备 +7.64、地面兵装 +3.21、旅游及景区 +3.47、互联网电商 +3.17、航运港口 +3.13</li>
+<li>行业<strong>净流出</strong>：电池 <strong>-37.18</strong>（全行业第一）、风电设备 -9.29、保险 <strong>-8.76</strong>、生物制品 -7.76、能源金属 -6.99、乘用车 -5.54</li>
+</ul>
+<p><strong>科技硬件 20 日资金仍处「趋势失血」极深水位</strong>（腾讯口径，单位亿元）：</p>
+<ul>
+<li>芯片概念：当日 -23.18 ｜ 5 日 -909.68 ｜ <strong>20 日 -1888.79</strong></li>
+<li>机器人概念：当日 -30.81 ｜ 5 日 -483.66 ｜ <strong>20 日 -1434.72</strong></li>
+<li>数据中心：当日 -8.02 ｜ 5 日 -590.22 ｜ <strong>20 日 -1539.57</strong></li>
+<li>CPO：当日 <strong>+20.79</strong> ｜ 5 日 -467.38 ｜ <strong>20 日 -1063.51</strong></li>
+<li>液冷概念：当日 -7.60 ｜ 5 日 -281.09 ｜ <strong>20 日 -915.30</strong></li>
+<li>半导体产业：当日 -17.38 ｜ 5 日 -398.47 ｜ <strong>20 日 -807.38</strong></li>
+<li>存储器：当日 -14.33 ｜ 5 日 -381.89 ｜ <strong>20 日 -720.07</strong></li>
+<li>光通信：当日 <strong>+37.49</strong> ｜ 5 日 -223.44 ｜ <strong>20 日 -494.18</strong></li>
+<li>PCB 概念：当日 <strong>+16.42</strong> ｜ 5 日 -234.57 ｜ <strong>20 日 -423.07</strong></li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>关键结构变化：昨日的「单边失血」今日在算力硬件链上被强力打断，但只是「当日资金转正、中期仍深负」</strong>
+① <strong>光通信 / CPO / PCB / 元件 当日资金全部转正</strong>（光通信 +37.49 亿居全概念第一、CPO +20.79、PCB +16.42、元件行业 +14.75），而 10/12 这三条线分别为 -77.79 / -121.09 / -67.67 / -37.42 亿 —— <strong>一日之内方向完全反转</strong>，触发点是 10/12 晚间 CPO/光模块龙头的三季报业绩爆发；
+② <strong>军工链成为当日第二个「多细分同步转正」的方向群</strong>（军工集团 +24.80 / 军工央企 +24.10 / 军工 +18.68 / 航母 +11.90 / 中船系 +8.62 / 航海装备 +7.99 亿元），但 <strong>军工 20 日仍为 -562.04 亿、5 日 -173.42 亿</strong> —— 属事件驱动的<strong>当日初动</strong>；
+③ <strong>传媒 / AI 内容端连续第 3 日延续</strong>（文化传媒 +8.14 亿、AIGC +11.79、AI 营销 +9.19、网络游戏 +6.68、影视传媒 +3.93、短剧/互动游戏 +4.52，<strong>文化传媒 5 日 +18.16 亿、影视传媒 5 日 +25.71 亿已转正</strong>，但 20 日仍分别为 -102.93 / -25.68 亿）；
+④ <strong>昨日四档的「🚀 电池链」今日崩塌</strong>（电池行业 <strong>-3.13%（全行业跌幅第一）</strong>、-37.18 亿；固液电池 <strong>-4.05%</strong>、钠离子电池 -1.91%、磷酸铁锂 -1.69%、动力电池回收 -1.45%，概念流出前五占四）；
+⑤ <strong>三季报「预增兑现」反成杀跌点</strong>：26 三季报预增概念 <strong>-2.06%</strong>（-1.71 亿）、昨日触板 -1.89%、昨日高换手 -1.42%。</p>
+</blockquote>
+<h3>板块四档分类（核心输出）</h3>
+<h4>🔴 成熟上行趋势（优先做多方向）</h4>
+<ul>
+<li><strong>军工链（当日多细分同步资金转正 + 事件驱动，力度为全市场最强）</strong> —— 军工集团 <strong>🔴 +2.23%</strong>（主力 <strong>+24.80 亿</strong>）、军工央企 <strong>🔴 +2.19%</strong>（+24.10 亿）、军工 <strong>🔴 +1.14%</strong>（+18.68 亿）、航母概念 <strong>🔴 +2.31%</strong>（+11.90 亿）、中船系 <strong>🔴 +3.25%</strong>（+8.62 亿）、航海装备概念 <strong>🔴 +3.18%</strong>（+7.99 亿）、中航系 <strong>🔴 +3.30%</strong>（+7.86 亿）、新质战斗力 <strong>🔴 +3.78%</strong>（+4.81 亿）、印巴冲突概念 <strong>🔴 +5.54%</strong>（+6.94 亿）。行业侧 <strong>地面兵装 +5.08%（涨幅第一）、航空装备 +3.55%</strong>。个股：<strong>航发科技、洪都航空（+9.75%）涨停</strong>。</li>
+<li>驱动：① <strong>渤海部分海域 10/13 14 时至 24 时军事演习</strong>（事件催化）；② 行业订单预期升温 + 板块前期充分调整的低估值修复。</li>
+<li>⚠️ <strong>降权提示</strong>：<strong>军工 20 日 -562.04 亿、5 日 -173.42 亿</strong>，<strong>当日强、中期仍为深度净流出</strong>，属<strong>事件驱动的单日初动</strong>，持续性取决于订单能否落地。</li>
+<li><strong>PCB / 元件 / 覆铜板 / 电子树脂（三季报业绩验证 + 高景气跨 AI 边界扩散）</strong> —— PCB 概念 <strong>🔴 +2.02%</strong>（主力 <strong>+16.42 亿</strong>）、元件（行业）<strong>🔴 +2.97%</strong>（+14.75 亿）、覆铜板 <strong>🔴 +4.44%</strong>、电子树脂 <strong>🔴 +2.61%</strong>、纳米银 <strong>🔴 +2.77%</strong>；<strong>印制电路板细分半日一度 +6.26% 居两市涨幅前列，板块内近十只成分股涨停</strong>（迅捷兴、金百泽 20cm，本川智能 +12%，满坤科技 +10%，超声电子 +10.00%）。</li>
+<li>驱动：<strong>26Q3 业绩验证 AI 周期高景气全面扩散</strong> —— 华正新材净利同比预增 <strong>2658%</strong>、生益科技 <strong>+175%</strong>、景旺电子 Q3 净利约 10 亿（<strong>+235%</strong>）；机构口径「AI 服务器、光模块带动高频高速 PCB 与高端 CCL 需求爆发，<strong>非 AI 领域（工控、汽车 PCB）亦成功顺价</strong>，价格与盈利通胀已突破纯 AI 边界」。</li>
+<li>⚠️ <strong>降权提示</strong>：<strong>电子树脂 20 日 +16.52 亿、覆铜板 5 日 -16.77 亿</strong>；<strong>PCB 概念 5 日 -234.57 亿、20 日 -423.07 亿</strong>，仅有电子树脂一个细分实现 20 日转正；覆铜板当日 +4.44% 但<strong>主力仅 +0.01 亿（资金未跟随涨幅）</strong>，需警惕「涨在业绩、资金未至」。</li>
+<li><strong>传媒 / AI 应用内容端（连续第 3 日延续，5 日资金转正）</strong> —— 文化传媒 <strong>🔴 +1.36%</strong>（主力 +8.14 亿，<strong>5 日 +18.16 亿</strong>，20 日 -102.93 亿）；AIGC <strong>🔴 +1.44%</strong>（+11.79 亿）；AI 营销 <strong>🔴 +1.32%</strong>（+9.19 亿）；网络游戏 <strong>🔴 +0.99%</strong>（+6.68 亿）；影视传媒 <strong>🔴 +0.70%</strong>（+3.93 亿，<strong>5 日 +25.71 亿</strong>）；短剧/互动游戏 <strong>🔴 +0.69%</strong>（+4.52 亿）；AI 语料 <strong>🔴 +0.40%</strong>（+3.97 亿）。行业侧 <strong>旅游及景区 +3.18%</strong> 同步活跃。</li>
+<li>⚠️ <strong>降权提示</strong>：<strong>20 日口径全数为负</strong>（文化传媒 -102.93 亿、AIGC -199.62 亿、短剧 -73.42 亿），仅 5 日口径转正 —— 属<strong>低位资金迁移</strong>，且已连涨 3 日，「今日越齐、明日分化概率越大」。</li>
+</ul>
+<h4>🚀 反转新启动候选（资金初动、趋势未立）</h4>
+<ul>
+<li><strong>光通信 / CPO / 光芯片 / 光纤（业绩驱动的超跌反抽，1 日资金反转）</strong> —— 光通信 <strong>🔴 +2.52%</strong>（主力 <strong>+37.49 亿，全概念第一</strong>）、CPO <strong>🔴 +2.21%</strong>（+20.79 亿）、光芯片 <strong>🔴 +2.12%</strong>（+7.74 亿）、光纤概念 <strong>🔴 +1.96%</strong>（+7.12 亿）、F5G <strong>🔴 +2.24%</strong>（+7.94 亿）、博通概念 <strong>🔴 +3.58%</strong>、谷歌概念 <strong>🔴 +2.62%</strong>（+12.81 亿，领涨<strong>天孚通信 +7.48%</strong>）。个股：<strong>联讯仪器涨超 8%（股价超越贵州茅台成为两市「股王」）、华盛昌涨停、太辰光 +8.70%、源杰科技 +4.53%、东山精密 +2.88%</strong>。</li>
+<li>驱动：<strong>联讯仪器与源杰科技 10/12 晚间双双公告前三季度业绩大幅增长</strong>，光通信上游景气度获业绩验证；叠加板块前期调整充分、超跌弹性释放。</li>
+<li>⚠️ <strong>降权提示</strong>：<strong>CPO 20 日 -1063.51 亿、5 日 -467.38 亿；光通信 20 日 -494.18 亿、5 日 -223.44 亿</strong> —— 当日资金转正仅 1 日，<strong>中期失血格局未改</strong>，且 <strong>FCC 26-50 新规 10/13 正式生效</strong>（详见第二章），属「业绩对冲政策」的博弈窗口。</li>
+<li><strong>锗镓 / 稀有金属（本日唯一「当日·5 日·20 日资金三项全正」的科技相关细分）</strong> —— 锗镓概念 <strong>🔴 +4.43%</strong>（主力 +2.61 亿，<strong>5 日 +3.54 亿、20 日 +3.11 亿</strong>）；领涨光智科技 <strong>+14.07%</strong>。同期「有色（锡）+0.30%（5 日 +7.94、20 日 -9.79）」「黄金概念 +0.59%（5 日 +12.03、20 日 -165.72）」。</li>
+<li>驱动：稀有金属供给端约束 + 半导体/红外/光电材料需求；<strong>云南锗业（持仓）🔴 +6.10%</strong> 同步印证。</li>
+<li><strong>航运 / 油运 / BDI（地缘驱动，三项资金全正）</strong> —— BDI 概念 <strong>🔴 +2.67%</strong>（主力 +4.78 亿，<strong>5 日 +12.70 亿、20 日 +13.61 亿</strong>）；航运港口（行业）<strong>🔴 +2.38%</strong>（+3.13 亿）；领涨招商轮船 <strong>+6.55%</strong>。港股同步：中远海能 <strong>+4%</strong>、中远海控 <strong>+2%</strong>。驱动：中东地缘升温推升油运运价，集运指数（欧线）期货主力 EC2611 收涨 <strong>+1.36%</strong>，远月合约涨幅 1%–3%。</li>
+<li><strong>冰雪经济 / 消费季节性（低位轮动补涨）</strong> —— 冰雪概念 <strong>🔴 +2.68%</strong>（主力 +9.02 亿，<strong>5 日 +3.87、20 日 +5.01</strong>）；晶雪节能 <strong>20cm</strong>、人工景区 +2.85%、旅游及景区 <strong>+3.18%</strong>、离境退税 +2.66%、互联网电商 <strong>+2.55%</strong>。⚠️ 季节性题材，业绩兑现不确定。</li>
+<li><strong>分散染料（三项资金全正 + 供给事件）</strong> —— <strong>🔴 +3.39%</strong>（主力 +4.73 亿，<strong>5 日 +5.65、20 日 +9.93</strong>）；领涨建新股份 <strong>20cm</strong>。纺织化学制品行业 <strong>+5.43%</strong>。</li>
+</ul>
+<h4>⚠️ 反弹修复减仓信号（趋势已破坏，反弹即减）</h4>
+<ul>
+<li><strong>电池 / 锂电链（10/12 的「🚀 候选」一日崩塌，行业跌幅第一）</strong> —— 电池（行业）<strong>🟢 -3.13%（全行业跌幅第一，主力 -37.18 亿）</strong>；概念端 <strong>固液电池 -4.05%（概念跌幅第一）</strong>、钠离子电池 -1.91%（-39.41 亿）、磷酸铁锂 -1.69%（-31.13 亿）、动力电池回收 -1.45%（-34.94 亿）、刀片电池 -1.89%、麒麟电池 -1.35%、锂电池概念 <strong>-0.53%（-74.82 亿，概念流出第一）</strong>。⚠️ 注意「5 日为负」的分歧：钠离子电池 5 日 <strong>+32.70 亿</strong>、磷酸铁锂 5 日 <strong>+27.38 亿</strong> —— <strong>属「5 日流入、当日集中兑现」的高位派发初期形态</strong>。</li>
+<li><strong>存储链（长鑫 4F² 突破引发全球「盈利顶点」估值下杀）</strong> —— 存储器 <strong>🔴 +0.72%（但主力 -14.33 亿）</strong>、长鑫存储 <strong>🔴 +0.39%（-9.71 亿）</strong>、HBM <strong>+0.75%（-0.20 亿）</strong>；<strong>20 日口径合计仍处深负（存储器 -720.07 亿、长鑫存储 -279.64 亿、HBM -151.71 亿）</strong>。⚠️ 当日 A股 存储链企稳、港股与美股存储链重挫（详见第二章），<strong>属内外分化而非趋势修复</strong>。</li>
+<li><strong>医药 / 创新药 / CRO（利率敏感的长久期资产）</strong> —— 生物制品（行业）<strong>🟢 -1.74%</strong>、CRO <strong>🟢 -1.51%</strong>（-10.44 亿）、单抗概念 <strong>-1.59%</strong>、肿瘤疫苗 -1.54%、肝素 -1.44%、医药电商 -0.36%。港股侧更剧烈：<strong>金斯瑞生物科技 -15.61%、康龙化成 -6.61%、泰格医药 -6.08%</strong>（持仓相关，详见第二/三章）。</li>
+<li><strong>算力基建 / 液冷 / 数据中心 / 机器人链（20 日失血极值方向）</strong> —— 数据中心 +0.58%（<strong>-8.02 亿，20 日 -1539.57 亿</strong>）、液冷概念 +0.49%（-7.60 亿，<strong>20 日 -915.30 亿</strong>）、东数西算/算力 +0.55%（-2.63 亿，20 日 -799.69 亿）、算力租赁 +0.66%（-6.36 亿）、机器人概念 +0.22%（<strong>-30.81 亿，20 日 -1434.72 亿</strong>）、人形机器人 -0.04%（-13.01 亿）。</li>
+</ul>
+<h4>💤 放弃暂不做多</h4>
+<ul>
+<li><strong>储能 / 光伏 / 风电（资金持续净流出且无当日转正）</strong> —— 储能概念 <strong>-0.14%（-59.31 亿）</strong>、光伏概念 <strong>+0.25%（-23.73 亿）</strong>、风电概念 <strong>0.00%（-16.90 亿）</strong>；行业侧 <strong>风电设备 🟢 -2.82%（-9.29 亿）</strong>；钙钛矿电池 -0.35%、TOPCon 电池 +0.57%（-1.83 亿）。</li>
+<li><strong>汽车 / 智能汽车（持续派发）</strong> —— 智能汽车 <strong>-1.71%（-30.79 亿）</strong>、汽车芯片 -0.12%（-12.95 亿）、乘用车（行业）<strong>🟢 -1.93%（-5.54 亿）</strong>、小鹏概念 -1.31%。港股同理：中概汽车股隔夜普跌（蔚来 -3.07%、小鹏 -2.42%）。</li>
+<li><strong>保险 / 银行细分（10/12 的防御抱团方向今日回吐）</strong> —— <strong>保险 Ⅱ 🟢 -3.10%（-8.76 亿）</strong>、城商行 Ⅱ <strong>🟢 -1.45%</strong>；参股民营银行 +0.26%（-3.10 亿）。⚠️ 前期强势的红利方向出现第一日明显分歧（中国人寿 H <strong>-2.44%</strong>、中国平安 H -0.58%）。</li>
+<li><strong>「三季报预增」兑现股（业绩从入场券变为兑现审判）</strong> —— 26 三季报预增 <strong>🟢 -2.06%（-1.71 亿）</strong>；<strong>有研新材（沪市首份三季报）🟢 -7.89%</strong>，盘中触及跌停 43.11 元。</li>
+<li><strong>机器人 / 人形机器人 / 军工电子（分化中的弱势端）</strong> —— 人形机器人 -0.04%（-13.01 亿）、智元机器人 -0.21%（-10.25 亿）、军工信息化 +1.32%（-1.93 亿）、航天系 +1.97%（+0.13 亿，资金未跟随）。</li>
+<li><strong>纯题材小概念</strong> —— 沪伦通 <strong>-2.69%</strong>、GDR -2.52%、黄酒 -2.07%、口含烟 -1.53%、千金藤素 -1.56%。</li>
+</ul>
+<h3>操作纪律</h3>
+<ol>
+<li><strong>指数层面信号未改善：五指数 0/15 站均线连续第 7 日，上证距 MA5 仍差 12.3 点（-0.32%）、距 MA20 -2.03%</strong> —— 今日是「外盘情绪冲击 → 午间翻红」的<strong>超跌反抽</strong>，不是趋势反转；右侧条件（收复 MA5 + 上涨占比站稳 50% 以上 + 缩量后温和放量）仅完成第一项的一半。<strong>不因单日翻红提高整体仓位。</strong></li>
+<li><strong>「当日资金转正 ≠ 趋势修复」，须用 5 日/20 日口径复核</strong> —— 光通信/CPO/PCB/元件当日资金全线转正，但其 5 日、20 日仍为深度净流出（CPO 20 日 -1063 亿、光通信 -494 亿、PCB -423 亿、芯片概念 -1889 亿、机器人 -1435 亿）。<strong>纪律上：把今日的算力硬件反弹视为「减仓/调仓窗口」而非「加仓触发」。</strong></li>
+<li><strong>军工是本日唯一具备「事件 + 多细分同步 + 资金合力」的方向，但中期资金为负（20 日 -562 亿），按事件窗口而非趋势仓位对待</strong> —— 渤海军事演习为 10/13 单日事件，持续性需订单落地验证。</li>
+<li><strong>⚠️ 事件密度极高，事件窗口内不宜博方向</strong>：<strong>10/13（今日）FCC 26-50 正式生效 + 沪市首份三季报（有研新材，结果不及预期）；10/14（周三）中国 9 月 CPI/PPI；10/15（周四）美国 9 月 CPI；10/16（周五）股指期货交割日</strong>。光模块/光芯片链在 FCC 生效与 10/29 检测限令表决之间存在二次政策变量。</li>
+<li><strong>三季报进入「去伪存真」阶段：涨得多 + 业绩不及预期 = 直接杀（有研新材年内 +118.51%、PE(TTM) 132 倍，Q3 归母同比 -30.61% → 单日 -7.89%）；低位 + 业绩超预期 = 资金回流（PCB/CCL、CPO 龙头）</strong> —— 组合层面应把「三季报兑现度」作为未来两周的核心过滤条件。</li>
+<li><strong>ETF 连续 6 日净流入约 817 亿元，是当前唯一确定的增量资金来源</strong> —— 其流向决定结构（今日明显偏向算力硬件宽基），可作为观察「机构是否继续低吸」的先行指标。</li>
+<li><strong>港股侧利率敏感资产（创新药/CRO）已出现单日 -15% 级下跌</strong> —— 港股通账户集中度与长久期敞口需重新评估（详见第四章）。</li>
+</ol>
+<hr />
+<h2 id="sec-二、宏观与全球市场"><span class="sec-emoji">📌</span>二、宏观与全球市场</h2>
+<h3>1. AI 硬件「黑色星期一」：博通、英特尔 CEO 同台警告「融资能力」才是 AI 扩张的最大瓶颈，估值锚从「需求」切换到「资金成本」</h3>
+<p><strong>判断：</strong> 10/12 美股的分化不是「科技普跌」，而是<strong>资金从高估值 AI 硬件撤向能源与消费防御</strong>；真正的信息增量是产业领袖首次把<strong>「资本募集/资金成本」置于芯片、存储、电力短缺之上</strong> —— 这意味着 AI 硬件的估值锚正在从「需求叙事」转向「融资可持续性与 ROI」。</p>
+<ul>
+<li>数据支撑（来源：中国经济网 / 央广网 / 金融界 / 网易财经，10/12 纽约收盘）：道指 <strong>🔴 +0.38%（51850.55）</strong>、标普500 <strong>🟢 -0.06%（7807.24）</strong>、纳指 <strong>🟢 -0.44%（27245.90）</strong>；<strong>费城半导体指数 🟢 -2.67%（12236.79），连跌第 4 个交易日、创近三个月低位</strong>，30 只成分股仅两只微涨。</li>
+<li><strong>光通信为最大输家</strong>（回吐上周五全部涨幅）：<strong>Ciena -9.95%、Lumentum -9.78%、应用光电 -8.17%、Coherent -7.87%、Fabrinet -6.14%、康宁 -6.00%</strong>。</li>
+<li><strong>存储同步承压</strong>：<strong>铠侠 ADR -6.35%、闪迪 -5.97%、SK 海力士 -4.02%、美光 -3.88%、希捷 -3.80%、西部数据 -2.60%</strong>。</li>
+<li>触发点：博通 CEO 陈福阳在新加坡一场活动中表示，<strong>在整个行业竞相建设 AI 基础设施时，「融资」可能成为比半导体、存储芯片或电力短缺更大的障碍</strong>；英特尔 CEO 陈立武同台指出<strong>资本成本不断上升，市场也在质疑大举投资 AI 的企业最终能否获得足够回报（ROI）</strong>。</li>
+<li>资金去向明确：<strong>能源为标普 500 当日最强板块</strong>（道富能源 XLE 再创历史新高，康菲 +2.58%、埃克森美孚 +1.89%、雪佛龙 +1.43%、西方石油 +1.70%），油运 DHT +6.41%；消费防御同步红盘（可口可乐 +1.98%、雅诗兰黛 +2.03%、耐克 +1.84%）。大型科技内部分化：<strong>Meta +3.38%（发布两款前沿 AI 模型）、苹果 +1.29%、微软 +1.14%（发布自研 AI 芯片 Maia 300，市值重返 4 万亿美元上方）</strong>；英伟达 -1.29%、博通 -1.88%、台积电 -1.98%、特斯拉 -1.22%、ARM -4.15%。<strong>周一美股成交量创 2026 年新低。</strong>中概金龙指数 -0.38%。</li>
+</ul>
+<blockquote>
+<p><strong>组合含义：</strong> 组合的<strong>光模块链（中际旭创 A+H、长飞光纤光缆 H、剑桥科技 H）与存储链（长鑫科技 A、SK 海力士 ADR）</strong>同时位于本次叙事冲击的正中心。但需区分<strong>估值杀</strong>与<strong>业绩杀</strong>：外盘跌的是估值与仓位，国内 PCB/CPO 的三季报数据并未改变。<strong>当日 A股算力硬件链逆势翻红（光通信 +37.5 亿、PCB 近十只涨停）即是这一区分的验证</strong>。
+<strong>风险：</strong> 若后续北美云厂商在三季报中下修资本开支指引，「需求并未改变」的假设失效，将进入<strong>业绩 + 估值双杀</strong>；反之若业绩持续超预期，则本次属于典型的「外盘情绪错杀」。</p>
+</blockquote>
+<h3>2. 长鑫科技宣布 4F² DRAM 架构突破 + 高盛「盈利顶点」论：全球存储链集体杀估值，这是持仓的核心矛盾</h3>
+<p><strong>判断：</strong> 长鑫科技 10/13 在上海宣布 <strong>4F² 新一代 DRAM 架构取得突破性进展并计划年底前量产服务器内存</strong> —— 对国产存储是<strong>技术里程碑</strong>，但在<strong>全球定价层面被解读为「竞争格局生变」</strong>，叠加高盛「存储处于盈利顶点」的恐慌，触发全球存储链估值下杀。</p>
+<ul>
+<li>数据支撑（来源：财联社 10/13 / 腾讯新闻 / 金融界）：<strong>港股存储与 AI 股承压</strong> —— <strong>华虹宏力 -5.29%、迅策 -16.36%、群核科技 -9.99%</strong>；<strong>南方东英 SK 海力士每日杠杆(2x) 产品 -17%</strong>；美股侧隔夜 <strong>美光 -3.88%、SK 海力士 -4.02%、铠侠 ADR -6.35%</strong>。</li>
+<li>高盛 EMEA 交易主管 Rich Privorotsky 指出：<strong>尽管近两季存储芯片基本面极其亮眼，但市场对行业处于「盈利顶点」的恐慌正在主导估值下杀。</strong></li>
+<li>反向证据：<strong>深圳华强 10/13 在互动平台表示，存储市场整体处于 AI 算力建设驱动的高景气周期，供给持续紧张、价格持续上涨格局目前没有发生变化</strong>；A股存储链当日反而企稳（存储器 +0.72%、长鑫存储 +0.39%、HBM +0.75%）。</li>
+</ul>
+<blockquote>
+<p><strong>组合含义：</strong> ⚠️ <strong>这是本日持仓最需要正视的矛盾</strong> —— 持仓中的 <strong>长鑫科技（A股）</strong> 正是本次技术突破的主角，<strong>「自身技术突破 = 全球同行估值下杀」形成多空同源</strong>。A股当日以 +0.39%（概念）/ -2.79%（个股）分化消化，说明国内投资者更看重国产替代逻辑，而海外投资者更看重竞争格局。<strong>建议以「年底前 4F² 量产节点与良率」作为该持仓的核心验证变量。</strong>
+<strong>风险：</strong> 若 4F² 量产不及预期，国产替代溢价将反向回吐；若量产顺利，则全球存储价格中枢与同链估值面临长期重估压力（对非国产存储敞口不利）。</p>
+</blockquote>
+<h3>3. FCC 26-50 新规 10/13 正式生效：光模块整机豁免，但 DSP/MCU 落入「组件穿透」监管，BOM 溯源成为确定义务</h3>
+<p><strong>判断：</strong> 今日生效的 FCC 26-50 最终规则<strong>未将中国产光模块作为独立品类列入受控清单（整机豁免）</strong>，市场此前交易的「品类级禁令」已被证伪；但规则的真实影响是<strong>把审查边界从整机延伸到「逻辑承载硬件组件」，把不确定性从「能否出口」转为「合规成本与溯源义务」</strong>。</p>
+<ul>
+<li>数据支撑（来源：FCC 联邦公报 / 券商通信行业跟踪报告 / 中财网 / 东方财富研报库）：规则 <strong>7 月 22 日表决通过、9 月 11 日刊载于联邦公报、10 月 13 日正式生效</strong>；采用<strong>组件穿透监管框架</strong>，约束对象为受控清单（Covered List）主体产出的「逻辑承载硬件组件」（判据：脉冲频率 <strong>&gt; 9000Hz</strong>）；<strong>截至 2026 年 10 月 8 日，中国产光模块并未作为独立产品类别被列入 Covered List</strong>。</li>
+<li>产业侧风险点：光模块内部 <strong>DSP、MCU 工作时钟可达 GHz 级，远高于 9000Hz 判定阈值</strong>，技术属性上落入「逻辑承载硬件组件」范畴 → 市场担忧 <strong>1.6T/3.2T 等下一代高速光模块出口时，其内置 DSP/MCU 芯片或面临来源主体合规核查</strong>。价值量拆分上，<strong>光学元件与激光器（成本占比 25%–35%）、DSP/驱动/接收电子设备（20%–28%）</strong> 为价值权重最高的两大环节，国内优势集中在中游组装与无源器件。</li>
+<li>机构结论：<strong>整机豁免 + 国产替代双逻辑支撑行业基本面</strong>；监管压力反而加速产业链价值向 <strong>DSP、激光器</strong>等高附加值环节迁移，资源向具备<strong>海外客户资质、海外产能及芯片自研能力的头部企业</strong>集中；<strong>三类资产分化：合规通道型（享合规溢价）／技术卡位型（国产替代期权）／夹心层（纯中游组装，被要求降价或转单）</strong>。</li>
+<li>后续变数：<strong>FNPRM 及检测限令 10/29 表决</strong>；S.5548 提案（点名中际旭创、新易盛，五年过渡期）。</li>
+</ul>
+<blockquote>
+<p><strong>组合含义：</strong> 组合光模块链权重约 <strong>26.6%（中际旭创 A + 罗博特科）／A+H 口径约 30%+</strong>。<strong>「整机豁免」消除了最坏情景，当日 A股光通信 +37.5 亿资金流入即为情绪修复的直接体现</strong>；但 BOM 溯源意味着这不是一次性事件，而是<strong>长期合规成本与估值折价的来源</strong>。
+<strong>风险：</strong> 若 10/29 检测限令或后续 FNPRM 将适用面扩大至 800G/1.6T 主流世代，则「存量稳健」假设失效，光模块链将面临业绩与估值双杀。</p>
+</blockquote>
+<h3>4. 美联储官员偏鹰 + 10Y 美债 5.24% 高位：港股长久期资产单日重挫，恒科再创本轮调整新低</h3>
+<p><strong>判断：</strong> 在「10 月按兵不动、12 月加息 25bp」的市场定价下，克利夫兰联储主席哈马克的<strong>「小步高频」鹰派表态</strong>进一步压制了宽松想象，<strong>对全球流动性高度敏感的长久期资产（港股创新药/CRO/AI）首当其冲</strong>。</p>
+<ul>
+<li>数据支撑（来源：CME 美联储观察 / 财联社 / 智通财经 / 新华社）：<strong>CME 定价 —— 10 月维持利率不变概率 79.5%、累计加息 25bp 概率 20.5%；12 月维持不变 12.4%、累计加息 25bp 70.3%、累计加息 50bp 17.3%。</strong> 哈马克主张<strong>「幅度较小、频率较高」的微调模式以稳固通胀预期</strong>，优于当前选择等待而承担未来不得不进行更大幅度政策纠偏的风险；其亦表示<strong>通胀压力正从人工智能领域扩散开来</strong>。<strong>10/12 美债现货因哥伦布日休市，10Y 收益率上周五收在 5.24% 附近、30Y 靠 5.6%</strong>。</li>
+<li>港股表现：<strong>恒生指数 24345.22（🔴 +0.30%，涨 74.02 点）</strong>、<strong>恒生科技指数 4136.63（🟢 -0.79%，早盘一度跌超 2.8%、创本轮调整新低）</strong>；全日主板成交 <strong>1875.66 亿港元</strong>；<strong>南向资金全日净卖出超 4.5 亿港元</strong>。国企指数 +0.08%（8174.72）。</li>
+<li>港股结构：<strong>医药股普遍走低、CRO 概念跌幅居前</strong> —— <strong>金斯瑞生物科技 -15.61%（一度跌超 18%）、康龙化成 -6.61%、泰格医药 -6.08%、荣昌生物 -4.55%</strong>；AI 股承压（迅策 -16.36%、群核科技 -9.99%、华虹宏力 -5.29%）；<strong>中际旭创 H 股一度跌超 5%，收 -1.44% 报 890 港元，创其港股上市以来新低（破发）</strong>；剑桥科技 H <strong>+2.26%</strong>（探底回升）；<strong>中石油 +3.70%、中远海能 +4%</strong>。</li>
+<li>中金观点：<strong>恒生科技年初以来累计下跌 23.9%，全球范围内显著落后；赔率处于有吸引力区间，但单纯靠超卖情绪、低位仓位、估值赔率仅构成短期反弹条件，不等于趋势性大底确立 —— 需重现「924 时刻」或「DeepSeek 时刻」才有胜率。</strong></li>
+</ul>
+<blockquote>
+<p><strong>组合含义：</strong> 港股通账户持仓集中在<strong>光通信（长飞、剑桥）+ 覆铜板/PCB（建滔积层板）+ AI 大模型（MINIMAX-W）+ 生物科技（金斯瑞）</strong> 四条线，其中<strong>金斯瑞属典型长久期利率敏感资产，本日单日 -15.61%（当日拖累约 -¥1.12 万）</strong>。<strong>港股通账户仓位 96.3% 接近满仓 + 利率环境不利长久期资产，是当前组合最需要处理的敞口结构问题。</strong>
+<strong>风险：</strong> 若 10/15 美国 9 月 CPI 超预期、12 月加息落地，港股长久期资产的估值中枢仍有下移空间。</p>
+</blockquote>
+<h3>5. 油价续强 + 地缘升级：WTI 站稳 93 美元，能源与油运双双刷新历史新高，航运成少数「三项资金全正」方向</h3>
+<p><strong>判断：</strong> 中东与俄乌局势升级推动能源与油运板块成为<strong>当前少数「当日·5 日·20 日资金三项全正」的方向</strong>，A股/港股航运链同步响应；但这是一条<strong>纯事件驱动、无持仓映射</strong>的线。</p>
+<ul>
+<li>数据支撑（来源：今日头条 / 大河财立方，10/12 纽约收盘）：<strong>WTI 11 月合约 🔴 +2.06% 收 93.74 美元/桶；布伦特 12 月合约 🔴 +1.84% 收 106.65 美元/桶</strong>。<strong>能源板块为标普 500 当日最强，XLE 再创历史新高；油运板块 DHT +6.41%、Tsakos Energy Navigation +6.19%，全球航运 ETF（BOAT）续刷历史新高。</strong></li>
+<li>A股/港股呼应：<strong>BDI 概念 +2.67%（主力 +4.78 亿，5 日 +12.70 亿、20 日 +13.61 亿）</strong>、<strong>航运港口（行业）+2.38%（+3.13 亿）</strong>，招商轮船 <strong>+6.55%</strong>；港股中远海能 <strong>+4%</strong>、中远海控 <strong>+2%</strong>；<strong>集运指数（欧线）期货主力 EC2611 收涨 +1.36%</strong>，远月合约涨幅 1%–3%（财联社）。</li>
+<li>风险提示：<strong>若地缘缓和（俄乌能源停火、霍尔木兹通行恢复），油价与油运运价存在快速回吐风险。</strong></li>
+</ul>
+<h3>6. 三季报窗口开启：首份答卷「答砸」，业绩从「入场券」变成「兑现审判」</h3>
+<p><strong>判断：</strong> 沪市首份三季报<strong>有研新材</strong>交出「前三季正增长、Q3 单季负增长」的分裂答卷，股价单日 <strong>-7.89%</strong>；同期 PCB/CCL 链的业绩爆发则驱动资金回流。<strong>市场定价逻辑已从「看成长空间」切换为「看兑现程度」—— 涨幅本身成为风险指标。</strong></p>
+<ul>
+<li>数据支撑（来源：中证网 / 新浪财经 / 中财网）：<strong>有研新材前三季度营收 84.62 亿元（+24.98%）、归母净利 2.63 亿元（+7.31%）、扣非净利 2.17 亿元（+33.20%）；但第三季度营收 23.04 亿元（同比 -13.86%、环比 -28.03%）、归母净利 7996.11 万元（同比 -30.61%、环比 -15.89%）</strong>；10/13 股价 <strong>-7.89%</strong>，盘中触及跌停 43.11 元，<strong>年内涨幅一度达 118.51%、PE(TTM) 约 132 倍</strong>。</li>
+<li>对照的业绩爆发：<strong>PCB/CCL</strong> —— 华正新材净利同比预增 <strong>2658%</strong>、生益科技 <strong>+175%</strong>、景旺电子 Q3 净利约 10 亿元（<strong>+235%</strong>）；<strong>存储</strong> —— 长鑫科技净利 635 亿元、兆易创新 <strong>+885%</strong>、普冉股份 <strong>+6452%</strong>；<strong>晶圆制造</strong> —— 中芯国际净利 +65%、华虹宏力 +41%；<strong>封测</strong> —— 通富微电盈利增速超 50%。</li>
+<li>其他催化（10/13）：<strong>华为徐松余表示下一代麒麟 2027 芯片已经就绪</strong>（提振消费电子与半导体产业链情绪）；<strong>应用材料宣布投资约 50 亿美元建设 EPIC 中心</strong>；<strong>爱仕达</strong> 在上海举行生态伙伴大会、具身智能创新中心揭牌。</li>
+</ul>
+<blockquote>
+<p><strong>组合含义：</strong> 持仓中<strong>半导体设备（拓荆科技、半导设备ETF、科半导体ETF）、存储（长鑫科技）、光模块（中际旭创）</strong> 均进入三季报验证窗口。<strong>「低位 + 业绩超预期 → 资金回流」与「高位 + 业绩不及预期 → 单日杀」的分化将在未来两周持续演绎</strong>；组合层面应优先保留业绩兑现度高的标的。
+<strong>风险：</strong> 10/14 中国 9 月 CPI/PPI、10/15 美国 9 月 CPI、10/16 期指交割 —— 本周后半段事件密度极高，业绩与宏观数据的双重扰动概率大。</p>
+</blockquote>
+<hr />
+<h2 id="sec-三、持仓映射"><span class="sec-emoji">📌</span>三、持仓映射</h2>
+<blockquote>
+<p>⚠️ 本章基于 <strong>持仓总表 2026-10-13 14:57 最新快照</strong>（A股/港股当日盘中刷新；⚠️ 美股沿用 9/24，<strong>已过期 19 天</strong>）。方向性映射，不含任何买卖建议。</p>
+</blockquote>
+<h3>光模块 / 光通信（中际旭创 A+H、罗博特科、长飞光纤光缆 H、剑桥科技 H）</h3>
+<ul>
+<li><strong>今日信号：</strong> A股光通信 <strong>+2.52%（主力 +37.49 亿，全概念第一）</strong>、CPO +2.21%（+20.79 亿）；<strong>中际旭创 A 🔴 +1.45%（735.00，当日 +¥2,106）</strong>、<strong>罗博特科 🔴 +2.41%（493.21，当日 +¥3,483）</strong>；港股分化 —— <strong>剑桥科技 H +2.26%</strong>，但<strong>长飞光纤光缆 H 🟢 -3.52%（150.60，当日 -¥7,039）</strong>、<strong>中际旭创 H -1.44% 创上市以来新低（890 港元、破发）</strong>。事件面：<strong>FCC 26-50 今日生效，整机豁免 + 组件穿透监管</strong>。</li>
+<li><strong>方向含义：</strong> 国内定价（业绩驱动）与海外定价（政策与融资叙事驱动）正在<strong>背离</strong>。A股侧的业绩验证（CPO 龙头三季报净利倍增）为链条提供了基本面支撑，港股侧则被利率与政策风险压制。<strong>中期逻辑未破坏，但「H 股比 A 股更弱」的分化可能持续。</strong></li>
+<li><strong>风险：</strong> 10/29 FCC 检测限令表决；若北美云厂商资本开支指引下修，由估值杀转为业绩杀。<strong>中际旭创浮亏已达 -¥11.10 万（-43.02%），为组合单一最大失血点。</strong></li>
+</ul>
+<h3>半导体设备 / 材料（拓荆科技、半导设备ETF、科半导体ETF、云南锗业）</h3>
+<ul>
+<li><strong>今日信号：</strong> 半导体设备概念 <strong>+0.87%（+1.20 亿）</strong>、半导体材料概念 +0.82%（-5.78 亿）、光刻机 +0.69%（+1.20 亿）；<strong>拓荆科技 🆕 🔴 +3.35%（654.23，当日 +¥4,246）</strong>、<strong>科半导体ETF 🔴 +1.46%</strong>、<strong>半导设备ETF 🔴 +0.49%</strong>；<strong>云南锗业 🔴 +6.10%（85.62，当日 +¥3,936）</strong> —— 受益<strong>锗镓概念 +4.43%（当日/5日/20日资金三项全正）</strong>。事件面：<strong>应用材料宣布投资约 50 亿美元建设 EPIC 中心</strong>（海外设备投资周期延续的正向信号）；<strong>华为麒麟 2027 芯片已就绪</strong>。</li>
+<li><strong>方向含义：</strong> 设备是本日<strong>逆外盘情绪翻红的国产替代方向</strong>，且与「存储/晶圆扩产」形成共振（中芯国际净利 +65%、华虹宏力 +41%）。<strong>20 日资金仍为负（半导体设备 -148.03 亿、半导体材料 -88.93 亿）</strong>，属结构性修复而非趋势确立。</li>
+<li><strong>风险：</strong> 拓荆科技 10/13 为<strong>新建仓位（200 股 @ ¥620.992）</strong>，是三季报窗口中的高波动品种；半导体设备对海外出口管制与国内资本开支节奏双重敏感。</li>
+</ul>
+<h3>存储（长鑫科技、澜起科技、SK 海力士 ADR）</h3>
+<ul>
+<li><strong>今日信号：</strong> ⚠️ <strong>多空同源</strong> —— <strong>长鑫科技（688825）宣布 4F² 新一代 DRAM 架构突破、计划年底前量产服务器内存</strong>（技术里程碑），但同一消息被海外市场解读为「竞争格局生变」，触发全球存储链杀估值（<strong>华虹宏力 -5.29%、闪迪 -5.97%、美光 -3.88%、SK 海力士 -4.02%</strong>；高盛称市场对「盈利顶点」的恐慌主导估值下杀）。A股当日：<strong>长鑫科技 🟢 -2.79%（46.99，当日 -¥2,049）</strong>、<strong>澜起科技 🟢 -3.67%（184.80，当日 -¥4,097）</strong>、存储器概念 +0.72%（但主力 <strong>-14.33 亿</strong>）。</li>
+<li><strong>方向含义：</strong> 国内投资者重「国产替代逻辑」，海外投资者重「竞争格局与周期顶点」，<strong>同一事件在两地定价方向相反</strong>。持仓的存储敞口（长鑫科技 + 澜起科技 + SK 海力士 ADR）同时暴露于两种定价框架。</li>
+<li><strong>风险：</strong> 4F² 年底量产节点与良率是核心验证变量；DRAM 现货价格若转跌，「高景气」叙事将快速瓦解（存储器 20 日资金 <strong>-720.07 亿</strong> 仍为深度失血）。</li>
+</ul>
+<h3>PCB / 覆铜板（建滔积层板 H）</h3>
+<ul>
+<li><strong>今日信号：</strong> ⚠️ <strong>A/H 分化显著</strong> —— A股 <strong>PCB 概念 +2.02%（+16.42 亿）、覆铜板 +4.44%、元件行业 +2.97%（+14.75 亿）</strong>，板块内近十只涨停；但港股 <strong>建滔积层板 🟢 -4.49%（44.70，当日 -¥5,375）</strong>，为港股通账户第二大拖累。业绩面：华正新材预增 2658%、生益科技 +175%、景旺电子 Q3 净利约 10 亿（+235%）。</li>
+<li><strong>方向含义：</strong> 「AI 服务器 + 光模块带动高频高速 PCB 与高端 CCL 需求爆发、<strong>非 AI 领域亦成功顺价</strong>」的产业逻辑在 A股被充分定价，但港股标的本日未能跟随，<strong>说明资金更愿意在 A股表达该逻辑</strong>（也可能与南向净卖出 4.5 亿港元有关）。</li>
+<li><strong>风险：</strong> PCB 概念 5 日 <strong>-234.57 亿</strong>、20 日 <strong>-423.07 亿</strong>，中期资金仍为深度净流出；覆铜板当日 +4.44% 但主力仅 <strong>+0.01 亿</strong>（资金未跟随）。</li>
+</ul>
+<h3>创新药 / 生物科技（创新药HK ETF、金斯瑞生物科技 H）</h3>
+<ul>
+<li><strong>今日信号：</strong> <strong>创新药HK ETF 🟢 -1.21%（1.383，当日 -¥1,107）</strong>；港股 <strong>金斯瑞生物科技 🟢 -15.61%（35.56，当日 -¥11,228，单日最大拖累）</strong>、康龙化成 -6.61%、泰格医药 -6.08%；A股 CRO -1.51%、生物制品（行业）-1.74%。</li>
+<li><strong>方向含义：</strong> 触发点是<strong>哈马克鹰派表态 → 海外流动性宽松预期降温 → 长久期利率敏感资产估值中枢下移</strong>；叠加美股 AI 制药对标公司 Twist 10/6–10/12 回撤超 25% 的情绪传导。<strong>产业趋势（AI4S、基因蛋白合成订单）未变，但估值端受利率主导。</strong></li>
+<li><strong>风险：</strong> 10/15 美国 9 月 CPI 是直接变量；港股通账户仓位 96.3% 近满仓，长久期资产占比偏高。</li>
+</ul>
+<h3>硬质合金 / PCB 钻针 / 小金属（中钨高新、云南锗业）</h3>
+<ul>
+<li><strong>今日信号：</strong> <strong>中钨高新 🟢 -0.35%（48.17，当日 -¥289）</strong>、<strong>云南锗业 🔴 +6.10%（85.62，当日 +¥3,936）</strong>；锗镓概念 <strong>+4.43%（当日/5日/20日资金三项全正）</strong>、有色（锡）5 日 +7.94 亿。</li>
+<li><strong>方向含义：</strong> 稀有金属/硬质合金受益于<strong>半导体与 PCB 钻针需求的双重拉动</strong>，且供给端存在约束 —— 是本日<strong>唯一同时满足「涨价逻辑 + 三项资金全正」的持仓相关方向</strong>。</li>
+<li><strong>风险：</strong> 锗镓属小市值主题，流动性偏弱；云南锗业浮亏 -¥1.87 万（-21.43%），10/13 已减仓 1600→800 股。</li>
+</ul>
+<hr />
+<h2 id="sec-四、纪律检查"><span class="sec-emoji">📌</span>四、纪律检查</h2>
+<blockquote>
+<p>⚠️ <strong>持仓总表最后更新：2026-10-13 14:57（A股/港股双账户，当日盘中快照）；美股仍为 2026-09-24，已过期 19 天。</strong> 下表 A股/港股按 <strong>10/13 收盘价 + 最新成本/股数</strong> 重算；美股沿用 9/24 并标注过期。</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>状态</th>
+<th>数值</th>
+<th>提示</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>利润红线</strong></td>
+<td><strong>🔴</strong></td>
+<td>持仓浮盈 <strong>+¥5.91 万</strong> → <strong>安全垫 -¥14.09 万</strong>（距 ¥20 万红线）</td>
+<td><strong>连续第 7 期击穿红线</strong>；账户累计口径（含 10/9 已兑现 -¥3.54 万、10/13 三笔减仓兑现估算 -¥5.5 万）约 <strong>-¥3.1 万</strong>，安全垫约 <strong>-¥23 万</strong>（⚠️ 估算，待决策台账确认）</td>
+</tr>
+<tr>
+<td><strong>止盈触及</strong></td>
+<td><strong>🔴</strong></td>
+<td>浮盈 &gt;+50%：<strong>3 只</strong>；浮亏 &lt;-25%：<strong>1 只</strong></td>
+<td>止盈档 <strong>科创芯片ETF +237.17%、澜起科技 +142.97%、半导设备ETF +415.88%（成本已为负 -0.1973）</strong>；复核档 <strong>中际旭创 -43.02%（浮亏 -¥11.10 万）</strong>；逼近档 <strong>MINIMAX-W -23.27%</strong>、云南锗业 -21.43%</td>
+</tr>
+<tr>
+<td><strong>A股杠杆</strong></td>
+<td><strong>🟡</strong></td>
+<td>维持担保比例 <strong>410.30%</strong> ／ 证券仓位 <strong>132.1%</strong></td>
+<td>担保比例 🟢（&gt;200%），<strong>较 10/9 的 364.69% 继续改善 +45.61pt</strong>（本轮再还融资约 ¥6.09 万 → 负债 ¥27.04 万）；⚠️ <strong>仓位 132.1% 仍 &gt;130% 阈值 🟡</strong></td>
+</tr>
+<tr>
+<td><strong>美股大号</strong></td>
+<td><strong>🟢</strong>（过期）</td>
+<td>SMA <strong>$16.92K</strong> ／ SPX DELTA <strong>21.256</strong> ／ 杠杆 ≈<strong>1.35x</strong></td>
+<td>9/24 口径，SMA&gt;0 🟢、DELTA&lt;30000 🟢；<strong>已过期 19 天，需重刷</strong></td>
+</tr>
+<tr>
+<td><strong>美股小号</strong></td>
+<td><strong>🔴</strong>（过期）</td>
+<td>净值 <strong>$29.24K</strong> ／ 持仓市值 <strong>$52.47K</strong> ／ <strong>杠杆 ≈1.79x</strong></td>
+<td>杠杆 &gt;1.5x 🔴；SMA $6.18K、SPX DELTA 14.933；<strong>已过期 19 天，需重刷</strong></td>
+</tr>
+<tr>
+<td><strong>港股现金</strong></td>
+<td><strong>🟢</strong></td>
+<td>可用 <strong>¥18,647.97</strong></td>
+<td>远高于 HK$5,000 阈值；⚠️ 但<strong>证券仓位 96.3%，接近满仓 🚨</strong></td>
+</tr>
+<tr>
+<td><strong>板块集中度</strong></td>
+<td><strong>🟡</strong></td>
+<td>半导体链 <strong>57.9%</strong> ／ 科技硬件合计 <strong>91.9%</strong></td>
+<td>半导体链 &gt;50% 🟡（腾讯行业口径 电子 +0.53%、半导体 -0.24%，<strong>未触发单日跌&gt;3% 🔴</strong>）；⚠️ <strong>科技硬件合计 91.9% 🔴</strong>（光模块链 26.6% + 半导体链 57.9% + PCB/硬质合金 7.4%）</td>
+</tr>
+<tr>
+<td><strong>数据时效</strong></td>
+<td><strong>⚠️</strong></td>
+<td>A股/港股 <strong>10/13 14:57</strong>（当日盘中）；美股 <strong>9/24</strong></td>
+<td>美股<strong>已过期 19 天</strong>，第四章美股两项为陈旧数据</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>10/13 当日盈亏（券商口径 + 收盘重算）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>市场</th>
+<th>当日参考盈亏</th>
+<th>收盘重算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A股融资账户</td>
+<td><strong>+¥10,750.34（+0.98%）</strong></td>
+<td>11 只持仓当日（vs 昨收）≈ <strong>+¥7,783</strong>；持仓浮盈 <strong>+¥59,118</strong></td>
+</tr>
+<tr>
+<td>港股通账户</td>
+<td><strong>-¥27,340.36（-5.10%）</strong></td>
+<td>5 只持仓当日 ≈ <strong>-¥22,789</strong>；逐只重算浮亏 <strong>-¥85,173</strong></td>
+</tr>
+<tr>
+<td>A+H 合计</td>
+<td>≈ <strong>-¥1.66 万</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>📌 <strong>A股账户本日三笔减仓（10/13）</strong>：中际旭创 300→<strong>200</strong>（-100 股，亏损卖出致摊薄成本 1095.8791→<strong>1290.0040</strong>）、云南锗业 1600→<strong>800</strong>（-800 股，成本 97.2598→<strong>108.967</strong>）、科半导体ETF 153900→<strong>102600</strong>（-51,300 份，成本 1.0333→<strong>1.0976</strong>）；🆕 新建 <strong>拓荆科技（688072）200 股 @ ¥620.992</strong>。<strong>三笔减仓均以亏损成交，回笼约 ¥18.8 万，其中约 ¥6.09 万用于归还融资、¥0.04 万留可用，约 ¥12 万差额待确认（疑银证转出，需核对）。</strong>
+📌 <strong>港股账户本日无交易</strong>，总资产缩水 <strong>-¥5.50 万</strong> 全部来自价格下跌；<strong>金斯瑞生物科技单日 -15.61% 贡献当日亏损的 49%</strong>。
+📌 <strong>持仓浮盈 +¥5.91 万</strong>为「11 只在持仓市值 vs 成本」的加总值（与账户「总盈亏 +¥59,592.36」口径一致，差 ¥474 属成本小数位精度）；<strong>账户累计口径需叠加历史已实现亏损</strong>，故安全垫更薄。</p>
+</blockquote>
+<hr />
+<h2 id="sec-五、数据速览"><span class="sec-emoji">📊</span>五、数据速览</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>变化</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上证综指</td>
+<td><strong>3800.86</strong></td>
+<td><strong>🔴 +0.10%</strong></td>
+<td>腾讯行情 / 金融界</td>
+</tr>
+<tr>
+<td>深证成指</td>
+<td>12353.70</td>
+<td>🟢 -0.25%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>创业板指</td>
+<td>2958.34</td>
+<td>🟢 -0.18%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>科创50</td>
+<td>1427.18</td>
+<td>🔴 +0.03%（振幅 5.04%）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>沪深300</td>
+<td>4275.68</td>
+<td>🟢 -0.29%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>北证50</td>
+<td>1008.66</td>
+<td>🟢 -0.31%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>两市成交额</td>
+<td><strong>1.676 万亿</strong></td>
+<td><strong>放量 1381 亿（+9.0%）</strong></td>
+<td>沪 7793.02 + 深 8966.06 亿</td>
+</tr>
+<tr>
+<td>上涨 / 下跌 / 平</td>
+<td><strong>2909 / 2485 / 179</strong></td>
+<td>上涨占比 <strong>52.20%</strong></td>
+<td>新浪全A（5573 只）</td>
+</tr>
+<tr>
+<td>涨停 / 跌停</td>
+<td><strong>67 / 8</strong></td>
+<td>跌停自 19 只收敛</td>
+<td>东方财富涨跌停池</td>
+</tr>
+<tr>
+<td>涨超 5% / 跌超 5%</td>
+<td>236 / 83</td>
+<td>跌端收敛 82%</td>
+<td>新浪全A</td>
+</tr>
+<tr>
+<td>涨跌幅中位数</td>
+<td><strong>+0.154%</strong></td>
+<td>由 -1.683% 转正</td>
+<td>新浪全A</td>
+</tr>
+<tr>
+<td>站上 MA5/10/20</td>
+<td><strong>0 / 15</strong></td>
+<td>连续第 7 日</td>
+<td>腾讯 K线自算</td>
+</tr>
+<tr>
+<td>恒生指数</td>
+<td><strong>24345.22</strong></td>
+<td>🔴 +0.30%</td>
+<td>腾讯行情 / 新华社</td>
+</tr>
+<tr>
+<td>恒生科技</td>
+<td>4136.63</td>
+<td>🟢 -0.79%（盘中创本轮新低）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>南向资金</td>
+<td><strong>净卖出 &gt;4.5 亿港元</strong></td>
+<td>由净买入转净卖出</td>
+<td>财联社</td>
+</tr>
+<tr>
+<td>港股主板成交</td>
+<td>1875.66 亿港元</td>
+<td>—</td>
+<td>新华社</td>
+</tr>
+<tr>
+<td>道琼斯（10/12）</td>
+<td>51850.55</td>
+<td>🔴 +0.38%</td>
+<td>中国经济网</td>
+</tr>
+<tr>
+<td>纳斯达克（10/12）</td>
+<td>27245.90</td>
+<td>🟢 -0.44%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>标普500（10/12）</td>
+<td>7807.24</td>
+<td>🟢 -0.06%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>费城半导体（10/12）</td>
+<td>12236.79</td>
+<td>🟢 <strong>-2.67%</strong>（连跌 4 日）</td>
+<td>大河财立方</td>
+</tr>
+<tr>
+<td>10Y 美债（10/9 收，10/12 休市）</td>
+<td><strong>≈5.24%</strong></td>
+<td>30Y 靠 5.6%</td>
+<td>腾讯新闻</td>
+</tr>
+<tr>
+<td>CME 12 月加息 25bp 概率</td>
+<td><strong>70.3%</strong></td>
+<td>10 月维持不变 79.5%</td>
+<td>CME 美联储观察</td>
+</tr>
+<tr>
+<td>WTI 原油（10/12）</td>
+<td><strong>$93.74</strong></td>
+<td>🔴 +2.06%</td>
+<td>今日头条</td>
+</tr>
+<tr>
+<td>布伦特原油（10/12）</td>
+<td><strong>$106.65</strong></td>
+<td>🔴 +1.84%</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>持仓行情（10/13 收盘）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th>收盘</th>
+<th>涨跌</th>
+<th>浮盈/浮亏</th>
+<th>当日</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中际旭创</td>
+<td>¥735.00</td>
+<td>🔴 +1.45%</td>
+<td><strong>-¥111,001（-43.02%）</strong></td>
+<td>+¥2,106</td>
+</tr>
+<tr>
+<td>罗博特科</td>
+<td>¥493.21</td>
+<td>🔴 +2.41%</td>
+<td>-¥10,749（-6.77%）</td>
+<td>+¥3,483</td>
+</tr>
+<tr>
+<td>云南锗业</td>
+<td>¥85.62</td>
+<td>🔴 <strong>+6.10%</strong></td>
+<td>-¥18,678（-21.43%）</td>
+<td>+¥3,936</td>
+</tr>
+<tr>
+<td>科半导体ETF</td>
+<td>¥0.906</td>
+<td>🔴 +1.46%</td>
+<td>-¥19,658（-17.46%）</td>
+<td>+¥1,334</td>
+</tr>
+<tr>
+<td>科创芯片ETF</td>
+<td>¥0.996</td>
+<td>0.00%</td>
+<td><strong>+¥87,575（+237.17%）</strong></td>
+<td>¥0</td>
+</tr>
+<tr>
+<td>澜起科技</td>
+<td>¥184.80</td>
+<td>🟢 -3.67%</td>
+<td>+¥63,288（+142.97%）</td>
+<td>-¥4,097</td>
+</tr>
+<tr>
+<td>创新药HK</td>
+<td>¥1.383</td>
+<td>🟢 -1.21%</td>
+<td>-¥2,871（-3.09%）</td>
+<td>-¥1,107</td>
+</tr>
+<tr>
+<td>中钨高新</td>
+<td>¥48.17</td>
+<td>🟢 -0.35%</td>
+<td>+¥12,443（+17.92%）</td>
+<td>-¥289</td>
+</tr>
+<tr>
+<td>长鑫科技</td>
+<td>¥46.99</td>
+<td>🟢 -2.79%</td>
+<td>-¥8,033（-10.12%）</td>
+<td>-¥2,049</td>
+</tr>
+<tr>
+<td>半导设备ETF</td>
+<td>¥0.620</td>
+<td>🔴 +0.49%</td>
+<td><strong>+¥60,153（+415.88%）</strong></td>
+<td>+¥221</td>
+</tr>
+<tr>
+<td>拓荆科技 🆕</td>
+<td>¥654.23</td>
+<td>🔴 +3.35%</td>
+<td>+¥6,648（+5.35%）</td>
+<td>+¥4,246</td>
+</tr>
+<tr>
+<td>长飞光纤光缆 H</td>
+<td>HK$150.60</td>
+<td>🟢 -3.52%</td>
+<td>-¥34,873（-15.32%）</td>
+<td>-¥7,039</td>
+</tr>
+<tr>
+<td>建滔积层板 H</td>
+<td>HK$44.70</td>
+<td>🟢 -4.49%</td>
+<td>-¥7,436（-6.10%）</td>
+<td>-¥5,375</td>
+</tr>
+<tr>
+<td>剑桥科技 H</td>
+<td>HK$95.00</td>
+<td>🔴 +2.26%</td>
+<td>-¥12,877（-16.57%）</td>
+<td>+¥1,433</td>
+</tr>
+<tr>
+<td>MINIMAX-W H</td>
+<td>HK$212.00</td>
+<td>🟢 -0.93%</td>
+<td>-¥18,651（-23.27%）</td>
+<td>-¥580</td>
+</tr>
+<tr>
+<td>金斯瑞生物科技 H</td>
+<td>HK$35.56</td>
+<td>🟢 <strong>-15.61%</strong></td>
+<td>-¥11,336（-15.74%）</td>
+<td><strong>-¥11,228</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="sec-六、附录：信息来源"><span class="sec-emoji">📎</span>六、附录：信息来源</h2>
+<p><strong>数据源</strong></p>
+<ul>
+<li><strong>A股行情与板块资金</strong>：腾讯财经公开行情接口（板块间接口径，含当日/5 日/20 日主力净流入，单位万元已换算为亿元）；指数/个股行情与均线为腾讯日 K 自算 MA5/10/20</li>
+<li><strong>涨跌分布</strong>：新浪财经全 A 分页接口（5573 只，含涨跌家数、涨超 5%/跌超 5%、中位数）；<strong>涨停/跌停池</strong>：东方财富涨跌停池（取 tc 字段，67 / 8）</li>
+<li><strong>港股/美股行情</strong>：腾讯行情接口（含恒指/恒科时间戳 16:08，确认当日收盘）</li>
+<li><strong>宏观与新闻</strong>：中国经济网、大河财立方、央广网、金融界、网易财经、财联社、智通财经、新华社（香港）、中证网、中财网、东方财富财富号、今日头条、CME 美联储观察、中金公司观点</li>
+<li><strong>持仓数据</strong>：持仓总表（A股/港股 2026-10-13 14:57 快照；美股 2026-09-24）</li>
+</ul>
+<p><strong>时效标注</strong></p>
+<ul>
+<li>A股/港股：<strong>10/13 收盘</strong>（A股 15:00、港股 16:08 收盘价）</li>
+<li>美股/商品：<strong>10/12 纽约收盘</strong>；<strong>美债 10/12 因哥伦布日现货休市</strong>，10Y/30Y 沿用 10/9 收盘（10Y ≈5.24%、30Y ≈5.6%）</li>
+<li>板块资金口径：<strong>腾讯口径，与同花顺/媒体口径存在差异</strong>，报告内已统一标注来源，跨源数值不可直接相减</li>
+</ul>
+<p><strong>免责声明</strong>
+<em>本报告基于公开资料客观整理，仅供学习参考，不构成任何投资建议。市场有风险，投资需谨慎。</em></p>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：westock-data 行情 / 证券时报 / 同花顺 / 研报 / 404K 知识库 · 板块雷达 × 市场简报 合并版</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
