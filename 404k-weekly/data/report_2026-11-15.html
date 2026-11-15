@@ -1,0 +1,2119 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404K 持仓情报周报 | 2026-11-15</title>
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="华尔街之鹰">
+<meta property="og:title" content="404K 持仓情报周报 | 2026-11-15">
+<meta property="og:description" content="404K 持仓情报周报 2026-11-15 - 持仓标的一周动态、价格数据时间序列与投行评级台账">
+<meta property="og:image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:url" content="https://reports.xiaoyiyi.wang/404k-weekly/data/report_2026-11-15.html">
+<meta itemprop="name" content="404K 持仓情报周报 | 2026-11-15">
+<meta itemprop="description" content="404K 持仓情报周报 2026-11-15 - 持仓标的一周动态、价格数据时间序列与投行评级台账">
+<meta itemprop="image" content="https://reports.xiaoyiyi.wang/assets/og-share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#030712;--card-bg:rgba(15,23,42,.72);--card-solid:#0d1117;
+  --blue:#60a5fa;--cyan:#22d3ee;--purple:#a78bfa;--gold:#fbbf24;
+  --green:#34d399;--red:#f87171;--pink:#f472b6;--yellow:#facc15;--gray:#64748b;
+  --text:#f1f5f9;--text-dim:#64748b;--text-mid:#94a3b8;
+  --border:rgba(148,163,184,.1);--border-hi:rgba(148,163,184,.22);
+  --ease-out-quint:cubic-bezier(.23,1,.32,1);
+  --up:#f87171;--down:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','SF Pro Display','Microsoft YaHei',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  line-height:1.75;font-size:15px;
+}
+/* 背景光晕 */
+.bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 18% -5%,rgba(96,165,250,.09),transparent 55%),
+    radial-gradient(ellipse at 85% 15%,rgba(167,139,250,.07),transparent 50%),
+    radial-gradient(ellipse at 50% 110%,rgba(52,211,153,.05),transparent 55%);
+}
+/* 扫描线 */
+.scan{
+  position:fixed;left:0;width:100%;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.35),transparent);
+  animation:scanDown 8s linear infinite;
+}
+@keyframes scanDown{0%{top:-1px;opacity:0}3%{opacity:1}97%{opacity:1}100%{top:100%;opacity:0}}
+/* 阅读进度条 */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0;z-index:99;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--gold));
+  box-shadow:0 0 8px rgba(34,211,238,.5);
+}
+/* 页面容器 */
+.page{position:relative;z-index:1;max-width:800px;margin:0 auto;padding:26px 18px 60px}
+/* Hero */
+.hero{text-align:center;padding:8px 0 20px;animation:enterUp .7s var(--ease-out-quint) .05s both}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.18);
+  font-size:.62em;color:var(--blue);letter-spacing:.14em;text-transform:uppercase;
+}
+.hero-badge .blink{
+  width:6px;height:6px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(1.45em,5.5vw,2em);font-weight:800;line-height:1.2;
+  letter-spacing:-.03em;margin:12px 0 6px;color:#f0f6fc;
+  text-shadow:0 0 30px rgba(96,165,250,.4);
+}
+.hero .hero-line{width:130px;height:3px;margin:10px auto 0;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan),var(--purple),var(--pink));}
+.hero .sub{font-size:.8em;color:var(--text-dim);letter-spacing:.08em;margin-bottom:12px}
+.hero .meta-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.hero .chip{
+  display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:100px;
+  background:var(--card-bg);border:1px solid var(--border);color:var(--text-mid);
+  font-size:.72em;font-weight:600;
+}
+.hero .chip.hl{border-color:rgba(240,185,11,.35);color:var(--gold);background:rgba(240,185,11,.07)}
+@keyframes enterUp{from{transform:translateY(16px)}to{transform:translateY(0)}}
+/* TOC */
+.toc{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 20px;
+  animation:enterUp .5s var(--ease-out-quint) .3s both;
+}
+.toc a{
+  color:var(--blue);background:var(--card-bg);border:1px solid var(--border);
+  padding:5px 14px;border-radius:100px;font-size:.8em;text-decoration:none;
+  transition:all .2s ease;
+}
+.toc a:hover{border-color:var(--blue);background:rgba(96,165,250,.1);color:#93c5fd}
+/* 工具栏（返回 + 前后篇） */
+.toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-bottom:18px;flex-wrap:wrap;
+  animation:enterUp .5s var(--ease-out-quint) .35s both;
+}
+.back-link{
+  display:inline-flex;align-items:center;gap:4px;font-size:.78em;color:var(--text-dim);
+  text-decoration:none;padding:7px 14px;border-radius:10px;
+  background:var(--card-bg);border:1px solid var(--border);transition:all .2s;
+}
+.back-link:hover{color:var(--cyan);border-color:rgba(34,211,238,.4)}
+.nav-arrows{display:flex;gap:8px}
+.nav-arrow{
+  font-size:.74em;color:var(--text-mid);text-decoration:none;padding:7px 12px;
+  border-radius:10px;background:var(--card-bg);border:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-arrow:hover{color:var(--blue);border-color:var(--blue)}
+.nav-arrow.disabled{color:var(--text-dim);opacity:.45;cursor:default}
+/* 正文卡片 */
+.content{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:18px;
+  padding:26px 28px 30px;
+  animation:enterUp .55s var(--ease-out-quint) .42s both;
+}
+/* markdown 内容样式 */
+.md{font-size:.95em;line-height:1.85;word-break:break-word;-webkit-text-size-adjust:100%}
+/* ── h2 大标题：金色渐变标题条 ── */
+.md h2{
+  margin:44px 0 20px;padding:13px 20px;font-size:1.16em;font-weight:800;
+  color:var(--gold);letter-spacing:.04em;
+  background:linear-gradient(100deg,rgba(251,191,36,.16),rgba(251,191,36,.05) 55%,rgba(251,191,36,0));
+  border:1px solid rgba(251,191,36,.22);border-left:5px solid var(--gold);
+  border-radius:14px;box-shadow:0 3px 22px rgba(251,191,36,.07);
+  display:flex;align-items:center;gap:10px;position:relative;
+}
+.md h2::after{
+  content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  width:64px;height:2px;border-radius:2px;opacity:.7;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.55));
+}
+.md h2 .sec-emoji{font-size:1.05em;filter:drop-shadow(0 0 6px rgba(251,191,36,.5))}
+/* ── h3 小标题：青色胶囊标签 ── */
+.md h3{
+  margin:32px 0 12px;padding:6px 16px;font-size:1.04em;font-weight:800;
+  color:#67e8f9;letter-spacing:.03em;display:inline-block;
+  background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(34,211,238,.04));
+  border:1px solid rgba(34,211,238,.28);border-radius:9px;
+  box-shadow:inset 0 0 14px rgba(34,211,238,.05);
+}
+/* ── h4 小标题：紫色圆点 ── */
+.md h4{margin:22px 0 8px;font-size:.97em;font-weight:800;color:#c4b5fd;
+  display:flex;align-items:center;gap:8px;letter-spacing:.02em}
+.md h4::before{content:'';width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 0 8px rgba(167,139,250,.7)}
+.md p{margin:12px 0;color:var(--text-mid)}
+.md strong{color:var(--text);font-weight:700}
+.md em{color:var(--pink);font-style:normal}
+.md a{color:var(--blue);text-decoration:none;border-bottom:1px dashed rgba(96,165,250,.4)}
+.md a:hover{border-bottom-style:solid}
+.md ul,.md ol{margin:10px 0;padding-left:24px}
+.md li{margin:6px 0;color:var(--text-mid);line-height:1.8}
+.md ul>li{list-style:'›  '}
+.md ul>li::marker{color:var(--cyan)}
+.md ul ul>li{list-style:'·  ';font-size:.95em}
+.md ul ul>li::marker{color:var(--text-dim)}
+.md ol>li::marker{color:var(--gold);font-weight:700}
+.md li>strong{color:var(--text)}
+.md blockquote{
+  margin:16px 0;padding:13px 18px;border-left:3px solid var(--gold);
+  background:rgba(251,191,36,.05);border-radius:0 12px 12px 0;
+  font-size:.93em;color:var(--text-mid);
+}
+.md blockquote strong{color:var(--gold)}
+.md hr{border:none;height:1px;margin:28px 0;
+  background:linear-gradient(90deg,transparent,var(--border-hi),transparent)}
+.md code{
+  font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;
+  padding:2px 7px;border-radius:6px;background:rgba(96,165,250,.08);color:var(--blue);
+}
+.md pre{
+  background:var(--card-solid);border:1px solid var(--border);border-radius:12px;
+  padding:14px 16px;overflow-x:auto;margin:14px 0;
+}
+.md pre code{background:none;padding:0;color:var(--text)}
+.table-wrap{overflow-x:auto;margin:18px 0;border-radius:14px;-webkit-overflow-scrolling:touch;
+  box-shadow:0 3px 20px rgba(0,0,0,.22)}
+.md table{
+  width:100%;border-collapse:separate;border-spacing:0;font-size:.86em;
+  border:1px solid var(--border-hi);border-radius:14px;overflow:hidden;
+}
+.md thead{position:relative}
+.md th{
+  background:linear-gradient(135deg,rgba(30,64,175,.55),rgba(8,74,103,.55));
+  color:#bae6fd;font-weight:800;padding:12px 15px;text-align:left;
+  white-space:nowrap;border-bottom:2px solid rgba(34,211,238,.28);
+  letter-spacing:.03em;font-size:.95em;
+}
+.md td{padding:10px 15px;border-top:1px solid var(--border);color:var(--text-mid);
+  vertical-align:top;line-height:1.72}
+.md tr:nth-child(even) td{background:rgba(148,163,184,.05)}
+.md tr:hover td{background:rgba(96,165,250,.07)}
+.md tbody tr:first-child td{border-top:none}
+.md td:first-child{color:#e2e8f0;font-weight:700}
+/* ── 信号卡片（核心信号章节） ── */
+.signal-card{
+  margin:20px 0;padding:18px 22px 8px;border-radius:16px;
+  background:linear-gradient(180deg,rgba(96,165,250,.07),rgba(15,23,42,.3));
+  border:1px solid var(--border-hi);border-left:4px solid var(--blue);
+  transition:border-color .25s ease,box-shadow .25s ease;
+}
+.signal-card:hover{border-left-color:var(--cyan);border-color:rgba(96,165,250,.4);
+  box-shadow:0 4px 24px rgba(96,165,250,.08)}
+.signal-card .sc-title{
+  font-size:1.03em;font-weight:800;color:#e0f2fe;line-height:1.6;
+  padding-bottom:10px;margin-bottom:6px;border-bottom:1px dashed var(--border-hi);
+  display:block;
+}
+.signal-card .sc-title .num{
+  color:var(--gold);font-weight:900;margin-right:8px;font-size:1.05em;
+  text-shadow:0 0 10px rgba(251,191,36,.4);
+}
+.signal-card ul{margin:6px 0 10px !important;padding-left:0 !important;list-style:none !important}
+.signal-card li{
+  position:relative;padding:5px 0 5px 20px;margin:3px 0 !important;
+  color:var(--text-mid);line-height:1.78;
+}
+.signal-card li::before{
+  content:'';position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  box-shadow:0 0 6px rgba(34,211,238,.5);
+}
+.signal-card li .lbl{
+  color:var(--cyan);font-weight:800;font-size:.93em;margin-right:2px;
+  text-shadow:0 0 8px rgba(34,211,238,.25);
+}
+/* Footer */
+.footer{
+  text-align:center;margin-top:26px;padding-top:18px;
+  border-top:1px solid var(--border);font-size:.7em;color:var(--text-dim);
+  line-height:2;animation:enterUp .5s var(--ease-out-quint) .6s both;
+}
+.footer .hl{color:var(--gold)}
+.footer .lotus{color:var(--pink)}
+.footer .warn{color:var(--text-dim)}
+/* 移动端 */
+@media (max-width:600px){
+  .page{padding:18px 12px 44px}
+  .content{padding:18px 16px 22px;border-radius:14px}
+  .md{font-size:.9em}
+  .md h2{font-size:1em;margin:32px 0 14px;padding:11px 14px}
+  .md h2::after{display:none}
+  .md h3{font-size:.98em;padding:5px 12px}
+  .md table{font-size:.78em}
+  .md th,.md td{padding:8px 10px}
+  .signal-card{padding:14px 16px 6px}
+  .signal-card .sc-title{font-size:.98em}
+  .toc a{padding:4px 10px;font-size:.74em}
+  .toolbar{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .scan,.progress{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="scan"></div>
+<div class="progress" id="progressBar"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-badge"><span class="blink"></span><span>404K SEMI · WEEKLY</span></div>
+    <h1><span class="g">404K 持仓情报周报</span></h1>
+    <div class="sub">生成时间：2026-11-15 19:15 ｜ 本周文档总数：328 份（PDF 139 / 数据图 189）/ 筛选重点：96 份 ｜ 持仓口径：PORTFOLIO.md V2026-11-10-1745</div>
+    <div class="hero-line"></div>
+    <div class="meta-line">
+      <span class="chip hl">📅 2026-11-15 · 周日</span>
+    </div>
+  </header>
+
+  <nav class="toc"><a href="#sec-一、本周核心信号">🔍一、本周核心信号</a><a href="#sec-二、价格数据时间序列">📊二、价格数据时间序列</a><a href="#sec-三、持仓个股与组合一周动">💼三、持仓个股与组合一周动态</a><a href="#sec-四、投行评级变化台账（本">🏦四、投行评级变化台账（本周全部，按日期）</a><a href="#sec-五、产业链关键信号">🔗五、产业链关键信号</a><a href="#sec-六、风险提示">⚠️六、风险提示</a><a href="#sec-七、下周关注清单（按可检">🎯七、下周关注清单（按可检验性排序）</a><a href="#sec-八、附录：本周重点文档清">📎八、附录：本周重点文档清单（96 份筛选中列 40 份）</a><a href="#sec-数据来源与方法说明">📊数据来源与方法说明</a></nav>
+
+  <div class="toolbar">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+    <div class="nav-arrows"><a class="nav-arrow" href="report_2026-11-08.html">← 2026-11-08</a><span class="nav-arrow disabled">无更新 →</span></div>
+  </div>
+
+  <article class="content">
+    <blockquote>
+<p>生成时间：2026-11-15 19:15 ｜ 本周文档总数：328 份（PDF 139 / 数据图 189）/ 筛选重点：96 份 ｜ 持仓口径：PORTFOLIO.md V2026-11-10-1745
+行情基准：11-06 收盘 → 11-13 收盘（11-14/11-15 三地休市）｜ 文档源：ima 知识库「404k-0728」（kb_id: ima_kb_u1ZGtMIU）7 个日期文件夹全量枚举</p>
+</blockquote>
+<hr />
+<h2 id="sec-一、本周核心信号"><span class="sec-emoji">🔍</span>一、本周核心信号</h2>
+<h3>信号 1｜英伟达换帅是一次「估值事件」而非「业绩事件」：EPS 一分未动，14 家投行只砍倍数，NVDA 周跌 12.75% 而 SOXX 涨 9.35%</h3>
+<p><strong>数据支撑</strong>：11-12 美东 8:48 公告，黄仁勋即时辞去总裁、CEO 及董事职务，CFO <strong>Colette Kress</strong> 兼任临时 CEO，Synopsys 资深人士 <strong>Harvey Jones</strong> 出任首位董事会主席，永久 CEO 内外部同步遴选。当晚至 11-13，<strong>14 家投行集中更新</strong>：3 家降级（Bernstein 跑赢→与大盘 TP 400→200、奥本海默→Perform 并<strong>撤销目标价</strong>、William Blair→Market Perform）、6 家仅下调 TP（高盛 300→220、花旗 285→225（三日两降）、摩通 320→215、美银 350→280、RBC 330→230、BMO 340→240）、其余维持（瑞银 300、瑞穗 250、Piper 300、Wedbush 345、雷蒙德·詹姆斯 515）。<strong>13 家均值仍约 260 美元、中位 250 美元，82 位覆盖分析师中仅 Seaport 给「卖出」（TP 180）。</strong> 高盛的算法最干净：<strong>EPS 预测 10.00 美元未动，估值倍数 30x 压到 22x</strong>——「E 不变，只有 P/E 变」。股价路径：11-12 盘前 155.84（−10%）、盘中低 148.80（−14.3%）、收 166.19（−4.34%），<strong>长下影线近 12 个百分点</strong>；全周 NVDA <strong>−12.75%</strong>，而 SOXX <strong>+9.35%</strong>。</p>
+<p><strong>产业链含义</strong>：这是本轮周期第一次「关键人风险」被量化成倍数折价。三条线并行：① <strong>供应链协调能力</strong>（Dylan Patel 访谈口径：真实的供应链冲击窗口在 2028 年，而非 2027 年）；② <strong>出口管制新变量</strong>（讨论重点指向「中国模型租用海外云算力」，瑞银测算受影响收入约占整体一成）；③ <strong>融资平台连续性</strong>（Kress 是否延续 5,000 亿美元融资平台/收入分成计划）。要点在于：<strong>订单没变、指引没变、客户没变，唯一变的是「谁来签字」</strong>——而市场给签字人的折价是 27%（30x→22x）。</p>
+<p><strong>对持仓含义</strong>：NVDA 不在持仓，但它决定整条链的<strong>倍数天花板</strong>。本周的钱没有离开半导体，而是从 NVDA 搬到 <strong>AVGO +18.16%、MU +12.80%、COHR +13.14%、LITE +10.77%、AMAT +11.36%</strong>——「去英伟达化」是<strong>再分配</strong>而非<strong>撤退</strong>。对持仓的直接映射：<strong>SKHY/MU/TSM/ALAB/CLS/LITE/CIEN 全部受益于这次再分配</strong>（本周分别 +3.49%/+12.80%/+6.20%/+16.32%/+16.29%/+10.77%/+15.26%），这是 IB 大号本周 +9.63% 的主因。</p>
+<h3>信号 2｜AI 信用的「三级下沉」被官方测绘：美联储点名率 87%、先进计算债务 6,800 亿、债务+担保+租约合计超 3 万亿美元</h3>
+<p><strong>数据支撑</strong>：美联储半年度《金融稳定报告》中 <strong>AI 成为被提及最多的风险，87% 的受访联系人点名（5 月仅 50%）</strong>；同一报告披露<strong>先进计算相关债务发行至 10 月已达 6,800 亿美元，为 2023 年全年的 5 倍</strong>，而<strong>债务、担保与未来租约三者合计可能超过 3 万亿美元</strong>。三层结构本周被逐级拆开：<strong>一级（云厂自己发债）</strong>——2026 年五大 CSP 发债 <strong>3,260 亿美元（2025 年的 3 倍）</strong>，甲骨文 11 月新债票息升至 <strong>7%–8.65%</strong>，Meta 完成 90 亿欧元六笔票据（4.300%–6.400%）+ 250 亿美元美元债 + 250 亿普通股 + 125 亿优先股，<strong>总融资超 460 亿美元</strong>；<strong>二级（芯片商为客户担保）</strong>——英伟达承诺与担保 <strong>5,305 亿美元</strong>（上季 1,840 亿），拆为股权投资 990 亿（一年前 13 倍）+ 担保 1,085 亿 + AI 云回购与第三方租约 560 亿，其中<strong>对上游的产能承诺一个季度由 1,190 亿冲到 2,790 亿美元（大部分是存储）</strong>；<strong>三级（设备/机柜残值兜底）</strong>——博通 10-27 SEC 8-K 披露<strong>最高 430 亿美元或有负债</strong>（为 Anthropic 机柜租赁残值兜底），赔付公式<strong>「未偿租约余额 72.5% − 处置回收额」</strong>，Rothschild Redburn 据此把 AVGO 从买入降至中性、<strong>TP 595→398（−33.1%）</strong>。</p>
+<p><strong>产业链含义</strong>：过去两年 AI 交易被当成「盈利故事」（订单可见度、backlog、预付款），本周起被官方重新归类为「<strong>信用故事</strong>」。两者最大的区别：盈利故事用 DCF 定价，信用故事用<strong>利差</strong>定价。高盛 11-12 把 2027 展望命名为「<strong>成长的烦恼</strong>」，并给出关键判断：<strong>AI 投资增量占 GDP 比重将在 2027 年初见顶</strong>；2026 年 AI 对美国 GDP 增长贡献约 <strong>21%</strong>，但对标普 500 盈利增长贡献 <strong>62%</strong>——<strong>AI 对股市的贡献是对 GDP 的三倍，所以增速见顶对市场的冲击远大于对实体</strong>。</p>
+<p><strong>对持仓含义</strong>：这是<strong>分母端的终极约束，且无法被任何一份好财报证伪</strong>。光模块属于「卖硬件给云厂」（不承担客户残值风险），在信用链里位置相对干净；但它的订单分母来自 CSP capex，而 capex 的边际增量取决于发债窗口，传导链是「利差走阔 → 发债成本上升 → capex 指引下修 → 光模块订单」，<strong>滞后约 2–3 个季度</strong>。存储链的确定性反而更高——<strong>供给被预付款锁死、需求被担保锁死</strong>（英伟达 2,790 亿产能承诺里「大部分是存储」）。</p>
+<h3>信号 3｜大摩一周两把刀：先把存储长期利润率从 60% 砍回 40%（SKHY TP −38.5%），再把利基存储的估值锚换成「1.0 倍 PB」（四家 TP 腰斩）</h3>
+<p><strong>数据支撑</strong>：<strong>11-09《存储：2028 年盈利悬崖》</strong>——SK 海力士 TP <strong>260 万→160 万韩元（−38.5%）</strong>、三星 38.1 万→30.9 万（−19%）并被<strong>升为新首选</strong>；唯一推手是<strong>长期利润率假设</strong>：过去假设到 2035 年 DRAM 长期利润率近 <strong>60%</strong>，现把 2029–2035 年周期平均拉回约 <strong>40%</strong> 的历史常态（SK 的 DRAM 假设降至 <strong>32%</strong>，接近其 15 年均值 31%），<strong>HBM 溢价从 2029 年 +20pt 逐级收窄、2033 年归零</strong>。<strong>11-10/11《旧存储：定价权还能撑多久》</strong>——范围限定 DDR3/DDR4、SLC/MLC NAND、NOR：华邦电子、兆易创新、力积电、旺宏 <strong>增持→中性</strong>，群联 <strong>中性→减持</strong>；TP 分别砍 <strong>−58.3% / −65.5% / −51.4% / −59.1% / −47.6%</strong>，南亚 −8.3%、爱普 −12.1%（移出首选）。<strong>方法切换才是核心</strong>：对有晶圆厂者把 <strong>1.0 倍 2027E PB 定为下行锚</strong>（华邦 2.9→1.2x、力积电 2.0→1.0x），对无晶圆厂用剩余收益模型（<strong>兆易 beta 1.14→1.50、股权成本 9.4%→11.8%，隐含约 9 倍 2027E PE</strong>）。<strong>盈利下调远小于目标价</strong>：华邦 2027 EPS 仅 −9%，而 TP 降 58%——<strong>差别全在倍数</strong>。</p>
+<p><strong>产业链含义</strong>：关键词不是「看空」，而是「<strong>定价权是双向的</strong>」。利基存储这轮暴涨的本质是「没有长协保护的定价灵活性」——供给一收，季度议价可一次提上去（华邦 2026 年 DRAM ASP 预计 +273%、NOR +138%）；但同一结构在需求转弱时就是弱点（客户随时减单、无最低采购量）。<strong>更值得记的是同一家投行 11-09 两份报告口径相反</strong>：北美半导体团队的「购物清单」把内存列为「转为进攻」，亚洲团队却把长期利润率砍掉三分之一——<strong>分歧不在当期盈利，而在 2029 年之后</strong>。</p>
+<p><strong>对持仓含义</strong>：① <strong>持仓无存储原厂</strong>，但 SKHY 是 IB 两户合计 <strong>108 股</strong>（91+17），本周仍 +3.49%——<strong>这是「评级下修」与「股价上涨」同周成立</strong>的样本，说明当期盈利仍在上修（回购注销使 EPS 上调）；② <strong>真正的外溢风险是「方法传染」</strong>：若后续有投行把 CCL/电子布的估值锚也换成「历史中枢 PB」，<strong>生益（13.7x 2027E）、巨石（17.3x 2027E）都将面临倍数压缩</strong>——这是当前材料链最被低估的风险；③ 一个罕见的定价信号：<strong>兆易创新 11-11 收 259.62 元，大摩新 TP 259 元，相差 0.62 元（0.24%）</strong>——卖方把目标价精确落在当日收盘价上。</p>
+<h3>信号 4｜存储「三层分裂」被三套独立口径同时确认：NAND 现货四周跌超 20%、DDR4 连跌四周、而 4Q 合约仍 +8%、HBM 2027 上修至 +121%</h3>
+<p><strong>数据支撑</strong>：美银（11-13）给出方向相反的两个判断：<strong>NAND 现货自 10 月中旬跌超 20%，本周 512Gb 再跌超 10%</strong>；假设 <strong>4Q26 NAND 均价环比 +3%，1Q27 转低个位数下调（PC/手机 IT NAND 环比 −5%~−10%）</strong>；<strong>DRAM 4Q26 环比 +8%、1Q27 +5%，合约价无下调迹象</strong>；渠道 512Gb TLC 已从 <strong>23 美元降至 16 美元</strong>。三套独立口径交叉验证：<strong>memoryindex（11-14）DDR5 16Gb 61.39 美元（30 日 +6.46%、同比 +484%）、NAND TLC 512G 15.91（−5.07%）</strong>；<strong>DDRWatcher 第 46 周把市场状态从 Transition 下调为 Correction（低置信）</strong>——DDR4 芯片均价 46.51 美元、<strong>周跌 2.7%、连续第四周、30 日 −5.5%</strong>，DDR5 现货 60.21（周 −1.4%）；<strong>DDR5 模组 243.22（周 +0.6%）而颗粒走平 → 模组传导滞后</strong>；<strong>合约数据仍停 9 月 30 日、已 45 天未更新</strong>。结构上 <strong>DDR5/DDR4 比价升至 1.29x（四周前 1.23x）</strong>。另一侧：集邦<strong>上修 2027 年 HBM 均价至同比 +121%</strong>，并给出 2025Q4–2026Q4 全球闪存累计涨约 <strong>300%</strong>；10 月 PC 通用 DDR4 8Gb 合约均价 <strong>27.5 美元，创 2016 年 6 月有统计以来新高</strong>。</p>
+<p><strong>产业链含义</strong>：「存储涨价」这句话今天必须带定语：<strong>企业级长协（最紧）&gt; DRAM 合约（仍涨）&gt; NAND 现货（确认下跌）</strong>。更重要的二阶信号是<strong>终端成本反噬已开始</strong>：大疆因「半导体及存储等关键零部件成本大幅上涨」宣布 <strong>11-18 00:00 起调价</strong>；双 11 笔记本线上销售均价升至 <strong>7,759 元、同比 +13.4%</strong>，热销榜前十全部 5,000 元以上，华硕天选 7 Pro <strong>比 618 贵 3,050 元</strong>——<strong>这是「涨价传导到终端 → 需求破坏」的第一个双 11 实测样本</strong>。</p>
+<p><strong>对持仓含义</strong>：材料链（CCL/电子布）的成本端与存储无关，但<strong>下游整机成本上升会压制 PCB 单位用量增速</strong>（滞后 1–2 季度）。更直接的含义：<strong>终端降价促销空间被成本吃掉，「以价换量」失效 → 2027 年消费电子链的量弹性低于价弹性</strong>。与上周「三层分裂」结论一致，本周新增的证据是「终端价已经涨了，而且开始伤量」。</p>
+<h3>信号 5｜一条政策信息把 40% 的折价修掉了一半：微软游说白宫放弃中国光模块禁令，旭创单日 +15.07%（年内最大），但全周只 +4.06%、周五又 −8.39%</h3>
+<p><strong>数据支撑</strong>：11-11 盘中传播、多家媒体同日报道——<strong>微软及其他企业、行业组织一直在向特朗普政府施压，要求叫停一项禁止从中国进口光收发器的计划</strong>；微软在美有 <strong>35 个数据中心在建、134 个规划中</strong>；ITI 总法律顾问原话「这项禁令真的可能让数据中心建设陷入停滞」。背景：<strong>中国厂商约占全球光收发器市场三分之二（Counterpoint）</strong>。当日 <strong>申万通信 +7.99% 居首、CPO 概念 +4.75%、主力净流入 251.37 亿（全市场 2/805）</strong>；<strong>中际旭创 +15.07%（542.00 元，成交 312.29 亿全 A 第一）、天孚 +13.96%、新易盛 +16.97%、源杰 +20% 涨停</strong>。同日旭创公告：<strong>在手订单饱满、海外主要客户订单已下至 2027 年、部分重点客户给出 2028 年明确指引</strong>，NPO/XPO 将于 2027H2 逐步释放；<strong>已回购 565.31 万股（49.97 亿元）用途变更为「注销并减少注册资本」</strong>（按 11.78 亿股计增厚 EPS 约 0.48%）。但 11-13 单日 <strong>−8.39%</strong>，全周仅 <strong>+4.06%</strong>。</p>
+<p><strong>产业链含义</strong>：这是本轮下跌以来第一条「<strong>能改变规则</strong>」而不是「改变情绪」的信息。压制光模块的三重折价里，<strong>北美监管限制是唯一无法用业绩证伪的一条</strong>，一旦解除，压低倍数的理由就少一个。但必须说清性质：<strong>游说是「过程」不是「结果」</strong>，禁令未正式撤销、白宫未表态——<strong>因此这一天的涨幅里，相当一部分是「折价修复」而非「盈利上修」，修复可以很快很猛，但不可重复</strong>。本周末端的结构是「<strong>A 股涨跟三成、跌跟八成</strong>」：旭创 +4.06% vs COHR +13.14%（<strong>31%</strong>）、天孚 +2.45% vs LITE +10.77%（<strong>23%</strong>）、通信 ETF +3.21% vs SOXX +9.35%（<strong>34%</strong>）。</p>
+<p><strong>对持仓含义</strong>：<strong>A 股个股已全部清仓</strong>（10-27），当前仅有 4 只 ETF，其中 588710 与光模块/设备相关度有限——<strong>这条信息对持仓的直接弹性已大幅下降</strong>，但它决定「跟踪池」的观察价值：<strong>466.20 元 = 7.3x 2027E EPS（64 元）</strong>，低于花旗最悲观情景的 8.7x——<strong>市场在用「比最悲观卖方还悲观」的倍数定价</strong>，向下由筹码决定（不可测），向上由「倍数修复到 15x」决定（对应约 960 元）。</p>
+<h3>信号 6｜CCL 第五轮涨价落地、股价却跌停：生益 M6+15%/PP+25% 排产至 2027/1，但覆铜板周五 −8.81% 全概念第一、建滔周 −12.89% 为持仓最差</h3>
+<p><strong>数据支撑</strong>：<strong>7628 厚布 14.6–14.65 元/米（11 月环比 +1.5 元）、2116 薄布 20.2 元/米（+2.5 元）、1080 约 20.8 元/米</strong>；<strong>电子纱 E225 7.15 万元/吨（+1.05~1.25 万）、D450 14.75 万元/吨（+2.775 万）</strong>。<strong>生益科技 11 月起调价：M6 及以下板材 +15%、粘结片 PP +25%，为近两年最大单轮，订单排产已至 2027 年 1 月</strong>；<strong>中国巨石 11 月常规布每米再上调 1.5 元、薄型约 2 元，7628 接近 15 元/米，库存低位、产出被订单锁定</strong>。累计：<strong>7628 由 2025/9 的 3.9 元 → 2026/9 的 11.8 元（+203%），较 2025Q3 末 4.15 元 +250%，连续 12 个月斜率未收</strong>。供给刚性：<strong>丰田高端织机占全球 &gt;90%，JAT910 交期 18–24 个月，2026 年已停接新单，新单排到 2028 年以后；2027 年全行业电子布供给增速仅 5%–6%</strong>。但盘面完全反向：11-13 <strong>覆铜板 −8.81%（全概念跌幅第一）、PCB −4.32%、MLCC −4.34%</strong>；<strong>生益跌停 −9.99%、沪电跌停 −10.00%、建滔积层板 −8.25%</strong>。周线分化极大：<strong>沪电 +12.28%、巨石 −0.29%、生益 −3.32%、建滔积层板 −12.89%</strong>——同一概念、同一周，跨度 <strong>25 个百分点</strong>。</p>
+<p><strong>产业链含义</strong>：材料端这轮涨价的「物理性」比光模块的「叙事性」更强，但<strong>资本市场给的弹性更小</strong>，原因有三：① 涨价已跑 4–5 个季度，<strong>边际信息量在衰减</strong>；② 约束是「<strong>织机交期</strong>」而非资本（金安国纪 5 亿元/1.3 亿米 ≈ 3.85 元/米 capex 强度，回收期极短但织机等 18–24 个月）→ <strong>2028 年可能出现「织机集中到货」的供给冲击，市场已开始提前交易这个远期风险</strong>；③ 下游是 AI 服务器/交换机而非消费电子，增速上限被 AI 服务器出货锁死。</p>
+<p><strong>对持仓含义</strong>：① <strong>建滔积层板是港股通第一大持仓（8,500 股 ≈ ¥21.98 万，占 32.9%）</strong>，本周 <strong>−12.89%（−HK$33,320，占港股通全部跌幅的 115%）</strong>——这是港股通本周 −3.67% 的唯一原因；② <strong>分层已经出现</strong>：花旗 11-10 口径下「<strong>越靠近上游物理约束越抗跌</strong>」——巨石 −0.29% &gt; 生益 −3.32% &gt; 建滔 −12.89%，因为巨石的锚是「织机交期 + 2027 缺口 20%」，而建滔承受的是<strong>港股流动性折价 + 中游加工定价权</strong>；③ 一个必须记住的判据：<strong>生益 13.7x 2027E、巨石 17.3x 2027E，若「PB 锚」方法传染，两者都有倍数压缩空间</strong>。</p>
+<h3>信号 7｜Nebius / CoreWeave 同周交卷：需求侧无懈可击（+571%、backlog 1,325 亿、旧卡租价 +30~50%），融资侧日渐吃紧（利息 +173%、FCF −77 亿）——NBIS 周 −10.51% 是持仓最大拖累</h3>
+<p><strong>数据支撑</strong>：<strong>CoreWeave Q3</strong>——营收 36.61 亿（+168%）、调整后营业利润 3.79 亿（利润率 10%，提前一季达标）、<strong>backlog 1,325 亿</strong>（6 月底 1,040 亿、一年前 556 亿）、活跃电力 &gt;1.7GW；<strong>2027 年已规划算力基本售罄，合格客户需求约为同期可用容量的 10 倍</strong>；定价能力：7 月涨价约 25%、Q3 末再涨约 10%，<strong>4–5 年长协年化 2,000–2,500 万美元/MW、短协 &gt;4,000 万美元/MW</strong>，<strong>上一代 GPU（Ampere/Hopper）租价环比 +30%–50% 且高于原始合同价</strong>。另一面：<strong>净利息支出 8.46 亿（+173%，快于收入 +168%）、调整后营业利润仅覆盖利息的 45%、GAAP 亏损 7.09 亿、季度 FCF −77 亿、债务约 470 亿美元</strong>。<strong>Nebius Q3</strong>——营收 9.808 亿（+571%）、调整后 EBITDA 4.658 亿（利润率 47.5%）、<strong>营业利润转正至 5,040 万</strong>；但 <strong>3.25 亿为「轻资产」模式首期一次性收入（约占单季 1/3）</strong>；2026 营收降至 30–32 亿区间下沿（第三方 colocation 滑入 2027），<strong>2026 capex 上调至约 270 亿</strong>，2027 指引营收 120–130 亿、capex 400–450 亿；<strong>预付款覆盖相关 capex &gt;100%（Q2 为 50%–60%）</strong>。股价：NBIS 11-13 <strong>−9.92%（盘前一度 −22%）</strong>，全周 <strong>−10.51%</strong>；CRWV 全周 <strong>+14.50%</strong>。</p>
+<p><strong>产业链含义</strong>：这两份财报同时证明了两件相反的事——① <strong>需求侧「旧卡不退役、持续满载」是供给短缺外溢到折旧完毕资产的教科书证据</strong>（如果新卡够用，没人会溢价续旧卡）；② <strong>融资侧利息增速已跑在收入增速前面</strong>，单季利息相当于全年调整后营业利润指引中值的 86%。核心矛盾因此是：<strong>需求侧无懈可击，融资侧日渐吃紧</strong>。对上游（光模块、存储、GPU）是纯利好——客户越缺算力越不会砍单；对中游（neocloud）是信用问题——<strong>它的资本开支就是上游的收入</strong>。</p>
+<p><strong>对持仓含义</strong>：① <strong>NBIS 是 IB 小号第一大持仓（112 股 ≈ $14.1K，占该户 63% 浮亏）</strong>，本周 −10.51% 贡献 <strong>−$1,524</strong>，是 IB 小号 −2.65% 的主因；② <strong>Nebius 的「交付失约」比「需求不足」更值得盯</strong>：第三方 colocation 延期 + DataOne 从临时发电切换到 <strong>Bloom Energy 燃料电池永久供电</strong>导致排期重置——<strong>这条对 BE 是直接的具名客户利好</strong>（BE 本周 +10.82%）；③ <strong>一个领先指标</strong>：GPU 租赁价格 → neocloud 信用 → 光模块订单节奏，这个传导顺序本周被高盛/UBS 明确写出，<strong>观察点是 CRWV 40 亿美元投资级贷款的定价与 IREN/NBIS 的债券利差</strong>。</p>
+<h3>信号 8｜设备端第一次成为「避风港」：长川 +4.73% 为跟踪池最强、159516 月 +11.06%，与光模块的定价基准彻底分家</h3>
+<p><strong>数据支撑</strong>：11-13 单日 <strong>159516 半导体设备ETF −2.06%、561980 −1.31%，而 515880 通信ETF −5.64%</strong>，撕裂 <strong>3.58–4.33 个百分点</strong>。本周四日四种组合：11-09 设备 +17.83% vs 通信 −6.25%（24pct 撕裂）；11-11 通信 +8.00% vs 设备 +2.32%（反向 5.7pct）；11-12 设备 +0.57%/561980 +1.71% vs 通信 −3.49%；11-13 设备 −2.06% vs 通信 −5.64%。<strong>周线：长川 +4.73%（跟踪池最强、月 +5.91% 唯一为正）、159516 周 0.00% 但月 +11.06%（最强）</strong>。基本面侧：<strong>中芯国际 3Q26 营收 31.9 亿美元（+6.1% QoQ）、毛利率 29.9%（+4.6pct 超指引）</strong>，赵海军口径「<strong>设备交付周期普遍 16–24 个月，部分紧缺设备超 24 个月</strong>」、「2027 年算力相关芯片供给仍偏紧，2028 年中后期存储供需有望趋于平衡」；<strong>AMAT 财报营收 +53%、指引超预期，全周 +11.36%</strong>。</p>
+<p><strong>产业链含义</strong>：这不是轮动，而是「<strong>两套定价基准在同一个板块里共存</strong>」——光模块定价「海外订单 + 政策风险（可被一条新闻重置）」，设备定价「国产替代 + 晶圆厂 capex（只能被季报验证）」。<strong>当出现政策级新闻时，光模块单日弹性是设备的 3–4 倍；没有新闻时，设备更抗跌。</strong> 这解释了为什么长川在 11-11 只涨 4.15%（同日 TER +8.30%），而在 11-13 只跌 3.01%（同日旭创 −8.39%）。</p>
+<p><strong>对持仓含义</strong>：<strong>A 股 4 只 ETF 中 588710（科创半导体设备）是最大持仓（44,200 份 ≈ ¥3.2 万，占 33%）</strong>，本周 +0.83%、周内最高 0.796、最低 0.714（振幅 11.5%）——<strong>「设备抗跌」这条属性在持仓层面已经兑现了一半</strong>：A 股账户本周 <strong>+3.11%</strong>，主要来自 QDII 三只（+3.51%/+4.03%/+5.20%）而非 588710。风险在于<strong>长川 PE TTM 53.2x 是组合内最高</strong>，且筹码成本 198.45 元已被跌破，设备端「避风港」属性一旦遇到某季订单增速低于 30%，溢价会快速消失。</p>
+<hr />
+<h2 id="sec-二、价格数据时间序列"><span class="sec-emoji">📊</span>二、价格数据时间序列</h2>
+<blockquote>
+<p><strong>口径说明（务必先读）</strong>：404K 共享库原文接口<strong>连续第 37 期返回 220030</strong>，本周 7 张「存储价格涨跌幅」、7 张「LLM Token 支出·GPU 租赁价格」、6 张「Nebius GPU 现货价格」、5 张「数据中心高收益债每日价格」数据图<strong>均不可读</strong>。下表数值来自 <strong>Nebius 官方页、priceofcompute、crudeindex、Silicon Data、grabgpu/gpuprice、CoreWeave 电话会、memoryindex、DDRWatcher、TrendForce、美银、集邦、CFM、卓创资讯</strong>，均标注来源与时点。<strong>GPU 租赁至少六套口径同日同卡可差 4 倍以上，跨源不可相减；周变化列仅在同源可比时给数值。</strong></p>
+</blockquote>
+<h3>2.1 算力价格（GPU 租赁 / Token 支出）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标（口径）</th>
+<th>上周（11-06/11-07）</th>
+<th>本周（11-11 ~ 11-14）</th>
+<th>周变化</th>
+<th>趋势判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H100（Nebius 官方现货）</strong></td>
+<td>$0.80（11-07）</td>
+<td><strong>$1.50（11-11）</strong></td>
+<td><strong>+87.5%（同源）</strong></td>
+<td>🔴 <strong>现货裂口收窄</strong>，从按需价的 18% 回到 33%；Nebius 取跨区最低价，区域容量退出会造成跳变</td>
+</tr>
+<tr>
+<td><strong>H200（Nebius 现货）</strong></td>
+<td>$1.50（11-07）</td>
+<td><strong>$1.00（11-11）</strong></td>
+<td><strong>−33.3%（同源）</strong></td>
+<td>🟢 中间档继续塌陷，为按需价 5.40 的 18.5%</td>
+</tr>
+<tr>
+<td><strong>B200（Nebius 现货）</strong></td>
+<td>$2.30（11-07）</td>
+<td><strong>$0.99（11-11）</strong></td>
+<td><strong>−57.0%（同源）</strong></td>
+<td>🟢 <strong>本周最大跌幅</strong>，某区域释放库存所致，非需求崩塌</td>
+</tr>
+<tr>
+<td><strong>B300（Nebius 现货）</strong></td>
+<td>$4.00（11-07）</td>
+<td><strong>$6.30（11-11）</strong></td>
+<td><strong>+57.5%（同源）</strong></td>
+<td>🔴 新卡现货回升，为按需价 9.50 的 66%</td>
+</tr>
+<tr>
+<td><strong>H100（Nebius 按需/list）</strong></td>
+<td>$4.50</td>
+<td><strong>$4.50（11-13）</strong></td>
+<td><strong>0.0%</strong></td>
+<td>🟡 10-01 已调价 +16.9%，本周未再动</td>
+</tr>
+<tr>
+<td><strong>H200（Nebius 按需）</strong></td>
+<td>$6.30</td>
+<td><strong>$5.40（11-13）</strong></td>
+<td><strong>−14.3%</strong></td>
+<td>🟡 与 spot 同向下行</td>
+</tr>
+<tr>
+<td><strong>B200（Nebius 按需）</strong></td>
+<td>$4.50</td>
+<td><strong>$8.50（11-13）</strong></td>
+<td>异源不可比</td>
+<td>🟡 挂牌口径混乱，以官网 11-13 页为准</td>
+</tr>
+<tr>
+<td><strong>B300（Nebius 按需）</strong></td>
+<td>$8.89（HGX）</td>
+<td><strong>$9.50</strong></td>
+<td><strong>+6.9%</strong></td>
+<td>🔴 新卡按需仍在抬价</td>
+</tr>
+<tr>
+<td>H100（第三方聚合中位）</td>
+<td>$2.96（Silicon Data 11-03）</td>
+<td><strong>$3.99（SXM 中位，11-13）</strong></td>
+<td>异源不可比</td>
+<td>🟡 两套样本不同（52 家 vs 少数专业商）</td>
+</tr>
+<tr>
+<td>B200（Ornn 指数）</td>
+<td>$9.46（11-05）</td>
+<td><strong>$9.84（11 月中）</strong></td>
+<td><strong>+4.0%（同源）</strong></td>
+<td>🔴 成交口径仍在涨，月环比 +32%</td>
+</tr>
+<tr>
+<td>H200（Ornn 指数）</td>
+<td>$6.45（11-05）</td>
+<td><strong>~$7.75（11 月中）</strong></td>
+<td><strong>+20%（同源）</strong></td>
+<td>🔴 月环比 <strong>+49%</strong>，本周最强涨价信号</td>
+</tr>
+<tr>
+<td><strong>CoreWeave 旧卡（Ampere/Hopper）</strong></td>
+<td>—</td>
+<td><strong>环比 +30%~+50%，且高于原合同价</strong></td>
+<td>本周新增</td>
+<td>🔴 <strong>供给短缺外溢到折旧完毕资产</strong>，电话会口径</td>
+</tr>
+<tr>
+<td><strong>12 月起提价（Crusoe / Lambda）</strong></td>
+<td>—</td>
+<td>H100 $4.50（+15%）/ H200 $5.40（+26%）/ B300 $9.90（+10%）</td>
+<td>本周新增</td>
+<td>🔴 三家供应商同步提价 <strong>10%–26%</strong>，集中在「能跑大模型的高端卡」</td>
+</tr>
+<tr>
+<td>算力价格指数（priceofcompute，8/10=100）</td>
+<td>—</td>
+<td><strong>143.4（11-14）</strong>；142.1（11-13）</td>
+<td>7D +1.6% / <strong>30D +5.9%</strong></td>
+<td>🔴 仍在上行</td>
+</tr>
+<tr>
+<td>Vast.ai 在租台数</td>
+<td>—</td>
+<td>H100 22 台 / A100 148 台 / <strong>B300 仅 10 台</strong></td>
+<td>本周新增</td>
+<td>🔴 <strong>新卡供给仍极紧、旧卡充裕</strong></td>
+</tr>
+<tr>
+<td>Nebius 财报口径</td>
+<td>—</td>
+<td><strong>GPU 平均时租环比 +20% 以上</strong>；ACV/MW &gt;2,500 万美元</td>
+<td>本周新增</td>
+<td>🔴 唯一来自公司财报的租金口径</td>
+</tr>
+<tr>
+<td>LLM Token 支出指数</td>
+<td>$0.89/百万（11-03，周 −7.0%）</td>
+<td><strong>本周未获取</strong>（7 张数据图不可读）</td>
+<td>留白</td>
+<td>⚪ 不做推测</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期最重要的口径教训</strong>：<strong>B300 在 crudeindex 是「4 周 +43.7%」，在 priceofcompute 是「30 天 −20.0%」</strong>——两套都叫「中位挂牌价」，但 provider 样本不同（一个跨 52 家、一个仅 3 家）。<strong>任何「GPU 租金在涨/在跌」的结论，必须先说明是哪套口径、样本几家。</strong> 方向性判断应以「在租台数」为准。</p>
+</blockquote>
+<h3>2.2 存储价格（现货 / 合约 / 渠道，三套并列）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>上周（11-06 / 11-07）</th>
+<th>本周（11-13 / 11-14）</th>
+<th>周变化（同源）</th>
+<th>趋势判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DDR5 16Gb 现货（DDRWatcher 日索引）</strong></td>
+<td>$60.167（11-06 现货板）</td>
+<td><strong>$60.24（11-13）</strong></td>
+<td><strong>+0.1%</strong></td>
+<td>🟡 <strong>高位横盘</strong>，12 周 +13.0%、距 41 周高点仅 −2.0%</td>
+</tr>
+<tr>
+<td>DDR5 16Gb（memoryindex 00:00Z）</td>
+<td>—</td>
+<td><strong>$61.39（11-14）</strong></td>
+<td>30D <strong>+6.46%</strong>、YoY <strong>+484%</strong></td>
+<td>🔴 异源口径，与上者不可混算</td>
+</tr>
+<tr>
+<td><strong>DDR4 8Gb 现货</strong></td>
+<td>$47.08（11-06）</td>
+<td><strong>$46.23（11-13）</strong></td>
+<td><strong>−1.80%</strong></td>
+<td>🟢 连跌第四周，30 日 −5.5%</td>
+</tr>
+<tr>
+<td>DDR4 芯片均价（DDRWatcher 周均 W46）</td>
+<td>46.66（W45）</td>
+<td><strong>46.51（W46）</strong></td>
+<td><strong>w/w −2.7%</strong></td>
+<td>🟢 <strong>连续第四周下跌</strong>，全市场最弱</td>
+</tr>
+<tr>
+<td>GDDR6</td>
+<td>$12.47</td>
+<td><strong>$12.52</strong></td>
+<td>+0.4%</td>
+<td>🟡 无趋势</td>
+</tr>
+<tr>
+<td>DDR5 模组</td>
+<td>243.15（11-11）</td>
+<td><strong>243.22（11-14）</strong></td>
+<td>+0.03%</td>
+<td>🟡 <strong>模组传导滞后</strong>：芯片跌、模组微涨</td>
+</tr>
+<tr>
+<td><strong>DDR5 / DDR4 比价</strong></td>
+<td>1.28x（四周前 1.20x）</td>
+<td><strong>1.29x（四周前 1.23x）</strong></td>
+<td>差距扩大</td>
+<td>🔴 HBM/DDR5 挤占产能，旧节点反而更紧</td>
+</tr>
+<tr>
+<td><strong>NAND TLC 512G（memoryindex）</strong></td>
+<td>≈$16.76（由本周 −5.07% 反推）</td>
+<td><strong>$15.91</strong></td>
+<td><strong>−5.07%</strong></td>
+<td>🟢 <strong>确认下跌</strong>；美银口径自 10 月中 <strong>−20%+</strong>、本周 512Gb <strong>−10%+</strong></td>
+</tr>
+<tr>
+<td>512Gb TLC 渠道价</td>
+<td>$23</td>
+<td><strong>$16</strong></td>
+<td><strong>−30.4%</strong></td>
+<td>🟢 渠道端已先崩</td>
+</tr>
+<tr>
+<td><strong>4Q26 DRAM 合约（美银）</strong></td>
+<td>上周口径 +13~18%（TF，PC DRAM）</td>
+<td><strong>+8%（DRAM 整体）</strong></td>
+<td>口径不同不可比</td>
+<td>🔴 <strong>合约仍涨、无下调迹象</strong></td>
+</tr>
+<tr>
+<td>4Q26 NAND 合约（美银）</td>
+<td>—</td>
+<td><strong>+3%（1Q27 转低个位数下调）</strong></td>
+<td>本周新增</td>
+<td>🟡 涨幅收敛</td>
+</tr>
+<tr>
+<td>DDR5 RDIMM 合约（CFM 本月）</td>
+<td>—</td>
+<td><strong>32/64/96GB 上调至 $1,030 / $1,800 / $3,025</strong></td>
+<td>本周新增</td>
+<td>🔴 高容量 ASP 首超 $3/Gb</td>
+</tr>
+<tr>
+<td><strong>2027 HBM ASP（集邦）</strong></td>
+<td>+130%（TrendForce 旧口径）</td>
+<td><strong>上修至 YoY +121%</strong></td>
+<td>本周新增</td>
+<td>🔴 上修，与利基存储反向</td>
+</tr>
+<tr>
+<td>全球闪存累计涨幅（集邦）</td>
+<td>—</td>
+<td><strong>2025Q4–2026Q4 累计约 +300%</strong></td>
+<td>本周新增</td>
+<td>🔴 —</td>
+</tr>
+<tr>
+<td><strong>合约数据更新时点</strong></td>
+<td>滞后 38 天（9/30）</td>
+<td><strong>滞后 45 天（仍 9/30）</strong></td>
+<td>恶化</td>
+<td>⚪ 合约「涨不涨」本周无法验证</td>
+</tr>
+<tr>
+<td>DDRWatcher 市场状态</td>
+<td>Transition</td>
+<td><strong>Correction（低置信）</strong></td>
+<td>下调</td>
+<td>🟢 由「转换」进入「修正」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>三条结构判断</strong>：① <strong>模组传导滞后</strong>——DDR5 模组周涨 0.6% 而颗粒走平，模组厂在用涨价函对冲、尚未得到颗粒端支撑；② <strong>合约数据已失明 45 天</strong>，「合约涨不涨」目前无法验证，这是本报告留白处；③ <strong>DDR5/DDR4 = 1.29x</strong>，HBM 挤占 DDR5 产能、旧节点反而更紧。</p>
+</blockquote>
+<h3>2.3 材料价格（CCL / 电子布 / 铜箔）——本周唯一「逆势加速」的涨价链</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>上周（11-06）</th>
+<th>本周（11-13）</th>
+<th>周变化</th>
+<th>趋势判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>7628 厚布</strong></td>
+<td>14.6–14.65 元/米</td>
+<td><strong>14.6–14.65 元/米</strong></td>
+<td><strong>0%（11 月报价未再上调）</strong></td>
+<td>🔴 但 11 月环比 <strong>+1.5 元（+11.4%）</strong>；较 2025Q3 末 4.15 元 <strong>+250%</strong></td>
+</tr>
+<tr>
+<td>2116 薄布</td>
+<td>20.2 元/米（+2.5）</td>
+<td>20.2 元/米</td>
+<td>0%</td>
+<td>🔴 薄布涨幅大于厚布</td>
+</tr>
+<tr>
+<td>1080 薄布</td>
+<td>约 20.8 元/米</td>
+<td>20.8 元/米</td>
+<td>0%</td>
+<td>🔴 累计约 +290%</td>
+</tr>
+<tr>
+<td>电子纱 E225</td>
+<td>7.15 万元/吨（+1.05~1.25 万）</td>
+<td>7.15 万元/吨</td>
+<td>0%</td>
+<td>🔴 纱是下一个瓶颈（花旗口径）</td>
+</tr>
+<tr>
+<td>电子纱 D450</td>
+<td>14.75 万元/吨（+2.775 万）</td>
+<td>14.75 万元/吨</td>
+<td>0%</td>
+<td>🔴 —</td>
+</tr>
+<tr>
+<td><strong>生益 CCL 调价（11 月起）</strong></td>
+<td>公告未落地</td>
+<td><strong>M6 及以下 +15%、PP +25%</strong></td>
+<td>本周落地</td>
+<td>🔴 <strong>近两年最大单轮</strong>，排产至 2027/1</td>
+</tr>
+<tr>
+<td><strong>巨石 11 月调价</strong></td>
+<td>常规 +1.5 / 薄型 +2 元</td>
+<td>同（7628 接近 15 元/米）</td>
+<td>—</td>
+<td>🔴 库存低位、产出被订单锁定</td>
+</tr>
+<tr>
+<td>HVLP4 铜箔缺口</td>
+<td>2026 年 37%（950/1,500 吨）、2027 年 23%</td>
+<td>同</td>
+<td>—</td>
+<td>🔴 加工费自 2025/12 起 <strong>+30%–50%</strong></td>
+</tr>
+<tr>
+<td>上游高端品价差</td>
+<td>低介电二代布约 160 元/米、石英布 250–400 元/米</td>
+<td>同</td>
+<td>—</td>
+<td>🔴 同品类内部价差 <strong>超 20 倍</strong></td>
+</tr>
+<tr>
+<td>高位板材倍数（以 M2=1）</td>
+<td>M4 1.4x / M6 2.4x / M8 6.5x / M9 12.1x</td>
+<td>同</td>
+<td>—</td>
+<td>🟡 普通 FR-4 年内累计约 +130%</td>
+</tr>
+</tbody>
+</table></div>
+<h3>2.4 本周价格信号的三个「反向读数」</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>上周</th>
+<th>本周</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GPU 现货 vs 按需</strong></td>
+<td>现货塌、按需涨（折价 −49%~−82%）</td>
+<td><strong>现货裂口收窄</strong>（H100 0.80→1.50、B300 4.00→6.30）</td>
+<td>上周的「代际差定价」本周部分回摆，<strong>不能读作需求转强</strong>，是区域容量退出</td>
+</tr>
+<tr>
+<td><strong>存储现货 vs 合约</strong></td>
+<td>现货跌、合约涨</td>
+<td><strong>同向加剧</strong>（NAND 现货 −5%，合约 +3~8%）</td>
+<td>合约滞后 45 天，<strong>现货是先行、合约是后验</strong></td>
+</tr>
+<tr>
+<td><strong>材料涨价 vs 股价</strong></td>
+<td>涨价链逆势加速</td>
+<td><strong>股价反向暴跌</strong>（覆铜板 −8.81%）</td>
+<td>涨价已跑 4–5 季度，<strong>边际信息量衰减，市场开始交易 2028 年供给冲击</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="sec-三、持仓个股与组合一周动"><span class="sec-emoji">💼</span>三、持仓个股与组合一周动态</h2>
+<h3>3.1 组合周表现（按 11-06 持仓股数 × 11-06→11-13 涨跌加权）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>市场 / 账户</th>
+<th>起点市值</th>
+<th>终点市值</th>
+<th>周变动</th>
+<th>周涨跌</th>
+<th>主要贡献</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A股（平安「融资8888」）</strong></td>
+<td>¥97,203</td>
+<td><strong>¥100,221</strong></td>
+<td><strong>+¥3,018</strong></td>
+<td><strong>+3.11%</strong></td>
+<td>513300 纳指 +5.20%、159866 日经 +4.03%、159655 标普 +3.51%</td>
+</tr>
+<tr>
+<td><strong>港股通</strong></td>
+<td>HK$786,459</td>
+<td><strong>HK$757,582</strong></td>
+<td><strong>−HK$28,877 ≈ −¥24,560</strong></td>
+<td><strong>−3.67%</strong></td>
+<td>建滔积层板 −12.89%（−HK$33,320）</td>
+</tr>
+<tr>
+<td><strong>IB 大号</strong></td>
+<td>$59,799</td>
+<td><strong>$65,560</strong></td>
+<td><strong>+$5,761</strong></td>
+<td><strong>+9.63%</strong></td>
+<td>MU +1,060、BE +975、CLS +606、SOXL +494</td>
+</tr>
+<tr>
+<td><strong>IB 小号</strong></td>
+<td>$24,074</td>
+<td><strong>$23,435</strong></td>
+<td><strong>−$639</strong></td>
+<td><strong>−2.65%</strong></td>
+<td>NBIS −1,524（唯一拖累）</td>
+</tr>
+<tr>
+<td><strong>富途大号</strong></td>
+<td>$14,286</td>
+<td><strong>$12,622</strong></td>
+<td><strong>−$1,665</strong></td>
+<td><strong>−11.65%</strong></td>
+<td>GDXU −1,181、TWST −588</td>
+</tr>
+<tr>
+<td><strong>富途小号</strong></td>
+<td>$25,234</td>
+<td><strong>$21,613</strong></td>
+<td><strong>−$3,621</strong></td>
+<td><strong>−14.35%</strong></td>
+<td>GDXU −2,322、MSTU −932、MSTR −433</td>
+</tr>
+<tr>
+<td><strong>美股四户合计</strong></td>
+<td>$123,393</td>
+<td><strong>$123,230</strong></td>
+<td><strong>−$163 ≈ −¥1,169</strong></td>
+<td><strong>−0.13%</strong></td>
+<td>内部剧烈分化：IB 大号 +9.63% vs 富途小号 −14.35%</td>
+</tr>
+<tr>
+<td><strong>三市场合计</strong></td>
+<td>—</td>
+<td>—</td>
+<td><strong>≈ −¥22,711</strong></td>
+<td>—</td>
+<td>港股通贡献全部跌幅的 108%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>基准对照（11-06→11-13）</strong>：上证 <strong>−0.41%</strong>、深成 −1.85%、创业板 <strong>−1.59%</strong>、科创50 <strong>+2.11%</strong>、沪深300 −0.94%、恒指 <strong>−3.45%</strong>、恒生科技 <strong>−6.50%</strong>、QQQ <strong>+3.63%</strong>、SOXL（3x 费半）<strong>+26.87%</strong>。
+<strong>读法</strong>：① <strong>A 股账户跑赢所有 A 股指数 5.0 个百分点以上</strong>，原因是仓位已换成 QDII（日经/标普/纳指），<strong>恰好买了本周最强的资产</strong>——这不是选股能力，是 11-06 那次「清通信ETF + 加 QDII + 转入 ¥10 万」的副产品；② <strong>港股通跑输恒指 0.2pt、跑赢恒科 2.8pt</strong>，全部压力来自建滔一只；③ <strong>美股四户合计几乎打平（−0.13%）</strong>，但内部分化 24 个百分点——<strong>IB 大号 +9.63%（买了 MU/BE/CLS/SOXL，踩中「去英伟达化」再分配）vs 富途小号 −14.35%（GDXU/MSTU/MSTR 三个杠杆产品同时被商品与加密资产回撤打爆）</strong>。</p>
+<p><strong>必须标注的口径</strong>：① IB 大号 11-10 有 4 笔成交（清 TQQQ 90 @57.36、清 INTC 64 @58.45、ALAB 加 16 股 @213.22/217.69），<strong>上表按 11-06 持仓静态加权，未扣除已卖出的 TQQQ（+$489）/INTC（+$216）浮盈，也未计入已实现 −$2,974</strong> → <strong>账户净值实际变化优于表中数值</strong>（PORTFOLIO 记录 11-10 ELV $21.24K→$27.69K、+30.4%）；② 富途两户价格仍为 11-04 旧快照，股数沿用；③ GDXU/MSTU/MSTR 为 3x/2x/1x 杠杆产品，<strong>本周无 404K 文档覆盖其基本面</strong>，仅记录价格变动，不做归因。</p>
+</blockquote>
+<h3>3.2 A股：4 只 ETF（唯一持仓）+ 5 只跟踪池</h3>
+<p><strong>实际持仓（PORTFOLIO V2026-11-10-1745，11-06 快照）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>持仓</th>
+<th>11-06</th>
+<th>11-13</th>
+<th>周涨跌</th>
+<th>市值变化</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>513300</td>
+<td>纳斯达克ETF华夏</td>
+<td>7,700</td>
+<td>2.577</td>
+<td><strong>2.711</strong></td>
+<td><strong>+5.20%</strong></td>
+<td>+¥1,032</td>
+<td>持仓内最强，直接映射 QQQ +3.63%</td>
+</tr>
+<tr>
+<td>159866</td>
+<td>日经ETF工银</td>
+<td>16,900</td>
+<td>1.490</td>
+<td><strong>1.550</strong></td>
+<td><strong>+4.03%</strong></td>
+<td>+¥1,014</td>
+<td>—</td>
+</tr>
+<tr>
+<td>159655</td>
+<td>标普500ETF华夏</td>
+<td>10,400</td>
+<td>1.936</td>
+<td><strong>2.004</strong></td>
+<td><strong>+3.51%</strong></td>
+<td>+¥707</td>
+<td>—</td>
+</tr>
+<tr>
+<td>588710</td>
+<td>科创半导体设备ETF</td>
+<td>44,200</td>
+<td>0.725</td>
+<td><strong>0.731</strong></td>
+<td><strong>+0.83%</strong></td>
+<td>+¥265</td>
+<td>周内 0.714~0.796（振幅 11.5%），最大持仓（33%）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>要点</strong>：① 三只 QDII 合计贡献 <strong>+¥2,753（占 A 股全部涨幅的 91%）</strong>；② <strong>588710 的周内振幅 11.5% 是四只里最大</strong>，但收在周涨 +0.83%——「设备抗跌」属性部分兑现；③ <strong>QDII 溢价风险仍未评估</strong>：三只合计 67% 仓位、历史溢价 8%~15%，11-13 起美股连续两日调整，<strong>下周一开盘 QDII 会先补跌溢价，再补跌净值</strong>；④ 588710 的观察线仍是 <strong>0.711</strong>（11-06 盘中最低 0.695 后反抽 0.758，收 0.725 站回防线上方）。</p>
+</blockquote>
+<p><strong>跟踪池（已在 10-27 清仓，仅作产业链参照，不代表持仓）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th>11-06</th>
+<th>11-13</th>
+<th>周涨跌</th>
+<th>周内区间</th>
+<th>本周研报要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中际旭创</strong> 300308</td>
+<td>448.00</td>
+<td><strong>466.20</strong></td>
+<td><strong>+4.06%</strong></td>
+<td>430.10~567.89</td>
+<td>微软游说解禁令（11-11 +15.07% 年内最大）；公告订单下至 2027、部分客户给 2028 指引；回购 565.31 万股改注销（增厚 EPS 0.48%）；466.20 = <strong>7.3x 2027E</strong>，低于花旗最悲观 8.7x</td>
+</tr>
+<tr>
+<td><strong>天孚通信</strong> 300394</td>
+<td>122.00</td>
+<td><strong>124.99</strong></td>
+<td><strong>+2.45%</strong></td>
+<td>119.50~152.17</td>
+<td>11-13 <strong>−10.94%</strong> 为组合内单日最大跌幅、收在全天次低；<strong>股价已跌破回购均价 145.43 元（−14.1%）</strong>；回购上限/现价升至 <strong>2.80x</strong>（本轮最高读数）</td>
+</tr>
+<tr>
+<td><strong>生益科技</strong> 600183</td>
+<td>70.49</td>
+<td><strong>68.15</strong></td>
+<td><strong>−3.32%</strong></td>
+<td>67.57~82.11</td>
+<td>唯一周线下跌；11-13 <strong>跌停 −9.99%</strong>（高开 +2.35% 后一路走低）；11 月 M6 +15%/PP +25% 落地、排产至 2027/1；<strong>13.7x 2027E</strong>；卖方上调盈利 33.5~40.3% 但倍数 43x→26x、TP 195→164</td>
+</tr>
+<tr>
+<td><strong>长川科技</strong> 300604</td>
+<td>180.95</td>
+<td><strong>189.50</strong></td>
+<td><strong>+4.73%</strong></td>
+<td>175.68~207.47</td>
+<td><strong>跟踪池最强</strong>；11-13 仅 −3.01%（vs 旭创 −8.39%、天孚 −10.94%）；PE TTM 53.2x 最高，筹码成本 198.45 已破；HBM CP 测试 15 道+ 逻辑延续</td>
+</tr>
+<tr>
+<td><strong>中国巨石</strong> 600176</td>
+<td>27.45</td>
+<td><strong>27.37</strong></td>
+<td><strong>−0.29%</strong></td>
+<td>27.14~31.48</td>
+<td>抗跌最强（vs 生益 −3.32%、建滔 −12.89%）；花旗 11-10 维持买入 TP 71 元（17.3x 2027E）；2027 销量 13 亿米、2028 年 16–17 亿米；织机 2027 交付 900–1,000 台</td>
+</tr>
+<tr>
+<td>新易盛 300502</td>
+<td>172.10</td>
+<td>187.58</td>
+<td><strong>+8.99%</strong></td>
+<td>169.01~225.00</td>
+<td>跟踪池最强弹性，11-11 +16.97%</td>
+</tr>
+<tr>
+<td>沪电股份 002463</td>
+<td>73.21</td>
+<td>82.20</td>
+<td><strong>+12.28%</strong></td>
+<td>72.10~96.07</td>
+<td>PCB「算力板」独立定价，11-11 涨停、11-13 跌停</td>
+</tr>
+<tr>
+<td>澜起科技 688008</td>
+<td>150.10</td>
+<td>150.97</td>
+<td>+0.58%</td>
+<td>147.48~169.36</td>
+<td>—</td>
+</tr>
+<tr>
+<td>兆易创新 603986</td>
+<td>239.49</td>
+<td>246.02</td>
+<td>+2.73%</td>
+<td>237.28~273.68</td>
+<td>大摩 11-10 TP 750→259（−65.5%），新 TP 与 11-11 收盘仅差 0.24%</td>
+</tr>
+<tr>
+<td>159516 半导设备ETF</td>
+<td>0.522</td>
+<td>0.522</td>
+<td><strong>0.00%</strong></td>
+<td>0.511~0.565</td>
+<td>月 +11.06%（最强）；11-09 单日 +17.83%</td>
+</tr>
+<tr>
+<td>515880 通信ETF</td>
+<td>0.405</td>
+<td>0.418</td>
+<td>+3.21%</td>
+<td>0.406~0.472</td>
+<td>11-06 已清仓（−¥4,335 已实现）；11-11 +8.00%、11-13 −5.64%</td>
+</tr>
+<tr>
+<td>588200 科创芯片ETF</td>
+<td>0.838</td>
+<td>0.872</td>
+<td>+4.06%</td>
+<td>0.837~0.941</td>
+<td>存储+设备混合敞口</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>A 股本周最重要的结构</strong>：<strong>跟踪池的排序是「设备 &gt; 光模块 &gt; 材料」</strong>（长川 +4.73% &gt; 旭创 +4.06% &gt; 天孚 +2.45% &gt; 巨石 −0.29% &gt; 生益 −3.32%）。这与上周完全相反（上周 长川 +7.53% 唯一上涨、其余全跌），<strong>说明「设备避风港」不是一次性事件，而是连续两周成立</strong>。</p>
+</blockquote>
+<h3>3.3 港股通：7 只持仓</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>代码</th>
+<th>名称</th>
+<th>持仓</th>
+<th>11-06</th>
+<th>11-13</th>
+<th>周涨跌</th>
+<th>港币盈亏</th>
+<th>本周要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>01888</strong></td>
+<td><strong>建滔积层板</strong></td>
+<td><strong>8,500</strong></td>
+<td>30.40</td>
+<td><strong>26.48</strong></td>
+<td><strong>−12.89%</strong></td>
+<td><strong>−HK$33,320</strong></td>
+<td><strong>持仓最差</strong>；11-11 +8.14%（振幅 11.4%）→ 11-13 −8.25%；11 月只上调部分薄布、厚布低阶维持原价（与巨石/生益全线提价形成分层）</td>
+</tr>
+<tr>
+<td>06869</td>
+<td>长飞光纤光缆</td>
+<td>3,000</td>
+<td>86.05</td>
+<td><strong>88.50</strong></td>
+<td><strong>+2.85%</strong></td>
+<td>+HK$7,350</td>
+<td>11-11 <strong>+13.49%</strong>（空芯光纤验证 + 光模块共振），11-13 −7.28%</td>
+</tr>
+<tr>
+<td>01548</td>
+<td>金斯瑞生物</td>
+<td>5,000</td>
+<td>30.38</td>
+<td>30.38</td>
+<td><strong>0.00%</strong></td>
+<td>0</td>
+<td>全周零涨跌（无文档覆盖）</td>
+</tr>
+<tr>
+<td>06160</td>
+<td>百济神州</td>
+<td>200</td>
+<td>244.20</td>
+<td><strong>249.80</strong></td>
+<td><strong>+2.29%</strong></td>
+<td>+HK$1,120</td>
+<td>观察仓，唯一浮盈标的</td>
+</tr>
+<tr>
+<td>03033</td>
+<td>南方恒生科技</td>
+<td>11,600</td>
+<td>3.994</td>
+<td><strong>3.730</strong></td>
+<td><strong>−6.61%</strong></td>
+<td>−HK$3,062</td>
+<td>映射恒科 −6.50%，本周港股最弱宽基</td>
+</tr>
+<tr>
+<td>03330</td>
+<td>灵宝黄金</td>
+<td>700</td>
+<td>16.73</td>
+<td><strong>15.26</strong></td>
+<td><strong>−8.79%</strong></td>
+<td>−HK$1,029</td>
+<td>无文档覆盖，金价/金矿回调</td>
+</tr>
+<tr>
+<td>03441</td>
+<td>南方东西精选</td>
+<td>800</td>
+<td>13.91</td>
+<td><strong>13.99</strong></td>
+<td><strong>+0.58%</strong></td>
+<td>+HK$64</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>港股通本周的两个读数</strong>：① <strong>建滔一只解释了 115% 的账户跌幅</strong>（−33,320 / −28,877），其余六只合计 +4,443；② <strong>集中度：建滔 8,500 股 ≈ ¥21.98 万（32.9%）+ 长飞 3,000 股 ≈ ¥21.96 万（32.8%）= 65.7%</strong>，且两者同属 AI 硬件链——<strong>11-13 同日覆铜板 −8.81% 与光模块杀跌，这条集中度没有任何缓冲</strong>。</p>
+</blockquote>
+<h3>3.4 美股：存储链 / 设备链 / neocloud / 杠杆产品</h3>
+<p><strong>存储链（MU / SKHY / RAM）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th>11-06</th>
+<th>11-13</th>
+<th>周涨跌</th>
+<th>本周研报要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MU 美光</strong></td>
+<td>690.00</td>
+<td><strong>778.31</strong></td>
+<td><strong>+12.80%</strong></td>
+<td>大摩 11-09「购物清单」把内存列为<strong>转为进攻</strong>（2028E PE 约 9x）；美银 2027E PE 4.6x；11-11 单日 +11.89%。11-13 −2.52%</td>
+</tr>
+<tr>
+<td><strong>SKHY 海力士ADR</strong></td>
+<td>127.34</td>
+<td><strong>131.79</strong></td>
+<td><strong>+3.49%</strong></td>
+<td><strong>评级下修但股价上涨</strong>：大摩 11-09 TP −38.5%（长期利润率 60%→40%），但因回购注销 EPS 上调；韩国 10 月半导体出口 <strong>566 亿美元（+259%，连续 10 个月三位数）</strong></td>
+</tr>
+<tr>
+<td>RAM（2x DRAM ETF）</td>
+<td>5.125</td>
+<td><strong>5.91</strong></td>
+<td><strong>+15.32%</strong></td>
+<td>富途小号唯一正贡献大项；摩根大通对话 Roundhill CEO（11-14）：存储从周期品转向配置工具</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>设备链（AMAT / LRCX / TER / TSM / ALAB）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th>11-06</th>
+<th>11-13</th>
+<th>周涨跌</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AMAT</strong></td>
+<td>332.72</td>
+<td><strong>370.50</strong></td>
+<td><strong>+11.36%</strong></td>
+<td>Q3 营收 <strong>+53%</strong>、指引超预期（11-13 TMTB 速评）；11-10 「设备偏好」15x 2027</td>
+</tr>
+<tr>
+<td>LRCX</td>
+<td>200.44</td>
+<td>225.92</td>
+<td><strong>+12.71%</strong></td>
+<td>高盛 16x 2027；回购授权约 280 亿美元（占市值 11%）</td>
+</tr>
+<tr>
+<td>TER</td>
+<td>218.22</td>
+<td>249.55</td>
+<td><strong>+14.36%</strong></td>
+<td>11-11 +8.30%，11-13 −5.38%</td>
+</tr>
+<tr>
+<td><strong>TSM 台积电</strong></td>
+<td>375.44</td>
+<td><strong>398.73</strong></td>
+<td><strong>+6.20%</strong></td>
+<td>410 亿美元资本预算；以 IPO 价认购 Anthropic 最多 5 亿 + OpenAI 最多 5 亿优先股；10 月营收 <strong>+60%</strong>、2026 指引 +44%</td>
+</tr>
+<tr>
+<td><strong>ALAB Astera Labs</strong></td>
+<td>190.71</td>
+<td><strong>221.83</strong></td>
+<td><strong>+16.32%</strong></td>
+<td>大摩「网络档」（SITM/ALAB/SMTC/MRVL）；<strong>11-10 加仓 16 股（213.22/217.69），敞口 13→29 股、均价 293.19→250.00</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>光通信 / AI 硬件（LITE / CIEN / CLS / BE / VST / IBKR / MRVL）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th>11-06</th>
+<th>11-13</th>
+<th>周涨跌</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CLS Celestica</strong></td>
+<td>206.68</td>
+<td><strong>240.34</strong></td>
+<td><strong>+16.29%</strong></td>
+<td>IB 大号第三大贡献（+$606）</td>
+</tr>
+<tr>
+<td><strong>CIEN Ciena</strong></td>
+<td>243.39</td>
+<td><strong>280.54</strong></td>
+<td><strong>+15.26%</strong></td>
+<td>11-11 +8.86%、11-13 −4.57%</td>
+</tr>
+<tr>
+<td><strong>LITE Lumentum</strong></td>
+<td>538.59</td>
+<td><strong>596.62</strong></td>
+<td><strong>+10.77%</strong></td>
+<td>FY27Q1 营收 12.63 亿（<strong>+136.5%</strong>）、毛利率 53.2%（+1,380bp）、<strong>第二个 NPO/CPO 项目采购承诺 &gt;50 亿美元</strong>；<strong>11-10 被 Marvell 以 1,150 亿美元全股票收购</strong></td>
+</tr>
+<tr>
+<td><strong>BE Bloom Energy</strong></td>
+<td>173.24</td>
+<td><strong>191.99</strong></td>
+<td><strong>+10.82%</strong></td>
+<td>具名客户利好：Nebius <strong>DataOne 切换 Bloom 燃料电池作永久供电</strong>（导致其 colocation 排期重置）；IB 大号第二大贡献（+$975）</td>
+</tr>
+<tr>
+<td><strong>MRVL Marvell</strong></td>
+<td>141.20</td>
+<td><strong>156.76</strong></td>
+<td><strong>+11.02%</strong></td>
+<td>收购 Lumentum（1,150 亿美元全股票），覆盖 Scale-across/out/up/in 全栈互联；IB 小号第一正贡献（+$794）</td>
+</tr>
+<tr>
+<td>VST Vistra</td>
+<td>124.80</td>
+<td>133.01</td>
+<td>+6.58%</td>
+<td>电力主题，11-12 大摩「电力成核心瓶颈」</td>
+</tr>
+<tr>
+<td>IBKR</td>
+<td>75.82</td>
+<td>81.79</td>
+<td>+7.87%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>neocloud（NBIS）与杠杆产品（SOXL / TQQQ / INTC / GDXU / MSTU / MSTR / GOOX / IONQ / TWST / EWZ）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>标的</th>
+<th>11-06</th>
+<th>11-13</th>
+<th>周涨跌</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NBIS Nebius</strong></td>
+<td>129.49</td>
+<td><strong>115.88</strong></td>
+<td><strong>−10.51%</strong></td>
+<td><strong>全持仓最大跌幅</strong>；Q3 营收 +571% 但 1/3 为一次性、2026 营收指引降至 30–32 亿下沿（原 30–34 亿）、12 月 ARR 目标推迟到 2 月；11-13 盘前一度 −22%</td>
+</tr>
+<tr>
+<td><strong>SOXL 3x 半导体</strong></td>
+<td>45.97</td>
+<td><strong>58.32</strong></td>
+<td><strong>+26.87%</strong></td>
+<td>本周最强持仓标的（IB 大号 40 股 +$494、富途大号 8 股 +$99）</td>
+</tr>
+<tr>
+<td>TQQQ 3x 纳指</td>
+<td>52.25</td>
+<td>57.68</td>
+<td>+10.39%</td>
+<td><strong>11-10 已清仓 90 股 @57.36（实现 −$1,026）</strong></td>
+</tr>
+<tr>
+<td>INTC</td>
+<td>56.28</td>
+<td>59.66</td>
+<td>+6.01%</td>
+<td><strong>11-10 已清仓 64 股 @58.45（实现 −$1,948，账户最大浮亏标的）</strong></td>
+</tr>
+<tr>
+<td><strong>GDXU 3x 金矿</strong></td>
+<td>91.33</td>
+<td><strong>71.31</strong></td>
+<td><strong>−21.92%</strong></td>
+<td>两户合计 175 股，本周合计 <strong>−$3,504</strong>（富途两户全部跌幅的 61%）；3x 杠杆放大金矿股回撤</td>
+</tr>
+<tr>
+<td><strong>MSTU 2x MSTR</strong></td>
+<td>25.81</td>
+<td><strong>19.15</strong></td>
+<td><strong>−25.80%</strong></td>
+<td>本周最差持仓标的</td>
+</tr>
+<tr>
+<td>MSTR</td>
+<td>128.93</td>
+<td>111.62</td>
+<td>−13.43%</td>
+<td>与 MSTU 构成双重敞口（25 股 + 140 股）</td>
+</tr>
+<tr>
+<td>IONQ</td>
+<td>32.62</td>
+<td>28.88</td>
+<td>−11.47%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>GOOX 2x Alphabet</td>
+<td>47.24</td>
+<td>50.09</td>
+<td>+6.03%</td>
+<td>GOOGL +3.86% 的 2 倍弱化</td>
+</tr>
+<tr>
+<td>TWST</td>
+<td>120.79</td>
+<td>111.60</td>
+<td>−7.61%</td>
+<td>富途大号第二大拖累（−$588）</td>
+</tr>
+<tr>
+<td>EWZ</td>
+<td>31.98</td>
+<td>32.22</td>
+<td>+0.75%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>持仓层面的三条结论</strong>：① <strong>本周赚的是「去英伟达化」的再分配</strong>（MU/CLS/ALAB/AMAT/LITE/CIEN/MRVL/SOXL 全部两位数上涨），<strong>亏的是「杠杆押注商品与加密」</strong>（GDXU −21.92%、MSTU −25.80%、MSTR −13.43%、IONQ −11.47%）——<strong>同一周内，产业链判断对了，杠杆产品判断错了</strong>；② <strong>NBIS 是唯一「基本面最好、股价最差」的持仓</strong>（营收 +571% 但指引下沿 + 一次性收入占 1/3 + 交付延期），占 IB 小号 63% 浮亏，<strong>与 PORTFOLIO 记录的「IB 小号强平缓冲 4.6%」是同一个风险的两面</strong>；③ <strong>ALAB 加仓是追高</strong>（11-05 收 187.44，11-10 买在 213.22/217.69，高 13.8%~16.1%），成本从 293.19 摊到 250.00，但<strong>敞口从 13 股翻到 29 股</strong>，若回落至 187 亏损将放大到约 −$1,830（原来 13 股只亏 −$1,375）。</p>
+</blockquote>
+<hr />
+<h2 id="sec-四、投行评级变化台账（本"><span class="sec-emoji">🏦</span>四、投行评级变化台账（本周全部，按日期）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>机构</th>
+<th>标的</th>
+<th>评级变化</th>
+<th>目标价</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11-05 发布 / 11-10 发酵</td>
+<td>花旗</td>
+<td><strong>中国巨石</strong></td>
+<td>维持买入</td>
+<td><strong>¥71（+159%）</strong></td>
+<td>17.3x 2027E PE；2027 销量 13 亿米、2028 年 16–17 亿米；2027 织机交付 900–1,000 台；提示「2027 年电子纱可能趋紧」</td>
+</tr>
+<tr>
+<td>11-05 发布 / 11-09 拆解</td>
+<td>美银 / 花旗 / 野村 / 高盛</td>
+<td><strong>中际旭创</strong></td>
+<td><strong>四家全部维持买入</strong></td>
+<td>1,325 / 1,212 / 1,196 / 2,405</td>
+<td>2027 EPS 仅下调 6%–8%，目标价下调 8%–20%，差额全在倍数（美银 20x→18x、野村 21x→18x）</td>
+</tr>
+<tr>
+<td>11-09</td>
+<td><strong>摩根士丹利</strong></td>
+<td><strong>SK 海力士</strong></td>
+<td>维持增持</td>
+<td><strong>260 万→160 万韩元（−38.5%）</strong></td>
+<td>长期 DRAM 利润率 60%→40%（SK 假设降至 32%）；HBM 溢价 2033 年归零；周期底部移向 2029</td>
+</tr>
+<tr>
+<td>11-09</td>
+<td>摩根士丹利</td>
+<td><strong>三星电子</strong></td>
+<td><strong>升为新首选</strong>（取代三星电机）</td>
+<td>38.1 万→<strong>30.9 万韩元（−19%）</strong></td>
+<td>同上；优先股降至 24.72 万</td>
+</tr>
+<tr>
+<td>11-09</td>
+<td>摩根士丹利</td>
+<td>光迅科技</td>
+<td><strong>减持→增持（连升两级）</strong></td>
+<td>166→<strong>¥145</strong></td>
+<td>评级升、目标价降；盈利上调 12%/11%/14%；国产超节点把光模块占集群成本从 5% 抬到 17%</td>
+</tr>
+<tr>
+<td>11-09</td>
+<td>摩根士丹利</td>
+<td>半导体板块</td>
+<td>维持「具吸引力」，六档排序</td>
+<td>—</td>
+<td>①算力(NVDA/AVGO) ②内存「转进攻」(MU/SNDK) ③设备(LRCX/MKS/AEIS) ④模拟 ⑤网络(SITM/ALAB/SMTC/MRVL) ⑥处理器(AMD&gt;INTC)</td>
+</tr>
+<tr>
+<td>11-09/10</td>
+<td>摩根士丹利</td>
+<td><strong>利基存储五家</strong></td>
+<td><strong>华邦/兆易/力积电/旺宏 增持→中性；群联 中性→减持</strong></td>
+<td>华邦 288→120 新台币（−58.3%）、<strong>兆易 750→259 元（−65.5%）</strong>、力积电 111→54（−51.4%）、旺宏 220→90（−59.1%）、群联 2,588→1,357（−47.6%）</td>
+<td>估值锚换 <strong>1.0x 2027E PB</strong>（有厂）/ 剩余收益模型（无厂，隐含约 9x 2027E PE）；盈利仅降 9% 而 TP 降 58%</td>
+</tr>
+<tr>
+<td>11-09/10</td>
+<td>摩根士丹利</td>
+<td>南亚科技 / 爱普科技</td>
+<td>维持增持（爱普移出首选）</td>
+<td>600→550（−8.3%）/ 1,666→1,465（−12.1%）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-10</td>
+<td>摩根士丹利</td>
+<td>金蝶国际</td>
+<td>维持</td>
+<td>11.4→<strong>12.8 港元（+12.3%）</strong></td>
+<td>2027 软件服务预算 +9%</td>
+</tr>
+<tr>
+<td>11-10</td>
+<td>摩根士丹利</td>
+<td>MINIMAX-W</td>
+<td>维持</td>
+<td>900→<strong>300 港元（−66.7%）</strong></td>
+<td>上调 WACC + 更高参数模型研发开支</td>
+</tr>
+<tr>
+<td>11-10</td>
+<td>奥本海默</td>
+<td>AMD</td>
+<td><strong>上调至「跑赢大盘」</strong></td>
+<td><strong>$600</strong></td>
+<td>Q3 数据中心 85.46 亿（+97%），占营收 64%</td>
+</tr>
+<tr>
+<td>11-11</td>
+<td>高盛</td>
+<td>NVDA / AVGO</td>
+<td>维持偏好</td>
+<td>2027 盈利 <strong>12x / 13x</strong></td>
+<td>即便假设 2028 相对 2027 零增长</td>
+</tr>
+<tr>
+<td>11-11</td>
+<td>高盛</td>
+<td>AMAT / LRCX</td>
+<td>维持偏好</td>
+<td>2027 <strong>15x / 16x</strong></td>
+<td>出口限制与扩建延期仍压制</td>
+</tr>
+<tr>
+<td>11-11</td>
+<td>伯恩斯坦</td>
+<td>英伟达</td>
+<td>维持跑赢</td>
+<td>$400</td>
+<td>风波加大监管/管理风险，基本面未变（后于 11-12 降级）</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td><strong>花旗</strong></td>
+<td><strong>英伟达</strong></td>
+<td>维持买入（三日两降）</td>
+<td><strong>285→225（−21%）</strong></td>
+<td>「黄仁勋在战略、产品愿景、客户关系与投资者信心四层面都是核心」；<strong>盈利预测未动、只砍倍数</strong></td>
+</tr>
+<tr>
+<td>11-12</td>
+<td><strong>伯恩斯坦-法兴</strong></td>
+<td>英伟达</td>
+<td><strong>跑赢大盘→与大盘</strong></td>
+<td><strong>400→200（−50%）</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>奥本海默</td>
+<td>英伟达</td>
+<td><strong>→Perform</strong></td>
+<td><strong>撤销目标价</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>威廉·布莱尔</td>
+<td>英伟达</td>
+<td><strong>→Market Perform</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>Evercore ISI</td>
+<td>英伟达</td>
+<td><strong>→In Line</strong></td>
+<td>$186</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>Melius</td>
+<td>英伟达</td>
+<td><strong>→持有</strong></td>
+<td>315→185</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td><strong>高盛</strong></td>
+<td><strong>英伟达</strong></td>
+<td>维持买入</td>
+<td><strong>300→220（−26.7%）</strong></td>
+<td><strong>EPS 10.00 未动，倍数 30x→22x</strong>——「E 不变，只有 P/E 变」</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>摩根大通 / 美银 / RBC / BMO / 斯蒂费尔 / 约克维尔</td>
+<td>英伟达</td>
+<td>维持买入，下调</td>
+<td>320→215 / 350→280 / 330→230 / 340→240 / 315→205 / 300→225</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>瑞银 / 瑞穗 / Piper / 雷蒙德·詹姆斯</td>
+<td>英伟达</td>
+<td>维持</td>
+<td>300 / 250 / 300 / <strong>515</strong></td>
+<td>瑞银补充风险：事件可能令美国进一步收紧 AI 芯片出口限制，受影响收入约占一成</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>摩根士丹利</td>
+<td>Aspeed（台）</td>
+<td>下调</td>
+<td><strong>−约 40%</strong></td>
+<td>云半导体按「每台服务器」计价，对出货节奏最敏感</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>摩根士丹利</td>
+<td>Montage（台）</td>
+<td>下调</td>
+<td><strong>−约 52%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>11-13</td>
+<td><strong>摩根士丹利</strong></td>
+<td><strong>英伟达</strong></td>
+<td>维持增持</td>
+<td><strong>300→267（−11%）</strong></td>
+<td><strong>2028 财年收入增速 70%→53.5%</strong>、2028E 收入 −9.7%、EPS −10.9%；毛利率仅 −0.09pt（说明调整全在规模不在价格）；TP 低于 8 月的 288，因倍数已从 22x 降到 20x</td>
+</tr>
+<tr>
+<td>11-13</td>
+<td><strong>Rothschild Redburn</strong></td>
+<td><strong>博通 AVGO</strong></td>
+<td><strong>买入→中性</strong></td>
+<td><strong>595→398（−33.1%）</strong></td>
+<td>10-27 SEC 8-K 的 <strong>430 亿美元或有负债</strong>（Anthropic 机柜残值兜底，赔付=未偿租约 72.5% − 处置回收）；支持规模 1.79x 现金、3.15 季 FCF</td>
+</tr>
+<tr>
+<td>11-13</td>
+<td>贝尔德</td>
+<td>英伟达</td>
+<td><strong>买入→中性</strong></td>
+<td><strong>500→200（−60%）</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-13</td>
+<td>UBS</td>
+<td>寒武纪</td>
+<td><strong>首次覆盖·买入</strong></td>
+<td><strong>¥1,360</strong></td>
+<td>新增覆盖</td>
+</tr>
+<tr>
+<td>11-13</td>
+<td>大摩 + 美银</td>
+<td>英伟达</td>
+<td>移出「首选清单」</td>
+<td>—</td>
+<td>82 位分析师中 77 位仍维持买入、无一家卖出（Seaport 除外）</td>
+</tr>
+<tr>
+<td>11-14</td>
+<td>Seaport</td>
+<td>英伟达</td>
+<td><strong>卖出（唯一）</strong></td>
+<td>$180</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11-14</td>
+<td>法人（台媒）</td>
+<td>联发科 2454.TW</td>
+<td>上调指引</td>
+<td>Q4 ASIC <strong>20→25 亿美元</strong>、2027 目标 <strong>160 亿美元</strong>（全球 AI ASIC 份额 20%）</td>
+<td>涨停 4,235 TWD</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>台账读法（本周最重要的一条）</strong>：<strong>33 条评级/目标价动作里，评级真正的下调只发生在三类标的：① 英伟达（人事事件，6 家降级）；② 利基存储（方法切换，5 家降级）；③ 博通（残值担保，1 家降级）。</strong> 其余全部是「维持评级、下调目标价」。这个结构说明：<strong>卖方没有转空基本面，他们只是在重设「该给几倍」</strong>。而凡是「评级上调」的（光迅、AMD、寒武纪），共同点都是<strong>有了新的可比锚</strong>（国产超节点 TAM、数据中心收入占比、国产算力）。</p>
+</blockquote>
+<hr />
+<h2 id="sec-五、产业链关键信号"><span class="sec-emoji">🔗</span>五、产业链关键信号</h2>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>1 存储（HBM / DRAM / NAND / eSSD）</strong></div><ul>
+<li><strong>三层分裂再确认</strong>：企业级长协（最紧）&gt; DRAM 合约（4Q26 +8%、1Q27 +5%）&gt; NAND 现货（自 10 月中 −20%+、本周 512Gb −10%+）。</li>
+<li><strong>旧存储进入「定价权反向」阶段</strong>：DDR4 连跌四周（w/w −2.7%）、NOR 全线 −0.9%~−1.7%、SLC NAND 转跌；大摩五家降级就是这条线的即时验证。</li>
+<li><strong>HBM 与利基反向</strong>：集邦上修 2027 HBM ASP 至 <strong>YoY +121%</strong>；机构测算 2027 年 SK 给英伟达的 HBM4 报价 <strong>3.0–3.3 美元/Gb</strong>，给 AMD/博通/亚马逊/谷歌 <strong>3.7–4.1 美元/Gb</strong>——低约两成，是「优先供货权」的量化价格。</li>
+<li><strong>长协机制</strong>：部分供应商已收取 <strong>2027 年需求 50% 的预付款、2028 年达 100%</strong>；价格带设上下限（collar/ceiling）；摩根大通测算 2026–2030 三大 DRAM 厂晶圆产能累计短缺约 <strong>44.4 万片/月</strong>。</li>
+<li><strong>终端反噬第一批证据</strong>：大疆 <strong>11-18 起调价</strong>；双 11 笔记本均价 <strong>7,759 元（+13.4%）</strong>、比 618 贵 3,050 元、5,000 元以下机型退出热销榜前十。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>2 光模块 / CPO</strong></div><ul>
+<li><strong>订单期限结构被拉长</strong>：旭创「海外主要客户订单已下至 2027 年、部分重点客户给出 2028 年明确指引」；LITE 第二个 NPO/CPO 项目采购承诺 <strong>&gt;50 亿美元</strong>；COHR 五年约 <strong>200 亿美元 PhotonLink 长协</strong>、订单排到 CY28、LTA 签到 2030 前后、合同负债增至上季 <strong>5.3 倍</strong>。</li>
+<li><strong>TAM 上修</strong>：伯恩斯坦预计 2028 年英伟达生态光通信市场 <strong>468 亿美元</strong>（2027 年 245 亿，+91%）；高盛假设 CSP capex 2026–28 +84%/+52%/<strong>+13%</strong>。</li>
+<li><strong>产能瓶颈</strong>：光学生产能力已售罄到 <strong>2029 年</strong>，部分激光器 2027 年仍有约 <strong>70%</strong> 需求未被满足；英伟达与矽品扩光引擎产能，目标 <strong>2027 年中提至当前 15 倍、2028 年底再翻倍</strong>；产业链缺口 PCB（mSAP）约 14%、EML 约 27%。</li>
+<li><strong>技术节奏（三口径一致）</strong>：CPO 行业放量看 <strong>2028</strong>、NPO 2027 年无实质需求（花旗/东山）；旭创口径 NPO/XPO 于 <strong>2027H2</strong> 逐步释放；大摩口径昇腾 960 转 NPO「真正商用要到 2027 年下半年」。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>3 半导体设备</strong></div><ul>
+<li><strong>中芯国际 3Q26</strong>：营收 31.9 亿美元（+6.1% QoQ）、毛利率 29.9%（+4.6pct 超指引）；4Q 指引收入 +4%~6%、毛利率 26%–28%；2026 全年收入 <strong>&gt;120 亿美元（+近三成）</strong>。</li>
+<li><strong>交期</strong>：设备交付周期普遍 <strong>16–24 个月</strong>，部分紧缺设备 <strong>超 24 个月</strong>（赵海军 11-13）。</li>
+<li><strong>国产化率</strong>：中国大陆已装机设备国产化率由 2020 年前不足 10% 提升至 2025 年约 <strong>35%</strong>，业内预计 2026 年突破 <strong>40%</strong>（集微咨询）。</li>
+<li><strong>三星收缩 8 英寸</strong>：器兴 S7 厂约 300 台设备出售给 DB HiTek，11 月初开始拆除；2026 年全球前十代工厂 8 英寸平均产能利用率回升至 <strong>88%</strong>、下半年 90%。</li>
+<li><strong>股价</strong>：AMAT 全周 <strong>+11.36%</strong>、LRCX +12.71%、TER +14.36%、KLAC +9.99%，但 11-13 普跌（AMAT −2.74%、LRCX −3.36%、TER −5.38%）。</li>
+</ul></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>4 PCB / 覆铜板 / 材料</strong></div><ul>
+<li><strong>分化到了「不可交易为一个整体」的程度</strong>：同一周 <strong>沪电 +12.28%、巨石 −0.29%、生益 −3.32%、建滔积层板 −12.89%</strong>，跨度 25 个百分点——已被拆成「算力板 / 材料 / 港股流动性」三个独立定价单元。</li>
+<li><strong>供给三重卡口</strong>：电子纱新窑立项到满产 <strong>两年以上</strong>；高端喷气织机全球九成集中于丰田，<strong>新单排期已到 2029 年前后</strong>；客户认证 <strong>1–3 年</strong>。</li>
+<li><strong>缺口量化</strong>：2027 年行业电子布供给增速仅 <strong>5%–6%</strong>、缺口仍约 <strong>20%</strong>；HVLP4 铜箔 2026 年缺口 37%、2027 年 23%。</li>
+<li><strong>2028 年的远期风险</strong>：<strong>「织机集中到货」</strong>——2027 年织机交付 900–1,000 台（4–5 月开始），届时有效供给跳升；这是市场已经开始提前交易的变量。</li>
+<li><strong>港股侧</strong>：建滔高效能织机 3,333 台（2025）→ 5,833 台（2028），但<strong>11 月只调薄布、厚布低阶维持原价</strong>，与巨石/生益全线提价形成分层——<strong>「高端一板难求、低端内卷甩货」</strong>。</li>
+</ul></div>
+<h3>5.5 超大规模云商 CAPEX</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>五大 CSP 2026 发债</td>
+<td><strong>3,260 亿美元（2025 年的 3 倍）</strong></td>
+<td>标普全球市场情报</td>
+</tr>
+<tr>
+<td>八大公司 2026 已发行/定价</td>
+<td>3,117 亿美元（亚马逊 973 / 谷歌 798 / 甲骨文 350 / 微软·Meta·SpaceX 各 250 / CoreWeave+Nebius 246）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Meta 总融资</td>
+<td><strong>&gt;460 亿美元</strong>（90 亿欧元票据 + 250 亿美元债 + 250 亿普通股 + 125 亿优先股）</td>
+<td>彭博 11-08</td>
+</tr>
+<tr>
+<td>甲骨文新债票息</td>
+<td><strong>7%–8.65%</strong>（当前最贵的 AI 相关发行人）</td>
+<td>11 月</td>
+</tr>
+<tr>
+<td>四家 2026 capex 合计</td>
+<td><strong>超 7,400 亿美元</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>五大巨头远期承诺</td>
+<td><strong>&gt;3 万亿美元</strong>（Meta 8,000 亿中近半为未生效租约，最长 30 年）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>高盛：AI 投资占 GDP 见顶</td>
+<td><strong>2027 年初</strong>；2026 AI 支出 &gt;9,000 亿；标普 500 盈利增速 2026 <strong>36%</strong>→2027 <strong>11%</strong></td>
+<td>11-12</td>
+</tr>
+<tr>
+<td>三大云待执行订单</td>
+<td><strong>1.8 万亿美元（+140%）</strong>，约 50% 两年内转收入</td>
+<td>高盛 11-10</td>
+</tr>
+<tr>
+<td><strong>负面变量（新增）</strong></td>
+<td>约 <strong>4.9–5GW</strong> 美国容量从 2028 推至 2029 → 2028 美国新增 <strong>−4%</strong>、2029 <strong>+38%</strong>；9 州 158.6GW 暂停（全美管线 41%）、7 月至 11-04 至少 21 个项目取消</td>
+<td>大摩 / 行业研究</td>
+</tr>
+</tbody>
+</table></div>
+<div class="signal-card"><div class="sc-title"><strong><span class="num">5.</span>6 上游涨价信号（InP / MLCC / 石英 / 铜箔）</strong></div><ul>
+<li><strong>MLCC</strong>：11-13 板块 <strong>−4.34%</strong>（跟随电子链杀跌），本周无新增涨价函；被动元件价格数据本周未获取（数据图不可读）。</li>
+<li><strong>铜箔</strong>：HVLP4 加工费自 2025/12 起 <strong>+30%–50%</strong>；缺口 2026 年 37%、2027 年 23%。</li>
+<li><strong>石英/低介电布</strong>：低介电二代布约 <strong>160 元/米</strong>、石英布 <strong>250–400 元/米</strong>，与 7628 厚布（14.6 元）价差 <strong>超 20 倍</strong>——高端品的定价与普通布已不在同一市场。</li>
+<li><strong>InP/磷化铟</strong>：本周文档无直接价格点，<strong>留白不做推测</strong>；相关约束仍以「EML 缺口约 27%」表达。</li>
+<li><strong>光纤</strong>：11-13 光纤概念 <strong>−3.84%</strong>，但长飞 11-11 <strong>+13.49%</strong>（空芯光纤验证）——光纤的分裂来自「AI 数据中心长距互联」与「传统电信」两条需求线。</li>
+</ul></div>
+<hr />
+<h2 id="sec-六、风险提示"><span class="sec-emoji">⚠️</span>六、风险提示</h2>
+<ol>
+<li><strong>英伟达 11-17 FY27Q3 财报的「信任缺口」</strong>：公司大概率重申 <strong>70%</strong> 增长指引，但大摩已按 <strong>53.5%</strong> 建模。「业绩超预期 + 指引不被相信」是最难交易的一种组合，历史上对应「高开低走」。Kress 首次以临时 CEO 身份面对投资者，<strong>任何关于「是否延续 5,000 亿融资平台/收入分成计划」的措辞都会被放大</strong>。</li>
+<li><strong>美联储已把 AI 列为金融稳定风险（87% 提及率）</strong>，并测算债务+担保+租约 <strong>&gt;3 万亿美元</strong>。这意味着「AI 去杠杆」可能以<strong>资本金/披露要求</strong>的形式落地，而非仅靠市场自发调整——这是本报告认为<strong>最被低估的中期风险</strong>。</li>
+<li><strong>NAND 现货已进入「确认下跌」</strong>：美银口径自 10 月中 −20%+、本周 512Gb −10%+，DDRWatcher 已把状态下调为 <strong>Correction</strong>。<strong>若 1Q27 合约真的转向低个位数下调，存储链的「涨价叙事」将在 12 月至 1 月的合约谈判中被证伪</strong>。裁决点是「提价函是否正式下发」与「12 月合约能否重置」。</li>
+<li><strong>「方法传染」风险（组合层面最被低估）</strong>：大摩把利基存储的锚从「盈利」换成「1.0x PB」。<strong>若这套方法被复制到 CCL/电子布，生益（13.7x 2027E）与巨石（17.3x 2027E）都将面临倍数压缩</strong>，而两者 PB 都不低。<strong>这不是业绩风险，是「用什么方法给业绩定价」的风险。</strong></li>
+<li><strong>「禁令」只是被游说，不是被撤销</strong>：白宫未表态、禁令未正式撤销、ITI 措辞是「可能让建设停滞」。<strong>若后续政策落地，同样的折价会以更快速度回来</strong>（参考 11-03 旭创 −12%、11-06 三剑客集体下挫）。A 股对这条信息的定价是「一次性」的，回撤也会是「一次性」的。</li>
+<li><strong>分母端仍在收紧</strong>：10 月 PPI 同比 <strong>+6.5%（2022 年 11 月以来最大）</strong>、核心 CPI 连续三次超预期，<strong>12 月加息概率近 99%、50bp 概率 13.6%</strong>；波士顿联储 Collins 11-13 明确「可能不得不比预期更多加息」。<strong>11-11 美股半导体 +6% 是在「加息 99%」的背景下完成的</strong>——这种上涨对利率的二阶敏感度极高。</li>
+<li><strong>A 股筹码结构未修复</strong>：旭创 11-13 主力净流出 −29.42 亿（前一日 −25.62 亿）、生益与沪电双双跌停，<strong>两融余额 2.3 万亿（占流通市值 2.55%）</strong>。本轮下跌性质仍是「筹码出清」，而<strong>筹码出清的终点无法用基本面预判</strong>（中证通信设备 PE 17.5% 分位仍可继续下探）。</li>
+<li><strong>账户层面的三个硬风险（与行情无关）</strong>：① <strong>IB 小号强平缓冲仅 4.6%</strong>（NBIS 单日波动常 6–8%，一次正常下跌即触发）；② <strong>富途小号风控「预警」+ 最大购买力 $0</strong>（11-04 状态，11-05 后大概率更差）；③ <strong>港股通仓位 97.6%、现金仅 ¥1.67 万</strong>，建滔+长飞占 65.7%，<strong>已无任何缓冲应对 -12.89% 这类单周波动</strong>。</li>
+<li><strong>数据可信度提示</strong>：本周「谷歌 1,200 万只 NPO 订单（旭创 60%/新易盛 40%，120–150 亿美元）」、「天孚在 Mellanox 1.6T 光引擎份额 90%–95%」、「旭创 2026 年 70% 的 1.6T 订单」三条<strong>均为自媒体/股吧转述，无公司公告、无外资研报背书</strong>，本报告仅记录不采信。</li>
+</ol>
+<hr />
+<h2 id="sec-七、下周关注清单（按可检"><span class="sec-emoji">🎯</span>七、下周关注清单（按可检验性排序）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>日期</th>
+<th>事件</th>
+<th>为什么是关键</th>
+<th>观察指标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>11-16（一）</strong></td>
+<td>A 股/港股开盘</td>
+<td>消化 11-13 美股：SOXX <strong>−3.67%</strong>（NVDA −2.01%、AMAT −2.74%、TER −5.38%），且本周 A 股「涨跟三成」→ <strong>预计跟跌幅度大于跟涨</strong></td>
+<td>旭创能否守住 466.20；588710 能否守 0.711；建滔能否止跌 26.48</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>11-17（二）</strong></td>
+<td><strong>英伟达 FY27Q3 财报</strong>（Kress 首次以临时 CEO 亮相）</td>
+<td><strong>全组合最大单一事件</strong>；指引 1,080 亿±2%、毛利率 74%、<strong>FY28 约 70% 增长是否保留</strong></td>
+<td>公司是否重申 70%；卖方已按 53.5% 建模 → 「超预期但指引不被相信」= 高开低走</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>11-16 当周</strong></td>
+<td><strong>Anthropic IPO 定价</strong>（拟 11-18 定价、11-19 上市，代码 ANT，8.25 亿股 @70–78 美元）</td>
+<td><strong>8,954 亿采购承诺的现金流缺口是第一断点</strong>：未来 12 个月需付 698 亿、账上现金+短期投资仅 1,318 亿</td>
+<td>定价是否落在区间上沿；260 亿私募认购方（台积电/英伟达/AMD/博通/美光/微软/谷歌）是否追加</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>11 月中下旬</strong></td>
+<td><strong>三星补报 10 月 DDR5 合约价 / 12 月合约谈判</strong></td>
+<td>合约数据已失明 <strong>45 天</strong>，现货已定价、合约未开口；若 1Q27 转向下调，存储「涨价叙事」被证伪</td>
+<td>DDR5 RDIMM 能否维持 +10~15%；NAND 1Q27 是否转跌</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>11-18（三）/ 11-20（五）</strong></td>
+<td>大疆产品调价生效 / 闪迪 1 拆 8</td>
+<td>前者是「涨价传导到终端」的第一个实证；后者改变存储链流通结构</td>
+<td>终端是否量价齐跌；SNDK 拆股后散户参与度</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>持续</strong></td>
+<td>IB 小号强平缓冲（4.6%）、富途小号风控预警</td>
+<td><strong>与行情无关、优先级最高</strong>；NBIS 一次正常波动即可触发</td>
+<td>NBIS 收盘价 vs 零界市值；SMA 与剩余流动性</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="sec-八、附录：本周重点文档清"><span class="sec-emoji">📎</span>八、附录：本周重点文档清单（96 份筛选中列 40 份）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文档标题（摘）</th>
+<th>日期</th>
+<th>类型</th>
+<th>一句话摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>404K科技早报 — 需求与交付分化：光互连订单增长，微软收紧外部云合作</td>
+<td>11-09</td>
+<td>404K自主</td>
+<td>本周主线起点：订单仍强、交付约束加深</td>
+</tr>
+<tr>
+<td>2</td>
+<td>404K叙事科技晚报 — 算力扩张先过现金流关</td>
+<td>11-09</td>
+<td>404K自主</td>
+<td>一级信用约束（云厂现金流）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>01_<strong>美银存储周报</strong>：香港投资者转空，DRAM 与 HBM 仍在超级周期，风险集中在 NAND</td>
+<td>11-09</td>
+<td>外资投行</td>
+<td>存储指标 175（峰值 190）；韩国 10 月半导体出口 566 亿（+259%）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>01_<strong>大摩半导体购物清单</strong>：中位股较高点跌 53%，英伟达仍是首选，内存转为进攻</td>
+<td>11-09</td>
+<td>外资投行</td>
+<td>六档排序；内存「打进攻」的核心机制是回购</td>
+</tr>
+<tr>
+<td>5</td>
+<td>20261109_每周雷达009_DRAM与eSSD需求显现分化</td>
+<td>11-09</td>
+<td>行业研究</td>
+<td>周度雷达首提 DRAM/eSSD 分化</td>
+</tr>
+<tr>
+<td>6</td>
+<td>01_<strong>生益科技从高点跌六成</strong>：三季度净利增长 238%，投行盈利上修、目标倍数下砍</td>
+<td>11-09</td>
+<td>404K深度</td>
+<td>盈利 +33.5~40.3%、倍数 43x→26x、TP 195→164</td>
+</tr>
+<tr>
+<td>7</td>
+<td>01_光迅科技深度更新：大摩连升两级至增持</td>
+<td>11-09</td>
+<td>404K深度</td>
+<td>评级升、TP 166→145；国产超节点光模块占比 17%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>大摩闭门宏观策略会：市场重置的底层逻辑</td>
+<td>11-09</td>
+<td>会议纪要</td>
+<td>分母端框架</td>
+</tr>
+<tr>
+<td>9</td>
+<td>01_<strong>存储股的真正风险不在 AI 需求</strong>：大摩把长期利润率降回历史均值，SK 海力士 TP −38%</td>
+<td>11-10</td>
+<td>外资投行</td>
+<td>长期 DRAM 利润率 60%→40%，周期底部移向 2029</td>
+</tr>
+<tr>
+<td>10</td>
+<td>01_<strong>Anthropic 估值一个月腰斩</strong>，寻求万亿估值上市</td>
+<td>11-10</td>
+<td>404K深度</td>
+<td>估值 2 万亿→1.42 万亿→1.4 万亿</td>
+</tr>
+<tr>
+<td>11</td>
+<td>01_大摩中国 CIO 调查：企业 AI 进入落地期，软件接棒硬件</td>
+<td>11-10</td>
+<td>外资投行</td>
+<td>2026 IT 开支 +6.1%、2027 预算 +9%</td>
+</tr>
+<tr>
+<td>12</td>
+<td>404K科技晚报 — 谷歌扩展 TPU 生态：自研芯片拉动存储器采购</td>
+<td>11-10</td>
+<td>404K自主</td>
+<td>存储器需求从 GPU 转向 ASIC</td>
+</tr>
+<tr>
+<td>13</td>
+<td>404K宏观早报 — 核心通胀超预期、加息争论升温</td>
+<td>11-11</td>
+<td>404K宏观</td>
+<td>12 月加息 99%</td>
+</tr>
+<tr>
+<td>14</td>
+<td>404K科技早报 — 台积电参投模型公司：最高 10 亿美元布局需求端</td>
+<td>11-11</td>
+<td>404K自主</td>
+<td>5 亿认购 Anthropic + 5 亿认购 OpenAI 优先股</td>
+</tr>
+<tr>
+<td>15</td>
+<td>01_<strong>旧存储涨价还能撑多久</strong>？大摩下调五家评级，四家目标价腰斩</td>
+<td>11-11</td>
+<td>外资投行</td>
+<td>估值锚换 1.0x PB；兆易 750→259</td>
+</tr>
+<tr>
+<td>16</td>
+<td>20261111_TF_成品库存高企促使部分 PC OEM 调整 2027 年 Memory 采购计划</td>
+<td>11-11</td>
+<td>第三方数据</td>
+<td>4Q26 PC DRAM +13~18%、Client SSD 0~5%</td>
+</tr>
+<tr>
+<td>17</td>
+<td>20261111_超半数尚未开工的超大规模数据中心产能位于高风险州</td>
+<td>11-11</td>
+<td>行业研究</td>
+<td>9 州 158.6GW 暂停（全美 41%）</td>
+</tr>
+<tr>
+<td>18</td>
+<td>01_<strong>CoreWeave 三季报深度</strong>：收入跃升 42%，营业利润改善为何仍填不平融资缺口</td>
+<td>11-11</td>
+<td>个股深度</td>
+<td>backlog 1,325 亿、利息 8.46 亿、FCF −77 亿</td>
+</tr>
+<tr>
+<td>19</td>
+<td>CoreWeave 2026 Q3 财报电话会_Deep_Analysis</td>
+<td>11-11</td>
+<td>会议纪要</td>
+<td><strong>旧卡租价环比 +30–50%、高于原合同价</strong></td>
+</tr>
+<tr>
+<td>20</td>
+<td>404K科技晚报 — OpenAI 亏损扩大：季度调整后营业亏损约 109 亿美元</td>
+<td>11-11</td>
+<td>404K自主</td>
+<td>营收 100 亿、利润率 −109%</td>
+</tr>
+<tr>
+<td>21</td>
+<td>404K叙事科技晚报 — CoreWeave 把融资前移到客户</td>
+<td>11-11</td>
+<td>404K自主</td>
+<td>三个月预付款约 90 亿美元</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Anthropic IPO 路演：Dario Amodei 详述能力演进与商业化</td>
+<td>11-11</td>
+<td>公司路演</td>
+<td>8.25 亿股 @70–78、估值 1.4 万亿</td>
+</tr>
+<tr>
+<td>23</td>
+<td>01_<strong>黄仁勋离任后的英伟达</strong>：8 家投行下调评级，四条线怎么传导</td>
+<td>11-12</td>
+<td>404K深度</td>
+<td>估值/资金/供应链/信用</td>
+</tr>
+<tr>
+<td>24</td>
+<td>01_<strong>Nebius Q3 财报深度</strong>：收入增 571%、预付款覆盖 capex 超 100%，但三分之一收入是一次性</td>
+<td>11-12</td>
+<td>个股深度</td>
+<td>2026 capex 上调至 270 亿</td>
+</tr>
+<tr>
+<td>25</td>
+<td>01_<strong>AI 投资周期能否持续</strong>？高盛：超大规模云厂扛得住，风险集中在新型云厂商和高收益债</td>
+<td>11-12</td>
+<td>外资投行</td>
+<td>五大云已发债 2,960 亿、租赁承诺 1.7 万亿</td>
+</tr>
+<tr>
+<td>26</td>
+<td>404K科技晚报 — 英伟达据报审议换帅：花旗下调目标价至 225 美元</td>
+<td>11-12</td>
+<td>404K自主</td>
+<td><strong>盈利预测维持、只砍倍数</strong></td>
+</tr>
+<tr>
+<td>27</td>
+<td>404K叙事科技晚报 — 北美数据中心规划仅 34% 可信</td>
+<td>11-12</td>
+<td>404K自主</td>
+<td>交付可信度首次被量化</td>
+</tr>
+<tr>
+<td>28</td>
+<td>大摩：美中期选举或推迟而非中断 AI 基建，电力成核心瓶颈</td>
+<td>11-12</td>
+<td>外资投行</td>
+<td>电力约束</td>
+</tr>
+<tr>
+<td>29</td>
+<td><strong>404K Semi-Ai 半导体设备周报</strong> — 业绩与估值分化：设备交付继续增长，全年订单预期仍待验证</td>
+<td>11-13</td>
+<td>404K周报</td>
+<td>本周设备线总纲</td>
+</tr>
+<tr>
+<td>30</td>
+<td><strong>404K Semi-Ai 存储周报</strong> — 定价分化加深：高端长协支撑盈利，旧存储器与终端降配承压</td>
+<td>11-13</td>
+<td>404K周报</td>
+<td>本周存储线总纲</td>
+</tr>
+<tr>
+<td>31</td>
+<td><strong>404K Semi-Ai AI 产业链周报</strong> — 交付约束加深：算力订单仍强，电力融资与英伟达交接考验兑现</td>
+<td>11-13</td>
+<td>404K周报</td>
+<td>本周产业链总纲</td>
+</tr>
+<tr>
+<td>32</td>
+<td><strong>404K Semi-Ai M7 与 CSP 周报</strong> — 扩张与融资分化</td>
+<td>11-13</td>
+<td>404K周报</td>
+<td>云厂 capex 与融资分化</td>
+</tr>
+<tr>
+<td>33</td>
+<td>404K科技早报 — 英伟达确认黄仁勋离任：克雷斯接任临时 CEO，贝尔德降评至中性</td>
+<td>11-13</td>
+<td>404K自主</td>
+<td>人事事件落地</td>
+</tr>
+<tr>
+<td>34</td>
+<td>404K科技晚报 — 思科上调 AI 目标：2027 财年云厂商 AI 收入目标升至 90 亿美元</td>
+<td>11-13</td>
+<td>404K自主</td>
+<td><strong>内存涨价首次咬到网络设备毛利（−2.5pct）</strong></td>
+</tr>
+<tr>
+<td>35</td>
+<td>20261113_TMTB_应用材料与思科财报速评</td>
+<td>11-13</td>
+<td>外资研报</td>
+<td>AMAT 营收 +53%、指引超预期</td>
+</tr>
+<tr>
+<td>36</td>
+<td>20261113_TMTB_Cerebras 财报初评</td>
+<td>11-13</td>
+<td>外资研报</td>
+<td>核心云收入 +272%、RPO 261 亿</td>
+</tr>
+<tr>
+<td>37</td>
+<td>404K叙事科技早报 — 英伟达承诺与担保增至 5300 亿美元</td>
+<td>11-14</td>
+<td>404K自主</td>
+<td>股权 990 亿 + 担保 1,085 亿 + 回购/租约 560 亿；产能承诺 1,190→2,790 亿</td>
+</tr>
+<tr>
+<td>38</td>
+<td>404K叙事科技晚报 — <strong>博通担保风险引发股价重估</strong></td>
+<td>11-14</td>
+<td>404K自主</td>
+<td>Redburn 因 430 亿残值担保降级、TP −33%</td>
+</tr>
+<tr>
+<td>39</td>
+<td>404K科技早报 — Meta 密集发债：云厂商借助客户信用降息</td>
+<td>11-14</td>
+<td>404K自主</td>
+<td>信用链第三级</td>
+</tr>
+<tr>
+<td>40</td>
+<td>01_<strong>黄仁勋辞任之后的英伟达</strong>：大摩把 2028 财年收入增速从 70% 砍到 53.5%</td>
+<td>11-15</td>
+<td>外资投行</td>
+<td>TP 300→267、维持增持</td>
+</tr>
+<tr>
+<td>41</td>
+<td>404K科技早报 — Anthropic 拟募资：IPO 目标至多 644 亿美元，英伟达拟投 100 亿美元私募</td>
+<td>11-15</td>
+<td>404K自主</td>
+<td>11-18 定价、11-19 上市</td>
+</tr>
+<tr>
+<td>42</td>
+<td>404K宏观早报 — 加息押注近翻倍、住房销售探低</td>
+<td>11-15</td>
+<td>404K宏观</td>
+<td>分母端继续收紧</td>
+</tr>
+<tr>
+<td>43</td>
+<td>摩根大通对话 Roundhill CEO：从 DRAM 与七巨头 ETF 看下一代主题投资创新</td>
+<td>11-14</td>
+<td>访谈</td>
+<td>存储从周期品转向配置工具</td>
+</tr>
+<tr>
+<td>44</td>
+<td>Ep. 044 - NVIDIA 时代终结了吗？与 ChinaTalk 紧急连线</td>
+<td>11-14</td>
+<td>播客</td>
+<td>供应链协调能力视角</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="sec-数据来源与方法说明"><span class="sec-emoji">📊</span>数据来源与方法说明</h2>
+<ul>
+<li><strong>文档层</strong>：ima 知识库「404k-0728」（kb_id <code>ima_kb_u1ZGtMIU</code>）本周 <strong>7 个日期文件夹全量枚举，共 328 份（PDF 139 + 数据图 189）</strong>：11-09 <strong>37（PDF 15）</strong>、11-10 <strong>52（18）</strong>、11-11 <strong>60（28）</strong>、11-12 <strong>51（25）</strong>、11-13 <strong>60（28）</strong>、11-14 <strong>44（16）</strong>、11-15 <strong>24（9）</strong>。关键词分组筛选命中 <strong>96 份</strong>（A股持仓 1 / 存储链 19 / 算力-neocloud 32 / 设备链 13 / 价格数据 26 / 投行评级 19 / 方向 20，多组交叉去重）。</li>
+<li><strong>⚠️ 原文层缺失（连续第 37 期）</strong>：<code>get_media_info</code> 对 404K 全部文件返回 <strong>220030</strong>，<code>get_knowledge_detail</code> / <code>get_knowledge_content</code> 均 <strong>404</strong>。本报告采用「<strong>标题口径 + 本地日报 7 期正文 + 公开信源交叉 + 交易所行情</strong>」四源方案：① 404K 标题本身即为结论句（信息密度高）；② <strong>本地 404k-daily 11-09 至 11-15 七期正文</strong>（合计约 38 万字符）与 panorama 11-09~11-13 五期，是本报告数据层的主要来源；③ 关键数字（大摩预测表、美银存储报告、博通 8-K、英伟达担保拆解、CoreWeave/Nebius 财报、美联储金融稳定报告、CFM/集邦报价）均以主流财经媒体与卖方转述交叉验证并标注出处日期；④ 行情与周涨跌由<strong>富途 OpenAPI 日 K（复权）</strong>计算，A股/港股/美股共 <strong>91 个标的</strong>。</li>
+<li><strong>行情口径</strong>：周涨跌一律 <strong>11-06 收盘 → 11-13 收盘</strong>（11-14/15 三地休市）。<strong>恒生科技周跌 −6.50%</strong>（4078.23→3813.19，与 03033 南方恒生科技 −6.61% 互验）；部分第三方复盘将 −3.02%（单日）误列为周度，本报告以自算值为准。</li>
+<li><strong>价格口径并列不混用</strong>：GPU 租金 <strong>六套</strong>（Nebius 官方 spot / Nebius 按需 / Ornn 指数 / 第三方聚合 / CoreWeave 合同 / 国内整机月租）；存储 <strong>四套</strong>（memoryindex / DDRWatcher / TrendForce / 美银定性）；capex <strong>三套</strong>（五大 CSP 3,260 亿 / 八大公司 3,117 亿 / 四家 7,400 亿）。<strong>B300 的 +43.7% 与 −20.0% 为不同 provider 样本，不可据此判断方向。</strong></li>
+<li><strong>目标价涨幅</strong>一律以 <strong>11-13 收盘价</strong>重算，不使用报告发布日价格。</li>
+<li><strong>持仓口径</strong>：<code>PORTFOLIO.md V2026-11-10-1745</code>（A股 11-06 16:31、港股通 11-06 16:31、IB 大号 11-10 17:42、IB 小号 11-06 16:31、富途两户 11-04 17:17）。<strong>A 股自 10-27 起已无个股持仓</strong>，任务模板所列 中际旭创/天孚通信/生益科技/长川科技/中国巨石/通信ETF <strong>均属「跟踪池」，不代表持仓</strong>；本报告已在 3.2 节显式分列。</li>
+<li><strong>传闻与自媒体口径</strong>已在正文逐条标注「未经公告/自媒体口径」，不纳入结论；<strong>未获取的数据</strong>（Token 支出指数、MLCC 报价、InP 价格、11-14 当周合约价、图内数值）一律留白，<strong>不做数值推测</strong>。</li>
+<li>本报告仅作客观信息整理，不含任何买卖建议。</li>
+</ul>
+  </article>
+
+  <div class="toolbar" style="margin-top:18px;justify-content:center;animation:none;opacity:1">
+    <a class="back-link" href="../index.html">← 返回列表</a>
+  </div>
+
+  <footer class="footer">
+    <p><span class="hl">🦅 华尔街之鹰</span> · 由 <span class="lotus">🪷 小荷</span> 自动整理</p>
+    <p>数据来源：404K Semi-AI 知识库（海外投行研报 / 404K自主报告 / 资讯汇总）· 持仓数据以 PORTFOLIO.md 为准</p>
+    <p class="warn">⚠️ 本报告仅供信息参考，不构成任何投资建议。市场有风险，投资需谨慎。</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // 阅读进度条
+  var bar = document.getElementById('progressBar');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    bar.style.width = (p * 100).toFixed(2) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  // 表格横向滚动（兜底，若渲染时未包裹）
+  document.querySelectorAll('.content table').forEach(function(t){
+    if (!t.parentNode.classList.contains('table-wrap')) {
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      t.parentNode.insertBefore(w, t);
+      w.appendChild(t);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
